@@ -54,7 +54,9 @@ function useHistoryRoute(): string {
 
   React.useEffect(() => {
     function onPopState() {
-      setPath(pathnameToPath(window.location.pathname))
+      React.startTransition(() => {
+        setPath(pathnameToPath(window.location.pathname))
+      })
     }
 
     function onClick(event: MouseEvent) {
@@ -77,7 +79,9 @@ function useHistoryRoute(): string {
 
       event.preventDefault()
       window.history.pushState({}, '', `${url.pathname}${url.search}`)
-      setPath(pathnameToPath(url.pathname))
+      React.startTransition(() => {
+        setPath(pathnameToPath(url.pathname))
+      })
       window.scrollTo({ top: 0, behavior: 'auto' })
     }
 
