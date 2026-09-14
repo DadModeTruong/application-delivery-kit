@@ -72,6 +72,7 @@ function Main({ className, size = 'contained', children, ...props }: MainProps) 
   return (
     <main
       id="main-content"
+      tabIndex={-1}
       data-slot="main"
       data-size={size}
       className={cn(

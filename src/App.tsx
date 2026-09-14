@@ -56,6 +56,9 @@ function useHistoryRoute(): string {
   React.useEffect(() => {
     function updateRoute(nextPath: string) {
       const update = () => setPath(nextPath)
+      const focusMainContent = () => {
+        document.getElementById('main-content')?.focus({ preventScroll: true })
+      }
       const viewTransitionDocument = document as Document & {
         startViewTransition?: (callback: () => void) => unknown
       }
@@ -66,9 +69,13 @@ function useHistoryRoute(): string {
           // Flush before the browser captures the new transition state so
           // the snapshot contains a complete page rather than a paint gap.
           flushSync(update)
+          focusMainContent()
         })
       } else {
-        React.startTransition(update)
+        React.startTransition(() => {
+          update()
+          requestAnimationFrame(focusMainContent)
+        })
       }
     }
 
