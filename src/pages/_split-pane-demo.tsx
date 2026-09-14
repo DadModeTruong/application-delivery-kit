@@ -134,7 +134,7 @@ function SplitPaneDemo({
             aria-expanded={secondaryVisible}
             onClick={() => setSecondaryVisible(false)}
           >
-            Close details
+            Hide details
           </Button>
         </div>
         <p className="text-sm text-muted-foreground">
