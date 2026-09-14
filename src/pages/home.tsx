@@ -30,7 +30,7 @@ function HomePage() {
       <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
         <div className="space-y-16 pb-12">
-          <section className="max-w-3xl space-y-6 pt-8" aria-labelledby="intro-heading">
+          <section className="space-y-6 pt-8" aria-labelledby="intro-heading">
             <h1 id="intro-heading" className="text-4xl font-semibold tracking-tight sm:text-5xl">
               A place to start when a page needs to make sense.
             </h1>
