@@ -53,10 +53,21 @@ function useHistoryRoute(): string {
   const [path, setPath] = React.useState(() => pathnameToPath(window.location.pathname))
 
   React.useEffect(() => {
+    function updateRoute(nextPath: string) {
+      const update = () => setPath(nextPath)
+      const viewTransitionDocument = document as Document & {
+        startViewTransition?: (callback: () => void) => unknown
+      }
+
+      if (viewTransitionDocument.startViewTransition) {
+        viewTransitionDocument.startViewTransition(update)
+      } else {
+        React.startTransition(update)
+      }
+    }
+
     function onPopState() {
-      React.startTransition(() => {
-        setPath(pathnameToPath(window.location.pathname))
-      })
+      updateRoute(pathnameToPath(window.location.pathname))
     }
 
     function onClick(event: MouseEvent) {
@@ -79,9 +90,7 @@ function useHistoryRoute(): string {
 
       event.preventDefault()
       window.history.pushState({}, '', `${url.pathname}${url.search}`)
-      React.startTransition(() => {
-        setPath(pathnameToPath(url.pathname))
-      })
+      updateRoute(pathnameToPath(url.pathname))
       window.scrollTo({ top: 0, behavior: 'auto' })
     }
 
