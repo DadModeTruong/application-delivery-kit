@@ -37,12 +37,12 @@ function HomePage() {
             <p className="text-xl leading-8 text-muted-foreground">
               Application Delivery Kit is a practical way to turn product needs into clear,
               accessible, testable applications. This React app is the shareable reference: it makes
-              the page, navigation, responsive, and accessibility decisions visible.
+              page, navigation, responsive, and accessibility decisions visible.
             </p>
             <p className="max-w-2xl leading-7 text-muted-foreground">
-              The GitHub repository contains the wider playbook behind these examples, including the
-              reasoning, reusable delivery artifacts, implementation guidance, and verification
-              expectations.
+              The app is intentionally focused. Use it to review the visible patterns and their
+              tradeoffs; use the GitHub repository to inspect the source, contribution guidance,
+              and verification commands behind the examples.
             </p>
           </section>
 
@@ -52,15 +52,16 @@ function HomePage() {
                 Reviewing the app
               </h2>
               <p className="mt-3 leading-7 text-muted-foreground">
-                Compare the examples to see how layout choices affect clarity, navigation, mobile
-                reflow, and the space available for content.
+                Follow the guide paths below to compare layout and navigation choices. Each page
+                includes a live example, practical guidance, responsive behavior, and accessibility
+                considerations.
               </p>
             </div>
             <div className="rounded-xl border p-6">
               <h2 className="text-xl font-semibold tracking-tight">Reviewing the repository</h2>
               <p className="mt-3 leading-7 text-muted-foreground">
-                Read the repository when you want to understand how the examples connect to the
-                delivery system and reusable project artifacts.
+                Read the repository when you want to see how this reference app is organized, built,
+                and verified. The broader delivery system is kept separate from this focused app.
               </p>
               <a
                 href="https://github.com/RealityTommy/application-delivery-kit"
@@ -77,11 +78,11 @@ function HomePage() {
           <section className="space-y-6" aria-labelledby="principles-heading">
             <div className="max-w-2xl space-y-2">
               <h2 id="principles-heading" className="text-2xl font-semibold tracking-tight">
-                What I am trying to keep consistent
+                What this reference keeps visible
               </h2>
               <p className="text-muted-foreground">
-                The goal is not to build every possible component. It is to make the common page
-                decisions easier to see and easier to reuse.
+                The goal is not to build every possible component. It is to make common page
+                decisions easier to see, compare, and reuse.
               </p>
             </div>
             <Columns base={1} md={3} gap="lg">
@@ -124,34 +125,119 @@ function HomePage() {
             </Columns>
           </section>
 
-          <section
-            className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.7fr)]"
-            aria-labelledby="start-heading"
-          >
-            <div className="space-y-5">
-              <h2 id="start-heading" className="text-2xl font-semibold tracking-tight">
-                Where to start
+          <section className="space-y-6" aria-labelledby="guides-heading">
+            <div className="max-w-2xl space-y-2">
+              <h2 id="guides-heading" className="text-2xl font-semibold tracking-tight">
+                Choose a guide path
               </h2>
-              <p className="leading-7 text-muted-foreground">
-                Start with the Simple layout. It has a Header, Main, and Footer, with no extra
-                navigation competing for attention. From there, compare what changes when a page
-                needs a second row of links, a sidebar, or both.
+              <p className="text-muted-foreground">
+                Start with the question you are trying to answer. The two paths use the same page
+                shell, but they focus on different decisions.
               </p>
-              <ol className="list-decimal space-y-3 pl-5 leading-7 text-muted-foreground marker:font-medium marker:text-foreground">
-                <li>Open Simple and look at how much room the content gets.</li>
-                <li>Compare the column choices at each screen size.</li>
-                <li>
-                  Move to Secondary or Sidebar only when the page needs more help getting around.
-                </li>
-                <li>
-                  Use Full last. It combines the other navigation patterns and carries the most
-                  cost.
-                </li>
-              </ol>
             </div>
-            <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="default-heading">
+            <div className="grid gap-6 lg:grid-cols-2">
+              <a
+                href="/layouts/header-only"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="text-xl font-semibold">Layout guides</h3>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  Compare a simple page, a page with related links, a page with a sidebar, and a page
+                  with both navigation layers. These guides also show responsive columns and an
+                  optional main-and-secondary details area.
+                </p>
+                <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
+                  Start with Header Only
+                </span>
+              </a>
+              <a
+                href="/navigation/header"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="text-xl font-semibold">Navigation guides</h3>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  Look at the Header, SecondaryNav, Sidebar, and Footer separately. These pages make
+                  each navigation region's job, mobile behavior, and keyboard expectations easier to
+                  review.
+                </p>
+                <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
+                  Start with Header navigation
+                </span>
+              </a>
+            </div>
+          </section>
+
+          <section className="space-y-6" aria-labelledby="start-heading">
+            <div className="max-w-2xl space-y-2">
+              <h2 id="start-heading" className="text-2xl font-semibold tracking-tight">
+                A useful order for reviewing the work
+              </h2>
+              <p className="text-muted-foreground">
+                Begin with the smallest useful arrangement, then add complexity only when the page
+                has a reason to need it.
+              </p>
+            </div>
+            <ol className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              <li className="rounded-xl border bg-muted/40 p-6">
+                <span className="text-sm font-medium text-muted-foreground">01</span>
+                <h3 className="mt-2 font-semibold">
+                  <a
+                    href="/layouts/header-only"
+                    className="underline decoration-muted-foreground/50 underline-offset-4 hover:decoration-foreground"
+                  >
+                    Header-only layout
+                  </a>
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  See how much a page can do with Header, Main, and Footer.
+                </p>
+              </li>
+              <li className="rounded-xl border bg-muted/40 p-6">
+                <span className="text-sm font-medium text-muted-foreground">02</span>
+                <h3 className="mt-2 font-semibold">
+                  <a
+                    href="/layouts/secondary"
+                    className="underline decoration-muted-foreground/50 underline-offset-4 hover:decoration-foreground"
+                  >
+                    Related links
+                  </a>
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  Compare what changes when a page needs a second row of links.
+                </p>
+              </li>
+              <li className="rounded-xl border bg-muted/40 p-6">
+                <span className="text-sm font-medium text-muted-foreground">03</span>
+                <h3 className="mt-2 font-semibold">
+                  <a
+                    href="/layouts/sidebar"
+                    className="underline decoration-muted-foreground/50 underline-offset-4 hover:decoration-foreground"
+                  >
+                    Sidebar navigation
+                  </a>
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  See how grouped navigation affects the space available for content.
+                </p>
+              </li>
+              <li className="rounded-xl border bg-muted/40 p-6">
+                <span className="text-sm font-medium text-muted-foreground">04</span>
+                <h3 className="mt-2 font-semibold">
+                  <a
+                    href="/layouts/full"
+                    className="underline decoration-muted-foreground/50 underline-offset-4 hover:decoration-foreground"
+                  >
+                    Full arrangement
+                  </a>
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  Use this last: it combines both navigation layers and carries the most cost.
+                </p>
+              </li>
+            </ol>
+            <aside className="rounded-xl border p-6" aria-labelledby="default-heading">
               <h2 id="default-heading" className="text-lg font-semibold">
-                My default
+                The default recommendation
               </h2>
               <p className="mt-3 leading-7 text-muted-foreground">
                 Use the least amount of layout that helps people complete the page. More navigation
@@ -160,47 +246,51 @@ function HomePage() {
             </aside>
           </section>
 
-          <section className="space-y-6" aria-labelledby="next-heading">
+          <section className="space-y-6" aria-labelledby="current-heading">
             <div className="max-w-2xl space-y-2">
-              <h2 id="next-heading" className="text-2xl font-semibold tracking-tight">
-                What is here now
+              <h2 id="current-heading" className="text-2xl font-semibold tracking-tight">
+                What is implemented now
               </h2>
               <p className="text-muted-foreground">
-                These pages are the current visual reference. The repository contains the deeper
-                guidance and copyable artifacts behind them.
+                The current reference covers page shells, navigation regions, responsive columns,
+                split views, clean URLs, and route-transition focus behavior.
               </p>
             </div>
             <Columns base={1} sm={2} lg={4} gap="lg">
               <a
-                href="/layouts/header-only"
+                href="/navigation/header"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <h3 className="font-semibold">Header Only</h3>
-                <p className="mt-2 text-sm text-muted-foreground">Header, Main, and Footer.</p>
-              </a>
-              <a
-                href="/layouts/secondary"
-                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <h3 className="font-semibold">Secondary</h3>
+                <h3 className="font-semibold">Header</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  A small group of related pages.
+                  Primary navigation, dropdowns, mobile menu, and skip link.
                 </p>
               </a>
               <a
-                href="/layouts/sidebar"
+                href="/navigation/secondary"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="font-semibold">SecondaryNav</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  A related-page row that moves into the mobile hierarchy.
+                </p>
+              </a>
+              <a
+                href="/navigation/sidebar"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Sidebar</h3>
-                <p className="mt-2 text-sm text-muted-foreground">A larger section with a map.</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Grouped section navigation beside the main content.
+                </p>
               </a>
               <a
-                href="/layouts/full"
+                href="/navigation/footer"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <h3 className="font-semibold">Full</h3>
+                <h3 className="font-semibold">Footer</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Both navigation layers together.
+                  Supporting links and the closing page landmark.
                 </p>
               </a>
             </Columns>
