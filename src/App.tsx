@@ -100,10 +100,13 @@ function useHistoryRoute(): string {
     }
 
     window.addEventListener('popstate', onPopState)
-    document.addEventListener('click', onClick)
+    // Capture navigation before React Aria dismisses a header dropdown.
+    // This keeps menu navigation on the same no-gap route path as ordinary
+    // anchors instead of waiting for the menu close lifecycle to finish.
+    document.addEventListener('click', onClick, true)
     return () => {
       window.removeEventListener('popstate', onPopState)
-      document.removeEventListener('click', onClick)
+      document.removeEventListener('click', onClick, true)
     }
   }, [])
 
