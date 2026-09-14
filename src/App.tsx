@@ -72,7 +72,6 @@ function useHistoryRoute(): string {
 
     function onClick(event: MouseEvent) {
       if (
-        event.defaultPrevented ||
         event.button !== 0 ||
         event.metaKey ||
         event.ctrlKey ||
