@@ -15,6 +15,7 @@
  */
 
 import * as React from 'react'
+import { flushSync } from 'react-dom'
 import { routes } from '@/pages'
 
 // ---------------------------------------------------------------
@@ -60,7 +61,12 @@ function useHistoryRoute(): string {
       }
 
       if (viewTransitionDocument.startViewTransition) {
-        viewTransitionDocument.startViewTransition(update)
+        viewTransitionDocument.startViewTransition(() => {
+          // React can batch updates from this native document listener.
+          // Flush before the browser captures the new transition state so
+          // the snapshot contains a complete page rather than a paint gap.
+          flushSync(update)
+        })
       } else {
         React.startTransition(update)
       }
