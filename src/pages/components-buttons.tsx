@@ -86,6 +86,12 @@ function ComponentsButtonsPage() {
                   or removing something. It uses a real button underneath, so it can receive focus,
                   respond to keyboard input, and expose its disabled state to assistive technology.
                 </p>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>The label tells people what result to expect.</li>
+                  <li>The variant controls visual emphasis, not the meaning of the action.</li>
+                  <li>The size and state help the control fit the surrounding task.</li>
+                  <li>A link remains the better choice when the control navigates to another page.</li>
+                </ul>
               </section>
 
               <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="buttons-use-heading">
@@ -113,7 +119,7 @@ function ComponentsButtonsPage() {
 
               <section className="space-y-5" aria-labelledby="buttons-decisions-heading">
                 <h2 id="buttons-decisions-heading" className="text-2xl font-semibold tracking-tight">
-                  Design and accessibility considerations
+                  Design/accessibility considerations
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>Use a short verb that describes the result: Save, Apply, or View details.</li>
@@ -121,6 +127,22 @@ function ComponentsButtonsPage() {
                   <li>Keep visible focus styles so keyboard users can see the active control.</li>
                   <li>Do not rely on color alone to distinguish a destructive action.</li>
                   <li>Use an accessible label for icon-only buttons and keep the icon familiar.</li>
+                </ul>
+              </section>
+
+              <section className="space-y-5" aria-labelledby="buttons-responsive-heading">
+                <h2 id="buttons-responsive-heading" className="text-2xl font-semibold tracking-tight">
+                  Responsive behavior
+                </h2>
+                <p className="leading-7 text-muted-foreground">
+                  Buttons can sit beside one another when their labels remain readable and the row
+                  still has room. On a narrow screen, let actions wrap or stack instead of shrinking
+                  the labels until their meaning is unclear.
+                </p>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Keep the most important action easy to find when controls wrap.</li>
+                  <li>Do not hide a necessary action only because the viewport is narrow.</li>
+                  <li>Check that labels, focus indicators, and activation targets remain comfortable to use.</li>
                 </ul>
               </section>
 

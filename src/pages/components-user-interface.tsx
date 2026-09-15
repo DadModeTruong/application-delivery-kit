@@ -89,12 +89,12 @@ function ComponentsUserInterfacePage() {
                 </div>
                 <div className="space-y-5" aria-labelledby="user-interface-not-heading">
                   <h2 id="user-interface-not-heading" className="text-2xl font-semibold tracking-tight">
-                    What it should not do
+                    When not to add a visual container
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>Turn every paragraph into a separate bordered surface.</li>
-                    <li>Use a visual container to hide unclear content or navigation.</li>
-                    <li>Suggest that a display component is interactive when it is not.</li>
+                    <li>When a normal heading, paragraph, or list already makes the relationship clear.</li>
+                    <li>When a border or shadow would only add decoration without helping people scan.</li>
+                    <li>When the visual treatment could make a non-interactive group look clickable.</li>
                   </ul>
                 </div>
               </section>
