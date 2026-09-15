@@ -46,7 +46,7 @@ const userInterfaceSidebarLinks: NavGroup[] = [
     items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
   },
 ]
-import { primaryNav, footerLinks } from './index'
+import { primaryNav, footerLinks } from '../page-registry'
 
 /**
  * User Interface area introduction. Mounted by the demo router at

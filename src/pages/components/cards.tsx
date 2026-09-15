@@ -57,7 +57,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { primaryNav, footerLinks } from './index'
+import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
 // Component-area navigation

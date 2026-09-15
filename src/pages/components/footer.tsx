@@ -12,7 +12,7 @@ import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
-import { primaryNav, footerLinks } from './index'
+import { primaryNav, footerLinks } from '../page-registry'
 import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 

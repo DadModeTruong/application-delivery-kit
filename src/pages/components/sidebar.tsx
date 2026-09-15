@@ -1,7 +1,7 @@
 /**
- * ComponentsSecondaryNavPage — SecondaryNav component usage guide.
+ * ComponentsSidebarPage — Sidebar component usage guide.
  *
- * Explains how to keep a short set of peer links together inside a section.
+ * Explains how grouped section links support deeper navigation beside Main.
  */
 
 import { Header, SkipLink } from '@/components/layout/header'
@@ -12,7 +12,7 @@ import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
-import { primaryNav, footerLinks } from './index'
+import { primaryNav, footerLinks } from '../page-registry'
 import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
@@ -46,14 +46,14 @@ const userInterfaceSidebarLinks: NavGroup[] = [
     items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
   },
 ]
-function ComponentsSecondaryNavPage() {
+function ComponentsSidebarPage() {
   return (
     <LayoutProvider
       secondaryNav={componentSectionLinks}
       secondaryNavLabel="Component areas"
       sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
-      activeHref="/components/secondary-nav"
+      activeHref="/components/sidebar"
     >
       <PageShell>
         <SkipLink />
@@ -62,140 +62,140 @@ function ComponentsSecondaryNavPage() {
         <PageBody>
           <Sidebar aria-label="User Interface" />
           <Main size="full">
-            <div className="space-y-12 pb-12 pt-6">
-              <section className="space-y-5" aria-labelledby="navigation-secondary-heading">
+            <div className="space-y-12 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+              <section className="space-y-5" aria-labelledby="navigation-sidebar-heading">
                 <h1
-                  id="navigation-secondary-heading"
+                  id="navigation-sidebar-heading"
                   className="text-4xl font-semibold tracking-tight"
                 >
-                  Secondary navigation
+                  Sidebar navigation
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
-                  Use SecondaryNav for a short row of peer links inside the current section. On
-                  smaller screens, LayoutProvider makes the same links available in the Header
-                  drawer.
+                  Use Sidebar when people need a grouped map of deeper pages beside Main. On smaller
+                  screens, LayoutProvider moves that map into the Header drawer.
                 </p>
               </section>
-              <section className="space-y-5" aria-labelledby="navigation-secondary-what-heading">
+              <section className="space-y-5" aria-labelledby="navigation-sidebar-what-heading">
                 <h2
-                  id="navigation-secondary-what-heading"
+                  id="navigation-sidebar-what-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   What is it for?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  SecondaryNav gives people nearby context without mixing section links into the
-                  application-wide Header. It renders real anchors and marks the active page with{' '}
-                  <code>aria-current="page"</code>.
+                  Sidebar gives a section enough space for groups, icons, and an active page state
+                  without making the Header carry every link.
                 </p>
               </section>
               <section
                 className="grid gap-10 lg:grid-cols-2"
-                aria-labelledby="navigation-secondary-use-heading"
+                aria-labelledby="navigation-sidebar-use-heading"
               >
                 <div className="space-y-5">
                   <h2
-                    id="navigation-secondary-use-heading"
+                    id="navigation-sidebar-use-heading"
                     className="text-2xl font-semibold tracking-tight"
                   >
                     When to use it
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For a small number of sibling pages.</li>
-                    <li>When the links share one clear section identity.</li>
-                    <li>When a horizontal row remains easy to scan.</li>
+                    <li>For a deeper set of related pages.</li>
+                    <li>When grouped labels improve scanning.</li>
+                    <li>When the page has enough width for a persistent rail.</li>
                   </ul>
                 </div>
-                <div className="space-y-5" aria-labelledby="navigation-secondary-not-heading">
+                <div className="space-y-5" aria-labelledby="navigation-sidebar-not-heading">
                   <h2
-                    id="navigation-secondary-not-heading"
+                    id="navigation-sidebar-not-heading"
                     className="text-2xl font-semibold tracking-tight"
                   >
                     When not to use it
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For a deep or heavily grouped page map.</li>
-                    <li>For broad application destinations.</li>
-                    <li>When the row would wrap into an unclear second menu.</li>
+                    <li>For only two or three peer links.</li>
+                    <li>For broad destinations shared by the whole application.</li>
+                    <li>When the rail would take more space than the content earns.</li>
                   </ul>
                 </div>
               </section>
-              <section className="space-y-5" aria-labelledby="navigation-secondary-design-heading">
+              <section className="space-y-5" aria-labelledby="navigation-sidebar-design-heading">
                 <h2
-                  id="navigation-secondary-design-heading"
+                  id="navigation-sidebar-design-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Design considerations
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep labels short and parallel.</li>
-                  <li>Keep the active state visually clear.</li>
-                  <li>Use the same links in the mobile drawer, not a second data set.</li>
+                  <li>Keep groups meaningful and short.</li>
+                  <li>Use icons only when they help recognition.</li>
+                  <li>Keep Main first in the DOM reading order.</li>
                 </ul>
               </section>
 
               <section
                 className="space-y-5"
-                aria-labelledby="navigation-secondary-accessibility-heading"
+                aria-labelledby="navigation-sidebar-accessibility-heading"
               >
                 <h2
-                  id="navigation-secondary-accessibility-heading"
+                  id="navigation-sidebar-accessibility-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Accessibility considerations
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>
-                    Give the landmark a specific <code>aria-label</code>.
-                  </li>
-                  <li>Use real links so keyboard and browser link actions work.</li>
-                  <li>Verify the mobile replacement remains named and reachable.</li>
+                  <li>Give the rail a specific landmark name.</li>
+                  <li>Mark the current page on its link.</li>
+                  <li>Test the mobile drawer and keyboard focus order.</li>
                 </ul>
               </section>
               <section
                 className="space-y-5"
-                aria-labelledby="navigation-secondary-responsive-heading"
+                aria-labelledby="navigation-sidebar-responsive-heading"
               >
                 <h2
-                  id="navigation-secondary-responsive-heading"
+                  id="navigation-sidebar-responsive-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  On wider screens, the short section-link row sits below the Header. On narrow
-                  screens, this row disappears rather than wrapping into a cramped strip; the same
-                  links are replaced by the Header's mobile menu.
+                  On wider screens, the Sidebar sits beside Main. On narrow screens, the visible
+                  rail disappears so it does not compete with the page content; its same grouped
+                  links move into the Header's mobile menu. Main remains the first reading area.
                 </p>
                 <p className="leading-7 text-muted-foreground">
-                  Keep one shared link list so the desktop and mobile paths stay in sync. Test the
-                  active link, keyboard focus, and the named navigation landmark at both widths.
+                  This is expected, not missing content. Open the mobile menu to reach the groups,
+                  and confirm that the drawer has a clear name, the current page is still marked,
+                  and focus returns to the menu trigger when it closes.
                 </p>
               </section>
 
-              <section
-                className="space-y-5"
-                aria-labelledby="navigation-secondary-examples-heading"
-              >
+              <section className="space-y-5" aria-labelledby="navigation-sidebar-examples-heading">
                 <h2
-                  id="navigation-secondary-examples-heading"
+                  id="navigation-sidebar-examples-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Examples
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Use a short list of peer links for nearby pages. These are the same real anchors
-                  people can use in the Header drawer on a smaller screen. The isolated row is
-                  intentionally hidden on narrow screens, so use the page Header above to inspect
-                  the mobile replacement and confirm the current page remains announced.
+                  Group links when people need a deeper map of the current section. The grouped
+                  example below uses the same Navigation, Layout, and Display groups as this area.
+                  It is visible at medium widths and above; on a narrow screen, the rail
+                  intentionally disappears and these same links are available from the Header's
+                  mobile menu.
+                </p>
+                <p className="leading-7 text-muted-foreground">
+                  Resize the example and test both paths: use a keyboard to reach the menu trigger,
+                  open the drawer, move through the grouped links, and close it without losing your
+                  place.
                 </p>
                 <div className="rounded-xl border">
-                  <SecondaryNav
-                    aria-label="Example section links"
-                    items={componentSectionLinks}
-                    activeHref="/components/user-interface"
+                  <Sidebar
+                    aria-label="Example section navigation"
+                    items={userInterfaceSidebarLinks}
+                    activeHref="/components/sidebar"
                   />
                 </div>
               </section>
@@ -208,4 +208,4 @@ function ComponentsSecondaryNavPage() {
   )
 }
 
-export { ComponentsSecondaryNavPage }
+export { ComponentsSidebarPage }

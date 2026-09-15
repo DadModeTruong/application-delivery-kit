@@ -11,7 +11,7 @@ import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { Columns } from '@/components/layout/columns'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { primaryNav, footerLinks } from './index'
+import { primaryNav, footerLinks } from './page-registry'
 
 // ---------------------------------------------------------------
 // Page

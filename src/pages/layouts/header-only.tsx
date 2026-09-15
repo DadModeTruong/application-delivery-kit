@@ -11,9 +11,9 @@ import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { Columns } from '@/components/layout/columns'
-import { DemoCard } from './_demo-card'
-import { SplitPaneDemo } from './_split-pane-demo'
-import { primaryNav, footerLinks } from './index'
+import { DemoCard } from '../demos/demo-card'
+import { SplitPaneDemo } from '../demos/split-pane-demo'
+import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
 // Page

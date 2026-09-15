@@ -1,8 +1,7 @@
 /**
- * ComponentsHeaderPage — Header component usage guide.
+ * ComponentsSecondaryNavPage — SecondaryNav component usage guide.
  *
- * Explains how the Header handles broad destinations, actions, and
- * responsive navigation without taking ownership of application routing.
+ * Explains how to keep a short set of peer links together inside a section.
  */
 
 import { Header, SkipLink } from '@/components/layout/header'
@@ -13,7 +12,7 @@ import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
-import { primaryNav, footerLinks } from './index'
+import { primaryNav, footerLinks } from '../page-registry'
 import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
@@ -47,14 +46,14 @@ const userInterfaceSidebarLinks: NavGroup[] = [
     items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
   },
 ]
-function ComponentsHeaderPage() {
+function ComponentsSecondaryNavPage() {
   return (
     <LayoutProvider
       secondaryNav={componentSectionLinks}
       secondaryNavLabel="Component areas"
       sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
-      activeHref="/components/header"
+      activeHref="/components/secondary-nav"
     >
       <PageShell>
         <SkipLink />
@@ -64,83 +63,84 @@ function ComponentsHeaderPage() {
           <Sidebar aria-label="User Interface" />
           <Main size="full">
             <div className="space-y-12 pb-12 pt-6">
-              <section className="space-y-5" aria-labelledby="navigation-header-heading">
+              <section className="space-y-5" aria-labelledby="navigation-secondary-heading">
                 <h1
-                  id="navigation-header-heading"
+                  id="navigation-secondary-heading"
                   className="text-4xl font-semibold tracking-tight"
                 >
-                  Header navigation
+                  Secondary navigation
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
-                  Use Header for the destinations people need across the whole application. It
-                  provides the top-level landmark, logo, primary links, optional dropdowns, actions,
-                  and mobile menu trigger.
+                  Use SecondaryNav for a short row of peer links inside the current section. On
+                  smaller screens, LayoutProvider makes the same links available in the Header
+                  drawer.
                 </p>
               </section>
-              <section className="space-y-5" aria-labelledby="navigation-header-what-heading">
+              <section className="space-y-5" aria-labelledby="navigation-secondary-what-heading">
                 <h2
-                  id="navigation-header-what-heading"
+                  id="navigation-secondary-what-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   What is it for?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Header is the broadest navigation layer. Pass ordinary link data through{' '}
-                  <code>nav</code>; the application or router still owns what happens at each path.
+                  SecondaryNav gives people nearby context without mixing section links into the
+                  application-wide Header. It renders real anchors and marks the active page with{' '}
+                  <code>aria-current="page"</code>.
                 </p>
               </section>
               <section
                 className="grid gap-10 lg:grid-cols-2"
-                aria-labelledby="navigation-header-use-heading"
+                aria-labelledby="navigation-secondary-use-heading"
               >
                 <div className="space-y-5">
                   <h2
-                    id="navigation-header-use-heading"
+                    id="navigation-secondary-use-heading"
                     className="text-2xl font-semibold tracking-tight"
                   >
                     When to use it
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For destinations that remain useful across the application.</li>
-                    <li>For one-level groups of related top-level links.</li>
-                    <li>For a logo, primary navigation, and a small set of actions.</li>
+                    <li>For a small number of sibling pages.</li>
+                    <li>When the links share one clear section identity.</li>
+                    <li>When a horizontal row remains easy to scan.</li>
                   </ul>
                 </div>
-                <div className="space-y-5" aria-labelledby="navigation-header-not-heading">
+                <div className="space-y-5" aria-labelledby="navigation-secondary-not-heading">
                   <h2
-                    id="navigation-header-not-heading"
+                    id="navigation-secondary-not-heading"
                     className="text-2xl font-semibold tracking-tight"
                   >
                     When not to use it
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For every link in a deep section map.</li>
-                    <li>For a long list that needs grouping and scanning space.</li>
-                    <li>For section-only links that would compete with primary destinations.</li>
+                    <li>For a deep or heavily grouped page map.</li>
+                    <li>For broad application destinations.</li>
+                    <li>When the row would wrap into an unclear second menu.</li>
                   </ul>
                 </div>
               </section>
-              <section className="space-y-5" aria-labelledby="navigation-header-design-heading">
+              <section className="space-y-5" aria-labelledby="navigation-secondary-design-heading">
                 <h2
-                  id="navigation-header-design-heading"
+                  id="navigation-secondary-design-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Design considerations
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep the primary list short enough to scan.</li>
-                  <li>Use dropdowns for one level only.</li>
-                  <li>Keep actions visually separate from navigation.</li>
+                  <li>Keep labels short and parallel.</li>
+                  <li>Keep the active state visually clear.</li>
+                  <li>Use the same links in the mobile drawer, not a second data set.</li>
                 </ul>
               </section>
 
               <section
                 className="space-y-5"
-                aria-labelledby="navigation-header-accessibility-heading"
+                aria-labelledby="navigation-secondary-accessibility-heading"
               >
                 <h2
-                  id="navigation-header-accessibility-heading"
+                  id="navigation-secondary-accessibility-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Accessibility considerations
@@ -148,49 +148,54 @@ function ComponentsHeaderPage() {
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
                   <li>
-                    Keep the named <code>Primary</code> landmark.
+                    Give the landmark a specific <code>aria-label</code>.
                   </li>
-                  <li>Use the skip link to reach Main.</li>
-                  <li>Test keyboard focus, dropdown controls, and the mobile drawer.</li>
+                  <li>Use real links so keyboard and browser link actions work.</li>
+                  <li>Verify the mobile replacement remains named and reachable.</li>
                 </ul>
               </section>
-              <section className="space-y-5" aria-labelledby="navigation-header-responsive-heading">
+              <section
+                className="space-y-5"
+                aria-labelledby="navigation-secondary-responsive-heading"
+              >
                 <h2
-                  id="navigation-header-responsive-heading"
+                  id="navigation-secondary-responsive-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  On wider screens, the primary links sit in the Header. On narrow screens, they
-                  move into the mobile menu and the menu trigger remains available, so the Header
-                  does not crowd the page. The logo and the main task remain easy to find.
+                  On wider screens, the short section-link row sits below the Header. On narrow
+                  screens, this row disappears rather than wrapping into a cramped strip; the same
+                  links are replaced by the Header's mobile menu.
                 </p>
                 <p className="leading-7 text-muted-foreground">
-                  The mobile menu is a replacement for the desktop link row, not a second copy of
-                  it. Check that opening it exposes the same destinations and that focus can enter,
-                  move through, and leave the menu predictably.
+                  Keep one shared link list so the desktop and mobile paths stay in sync. Test the
+                  active link, keyboard focus, and the named navigation landmark at both widths.
                 </p>
               </section>
 
-              <section className="space-y-5" aria-labelledby="navigation-header-examples-heading">
+              <section
+                className="space-y-5"
+                aria-labelledby="navigation-secondary-examples-heading"
+              >
                 <h2
-                  id="navigation-header-examples-heading"
+                  id="navigation-secondary-examples-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Examples
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  This is the Header pattern in isolation: a logo, a short primary navigation list,
-                  and the mobile menu behavior described above. The page shell already uses the same
-                  component at the top of this page. Resize the example to see the desktop links
-                  become a mobile menu, then open that menu with a mouse and keyboard. Verify the
-                  trigger and links have clear names and visible focus.
+                  Use a short list of peer links for nearby pages. These are the same real anchors
+                  people can use in the Header drawer on a smaller screen. The isolated row is
+                  intentionally hidden on narrow screens, so use the page Header above to inspect
+                  the mobile replacement and confirm the current page remains announced.
                 </p>
-                <div className="overflow-hidden rounded-xl border">
-                  <Header
-                    logo={{ href: '/', label: 'Application Delivery Kit' }}
-                    nav={primaryNav}
+                <div className="rounded-xl border">
+                  <SecondaryNav
+                    aria-label="Example section links"
+                    items={componentSectionLinks}
+                    activeHref="/components/user-interface"
                   />
                 </div>
               </section>
@@ -203,4 +208,4 @@ function ComponentsHeaderPage() {
   )
 }
 
-export { ComponentsHeaderPage }
+export { ComponentsSecondaryNavPage }

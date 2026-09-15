@@ -15,7 +15,7 @@ import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
 import type { NavLeaf } from '@/components/layout/types'
-import { primaryNav, footerLinks } from './index'
+import { primaryNav, footerLinks } from '../page-registry'
 
 const componentAreaLinks: NavLeaf[] = [
   { href: '/components/user-interface', label: 'User Interface' },

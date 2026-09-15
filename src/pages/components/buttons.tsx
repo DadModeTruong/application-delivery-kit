@@ -17,7 +17,7 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { Button, LinkButton } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import type { NavLeaf } from '@/components/layout/types'
-import { primaryNav, footerLinks } from './index'
+import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
 // Component-area navigation

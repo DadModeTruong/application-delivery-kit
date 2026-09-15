@@ -16,9 +16,9 @@ import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Columns } from '@/components/layout/columns'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
-import { DemoCard } from './_demo-card'
-import { SplitPaneDemo } from './_split-pane-demo'
-import { primaryNav, footerLinks } from './index'
+import { DemoCard } from '../demos/demo-card'
+import { SplitPaneDemo } from '../demos/split-pane-demo'
+import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
 // Demo config

@@ -10,7 +10,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Columns, type ColumnsProps } from '@/components/layout/columns'
 import { SecondaryPane, SplitPane, type SecondarySize } from '@/components/layout/split-pane'
-import { DemoCard } from './_demo-card'
+import { DemoCard } from '../demos/demo-card'
 
 // ---------------------------------------------------------------
 // Types

@@ -1,5 +1,5 @@
 /**
- * Demo pages barrel + shared demo config.
+ * Page registry and shared global navigation config.
  *
  * Exports the route table used by App.tsx's history router, plus the
  * shared nav configs (primaryNav, footerLinks) that every demo
@@ -19,19 +19,19 @@ import type { ComponentType } from 'react'
 import type { LucideIcon } from 'lucide-react'
 import type { NavItem, NavLeaf } from '@/components/layout/types'
 import { HomePage } from './home'
-import { LayoutsHeaderOnlyPage } from './layouts-header-only'
-import { LayoutsSecondaryPage } from './layouts-secondary'
-import { LayoutsSidebarPage } from './layouts-sidebar'
-import { LayoutsFullPage } from './layouts-full'
-import { ComponentsHeaderPage } from './components-header'
-import { ComponentsSecondaryNavPage } from './components-secondary-nav'
-import { ComponentsSidebarPage } from './components-sidebar'
-import { ComponentsFooterPage } from './components-footer'
-import { ComponentsCardsPage } from './components-cards'
-import { ComponentsSplitViewPage } from './components-split-view'
-import { ComponentsButtonsPage } from './components-buttons'
-import { ComponentsUserInterfacePage } from './components-user-interface'
-import { ComponentsInteractionPage } from './components-interaction'
+import { LayoutsHeaderOnlyPage } from './layouts/header-only'
+import { LayoutsSecondaryPage } from './layouts/secondary'
+import { LayoutsSidebarPage } from './layouts/sidebar'
+import { LayoutsFullPage } from './layouts/full'
+import { ComponentsHeaderPage } from './components/header'
+import { ComponentsSecondaryNavPage } from './components/secondary-nav'
+import { ComponentsSidebarPage } from './components/sidebar'
+import { ComponentsFooterPage } from './components/footer'
+import { ComponentsCardsPage } from './components/cards'
+import { ComponentsSplitViewPage } from './components/split-view'
+import { ComponentsButtonsPage } from './components/buttons'
+import { ComponentsUserInterfacePage } from './components/user-interface'
+import { ComponentsInteractionPage } from './components/interaction'
 
 // ---------------------------------------------------------------
 // Routes

@@ -16,7 +16,7 @@
 
 import * as React from 'react'
 import { flushSync } from 'react-dom'
-import { routes } from '@/pages'
+import { routes } from '@/pages/page-registry'
 
 // ---------------------------------------------------------------
 // History router

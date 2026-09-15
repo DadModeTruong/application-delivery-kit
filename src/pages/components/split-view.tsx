@@ -13,7 +13,7 @@ import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
-import { primaryNav, footerLinks } from './index'
+import { primaryNav, footerLinks } from '../page-registry'
 import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
@@ -47,7 +47,7 @@ const userInterfaceSidebarLinks: NavGroup[] = [
     items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
   },
 ]
-import { SplitPaneDemo } from './_split-pane-demo'
+import { SplitPaneDemo } from '../demos/split-pane-demo'
 
 function ComponentsSplitViewPage() {
   return (

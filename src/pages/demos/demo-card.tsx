@@ -9,7 +9,7 @@
  * copied into consumer projects via the shadcn-style registry.
  *
  * Kept as its own file (rather than co-located in
- * `pages/index.tsx`) because `pages/index.tsx` is a barrel that
+ * `pages/page-registry.tsx`) because `pages/page-registry.tsx` is a barrel that
  * exports non-component data (routes, nav configs). Mixing
  * component exports with data exports there trips
  * `react-refresh/only-export-components`. Separate file =
