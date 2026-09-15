@@ -131,7 +131,13 @@ function NavigationHeaderPage() {
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   On wider screens, the primary links sit in the Header. On narrow screens, they
-                  move into the mobile menu so the Header does not crowd the page.
+                  move into the mobile menu and the menu trigger remains available, so the Header
+                  does not crowd the page. The logo and the main task remain easy to find.
+                </p>
+                <p className="leading-7 text-muted-foreground">
+                  The mobile menu is a replacement for the desktop link row, not a second copy of
+                  it. Check that opening it exposes the same destinations and that focus can enter,
+                  move through, and leave the menu predictably.
                 </p>
               </section>
 
@@ -145,7 +151,9 @@ function NavigationHeaderPage() {
                 <p className="leading-7 text-muted-foreground">
                   This is the Header pattern in isolation: a logo, a short primary navigation list,
                   and the mobile menu behavior described above. The page shell already uses the same
-                  component at the top of this page.
+                  component at the top of this page. Resize the example to see the desktop links
+                  become a mobile menu, then open that menu with a mouse and keyboard. Verify the
+                  trigger and links have clear names and visible focus.
                 </p>
                 <div className="overflow-hidden rounded-xl border">
                   <Header

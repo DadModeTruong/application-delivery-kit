@@ -173,8 +173,10 @@ function ComponentsSplitViewPage() {
                   </h2>
                   <p className="leading-7 text-muted-foreground">
                     These examples use the same content count while comparing the two supported
-                    proportions. View details is a representative disclosure pattern, not a rule
-                    that every Split View must include a hide/show control.
+                    proportions. At narrow widths, Main stacks before Secondary; when Secondary is
+                    hidden, it is removed from the accessible page and Main uses the available
+                    width. View details is a representative disclosure pattern, not a rule that
+                    every Split View must include a hide/show control.
                   </p>
                 </div>
                 <div className="space-y-8">

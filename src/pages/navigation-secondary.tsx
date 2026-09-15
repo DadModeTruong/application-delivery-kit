@@ -134,7 +134,12 @@ function NavigationSecondaryPage() {
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   On wider screens, the short section-link row sits below the Header. On narrow
-                  screens, it is replaced by the same links in the Header's mobile menu.
+                  screens, this row disappears rather than wrapping into a cramped strip; the same
+                  links are replaced by the Header's mobile menu.
+                </p>
+                <p className="leading-7 text-muted-foreground">
+                  Keep one shared link list so the desktop and mobile paths stay in sync. Test the
+                  active link, keyboard focus, and the named navigation landmark at both widths.
                 </p>
               </section>
 
@@ -150,7 +155,9 @@ function NavigationSecondaryPage() {
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   Use a short list of peer links for nearby pages. These are the same real anchors
-                  people can use in the Header drawer on a smaller screen.
+                  people can use in the Header drawer on a smaller screen. The isolated row is
+                  intentionally hidden on narrow screens, so use the page Header above to inspect
+                  the mobile replacement and confirm the current page remains announced.
                 </p>
                 <div className="rounded-xl border">
                   <SecondaryNav

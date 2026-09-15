@@ -129,8 +129,14 @@ function NavigationSidebarPage() {
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  On wider screens, the Sidebar sits beside Main. On narrow screens, it moves into
-                  the Header's mobile menu while Main remains the first reading area.
+                  On wider screens, the Sidebar sits beside Main. On narrow screens, the visible
+                  rail disappears so it does not compete with the page content; its same grouped
+                  links move into the Header's mobile menu. Main remains the first reading area.
+                </p>
+                <p className="leading-7 text-muted-foreground">
+                  This is expected, not missing content. Open the mobile menu to reach the groups,
+                  and confirm that the drawer has a clear name, the current page is still marked,
+                  and focus returns to the menu trigger when it closes.
                 </p>
               </section>
 
@@ -144,6 +150,14 @@ function NavigationSidebarPage() {
                 <p className="leading-7 text-muted-foreground">
                   Group links when people need a deeper map of the current section. The grouped
                   example below uses the same Navigation, Layout, and Display groups as this area.
+                  It is visible at medium widths and above; on a narrow screen, the rail
+                  intentionally disappears and these same links are available from the Header's
+                  mobile menu.
+                </p>
+                <p className="leading-7 text-muted-foreground">
+                  Resize the example and test both paths: use a keyboard to reach the menu trigger,
+                  open the drawer, move through the grouped links, and close it without losing your
+                  place.
                 </p>
                 <div className="rounded-xl border">
                   <Sidebar

@@ -126,8 +126,14 @@ function NavigationFooterPage() {
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  On wider screens, the Footer content can sit in one row. On narrow screens, it
-                  wraps or stacks naturally so links remain easy to reach.
+                  On wider screens, the Footer content can sit in one row. On narrow screens, the
+                  copyright and link navigation wrap or stack naturally. Nothing is hidden, and the
+                  links remain reachable without horizontal scrolling.
+                </p>
+                <p className="leading-7 text-muted-foreground">
+                  Check the narrow version with the longest realistic link label. Make sure each
+                  link keeps a visible focus indicator, the Footer landmark remains discoverable,
+                  and the link navigation has its own name when it is present.
                 </p>
               </section>
 
@@ -141,6 +147,8 @@ function NavigationFooterPage() {
                 <p className="leading-7 text-muted-foreground">
                   Keep supporting links available without competing with the page's main task. The
                   Footer below uses the shared GitHub link configuration used by the page shell.
+                  Resize it to confirm the links wrap instead of overflowing, then tab through every
+                  link to check the focus order and accessible names.
                 </p>
                 <div className="overflow-hidden rounded-xl border">
                   <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />

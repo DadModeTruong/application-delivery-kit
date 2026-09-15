@@ -191,7 +191,8 @@ function ComponentsButtonsPage() {
                   <p className="leading-7 text-muted-foreground">
                     Start with the default variant for the main action. Use less emphasis for nearby
                     alternatives, and reserve destructive for an action that cannot be easily
-                    undone.
+                    undone. The controls wrap instead of shrinking their labels on narrow screens;
+                    keyboard focus and the action order should remain clear after they wrap.
                   </p>
                 </div>
                 <Card>

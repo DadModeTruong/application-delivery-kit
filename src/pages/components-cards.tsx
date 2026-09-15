@@ -200,7 +200,9 @@ function ComponentsCardsPage() {
                   </h2>
                   <p className="leading-7 text-muted-foreground">
                     The surface can look similar in each example. The semantic element changes with
-                    the job the card performs.
+                    the job the card performs. The examples use one column at narrow widths and add
+                    columns only at a wider breakpoint; resize the page to confirm every card
+                    remains readable without horizontal scrolling.
                   </p>
                 </div>
                 <div className="grid gap-6 lg:grid-cols-3">
