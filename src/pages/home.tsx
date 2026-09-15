@@ -131,11 +131,11 @@ function HomePage() {
                 Choose a guide path
               </h2>
               <p className="text-muted-foreground">
-                Start with the question you are trying to answer. The two paths use the same page
+                Start with the question you are trying to answer. The three paths use the same page
                 shell, but they focus on different decisions.
               </p>
             </div>
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="grid gap-6 lg:grid-cols-3">
               <a
                 href="/layouts/header-only"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -162,6 +162,19 @@ function HomePage() {
                 </p>
                 <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
                   Start with Header navigation
+                </span>
+              </a>
+              <a
+                href="/components/cards"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="text-xl font-semibold">Component guides</h3>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  Learn how to use Cards for information, links, and actions without confusing
+                  visual grouping with semantic behavior.
+                </p>
+                <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
+                  Start with Cards
                 </span>
               </a>
             </div>
@@ -291,6 +304,15 @@ function HomePage() {
                 <h3 className="font-semibold">Footer</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Supporting links and the closing page landmark.
+                </p>
+              </a>
+              <a
+                href="/components/cards"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="font-semibold">Cards</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Group related content while keeping links and actions semantic.
                 </p>
               </a>
             </Columns>

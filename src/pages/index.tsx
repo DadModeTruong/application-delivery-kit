@@ -27,6 +27,7 @@ import { NavigationHeaderPage } from './navigation-header'
 import { NavigationSecondaryPage } from './navigation-secondary'
 import { NavigationSidebarPage } from './navigation-sidebar'
 import { NavigationFooterPage } from './navigation-footer'
+import { ComponentsCardsPage } from './components-cards'
 
 // ---------------------------------------------------------------
 // Routes
@@ -57,6 +58,7 @@ const routes: Route[] = [
   { path: '/navigation/secondary', component: NavigationSecondaryPage },
   { path: '/navigation/sidebar', component: NavigationSidebarPage },
   { path: '/navigation/footer', component: NavigationFooterPage },
+  { path: '/components/cards', component: ComponentsCardsPage },
 ]
 
 // ---------------------------------------------------------------
@@ -90,6 +92,10 @@ const primaryNav: NavItem[] = [
       { href: '/navigation/sidebar', label: 'Sidebar' },
       { href: '/navigation/footer', label: 'Footer' },
     ],
+  },
+  {
+    label: 'Components',
+    children: [{ href: '/components/cards', label: 'Cards' }],
   },
 ]
 
