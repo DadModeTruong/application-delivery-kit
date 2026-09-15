@@ -14,8 +14,6 @@ import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
-import { LinkButton } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import type { NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from './index'
 
@@ -101,23 +99,29 @@ function ComponentsUserInterfacePage() {
                 </div>
               </section>
 
-              <section className="space-y-5" aria-labelledby="user-interface-components-heading">
-                <h2 id="user-interface-components-heading" className="text-2xl font-semibold tracking-tight">
-                  Components in this area
+              <section className="space-y-5" aria-labelledby="user-interface-guidance-heading">
+                <h2 id="user-interface-guidance-heading" className="text-2xl font-semibold tracking-tight">
+                  Good design and usage
                 </h2>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Card</CardTitle>
-                    <CardDescription>
-                      A visual grouping primitive for related information, links, or actions.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <LinkButton href="/components/card" variant="outline">
-                      Read the Card guide
-                    </LinkButton>
-                  </CardContent>
-                </Card>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Start with the content relationship, then choose the visual container that makes it clearer.</li>
+                  <li>Give a group one clear purpose instead of combining unrelated information because it fits on the page.</li>
+                  <li>Use consistent spacing, headings, and alignment so people can compare groups without relearning the page.</li>
+                  <li>Let the content determine the amount of visual emphasis; not every group needs the same treatment.</li>
+                  <li>Check the narrow layout before adding columns or extra decoration.</li>
+                </ul>
+              </section>
+
+              <section className="space-y-5" aria-labelledby="user-interface-questions-heading">
+                <h2 id="user-interface-questions-heading" className="text-2xl font-semibold tracking-tight">
+                  Questions to ask
+                </h2>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>What information belongs together, and why?</li>
+                  <li>Can someone understand the group without relying on its border, color, or shadow?</li>
+                  <li>Does the visual structure match the reading order on a small screen?</li>
+                  <li>Would a plain section, heading, or list communicate this more clearly?</li>
+                </ul>
               </section>
             </div>
           </Main>

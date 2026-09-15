@@ -14,8 +14,6 @@ import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
-import { LinkButton } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import type { NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from './index'
 
@@ -101,23 +99,29 @@ function ComponentsInteractionPage() {
                 </div>
               </section>
 
-              <section className="space-y-5" aria-labelledby="interaction-components-heading">
-                <h2 id="interaction-components-heading" className="text-2xl font-semibold tracking-tight">
-                  Components in this area
+              <section className="space-y-5" aria-labelledby="interaction-guidance-heading">
+                <h2 id="interaction-guidance-heading" className="text-2xl font-semibold tracking-tight">
+                  Good design and usage
                 </h2>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Button</CardTitle>
-                    <CardDescription>
-                      A control for clear actions, with variants and states that support the task.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <LinkButton href="/components/button" variant="outline">
-                      Read the Button guide
-                    </LinkButton>
-                  </CardContent>
-                </Card>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Describe the result of the action with a short, specific verb such as Save, Apply, or Close.</li>
+                  <li>Use one clear primary action and reduce emphasis for nearby alternatives.</li>
+                  <li>Keep buttons, links, and other controls keyboard accessible and visibly focusable.</li>
+                  <li>Show unavailable, busy, selected, or destructive states in a way that does not rely on color alone.</li>
+                  <li>Use a familiar icon only when it adds meaning, and give icon-only controls an accessible name.</li>
+                </ul>
+              </section>
+
+              <section className="space-y-5" aria-labelledby="interaction-questions-heading">
+                <h2 id="interaction-questions-heading" className="text-2xl font-semibold tracking-tight">
+                  Questions to ask
+                </h2>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Is this control changing something, or is it taking someone somewhere?</li>
+                  <li>Will the label still make sense if someone only hears the control out of context?</li>
+                  <li>What should people see while the action is unavailable or in progress?</li>
+                  <li>What happens after activation, and is that result clear to keyboard and screen-reader users?</li>
+                </ul>
               </section>
             </div>
           </Main>
