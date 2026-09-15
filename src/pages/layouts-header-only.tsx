@@ -81,42 +81,38 @@ function LayoutsHeaderOnlyPage() {
             </div>
           </section>
 
-          <section className="space-y-5" aria-labelledby="header-only-considerations-heading">
+          <section className="space-y-5" aria-labelledby="header-only-design-heading">
+            <h2 id="header-only-design-heading" className="text-2xl font-semibold tracking-tight">
+              Design considerations
+            </h2>
+
+            <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+              <li>Give the page one clear heading and one clear next step.</li>
+              <li>Use the extra space for content, not for extra controls.</li>
+              <li>Keep the Header and Main lined up so the page feels steady.</li>
+              <li>Let the content determine the page height instead of forcing a fixed screen.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-5" aria-labelledby="header-only-accessibility-heading">
             <h2
-              id="header-only-considerations-heading"
+              id="header-only-accessibility-heading"
               className="text-2xl font-semibold tracking-tight"
             >
-              Design/accessibility considerations
+              Accessibility considerations
             </h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div>
-                <h3 className="text-lg font-semibold">Design</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Give the page one clear heading and one clear next step.</li>
-                  <li>Use the extra space for content, not for extra controls.</li>
-                  <li>Keep the Header and Main lined up so the page feels steady.</li>
-                  <li>
-                    Let the content determine the page height instead of forcing a fixed screen.
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold">Accessibility</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>
-                    Keep one clear <code>h1</code> as the first meaningful heading in Main.
-                  </li>
-                  <li>Verify that the skip link moves focus directly to Main.</li>
-                  <li>
-                    Give Header navigation a clear accessible name and keep focus styles visible.
-                  </li>
-                  <li>
-                    Check at a narrow viewport that Main remains first and no horizontal scrolling
-                    is required.
-                  </li>
-                </ul>
-              </div>
-            </div>
+
+            <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+              <li>
+                Keep one clear <code>h1</code> as the first meaningful heading in Main.
+              </li>
+              <li>Verify that the skip link moves focus directly to Main.</li>
+              <li>Give Header navigation a clear accessible name and keep focus styles visible.</li>
+              <li>
+                Check at a narrow viewport that Main remains first and no horizontal scrolling is
+                required.
+              </li>
+            </ul>
           </section>
           <section className="space-y-5" aria-labelledby="layouts-header-only-responsive-heading">
             <h2

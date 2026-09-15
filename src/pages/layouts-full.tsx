@@ -138,36 +138,39 @@ function LayoutsFullPage() {
                 </div>
               </section>
 
-              <section className="space-y-5" aria-labelledby="full-decisions-heading">
-                <h2 id="full-decisions-heading" className="text-2xl font-semibold tracking-tight">
-                  Design/accessibility considerations
+              <section className="space-y-5" aria-labelledby="full-design-heading">
+                <h2 id="full-design-heading" className="text-2xl font-semibold tracking-tight">
+                  Design considerations
                 </h2>
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div>
-                    <h3 className="text-lg font-semibold">Design decisions</h3>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Give each layer a clear job so the page does not feel repetitive.</li>
-                      <li>Keep labels and current-page styles consistent.</li>
-                      <li>Leave enough room for the main content to be comfortable to read.</li>
-                      <li>Try it with real content. The page can feel busy quickly.</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Accessibility decisions</h3>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Give Header, SecondaryNav, and Sidebar distinct accessible names.</li>
-                      <li>
-                        Keep one clear <code>h1</code> in Main and verify that Main remains first in
-                        the reading order.
-                      </li>
-                      <li>Verify that the skip link moves focus directly to Main.</li>
-                      <li>
-                        Check that the mobile menu preserves the same hierarchy without repeating
-                        links unnecessarily.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+
+                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>Give each layer a clear job so the page does not feel repetitive.</li>
+                  <li>Keep labels and current-page styles consistent.</li>
+                  <li>Leave enough room for the main content to be comfortable to read.</li>
+                  <li>Try it with real content. The page can feel busy quickly.</li>
+                </ul>
+              </section>
+
+              <section className="space-y-5" aria-labelledby="full-accessibility-heading">
+                <h2
+                  id="full-accessibility-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Accessibility considerations
+                </h2>
+
+                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>Give Header, SecondaryNav, and Sidebar distinct accessible names.</li>
+                  <li>
+                    Keep one clear <code>h1</code> in Main and verify that Main remains first in the
+                    reading order.
+                  </li>
+                  <li>Verify that the skip link moves focus directly to Main.</li>
+                  <li>
+                    Check that the mobile menu preserves the same hierarchy without repeating links
+                    unnecessarily.
+                  </li>
+                </ul>
               </section>
               <section className="space-y-5" aria-labelledby="layouts-full-responsive-heading">
                 <h2

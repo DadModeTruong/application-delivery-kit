@@ -129,46 +129,43 @@ function LayoutsSidebarPage() {
                 </div>
               </section>
 
-              <section className="space-y-5" aria-labelledby="sidebar-decisions-heading">
+              <section className="space-y-5" aria-labelledby="sidebar-design-heading">
+                <h2 id="sidebar-design-heading" className="text-2xl font-semibold tracking-tight">
+                  Design considerations
+                </h2>
+
+                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>
+                    Group links around how people think about the work, not how the team built it.
+                  </li>
+                  <li>Use short labels that still make sense when someone scans the list.</li>
+                  <li>Leave enough room for the main content to breathe.</li>
+                  <li>Make the current page and the groups easy to tell apart.</li>
+                </ul>
+              </section>
+
+              <section className="space-y-5" aria-labelledby="sidebar-accessibility-heading">
                 <h2
-                  id="sidebar-decisions-heading"
+                  id="sidebar-accessibility-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  Design/accessibility considerations
+                  Accessibility considerations
                 </h2>
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div>
-                    <h3 className="text-lg font-semibold">Design decisions</h3>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>
-                        Group links around how people think about the work, not how the team built
-                        it.
-                      </li>
-                      <li>Use short labels that still make sense when someone scans the list.</li>
-                      <li>Leave enough room for the main content to breathe.</li>
-                      <li>Make the current page and the groups easy to tell apart.</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Accessibility decisions</h3>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>
-                        Give the Sidebar its own accessible name so it is distinct from Header
-                        navigation.
-                      </li>
-                      <li>
-                        Use headings and group labels that still make sense without the styling.
-                      </li>
-                      <li>
-                        Expose the current page with <code>aria-current="page"</code>.
-                      </li>
-                      <li>
-                        Verify that the mobile-menu version preserves the hierarchy and works with a
-                        keyboard.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+
+                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>
+                    Give the Sidebar its own accessible name so it is distinct from Header
+                    navigation.
+                  </li>
+                  <li>Use headings and group labels that still make sense without the styling.</li>
+                  <li>
+                    Expose the current page with <code>aria-current="page"</code>.
+                  </li>
+                  <li>
+                    Verify that the mobile-menu version preserves the hierarchy and works with a
+                    keyboard.
+                  </li>
+                </ul>
               </section>
               <section className="space-y-5" aria-labelledby="layouts-sidebar-responsive-heading">
                 <h2

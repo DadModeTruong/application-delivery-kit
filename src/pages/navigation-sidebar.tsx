@@ -100,26 +100,32 @@ function NavigationSidebarPage() {
                   id="navigation-sidebar-design-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  Design/accessibility considerations
+                  Design considerations
                 </h2>
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div>
-                    <h3 className="text-lg font-semibold">Design</h3>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Keep groups meaningful and short.</li>
-                      <li>Use icons only when they help recognition.</li>
-                      <li>Keep Main first in the DOM reading order.</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Accessibility</h3>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Give the rail a specific landmark name.</li>
-                      <li>Mark the current page on its link.</li>
-                      <li>Test the mobile drawer and keyboard focus order.</li>
-                    </ul>
-                  </div>
-                </div>
+
+                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>Keep groups meaningful and short.</li>
+                  <li>Use icons only when they help recognition.</li>
+                  <li>Keep Main first in the DOM reading order.</li>
+                </ul>
+              </section>
+
+              <section
+                className="space-y-5"
+                aria-labelledby="navigation-sidebar-accessibility-heading"
+              >
+                <h2
+                  id="navigation-sidebar-accessibility-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Accessibility considerations
+                </h2>
+
+                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>Give the rail a specific landmark name.</li>
+                  <li>Mark the current page on its link.</li>
+                  <li>Test the mobile drawer and keyboard focus order.</li>
+                </ul>
               </section>
               <section
                 className="space-y-5"

@@ -112,45 +112,43 @@ function LayoutsSecondaryPage() {
               </div>
             </section>
 
-            <section className="space-y-5" aria-labelledby="secondary-decisions-heading">
+            <section className="space-y-5" aria-labelledby="secondary-design-heading">
+              <h2 id="secondary-design-heading" className="text-2xl font-semibold tracking-tight">
+                Design considerations
+              </h2>
+
+              <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                <li>Use pages that belong together and have a similar level of importance.</li>
+                <li>Make the current page clear without relying on color alone.</li>
+                <li>Keep the page heading separate from this row of links.</li>
+                <li>Let the row scroll away unless people truly need it to stay visible.</li>
+              </ul>
+            </section>
+
+            <section className="space-y-5" aria-labelledby="secondary-accessibility-heading">
               <h2
-                id="secondary-decisions-heading"
+                id="secondary-accessibility-heading"
                 className="text-2xl font-semibold tracking-tight"
               >
-                Design/accessibility considerations
+                Accessibility considerations
               </h2>
-              <div className="grid gap-6 md:grid-cols-2">
-                <div>
-                  <h3 className="text-lg font-semibold">Design decisions</h3>
-                  <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>Use pages that belong together and have a similar level of importance.</li>
-                    <li>Make the current page clear without relying on color alone.</li>
-                    <li>Keep the page heading separate from this row of links.</li>
-                    <li>Let the row scroll away unless people truly need it to stay visible.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Accessibility decisions</h3>
-                  <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>
-                      Give SecondaryNav its own accessible name so it is distinct from Header
-                      navigation.
-                    </li>
-                    <li>
-                      Use real links and mark the current page with <code>aria-current="page"</code>
-                      .
-                    </li>
-                    <li>
-                      Keep a visible focus indicator and verify that each item is a real
-                      keyboard-accessible link.
-                    </li>
-                    <li>
-                      Verify that the mobile menu preserves the same link order and current-page
-                      state.
-                    </li>
-                  </ul>
-                </div>
-              </div>
+
+              <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                <li>
+                  Give SecondaryNav its own accessible name so it is distinct from Header
+                  navigation.
+                </li>
+                <li>
+                  Use real links and mark the current page with <code>aria-current="page"</code>.
+                </li>
+                <li>
+                  Keep a visible focus indicator and verify that each item is a real
+                  keyboard-accessible link.
+                </li>
+                <li>
+                  Verify that the mobile menu preserves the same link order and current-page state.
+                </li>
+              </ul>
             </section>
             <section className="space-y-5" aria-labelledby="layouts-secondary-responsive-heading">
               <h2

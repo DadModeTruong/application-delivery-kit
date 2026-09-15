@@ -76,28 +76,31 @@ function NavigationHeaderPage() {
               id="navigation-header-design-heading"
               className="text-2xl font-semibold tracking-tight"
             >
-              Design/accessibility considerations
+              Design considerations
             </h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div>
-                <h3 className="text-lg font-semibold">Design</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep the primary list short enough to scan.</li>
-                  <li>Use dropdowns for one level only.</li>
-                  <li>Keep actions visually separate from navigation.</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold">Accessibility</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>
-                    Keep the named <code>Primary</code> landmark.
-                  </li>
-                  <li>Use the skip link to reach Main.</li>
-                  <li>Test keyboard focus, dropdown controls, and the mobile drawer.</li>
-                </ul>
-              </div>
-            </div>
+
+            <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+              <li>Keep the primary list short enough to scan.</li>
+              <li>Use dropdowns for one level only.</li>
+              <li>Keep actions visually separate from navigation.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-5" aria-labelledby="navigation-header-accessibility-heading">
+            <h2
+              id="navigation-header-accessibility-heading"
+              className="text-2xl font-semibold tracking-tight"
+            >
+              Accessibility considerations
+            </h2>
+
+            <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+              <li>
+                Keep the named <code>Primary</code> landmark.
+              </li>
+              <li>Use the skip link to reach Main.</li>
+              <li>Test keyboard focus, dropdown controls, and the mobile drawer.</li>
+            </ul>
           </section>
           <section className="space-y-5" aria-labelledby="navigation-header-responsive-heading">
             <h2

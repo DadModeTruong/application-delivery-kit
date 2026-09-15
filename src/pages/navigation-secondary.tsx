@@ -93,28 +93,34 @@ function NavigationSecondaryPage() {
                 id="navigation-secondary-design-heading"
                 className="text-2xl font-semibold tracking-tight"
               >
-                Design/accessibility considerations
+                Design considerations
               </h2>
-              <div className="grid gap-6 md:grid-cols-2">
-                <div>
-                  <h3 className="text-lg font-semibold">Design</h3>
-                  <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>Keep labels short and parallel.</li>
-                    <li>Keep the active state visually clear.</li>
-                    <li>Use the same links in the mobile drawer, not a second data set.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Accessibility</h3>
-                  <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>
-                      Give the landmark a specific <code>aria-label</code>.
-                    </li>
-                    <li>Use real links so keyboard and browser link actions work.</li>
-                    <li>Verify the mobile replacement remains named and reachable.</li>
-                  </ul>
-                </div>
-              </div>
+
+              <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                <li>Keep labels short and parallel.</li>
+                <li>Keep the active state visually clear.</li>
+                <li>Use the same links in the mobile drawer, not a second data set.</li>
+              </ul>
+            </section>
+
+            <section
+              className="space-y-5"
+              aria-labelledby="navigation-secondary-accessibility-heading"
+            >
+              <h2
+                id="navigation-secondary-accessibility-heading"
+                className="text-2xl font-semibold tracking-tight"
+              >
+                Accessibility considerations
+              </h2>
+
+              <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                <li>
+                  Give the landmark a specific <code>aria-label</code>.
+                </li>
+                <li>Use real links so keyboard and browser link actions work.</li>
+                <li>Verify the mobile replacement remains named and reachable.</li>
+              </ul>
             </section>
             <section
               className="space-y-5"

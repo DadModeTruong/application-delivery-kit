@@ -79,26 +79,29 @@ function NavigationFooterPage() {
               id="navigation-footer-design-heading"
               className="text-2xl font-semibold tracking-tight"
             >
-              Design/accessibility considerations
+              Design considerations
             </h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div>
-                <h3 className="text-lg font-semibold">Design</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep supporting links quiet and easy to scan.</li>
-                  <li>Allow the row to wrap naturally on narrow screens.</li>
-                  <li>Keep the Footer aligned with Header and Main.</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold">Accessibility</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep the semantic footer landmark.</li>
-                  <li>Use the named Footer navigation landmark when links exist.</li>
-                  <li>Check focus visibility and the stacked mobile layout.</li>
-                </ul>
-              </div>
-            </div>
+
+            <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+              <li>Keep supporting links quiet and easy to scan.</li>
+              <li>Allow the row to wrap naturally on narrow screens.</li>
+              <li>Keep the Footer aligned with Header and Main.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-5" aria-labelledby="navigation-footer-accessibility-heading">
+            <h2
+              id="navigation-footer-accessibility-heading"
+              className="text-2xl font-semibold tracking-tight"
+            >
+              Accessibility considerations
+            </h2>
+
+            <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+              <li>Keep the semantic footer landmark.</li>
+              <li>Use the named Footer navigation landmark when links exist.</li>
+              <li>Check focus visibility and the stacked mobile layout.</li>
+            </ul>
           </section>
           <section className="space-y-5" aria-labelledby="navigation-footer-responsive-heading">
             <h2
