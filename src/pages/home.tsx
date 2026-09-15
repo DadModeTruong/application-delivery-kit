@@ -165,16 +165,16 @@ function HomePage() {
                 </span>
               </a>
               <a
-                href="/components/cards"
+                href="/components/card"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="text-xl font-semibold">Component guides</h3>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  Learn how to use Cards for information, links, and actions without confusing
+                  Learn how to use Card for grouping, and Button for clear actions, without confusing
                   visual grouping with semantic behavior.
                 </p>
                 <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
-                  Start with Cards
+                  Start with Card
                 </span>
               </a>
             </div>
@@ -307,12 +307,21 @@ function HomePage() {
                 </p>
               </a>
               <a
-                href="/components/cards"
+                href="/components/card"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <h3 className="font-semibold">Cards</h3>
+                <h3 className="font-semibold">Card</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Group related content while keeping links and actions semantic.
+                </p>
+              </a>
+              <a
+                href="/components/button"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="font-semibold">Button</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Make actions clear with the right label, emphasis, and state.
                 </p>
               </a>
             </Columns>

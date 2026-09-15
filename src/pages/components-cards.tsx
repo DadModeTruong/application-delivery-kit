@@ -33,11 +33,11 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 const componentSectionLinks: NavLeaf[] = [
-  { href: '/components/cards', label: 'User Interface' },
+  { href: '/components/card', label: 'User Interface' },
 ]
 
 const componentSidebarLinks: NavLeaf[] = [
-  { href: '/components/cards', label: 'Cards', icon: SquareStack },
+  { href: '/components/card', label: 'Card', icon: SquareStack },
 ]
 
 // ---------------------------------------------------------------
@@ -46,10 +46,10 @@ const componentSidebarLinks: NavLeaf[] = [
 
 /**
  * Card component reference page. Mounted by the demo router at
- * `/components/cards`.
+ * `/components/card`.
  *
  * @example
- * { path: '/components/cards', component: ComponentsCardsPage }
+ * { path: '/components/card', component: ComponentsCardsPage }
  */
 function ComponentsCardsPage() {
   return (
@@ -58,7 +58,7 @@ function ComponentsCardsPage() {
       secondaryNavLabel="User Interface"
       sidebarNav={componentSidebarLinks}
       sidebarNavLabel="User Interface"
-      activeHref="/components/cards"
+      activeHref="/components/card"
     >
       <PageShell>
         <SkipLink />
@@ -70,7 +70,7 @@ function ComponentsCardsPage() {
             <div className="space-y-14 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
               <section className="space-y-5" aria-labelledby="cards-heading">
                 <h1 id="cards-heading" className="text-4xl font-semibold tracking-tight">
-                  Cards should group related content, not decorate every section.
+                  Card should group related content, not decorate every section.
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
                   Use Card when a set of related information needs a clear boundary. The visual
@@ -201,7 +201,7 @@ function ComponentsCardsPage() {
                   </Card>
 
                   <a
-                    href="/components/cards#link-card"
+                    href="/components/card#link-card"
                     className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     id="link-card"
                   >
