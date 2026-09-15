@@ -13,7 +13,33 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { primaryNav, footerLinks } from './index'
-import { componentSectionLinks, userInterfaceSidebarLinks } from './component-area-navigation'
+import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
+import type { NavGroup, NavLeaf } from '@/components/layout/types'
+
+const componentSectionLinks: NavLeaf[] = [
+  { href: '/components/user-interface', label: 'User Interface' },
+  { href: '/components/interaction', label: 'Interaction' },
+]
+
+const userInterfaceSidebarLinks: NavGroup[] = [
+  {
+    label: 'Navigation',
+    items: [
+      { href: '/components/header', label: 'Header', icon: PanelTop },
+      { href: '/components/secondary-nav', label: 'SecondaryNav', icon: List },
+      { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
+      { href: '/components/footer', label: 'Footer', icon: PanelBottom },
+    ],
+  },
+  {
+    label: 'Layout',
+    items: [{ href: '/components/split-view', label: 'Split View', icon: PanelRight }],
+  },
+  {
+    label: 'Display',
+    items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
+  },
+]
 function NavigationSidebarPage() {
   return (
     <LayoutProvider
@@ -21,7 +47,7 @@ function NavigationSidebarPage() {
       secondaryNavLabel="Component areas"
       sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
-      activeHref="/components/navigation/sidebar"
+      activeHref="/components/sidebar"
     >
       <PageShell>
         <SkipLink />
@@ -163,7 +189,7 @@ function NavigationSidebarPage() {
                   <Sidebar
                     aria-label="Example section navigation"
                     items={userInterfaceSidebarLinks}
-                    activeHref="/components/navigation/sidebar"
+                    activeHref="/components/sidebar"
                   />
                 </div>
               </section>

@@ -14,7 +14,33 @@ import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
-import { componentSectionLinks, userInterfaceSidebarLinks } from './component-area-navigation'
+import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
+import type { NavGroup, NavLeaf } from '@/components/layout/types'
+
+const componentSectionLinks: NavLeaf[] = [
+  { href: '/components/user-interface', label: 'User Interface' },
+  { href: '/components/interaction', label: 'Interaction' },
+]
+
+const userInterfaceSidebarLinks: NavGroup[] = [
+  {
+    label: 'Navigation',
+    items: [
+      { href: '/components/header', label: 'Header', icon: PanelTop },
+      { href: '/components/secondary-nav', label: 'SecondaryNav', icon: List },
+      { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
+      { href: '/components/footer', label: 'Footer', icon: PanelBottom },
+    ],
+  },
+  {
+    label: 'Layout',
+    items: [{ href: '/components/split-view', label: 'Split View', icon: PanelRight }],
+  },
+  {
+    label: 'Display',
+    items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
+  },
+]
 import { Button } from '@/components/ui/button'
 import {
   Card,

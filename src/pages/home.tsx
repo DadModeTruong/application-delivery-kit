@@ -151,7 +151,7 @@ function HomePage() {
                 </span>
               </a>
               <a
-                href="/components/navigation/header"
+                href="/components/header"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="text-xl font-semibold">Navigation guides</h3>
@@ -292,7 +292,7 @@ function HomePage() {
             </div>
             <Columns base={1} sm={2} lg={4} gap="lg">
               <a
-                href="/components/navigation/header"
+                href="/components/header"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Header</h3>
@@ -301,7 +301,7 @@ function HomePage() {
                 </p>
               </a>
               <a
-                href="/components/navigation/secondary"
+                href="/components/secondary-nav"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">SecondaryNav</h3>
@@ -310,7 +310,7 @@ function HomePage() {
                 </p>
               </a>
               <a
-                href="/components/navigation/sidebar"
+                href="/components/sidebar"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Sidebar</h3>
@@ -319,7 +319,7 @@ function HomePage() {
                 </p>
               </a>
               <a
-                href="/components/navigation/footer"
+                href="/components/footer"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Footer</h3>
