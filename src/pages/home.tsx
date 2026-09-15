@@ -198,6 +198,18 @@ function HomePage() {
                   Start with Interaction
                 </span>
               </a>
+              <a
+                href="/components/forms"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="text-xl font-semibold">Forms area</h3>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  Choose the right control for entering, selecting, and reviewing information.
+                </p>
+                <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
+                  Start with Forms
+                </span>
+              </a>
             </div>
           </section>
 

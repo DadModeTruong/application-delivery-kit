@@ -26,6 +26,7 @@ import { primaryNav, footerLinks } from '../page-registry'
 const componentSectionLinks: NavLeaf[] = [
   { href: '/components/user-interface', label: 'User Interface' },
   { href: '/components/interaction', label: 'Interaction' },
+  { href: '/components/forms', label: 'Forms' },
 ]
 
 const componentSidebarLinks: NavLeaf[] = [

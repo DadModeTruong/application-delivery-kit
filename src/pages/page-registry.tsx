@@ -32,6 +32,18 @@ import { ComponentsSplitViewPage } from './components/split-view'
 import { ComponentsButtonsPage } from './components/buttons'
 import { ComponentsUserInterfacePage } from './components/user-interface'
 import { ComponentsInteractionPage } from './components/interaction'
+import {
+  ComponentsFormsPage,
+  ComponentsInputPage,
+  ComponentsSelectPage,
+  ComponentsTextareaPage,
+  ComponentsCheckboxPage,
+  ComponentsCheckboxGroupPage,
+  ComponentsRadioPage,
+  ComponentsRadioGroupPage,
+  ComponentsComboboxPage,
+  ComponentsDatepickerPage,
+} from './components/forms'
 
 // ---------------------------------------------------------------
 // Routes
@@ -64,6 +76,16 @@ const routes: Route[] = [
   { path: '/components/footer', component: ComponentsFooterPage },
   { path: '/components/user-interface', component: ComponentsUserInterfacePage },
   { path: '/components/interaction', component: ComponentsInteractionPage },
+  { path: '/components/forms', component: ComponentsFormsPage },
+  { path: '/components/input', component: ComponentsInputPage },
+  { path: '/components/select', component: ComponentsSelectPage },
+  { path: '/components/textarea', component: ComponentsTextareaPage },
+  { path: '/components/checkbox', component: ComponentsCheckboxPage },
+  { path: '/components/checkbox-group', component: ComponentsCheckboxGroupPage },
+  { path: '/components/radio', component: ComponentsRadioPage },
+  { path: '/components/radio-group', component: ComponentsRadioGroupPage },
+  { path: '/components/combobox', component: ComponentsComboboxPage },
+  { path: '/components/datepicker', component: ComponentsDatepickerPage },
   { path: '/components/card', component: ComponentsCardsPage },
   { path: '/components/split-view', component: ComponentsSplitViewPage },
   { path: '/components/button', component: ComponentsButtonsPage },
@@ -97,6 +119,7 @@ const primaryNav: NavItem[] = [
     children: [
       { href: '/components/user-interface', label: 'User Interface' },
       { href: '/components/interaction', label: 'Interaction' },
+      { href: '/components/forms', label: 'Forms' },
     ],
   },
 ]
