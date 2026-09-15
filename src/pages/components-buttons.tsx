@@ -91,6 +91,7 @@ function ComponentsButtonsPage() {
                   <li>The variant controls visual emphasis, not the meaning of the action.</li>
                   <li>The size and state help the control fit the surrounding task.</li>
                   <li>A link remains the better choice when the control navigates to another page.</li>
+                  <li>Describe the outcome in the label before choosing a variant, size, icon, or state.</li>
                 </ul>
               </section>
 
@@ -126,6 +127,7 @@ function ComponentsButtonsPage() {
                   <li>Use one prominent action when several actions compete for attention.</li>
                   <li>Choose the visual variant according to the action's importance and consequence.</li>
                   <li>Keep labels readable when buttons wrap or stack on smaller screens.</li>
+                  <li>Make the action's importance and risk clear before choosing how much visual attention it receives.</li>
                 </ul>
               </section>
 
@@ -138,6 +140,7 @@ function ComponentsButtonsPage() {
                   <li>Keep visible focus styles so keyboard users can see the active control.</li>
                   <li>Do not rely on color alone to distinguish a destructive action.</li>
                   <li>Give icon-only buttons an accessible label and keep the icon familiar.</li>
+                  <li>Test the control with a keyboard: it should be easy to reach, visibly focused, and understandable before and after activation.</li>
                 </ul>
               </section>
 
@@ -154,39 +157,8 @@ function ComponentsButtonsPage() {
                   <li>Keep the most important action easy to find when controls wrap.</li>
                   <li>Do not hide a necessary action only because the viewport is narrow.</li>
                   <li>Check that labels, focus indicators, and activation targets remain comfortable to use.</li>
+                  <li>Test the longest realistic label and the unavailable or destructive state at the narrowest supported width.</li>
                 </ul>
-              </section>
-
-              <section className="space-y-5" aria-labelledby="buttons-review-heading">
-                <h2 id="buttons-review-heading" className="text-2xl font-semibold tracking-tight">
-                  Implementation and review checklist
-                </h2>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Product and content</h3>
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      Is the action necessary, and does the label describe the result people need?
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Design</h3>
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      Is emphasis proportional to importance, risk, and the surrounding task?
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Development</h3>
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      Is the control implemented as the correct semantic element with truthful states?
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Testing and accessibility</h3>
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      Can people find, name, focus, activate, and understand the control by keyboard and assistive technology?
-                    </p>
-                  </div>
-                </div>
               </section>
 
               <section className="space-y-5" aria-labelledby="buttons-variants-heading">

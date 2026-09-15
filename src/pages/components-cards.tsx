@@ -104,6 +104,7 @@ function ComponentsCardsPage() {
                   <li>
                     <code>CardFooter</code> holds supporting actions or secondary information.
                   </li>
+                  <li>Decide whether the group is information, a destination, or an action before choosing its surrounding element.</li>
                 </ul>
               </section>
 
@@ -142,6 +143,7 @@ function ComponentsCardsPage() {
                   <li>Keep card titles and supporting text short enough to scan.</li>
                   <li>Choose the number of columns from the content, not from the maximum space available.</li>
                   <li>Do not make every card look equally important if the content is not equal.</li>
+                  <li>Write the card's one-sentence job before choosing borders, shadows, columns, or decorative treatment.</li>
                 </ul>
               </section>
 
@@ -155,6 +157,7 @@ function ComponentsCardsPage() {
                   <li>Do not make a non-interactive <code>div</code> behave like a link.</li>
                   <li>Do not put nested links or buttons inside a card that is already one link.</li>
                   <li>Keep visible focus styles on every interactive card or control.</li>
+                  <li>Test the card by keyboard and with a screen reader: people should hear the heading, understand the link or button name, and find each control once.</li>
                 </ul>
               </section>
 
@@ -171,40 +174,10 @@ function ComponentsCardsPage() {
                 </p>
                 <p className="leading-7 text-muted-foreground">
                   Cards should stack in DOM and reading order. A visual grid must not make people
-                  jump between unrelated items when the layout collapses on a smaller screen.
+                  jump between unrelated items when the layout collapses on a smaller screen. Check
+                  the narrow version with the actual longest title, description, and action label—not
+                  only with short demo text.
                 </p>
-              </section>
-
-              <section className="space-y-5" aria-labelledby="cards-review-heading">
-                <h2 id="cards-review-heading" className="text-2xl font-semibold tracking-tight">
-                  Implementation and review checklist
-                </h2>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">Product and content</h3>
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      Can people explain what belongs together and what they can do next?
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Design</h3>
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      Does the boundary, hierarchy, and emphasis help people scan without adding decoration?
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Development</h3>
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      Is the card composed with the correct heading, anchor, button, and content structure?
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Testing and accessibility</h3>
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      Does it remain understandable by keyboard, assistive technology, and at narrow widths?
-                    </p>
-                  </div>
-                </div>
               </section>
 
               <section className="space-y-5" aria-labelledby="cards-patterns-heading">
