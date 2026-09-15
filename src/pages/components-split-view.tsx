@@ -14,7 +14,7 @@ import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
 import { primaryNav, footerLinks } from './index'
-import { componentSectionLinks, userInterfaceSidebarLinks } from './component-navigation'
+import { componentSectionLinks, userInterfaceSidebarLinks } from './components-navigation'
 import { SplitPaneDemo } from './_split-pane-demo'
 
 function ComponentsSplitViewPage() {

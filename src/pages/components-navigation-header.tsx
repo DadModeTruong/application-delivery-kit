@@ -14,7 +14,7 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { primaryNav, footerLinks } from './index'
-import { componentSectionLinks, userInterfaceSidebarLinks } from './component-navigation'
+import { componentSectionLinks, userInterfaceSidebarLinks } from './components-navigation'
 function NavigationHeaderPage() {
   return (
     <LayoutProvider
