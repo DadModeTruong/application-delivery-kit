@@ -6,7 +6,7 @@
  * or an action.
  */
 
-import { CreditCard } from 'lucide-react'
+import { SquareStack } from 'lucide-react'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
@@ -37,7 +37,7 @@ const componentSectionLinks: NavLeaf[] = [
 ]
 
 const componentSidebarLinks: NavLeaf[] = [
-  { href: '/components/cards', label: 'Cards', icon: CreditCard },
+  { href: '/components/cards', label: 'Cards', icon: SquareStack },
 ]
 
 // ---------------------------------------------------------------
