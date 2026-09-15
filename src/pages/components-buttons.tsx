@@ -117,30 +117,28 @@ function ComponentsButtonsPage() {
                 </div>
               </section>
 
-              <section className="space-y-5" aria-labelledby="buttons-decisions-heading">
-                <h2 id="buttons-decisions-heading" className="text-2xl font-semibold tracking-tight">
-                  Design/accessibility considerations
+              <section className="space-y-5" aria-labelledby="buttons-design-heading">
+                <h2 id="buttons-design-heading" className="text-2xl font-semibold tracking-tight">
+                  Design considerations
                 </h2>
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div>
-                    <h3 className="text-lg font-semibold">Design</h3>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Use a short verb that describes the result: Save, Apply, or View details.</li>
-                      <li>Use one prominent action when several actions compete for attention.</li>
-                      <li>Choose the visual variant according to the action's importance and consequence.</li>
-                      <li>Keep labels readable when buttons wrap or stack on smaller screens.</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Accessibility</h3>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Use a real button for an action and a real anchor for navigation.</li>
-                      <li>Keep visible focus styles so keyboard users can see the active control.</li>
-                      <li>Do not rely on color alone to distinguish a destructive action.</li>
-                      <li>Give icon-only buttons an accessible label and keep the icon familiar.</li>
-                    </ul>
-                  </div>
-                </div>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Use a short verb that describes the result: Save, Apply, or View details.</li>
+                  <li>Use one prominent action when several actions compete for attention.</li>
+                  <li>Choose the visual variant according to the action's importance and consequence.</li>
+                  <li>Keep labels readable when buttons wrap or stack on smaller screens.</li>
+                </ul>
+              </section>
+
+              <section className="space-y-5" aria-labelledby="buttons-accessibility-heading">
+                <h2 id="buttons-accessibility-heading" className="text-2xl font-semibold tracking-tight">
+                  Accessibility considerations
+                </h2>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Use a real button for an action and a real anchor for navigation.</li>
+                  <li>Keep visible focus styles so keyboard users can see the active control.</li>
+                  <li>Do not rely on color alone to distinguish a destructive action.</li>
+                  <li>Give icon-only buttons an accessible label and keep the icon familiar.</li>
+                </ul>
               </section>
 
               <section className="space-y-5" aria-labelledby="buttons-responsive-heading">
@@ -157,6 +155,38 @@ function ComponentsButtonsPage() {
                   <li>Do not hide a necessary action only because the viewport is narrow.</li>
                   <li>Check that labels, focus indicators, and activation targets remain comfortable to use.</li>
                 </ul>
+              </section>
+
+              <section className="space-y-5" aria-labelledby="buttons-review-heading">
+                <h2 id="buttons-review-heading" className="text-2xl font-semibold tracking-tight">
+                  Implementation and review checklist
+                </h2>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                  <div>
+                    <h3 className="text-lg font-semibold">Product and content</h3>
+                    <p className="mt-2 leading-7 text-muted-foreground">
+                      Is the action necessary, and does the label describe the result people need?
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold">Design</h3>
+                    <p className="mt-2 leading-7 text-muted-foreground">
+                      Is emphasis proportional to importance, risk, and the surrounding task?
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold">Development</h3>
+                    <p className="mt-2 leading-7 text-muted-foreground">
+                      Is the control implemented as the correct semantic element with truthful states?
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold">Testing and accessibility</h3>
+                    <p className="mt-2 leading-7 text-muted-foreground">
+                      Can people find, name, focus, activate, and understand the control by keyboard and assistive technology?
+                    </p>
+                  </div>
+                </div>
               </section>
 
               <section className="space-y-5" aria-labelledby="buttons-variants-heading">
