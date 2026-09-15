@@ -13,7 +13,7 @@ import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
-import { componentSectionLinks, userInterfaceSidebarLinks } from './components-navigation'
+import { componentSectionLinks, userInterfaceSidebarLinks } from './component-area-navigation'
 import { primaryNav, footerLinks } from './index'
 
 /**
