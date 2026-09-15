@@ -4,40 +4,31 @@
  * Explains how grouped section links support deeper navigation beside Main.
  */
 
-import { BookOpen, Home, Palette } from 'lucide-react'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
-import { Footer } from '@/components/layout/footer'
 import { PageBody } from '@/components/layout/page-body'
-import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
+import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
-import type { NavGroup, NavLeaf } from '@/components/layout/types'
+import { Footer } from '@/components/layout/footer'
+import { PageShell } from '@/components/layout/page-shell'
 import { primaryNav, footerLinks } from './index'
-
-const sidebarLinks: (NavLeaf | NavGroup)[] = [
-  { href: '/navigation/sidebar', label: 'Overview', icon: Home },
-  {
-    label: 'Components',
-    items: [
-      { href: '/navigation/header', label: 'Header', icon: BookOpen },
-      { href: '/navigation/secondary', label: 'Secondary', icon: Palette },
-    ],
-  },
-]
-
+import { componentSectionLinks, userInterfaceSidebarLinks } from './component-navigation'
 function NavigationSidebarPage() {
   return (
     <LayoutProvider
-      sidebarNav={sidebarLinks}
-      sidebarNavLabel="Navigation components"
-      activeHref="/navigation/sidebar"
+      secondaryNav={componentSectionLinks}
+      secondaryNavLabel="Component areas"
+      sidebarNav={userInterfaceSidebarLinks}
+      sidebarNavLabel="User Interface"
+      activeHref="/components/navigation/sidebar"
     >
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+        <SecondaryNav aria-label="Component areas" activeHref="/components/user-interface" />
         <PageBody>
-          <Sidebar aria-label="Navigation components" />
+          <Sidebar aria-label="User Interface" />
           <Main size="full">
             <div className="space-y-12 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
               <section className="space-y-5" aria-labelledby="navigation-sidebar-heading">

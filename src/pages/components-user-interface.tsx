@@ -5,7 +5,6 @@
  * information before directing people to the component guides.
  */
 
-import { SquareStack } from 'lucide-react'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
@@ -14,17 +13,8 @@ import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
-import type { NavLeaf } from '@/components/layout/types'
+import { componentSectionLinks, userInterfaceSidebarLinks } from './component-navigation'
 import { primaryNav, footerLinks } from './index'
-
-const componentAreaLinks: NavLeaf[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
-  { href: '/components/interaction', label: 'Interaction' },
-]
-
-const userInterfaceComponents: NavLeaf[] = [
-  { href: '/components/card', label: 'Card', icon: SquareStack },
-]
 
 /**
  * User Interface area introduction. Mounted by the demo router at
@@ -36,10 +26,10 @@ const userInterfaceComponents: NavLeaf[] = [
 function ComponentsUserInterfacePage() {
   return (
     <LayoutProvider
-      secondaryNav={componentAreaLinks}
+      secondaryNav={componentSectionLinks}
       secondaryNavLabel="Component areas"
-      sidebarNav={userInterfaceComponents}
-      sidebarNavLabel="User Interface components"
+      sidebarNav={userInterfaceSidebarLinks}
+      sidebarNavLabel="User Interface"
       activeHref="/components/user-interface"
     >
       <PageShell>
@@ -47,7 +37,7 @@ function ComponentsUserInterfacePage() {
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <SecondaryNav aria-label="Component areas" />
         <PageBody>
-          <Sidebar aria-label="User Interface components" />
+          <Sidebar aria-label="User Interface" />
           <Main size="full">
             <div className="space-y-14 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
               <section className="space-y-5" aria-labelledby="user-interface-heading">
@@ -55,13 +45,17 @@ function ComponentsUserInterfacePage() {
                   User Interface
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
-                  User interface components help people understand and move through information. They
-                  create useful boundaries, establish hierarchy, and make a page easier to scan.
+                  User interface components help people understand and move through information.
+                  They create useful boundaries, establish hierarchy, and make a page easier to
+                  scan.
                 </p>
               </section>
 
               <section className="space-y-5" aria-labelledby="user-interface-what-heading">
-                <h2 id="user-interface-what-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="user-interface-what-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   What belongs here?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
@@ -76,9 +70,15 @@ function ComponentsUserInterfacePage() {
                 </ul>
               </section>
 
-              <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="user-interface-decisions-heading">
+              <section
+                className="grid gap-10 lg:grid-cols-2"
+                aria-labelledby="user-interface-decisions-heading"
+              >
                 <div className="space-y-5">
-                  <h2 id="user-interface-decisions-heading" className="text-2xl font-semibold tracking-tight">
+                  <h2
+                    id="user-interface-decisions-heading"
+                    className="text-2xl font-semibold tracking-tight"
+                  >
                     Good interface structure
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
@@ -88,37 +88,68 @@ function ComponentsUserInterfacePage() {
                   </ul>
                 </div>
                 <div className="space-y-5" aria-labelledby="user-interface-not-heading">
-                  <h2 id="user-interface-not-heading" className="text-2xl font-semibold tracking-tight">
+                  <h2
+                    id="user-interface-not-heading"
+                    className="text-2xl font-semibold tracking-tight"
+                  >
                     When not to add a visual container
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>When a normal heading, paragraph, or list already makes the relationship clear.</li>
-                    <li>When a border or shadow would only add decoration without helping people scan.</li>
-                    <li>When the visual treatment could make a non-interactive group look clickable.</li>
+                    <li>
+                      When a normal heading, paragraph, or list already makes the relationship
+                      clear.
+                    </li>
+                    <li>
+                      When a border or shadow would only add decoration without helping people scan.
+                    </li>
+                    <li>
+                      When the visual treatment could make a non-interactive group look clickable.
+                    </li>
                   </ul>
                 </div>
               </section>
 
               <section className="space-y-5" aria-labelledby="user-interface-guidance-heading">
-                <h2 id="user-interface-guidance-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="user-interface-guidance-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Good design and usage
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>Start with the content relationship, then choose the visual container that makes it clearer.</li>
-                  <li>Give a group one clear purpose instead of combining unrelated information because it fits on the page.</li>
-                  <li>Use consistent spacing, headings, and alignment so people can compare groups without relearning the page.</li>
-                  <li>Let the content determine the amount of visual emphasis; not every group needs the same treatment.</li>
+                  <li>
+                    Start with the content relationship, then choose the visual container that makes
+                    it clearer.
+                  </li>
+                  <li>
+                    Give a group one clear purpose instead of combining unrelated information
+                    because it fits on the page.
+                  </li>
+                  <li>
+                    Use consistent spacing, headings, and alignment so people can compare groups
+                    without relearning the page.
+                  </li>
+                  <li>
+                    Let the content determine the amount of visual emphasis; not every group needs
+                    the same treatment.
+                  </li>
                   <li>Check the narrow layout before adding columns or extra decoration.</li>
                 </ul>
               </section>
 
               <section className="space-y-5" aria-labelledby="user-interface-questions-heading">
-                <h2 id="user-interface-questions-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="user-interface-questions-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Questions to ask
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>What information belongs together, and why?</li>
-                  <li>Can someone understand the group without relying on its border, color, or shadow?</li>
+                  <li>
+                    Can someone understand the group without relying on its border, color, or
+                    shadow?
+                  </li>
                   <li>Does the visual structure match the reading order on a small screen?</li>
                   <li>Would a plain section, heading, or list communicate this more clearly?</li>
                 </ul>

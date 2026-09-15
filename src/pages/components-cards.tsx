@@ -6,7 +6,6 @@
  * or an action.
  */
 
-import { SquareStack } from 'lucide-react'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
@@ -15,6 +14,7 @@ import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
+import { componentSectionLinks, userInterfaceSidebarLinks } from './component-navigation'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -25,21 +25,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import type { NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from './index'
 
 // ---------------------------------------------------------------
 // Component-area navigation
 // ---------------------------------------------------------------
-
-const componentSectionLinks: NavLeaf[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
-  { href: '/components/interaction', label: 'Interaction' },
-]
-
-const componentSidebarLinks: NavLeaf[] = [
-  { href: '/components/card', label: 'Card', icon: SquareStack },
-]
 
 // ---------------------------------------------------------------
 // Page
@@ -57,7 +47,7 @@ function ComponentsCardsPage() {
     <LayoutProvider
       secondaryNav={componentSectionLinks}
       secondaryNavLabel="Component areas"
-      sidebarNav={componentSidebarLinks}
+      sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
       activeHref="/components/card"
     >
@@ -75,8 +65,8 @@ function ComponentsCardsPage() {
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
                   Use Card when a set of related information needs a clear boundary. The visual
-                  container helps people scan the page, but it does not decide whether the content is
-                  a link, an action, or a section of prose.
+                  container helps people scan the page, but it does not decide whether the content
+                  is a link, an action, or a section of prose.
                 </p>
               </section>
 
@@ -86,9 +76,9 @@ function ComponentsCardsPage() {
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   Card is a visual grouping primitive. It provides a surface, spacing, a border, and
-                  an optional header, content area, action area, and footer. The default Card renders
-                  as a <code>div</code>, so its meaning comes from the content inside it and the
-                  semantic element you choose around or within it.
+                  an optional header, content area, action area, and footer. The default Card
+                  renders as a <code>div</code>, so its meaning comes from the content inside it and
+                  the semantic element you choose around or within it.
                 </p>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>
@@ -104,7 +94,10 @@ function ComponentsCardsPage() {
                   <li>
                     <code>CardFooter</code> holds supporting actions or secondary information.
                   </li>
-                  <li>Decide whether the group is information, a destination, or an action before choosing its surrounding element.</li>
+                  <li>
+                    Decide whether the group is information, a destination, or an action before
+                    choosing its surrounding element.
+                  </li>
                 </ul>
               </section>
 
@@ -116,7 +109,9 @@ function ComponentsCardsPage() {
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                     <li>When related information benefits from a visible, bounded group.</li>
                     <li>When people need to scan several comparable items.</li>
-                    <li>When a content group has its own heading and optional supporting action.</li>
+                    <li>
+                      When a content group has its own heading and optional supporting action.
+                    </li>
                     <li>When the boundary helps explain what belongs together.</li>
                   </ul>
                 </div>
@@ -141,23 +136,41 @@ function ComponentsCardsPage() {
                   <li>Give each card one clear job and one clear reading path.</li>
                   <li>Use a heading when the content is a distinct group.</li>
                   <li>Keep card titles and supporting text short enough to scan.</li>
-                  <li>Choose the number of columns from the content, not from the maximum space available.</li>
-                  <li>Do not make every card look equally important if the content is not equal.</li>
-                  <li>Write the card's one-sentence job before choosing borders, shadows, columns, or decorative treatment.</li>
+                  <li>
+                    Choose the number of columns from the content, not from the maximum space
+                    available.
+                  </li>
+                  <li>
+                    Do not make every card look equally important if the content is not equal.
+                  </li>
+                  <li>
+                    Write the card's one-sentence job before choosing borders, shadows, columns, or
+                    decorative treatment.
+                  </li>
                 </ul>
               </section>
 
               <section className="space-y-5" aria-labelledby="cards-accessibility-heading">
-                <h2 id="cards-accessibility-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="cards-accessibility-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Accessibility considerations
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>Use a real heading and keep the page heading hierarchy intact.</li>
                   <li>Use a real anchor for navigation and a real button for an action.</li>
-                  <li>Do not make a non-interactive <code>div</code> behave like a link.</li>
-                  <li>Do not put nested links or buttons inside a card that is already one link.</li>
+                  <li>
+                    Do not make a non-interactive <code>div</code> behave like a link.
+                  </li>
+                  <li>
+                    Do not put nested links or buttons inside a card that is already one link.
+                  </li>
                   <li>Keep visible focus styles on every interactive card or control.</li>
-                  <li>Test the card by keyboard and with a screen reader: people should hear the heading, understand the link or button name, and find each control once.</li>
+                  <li>
+                    Test the card by keyboard and with a screen reader: people should hear the
+                    heading, understand the link or button name, and find each control once.
+                  </li>
                 </ul>
               </section>
 
@@ -166,17 +179,17 @@ function ComponentsCardsPage() {
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Start with one column so the content remains readable at narrow widths. Add columns
-                  only when each card still has enough room for its title, description, and actions.
-                  Use the page-wide <code>Columns</code> pattern for a full page and the
-                  container-responsive mode when cards live inside a split pane or another constrained
-                  region.
+                  Start with one column so the content remains readable at narrow widths. Add
+                  columns only when each card still has enough room for its title, description, and
+                  actions. Use the page-wide <code>Columns</code> pattern for a full page and the
+                  container-responsive mode when cards live inside a split pane or another
+                  constrained region.
                 </p>
                 <p className="leading-7 text-muted-foreground">
                   Cards should stack in DOM and reading order. A visual grid must not make people
                   jump between unrelated items when the layout collapses on a smaller screen. Check
-                  the narrow version with the actual longest title, description, and action label—not
-                  only with short demo text.
+                  the narrow version with the actual longest title, description, and action
+                  label—not only with short demo text.
                 </p>
               </section>
 

@@ -41,8 +41,8 @@ function HomePage() {
             </p>
             <p className="max-w-2xl leading-7 text-muted-foreground">
               The app is intentionally focused. Use it to review the visible patterns and their
-              tradeoffs; use the GitHub repository to inspect the source, contribution guidance,
-              and verification commands behind the examples.
+              tradeoffs; use the GitHub repository to inspect the source, contribution guidance, and
+              verification commands behind the examples.
             </p>
           </section>
 
@@ -142,8 +142,8 @@ function HomePage() {
               >
                 <h3 className="text-xl font-semibold">Layout guides</h3>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  Compare a simple page, a page with related links, a page with a sidebar, and a page
-                  with both navigation layers. These guides also show responsive columns and an
+                  Compare a simple page, a page with related links, a page with a sidebar, and a
+                  page with both navigation layers. These guides also show responsive columns and an
                   optional main-and-secondary details area.
                 </p>
                 <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
@@ -151,7 +151,7 @@ function HomePage() {
                 </span>
               </a>
               <a
-                href="/navigation/header"
+                href="/components/navigation/header"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="text-xl font-semibold">Navigation guides</h3>
@@ -283,7 +283,7 @@ function HomePage() {
             </div>
             <Columns base={1} sm={2} lg={4} gap="lg">
               <a
-                href="/navigation/header"
+                href="/components/navigation/header"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Header</h3>
@@ -292,7 +292,7 @@ function HomePage() {
                 </p>
               </a>
               <a
-                href="/navigation/secondary"
+                href="/components/navigation/secondary"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">SecondaryNav</h3>
@@ -301,7 +301,7 @@ function HomePage() {
                 </p>
               </a>
               <a
-                href="/navigation/sidebar"
+                href="/components/navigation/sidebar"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Sidebar</h3>
@@ -310,7 +310,7 @@ function HomePage() {
                 </p>
               </a>
               <a
-                href="/navigation/footer"
+                href="/components/navigation/footer"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Footer</h3>
@@ -335,7 +335,8 @@ function HomePage() {
                 <p className="mt-2 text-sm text-muted-foreground">
                   Controls that help people take action and understand state.
                 </p>
-              </a>              <a
+              </a>{' '}
+              <a
                 href="/components/card"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
