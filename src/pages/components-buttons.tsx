@@ -121,13 +121,26 @@ function ComponentsButtonsPage() {
                 <h2 id="buttons-decisions-heading" className="text-2xl font-semibold tracking-tight">
                   Design/accessibility considerations
                 </h2>
-                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>Use a short verb that describes the result: Save, Apply, or View details.</li>
-                  <li>Use one prominent action when several actions compete for attention.</li>
-                  <li>Keep visible focus styles so keyboard users can see the active control.</li>
-                  <li>Do not rely on color alone to distinguish a destructive action.</li>
-                  <li>Use an accessible label for icon-only buttons and keep the icon familiar.</li>
-                </ul>
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div>
+                    <h3 className="text-lg font-semibold">Design</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                      <li>Use a short verb that describes the result: Save, Apply, or View details.</li>
+                      <li>Use one prominent action when several actions compete for attention.</li>
+                      <li>Choose the visual variant according to the action's importance and consequence.</li>
+                      <li>Keep labels readable when buttons wrap or stack on smaller screens.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold">Accessibility</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                      <li>Use a real button for an action and a real anchor for navigation.</li>
+                      <li>Keep visible focus styles so keyboard users can see the active control.</li>
+                      <li>Do not rely on color alone to distinguish a destructive action.</li>
+                      <li>Give icon-only buttons an accessible label and keep the icon familiar.</li>
+                    </ul>
+                  </div>
+                </div>
               </section>
 
               <section className="space-y-5" aria-labelledby="buttons-responsive-heading">
