@@ -165,16 +165,28 @@ function HomePage() {
                 </span>
               </a>
               <a
-                href="/components/card"
+                href="/components/user-interface"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <h3 className="text-xl font-semibold">Component guides</h3>
+                <h3 className="text-xl font-semibold">Component areas</h3>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  Learn how to use Card for grouping, and Button for clear actions, without confusing
-                  visual grouping with semantic behavior.
+                  Start with User Interface or Interaction, then open the component guide that fits
+                  the page you are building.
                 </p>
                 <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
-                  Start with Card
+                  Start with User Interface
+                </span>
+              </a>
+              <a
+                href="/components/interaction"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="text-xl font-semibold">Interaction area</h3>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  Learn how actions, states, labels, and semantic controls help people use a page.
+                </p>
+                <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
+                  Start with Interaction
                 </span>
               </a>
             </div>
@@ -307,6 +319,23 @@ function HomePage() {
                 </p>
               </a>
               <a
+                href="/components/user-interface"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="font-semibold">User Interface</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Visual structure and display components that organize information.
+                </p>
+              </a>
+              <a
+                href="/components/interaction"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="font-semibold">Interaction</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Controls that help people take action and understand state.
+                </p>
+              </a>              <a
                 href="/components/card"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >

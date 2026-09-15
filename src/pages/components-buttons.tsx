@@ -30,7 +30,8 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 const componentSectionLinks: NavLeaf[] = [
-  { href: '/components/button', label: 'Interaction' },
+  { href: '/components/user-interface', label: 'User Interface' },
+  { href: '/components/interaction', label: 'Interaction' },
 ]
 
 const componentSidebarLinks: NavLeaf[] = [
@@ -52,7 +53,7 @@ function ComponentsButtonsPage() {
   return (
     <LayoutProvider
       secondaryNav={componentSectionLinks}
-      secondaryNavLabel="Interaction"
+      secondaryNavLabel="Component areas"
       sidebarNav={componentSidebarLinks}
       sidebarNavLabel="Interaction"
       activeHref="/components/button"
@@ -60,7 +61,7 @@ function ComponentsButtonsPage() {
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Interaction" />
+        <SecondaryNav aria-label="Component areas" activeHref="/components/interaction" />
         <PageBody>
           <Sidebar aria-label="Interaction" />
           <Main size="full">
