@@ -1,5 +1,5 @@
 /**
- * NavigationHeaderPage — Header component usage guide.
+ * ComponentsHeaderPage — Header component usage guide.
  *
  * Explains how the Header handles broad destinations, actions, and
  * responsive navigation without taking ownership of application routing.
@@ -17,6 +17,12 @@ import { primaryNav, footerLinks } from './index'
 import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
+// ---------------------------------------------------------------
+// Component-area navigation
+// ---------------------------------------------------------------
+
+// Kept local by design so each guide is self-contained. Keep these links and groups
+// aligned across the sibling component guides.
 const componentSectionLinks: NavLeaf[] = [
   { href: '/components/user-interface', label: 'User Interface' },
   { href: '/components/interaction', label: 'Interaction' },
@@ -41,7 +47,7 @@ const userInterfaceSidebarLinks: NavGroup[] = [
     items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
   },
 ]
-function NavigationHeaderPage() {
+function ComponentsHeaderPage() {
   return (
     <LayoutProvider
       secondaryNav={componentSectionLinks}
@@ -197,4 +203,4 @@ function NavigationHeaderPage() {
   )
 }
 
-export { NavigationHeaderPage }
+export { ComponentsHeaderPage }

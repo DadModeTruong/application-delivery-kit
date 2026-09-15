@@ -1,5 +1,5 @@
 /**
- * NavigationSidebarPage — Sidebar component usage guide.
+ * ComponentsSidebarPage — Sidebar component usage guide.
  *
  * Explains how grouped section links support deeper navigation beside Main.
  */
@@ -16,6 +16,12 @@ import { primaryNav, footerLinks } from './index'
 import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
+// ---------------------------------------------------------------
+// Component-area navigation
+// ---------------------------------------------------------------
+
+// Kept local by design so each guide is self-contained. Keep these links and groups
+// aligned across the sibling component guides.
 const componentSectionLinks: NavLeaf[] = [
   { href: '/components/user-interface', label: 'User Interface' },
   { href: '/components/interaction', label: 'Interaction' },
@@ -40,7 +46,7 @@ const userInterfaceSidebarLinks: NavGroup[] = [
     items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
   },
 ]
-function NavigationSidebarPage() {
+function ComponentsSidebarPage() {
   return (
     <LayoutProvider
       secondaryNav={componentSectionLinks}
@@ -202,4 +208,4 @@ function NavigationSidebarPage() {
   )
 }
 
-export { NavigationSidebarPage }
+export { ComponentsSidebarPage }

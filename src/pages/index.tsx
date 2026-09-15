@@ -23,10 +23,10 @@ import { LayoutsHeaderOnlyPage } from './layouts-header-only'
 import { LayoutsSecondaryPage } from './layouts-secondary'
 import { LayoutsSidebarPage } from './layouts-sidebar'
 import { LayoutsFullPage } from './layouts-full'
-import { NavigationHeaderPage } from './components-header'
-import { NavigationSecondaryPage } from './components-secondary-nav'
-import { NavigationSidebarPage } from './components-sidebar'
-import { NavigationFooterPage } from './components-footer'
+import { ComponentsHeaderPage } from './components-header'
+import { ComponentsSecondaryNavPage } from './components-secondary-nav'
+import { ComponentsSidebarPage } from './components-sidebar'
+import { ComponentsFooterPage } from './components-footer'
 import { ComponentsCardsPage } from './components-cards'
 import { ComponentsSplitViewPage } from './components-split-view'
 import { ComponentsButtonsPage } from './components-buttons'
@@ -58,10 +58,10 @@ const routes: Route[] = [
   { path: '/layouts/secondary', component: LayoutsSecondaryPage },
   { path: '/layouts/sidebar', component: LayoutsSidebarPage },
   { path: '/layouts/full', component: LayoutsFullPage },
-  { path: '/components/header', component: NavigationHeaderPage },
-  { path: '/components/secondary-nav', component: NavigationSecondaryPage },
-  { path: '/components/sidebar', component: NavigationSidebarPage },
-  { path: '/components/footer', component: NavigationFooterPage },
+  { path: '/components/header', component: ComponentsHeaderPage },
+  { path: '/components/secondary-nav', component: ComponentsSecondaryNavPage },
+  { path: '/components/sidebar', component: ComponentsSidebarPage },
+  { path: '/components/footer', component: ComponentsFooterPage },
   { path: '/components/user-interface', component: ComponentsUserInterfacePage },
   { path: '/components/interaction', component: ComponentsInteractionPage },
   { path: '/components/card', component: ComponentsCardsPage },

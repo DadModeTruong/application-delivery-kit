@@ -16,6 +16,12 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
+// ---------------------------------------------------------------
+// Component-area navigation
+// ---------------------------------------------------------------
+
+// Kept local by design so each guide is self-contained. Keep these links and groups
+// aligned across the sibling component guides.
 const componentSectionLinks: NavLeaf[] = [
   { href: '/components/user-interface', label: 'User Interface' },
   { href: '/components/interaction', label: 'Interaction' },

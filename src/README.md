@@ -5,7 +5,7 @@ This directory contains the React source for the reference application.
 ## Directory and file map
 
 - `components/` — reusable UI primitives and hand-written layout components.
-- `pages/` — route-level reference pages and shared route/navigation data.
+- `pages/` — route-level reference pages, the route table, global navigation data, and page-local guide navigation.
 - `lib/` — small shared implementation utilities.
 - `App.tsx` — history-based route selection and page rendering.
 - `main.tsx` — browser entry point that mounts the React app.
@@ -27,7 +27,7 @@ pnpm lint
 pnpm build
 ```
 
-When a page or component changes, verify the affected route at a narrow width as well as a desktop width. Keep route and shared navigation data in `pages/index.tsx` accurate when adding or renaming a page.
+When a page or component changes, verify the affected route at a narrow width as well as a desktop width. Keep the route table and global navigation data in `pages/index.tsx` accurate when adding or renaming a page. Keep each component guide's local area-navigation links aligned with its sibling guides.
 
 ## Continue
 

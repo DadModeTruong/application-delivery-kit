@@ -23,7 +23,7 @@ This is a focused React reference application for exploring clear, accessible, r
 - Hand-written layout components go in `src/components/layout/`.
 - shadcn-generated primitives go in `src/components/ui/`.
 - Route-level pages go in `src/pages/`.
-- Shared route and navigation data belongs in `src/pages/index.tsx`.
+- The route table and global navigation data belong in `src/pages/index.tsx`; component-area navigation stays local to each guide.
 - Small shared utilities go in `src/lib/`.
 
 See the relevant [directory README](./src/components/README.md) before adding or moving files.

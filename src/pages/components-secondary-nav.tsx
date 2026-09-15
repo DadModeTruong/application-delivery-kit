@@ -1,5 +1,5 @@
 /**
- * NavigationSecondaryPage — SecondaryNav component usage guide.
+ * ComponentsSecondaryNavPage — SecondaryNav component usage guide.
  *
  * Explains how to keep a short set of peer links together inside a section.
  */
@@ -16,6 +16,12 @@ import { primaryNav, footerLinks } from './index'
 import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
+// ---------------------------------------------------------------
+// Component-area navigation
+// ---------------------------------------------------------------
+
+// Kept local by design so each guide is self-contained. Keep these links and groups
+// aligned across the sibling component guides.
 const componentSectionLinks: NavLeaf[] = [
   { href: '/components/user-interface', label: 'User Interface' },
   { href: '/components/interaction', label: 'Interaction' },
@@ -40,7 +46,7 @@ const userInterfaceSidebarLinks: NavGroup[] = [
     items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
   },
 ]
-function NavigationSecondaryPage() {
+function ComponentsSecondaryNavPage() {
   return (
     <LayoutProvider
       secondaryNav={componentSectionLinks}
@@ -202,4 +208,4 @@ function NavigationSecondaryPage() {
   )
 }
 
-export { NavigationSecondaryPage }
+export { ComponentsSecondaryNavPage }
