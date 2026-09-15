@@ -137,6 +137,29 @@ function NavigationSecondaryPage() {
                   screens, it is replaced by the same links in the Header's mobile menu.
                 </p>
               </section>
+
+              <section
+                className="space-y-5"
+                aria-labelledby="navigation-secondary-examples-heading"
+              >
+                <h2
+                  id="navigation-secondary-examples-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Examples
+                </h2>
+                <p className="leading-7 text-muted-foreground">
+                  Use a short list of peer links for nearby pages. These are the same real anchors
+                  people can use in the Header drawer on a smaller screen.
+                </p>
+                <div className="rounded-xl border">
+                  <SecondaryNav
+                    aria-label="Example section links"
+                    items={componentSectionLinks}
+                    activeHref="/components/user-interface"
+                  />
+                </div>
+              </section>
             </div>
           </Main>
         </PageBody>

@@ -130,6 +130,22 @@ function NavigationFooterPage() {
                   wraps or stacks naturally so links remain easy to reach.
                 </p>
               </section>
+
+              <section className="space-y-5" aria-labelledby="navigation-footer-examples-heading">
+                <h2
+                  id="navigation-footer-examples-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Examples
+                </h2>
+                <p className="leading-7 text-muted-foreground">
+                  Keep supporting links available without competing with the page's main task. The
+                  Footer below uses the shared GitHub link configuration used by the page shell.
+                </p>
+                <div className="overflow-hidden rounded-xl border">
+                  <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+                </div>
+              </section>
             </div>
           </Main>
         </PageBody>

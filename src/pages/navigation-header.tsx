@@ -134,6 +134,26 @@ function NavigationHeaderPage() {
                   move into the mobile menu so the Header does not crowd the page.
                 </p>
               </section>
+
+              <section className="space-y-5" aria-labelledby="navigation-header-examples-heading">
+                <h2
+                  id="navigation-header-examples-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Examples
+                </h2>
+                <p className="leading-7 text-muted-foreground">
+                  This is the Header pattern in isolation: a logo, a short primary navigation list,
+                  and the mobile menu behavior described above. The page shell already uses the same
+                  component at the top of this page.
+                </p>
+                <div className="overflow-hidden rounded-xl border">
+                  <Header
+                    logo={{ href: '/', label: 'Application Delivery Kit' }}
+                    nav={primaryNav}
+                  />
+                </div>
+              </section>
             </div>
           </Main>
         </PageBody>

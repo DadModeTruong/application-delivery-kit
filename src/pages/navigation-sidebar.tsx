@@ -133,6 +133,26 @@ function NavigationSidebarPage() {
                   the Header's mobile menu while Main remains the first reading area.
                 </p>
               </section>
+
+              <section className="space-y-5" aria-labelledby="navigation-sidebar-examples-heading">
+                <h2
+                  id="navigation-sidebar-examples-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Examples
+                </h2>
+                <p className="leading-7 text-muted-foreground">
+                  Group links when people need a deeper map of the current section. The grouped
+                  example below uses the same Navigation, Layout, and Display groups as this area.
+                </p>
+                <div className="rounded-xl border">
+                  <Sidebar
+                    aria-label="Example section navigation"
+                    items={userInterfaceSidebarLinks}
+                    activeHref="/components/navigation/sidebar"
+                  />
+                </div>
+              </section>
             </div>
           </Main>
         </PageBody>

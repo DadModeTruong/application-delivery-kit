@@ -193,10 +193,10 @@ function ComponentsCardsPage() {
                 </p>
               </section>
 
-              <section className="space-y-5" aria-labelledby="cards-patterns-heading">
+              <section className="space-y-5" aria-labelledby="cards-examples-heading">
                 <div className="space-y-2">
-                  <h2 id="cards-patterns-heading" className="text-2xl font-semibold tracking-tight">
-                    Component-specific patterns
+                  <h2 id="cards-examples-heading" className="text-2xl font-semibold tracking-tight">
+                    Examples
                   </h2>
                   <p className="leading-7 text-muted-foreground">
                     The surface can look similar in each example. The semantic element changes with

@@ -15,13 +15,7 @@ import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Button, LinkButton } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import type { NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from './index'
 
@@ -90,8 +84,13 @@ function ComponentsButtonsPage() {
                   <li>The label tells people what result to expect.</li>
                   <li>The variant controls visual emphasis, not the meaning of the action.</li>
                   <li>The size and state help the control fit the surrounding task.</li>
-                  <li>A link remains the better choice when the control navigates to another page.</li>
-                  <li>Describe the outcome in the label before choosing a variant, size, icon, or state.</li>
+                  <li>
+                    A link remains the better choice when the control navigates to another page.
+                  </li>
+                  <li>
+                    Describe the outcome in the label before choosing a variant, size, icon, or
+                    state.
+                  </li>
                 </ul>
               </section>
 
@@ -125,14 +124,22 @@ function ComponentsButtonsPage() {
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>Use a short verb that describes the result: Save, Apply, or View details.</li>
                   <li>Use one prominent action when several actions compete for attention.</li>
-                  <li>Choose the visual variant according to the action's importance and consequence.</li>
+                  <li>
+                    Choose the visual variant according to the action's importance and consequence.
+                  </li>
                   <li>Keep labels readable when buttons wrap or stack on smaller screens.</li>
-                  <li>Make the action's importance and risk clear before choosing how much visual attention it receives.</li>
+                  <li>
+                    Make the action's importance and risk clear before choosing how much visual
+                    attention it receives.
+                  </li>
                 </ul>
               </section>
 
               <section className="space-y-5" aria-labelledby="buttons-accessibility-heading">
-                <h2 id="buttons-accessibility-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="buttons-accessibility-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Accessibility considerations
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
@@ -140,12 +147,18 @@ function ComponentsButtonsPage() {
                   <li>Keep visible focus styles so keyboard users can see the active control.</li>
                   <li>Do not rely on color alone to distinguish a destructive action.</li>
                   <li>Give icon-only buttons an accessible label and keep the icon familiar.</li>
-                  <li>Test the control with a keyboard: it should be easy to reach, visibly focused, and understandable before and after activation.</li>
+                  <li>
+                    Test the control with a keyboard: it should be easy to reach, visibly focused,
+                    and understandable before and after activation.
+                  </li>
                 </ul>
               </section>
 
               <section className="space-y-5" aria-labelledby="buttons-responsive-heading">
-                <h2 id="buttons-responsive-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="buttons-responsive-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
@@ -156,19 +169,29 @@ function ComponentsButtonsPage() {
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>Keep the most important action easy to find when controls wrap.</li>
                   <li>Do not hide a necessary action only because the viewport is narrow.</li>
-                  <li>Check that labels, focus indicators, and activation targets remain comfortable to use.</li>
-                  <li>Test the longest realistic label and the unavailable or destructive state at the narrowest supported width.</li>
+                  <li>
+                    Check that labels, focus indicators, and activation targets remain comfortable
+                    to use.
+                  </li>
+                  <li>
+                    Test the longest realistic label and the unavailable or destructive state at the
+                    narrowest supported width.
+                  </li>
                 </ul>
               </section>
 
-              <section className="space-y-5" aria-labelledby="buttons-variants-heading">
+              <section className="space-y-5" aria-labelledby="buttons-examples-heading">
                 <div className="space-y-2">
-                  <h2 id="buttons-variants-heading" className="text-2xl font-semibold tracking-tight">
-                    Variants
+                  <h2
+                    id="buttons-examples-heading"
+                    className="text-2xl font-semibold tracking-tight"
+                  >
+                    Examples
                   </h2>
                   <p className="leading-7 text-muted-foreground">
                     Start with the default variant for the main action. Use less emphasis for nearby
-                    alternatives, and reserve destructive for an action that cannot be easily undone.
+                    alternatives, and reserve destructive for an action that cannot be easily
+                    undone.
                   </p>
                 </div>
                 <Card>
@@ -190,13 +213,16 @@ function ComponentsButtonsPage() {
                 </Card>
               </section>
 
-              <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="buttons-sizes-heading">
+              <section
+                className="grid gap-10 lg:grid-cols-2"
+                aria-labelledby="buttons-sizes-heading"
+              >
                 <Card>
                   <CardHeader>
                     <CardTitle>Sizes</CardTitle>
                     <CardDescription>
-                      Choose a size that fits the surrounding layout without making the label hard to
-                      read or the target hard to activate.
+                      Choose a size that fits the surrounding layout without making the label hard
+                      to read or the target hard to activate.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="flex flex-wrap items-center gap-3">
@@ -210,8 +236,8 @@ function ComponentsButtonsPage() {
                   <CardHeader>
                     <CardTitle>States</CardTitle>
                     <CardDescription>
-                      A disabled button should explain that an action is unavailable, not look like a
-                      missing control.
+                      A disabled button should explain that an action is unavailable, not look like
+                      a missing control.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="flex flex-wrap items-center gap-3">
