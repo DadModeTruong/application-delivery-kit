@@ -28,6 +28,7 @@ import { NavigationSecondaryPage } from './navigation-secondary'
 import { NavigationSidebarPage } from './navigation-sidebar'
 import { NavigationFooterPage } from './navigation-footer'
 import { ComponentsCardsPage } from './components-cards'
+import { ComponentsSplitViewPage } from './components-split-view'
 import { ComponentsButtonsPage } from './components-buttons'
 import { ComponentsUserInterfacePage } from './components-user-interface'
 import { ComponentsInteractionPage } from './components-interaction'
@@ -64,6 +65,7 @@ const routes: Route[] = [
   { path: '/components/user-interface', component: ComponentsUserInterfacePage },
   { path: '/components/interaction', component: ComponentsInteractionPage },
   { path: '/components/card', component: ComponentsCardsPage },
+  { path: '/components/split-view', component: ComponentsSplitViewPage },
   { path: '/components/button', component: ComponentsButtonsPage },
 ]
 

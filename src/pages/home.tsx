@@ -165,6 +165,15 @@ function HomePage() {
                 </span>
               </a>
               <a
+                href="/components/split-view"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="font-semibold">Split View</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  A main area beside supporting details that stacks on smaller screens.
+                </p>
+              </a>
+              <a
                 href="/components/user-interface"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >

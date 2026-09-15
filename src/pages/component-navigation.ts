@@ -5,7 +5,7 @@
  * consistent across the area introduction and every guide in that area.
  */
 
-import { List, PanelBottom, PanelLeft, PanelTop, SquareStack } from 'lucide-react'
+import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
 const componentSectionLinks: NavLeaf[] = [
@@ -22,6 +22,10 @@ const userInterfaceSidebarLinks: NavGroup[] = [
       { href: '/components/navigation/sidebar', label: 'Sidebar', icon: PanelLeft },
       { href: '/components/navigation/footer', label: 'Footer', icon: PanelBottom },
     ],
+  },
+  {
+    label: 'Layout',
+    items: [{ href: '/components/split-view', label: 'Split View', icon: PanelRight }],
   },
   {
     label: 'Display',
