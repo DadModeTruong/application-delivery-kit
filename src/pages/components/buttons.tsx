@@ -16,7 +16,7 @@ import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Button, LinkButton } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import type { NavLeaf } from '@/components/layout/types'
+import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
@@ -29,8 +29,12 @@ const componentSectionLinks: NavLeaf[] = [
   { href: '/components/forms', label: 'Forms' },
 ]
 
-const componentSidebarLinks: NavLeaf[] = [
-  { href: '/components/button', label: 'Button', icon: MousePointerClick },
+const componentSidebarLinks: (NavLeaf | NavGroup)[] = [
+  { href: '/components/interaction', label: 'Interaction' },
+  {
+    label: 'Actions',
+    items: [{ href: '/components/button', label: 'Button', icon: MousePointerClick }],
+  },
 ]
 
 // ---------------------------------------------------------------
@@ -58,7 +62,7 @@ function ComponentsButtonsPage() {
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <SecondaryNav aria-label="Component areas" activeHref="/components/interaction" />
         <PageBody>
-          <Sidebar aria-label="Interaction" />
+          <Sidebar aria-label="Interaction components" />
           <Main size="full">
             <div className="space-y-14 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
               <section className="space-y-5" aria-labelledby="buttons-heading">

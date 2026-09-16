@@ -14,7 +14,7 @@ import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
-import type { NavLeaf } from '@/components/layout/types'
+import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from '../page-registry'
 
 const componentAreaLinks: NavLeaf[] = [
@@ -23,9 +23,12 @@ const componentAreaLinks: NavLeaf[] = [
   { href: '/components/forms', label: 'Forms' },
 ]
 
-const interactionComponents: NavLeaf[] = [
-  { href: '/components/interaction', label: 'Interaction', icon: MousePointerClick },
-  { href: '/components/button', label: 'Button', icon: MousePointerClick },
+const interactionComponents: (NavLeaf | NavGroup)[] = [
+  { href: '/components/interaction', label: 'Interaction' },
+  {
+    label: 'Actions',
+    items: [{ href: '/components/button', label: 'Button', icon: MousePointerClick }],
+  },
 ]
 
 /**

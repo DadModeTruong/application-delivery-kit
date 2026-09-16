@@ -28,7 +28,8 @@ const componentSectionLinks: NavLeaf[] = [
   { href: '/components/forms', label: 'Forms' },
 ]
 
-const userInterfaceSidebarLinks: NavGroup[] = [
+const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
+  { href: "/components/user-interface", label: "User Interface" },
   {
     label: 'Navigation',
     items: [
