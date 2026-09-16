@@ -91,7 +91,11 @@ function Field({
         {label}
       </label>
       {children}
-      {hint && <p className="mt-2 text-sm text-muted-foreground">{hint}</p>}
+      {hint && (
+        <p id={id ? `${id}-hint` : undefined} className="mt-2 text-sm text-muted-foreground">
+          {hint}
+        </p>
+      )}
     </div>
   )
 }
@@ -294,7 +298,12 @@ function InputVariations() {
             label="Project name"
             hint="Use the name people will recognize in the project list."
           >
-            <input id="input-helper-variation" className={inputClass} type="text" />
+            <input
+              id="input-helper-variation"
+              className={inputClass}
+              type="text"
+              aria-describedby="input-helper-variation-hint"
+            />
           </Field>
         </InputVariation>
 
@@ -328,6 +337,7 @@ function InputVariations() {
               value="ORG-1048"
               disabled
               readOnly
+              aria-describedby="input-disabled-variation-hint"
             />
           </Field>
         </InputVariation>
@@ -393,8 +403,11 @@ function InputVariations() {
               type="text"
               required
               aria-required="true"
+              aria-describedby="input-required-variation-hint"
             />
-            <p className="mt-2 text-sm text-muted-foreground">Required for creating the project.</p>
+            <p id="input-required-variation-hint" className="mt-2 text-sm text-muted-foreground">
+              Required for creating the project.
+            </p>
           </Field>
         </InputVariation>
 
@@ -429,6 +442,7 @@ function InputVariations() {
               className={inputClass}
               type="file"
               accept=".pdf,.docx,application/pdf"
+              aria-describedby="input-file-variation-hint"
             />
           </Field>
         </InputVariation>
