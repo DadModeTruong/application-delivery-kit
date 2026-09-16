@@ -123,6 +123,7 @@ function BasicComboboxExample() {
           aria-expanded={open}
           onChange={(event) => {
             setQuery(event.target.value)
+            setValue('')
             setOpen(true)
           }}
           onFocus={() => setOpen(true)}
