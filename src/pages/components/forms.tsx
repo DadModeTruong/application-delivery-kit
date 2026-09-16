@@ -98,26 +98,42 @@ function Field({
 
 function BasicComboboxExample() {
   const [open, setOpen] = useState(false)
+  const [query, setQuery] = useState('United States')
   const [value, setValue] = useState('United States')
   const options = ['Canada', 'Mexico', 'United States']
+  const filteredOptions = options.filter((option) =>
+    option.toLowerCase().includes(query.toLowerCase()),
+  )
 
   return (
     <div className="relative">
       <label className="text-sm font-medium" htmlFor="basic-combobox">
         Country
       </label>
-      <button
-        id="basic-combobox"
-        type="button"
-        className={`${inputClass} flex items-center justify-between text-left`}
-        role="combobox"
-        aria-controls="basic-combobox-options"
-        aria-expanded={open}
-        onClick={() => setOpen((current) => !current)}
-      >
-        <span>{value}</span>
-        <ChevronsUpDown className="size-4 text-muted-foreground" aria-hidden="true" />
-      </button>
+      <div className="relative">
+        <input
+          id="basic-combobox"
+          className={`${inputClass} pr-10`}
+          role="combobox"
+          type="text"
+          value={query}
+          aria-autocomplete="list"
+          aria-controls="basic-combobox-options"
+          aria-expanded={open}
+          onChange={(event) => {
+            setQuery(event.target.value)
+            setOpen(true)
+          }}
+          onFocus={() => setOpen(true)}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') setOpen(false)
+          }}
+        />
+        <ChevronsUpDown
+          className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+          aria-hidden="true"
+        />
+      </div>
       {open && (
         <ul
           id="basic-combobox-options"
@@ -125,20 +141,28 @@ function BasicComboboxExample() {
           role="listbox"
           aria-label="Country options"
         >
-          {options.map((option) => (
-            <li key={option} role="option" aria-selected={option === value}>
-              <button
-                type="button"
-                className="w-full rounded-sm px-3 py-2 text-left hover:bg-accent hover:text-accent-foreground"
-                onClick={() => {
-                  setValue(option)
-                  setOpen(false)
-                }}
-              >
-                {option}
-              </button>
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map((option) => (
+              <li key={option} role="option" aria-selected={option === value}>
+                <button
+                  type="button"
+                  className="w-full rounded-sm px-3 py-2 text-left hover:bg-accent hover:text-accent-foreground"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => {
+                    setValue(option)
+                    setQuery(option)
+                    setOpen(false)
+                  }}
+                >
+                  {option}
+                </button>
+              </li>
+            ))
+          ) : (
+            <li className="px-3 py-2 text-muted-foreground" role="status">
+              No countries found.
             </li>
-          ))}
+          )}
         </ul>
       )}
     </div>
