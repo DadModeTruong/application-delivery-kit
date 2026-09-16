@@ -275,7 +275,7 @@ function InputVariations() {
         </InputVariation>
 
         <InputVariation
-          title="Basic with helper text"
+          title="With helper text"
           description="A field with persistent guidance that answers a likely question before an error occurs."
           guidance={
             <InputGuidance
@@ -308,8 +308,8 @@ function InputVariations() {
         </InputVariation>
 
         <InputVariation
-          title="Basic with helper text, disabled"
-          description="A field that is currently unavailable because its value is controlled by another step or setting."
+          title="Disabled"
+          description="A field that cannot be changed in the current context because its value is controlled elsewhere."
           guidance={
             <InputGuidance
               intro="Disable an Input only when the person cannot make a meaningful change in the current context, such as a value derived from an earlier choice or a feature unavailable to their account."
@@ -327,14 +327,14 @@ function InputVariations() {
         >
           <Field
             id="input-disabled-variation"
-            label="Organization ID"
-            hint="Set by your organization administrator."
+            label="Account region"
+            hint="Set by your organization administrator; not editable here."
           >
             <input
               id="input-disabled-variation"
               className={inputClass}
               type="text"
-              value="ORG-1048"
+              value="US East"
               disabled
               readOnly
               aria-describedby="input-disabled-variation-hint"
@@ -343,7 +343,7 @@ function InputVariations() {
         </InputVariation>
 
         <InputVariation
-          title="Basic with helper text, invalid"
+          title="Invalid"
           description="A field whose current value does not meet a known requirement and needs correction."
           guidance={
             <InputGuidance
@@ -378,8 +378,8 @@ function InputVariations() {
         </InputVariation>
 
         <InputVariation
-          title="Basic with helper text, required"
-          description="A field that must contain a value before the form can be completed."
+          title="Required"
+          description="A field that must contain a value before the task can be completed."
           guidance={
             <InputGuidance
               intro="Mark an Input as required when the information is genuinely necessary to complete the task or meet a stated rule."
