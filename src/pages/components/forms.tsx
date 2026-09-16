@@ -215,7 +215,7 @@ function InputVariations() {
           of the control’s design, not as decoration added after the field is built.
         </p>
       </div>
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div className="grid gap-8">
         <InputVariation
           title="Basic"
           description="A short value with a visible label and no additional supporting text."
