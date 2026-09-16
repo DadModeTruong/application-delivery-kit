@@ -76,23 +76,28 @@ function Field({
   label,
   children,
   hint,
+  disabled,
 }: {
   id?: string
   label: string
   children: React.ReactNode
   hint?: string
+  disabled?: boolean
 }) {
   return (
-    <div>
+    <div className="group" data-disabled={disabled || undefined}>
       <label
-        className="text-sm font-medium"
+        className="text-sm font-medium group-data-[disabled=true]:opacity-50"
         htmlFor={id ?? label.toLowerCase().replaceAll(' ', '-')}
       >
         {label}
       </label>
       {children}
       {hint && (
-        <p id={id ? `${id}-hint` : undefined} className="mt-2 text-sm text-muted-foreground">
+        <p
+          id={id ? `${id}-hint` : undefined}
+          className="mt-2 text-sm text-muted-foreground group-data-[disabled=true]:opacity-50"
+        >
           {hint}
         </p>
       )}
@@ -368,16 +373,16 @@ function InputVariations() {
         >
           <Field
             id="input-disabled-variation"
-            label="Account region"
-            hint="Set by your organization administrator; not editable here. It should not accept keyboard input."
+            label="Email"
+            hint="This field is currently disabled."
+            disabled
           >
             <input
               id="input-disabled-variation"
-              className={inputClass}
-              type="text"
-              value="US East"
+              className={`${inputClass} disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-muted disabled:opacity-50`}
+              type="email"
+              placeholder="Email"
               disabled
-              readOnly
               aria-describedby="input-disabled-variation-hint"
             />
           </Field>
@@ -814,19 +819,22 @@ function SelectVariations() {
         >
           <Field
             id="select-disabled-variation"
-            label="Billing plan"
-            hint="Available after an administrator enables billing for this workspace."
+            label="Fruit"
+            hint="This field is currently disabled."
+            disabled
           >
-            <select
+            <button
               id="select-disabled-variation"
-              className={inputClass}
-              defaultValue="team"
+              type="button"
+              className="mt-2 flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-left text-sm shadow-xs outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-muted disabled:opacity-50"
               disabled
+              aria-haspopup="listbox"
+              aria-expanded="false"
               aria-describedby="select-disabled-variation-hint"
             >
-              <option value="team">Team</option>
-              <option value="business">Business</option>
-            </select>
+              <span className="text-muted-foreground">Select a fruit</span>
+              <span aria-hidden="true">⌄</span>
+            </button>
           </Field>
         </InputVariation>
 
