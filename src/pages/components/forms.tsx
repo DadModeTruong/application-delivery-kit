@@ -109,7 +109,7 @@ function ExampleFrame({ label, children }: { label: string; children: React.Reac
   )
 }
 
-function Example({ kind }: { kind: FormKind }) {
+function Examples({ kind }: { kind: FormKind }) {
   const [selectedFrequency, setSelectedFrequency] = useState('Immediately')
   const [selectedCountry, setSelectedCountry] = useState('United States')
   const [countryOpen, setCountryOpen] = useState(false)
@@ -602,6 +602,123 @@ function Example({ kind }: { kind: FormKind }) {
   }
 }
 
+function BasicExample({ kind }: { kind: FormKind }) {
+  switch (kind) {
+    case 'input':
+      return (
+        <Field id="basic-input" label="Email address">
+          <input
+            id="basic-input"
+            className={inputClass}
+            type="email"
+            placeholder="you@example.com"
+          />
+        </Field>
+      )
+    case 'select':
+      return (
+        <Field id="basic-select" label="Contact preference">
+          <select id="basic-select" className={inputClass} defaultValue="email">
+            <option value="email">Email</option>
+            <option value="phone">Phone</option>
+          </select>
+        </Field>
+      )
+    case 'textarea':
+      return (
+        <Field id="basic-textarea" label="Message">
+          <textarea
+            id="basic-textarea"
+            className={`${inputClass} min-h-24 resize-y`}
+            placeholder="Write a message"
+          />
+        </Field>
+      )
+    case 'checkbox':
+      return (
+        <label className="flex items-center gap-3 text-sm" htmlFor="basic-checkbox">
+          <input id="basic-checkbox" className="size-4 accent-primary" type="checkbox" />
+          <span>Send me product updates</span>
+        </label>
+      )
+    case 'checkbox-group':
+      return (
+        <fieldset className="space-y-3">
+          <legend className="text-sm font-medium">Topics of interest</legend>
+          <label className="flex items-center gap-3 text-sm" htmlFor="basic-checkbox-a">
+            <input id="basic-checkbox-a" className="size-4 accent-primary" type="checkbox" />
+            <span>Accessibility</span>
+          </label>
+          <label className="flex items-center gap-3 text-sm" htmlFor="basic-checkbox-b">
+            <input id="basic-checkbox-b" className="size-4 accent-primary" type="checkbox" />
+            <span>Design systems</span>
+          </label>
+        </fieldset>
+      )
+    case 'radio':
+      return (
+        <label className="flex items-center gap-3 text-sm" htmlFor="basic-radio">
+          <input
+            id="basic-radio"
+            className="size-4 accent-primary"
+            type="radio"
+            name="basic-radio"
+            defaultChecked
+          />
+          <span>Email</span>
+        </label>
+      )
+    case 'radio-group':
+      return (
+        <fieldset className="space-y-3">
+          <legend className="text-sm font-medium">Notification frequency</legend>
+          <label className="flex items-center gap-3 text-sm" htmlFor="basic-frequency">
+            <input
+              id="basic-frequency"
+              className="size-4 accent-primary"
+              type="radio"
+              name="basic-frequency"
+              defaultChecked
+            />
+            <span>Immediately</span>
+          </label>
+          <label className="flex items-center gap-3 text-sm" htmlFor="basic-frequency-daily">
+            <input
+              id="basic-frequency-daily"
+              className="size-4 accent-primary"
+              type="radio"
+              name="basic-frequency"
+            />
+            <span>Daily digest</span>
+          </label>
+        </fieldset>
+      )
+    case 'combobox':
+      return (
+        <div>
+          <label className="text-sm font-medium" htmlFor="basic-combobox">
+            Country
+          </label>
+          <button
+            id="basic-combobox"
+            type="button"
+            className={`${inputClass} flex items-center justify-between text-left`}
+            aria-expanded="false"
+          >
+            <span>United States</span>
+            <ChevronsUpDown className="size-4 text-muted-foreground" aria-hidden="true" />
+          </button>
+        </div>
+      )
+    case 'datepicker':
+      return (
+        <Field id="basic-datepicker" label="Start date">
+          <input id="basic-datepicker" className={inputClass} type="date" />
+        </Field>
+      )
+  }
+}
+
 function FormGuide({
   title,
   description,
@@ -623,26 +740,23 @@ function FormGuide({
         <PageBody>
           <Sidebar aria-label="Forms components" />
           <Main size="full">
-            <div className="space-y-12 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+            <div className="space-y-14 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
               <section className="max-w-3xl space-y-5">
                 <h1 className="text-4xl font-semibold tracking-tight">{title}</h1>
                 <p className="text-xl leading-8 text-muted-foreground">{description}</p>
               </section>
-              <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.65fr)]">
+              <section className="space-y-5" aria-labelledby="form-what-heading">
+                <h2 id="form-what-heading" className="text-2xl font-semibold tracking-tight">
+                  What is it?
+                </h2>
+                <p className="max-w-3xl leading-7 text-muted-foreground">
+                  This is the simplest version of {title}. Start by looking at the label, the kind
+                  of value it accepts, and the way a person interacts with it.
+                </p>
                 <div className={panelClass}>
-                  <h2 className="text-lg font-semibold">Preview</h2>
-                  <div className="mt-6 max-w-xl">
-                    <Example kind={kind} />
+                  <div className="max-w-xl">
+                    <BasicExample kind={kind} />
                   </div>
-                </div>
-                <div className="space-y-5">
-                  <h2 className="text-2xl font-semibold tracking-tight">Good design and usage</h2>
-                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>Give the control a visible, specific label.</li>
-                    <li>Use the native semantic type and name that match the value.</li>
-                    <li>Show help, error, and required information in text, not color alone.</li>
-                    <li>Keep keyboard focus visible and test the complete interaction.</li>
-                  </ul>
                 </div>
               </section>
               <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="form-use-heading">
@@ -722,8 +836,23 @@ function FormGuide({
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   Let controls fill the available width and allow labels and messages to wrap.
-                  Groups can stack on narrow screens without changing their order or meaning.
+                  Groups stack on narrow screens without changing their order or meaning.
                 </p>
+              </section>
+              <section className="space-y-6" aria-labelledby="form-examples-heading">
+                <div className="space-y-3">
+                  <h2 id="form-examples-heading" className="text-2xl font-semibold tracking-tight">
+                    Examples
+                  </h2>
+                  <p className="max-w-3xl leading-7 text-muted-foreground">
+                    Compare these examples to see how the same control changes for different
+                    situations. Try the interactive examples and notice what is communicated by the
+                    label, help text, selected value, and error message.
+                  </p>
+                </div>
+                <div className="max-w-5xl">
+                  <Examples kind={kind} />
+                </div>
               </section>
             </div>
           </Main>
