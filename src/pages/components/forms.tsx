@@ -754,6 +754,280 @@ function BasicExample({ kind }: { kind: FormKind }) {
   }
 }
 
+const variationCatalog: Record<
+  FormKind,
+  { name: string; what: string; use: string; avoid: string }[]
+> = {
+  input: [
+    {
+      name: 'Label + description',
+      what: 'The label names the value and the description explains format or purpose.',
+      use: 'Password rules, account email, or an accepted file-name format.',
+      avoid: 'Do not use placeholder text as the only label or instruction.',
+    },
+    {
+      name: 'Required + invalid',
+      what: 'Required tells people a value is necessary; invalid explains that the current value cannot be accepted.',
+      use: 'Registration email or a username that failed server validation.',
+      avoid:
+        'Do not show an error before someone has had a reasonable chance to complete the field.',
+    },
+    {
+      name: 'Read-only',
+      what: 'The value stays available for review but cannot be edited in this step.',
+      use: 'A verified email or generated account ID in a confirmation screen.',
+      avoid: 'Do not use read-only when the person should be able to correct the value.',
+    },
+    {
+      name: 'Input with action',
+      what: 'An input is paired with a related action, such as reveal, search, or clear.',
+      use: 'Search with a submit button or an API key with a Reveal action.',
+      avoid: 'Do not add an action when pressing Enter or clearing the field already works.',
+    },
+  ],
+  select: [
+    {
+      name: 'Placeholder / no selection',
+      what: 'The control starts without a chosen option and prompts an intentional decision.',
+      use: 'Choose a role or department during onboarding.',
+      avoid: 'Do not use a placeholder when a safe, obvious default prevents errors.',
+    },
+    {
+      name: 'Grouped options',
+      what: 'Related choices are separated by visible group labels.',
+      use: 'Shipping methods grouped as Standard and Express.',
+      avoid: 'Do not group a short, flat list just to add visual decoration.',
+    },
+    {
+      name: 'Long or scrollable list',
+      what: 'The menu remains usable when there are more options than fit comfortably on screen.',
+      use: 'Time zones, countries, or a large department list.',
+      avoid: 'Do not use Select for a long list when search/filtering would be faster.',
+    },
+    {
+      name: 'Disabled item / control',
+      what: 'A choice or the whole control is visible but unavailable in the current context.',
+      use: 'A State choice disabled until a Country is selected.',
+      avoid: 'Do not disable a control merely because the user has not decided yet.',
+    },
+  ],
+  textarea: [
+    {
+      name: 'Description + character limit',
+      what: 'Supporting text sets expectations for length and helps people shape their response.',
+      use: 'A 500-character profile bio or short issue summary.',
+      avoid: 'Do not impose a limit without explaining why it helps the task.',
+    },
+    {
+      name: 'Resizable',
+      what: 'The person can expand the field when their content needs more room.',
+      use: 'A message composer or a detailed support-ticket description.',
+      avoid: 'Do not allow resizing to break the surrounding layout or hide required actions.',
+    },
+    {
+      name: 'Invalid / error',
+      what: 'The field keeps the response visible and explains the correction needed.',
+      use: 'A required comment submitted empty or a response below a minimum length.',
+      avoid: 'Do not erase the person’s text when validation fails.',
+    },
+    {
+      name: 'Read-only / disabled',
+      what: 'Read-only allows review; disabled communicates that the field is unavailable.',
+      use: 'A locked legal notice or organization-managed notes.',
+      avoid: 'Do not use disabled when people need to copy or review the value.',
+    },
+  ],
+  checkbox: [
+    {
+      name: 'Independent boolean',
+      what: 'One checkbox represents one choice that can be on or off without affecting other choices.',
+      use: 'Remember me or send me product updates.',
+      avoid: 'Do not use a checkbox when exactly one option from a set must be chosen.',
+    },
+    {
+      name: 'Selected / default selected',
+      what: 'The saved preference appears checked when the setting is already active.',
+      use: 'Persisting a notification preference during account editing.',
+      avoid: 'Do not preselect a consequential opt-in without clear consent.',
+    },
+    {
+      name: 'Indeterminate',
+      what: 'The mixed state means some, but not all, related items are selected.',
+      use: 'A Select all permissions checkbox above partially selected child permissions.',
+      avoid: 'Do not use indeterminate as a third answer to a yes/no question.',
+    },
+    {
+      name: 'Read-only / disabled / invalid',
+      what: 'These states communicate locked policy, unavailable interaction, or failed required validation.',
+      use: 'Enforced compliance setting or required terms consent.',
+      avoid: 'Do not hide the reason a setting is unavailable or invalid.',
+    },
+  ],
+  'checkbox-group': [
+    {
+      name: 'Multiple selection',
+      what: 'Several checkboxes answer one shared question and may all be selected.',
+      use: 'Notification channels, interests, or project permissions.',
+      avoid: 'Do not group unrelated questions under one legend.',
+    },
+    {
+      name: 'Required group',
+      what: 'The group is valid only when at least one option is selected.',
+      use: 'At least one delivery method must be provided.',
+      avoid: 'Do not require a choice when “none of these” is a valid answer but is missing.',
+    },
+    {
+      name: 'Indeterminate parent',
+      what: 'A parent checkbox reflects a partial set of selected child permissions.',
+      use: 'Folder access where some child files are selected.',
+      avoid: 'Do not show a mixed state without making the child selections discoverable.',
+    },
+    {
+      name: 'Disabled or read-only group',
+      what: 'The entire set is locked while its current values remain understandable.',
+      use: 'Permissions shown during a review step or while a save is processing.',
+      avoid: 'Do not lock the group when only one option is unavailable.',
+    },
+  ],
+  radio: [
+    {
+      name: 'Vertical radio group',
+      what: 'Mutually exclusive options stack so longer labels and descriptions remain readable.',
+      use: 'Shipping speed with delivery estimates or billing interval.',
+      avoid: 'Do not use a radio group for choices that can be selected together.',
+    },
+    {
+      name: 'Horizontal radio group',
+      what: 'Short exclusive choices sit side by side and can wrap on narrow screens.',
+      use: 'Compact size choices or a small toolbar setting.',
+      avoid: 'Do not force long labels into a horizontal row.',
+    },
+    {
+      name: 'Disabled item',
+      what: 'One unavailable option remains visible so people understand the complete set.',
+      use: 'An Enterprise plan that requires contacting sales.',
+      avoid: 'Do not remove an unavailable option when its absence would be confusing.',
+    },
+    {
+      name: 'Required / invalid group',
+      what: 'The group asks for one decision and reports a group-level validation problem.',
+      use: 'Required payment method or preferred contact method.',
+      avoid: 'Do not validate each radio as if multiple values could be chosen.',
+    },
+  ],
+  'radio-group': [
+    {
+      name: 'Controlled selection',
+      what: 'Application state owns the selected value and updates other UI when it changes.',
+      use: 'A plan choice that updates a price summary immediately.',
+      avoid: 'Do not add controlled state when the selection has no effect until submit.',
+    },
+    {
+      name: 'Options with descriptions',
+      what: 'Each option includes supporting information while remaining one selectable choice.',
+      use: 'Access levels with permission summaries.',
+      avoid: 'Do not bury the actual option label inside secondary copy.',
+    },
+    {
+      name: 'Read-only review',
+      what: 'The selected answer can be reviewed without being changed.',
+      use: 'A submitted survey answer or order confirmation.',
+      avoid: 'Do not use read-only to prevent a correction that the workflow should allow.',
+    },
+    {
+      name: 'Disabled group or item',
+      what: 'The whole decision or one option is unavailable while the reason remains visible.',
+      use: 'Locking plan selection after checkout or disabling unsupported payment.',
+      avoid: 'Do not disable every option without explaining what action will unlock them.',
+    },
+  ],
+  combobox: [
+    {
+      name: 'Searchable selection',
+      what: 'Typing filters a collection while the person can still choose a known item.',
+      use: 'Assigning an issue to a team member or selecting a country.',
+      avoid: 'Do not use ComboBox for a tiny list that is faster to scan.',
+    },
+    {
+      name: 'Custom value',
+      what: 'The typed value can be accepted even when it is not in the suggestions.',
+      use: 'Adding a new tag or entering a free-form location.',
+      avoid: 'Do not allow custom values when only approved records are valid.',
+    },
+    {
+      name: 'Grouped or rich results',
+      what: 'Sections and descriptions help people distinguish similar options.',
+      use: 'Search results grouped by team, resource type, or project.',
+      avoid: 'Do not add grouping when every result is already easy to distinguish.',
+    },
+    {
+      name: 'No results / disabled item',
+      what: 'The list explains an empty search or keeps unavailable results visible but unselectable.',
+      use: 'No users found or archived users shown in a directory.',
+      avoid: 'Do not leave an empty popup unexplained.',
+    },
+  ],
+  datepicker: [
+    {
+      name: 'Segmented date input',
+      what: 'Month, day, and year segments can be edited directly with the keyboard.',
+      use: 'Keyboard-friendly date of birth or due-date entry.',
+      avoid: 'Do not make the calendar the only way to enter a date.',
+    },
+    {
+      name: 'Unavailable dates',
+      what: 'Specific dates remain visible but cannot be selected.',
+      use: 'Blocking holidays or already-booked appointment slots.',
+      avoid: 'Do not silently remove dates when knowing why they are unavailable matters.',
+    },
+    {
+      name: 'Min/max constraints',
+      what: 'A valid date range limits choices before submission.',
+      use: 'Future appointment dates or dates inside a contract period.',
+      avoid:
+        'Do not use a range constraint when the business rule is actually about date relationships.',
+    },
+    {
+      name: 'Date range / date-time',
+      what: 'Related pickers capture a start and end, or a date plus a time.',
+      use: 'Hotel stay, report period, or meeting scheduling.',
+      avoid: 'Do not use a range picker when only one date is needed.',
+    },
+    {
+      name: 'Presets',
+      what: 'Shortcuts select common ranges without requiring calendar navigation.',
+      use: 'Today, Last 7 days, or This month in analytics filters.',
+      avoid: 'Do not add presets when they create more choices than the calendar itself.',
+    },
+  ],
+}
+
+function VariationCatalog({ kind }: { kind: FormKind }) {
+  return (
+    <div className="grid gap-6 md:grid-cols-2">
+      {variationCatalog[kind].map((variation) => (
+        <div key={variation.name} className="rounded-lg border bg-background p-4">
+          <h4 className="font-semibold">{variation.name}</h4>
+          <dl className="mt-3 space-y-3 text-sm leading-6">
+            <div>
+              <dt className="font-medium">What it is</dt>
+              <dd className="text-muted-foreground">{variation.what}</dd>
+            </div>
+            <div>
+              <dt className="font-medium">Use it for</dt>
+              <dd className="text-muted-foreground">{variation.use}</dd>
+            </div>
+            <div>
+              <dt className="font-medium">Do not use it when</dt>
+              <dd className="text-muted-foreground">{variation.avoid}</dd>
+            </div>
+          </dl>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function ReactAriaExamples({ kind }: { kind: FormKind }) {
   const card = (label: string, description: string, children: React.ReactNode) => (
     <ExampleFrame label={label} description={description}>
@@ -1232,6 +1506,15 @@ function FormGuide({
                       </p>
                     </div>
                     <ReactAriaExamples kind={kind} />
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-semibold tracking-tight">Variation guide</h3>
+                      <p className="leading-7 text-muted-foreground">
+                        These are common versions of {title} from shadcn and React Aria examples.
+                        Each card connects the visual pattern to a familiar use case and a boundary
+                        so the variation is not mistaken for a default.
+                      </p>
+                    </div>
+                    <VariationCatalog kind={kind} />
                     <div className="space-y-3">
                       <h3 className="text-xl font-semibold tracking-tight">
                         Native HTML variations
