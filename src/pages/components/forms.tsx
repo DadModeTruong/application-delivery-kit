@@ -18,6 +18,28 @@ import {
   Radio,
   TextCursorInput,
 } from 'lucide-react'
+import {
+  Button as AriaButton,
+  Checkbox as AriaCheckbox,
+  CheckboxGroup as AriaCheckboxGroup,
+  ComboBox as AriaComboBox,
+  DateInput,
+  DatePicker as AriaDatePicker,
+  DateSegment,
+  FieldError as AriaFieldError,
+  Input as AriaInput,
+  Label as AriaLabel,
+  ListBox,
+  ListBoxItem,
+  Popover,
+  Radio as AriaRadio,
+  RadioGroup as AriaRadioGroup,
+  Select as AriaSelect,
+  SelectValue,
+  Text as AriaText,
+  TextArea as AriaTextArea,
+  TextField as AriaTextField,
+} from 'react-aria-components'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
@@ -56,6 +78,10 @@ const formComponents: (NavLeaf | NavGroup)[] = [
 const inputClass =
   'mt-2 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring'
 const panelClass = 'rounded-xl border bg-card p-6 shadow-xs'
+const ariaFieldClass =
+  'mt-2 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring'
+const ariaGroupClass =
+  'mt-2 flex items-center gap-2 rounded-md border border-input bg-background px-3 py-2 text-sm'
 
 type FormKind =
   | 'input'
@@ -100,10 +126,19 @@ function Field({
   )
 }
 
-function ExampleFrame({ label, children }: { label: string; children: React.ReactNode }) {
+function ExampleFrame({
+  label,
+  description,
+  children,
+}: {
+  label: string
+  description?: string
+  children: React.ReactNode
+}) {
   return (
     <div className="space-y-3 rounded-lg border bg-background p-4">
       <p className="text-sm font-semibold">{label}</p>
+      {description && <p className="text-sm leading-6 text-muted-foreground">{description}</p>}
       {children}
     </div>
   )
@@ -719,6 +754,339 @@ function BasicExample({ kind }: { kind: FormKind }) {
   }
 }
 
+function ReactAriaExamples({ kind }: { kind: FormKind }) {
+  const card = (label: string, description: string, children: React.ReactNode) => (
+    <ExampleFrame label={label} description={description}>
+      {children}
+    </ExampleFrame>
+  )
+  const selectOptions = (options: string[]) => (
+    <Popover>
+      <ListBox className="min-w-48 rounded-md border bg-popover p-1 shadow-md">
+        {options.map((option) => (
+          <ListBoxItem
+            key={option}
+            id={option}
+            className="rounded px-3 py-2 text-sm focus:bg-muted"
+          >
+            {option}
+          </ListBoxItem>
+        ))}
+      </ListBox>
+    </Popover>
+  )
+  switch (kind) {
+    case 'input':
+      return (
+        <div className="grid gap-6 md:grid-cols-2">
+          {card(
+            'TextField: basic',
+            'TextField connects the label, input, description, and validation relationship. Use it when those pieces should travel together.',
+            <AriaTextField>
+              <AriaLabel className="text-sm font-medium">Project name</AriaLabel>
+              <AriaInput className={ariaFieldClass} placeholder="Accessibility audit" />
+              <AriaText slot="description" className="mt-2 text-sm text-muted-foreground">
+                Use a recognizable name.
+              </AriaText>
+            </AriaTextField>,
+          )}
+          {card(
+            'TextField: required',
+            'Use required when the form cannot be completed without a value. Do not mark fields required only because a value would be convenient.',
+            <AriaTextField isRequired>
+              <AriaLabel className="text-sm font-medium">Owner</AriaLabel>
+              <AriaInput className={ariaFieldClass} placeholder="Choose an owner" />
+              <AriaFieldError className="mt-2 text-sm font-medium text-destructive" />
+            </AriaTextField>,
+          )}
+          {card(
+            'TextField: invalid',
+            'Use isInvalid with FieldError when the current value cannot be accepted. Say how to fix it.',
+            <AriaTextField isInvalid defaultValue="tommy@">
+              <AriaLabel className="text-sm font-medium">Email address</AriaLabel>
+              <AriaInput className={`${ariaFieldClass} border-destructive`} type="email" />
+              <AriaFieldError className="mt-2 text-sm font-medium text-destructive">
+                Enter a complete email address.
+              </AriaFieldError>
+            </AriaTextField>,
+          )}
+          {card(
+            'TextField: disabled',
+            'Use disabled only when the person cannot act in the current context. Explain what would enable it when possible.',
+            <AriaTextField isDisabled defaultValue="ACC-2048">
+              <AriaLabel className="text-sm font-medium">Account ID</AriaLabel>
+              <AriaInput className={ariaFieldClass} />
+            </AriaTextField>,
+          )}
+        </div>
+      )
+    case 'select':
+      return (
+        <div className="grid gap-6 md:grid-cols-2">
+          {card(
+            'Select: selected value',
+            'Use Select for a short, known list where scanning is faster than searching. React Aria supplies popup and keyboard behavior.',
+            <AriaSelect defaultSelectedKey="email">
+              <AriaLabel className="text-sm font-medium">Contact preference</AriaLabel>
+              <AriaButton className={`${ariaFieldClass} flex justify-between text-left`}>
+                <SelectValue />
+                <span aria-hidden="true">⌄</span>
+              </AriaButton>
+              {selectOptions(['Email', 'Phone', 'Do not contact me'])}
+            </AriaSelect>,
+          )}
+          {card(
+            'Select: required prompt',
+            'Use a prompt when no option is a safe default. Use required when the person must choose before continuing.',
+            <AriaSelect isRequired>
+              <AriaLabel className="text-sm font-medium">Priority</AriaLabel>
+              <AriaButton className={`${ariaFieldClass} flex justify-between text-left`}>
+                <SelectValue />
+                <span aria-hidden="true">⌄</span>
+              </AriaButton>
+              <AriaFieldError className="mt-2 text-sm text-destructive" />
+              {selectOptions(['Low', 'Medium', 'High'])}
+            </AriaSelect>,
+          )}
+          {card(
+            'Select: disabled',
+            'Use disabled when the choice is unavailable, not when the person simply has not decided yet.',
+            <AriaSelect isDisabled defaultSelectedKey="Professional">
+              <AriaLabel className="text-sm font-medium">Plan</AriaLabel>
+              <AriaButton className={`${ariaFieldClass} flex justify-between text-left`}>
+                <SelectValue />
+                <span aria-hidden="true">⌄</span>
+              </AriaButton>
+              {selectOptions(['Professional', 'Team'])}
+            </AriaSelect>,
+          )}
+        </div>
+      )
+    case 'textarea':
+      return (
+        <div className="grid gap-6 md:grid-cols-2">
+          {card(
+            'TextField with TextArea',
+            'Use TextArea inside TextField for multi-line input while keeping label, description, and error relationships.',
+            <AriaTextField>
+              <AriaLabel className="text-sm font-medium">Description</AriaLabel>
+              <AriaTextArea
+                className={`${ariaFieldClass} min-h-32 resize-y`}
+                placeholder="Tell us a little more..."
+              />
+              <AriaText slot="description" className="mt-2 text-sm text-muted-foreground">
+                Include the context someone needs.
+              </AriaText>
+            </AriaTextField>,
+          )}
+          {card(
+            'TextArea: invalid',
+            'Use invalid feedback next to the field and explain the correction, not only the failure.',
+            <AriaTextField isInvalid defaultValue="No">
+              <AriaLabel className="text-sm font-medium">Reason for request</AriaLabel>
+              <AriaTextArea className={`${ariaFieldClass} min-h-32 border-destructive`} />
+              <AriaFieldError className="mt-2 text-sm text-destructive">
+                Add enough detail to continue.
+              </AriaFieldError>
+            </AriaTextField>,
+          )}
+          {card(
+            'TextArea: disabled',
+            'Use disabled when the response is managed elsewhere. Do not use it as a substitute for optional.',
+            <AriaTextField isDisabled defaultValue="Managed by your organization.">
+              <AriaLabel className="text-sm font-medium">Notes</AriaLabel>
+              <AriaTextArea className={`${ariaFieldClass} min-h-24`} />
+            </AriaTextField>,
+          )}
+        </div>
+      )
+    case 'checkbox':
+      return (
+        <div className="grid gap-6 md:grid-cols-2">
+          {card(
+            'Checkbox: unselected',
+            'Use Checkbox for one independent yes/no choice. The label remains part of the activation target.',
+            <AriaCheckbox className={ariaGroupClass}>Send me product updates</AriaCheckbox>,
+          )}
+          {card(
+            'Checkbox: selected',
+            'Use a selected state when the preference is already active; keep the visible label.',
+            <AriaCheckbox className={ariaGroupClass} defaultSelected>
+              I agree to the terms
+            </AriaCheckbox>,
+          )}
+          {card(
+            'Checkbox: disabled',
+            'Use disabled only when the option cannot be changed now, and explain why nearby.',
+            <AriaCheckbox className={`${ariaGroupClass} text-muted-foreground`} isDisabled>
+              Send SMS alerts
+            </AriaCheckbox>,
+          )}
+        </div>
+      )
+    case 'checkbox-group':
+      return (
+        <div className="grid gap-6 md:grid-cols-2">
+          {card(
+            'CheckboxGroup: multiple selection',
+            'Use CheckboxGroup when zero, one, or many options answer one question. Do not group unrelated questions.',
+            <AriaCheckboxGroup defaultValue={['accessibility']}>
+              <AriaLabel className="text-sm font-medium">Topics of interest</AriaLabel>
+              <AriaCheckbox value="accessibility" className="mt-3 flex gap-2 text-sm">
+                Accessibility
+              </AriaCheckbox>
+              <AriaCheckbox value="research" className="mt-3 flex gap-2 text-sm">
+                Research
+              </AriaCheckbox>
+            </AriaCheckboxGroup>,
+          )}
+          {card(
+            'CheckboxGroup: required',
+            'Use required when at least one option must be selected. Add group-level help or error text.',
+            <AriaCheckboxGroup isRequired>
+              <AriaLabel className="text-sm font-medium">Ways we can help</AriaLabel>
+              <AriaText slot="description" className="mt-2 text-sm text-muted-foreground">
+                Select all services you need.
+              </AriaText>
+              <AriaCheckbox value="planning" className="mt-3 flex gap-2 text-sm">
+                Planning
+              </AriaCheckbox>
+              <AriaCheckbox value="content" className="mt-3 flex gap-2 text-sm">
+                Content
+              </AriaCheckbox>
+              <AriaFieldError className="mt-2 text-sm text-destructive" />
+            </AriaCheckboxGroup>,
+          )}
+        </div>
+      )
+    case 'radio':
+    case 'radio-group':
+      return (
+        <div className="grid gap-6 md:grid-cols-2">
+          {card(
+            'RadioGroup: stacked',
+            'Use RadioGroup for mutually exclusive choices. Stack options when labels or descriptions need room.',
+            <AriaRadioGroup defaultValue="email">
+              <AriaLabel className="text-sm font-medium">Contact method</AriaLabel>
+              <AriaRadio value="email" className="mt-3 flex gap-2 text-sm">
+                Email
+              </AriaRadio>
+              <AriaRadio value="phone" className="mt-3 flex gap-2 text-sm">
+                Phone
+              </AriaRadio>
+            </AriaRadioGroup>,
+          )}
+          {card(
+            'RadioGroup: horizontal',
+            'Use horizontal layout only for short labels that can wrap clearly at narrow widths.',
+            <AriaRadioGroup defaultValue="medium">
+              <AriaLabel className="text-sm font-medium">Size</AriaLabel>
+              <div className="mt-3 flex flex-wrap gap-5">
+                {['Small', 'Medium', 'Large'].map((value) => (
+                  <AriaRadio key={value} value={value} className="flex gap-2 text-sm">
+                    {value}
+                  </AriaRadio>
+                ))}
+              </div>
+            </AriaRadioGroup>,
+          )}
+          {card(
+            'RadioGroup: disabled option',
+            'Disable one option only when it is unavailable while the alternatives remain meaningful.',
+            <AriaRadioGroup defaultValue="viewer">
+              <AriaLabel className="text-sm font-medium">Access level</AriaLabel>
+              <AriaRadio value="viewer" className="mt-3 flex gap-2 text-sm">
+                Viewer
+              </AriaRadio>
+              <AriaRadio
+                value="editor"
+                isDisabled
+                className="mt-3 flex gap-2 text-sm text-muted-foreground"
+              >
+                Editor (requires approval)
+              </AriaRadio>
+            </AriaRadioGroup>,
+          )}
+        </div>
+      )
+    case 'combobox':
+      return (
+        <div className="grid gap-6 md:grid-cols-2">
+          {card(
+            'ComboBox: searchable',
+            'Use ComboBox when typing or filtering helps people find an option in a long list. Do not use it for a tiny list that is faster to scan.',
+            <AriaComboBox defaultSelectedKey="us">
+              <AriaLabel className="text-sm font-medium">Country</AriaLabel>
+              <AriaInput className={ariaFieldClass} />
+              <AriaButton className="mt-2 rounded border px-3 py-2 text-sm">
+                Show suggestions
+              </AriaButton>
+              <Popover>{selectOptions(['United States', 'Canada', 'Mexico'])}</Popover>
+            </AriaComboBox>,
+          )}
+          {card(
+            'ComboBox: empty',
+            'Use an empty ComboBox when the person must make an intentional choice. Keep the label visible even when a placeholder is present.',
+            <AriaComboBox>
+              <AriaLabel className="text-sm font-medium">Assign to team</AriaLabel>
+              <AriaInput className={ariaFieldClass} placeholder="Search teams" />
+              <Popover>{selectOptions(['Design', 'Development'])}</Popover>
+            </AriaComboBox>,
+          )}
+          {card(
+            'ComboBox: disabled',
+            'Use disabled when search and selection are unavailable in the current state, not to avoid deciding on the options.',
+            <AriaComboBox isDisabled>
+              <AriaLabel className="text-sm font-medium">Workspace</AriaLabel>
+              <AriaInput className={ariaFieldClass} />
+            </AriaComboBox>,
+          )}
+        </div>
+      )
+    case 'datepicker':
+      return (
+        <div className="grid gap-6 md:grid-cols-2">
+          {card(
+            'DatePicker: segmented input',
+            'Use DatePicker for a calendar date. React Aria makes each date segment keyboard-operable while supporting a calendar popup.',
+            <AriaDatePicker>
+              <AriaLabel className="text-sm font-medium">Start date</AriaLabel>
+              <div className={`${ariaFieldClass} flex gap-2`}>
+                <DateInput>
+                  {(segment) => (
+                    <DateSegment segment={segment} className="rounded px-1 focus:bg-muted" />
+                  )}
+                </DateInput>
+                <AriaButton aria-label="Open calendar">▣</AriaButton>
+              </div>
+            </AriaDatePicker>,
+          )}
+          {card(
+            'DatePicker: required',
+            'Use required when the workflow cannot continue without a date. Explain acceptable dates before validation fails.',
+            <AriaDatePicker isRequired>
+              <AriaLabel className="text-sm font-medium">Appointment date</AriaLabel>
+              <div className={ariaFieldClass}>
+                <DateInput>{(segment) => <DateSegment segment={segment} />}</DateInput>
+              </div>
+              <AriaFieldError className="mt-2 text-sm text-destructive" />
+            </AriaDatePicker>,
+          )}
+          {card(
+            'DatePicker: disabled',
+            'Use disabled when the date is managed elsewhere. Use read-only instead if people still need to review the value.',
+            <AriaDatePicker isDisabled>
+              <AriaLabel className="text-sm font-medium">Launch date</AriaLabel>
+              <div className={ariaFieldClass}>
+                <DateInput>{(segment) => <DateSegment segment={segment} />}</DateInput>
+              </div>
+            </AriaDatePicker>,
+          )}
+        </div>
+      )
+  }
+}
+
 function FormGuide({
   title,
   description,
@@ -851,7 +1219,31 @@ function FormGuide({
                   </p>
                 </div>
                 <div className="max-w-5xl">
-                  <Examples kind={kind} />
+                  <div className="space-y-8">
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-semibold tracking-tight">
+                        React Aria variations
+                      </h3>
+                      <p className="leading-7 text-muted-foreground">
+                        These examples use React Aria Components. React Aria supplies accessible
+                        behavior, keyboard interaction, and relationships between labels,
+                        descriptions, errors, and controls; your team still chooses the visual
+                        design and content.
+                      </p>
+                    </div>
+                    <ReactAriaExamples kind={kind} />
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-semibold tracking-tight">
+                        Native HTML variations
+                      </h3>
+                      <p className="leading-7 text-muted-foreground">
+                        Native controls are often the right choice for simple forms. They provide
+                        familiar browser behavior with less code, while React Aria is useful when
+                        the interaction needs richer composition or custom behavior.
+                      </p>
+                    </div>
+                    <Examples kind={kind} />
+                  </div>
                 </div>
               </section>
             </div>
