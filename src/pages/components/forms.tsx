@@ -480,64 +480,235 @@ function InputVariations() {
   )
 }
 
+function SelectOptionButton({
+  option,
+  selected,
+  onSelect,
+}: {
+  option: { label: string; value: string }
+  selected: boolean
+  onSelect: () => void
+}) {
+  return (
+    <button
+      type="button"
+      role="option"
+      aria-selected={selected}
+      className="flex w-full items-center rounded-sm px-3 py-2 text-left text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      onClick={onSelect}
+    >
+      {option.label}
+    </button>
+  )
+}
+
+function ScrollableSelectExample() {
+  const [open, setOpen] = useState(false)
+  const [value, setValue] = useState('america-new-york')
+  const options = [
+    { label: 'Eastern Standard Time', value: 'america-new-york' },
+    { label: 'Central Standard Time', value: 'america-chicago' },
+    { label: 'Mountain Standard Time', value: 'america-denver' },
+    { label: 'Pacific Standard Time', value: 'america-los-angeles' },
+    { label: 'Alaska Standard Time', value: 'america-anchorage' },
+    { label: 'Hawaii Standard Time', value: 'pacific-honolulu' },
+    { label: 'Greenwich Mean Time', value: 'europe-london' },
+    { label: 'Central European Time', value: 'europe-berlin' },
+    { label: 'Eastern European Time', value: 'europe-athens' },
+    { label: 'India Standard Time', value: 'asia-kolkata' },
+    { label: 'China Standard Time', value: 'asia-shanghai' },
+    { label: 'Japan Standard Time', value: 'asia-tokyo' },
+  ]
+  const selected = options.find((option) => option.value === value)
+
+  return (
+    <div className="space-y-2">
+      <label className="text-sm font-medium" htmlFor="select-scrollable-trigger">
+        Time zone
+      </label>
+      <div className="relative">
+        <button
+          id="select-scrollable-trigger"
+          type="button"
+          className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-left text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-controls="select-scrollable-options"
+          onClick={() => setOpen((current) => !current)}
+        >
+          <span>{selected?.label}</span>
+          <span aria-hidden="true">⌄</span>
+        </button>
+        {open && (
+          <div className="absolute z-10 mt-1 w-full rounded-md border bg-popover p-1 shadow-md">
+            <ul
+              id="select-scrollable-options"
+              className="max-h-52 overflow-y-auto"
+              role="listbox"
+              aria-label="Time zone options"
+            >
+              {options.map((option) => (
+                <li key={option.value}>
+                  <SelectOptionButton
+                    option={option}
+                    selected={option.value === value}
+                    onSelect={() => {
+                      setValue(option.value)
+                      setOpen(false)
+                    }}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function SearchableSelectExample() {
+  const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [value, setValue] = useState('')
-  const options = ['Accessibility review', 'Content design', 'Front-end development', 'User research']
+  const options = [
+    { label: 'Argentina', value: 'ar' },
+    { label: 'Australia', value: 'au' },
+    { label: 'Brazil', value: 'br' },
+    { label: 'Canada', value: 'ca' },
+    { label: 'China', value: 'cn' },
+    { label: 'Colombia', value: 'co' },
+    { label: 'Egypt', value: 'eg' },
+    { label: 'France', value: 'fr' },
+    { label: 'Germany', value: 'de' },
+    { label: 'Italy', value: 'it' },
+    { label: 'Japan', value: 'jp' },
+    { label: 'Kenya', value: 'ke' },
+    { label: 'Mexico', value: 'mx' },
+    { label: 'New Zealand', value: 'nz' },
+    { label: 'Nigeria', value: 'ng' },
+    { label: 'South Africa', value: 'za' },
+    { label: 'South Korea', value: 'kr' },
+    { label: 'United Kingdom', value: 'gb' },
+    { label: 'United States', value: 'us' },
+  ]
+  const selected = options.find((option) => option.value === value)
   const filteredOptions = options.filter((option) =>
-    option.toLowerCase().includes(query.toLowerCase()),
+    option.label.toLowerCase().includes(query.toLowerCase()),
   )
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium" htmlFor="select-searchable">
-        Project discipline
+      <label className="text-sm font-medium" htmlFor="select-searchable-trigger">
+        Country
       </label>
-      <input
-        id="select-searchable"
-        className={inputClass}
-        type="search"
-        role="combobox"
-        value={query || value}
-        placeholder="Search disciplines"
-        aria-autocomplete="list"
-        aria-controls="select-searchable-options"
-        aria-expanded={query.length > 0}
-        onChange={(event) => {
-          setQuery(event.target.value)
-          setValue('')
-        }}
-      />
-      {query.length > 0 && (
-        <ul
-          id="select-searchable-options"
-          className="rounded-md border bg-popover p-1 text-sm shadow-md"
-          role="listbox"
-          aria-label="Project discipline options"
+      <div className="relative">
+        <button
+          id="select-searchable-trigger"
+          type="button"
+          className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-left text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-controls="select-searchable-options"
+          onClick={() => setOpen((current) => !current)}
         >
-          {filteredOptions.length > 0 ? (
-            filteredOptions.map((option) => (
-              <li key={option} role="option" aria-selected={option === value}>
-                <button
-                  type="button"
-                  className="w-full rounded-sm px-3 py-2 text-left hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  onClick={() => {
-                    setValue(option)
-                    setQuery('')
-                  }}
-                >
-                  {option}
-                </button>
-              </li>
-            ))
-          ) : (
-            <li className="px-3 py-2 text-muted-foreground" role="status">
-              No disciplines found.
-            </li>
-          )}
-        </ul>
-      )}
+          <span className={selected ? '' : 'text-muted-foreground'}>
+            {selected?.label ?? 'Select country'}
+          </span>
+          <span aria-hidden="true">⌄</span>
+        </button>
+        {open && (
+          <div className="absolute z-10 mt-1 w-full rounded-md border bg-popover p-1 shadow-md">
+            <input
+              className="mb-1 h-9 w-full rounded-sm border border-input bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              type="search"
+              value={query}
+              placeholder="Search countries"
+              aria-label="Filter country options"
+              aria-controls="select-searchable-options"
+              onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === 'Escape') setOpen(false)
+              }}
+            />
+            <ul
+              id="select-searchable-options"
+              className="max-h-52 overflow-y-auto"
+              role="listbox"
+              aria-label="Country options"
+            >
+              {filteredOptions.length > 0 ? (
+                filteredOptions.map((option) => (
+                  <li key={option.value}>
+                    <SelectOptionButton
+                      option={option}
+                      selected={option.value === value}
+                      onSelect={() => {
+                        setValue(option.value)
+                        setQuery('')
+                        setOpen(false)
+                      }}
+                    />
+                  </li>
+                ))
+              ) : (
+                <li className="px-3 py-2 text-sm text-muted-foreground" role="status">
+                  No countries found.
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
+  )
+}
+
+function RequiredSelectExample() {
+  const [submitted, setSubmitted] = useState(false)
+
+  return (
+    <form
+      className="space-y-4"
+      onSubmit={(event) => {
+        event.preventDefault()
+        setSubmitted(true)
+      }}
+    >
+      <Field
+        id="select-required-variation"
+        label="Deployment region"
+        hint="Required. Leave the prompt selected and submit to see the browser prevent submission; choose a region to continue."
+      >
+        <select
+          id="select-required-variation"
+          className={inputClass}
+          defaultValue=""
+          required
+          aria-required="true"
+          aria-describedby="select-required-variation-hint"
+          onChange={() => setSubmitted(false)}
+        >
+          <option value="" disabled>
+            Choose a deployment region
+          </option>
+          <option value="us-east">US East</option>
+          <option value="eu-west">EU West</option>
+          <option value="ap-southeast">Asia Pacific Southeast</option>
+        </select>
+      </Field>
+      <button
+        type="submit"
+        className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        Submit
+      </button>
+      {submitted && (
+        <p className="text-sm text-muted-foreground" role="status" aria-live="polite">
+          Submitted successfully because a deployment region was selected.
+        </p>
+      )}
+    </form>
   )
 }
 
@@ -715,27 +886,7 @@ function SelectVariations() {
             />
           }
         >
-          <Field
-            id="select-required-variation"
-            label="Deployment region"
-            hint="Required. Leave the prompt selected and submit to see the browser prevent submission; choose a region to continue."
-          >
-            <select
-              id="select-required-variation"
-              className={inputClass}
-              defaultValue=""
-              required
-              aria-required="true"
-              aria-describedby="select-required-variation-hint"
-            >
-              <option value="" disabled>
-                Choose a deployment region
-              </option>
-              <option value="us-east">US East</option>
-              <option value="eu-west">EU West</option>
-              <option value="ap-southeast">Asia Pacific Southeast</option>
-            </select>
-          </Field>
+          <RequiredSelectExample />
         </InputVariation>
 
         <InputVariation
@@ -793,16 +944,7 @@ function SelectVariations() {
             />
           }
         >
-          <Field id="select-scrollable-variation" label="Time zone">
-            <select id="select-scrollable-variation" className={inputClass} defaultValue="america-new-york" size={4}>
-              <option value="america-los-angeles">Pacific — Los Angeles</option>
-              <option value="america-denver">Mountain — Denver</option>
-              <option value="america-chicago">Central — Chicago</option>
-              <option value="america-new-york">Eastern — New York</option>
-              <option value="america-halifax">Atlantic — Halifax</option>
-              <option value="america-st-johns">Newfoundland — St. John's</option>
-            </select>
-          </Field>
+          <ScrollableSelectExample />
         </InputVariation>
 
         <InputVariation
