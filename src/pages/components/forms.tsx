@@ -106,7 +106,15 @@ function BasicComboboxExample() {
   )
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onBlur={(event) => {
+        const nextTarget = event.relatedTarget
+        if (!nextTarget || !event.currentTarget.contains(nextTarget as Node)) {
+          setOpen(false)
+        }
+      }}
+    >
       <label className="text-sm font-medium" htmlFor="basic-combobox">
         Country
       </label>
