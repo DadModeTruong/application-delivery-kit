@@ -98,8 +98,8 @@ function Field({
 
 function BasicComboboxExample() {
   const [open, setOpen] = useState(false)
-  const [query, setQuery] = useState('United States')
-  const [value, setValue] = useState('United States')
+  const [query, setQuery] = useState('')
+  const [value, setValue] = useState('')
   const options = ['Canada', 'Mexico', 'United States']
   const filteredOptions = options.filter((option) =>
     option.toLowerCase().includes(query.toLowerCase()),
@@ -117,6 +117,7 @@ function BasicComboboxExample() {
           role="combobox"
           type="text"
           value={query}
+          placeholder="Search countries"
           aria-autocomplete="list"
           aria-controls="basic-combobox-options"
           aria-expanded={open}
