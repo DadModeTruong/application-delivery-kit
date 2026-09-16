@@ -232,6 +232,47 @@ function InputGuidance({ intro, dos, donts }: { intro: string; dos: string[]; do
   )
 }
 
+function RequiredInputExample() {
+  const [submitted, setSubmitted] = useState(false)
+
+  return (
+    <form
+      className="space-y-4"
+      onSubmit={(event) => {
+        event.preventDefault()
+        setSubmitted(true)
+      }}
+    >
+      <Field
+        id="input-required-variation"
+        label="Project name"
+        hint="Required. Try submitting this blank: the browser should prevent submission. Enter a name and submit again to see the success confirmation."
+      >
+        <input
+          id="input-required-variation"
+          className={inputClass}
+          type="text"
+          required
+          aria-required="true"
+          aria-describedby="input-required-variation-hint"
+          onChange={() => setSubmitted(false)}
+        />
+      </Field>
+      <button
+        type="submit"
+        className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        Submit
+      </button>
+      {submitted && (
+        <p className="text-sm text-muted-foreground" role="status" aria-live="polite">
+          Submitted successfully because the required field has a value.
+        </p>
+      )}
+    </form>
+  )
+}
+
 function InputVariations() {
   return (
     <section className="space-y-8" aria-labelledby="input-variations-heading">
@@ -328,7 +369,7 @@ function InputVariations() {
           <Field
             id="input-disabled-variation"
             label="Account region"
-            hint="Set by your organization administrator; not editable here."
+            hint="Set by your organization administrator; not editable here. It should not accept keyboard input."
           >
             <input
               id="input-disabled-variation"
@@ -396,19 +437,7 @@ function InputVariations() {
             />
           }
         >
-          <Field id="input-required-variation" label="Project name">
-            <input
-              id="input-required-variation"
-              className={inputClass}
-              type="text"
-              required
-              aria-required="true"
-              aria-describedby="input-required-variation-hint"
-            />
-            <p id="input-required-variation-hint" className="mt-2 text-sm text-muted-foreground">
-              Required for creating the project.
-            </p>
-          </Field>
+          <RequiredInputExample />
         </InputVariation>
 
         <InputVariation
@@ -435,7 +464,7 @@ function InputVariations() {
           <Field
             id="input-file-variation"
             label="Supporting document"
-            hint="PDF or DOCX, up to 10 MB."
+            hint="Choose a PDF or DOCX up to 10 MB. After choosing a file, its filename should appear; this reference example does not upload it."
           >
             <input
               id="input-file-variation"
