@@ -179,15 +179,305 @@ function BasicComboboxExample() {
   )
 }
 
+function InputVariation({
+  title,
+  description,
+  children,
+  guidance,
+}: {
+  title: string
+  description: string
+  children: React.ReactNode
+  guidance: React.ReactNode
+}) {
+  return (
+    <article className="space-y-5 rounded-xl border bg-card p-6 shadow-xs">
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
+        <p className="leading-7 text-muted-foreground">{description}</p>
+      </div>
+      <div className="rounded-lg border bg-background p-5">{children}</div>
+      <div className="space-y-3 leading-7 text-muted-foreground">{guidance}</div>
+    </article>
+  )
+}
+
+function InputVariations() {
+  return (
+    <section className="space-y-8" aria-labelledby="input-variations-heading">
+      <div className="space-y-5">
+        <h2 id="input-variations-heading" className="text-2xl font-semibold tracking-tight">
+          Examples and variations
+        </h2>
+        <p className="leading-7 text-muted-foreground">
+          These examples show how the same Input control changes as the task needs instructions,
+          validation, availability, or file selection. Treat the supporting text and state as part
+          of the control’s design, not as decoration added after the field is built.
+        </p>
+      </div>
+      <div className="grid gap-8 lg:grid-cols-2">
+        <InputVariation
+          title="Basic"
+          description="A short value with a visible label and no additional supporting text."
+          guidance={
+            <>
+              <p>
+                Placeholder text is appropriate when it gives a short example of the expected
+                format, such as <em>name@example.com</em>, or demonstrates a useful search query. It
+                is inappropriate when it is the only label, when the example is mistaken for a
+                prefilled value, or when people need the instruction while reviewing what they
+                entered.
+              </p>
+              <ul className="list-disc space-y-2 pl-5">
+                <li>
+                  Write placeholders as realistic examples, not vague prompts like “Enter text.”
+                </li>
+                <li>Keep them brief and match the field’s expected format and capitalization.</li>
+                <li>
+                  Do not put required instructions, errors, or essential definitions only in a
+                  placeholder.
+                </li>
+                <li>
+                  Prefer no placeholder when the label and surrounding context already make the
+                  answer obvious.
+                </li>
+              </ul>
+            </>
+          }
+        >
+          <Field id="input-basic-variation" label="Email address">
+            <input
+              id="input-basic-variation"
+              className={inputClass}
+              type="email"
+              placeholder="name@example.com"
+            />
+          </Field>
+        </InputVariation>
+
+        <InputVariation
+          title="Basic with helper text"
+          description="A field with persistent guidance that answers a likely question before an error occurs."
+          guidance={
+            <>
+              <p>
+                Helper text is appropriate when people benefit from a format, privacy, length, or
+                process explanation that applies whether or not the field has a value. It is
+                inappropriate when it repeats the label, states the obvious, or carries a warning
+                that belongs in validation feedback.
+              </p>
+              <ul className="list-disc space-y-2 pl-5">
+                <li>Explain what belongs in the field and why the information is needed.</li>
+                <li>Keep the message specific, short, and useful at the moment of entry.</li>
+                <li>
+                  Use plain language and avoid jargon, unnecessary policy text, or instructions that
+                  belong elsewhere.
+                </li>
+                <li>
+                  Associate the text with the input using `aria-describedby` when implementing the
+                  pattern.
+                </li>
+              </ul>
+            </>
+          }
+        >
+          <Field
+            id="input-helper-variation"
+            label="Project name"
+            hint="Use the name people will recognize in the project list."
+          >
+            <input id="input-helper-variation" className={inputClass} type="text" />
+          </Field>
+        </InputVariation>
+
+        <InputVariation
+          title="Basic with helper text, disabled"
+          description="A field that is currently unavailable because its value is controlled by another step or setting."
+          guidance={
+            <>
+              <p>
+                Disable an Input only when the person cannot make a meaningful change in the current
+                context, such as a value derived from an earlier choice or a feature unavailable to
+                their account. Do not disable a field merely to prevent mistakes or while waiting
+                for a request that could be represented with a loading state.
+              </p>
+              <ul className="list-disc space-y-2 pl-5">
+                <li>Explain why the field is unavailable and what action would activate it.</li>
+                <li>Preserve the value and label so the disabled state remains understandable.</li>
+                <li>Do not use disabled when people need to read, copy, or discover the value.</li>
+                <li>
+                  When possible, keep the field active and validate or constrain the value instead.
+                </li>
+              </ul>
+            </>
+          }
+        >
+          <Field
+            id="input-disabled-variation"
+            label="Organization ID"
+            hint="Set by your organization administrator."
+          >
+            <input
+              id="input-disabled-variation"
+              className={inputClass}
+              type="text"
+              value="ORG-1048"
+              disabled
+              readOnly
+            />
+          </Field>
+        </InputVariation>
+
+        <InputVariation
+          title="Basic with helper text, invalid"
+          description="A field whose current value does not meet a known requirement and needs correction."
+          guidance={
+            <>
+              <p>
+                Use an invalid state when the value is missing, malformed, or conflicts with a
+                requirement that the person can act on. Avoid showing an error before someone has
+                had a fair chance to complete the field, unless the problem is already known from
+                saved data or an earlier action.
+              </p>
+              <ul className="list-disc space-y-2 pl-5">
+                <li>
+                  Say what is wrong and how to fix it; “Enter a work email, such as
+                  name@company.com” is more useful than “Invalid.”
+                </li>
+                <li>Keep the person’s input so they can edit it instead of starting over.</li>
+                <li>
+                  Place the error close to the field and connect it with `aria-describedby` and
+                  `aria-invalid`.
+                </li>
+                <li>
+                  Do not rely on red borders or icons alone, and do not blame the person for the
+                  error.
+                </li>
+              </ul>
+            </>
+          }
+        >
+          <Field id="input-invalid-variation" label="Work email">
+            <input
+              id="input-invalid-variation"
+              className={`${inputClass} border-destructive focus-visible:ring-destructive`}
+              type="email"
+              value="tommy@example"
+              readOnly
+              aria-invalid="true"
+              aria-describedby="input-invalid-error"
+            />
+            <p id="input-invalid-error" className="mt-2 text-sm text-destructive">
+              Enter a complete email address, such as name@company.com.
+            </p>
+          </Field>
+        </InputVariation>
+
+        <InputVariation
+          title="Basic with helper text, required"
+          description="A field that must contain a value before the form can be completed."
+          guidance={
+            <>
+              <p>
+                Mark an Input as required when the information is genuinely necessary to complete
+                the task or meet a stated rule. Required status should be visible before submission;
+                do not make every field required simply because the system could store the value.
+              </p>
+              <ul className="list-disc space-y-2 pl-5">
+                <li>
+                  Use a clear required indicator and make its meaning available in the surrounding
+                  guidance.
+                </li>
+                <li>
+                  Explain the requirement in the error using an action, such as “Enter a project
+                  name.”
+                </li>
+                <li>
+                  Do not write an error that only says “Required” when the label or rule could be
+                  clearer.
+                </li>
+                <li>
+                  Keep optional fields identifiable too when a form mixes required and optional
+                  information.
+                </li>
+              </ul>
+            </>
+          }
+        >
+          <Field id="input-required-variation" label="Project name">
+            <input
+              id="input-required-variation"
+              className={inputClass}
+              type="text"
+              required
+              aria-required="true"
+            />
+            <p className="mt-2 text-sm text-muted-foreground">Required for creating the project.</p>
+          </Field>
+        </InputVariation>
+
+        <InputVariation
+          title="File input"
+          description="A native file control for selecting a document to upload."
+          guidance={
+            <>
+              <p>
+                File inputs are appropriate when people need to provide a local document, image, or
+                other file. Explain accepted formats, size limits, whether multiple files are
+                allowed, and what happens after selection. The browser and operating system own the
+                file picker, so do not imply that a file has uploaded until the upload actually
+                succeeds.
+              </p>
+              <ul className="list-disc space-y-2 pl-5">
+                <li>
+                  Use an explicit label and state accepted types and maximum size in nearby text.
+                </li>
+                <li>
+                  Show the selected filename, size, upload progress, success, and recoverable
+                  errors.
+                </li>
+                <li>
+                  Do not reject a file based only on its extension; validate its content and report
+                  a useful correction.
+                </li>
+                <li>
+                  On desktop, people commonly browse a filesystem or drag and drop; on mobile web,
+                  the picker may offer the camera, photo library, or device files.
+                </li>
+                <li>
+                  Do not require drag and drop or assume a full filesystem is available on a phone.
+                </li>
+                <li>
+                  Keep the control usable with keyboard and assistive technology, and do not hide
+                  the native focus target behind a decorative upload button.
+                </li>
+              </ul>
+            </>
+          }
+        >
+          <Field
+            id="input-file-variation"
+            label="Supporting document"
+            hint="PDF or DOCX, up to 10 MB."
+          >
+            <input
+              id="input-file-variation"
+              className={inputClass}
+              type="file"
+              accept=".pdf,.docx,application/pdf"
+            />
+          </Field>
+        </InputVariation>
+      </div>
+    </section>
+  )
+}
+
 function BasicExample({ kind }: { kind: FormKind }) {
   switch (kind) {
     case 'input':
       return (
-        <Field
-          id="basic-input"
-          label="Email address"
-          hint="Use the address where we should send your confirmation."
-        >
+        <Field id="basic-input" label="Email address">
           <input
             id="basic-input"
             className={inputClass}
@@ -700,6 +990,7 @@ function FormGuide({
                 <p className="leading-7 text-muted-foreground">{detail.responsiveIntro}</p>
                 <p className="leading-7 text-muted-foreground">{content.responsive}</p>
               </section>
+              {kind === 'input' && <InputVariations />}
             </div>
           </Main>
         </PageBody>
