@@ -6,7 +6,6 @@
  */
 /* eslint-disable react-refresh/only-export-components */
 
-import { useState } from 'react'
 import {
   AlignLeft,
   CalendarDays,
@@ -144,499 +143,6 @@ function ExampleFrame({
   )
 }
 
-function Examples({ kind }: { kind: FormKind }) {
-  const [selectedFrequency, setSelectedFrequency] = useState('Immediately')
-  const [selectedCountry, setSelectedCountry] = useState('United States')
-  const [countryOpen, setCountryOpen] = useState(false)
-  const [date, setDate] = useState('')
-
-  switch (kind) {
-    case 'input':
-      return (
-        <div className="grid gap-6 md:grid-cols-2">
-          <ExampleFrame label="A blank field">
-            <Field id="input-blank-email" label="Email address" hint="We’ll send the receipt here.">
-              <input
-                id="input-blank-email"
-                className={inputClass}
-                type="email"
-                placeholder="you@example.com"
-              />
-            </Field>
-          </ExampleFrame>
-          <ExampleFrame label="A field with an error">
-            <Field
-              id="input-error-email"
-              label="Email address"
-              hint="Enter an email in the format you@example.com."
-            >
-              <input
-                id="input-error-email"
-                className={`${inputClass} border-destructive`}
-                type="email"
-                value="tommy@"
-                readOnly
-                aria-invalid="true"
-              />
-            </Field>
-            <p className="mt-2 text-sm font-medium text-destructive">
-              Enter a complete email address.
-            </p>
-          </ExampleFrame>
-          <ExampleFrame label="An optional field">
-            <Field id="input-optional-company" label="Company (optional)">
-              <input
-                id="input-optional-company"
-                className={inputClass}
-                type="text"
-                placeholder="Acme, Inc."
-              />
-            </Field>
-          </ExampleFrame>
-          <ExampleFrame label="A disabled field">
-            <Field id="input-disabled-account" label="Account ID">
-              <input
-                id="input-disabled-account"
-                className={inputClass}
-                type="text"
-                value="ACC-2048"
-                disabled
-                readOnly
-              />
-            </Field>
-          </ExampleFrame>
-        </div>
-      )
-    case 'select':
-      return (
-        <div className="grid gap-6 md:grid-cols-2">
-          <ExampleFrame label="A short list">
-            <Field id="select-contact" label="Contact preference">
-              <select id="select-contact" className={inputClass} defaultValue="email">
-                <option value="email">Email</option>
-                <option value="phone">Phone</option>
-                <option value="none">Do not contact me</option>
-              </select>
-            </Field>
-          </ExampleFrame>
-          <ExampleFrame label="A required choice">
-            <Field
-              id="select-priority"
-              label="Priority"
-              hint="Choose the option that best matches the request."
-            >
-              <select id="select-priority" className={inputClass} defaultValue="" required>
-                <option value="" disabled>
-                  Select priority
-                </option>
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
-              </select>
-            </Field>
-          </ExampleFrame>
-          <ExampleFrame label="A selected value">
-            <Field id="select-timezone" label="Time zone">
-              <select id="select-timezone" className={inputClass} defaultValue="eastern">
-                <option value="eastern">Eastern Time (ET)</option>
-                <option value="central">Central Time (CT)</option>
-                <option value="pacific">Pacific Time (PT)</option>
-              </select>
-            </Field>
-          </ExampleFrame>
-          <ExampleFrame label="A disabled choice">
-            <Field id="select-plan" label="Plan">
-              <select id="select-plan" className={inputClass} defaultValue="pro" disabled>
-                <option value="pro">Professional</option>
-                <option value="team">Team</option>
-              </select>
-            </Field>
-          </ExampleFrame>
-        </div>
-      )
-    case 'textarea':
-      return (
-        <div className="grid gap-6 md:grid-cols-2">
-          <ExampleFrame label="A blank response">
-            <Field
-              id="textarea-description"
-              label="Description"
-              hint="Tell us a little more about the request."
-            >
-              <textarea
-                id="textarea-description"
-                className={`${inputClass} min-h-32 resize-y`}
-                placeholder="Tell us a little more..."
-              />
-            </Field>
-          </ExampleFrame>
-          <ExampleFrame label="A response with content">
-            <Field id="textarea-message" label="Message">
-              <textarea
-                id="textarea-message"
-                className={`${inputClass} min-h-32 resize-y`}
-                defaultValue="Please include the accessibility review in the next release."
-              />
-            </Field>
-          </ExampleFrame>
-          <ExampleFrame label="A response with an error">
-            <Field id="textarea-error" label="Reason for request">
-              <textarea
-                id="textarea-error"
-                className={`${inputClass} min-h-32 resize-y border-destructive`}
-                defaultValue="No"
-                aria-invalid="true"
-              />
-            </Field>
-            <p className="mt-2 text-sm font-medium text-destructive">
-              Add at least a few words so we know how to help.
-            </p>
-          </ExampleFrame>
-          <ExampleFrame label="A field with a useful limit">
-            <Field id="textarea-limit" label="Short summary" hint="0 of 160 characters">
-              <textarea
-                id="textarea-limit"
-                className={`${inputClass} min-h-24 resize-y`}
-                maxLength={160}
-                placeholder="Summarize the request"
-              />
-            </Field>
-          </ExampleFrame>
-        </div>
-      )
-    case 'checkbox':
-      return (
-        <div className="grid gap-6 md:grid-cols-2">
-          <ExampleFrame label="Not selected">
-            <label
-              className="flex items-start gap-3 text-sm"
-              htmlFor="checkbox-updates"
-              aria-label="Send me product updates"
-            >
-              <input id="checkbox-updates" className="mt-1 size-4 accent-primary" type="checkbox" />
-              <span>
-                <span className="font-medium">Send me product updates</span>
-                <span className="mt-1 block text-muted-foreground">
-                  You can change this preference later.
-                </span>
-              </span>
-            </label>
-          </ExampleFrame>
-          <ExampleFrame label="Selected">
-            <label
-              className="flex items-start gap-3 text-sm"
-              htmlFor="checkbox-terms"
-              aria-label="I agree to the terms"
-            >
-              <input
-                id="checkbox-terms"
-                className="mt-1 size-4 accent-primary"
-                type="checkbox"
-                defaultChecked
-              />
-              <span>
-                <span className="font-medium">I agree to the terms</span>
-                <span className="mt-1 block text-muted-foreground">
-                  This is an independent confirmation.
-                </span>
-              </span>
-            </label>
-          </ExampleFrame>
-          <ExampleFrame label="Disabled">
-            <label
-              className="flex items-start gap-3 text-sm text-muted-foreground"
-              htmlFor="checkbox-sms"
-              aria-label="Send SMS alerts"
-            >
-              <input
-                id="checkbox-sms"
-                className="mt-1 size-4 accent-primary"
-                type="checkbox"
-                disabled
-              />
-              <span>
-                <span className="font-medium">Send SMS alerts</span>
-                <span className="mt-1 block">Add a phone number to enable this option.</span>
-              </span>
-            </label>
-          </ExampleFrame>
-        </div>
-      )
-    case 'checkbox-group':
-      return (
-        <div className="grid gap-6 md:grid-cols-2">
-          <ExampleFrame label="Choose any that apply">
-            <fieldset className="space-y-3">
-              <legend className="text-sm font-medium">Topics of interest</legend>
-              {['Accessibility', 'Design systems', 'Research'].map((topic, index) => (
-                <label
-                  className="flex items-center gap-3 text-sm"
-                  key={topic}
-                  htmlFor={`checkbox-group-${index}`}
-                >
-                  <input
-                    id={`checkbox-group-${index}`}
-                    className="size-4 accent-primary"
-                    type="checkbox"
-                    name="topics"
-                    defaultChecked={index === 0}
-                  />
-                  <span>{topic}</span>
-                </label>
-              ))}
-            </fieldset>
-          </ExampleFrame>
-          <ExampleFrame label="A group with help text">
-            <fieldset className="space-y-3">
-              <legend className="text-sm font-medium">Ways we can help</legend>
-              <p className="text-sm text-muted-foreground">Select all services you need.</p>
-              {['Planning', 'Content', 'Development'].map((option, index) => (
-                <label
-                  className="flex items-center gap-3 text-sm"
-                  key={option}
-                  htmlFor={`help-${index}`}
-                >
-                  <input
-                    id={`help-${index}`}
-                    className="size-4 accent-primary"
-                    type="checkbox"
-                    name="help"
-                  />
-                  <span>{option}</span>
-                </label>
-              ))}
-            </fieldset>
-          </ExampleFrame>
-        </div>
-      )
-    case 'radio':
-      return (
-        <div className="grid gap-6 md:grid-cols-2">
-          <ExampleFrame label="One choice from a small set">
-            <fieldset className="space-y-3">
-              <legend className="text-sm font-medium">Preferred contact method</legend>
-              {['Email', 'Phone'].map((method, index) => (
-                <label
-                  className="flex items-center gap-3 text-sm"
-                  key={method}
-                  htmlFor={`radio-contact-${index}`}
-                >
-                  <input
-                    id={`radio-contact-${index}`}
-                    className="size-4 accent-primary"
-                    type="radio"
-                    name="contact"
-                    value={method}
-                    defaultChecked={index === 0}
-                  />
-                  <span>{method}</span>
-                </label>
-              ))}
-            </fieldset>
-          </ExampleFrame>
-          <ExampleFrame label="A horizontal choice">
-            <fieldset>
-              <legend className="text-sm font-medium">Size</legend>
-              <div className="mt-3 flex flex-wrap gap-5">
-                {['Small', 'Medium', 'Large'].map((size, index) => (
-                  <label
-                    className="flex items-center gap-2 text-sm"
-                    key={size}
-                    htmlFor={`radio-size-${index}`}
-                  >
-                    <input
-                      id={`radio-size-${index}`}
-                      className="size-4 accent-primary"
-                      type="radio"
-                      name="size"
-                      value={size}
-                      defaultChecked={index === 1}
-                    />
-                    <span>{size}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-          </ExampleFrame>
-        </div>
-      )
-    case 'radio-group':
-      return (
-        <div className="grid gap-6 md:grid-cols-2">
-          <ExampleFrame label="A controlled group">
-            <fieldset className="space-y-3">
-              <legend className="text-sm font-medium">Notification frequency</legend>
-              {['Immediately', 'Daily digest', 'Never'].map((frequency) => (
-                <label
-                  className="flex items-center gap-3 text-sm"
-                  key={frequency}
-                  htmlFor={`frequency-${frequency.toLowerCase().replaceAll(' ', '-')}`}
-                >
-                  <input
-                    id={`frequency-${frequency.toLowerCase().replaceAll(' ', '-')}`}
-                    className="size-4 accent-primary"
-                    type="radio"
-                    name="frequency"
-                    value={frequency}
-                    checked={selectedFrequency === frequency}
-                    onChange={() => setSelectedFrequency(frequency)}
-                  />
-                  <span>{frequency}</span>
-                </label>
-              ))}
-            </fieldset>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Selected: <strong className="text-foreground">{selectedFrequency}</strong>
-            </p>
-          </ExampleFrame>
-          <ExampleFrame label="A group with descriptions">
-            <fieldset className="space-y-3">
-              <legend className="text-sm font-medium">Access level</legend>
-              {[
-                ['Viewer', 'Can view shared files'],
-                ['Editor', 'Can view and update shared files'],
-              ].map(([value, help], index) => (
-                <label
-                  className="flex items-start gap-3 text-sm"
-                  key={value}
-                  htmlFor={`access-${index}`}
-                  aria-label={value}
-                >
-                  <input
-                    id={`access-${index}`}
-                    className="mt-1 size-4 accent-primary"
-                    type="radio"
-                    name="access"
-                    defaultChecked={index === 0}
-                  />
-                  <span>
-                    <span className="font-medium">{value}</span>
-                    <span className="mt-1 block text-muted-foreground">{help}</span>
-                  </span>
-                </label>
-              ))}
-            </fieldset>
-          </ExampleFrame>
-        </div>
-      )
-    case 'combobox':
-      return (
-        <div className="grid gap-6 md:grid-cols-2">
-          <ExampleFrame label="Closed with a selected value">
-            <div>
-              <label className="text-sm font-medium" htmlFor="country-closed">
-                Country
-              </label>
-              <button
-                id="country-closed"
-                type="button"
-                className={`${inputClass} flex items-center justify-between text-left`}
-                aria-expanded="false"
-              >
-                <span>United States</span>
-                <ChevronsUpDown className="size-4 text-muted-foreground" aria-hidden="true" />
-              </button>
-            </div>
-          </ExampleFrame>
-          <ExampleFrame label="Open so people can choose">
-            <div className="relative">
-              <label className="text-sm font-medium" htmlFor="country-open">
-                Country
-              </label>
-              <button
-                id="country-open"
-                type="button"
-                className={`${inputClass} flex items-center justify-between text-left`}
-                aria-expanded={countryOpen}
-                onClick={() => setCountryOpen(!countryOpen)}
-              >
-                <span>{selectedCountry}</span>
-                <ChevronsUpDown className="size-4 text-muted-foreground" aria-hidden="true" />
-              </button>
-              {countryOpen && (
-                <div
-                  className="absolute z-10 mt-1 w-full rounded-md border bg-popover p-1 shadow-md"
-                  role="listbox"
-                  aria-label="Countries"
-                >
-                  <button
-                    type="button"
-                    role="option"
-                    aria-selected={selectedCountry === 'United States'}
-                    className="block w-full rounded px-3 py-2 text-left text-sm hover:bg-muted"
-                    onClick={() => {
-                      setSelectedCountry('United States')
-                      setCountryOpen(false)
-                    }}
-                  >
-                    United States
-                  </button>
-                  <button
-                    type="button"
-                    role="option"
-                    aria-selected={selectedCountry === 'Canada'}
-                    className="block w-full rounded px-3 py-2 text-left text-sm hover:bg-muted"
-                    onClick={() => {
-                      setSelectedCountry('Canada')
-                      setCountryOpen(false)
-                    }}
-                  >
-                    Canada
-                  </button>
-                </div>
-              )}
-            </div>
-          </ExampleFrame>
-          <ExampleFrame label="A searchable-style choice">
-            <Field
-              id="combobox-team"
-              label="Assign to team"
-              hint="Use filtering when a list is too long to scan."
-            >
-              <input
-                id="combobox-team"
-                className={inputClass}
-                type="search"
-                placeholder="Search teams"
-              />
-            </Field>
-          </ExampleFrame>
-        </div>
-      )
-    case 'datepicker':
-      return (
-        <div className="grid gap-6 md:grid-cols-2">
-          <ExampleFrame label="No date selected">
-            <Field id="date-empty" label="Start date">
-              <input
-                id="date-empty"
-                className={inputClass}
-                type="date"
-                value={date}
-                onChange={(event) => setDate(event.target.value)}
-              />
-            </Field>
-          </ExampleFrame>
-          <ExampleFrame label="A date already selected">
-            <Field id="date-selected" label="Launch date">
-              <input
-                id="date-selected"
-                className={inputClass}
-                type="date"
-                defaultValue="2026-09-16"
-              />
-            </Field>
-          </ExampleFrame>
-          <ExampleFrame label="A date with a constraint">
-            <Field id="date-min" label="Appointment date" hint="Choose a date from today onward.">
-              <input id="date-min" className={inputClass} type="date" min="2026-09-16" />
-            </Field>
-          </ExampleFrame>
-        </div>
-      )
-  }
-}
-
 function BasicExample({ kind }: { kind: FormKind }) {
   switch (kind) {
     case 'input':
@@ -754,280 +260,217 @@ function BasicExample({ kind }: { kind: FormKind }) {
   }
 }
 
-const variationCatalog: Record<
-  FormKind,
-  { name: string; what: string; use: string; avoid: string }[]
-> = {
-  input: [
-    {
-      name: 'Label + description',
-      what: 'The label names the value and the description explains format or purpose.',
-      use: 'Password rules, account email, or an accepted file-name format.',
-      avoid: 'Do not use placeholder text as the only label or instruction.',
-    },
-    {
-      name: 'Required + invalid',
-      what: 'Required tells people a value is necessary; invalid explains that the current value cannot be accepted.',
-      use: 'Registration email or a username that failed server validation.',
-      avoid:
-        'Do not show an error before someone has had a reasonable chance to complete the field.',
-    },
-    {
-      name: 'Read-only',
-      what: 'The value stays available for review but cannot be edited in this step.',
-      use: 'A verified email or generated account ID in a confirmation screen.',
-      avoid: 'Do not use read-only when the person should be able to correct the value.',
-    },
-    {
-      name: 'Input with action',
-      what: 'An input is paired with a related action, such as reveal, search, or clear.',
-      use: 'Search with a submit button or an API key with a Reveal action.',
-      avoid: 'Do not add an action when pressing Enter or clearing the field already works.',
-    },
-  ],
-  select: [
-    {
-      name: 'Placeholder / no selection',
-      what: 'The control starts without a chosen option and prompts an intentional decision.',
-      use: 'Choose a role or department during onboarding.',
-      avoid: 'Do not use a placeholder when a safe, obvious default prevents errors.',
-    },
-    {
-      name: 'Grouped options',
-      what: 'Related choices are separated by visible group labels.',
-      use: 'Shipping methods grouped as Standard and Express.',
-      avoid: 'Do not group a short, flat list just to add visual decoration.',
-    },
-    {
-      name: 'Long or scrollable list',
-      what: 'The menu remains usable when there are more options than fit comfortably on screen.',
-      use: 'Time zones, countries, or a large department list.',
-      avoid: 'Do not use Select for a long list when search/filtering would be faster.',
-    },
-    {
-      name: 'Disabled item / control',
-      what: 'A choice or the whole control is visible but unavailable in the current context.',
-      use: 'A State choice disabled until a Country is selected.',
-      avoid: 'Do not disable a control merely because the user has not decided yet.',
-    },
-  ],
-  textarea: [
-    {
-      name: 'Description + character limit',
-      what: 'Supporting text sets expectations for length and helps people shape their response.',
-      use: 'A 500-character profile bio or short issue summary.',
-      avoid: 'Do not impose a limit without explaining why it helps the task.',
-    },
-    {
-      name: 'Resizable',
-      what: 'The person can expand the field when their content needs more room.',
-      use: 'A message composer or a detailed support-ticket description.',
-      avoid: 'Do not allow resizing to break the surrounding layout or hide required actions.',
-    },
-    {
-      name: 'Invalid / error',
-      what: 'The field keeps the response visible and explains the correction needed.',
-      use: 'A required comment submitted empty or a response below a minimum length.',
-      avoid: 'Do not erase the person’s text when validation fails.',
-    },
-    {
-      name: 'Read-only / disabled',
-      what: 'Read-only allows review; disabled communicates that the field is unavailable.',
-      use: 'A locked legal notice or organization-managed notes.',
-      avoid: 'Do not use disabled when people need to copy or review the value.',
-    },
-  ],
-  checkbox: [
-    {
-      name: 'Independent boolean',
-      what: 'One checkbox represents one choice that can be on or off without affecting other choices.',
-      use: 'Remember me or send me product updates.',
-      avoid: 'Do not use a checkbox when exactly one option from a set must be chosen.',
-    },
-    {
-      name: 'Selected / default selected',
-      what: 'The saved preference appears checked when the setting is already active.',
-      use: 'Persisting a notification preference during account editing.',
-      avoid: 'Do not preselect a consequential opt-in without clear consent.',
-    },
-    {
-      name: 'Indeterminate',
-      what: 'The mixed state means some, but not all, related items are selected.',
-      use: 'A Select all permissions checkbox above partially selected child permissions.',
-      avoid: 'Do not use indeterminate as a third answer to a yes/no question.',
-    },
-    {
-      name: 'Read-only / disabled / invalid',
-      what: 'These states communicate locked policy, unavailable interaction, or failed required validation.',
-      use: 'Enforced compliance setting or required terms consent.',
-      avoid: 'Do not hide the reason a setting is unavailable or invalid.',
-    },
-  ],
-  'checkbox-group': [
-    {
-      name: 'Multiple selection',
-      what: 'Several checkboxes answer one shared question and may all be selected.',
-      use: 'Notification channels, interests, or project permissions.',
-      avoid: 'Do not group unrelated questions under one legend.',
-    },
-    {
-      name: 'Required group',
-      what: 'The group is valid only when at least one option is selected.',
-      use: 'At least one delivery method must be provided.',
-      avoid: 'Do not require a choice when “none of these” is a valid answer but is missing.',
-    },
-    {
-      name: 'Indeterminate parent',
-      what: 'A parent checkbox reflects a partial set of selected child permissions.',
-      use: 'Folder access where some child files are selected.',
-      avoid: 'Do not show a mixed state without making the child selections discoverable.',
-    },
-    {
-      name: 'Disabled or read-only group',
-      what: 'The entire set is locked while its current values remain understandable.',
-      use: 'Permissions shown during a review step or while a save is processing.',
-      avoid: 'Do not lock the group when only one option is unavailable.',
-    },
-  ],
-  radio: [
-    {
-      name: 'Vertical radio group',
-      what: 'Mutually exclusive options stack so longer labels and descriptions remain readable.',
-      use: 'Shipping speed with delivery estimates or billing interval.',
-      avoid: 'Do not use a radio group for choices that can be selected together.',
-    },
-    {
-      name: 'Horizontal radio group',
-      what: 'Short exclusive choices sit side by side and can wrap on narrow screens.',
-      use: 'Compact size choices or a small toolbar setting.',
-      avoid: 'Do not force long labels into a horizontal row.',
-    },
-    {
-      name: 'Disabled item',
-      what: 'One unavailable option remains visible so people understand the complete set.',
-      use: 'An Enterprise plan that requires contacting sales.',
-      avoid: 'Do not remove an unavailable option when its absence would be confusing.',
-    },
-    {
-      name: 'Required / invalid group',
-      what: 'The group asks for one decision and reports a group-level validation problem.',
-      use: 'Required payment method or preferred contact method.',
-      avoid: 'Do not validate each radio as if multiple values could be chosen.',
-    },
-  ],
-  'radio-group': [
-    {
-      name: 'Controlled selection',
-      what: 'Application state owns the selected value and updates other UI when it changes.',
-      use: 'A plan choice that updates a price summary immediately.',
-      avoid: 'Do not add controlled state when the selection has no effect until submit.',
-    },
-    {
-      name: 'Options with descriptions',
-      what: 'Each option includes supporting information while remaining one selectable choice.',
-      use: 'Access levels with permission summaries.',
-      avoid: 'Do not bury the actual option label inside secondary copy.',
-    },
-    {
-      name: 'Read-only review',
-      what: 'The selected answer can be reviewed without being changed.',
-      use: 'A submitted survey answer or order confirmation.',
-      avoid: 'Do not use read-only to prevent a correction that the workflow should allow.',
-    },
-    {
-      name: 'Disabled group or item',
-      what: 'The whole decision or one option is unavailable while the reason remains visible.',
-      use: 'Locking plan selection after checkout or disabling unsupported payment.',
-      avoid: 'Do not disable every option without explaining what action will unlock them.',
-    },
-  ],
-  combobox: [
-    {
-      name: 'Searchable selection',
-      what: 'Typing filters a collection while the person can still choose a known item.',
-      use: 'Assigning an issue to a team member or selecting a country.',
-      avoid: 'Do not use ComboBox for a tiny list that is faster to scan.',
-    },
-    {
-      name: 'Custom value',
-      what: 'The typed value can be accepted even when it is not in the suggestions.',
-      use: 'Adding a new tag or entering a free-form location.',
-      avoid: 'Do not allow custom values when only approved records are valid.',
-    },
-    {
-      name: 'Grouped or rich results',
-      what: 'Sections and descriptions help people distinguish similar options.',
-      use: 'Search results grouped by team, resource type, or project.',
-      avoid: 'Do not add grouping when every result is already easy to distinguish.',
-    },
-    {
-      name: 'No results / disabled item',
-      what: 'The list explains an empty search or keeps unavailable results visible but unselectable.',
-      use: 'No users found or archived users shown in a directory.',
-      avoid: 'Do not leave an empty popup unexplained.',
-    },
-  ],
-  datepicker: [
-    {
-      name: 'Segmented date input',
-      what: 'Month, day, and year segments can be edited directly with the keyboard.',
-      use: 'Keyboard-friendly date of birth or due-date entry.',
-      avoid: 'Do not make the calendar the only way to enter a date.',
-    },
-    {
-      name: 'Unavailable dates',
-      what: 'Specific dates remain visible but cannot be selected.',
-      use: 'Blocking holidays or already-booked appointment slots.',
-      avoid: 'Do not silently remove dates when knowing why they are unavailable matters.',
-    },
-    {
-      name: 'Min/max constraints',
-      what: 'A valid date range limits choices before submission.',
-      use: 'Future appointment dates or dates inside a contract period.',
-      avoid:
-        'Do not use a range constraint when the business rule is actually about date relationships.',
-    },
-    {
-      name: 'Date range / date-time',
-      what: 'Related pickers capture a start and end, or a date plus a time.',
-      use: 'Hotel stay, report period, or meeting scheduling.',
-      avoid: 'Do not use a range picker when only one date is needed.',
-    },
-    {
-      name: 'Presets',
-      what: 'Shortcuts select common ranges without requiring calendar navigation.',
-      use: 'Today, Last 7 days, or This month in analytics filters.',
-      avoid: 'Do not add presets when they create more choices than the calendar itself.',
-    },
-  ],
+type GuideContent = {
+  what: string
+  use: string[]
+  notUse: string[]
+  design: string[]
+  accessibility: string[]
+  responsive: string
+  examples: string
 }
-
-function VariationCatalog({ kind }: { kind: FormKind }) {
+const guideContent: Record<FormKind, GuideContent> = {
+  input: {
+    what: 'A single-line field for a short value such as a name, email address, search term, or account ID.',
+    use: [
+      'Enter or edit one short value.',
+      'Use a type that matches the value, such as email, password, search, or number.',
+    ],
+    notUse: [
+      'For multiple lines; use Text area.',
+      'For a known set of choices; use Select, Radio group, or Combobox.',
+    ],
+    design: [
+      'Keep label, help, and errors close.',
+      'Use an action beside the field only when it directly supports the value.',
+    ],
+    accessibility: [
+      'Use a visible label and connect descriptions and errors.',
+      'Preserve the value when validation fails.',
+    ],
+    responsive:
+      'Let the field fill available width. Stack a related action when the row becomes crowded.',
+    examples:
+      'Compare basic, required, invalid, and disabled TextField states. Add a state only when the workflow needs it.',
+  },
+  select: {
+    what: 'A control for choosing one option from a known list that opens when activated.',
+    use: ['Use a short or moderately sized list.', 'Use a prompt when there is no safe default.'],
+    notUse: [
+      'For a long list that needs search; use Combobox.',
+      'For several selections; use Checkbox group.',
+      'For a few choices that should be visible together; use Radio group.',
+    ],
+    design: [
+      'Order options predictably.',
+      'Group options only when group labels help people find a choice.',
+    ],
+    accessibility: [
+      'Expose the label, expanded state, and selected option.',
+      'Make options keyboard reachable and communicate unavailable choices.',
+    ],
+    responsive:
+      'Give the popup enough width for the longest option and keep it within the viewport.',
+    examples:
+      'Compare a selected value, required prompt, and disabled Select. Choose Select when scanning is easier than searching.',
+  },
+  textarea: {
+    what: 'A multi-line field for a longer, free-form response.',
+    use: [
+      'Use it for comments, descriptions, messages, or other text that may need more than one line.',
+      'Add writing guidance or a limit when it helps.',
+    ],
+    notUse: ['For a short structured value; use Input.', 'For choosing from known options.'],
+    design: ['Give it a useful starting height.', 'Retain the response when validation fails.'],
+    accessibility: [
+      'Connect label, description, limit, and error to the field.',
+      'Do not communicate limits with color alone.',
+    ],
+    responsive:
+      'Allow vertical growth and wrapping. Avoid fixed heights that hide content on small screens.',
+    examples:
+      'Compare described, invalid, and disabled TextArea states. Use the basic field first, then add constraints only when needed.',
+  },
+  checkbox: {
+    what: 'One independent choice that can be on or off without changing other choices.',
+    use: [
+      'Use for preferences, opt-ins, confirmations, or independent permissions.',
+      'Use indeterminate only for a parent that represents partially selected children.',
+    ],
+    notUse: [
+      'For exactly one choice from a set; use Radio group.',
+      'For navigation or submission; use a link or button.',
+    ],
+    design: [
+      'Make the label and supporting text easy to activate.',
+      'Make the consequence clear, especially for consent.',
+    ],
+    accessibility: [
+      'Expose checked, mixed, disabled, and invalid states.',
+      'Use a group label when several checkboxes answer one question.',
+    ],
+    responsive: 'Let labels wrap and align the checkbox with the first line of long text.',
+    examples:
+      'Compare independent, selected, and disabled Checkbox states. Use Checkbox when each choice can stand on its own.',
+  },
+  'checkbox-group': {
+    what: 'Related checkboxes answering one question where zero, one, or several options may be selected.',
+    use: [
+      'Use for interests, notification channels, permissions, or services.',
+      'Require the group only when at least one choice is necessary.',
+    ],
+    notUse: [
+      'For unrelated questions.',
+      'When only one answer is valid; use Radio group or Select.',
+    ],
+    design: [
+      'Use one clear group label.',
+      'Use a parent checkbox only when it controls visible child choices.',
+    ],
+    accessibility: [
+      'Use fieldset/legend or the React Aria group relationship.',
+      'Make group-level errors easy to find.',
+    ],
+    responsive: 'Stack choices and keep descriptions with their choices.',
+    examples:
+      'Compare multiple selection and required-group states. Choose this pattern when several answers can be true at once.',
+  },
+  radio: {
+    what: 'One option in a mutually exclusive set; selecting it clears the previous choice.',
+    use: [
+      'Use for a small, visible set where exactly one choice is needed.',
+      'Use a default only when it is safe and likely correct.',
+    ],
+    notUse: ['When several choices can be selected.', 'For long lists; use Select or Combobox.'],
+    design: [
+      'Keep the complete set visible when comparison matters.',
+      'Use vertical layout for long labels.',
+    ],
+    accessibility: [
+      'Give the set one label and expose selected state.',
+      'Support arrow-key movement and visible focus.',
+    ],
+    responsive: 'Let horizontal choices wrap or stack without truncation.',
+    examples:
+      'Compare stacked, horizontal, and disabled-option RadioGroup states. Use the layout that makes comparison easiest.',
+  },
+  'radio-group': {
+    what: 'A related set of radio buttons with one label, name, and selection behavior.',
+    use: [
+      'Use for billing interval, shipping speed, access level, or another one-of-many decision.',
+      'Use controlled state when selection immediately changes other UI.',
+    ],
+    notUse: [
+      'When more than one option may be selected.',
+      'When the list is too long to compare comfortably.',
+    ],
+    design: [
+      'Keep option labels distinct from descriptions.',
+      'Use a group-level error for a missing required decision.',
+    ],
+    accessibility: [
+      'Preserve arrow-key behavior and expose required, invalid, disabled, and read-only states.',
+      'Keep focus order aligned with visual order.',
+    ],
+    responsive: 'Prefer stacked options when descriptions are present.',
+    examples:
+      'Compare controlled selection, descriptions, and a disabled option. Use Radio group when exactly one answer is allowed.',
+  },
+  combobox: {
+    what: 'Text entry combined with suggestions so people can search for and select an option.',
+    use: [
+      'Use when filtering helps people find an option in a long list.',
+      'Allow custom values only when values outside the list are valid.',
+    ],
+    notUse: [
+      'For a tiny list that is faster to scan.',
+      'When only approved records are valid and custom values are not supported.',
+    ],
+    design: [
+      'Show typed value, suggestions, and open state clearly.',
+      'Provide useful no-results feedback.',
+    ],
+    accessibility: [
+      'Expose input, popup, active option, and selected option relationships.',
+      'Support keyboard navigation without unexpected focus traps.',
+    ],
+    responsive: 'Keep the popup aligned and wide enough for results; let descriptions wrap.',
+    examples:
+      'Compare searchable, empty, and disabled ComboBox states. Choose it when finding an option is the problem.',
+  },
+  datepicker: {
+    what: 'A control for entering a calendar date through an accessible field and, when useful, a calendar popup.',
+    use: [
+      'Use for due dates, appointments, dates of birth, or reporting periods.',
+      'Use constraints when the business rule is known in advance.',
+    ],
+    notUse: [
+      'For a simple month or year choice; use Select.',
+      'When the calendar would be the only way to enter a date.',
+    ],
+    design: [
+      'Show the expected format and explain constraints.',
+      'Use ranges, date-time, or presets only when the task needs them.',
+    ],
+    accessibility: [
+      'Support segmented keyboard entry, calendar navigation, and visible focus.',
+      'Expose selected, today, unavailable, disabled, and invalid states.',
+    ],
+    responsive:
+      'Keep the calendar within the viewport and make date segments easy to edit on small screens.',
+    examples:
+      'Compare segmented input, required, and disabled DatePicker states. Choose the simplest date pattern that matches the question.',
+  },
+}
+function GuideList({ items }: { items: string[] }) {
   return (
-    <div className="grid gap-6 md:grid-cols-2">
-      {variationCatalog[kind].map((variation) => (
-        <div key={variation.name} className="rounded-lg border bg-background p-4">
-          <h4 className="font-semibold">{variation.name}</h4>
-          <dl className="mt-3 space-y-3 text-sm leading-6">
-            <div>
-              <dt className="font-medium">What it is</dt>
-              <dd className="text-muted-foreground">{variation.what}</dd>
-            </div>
-            <div>
-              <dt className="font-medium">Use it for</dt>
-              <dd className="text-muted-foreground">{variation.use}</dd>
-            </div>
-            <div>
-              <dt className="font-medium">Do not use it when</dt>
-              <dd className="text-muted-foreground">{variation.avoid}</dd>
-            </div>
-          </dl>
-        </div>
+    <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
       ))}
-    </div>
+    </ul>
   )
 }
-
 function ReactAriaExamples({ kind }: { kind: FormKind }) {
   const card = (label: string, description: string, children: React.ReactNode) => (
     <ExampleFrame label={label} description={description}>
@@ -1367,6 +810,7 @@ function FormGuide({
   kind,
   activeHref = `/components/${kind === 'datepicker' ? 'datepicker' : kind}`,
 }: FormGuideProps) {
+  const content = guideContent[kind]
   return (
     <LayoutProvider
       secondaryNav={componentAreaLinks}
@@ -1387,146 +831,51 @@ function FormGuide({
                 <h1 className="text-4xl font-semibold tracking-tight">{title}</h1>
                 <p className="text-xl leading-8 text-muted-foreground">{description}</p>
               </section>
-              <section className="space-y-5" aria-labelledby="form-what-heading">
-                <h2 id="form-what-heading" className="text-2xl font-semibold tracking-tight">
-                  What is it?
-                </h2>
-                <p className="max-w-3xl leading-7 text-muted-foreground">
-                  This is the simplest version of {title}. Start by looking at the label, the kind
-                  of value it accepts, and the way a person interacts with it.
-                </p>
+              <section className="space-y-5">
+                <h2 className="text-2xl font-semibold tracking-tight">What is it?</h2>
+                <p className="max-w-3xl leading-7 text-muted-foreground">{content.what}</p>
                 <div className={panelClass}>
                   <div className="max-w-xl">
                     <BasicExample kind={kind} />
                   </div>
                 </div>
               </section>
-              <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="form-use-heading">
+              <section className="grid gap-10 lg:grid-cols-2">
                 <div className="space-y-5">
-                  <h2 id="form-use-heading" className="text-2xl font-semibold tracking-tight">
-                    When to use it
-                  </h2>
-                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>
-                      When the value has a clear type and the person needs to provide or choose it.
-                    </li>
-                    <li>
-                      When a visible label and helpful guidance make the task easier to complete.
-                    </li>
-                    <li>
-                      When the control’s state needs to be submitted or reviewed with other form
-                      values.
-                    </li>
-                  </ul>
+                  <h2 className="text-2xl font-semibold tracking-tight">When to use it</h2>
+                  <GuideList items={content.use} />
                 </div>
-                <div className="space-y-5" aria-labelledby="form-not-heading">
-                  <h2 id="form-not-heading" className="text-2xl font-semibold tracking-tight">
-                    When not to use it
-                  </h2>
-                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>When a link or button is the real interaction rather than data entry.</li>
-                    <li>
-                      When a different control better matches the number or relationship of choices.
-                    </li>
-                    <li>When adding a field would collect information without a clear purpose.</li>
-                  </ul>
+                <div className="space-y-5">
+                  <h2 className="text-2xl font-semibold tracking-tight">When not to use it</h2>
+                  <GuideList items={content.notUse} />
                 </div>
               </section>
-              <section className="space-y-5" aria-labelledby="form-design-heading">
-                <h2 id="form-design-heading" className="text-2xl font-semibold tracking-tight">
-                  Design considerations
-                </h2>
-                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep the label, help text, and error message close to the control.</li>
-                  <li>
-                    Use a real name and value so the control works with forms and assistive
-                    technology.
-                  </li>
-                  <li>
-                    Show validation feedback next to the relevant field and explain how to fix it.
-                  </li>
-                  <li>
-                    Keep the longest realistic label and error message readable at narrow widths.
-                  </li>
-                </ul>
+              <section className="space-y-5">
+                <h2 className="text-2xl font-semibold tracking-tight">Design considerations</h2>
+                <GuideList items={content.design} />
               </section>
-              <section className="space-y-5" aria-labelledby="form-accessibility-heading">
-                <h2
-                  id="form-accessibility-heading"
-                  className="text-2xl font-semibold tracking-tight"
-                >
+              <section className="space-y-5">
+                <h2 className="text-2xl font-semibold tracking-tight">
                   Accessibility considerations
                 </h2>
-                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>
-                    Associate every control with a visible label; use legend for related groups.
-                  </li>
-                  <li>
-                    Keep focus visible and make keyboard order follow the visual reading order.
-                  </li>
-                  <li>
-                    Do not rely on placeholder text, color, or an icon alone to convey meaning.
-                  </li>
-                  <li>
-                    Announce or expose validation errors in a way that screen-reader users can find.
-                  </li>
-                </ul>
+                <GuideList items={content.accessibility} />
               </section>
-              <section className="space-y-5" aria-labelledby="form-responsive-heading">
-                <h2 id="form-responsive-heading" className="text-2xl font-semibold tracking-tight">
-                  Responsive behavior
-                </h2>
-                <p className="leading-7 text-muted-foreground">
-                  Let controls fill the available width and allow labels and messages to wrap.
-                  Groups stack on narrow screens without changing their order or meaning.
-                </p>
+              <section className="space-y-5">
+                <h2 className="text-2xl font-semibold tracking-tight">Responsive behavior</h2>
+                <p className="leading-7 text-muted-foreground">{content.responsive}</p>
               </section>
-              <section className="space-y-6" aria-labelledby="form-examples-heading">
+              <section className="space-y-6">
                 <div className="space-y-3">
-                  <h2 id="form-examples-heading" className="text-2xl font-semibold tracking-tight">
-                    Examples
-                  </h2>
+                  <h2 className="text-2xl font-semibold tracking-tight">Examples</h2>
+                  <p className="max-w-3xl leading-7 text-muted-foreground">{content.examples}</p>
                   <p className="max-w-3xl leading-7 text-muted-foreground">
-                    Compare these examples to see how the same control changes for different
-                    situations. Try the interactive examples and notice what is communicated by the
-                    label, help text, selected value, and error message.
+                    React Aria provides the behavior and accessibility relationships. Your team
+                    still chooses the visual design, content, validation rules, and variation that
+                    fit the task.
                   </p>
                 </div>
                 <div className="max-w-5xl">
-                  <div className="space-y-8">
-                    <div className="space-y-3">
-                      <h3 className="text-xl font-semibold tracking-tight">
-                        React Aria variations
-                      </h3>
-                      <p className="leading-7 text-muted-foreground">
-                        These examples use React Aria Components. React Aria supplies accessible
-                        behavior, keyboard interaction, and relationships between labels,
-                        descriptions, errors, and controls; your team still chooses the visual
-                        design and content.
-                      </p>
-                    </div>
-                    <ReactAriaExamples kind={kind} />
-                    <div className="space-y-3">
-                      <h3 className="text-xl font-semibold tracking-tight">Variation guide</h3>
-                      <p className="leading-7 text-muted-foreground">
-                        These are common versions of {title} from shadcn and React Aria examples.
-                        Each card connects the visual pattern to a familiar use case and a boundary
-                        so the variation is not mistaken for a default.
-                      </p>
-                    </div>
-                    <VariationCatalog kind={kind} />
-                    <div className="space-y-3">
-                      <h3 className="text-xl font-semibold tracking-tight">
-                        Native HTML variations
-                      </h3>
-                      <p className="leading-7 text-muted-foreground">
-                        Native controls are often the right choice for simple forms. They provide
-                        familiar browser behavior with less code, while React Aria is useful when
-                        the interaction needs richer composition or custom behavior.
-                      </p>
-                    </div>
-                    <Examples kind={kind} />
-                  </div>
+                  <ReactAriaExamples kind={kind} />
                 </div>
               </section>
             </div>
