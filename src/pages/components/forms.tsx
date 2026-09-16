@@ -35,7 +35,8 @@ const componentAreaLinks: NavLeaf[] = [
   { href: '/components/forms', label: 'Forms' },
 ]
 
-const formComponents: NavGroup[] = [
+const formComponents: (NavLeaf | NavGroup)[] = [
+  { href: '/components/forms', label: 'Forms' },
   {
     label: 'Form controls',
     items: [
@@ -326,14 +327,84 @@ function FormGuide({
                   </ul>
                 </div>
               </section>
-              <section className="space-y-5">
-                <h2 className="text-2xl font-semibold tracking-tight">
+              <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="form-use-heading">
+                <div className="space-y-5">
+                  <h2 id="form-use-heading" className="text-2xl font-semibold tracking-tight">
+                    When to use it
+                  </h2>
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                    <li>
+                      When the value has a clear type and the person needs to provide or choose it.
+                    </li>
+                    <li>
+                      When a visible label and helpful guidance make the task easier to complete.
+                    </li>
+                    <li>
+                      When the control’s state needs to be submitted or reviewed with other form
+                      values.
+                    </li>
+                  </ul>
+                </div>
+                <div className="space-y-5" aria-labelledby="form-not-heading">
+                  <h2 id="form-not-heading" className="text-2xl font-semibold tracking-tight">
+                    When not to use it
+                  </h2>
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                    <li>When a link or button is the real interaction rather than data entry.</li>
+                    <li>
+                      When a different control better matches the number or relationship of choices.
+                    </li>
+                    <li>When adding a field would collect information without a clear purpose.</li>
+                  </ul>
+                </div>
+              </section>
+              <section className="space-y-5" aria-labelledby="form-design-heading">
+                <h2 id="form-design-heading" className="text-2xl font-semibold tracking-tight">
+                  Design considerations
+                </h2>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Keep the label, help text, and error message close to the control.</li>
+                  <li>
+                    Use a real name and value so the control works with forms and assistive
+                    technology.
+                  </li>
+                  <li>
+                    Show validation feedback next to the relevant field and explain how to fix it.
+                  </li>
+                  <li>
+                    Keep the longest realistic label and error message readable at narrow widths.
+                  </li>
+                </ul>
+              </section>
+              <section className="space-y-5" aria-labelledby="form-accessibility-heading">
+                <h2
+                  id="form-accessibility-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Accessibility considerations
                 </h2>
-                <p className="max-w-3xl leading-7 text-muted-foreground">
-                  Labels, grouping, focus, error messaging, and reading order are part of the
-                  component contract. Prefer the shadcn primitive that provides the needed behavior
-                  rather than styling an unrelated element to look like a form control.
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>
+                    Associate every control with a visible label; use legend for related groups.
+                  </li>
+                  <li>
+                    Keep focus visible and make keyboard order follow the visual reading order.
+                  </li>
+                  <li>
+                    Do not rely on placeholder text, color, or an icon alone to convey meaning.
+                  </li>
+                  <li>
+                    Announce or expose validation errors in a way that screen-reader users can find.
+                  </li>
+                </ul>
+              </section>
+              <section className="space-y-5" aria-labelledby="form-responsive-heading">
+                <h2 id="form-responsive-heading" className="text-2xl font-semibold tracking-tight">
+                  Responsive behavior
+                </h2>
+                <p className="leading-7 text-muted-foreground">
+                  Let controls fill the available width and allow labels and messages to wrap.
+                  Groups can stack on narrow screens without changing their order or meaning.
                 </p>
               </section>
             </div>
@@ -347,12 +418,105 @@ function FormGuide({
 
 function ComponentsFormsPage() {
   return (
-    <FormGuide
-      kind="input"
+    <LayoutProvider
+      secondaryNav={componentAreaLinks}
+      secondaryNavLabel="Component areas"
+      sidebarNav={formComponents}
+      sidebarNavLabel="Forms components"
       activeHref="/components/forms"
-      title="Forms help people provide information."
-      description="Form components give people a clear, accessible way to enter, choose, and review information. Start with the smallest control that fits the value, then add grouping and guidance when the task needs it."
-    />
+    >
+      <PageShell>
+        <SkipLink />
+        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+        <SecondaryNav aria-label="Component areas" />
+        <PageBody>
+          <Sidebar aria-label="Forms components" />
+          <Main size="full">
+            <div className="space-y-14 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+              <section className="space-y-5" aria-labelledby="forms-heading">
+                <h1 id="forms-heading" className="text-4xl font-semibold tracking-tight">
+                  Forms
+                </h1>
+                <p className="text-xl leading-8 text-muted-foreground">
+                  Form components help people enter, choose, and review information. The right
+                  control makes the expected value clear before someone starts typing or selecting.
+                </p>
+              </section>
+              <section className="space-y-5" aria-labelledby="forms-what-heading">
+                <h2 id="forms-what-heading" className="text-2xl font-semibold tracking-tight">
+                  What belongs here?
+                </h2>
+                <p className="leading-7 text-muted-foreground">
+                  This area covers controls for collecting structured information, from a short text
+                  value to a date or a set of related choices. Each control should have a visible
+                  label, a useful name, and a clear relationship to its help or error message.
+                </p>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>
+                    Choose the control that matches the value and number of available choices.
+                  </li>
+                  <li>
+                    Group related choices with a fieldset and legend when they share one question.
+                  </li>
+                  <li>
+                    Keep instructions close enough to help without interrupting the reading order.
+                  </li>
+                </ul>
+              </section>
+              <section
+                className="grid gap-10 lg:grid-cols-2"
+                aria-labelledby="forms-decisions-heading"
+              >
+                <div className="space-y-5">
+                  <h2
+                    id="forms-decisions-heading"
+                    className="text-2xl font-semibold tracking-tight"
+                  >
+                    Good form design
+                  </h2>
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                    <li>Uses labels that describe the value, not just the visual appearance.</li>
+                    <li>Shows required, optional, unavailable, and invalid states in text.</li>
+                    <li>Preserves the user’s input when validation finds a problem.</li>
+                  </ul>
+                </div>
+                <div className="space-y-5" aria-labelledby="forms-not-heading">
+                  <h2 id="forms-not-heading" className="text-2xl font-semibold tracking-tight">
+                    What it should not do
+                  </h2>
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                    <li>Use placeholder text as the only label or instruction.</li>
+                    <li>Make a long list of choices harder to use than a searchable combobox.</li>
+                    <li>Rely on color, position, or an icon alone to communicate an error.</li>
+                  </ul>
+                </div>
+              </section>
+              <section className="space-y-5" aria-labelledby="forms-guidance-heading">
+                <h2 id="forms-guidance-heading" className="text-2xl font-semibold tracking-tight">
+                  Good design and usage
+                </h2>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Start with the smallest control that can express the expected value.</li>
+                  <li>
+                    Use Select for a short known list; use Combobox when filtering helps people find
+                    an option.
+                  </li>
+                  <li>
+                    Use Checkbox for independent choices and Radio group for mutually exclusive
+                    choices.
+                  </li>
+                  <li>Use Datepicker for dates while keeping a keyboard-friendly input path.</li>
+                  <li>
+                    Test the complete form with a keyboard and a screen reader before shipping it.
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </Main>
+        </PageBody>
+        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+      </PageShell>
+    </LayoutProvider>
   )
 }
 
