@@ -76,17 +76,22 @@ type FormGuideProps = {
 }
 
 function Field({
+  id,
   label,
   children,
   hint,
 }: {
+  id?: string
   label: string
   children: React.ReactNode
   hint?: string
 }) {
   return (
     <div>
-      <label className="text-sm font-medium" htmlFor={label.toLowerCase().replaceAll(' ', '-')}>
+      <label
+        className="text-sm font-medium"
+        htmlFor={id ?? label.toLowerCase().replaceAll(' ', '-')}
+      >
         {label}
       </label>
       {children}
@@ -95,191 +100,504 @@ function Field({
   )
 }
 
+function ExampleFrame({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="space-y-3 rounded-lg border bg-background p-4">
+      <p className="text-sm font-semibold">{label}</p>
+      {children}
+    </div>
+  )
+}
+
 function Example({ kind }: { kind: FormKind }) {
-  const [checked, setChecked] = useState(false)
-  const [selected, setSelected] = useState('Immediately')
-  const [favorite, setFavorite] = useState('email')
-  const [open, setOpen] = useState(false)
+  const [selectedFrequency, setSelectedFrequency] = useState('Immediately')
+  const [selectedCountry, setSelectedCountry] = useState('United States')
+  const [countryOpen, setCountryOpen] = useState(false)
   const [date, setDate] = useState('')
 
   switch (kind) {
     case 'input':
       return (
-        <Field label="Email address" hint="Use a type that matches the expected value.">
-          <input
-            id="email-address"
-            className={inputClass}
-            type="email"
-            placeholder="you@example.com"
-          />
-        </Field>
+        <div className="grid gap-6 md:grid-cols-2">
+          <ExampleFrame label="A blank field">
+            <Field id="input-blank-email" label="Email address" hint="We’ll send the receipt here.">
+              <input
+                id="input-blank-email"
+                className={inputClass}
+                type="email"
+                placeholder="you@example.com"
+              />
+            </Field>
+          </ExampleFrame>
+          <ExampleFrame label="A field with an error">
+            <Field
+              id="input-error-email"
+              label="Email address"
+              hint="Enter an email in the format you@example.com."
+            >
+              <input
+                id="input-error-email"
+                className={`${inputClass} border-destructive`}
+                type="email"
+                value="tommy@"
+                readOnly
+                aria-invalid="true"
+              />
+            </Field>
+            <p className="mt-2 text-sm font-medium text-destructive">
+              Enter a complete email address.
+            </p>
+          </ExampleFrame>
+          <ExampleFrame label="An optional field">
+            <Field id="input-optional-company" label="Company (optional)">
+              <input
+                id="input-optional-company"
+                className={inputClass}
+                type="text"
+                placeholder="Acme, Inc."
+              />
+            </Field>
+          </ExampleFrame>
+          <ExampleFrame label="A disabled field">
+            <Field id="input-disabled-account" label="Account ID">
+              <input
+                id="input-disabled-account"
+                className={inputClass}
+                type="text"
+                value="ACC-2048"
+                disabled
+                readOnly
+              />
+            </Field>
+          </ExampleFrame>
+        </div>
       )
     case 'select':
       return (
-        <Field label="Contact preference">
-          <select id="contact-preference" className={inputClass} defaultValue="email">
-            <option value="email">Email</option>
-            <option value="phone">Phone</option>
-            <option value="none">Do not contact me</option>
-          </select>
-        </Field>
+        <div className="grid gap-6 md:grid-cols-2">
+          <ExampleFrame label="A short list">
+            <Field id="select-contact" label="Contact preference">
+              <select id="select-contact" className={inputClass} defaultValue="email">
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+                <option value="none">Do not contact me</option>
+              </select>
+            </Field>
+          </ExampleFrame>
+          <ExampleFrame label="A required choice">
+            <Field
+              id="select-priority"
+              label="Priority"
+              hint="Choose the option that best matches the request."
+            >
+              <select id="select-priority" className={inputClass} defaultValue="" required>
+                <option value="" disabled>
+                  Select priority
+                </option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+            </Field>
+          </ExampleFrame>
+          <ExampleFrame label="A selected value">
+            <Field id="select-timezone" label="Time zone">
+              <select id="select-timezone" className={inputClass} defaultValue="eastern">
+                <option value="eastern">Eastern Time (ET)</option>
+                <option value="central">Central Time (CT)</option>
+                <option value="pacific">Pacific Time (PT)</option>
+              </select>
+            </Field>
+          </ExampleFrame>
+          <ExampleFrame label="A disabled choice">
+            <Field id="select-plan" label="Plan">
+              <select id="select-plan" className={inputClass} defaultValue="pro" disabled>
+                <option value="pro">Professional</option>
+                <option value="team">Team</option>
+              </select>
+            </Field>
+          </ExampleFrame>
+        </div>
       )
     case 'textarea':
       return (
-        <Field
-          label="Description"
-          hint="Give people enough room to write without making the field unnecessarily large."
-        >
-          <textarea
-            id="description"
-            className={`${inputClass} min-h-32 resize-y`}
-            placeholder="Tell us a little more..."
-          />
-        </Field>
+        <div className="grid gap-6 md:grid-cols-2">
+          <ExampleFrame label="A blank response">
+            <Field
+              id="textarea-description"
+              label="Description"
+              hint="Tell us a little more about the request."
+            >
+              <textarea
+                id="textarea-description"
+                className={`${inputClass} min-h-32 resize-y`}
+                placeholder="Tell us a little more..."
+              />
+            </Field>
+          </ExampleFrame>
+          <ExampleFrame label="A response with content">
+            <Field id="textarea-message" label="Message">
+              <textarea
+                id="textarea-message"
+                className={`${inputClass} min-h-32 resize-y`}
+                defaultValue="Please include the accessibility review in the next release."
+              />
+            </Field>
+          </ExampleFrame>
+          <ExampleFrame label="A response with an error">
+            <Field id="textarea-error" label="Reason for request">
+              <textarea
+                id="textarea-error"
+                className={`${inputClass} min-h-32 resize-y border-destructive`}
+                defaultValue="No"
+                aria-invalid="true"
+              />
+            </Field>
+            <p className="mt-2 text-sm font-medium text-destructive">
+              Add at least a few words so we know how to help.
+            </p>
+          </ExampleFrame>
+          <ExampleFrame label="A field with a useful limit">
+            <Field id="textarea-limit" label="Short summary" hint="0 of 160 characters">
+              <textarea
+                id="textarea-limit"
+                className={`${inputClass} min-h-24 resize-y`}
+                maxLength={160}
+                placeholder="Summarize the request"
+              />
+            </Field>
+          </ExampleFrame>
+        </div>
       )
     case 'checkbox':
       return (
-        <div className="flex items-start gap-3 text-sm">
-          <input
-            id="product-updates"
-            className="mt-1 size-4 accent-primary"
-            type="checkbox"
-            aria-labelledby="product-updates-label"
-            checked={checked}
-            onChange={(event) => setChecked(event.target.checked)}
-          />
-          <span>
-            <span id="product-updates-label" className="font-medium">
-              Send me product updates
-            </span>
-            <span className="mt-1 block text-muted-foreground">
-              You can change this preference later.
-            </span>
-          </span>
+        <div className="grid gap-6 md:grid-cols-2">
+          <ExampleFrame label="Not selected">
+            <label
+              className="flex items-start gap-3 text-sm"
+              htmlFor="checkbox-updates"
+              aria-label="Send me product updates"
+            >
+              <input id="checkbox-updates" className="mt-1 size-4 accent-primary" type="checkbox" />
+              <span>
+                <span className="font-medium">Send me product updates</span>
+                <span className="mt-1 block text-muted-foreground">
+                  You can change this preference later.
+                </span>
+              </span>
+            </label>
+          </ExampleFrame>
+          <ExampleFrame label="Selected">
+            <label
+              className="flex items-start gap-3 text-sm"
+              htmlFor="checkbox-terms"
+              aria-label="I agree to the terms"
+            >
+              <input
+                id="checkbox-terms"
+                className="mt-1 size-4 accent-primary"
+                type="checkbox"
+                defaultChecked
+              />
+              <span>
+                <span className="font-medium">I agree to the terms</span>
+                <span className="mt-1 block text-muted-foreground">
+                  This is an independent confirmation.
+                </span>
+              </span>
+            </label>
+          </ExampleFrame>
+          <ExampleFrame label="Disabled">
+            <label
+              className="flex items-start gap-3 text-sm text-muted-foreground"
+              htmlFor="checkbox-sms"
+              aria-label="Send SMS alerts"
+            >
+              <input
+                id="checkbox-sms"
+                className="mt-1 size-4 accent-primary"
+                type="checkbox"
+                disabled
+              />
+              <span>
+                <span className="font-medium">Send SMS alerts</span>
+                <span className="mt-1 block">Add a phone number to enable this option.</span>
+              </span>
+            </label>
+          </ExampleFrame>
         </div>
       )
     case 'checkbox-group':
       return (
-        <fieldset className="space-y-3">
-          <legend className="text-sm font-medium">Topics of interest</legend>
-          {['Accessibility', 'Design systems', 'Research'].map((topic) => {
-            const id = `topic-${topic.toLowerCase().replaceAll(' ', '-')}`
-            return (
-              <label className="flex items-center gap-3 text-sm" key={topic} htmlFor={id}>
-                <input
-                  id={id}
-                  className="size-4 accent-primary"
-                  type="checkbox"
-                  name="topics"
-                  value={topic}
-                />
-                <span>{topic}</span>
-              </label>
-            )
-          })}
-        </fieldset>
+        <div className="grid gap-6 md:grid-cols-2">
+          <ExampleFrame label="Choose any that apply">
+            <fieldset className="space-y-3">
+              <legend className="text-sm font-medium">Topics of interest</legend>
+              {['Accessibility', 'Design systems', 'Research'].map((topic, index) => (
+                <label
+                  className="flex items-center gap-3 text-sm"
+                  key={topic}
+                  htmlFor={`checkbox-group-${index}`}
+                >
+                  <input
+                    id={`checkbox-group-${index}`}
+                    className="size-4 accent-primary"
+                    type="checkbox"
+                    name="topics"
+                    defaultChecked={index === 0}
+                  />
+                  <span>{topic}</span>
+                </label>
+              ))}
+            </fieldset>
+          </ExampleFrame>
+          <ExampleFrame label="A group with help text">
+            <fieldset className="space-y-3">
+              <legend className="text-sm font-medium">Ways we can help</legend>
+              <p className="text-sm text-muted-foreground">Select all services you need.</p>
+              {['Planning', 'Content', 'Development'].map((option, index) => (
+                <label
+                  className="flex items-center gap-3 text-sm"
+                  key={option}
+                  htmlFor={`help-${index}`}
+                >
+                  <input
+                    id={`help-${index}`}
+                    className="size-4 accent-primary"
+                    type="checkbox"
+                    name="help"
+                  />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </fieldset>
+          </ExampleFrame>
+        </div>
       )
     case 'radio':
       return (
-        <fieldset className="space-y-3">
-          <legend className="text-sm font-medium">Preferred contact method</legend>
-          {['Email', 'Phone'].map((method) => {
-            const id = `contact-${method.toLowerCase()}`
-            return (
-              <label className="flex items-center gap-3 text-sm" key={method} htmlFor={id}>
-                <input
-                  id={id}
-                  className="size-4 accent-primary"
-                  type="radio"
-                  name="contact"
-                  value={method}
-                  defaultChecked={method === 'Email'}
-                />
-                <span>{method}</span>
-              </label>
-            )
-          })}
-        </fieldset>
+        <div className="grid gap-6 md:grid-cols-2">
+          <ExampleFrame label="One choice from a small set">
+            <fieldset className="space-y-3">
+              <legend className="text-sm font-medium">Preferred contact method</legend>
+              {['Email', 'Phone'].map((method, index) => (
+                <label
+                  className="flex items-center gap-3 text-sm"
+                  key={method}
+                  htmlFor={`radio-contact-${index}`}
+                >
+                  <input
+                    id={`radio-contact-${index}`}
+                    className="size-4 accent-primary"
+                    type="radio"
+                    name="contact"
+                    value={method}
+                    defaultChecked={index === 0}
+                  />
+                  <span>{method}</span>
+                </label>
+              ))}
+            </fieldset>
+          </ExampleFrame>
+          <ExampleFrame label="A horizontal choice">
+            <fieldset>
+              <legend className="text-sm font-medium">Size</legend>
+              <div className="mt-3 flex flex-wrap gap-5">
+                {['Small', 'Medium', 'Large'].map((size, index) => (
+                  <label
+                    className="flex items-center gap-2 text-sm"
+                    key={size}
+                    htmlFor={`radio-size-${index}`}
+                  >
+                    <input
+                      id={`radio-size-${index}`}
+                      className="size-4 accent-primary"
+                      type="radio"
+                      name="size"
+                      value={size}
+                      defaultChecked={index === 1}
+                    />
+                    <span>{size}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          </ExampleFrame>
+        </div>
       )
     case 'radio-group':
       return (
-        <fieldset className="space-y-3">
-          <legend className="text-sm font-medium">Notification frequency</legend>
-          {['Immediately', 'Daily digest', 'Never'].map((frequency) => {
-            const id = `frequency-${frequency.toLowerCase().replaceAll(' ', '-')}`
-            return (
-              <label className="flex items-center gap-3 text-sm" key={frequency} htmlFor={id}>
-                <input
-                  id={id}
-                  className="size-4 accent-primary"
-                  type="radio"
-                  name="frequency"
-                  value={frequency}
-                  checked={selected === frequency}
-                  onChange={() => setSelected(frequency)}
-                />
-                <span>{frequency}</span>
-              </label>
-            )
-          })}
-        </fieldset>
+        <div className="grid gap-6 md:grid-cols-2">
+          <ExampleFrame label="A controlled group">
+            <fieldset className="space-y-3">
+              <legend className="text-sm font-medium">Notification frequency</legend>
+              {['Immediately', 'Daily digest', 'Never'].map((frequency) => (
+                <label
+                  className="flex items-center gap-3 text-sm"
+                  key={frequency}
+                  htmlFor={`frequency-${frequency.toLowerCase().replaceAll(' ', '-')}`}
+                >
+                  <input
+                    id={`frequency-${frequency.toLowerCase().replaceAll(' ', '-')}`}
+                    className="size-4 accent-primary"
+                    type="radio"
+                    name="frequency"
+                    value={frequency}
+                    checked={selectedFrequency === frequency}
+                    onChange={() => setSelectedFrequency(frequency)}
+                  />
+                  <span>{frequency}</span>
+                </label>
+              ))}
+            </fieldset>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Selected: <strong className="text-foreground">{selectedFrequency}</strong>
+            </p>
+          </ExampleFrame>
+          <ExampleFrame label="A group with descriptions">
+            <fieldset className="space-y-3">
+              <legend className="text-sm font-medium">Access level</legend>
+              {[
+                ['Viewer', 'Can view shared files'],
+                ['Editor', 'Can view and update shared files'],
+              ].map(([value, help], index) => (
+                <label
+                  className="flex items-start gap-3 text-sm"
+                  key={value}
+                  htmlFor={`access-${index}`}
+                  aria-label={value}
+                >
+                  <input
+                    id={`access-${index}`}
+                    className="mt-1 size-4 accent-primary"
+                    type="radio"
+                    name="access"
+                    defaultChecked={index === 0}
+                  />
+                  <span>
+                    <span className="font-medium">{value}</span>
+                    <span className="mt-1 block text-muted-foreground">{help}</span>
+                  </span>
+                </label>
+              ))}
+            </fieldset>
+          </ExampleFrame>
+        </div>
       )
     case 'combobox':
       return (
-        <div className="relative">
-          <label className="text-sm font-medium" htmlFor="country">
-            Country
-          </label>
-          <button
-            id="country"
-            type="button"
-            className={`${inputClass} flex items-center justify-between text-left`}
-            aria-expanded={open}
-            onClick={() => setOpen(!open)}
-          >
-            <span>{favorite === 'email' ? 'United States' : 'Canada'}</span>
-            <ChevronsUpDown className="size-4 text-muted-foreground" aria-hidden="true" />
-          </button>
-          {open && (
-            <div className="absolute z-10 mt-1 w-full rounded-md border bg-popover p-1 shadow-md">
+        <div className="grid gap-6 md:grid-cols-2">
+          <ExampleFrame label="Closed with a selected value">
+            <div>
+              <label className="text-sm font-medium" htmlFor="country-closed">
+                Country
+              </label>
               <button
+                id="country-closed"
                 type="button"
-                className="block w-full rounded px-3 py-2 text-left text-sm hover:bg-muted"
-                onClick={() => {
-                  setFavorite('email')
-                  setOpen(false)
-                }}
+                className={`${inputClass} flex items-center justify-between text-left`}
+                aria-expanded="false"
               >
-                United States
-              </button>
-              <button
-                type="button"
-                className="block w-full rounded px-3 py-2 text-left text-sm hover:bg-muted"
-                onClick={() => {
-                  setFavorite('phone')
-                  setOpen(false)
-                }}
-              >
-                Canada
+                <span>United States</span>
+                <ChevronsUpDown className="size-4 text-muted-foreground" aria-hidden="true" />
               </button>
             </div>
-          )}
+          </ExampleFrame>
+          <ExampleFrame label="Open so people can choose">
+            <div className="relative">
+              <label className="text-sm font-medium" htmlFor="country-open">
+                Country
+              </label>
+              <button
+                id="country-open"
+                type="button"
+                className={`${inputClass} flex items-center justify-between text-left`}
+                aria-expanded={countryOpen}
+                onClick={() => setCountryOpen(!countryOpen)}
+              >
+                <span>{selectedCountry}</span>
+                <ChevronsUpDown className="size-4 text-muted-foreground" aria-hidden="true" />
+              </button>
+              {countryOpen && (
+                <div
+                  className="absolute z-10 mt-1 w-full rounded-md border bg-popover p-1 shadow-md"
+                  role="listbox"
+                  aria-label="Countries"
+                >
+                  <button
+                    type="button"
+                    role="option"
+                    aria-selected={selectedCountry === 'United States'}
+                    className="block w-full rounded px-3 py-2 text-left text-sm hover:bg-muted"
+                    onClick={() => {
+                      setSelectedCountry('United States')
+                      setCountryOpen(false)
+                    }}
+                  >
+                    United States
+                  </button>
+                  <button
+                    type="button"
+                    role="option"
+                    aria-selected={selectedCountry === 'Canada'}
+                    className="block w-full rounded px-3 py-2 text-left text-sm hover:bg-muted"
+                    onClick={() => {
+                      setSelectedCountry('Canada')
+                      setCountryOpen(false)
+                    }}
+                  >
+                    Canada
+                  </button>
+                </div>
+              )}
+            </div>
+          </ExampleFrame>
+          <ExampleFrame label="A searchable-style choice">
+            <Field
+              id="combobox-team"
+              label="Assign to team"
+              hint="Use filtering when a list is too long to scan."
+            >
+              <input
+                id="combobox-team"
+                className={inputClass}
+                type="search"
+                placeholder="Search teams"
+              />
+            </Field>
+          </ExampleFrame>
         </div>
       )
     case 'datepicker':
       return (
-        <Field
-          label="Start date"
-          hint="Use a date input when the value is a calendar date, not free-form text."
-        >
-          <input
-            id="start-date"
-            className={inputClass}
-            type="date"
-            value={date}
-            onChange={(event) => setDate(event.target.value)}
-          />
-        </Field>
+        <div className="grid gap-6 md:grid-cols-2">
+          <ExampleFrame label="No date selected">
+            <Field id="date-empty" label="Start date">
+              <input
+                id="date-empty"
+                className={inputClass}
+                type="date"
+                value={date}
+                onChange={(event) => setDate(event.target.value)}
+              />
+            </Field>
+          </ExampleFrame>
+          <ExampleFrame label="A date already selected">
+            <Field id="date-selected" label="Launch date">
+              <input
+                id="date-selected"
+                className={inputClass}
+                type="date"
+                defaultValue="2026-09-16"
+              />
+            </Field>
+          </ExampleFrame>
+          <ExampleFrame label="A date with a constraint">
+            <Field id="date-min" label="Appointment date" hint="Choose a date from today onward.">
+              <input id="date-min" className={inputClass} type="date" min="2026-09-16" />
+            </Field>
+          </ExampleFrame>
+        </div>
       )
   }
 }
