@@ -6,12 +6,12 @@
  */
 /* eslint-disable react-refresh/only-export-components */
 
+import { useState } from 'react'
 import {
   AlignLeft,
   CalendarDays,
   CheckSquare,
   ChevronsUpDown,
-  CircleDot,
   ListChecks,
   ListFilter,
   Radio,
@@ -44,8 +44,7 @@ const formComponents: (NavLeaf | NavGroup)[] = [
       { href: '/components/textarea', label: 'Text area', icon: AlignLeft },
       { href: '/components/checkbox', label: 'Checkbox', icon: CheckSquare },
       { href: '/components/checkbox-group', label: 'Checkbox group', icon: ListChecks },
-      { href: '/components/radio', label: 'Radio button', icon: CircleDot },
-      { href: '/components/radio-group', label: 'Radio button group', icon: Radio },
+      { href: '/components/radio', label: 'Radio button', icon: Radio },
       { href: '/components/combobox', label: 'Combobox', icon: ChevronsUpDown },
       { href: '/components/datepicker', label: 'Datepicker', icon: CalendarDays },
     ],
@@ -61,7 +60,6 @@ type FormKind =
   | 'textarea'
   | 'checkbox'
   | 'checkbox-group'
-  | 'radio'
   | 'radio-group'
   | 'combobox'
   | 'datepicker'
@@ -98,11 +96,64 @@ function Field({
   )
 }
 
+function BasicComboboxExample() {
+  const [open, setOpen] = useState(false)
+  const [value, setValue] = useState('United States')
+  const options = ['Canada', 'Mexico', 'United States']
+
+  return (
+    <div className="relative">
+      <label className="text-sm font-medium" htmlFor="basic-combobox">
+        Country
+      </label>
+      <button
+        id="basic-combobox"
+        type="button"
+        className={`${inputClass} flex items-center justify-between text-left`}
+        role="combobox"
+        aria-controls="basic-combobox-options"
+        aria-expanded={open}
+        onClick={() => setOpen((current) => !current)}
+      >
+        <span>{value}</span>
+        <ChevronsUpDown className="size-4 text-muted-foreground" aria-hidden="true" />
+      </button>
+      {open && (
+        <ul
+          id="basic-combobox-options"
+          className="absolute z-10 mt-1 w-full rounded-md border bg-popover p-1 text-sm shadow-md"
+          role="listbox"
+          aria-label="Country options"
+        >
+          {options.map((option) => (
+            <li key={option} role="option" aria-selected={option === value}>
+              <button
+                type="button"
+                className="w-full rounded-sm px-3 py-2 text-left hover:bg-accent hover:text-accent-foreground"
+                onClick={() => {
+                  setValue(option)
+                  setOpen(false)
+                }}
+              >
+                {option}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
 function BasicExample({ kind }: { kind: FormKind }) {
   switch (kind) {
     case 'input':
       return (
-        <Field id="basic-input" label="Email address">
+        <Field
+          id="basic-input"
+          label="Email address"
+          hint="Use the address where we should send your confirmation."
+        >
           <input
             id="basic-input"
             className={inputClass}
@@ -151,19 +202,6 @@ function BasicExample({ kind }: { kind: FormKind }) {
           </label>
         </fieldset>
       )
-    case 'radio':
-      return (
-        <label className="flex items-center gap-3 text-sm" htmlFor="basic-radio">
-          <input
-            id="basic-radio"
-            className="size-4 accent-primary"
-            type="radio"
-            name="basic-radio"
-            defaultChecked
-          />
-          <span>Email</span>
-        </label>
-      )
     case 'radio-group':
       return (
         <fieldset className="space-y-3">
@@ -190,26 +228,15 @@ function BasicExample({ kind }: { kind: FormKind }) {
         </fieldset>
       )
     case 'combobox':
-      return (
-        <div>
-          <label className="text-sm font-medium" htmlFor="basic-combobox">
-            Country
-          </label>
-          <button
-            id="basic-combobox"
-            type="button"
-            className={`${inputClass} flex items-center justify-between text-left`}
-            aria-expanded="false"
-          >
-            <span>United States</span>
-            <ChevronsUpDown className="size-4 text-muted-foreground" aria-hidden="true" />
-          </button>
-        </div>
-      )
+      return <BasicComboboxExample />
     case 'datepicker':
       return (
         <Field id="basic-datepicker" label="Start date">
-          <input id="basic-datepicker" className={inputClass} type="date" />
+          <input
+            id="basic-datepicker"
+            className={`${inputClass} [color-scheme:light]`}
+            type="date"
+          />
         </Field>
       )
   }
@@ -330,8 +357,8 @@ const guideContent: Record<FormKind, GuideContent> = {
     examples:
       'Compare multiple selection and required-group states. Choose this pattern when several answers can be true at once.',
   },
-  radio: {
-    what: 'One option in a mutually exclusive set; selecting it clears the previous choice.',
+  'radio-group': {
+    what: 'A radio button is one option within a related set of mutually exclusive choices. In practice, radio buttons should be presented as a radio group with one shared question and one selected value.',
     use: [
       'Use for a small, visible set where exactly one choice is needed.',
       'Use a default only when it is safe and likely correct.',
@@ -347,29 +374,7 @@ const guideContent: Record<FormKind, GuideContent> = {
     ],
     responsive: 'Let horizontal choices wrap or stack without truncation.',
     examples:
-      'Compare stacked, horizontal, and disabled-option RadioGroup states. Use the layout that makes comparison easiest.',
-  },
-  'radio-group': {
-    what: 'A related set of radio buttons with one label, name, and selection behavior.',
-    use: [
-      'Use for billing interval, shipping speed, access level, or another one-of-many decision.',
-      'Use controlled state when selection immediately changes other UI.',
-    ],
-    notUse: [
-      'When more than one option may be selected.',
-      'When the list is too long to compare comfortably.',
-    ],
-    design: [
-      'Keep option labels distinct from descriptions.',
-      'Use a group-level error for a missing required decision.',
-    ],
-    accessibility: [
-      'Preserve arrow-key behavior and expose required, invalid, disabled, and read-only states.',
-      'Keep focus order aligned with visual order.',
-    ],
-    responsive: 'Prefer stacked options when descriptions are present.',
-    examples:
-      'Compare controlled selection, descriptions, and a disabled option. Use Radio group when exactly one answer is allowed.',
+      'Use a radio group for one-of-many decisions, with descriptions when the consequences differ.',
   },
   combobox: {
     what: 'Text entry combined with suggestions so people can search for and select an option.',
@@ -390,8 +395,7 @@ const guideContent: Record<FormKind, GuideContent> = {
       'Support keyboard navigation without unexpected focus traps.',
     ],
     responsive: 'Keep the popup aligned and wide enough for results; let descriptions wrap.',
-    examples:
-      'Compare searchable, empty, and disabled ComboBox states. Choose it when finding an option is the problem.',
+    examples: 'Use the simple searchable list to understand when finding an option is the problem.',
   },
   datepicker: {
     what: 'A control for entering a calendar date through an accessible field and, when useful, a calendar popup.',
@@ -414,9 +418,10 @@ const guideContent: Record<FormKind, GuideContent> = {
     responsive:
       'Keep the calendar within the viewport and make date segments easy to edit on small screens.',
     examples:
-      'Compare segmented input, required, and disabled DatePicker states. Choose the simplest date pattern that matches the question.',
+      'Use direct entry alongside calendar navigation, and choose the simplest date pattern that matches the question.',
   },
 }
+
 const sectionDetails: Record<
   FormKind,
   {
@@ -484,7 +489,7 @@ const sectionDetails: Record<
     ],
     designMore: ['Show a character count when the limit changes how someone should write.'],
     accessibilityMore: [
-      'Make the limit available as text and avoid premature errors while someone is typing.',
+      'Make the limit available as text and avoid premature errors while typing.',
     ],
   },
   checkbox: {
@@ -523,23 +528,9 @@ const sectionDetails: Record<
       'Make a mixed parent state understandable without relying on checkbox appearance.',
     ],
   },
-  radio: {
-    useIntro:
-      'Radio buttons help people compare a small set of mutually exclusive answers before choosing one.',
-    notUseIntro:
-      'Radio buttons create unnecessary scanning for long lists and cannot represent several true answers.',
-    designIntro: 'The options should be parallel answers to one question, not unrelated actions.',
-    accessibilityIntro:
-      'The group needs one clear question, one selection model, and predictable keyboard movement.',
-    responsiveIntro: 'Horizontal placement saves space but must be allowed to wrap or stack.',
-    useMore: ['Keep options visible when their differences affect the decision.'],
-    notUseMore: ['Do not use radios for preferences or permissions that can coexist.'],
-    designMore: ['Use descriptions for consequences such as delivery time or access level.'],
-    accessibilityMore: ['Do not remove the focus indicator when styling the radio circle.'],
-  },
   'radio-group': {
     useIntro:
-      'Radio group gives one-of-many decisions a shared label and consistent selection behavior.',
+      'Radio buttons are normally used together as a group: people compare the available answers to one question and choose exactly one.',
     notUseIntro:
       'It is the wrong model when several values may be selected or the options are too numerous to compare.',
     designIntro:
@@ -809,13 +800,9 @@ const guides: Record<Exclude<FormKind, 'input'> | 'input', [string, string]> = {
     'Checkbox group',
     'Use a Checkbox group when people may choose zero, one, or several related options.',
   ],
-  radio: [
-    'Radio button',
-    'Use a Radio button when one choice is required from a small set of mutually exclusive options.',
-  ],
   'radio-group': [
-    'Radio button group',
-    'Use a Radio group to give a related set of mutually exclusive choices one clear label and name.',
+    'Radio button',
+    'Use Radio buttons as a group when people must choose exactly one option from a small set of mutually exclusive choices.',
   ],
   combobox: [
     'Combobox',
@@ -827,10 +814,10 @@ const guides: Record<Exclude<FormKind, 'input'> | 'input', [string, string]> = {
   ],
 }
 
-function makeGuide(kind: FormKind) {
+function makeGuide(kind: FormKind, activeHref?: string) {
   const [title, description] = guides[kind]
   return function GuidePage() {
-    return <FormGuide kind={kind} title={title} description={description} />
+    return <FormGuide kind={kind} title={title} description={description} activeHref={activeHref} />
   }
 }
 
@@ -839,8 +826,7 @@ const ComponentsSelectPage = makeGuide('select')
 const ComponentsTextareaPage = makeGuide('textarea')
 const ComponentsCheckboxPage = makeGuide('checkbox')
 const ComponentsCheckboxGroupPage = makeGuide('checkbox-group')
-const ComponentsRadioPage = makeGuide('radio')
-const ComponentsRadioGroupPage = makeGuide('radio-group')
+const ComponentsRadioPage = makeGuide('radio-group', '/components/radio')
 const ComponentsComboboxPage = makeGuide('combobox')
 const ComponentsDatepickerPage = makeGuide('datepicker')
 
@@ -852,7 +838,6 @@ export {
   ComponentsCheckboxPage,
   ComponentsCheckboxGroupPage,
   ComponentsRadioPage,
-  ComponentsRadioGroupPage,
   ComponentsComboboxPage,
   ComponentsDatepickerPage,
 }

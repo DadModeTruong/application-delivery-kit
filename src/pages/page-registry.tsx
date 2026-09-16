@@ -40,7 +40,6 @@ import {
   ComponentsCheckboxPage,
   ComponentsCheckboxGroupPage,
   ComponentsRadioPage,
-  ComponentsRadioGroupPage,
   ComponentsComboboxPage,
   ComponentsDatepickerPage,
 } from './components/forms'
@@ -83,7 +82,6 @@ const routes: Route[] = [
   { path: '/components/checkbox', component: ComponentsCheckboxPage },
   { path: '/components/checkbox-group', component: ComponentsCheckboxGroupPage },
   { path: '/components/radio', component: ComponentsRadioPage },
-  { path: '/components/radio-group', component: ComponentsRadioGroupPage },
   { path: '/components/combobox', component: ComponentsComboboxPage },
   { path: '/components/datepicker', component: ComponentsDatepickerPage },
   { path: '/components/card', component: ComponentsCardsPage },
