@@ -104,6 +104,38 @@ function ComponentsUserInterfacePage() {
                 </ul>
               </section>
 
+              <section className="space-y-5" aria-labelledby="user-interface-guides-heading">
+                <div className="space-y-2">
+                  <h2 id="user-interface-guides-heading" className="text-2xl font-semibold tracking-tight">
+                    Component guides
+                  </h2>
+                  <p className="leading-7 text-muted-foreground">
+                    Start with the guide that matches the structure your content needs. Each guide
+                    explains the component’s purpose, boundaries, accessibility considerations, and
+                    responsive behavior.
+                  </p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {[
+                    ['Header', '/components/header', 'Global identity and primary navigation.'],
+                    ['Secondary navigation', '/components/secondary-nav', 'Navigation within a section or area.'],
+                    ['Sidebar', '/components/sidebar', 'Persistent or contextual navigation.'],
+                    ['Footer', '/components/footer', 'Supporting links and page-level closure.'],
+                    ['Split View', '/components/split-view', 'Related content shown side by side.'],
+                    ['Card', '/components/card', 'A bounded group of related content.'],
+                  ].map(([label, href, description]) => (
+                    <a
+                      key={href}
+                      href={href}
+                      className="rounded-xl border bg-card p-5 shadow-xs transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <h3 className="font-semibold text-foreground">{label}</h3>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+
               <section
                 className="grid gap-10 lg:grid-cols-2"
                 aria-labelledby="user-interface-decisions-heading"

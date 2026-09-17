@@ -81,6 +81,30 @@ function ComponentsInteractionPage() {
                 </ul>
               </section>
 
+              <section className="space-y-5" aria-labelledby="interaction-guides-heading">
+                <div className="space-y-2">
+                  <h2 id="interaction-guides-heading" className="text-2xl font-semibold tracking-tight">
+                    Component guides
+                  </h2>
+                  <p className="leading-7 text-muted-foreground">
+                    Start with the guide that matches the action people need to take. Each guide
+                    explains the semantic choice, states, content, accessibility, and responsive
+                    behavior to consider before implementation.
+                  </p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <a
+                    href="/components/button"
+                    className="rounded-xl border bg-card p-5 shadow-xs transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <h3 className="font-semibold text-foreground">Button</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      Actions that change something or trigger a process.
+                    </p>
+                  </a>
+                </div>
+              </section>
+
               <section
                 className="grid gap-10 lg:grid-cols-2"
                 aria-labelledby="interaction-decisions-heading"
