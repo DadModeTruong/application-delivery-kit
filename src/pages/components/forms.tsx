@@ -1823,8 +1823,8 @@ function DateRangePickerExample() {
     <div className="space-y-4">
       <p className="text-sm font-medium">Date range</p>
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2"><label className="text-sm" htmlFor="datepicker-range-start">Start date</label><input id="datepicker-range-start" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={start} onChange={(event) => setStart(event.target.value)} /></div>
-        <div className="space-y-2"><label className="text-sm" htmlFor="datepicker-range-end">End date</label><input id="datepicker-range-end" className={`h-10 w-full rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${invalid ? 'border-destructive' : 'border-input'}`} type="date" value={end} min={start || undefined} onChange={(event) => setEnd(event.target.value)} aria-invalid={invalid || undefined} aria-describedby={invalid ? 'datepicker-range-error' : 'datepicker-range-hint'} /></div>
+        <div className="space-y-2"><label className="text-sm font-medium" htmlFor="datepicker-range-start">Start date</label><input id="datepicker-range-start" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={start} onChange={(event) => setStart(event.target.value)} /></div>
+        <div className="space-y-2"><label className="text-sm font-medium" htmlFor="datepicker-range-end">End date</label><input id="datepicker-range-end" className={`h-10 w-full rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${invalid ? 'border-destructive' : 'border-input'}`} type="date" value={end} min={start || undefined} onChange={(event) => setEnd(event.target.value)} aria-invalid={invalid || undefined} aria-describedby={invalid ? 'datepicker-range-error' : 'datepicker-range-hint'} /></div>
       </div>
       <p id="datepicker-range-hint" className="text-sm text-muted-foreground">Choose the first and last day of your stay.</p>
       {invalid && <p id="datepicker-range-error" className="text-sm text-destructive" role="alert">The end date must be on or after the start date.</p>}
@@ -1839,8 +1839,8 @@ function DateTimePickerExample() {
   return (
     <div className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2"><label className="text-sm" htmlFor="datepicker-time-date">Date</label><input id="datepicker-time-date" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={date} onChange={(event) => setDate(event.target.value)} /></div>
-        <div className="space-y-2"><label className="text-sm" htmlFor="datepicker-time-time">Time</label><input id="datepicker-time-time" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="time" value={time} onChange={(event) => setTime(event.target.value)} /></div>
+        <div className="space-y-2"><label className="text-sm font-medium" htmlFor="datepicker-time-date">Date</label><input id="datepicker-time-date" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={date} onChange={(event) => setDate(event.target.value)} /></div>
+        <div className="space-y-2"><label className="text-sm font-medium" htmlFor="datepicker-time-time">Time</label><input id="datepicker-time-time" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="time" value={time} onChange={(event) => setTime(event.target.value)} /></div>
       </div>
       <p id="datepicker-time-hint" className="text-sm text-muted-foreground">Choose the appointment time in Eastern Time. You can change it before confirming.</p>
       {date && time && <p className="text-sm text-muted-foreground" role="status">Appointment: {date} at {time} Eastern Time.</p>}
