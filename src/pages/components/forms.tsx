@@ -124,7 +124,7 @@ function BasicComboboxExample() {
         }
       }}
     >
-      <label className="text-sm font-medium" htmlFor="basic-combobox">
+      <label className="block text-sm font-medium" htmlFor="basic-combobox">
         Country
       </label>
       <div className="relative">
@@ -528,7 +528,7 @@ function ScrollableSelectExample() {
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium" htmlFor="select-scrollable-trigger">
+      <label className="block text-sm font-medium" htmlFor="select-scrollable-trigger">
         Time zone
       </label>
       <div className="relative">
@@ -604,7 +604,7 @@ function SearchableSelectExample() {
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium" htmlFor="select-searchable-trigger">
+      <label className="block text-sm font-medium" htmlFor="select-searchable-trigger">
         Country
       </label>
       <div className="relative">
@@ -1195,17 +1195,19 @@ function CheckboxField({
   label,
   hint,
   error,
+  disabled = false,
   children,
 }: {
   id: string
   label: string
   hint?: string
   error?: string
+  disabled?: boolean
   children: React.ReactNode
 }) {
   return (
-    <div className="space-y-2">
-      <div className="flex items-start gap-3">
+    <div className="group space-y-2" data-disabled={disabled || undefined}>
+      <div className="flex items-start gap-3 group-data-[disabled=true]:opacity-50">
         {children}
         <label className="text-sm font-medium leading-5" htmlFor={id}>
           {label}
@@ -1298,25 +1300,27 @@ function CheckboxGroupField({
 }
 
 function CheckboxGroupExample({
+  idPrefix = 'checkbox-group-example',
   hint,
   disabled = false,
   invalid = false,
 }: {
+  idPrefix?: string
   hint?: string
   disabled?: boolean
   invalid?: boolean
 }) {
   return (
     <CheckboxGroupField
-      id="checkbox-group-example"
+      id={idPrefix}
       label="Which updates would you like to receive?"
       hint={hint}
       error={invalid ? 'Choose at least one update type.' : undefined}
     >
       {['Product news', 'Accessibility improvements', 'Events and webinars'].map((option) => (
-        <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`checkbox-group-${option}`}>
+        <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`${idPrefix}-${option}`}>
           <input
-            id={`checkbox-group-${option}`}
+            id={`${idPrefix}-${option}`}
             className="mt-1 size-4 accent-primary disabled:cursor-not-allowed disabled:opacity-50"
             type="checkbox"
             disabled={disabled}
@@ -1419,10 +1423,12 @@ function RadioGroupField({
 }
 
 function RadioButtonExample({
+  idPrefix = 'radio-button-example',
   hint,
   disabled = false,
   invalid = false,
 }: {
+  idPrefix?: string
   hint?: string
   disabled?: boolean
   invalid?: boolean
@@ -1431,18 +1437,18 @@ function RadioButtonExample({
 
   return (
     <RadioGroupField
-      id="radio-button-example"
+      id={idPrefix}
       label="How should we contact you?"
       hint={hint}
       error={invalid ? 'Choose one contact method.' : undefined}
     >
       {options.map((option) => (
-        <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`radio-button-${option}`}>
+        <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`${idPrefix}-${option}`}>
           <input
-            id={`radio-button-${option}`}
+            id={`${idPrefix}-${option}`}
             className="mt-1 size-4 accent-primary disabled:cursor-not-allowed disabled:opacity-50"
             type="radio"
-            name="radio-button-example"
+            name={idPrefix}
             value={option}
             disabled={disabled}
           />
@@ -1576,6 +1582,7 @@ function ComboboxVariation({
   const [value, setValue] = useState('')
   const [selected, setSelected] = useState<string[]>([])
   const [open, setOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(-1)
   const containerRef = useComboboxOutsideClick(open, () => setOpen(false))
   const filtered = comboboxVariationOptions.filter((option) => option.label.toLowerCase().includes(value.toLowerCase()))
   const groups = grouped
@@ -1587,17 +1594,19 @@ function ComboboxVariation({
     if (multiple) {
       setSelected((current) => (current.includes(option) ? current.filter((item) => item !== option) : [...current, option]))
       setValue('')
+      setActiveIndex(-1)
       setOpen(true)
     } else {
       setSelected([option])
       setValue(option)
+      setActiveIndex(-1)
       setOpen(false)
     }
   }
 
   return (
     <div ref={containerRef} className="space-y-2">
-      <label className="text-sm font-medium" htmlFor={id}>
+      <label className="block text-sm font-medium" htmlFor={id}>
         {multiple ? 'Countries' : 'Country'}
       </label>
       <div className="relative">
@@ -1629,6 +1638,7 @@ function ComboboxVariation({
             disabled={disabled}
             aria-expanded={open}
             aria-controls={`${id}-listbox`}
+            aria-activedescendant={activeIndex >= 0 ? `${id}-option-${activeIndex}` : undefined}
             aria-autocomplete="list"
             aria-describedby={describedBy}
             onFocus={() => !disabled && setOpen(true)}
@@ -1637,10 +1647,24 @@ function ComboboxVariation({
               setOpen(true)
             }}
             onKeyDown={(event) => {
-              if (event.key === 'Escape') setOpen(false)
-              if (event.key === 'Enter' && filtered[0]) {
+              if (event.key === 'Escape') {
+                setOpen(false)
+                setActiveIndex(-1)
+                return
+              }
+              if (event.key === 'ArrowDown' && filtered.length > 0) {
                 event.preventDefault()
-                choose(filtered[0].label)
+                setOpen(true)
+                setActiveIndex((current) => (current + 1) % filtered.length)
+              }
+              if (event.key === 'ArrowUp' && filtered.length > 0) {
+                event.preventDefault()
+                setOpen(true)
+                setActiveIndex((current) => (current <= 0 ? filtered.length - 1 : current - 1))
+              }
+              if (event.key === 'Enter' && filtered[activeIndex >= 0 ? activeIndex : 0]) {
+                event.preventDefault()
+                choose(filtered[activeIndex >= 0 ? activeIndex : 0].label)
               }
             }}
           />
@@ -1669,13 +1693,16 @@ function ComboboxVariation({
                 <li key={group || 'all'} role={group ? 'group' : undefined} aria-label={group || undefined}>
                   {group && <div className="px-2 pb-1 pt-2 text-xs font-semibold text-muted-foreground">{group}</div>}
                   <ul>
-                    {options.map((option) => (
+                    {options.map((option) => {
+                      const optionIndex = filtered.findIndex((item) => item.label === option.label)
+                      return (
                       <li
+                        id={`${id}-option-${optionIndex}`}
                         key={option.label}
                         role="option"
                         aria-selected={selected.includes(option.label)}
                         className="cursor-pointer rounded-sm px-2 py-2 hover:bg-muted"
-                        tabIndex={0}
+                        tabIndex={-1}
                         onMouseDown={(event) => event.preventDefault()}
                         onKeyDown={(event) => {
                           if (event.key === 'Enter' || event.key === ' ') {
@@ -1687,7 +1714,8 @@ function ComboboxVariation({
                       >
                         {option.label}
                       </li>
-                    ))}
+                      )
+                    })}
                   </ul>
                 </li>
               )
@@ -1709,13 +1737,14 @@ function RequiredComboboxExample() {
   const options = comboboxVariationOptions.map((option) => option.label)
   const filtered = options.filter((option) => option.toLowerCase().includes(value.toLowerCase()))
   const [open, setOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(-1)
   const containerRef = useComboboxOutsideClick(open, () => setOpen(false))
 
   return (
     <div ref={containerRef}>
       <form className="space-y-4" onSubmit={(event) => { event.preventDefault(); setSubmitted(true) }}>
       <div className="space-y-2">
-        <label className="text-sm font-medium" htmlFor="combobox-required">Country</label>
+        <label className="block text-sm font-medium" htmlFor="combobox-required">Country</label>
         <input
           id="combobox-required"
           className={`h-10 w-full rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${error ? 'border-destructive' : 'border-input'}`}
@@ -1725,25 +1754,33 @@ function RequiredComboboxExample() {
           placeholder="Search countries"
           aria-expanded={open}
           aria-controls="combobox-required-listbox"
+          aria-activedescendant={activeIndex >= 0 ? `combobox-required-option-${activeIndex}` : undefined}
           aria-autocomplete="list"
           aria-describedby={error ? 'combobox-required-error' : 'combobox-required-hint'}
           onFocus={() => setOpen(true)}
           onChange={(event) => { setValue(event.target.value); setSubmitted(false); setOpen(true) }}
-          onKeyDown={(event) => { if (event.key === 'Escape') setOpen(false); if (event.key === 'Enter' && filtered[0]) { event.preventDefault(); setValue(filtered[0]); setOpen(false) } }}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') { setOpen(false); setActiveIndex(-1); return }
+            if (event.key === 'ArrowDown' && filtered.length > 0) { event.preventDefault(); setOpen(true); setActiveIndex((current) => (current + 1) % filtered.length) }
+            if (event.key === 'ArrowUp' && filtered.length > 0) { event.preventDefault(); setOpen(true); setActiveIndex((current) => (current <= 0 ? filtered.length - 1 : current - 1)) }
+            if (event.key === 'Enter' && filtered[activeIndex >= 0 ? activeIndex : 0]) { event.preventDefault(); setValue(filtered[activeIndex >= 0 ? activeIndex : 0]); setActiveIndex(-1); setOpen(false) }
+          }}
         />
         {open && (
           <ul id="combobox-required-listbox" className="max-h-48 overflow-auto rounded-md border bg-popover p-1 text-sm shadow-md" role="listbox" aria-label="Country options">
-            {filtered.map((option) => <li
+            {filtered.map((option, optionIndex) => <li
+              id={`combobox-required-option-${optionIndex}`}
               key={option}
               role="option"
               aria-selected={option === value}
-              tabIndex={0}
               className="cursor-pointer rounded-sm px-2 py-2 hover:bg-muted"
+              tabIndex={-1}
               onMouseDown={(event) => event.preventDefault()}
               onKeyDown={(event) => {
                 if (event.key === 'Enter' || event.key === ' ') {
                   event.preventDefault()
                   setValue(option)
+                  setActiveIndex(-1)
                   setOpen(false)
                 }
               }}
@@ -1778,7 +1815,7 @@ function DatePickerVariation({
       <label className="block text-sm font-medium" htmlFor={id}>Date</label>
       <input
         id={id}
-        className={`h-10 rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 ${invalid ? 'border-destructive' : 'border-input'}`}
+        className={`[color-scheme:light] h-10 rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 ${invalid ? 'border-destructive' : 'border-input'}`}
         type="date"
         disabled={disabled}
         aria-describedby={invalid ? `${id}-error` : hint ? `${id}-hint` : undefined}
@@ -1800,7 +1837,7 @@ function RequiredDatePickerExample() {
         <label className="block text-sm font-medium" htmlFor="datepicker-required">Start date</label>
         <input
           id="datepicker-required"
-          className={`h-10 rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${error ? 'border-destructive' : 'border-input'}`}
+          className={`[color-scheme:light] h-10 rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${error ? 'border-destructive' : 'border-input'}`}
           type="date"
           value={value}
           aria-describedby={error ? 'datepicker-required-error' : 'datepicker-required-hint'}
@@ -1823,7 +1860,7 @@ function DateRangePickerExample() {
     <div className="space-y-4">
       <p className="text-sm font-medium">Date range</p>
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-range-start">Start date</label><input id="datepicker-range-start" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={start} onChange={(event) => setStart(event.target.value)} /></div>
+        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-range-start">Start date</label><input id="datepicker-range-start" className="[color-scheme:light] h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={start} onChange={(event) => setStart(event.target.value)} /></div>
         <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-range-end">End date</label><input id="datepicker-range-end" className={`h-10 w-full rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${invalid ? 'border-destructive' : 'border-input'}`} type="date" value={end} min={start || undefined} onChange={(event) => setEnd(event.target.value)} aria-invalid={invalid || undefined} aria-describedby={invalid ? 'datepicker-range-error' : 'datepicker-range-hint'} /></div>
       </div>
       <p id="datepicker-range-hint" className="text-sm text-muted-foreground">Choose the first and last day of your stay.</p>
@@ -1839,8 +1876,8 @@ function DateTimePickerExample() {
   return (
     <div className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-time-date">Date</label><input id="datepicker-time-date" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={date} onChange={(event) => setDate(event.target.value)} /></div>
-        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-time-time">Time</label><input id="datepicker-time-time" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="time" value={time} onChange={(event) => setTime(event.target.value)} /></div>
+        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-time-date">Date</label><input id="datepicker-time-date" className="[color-scheme:light] h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={date} onChange={(event) => setDate(event.target.value)} /></div>
+        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-time-time">Time</label><input id="datepicker-time-time" className="[color-scheme:light] h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="time" value={time} onChange={(event) => setTime(event.target.value)} /></div>
       </div>
       <p id="datepicker-time-hint" className="text-sm text-muted-foreground">Choose the appointment time in Eastern Time. You can change it before confirming.</p>
       {date && time && <p className="text-sm text-muted-foreground" role="status">Appointment: {date} at {time} Eastern Time.</p>}
@@ -1950,7 +1987,7 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample />
+          <RadioButtonExample idPrefix="radio-button-basic" />
         </InputVariation>
 
         <InputVariation
@@ -1972,7 +2009,7 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample hint="Choose the method you check most often. You can change this preference later." />
+          <RadioButtonExample idPrefix="radio-button-helper" hint="Choose the method you check most often. You can change this preference later." />
         </InputVariation>
 
         <InputVariation
@@ -1994,7 +2031,7 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample disabled hint="Available after you add a verified contact method." />
+          <RadioButtonExample idPrefix="radio-button-disabled" disabled hint="Available after you add a verified contact method." />
         </InputVariation>
 
         <InputVariation
@@ -2016,7 +2053,7 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample invalid hint="Select one contact method to continue." />
+          <RadioButtonExample idPrefix="radio-button-invalid" invalid hint="Select one contact method to continue." />
         </InputVariation>
 
         <InputVariation
@@ -2076,7 +2113,7 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample />
+          <CheckboxGroupExample idPrefix="checkbox-group-basic" />
         </InputVariation>
 
         <InputVariation
@@ -2098,7 +2135,7 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample hint="Select all that apply. We will use these choices to tailor your notifications." />
+          <CheckboxGroupExample idPrefix="checkbox-group-helper" hint="Select all that apply. We will use these choices to tailor your notifications." />
         </InputVariation>
 
         <InputVariation
@@ -2120,7 +2157,7 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample disabled hint="Available after you choose a notification plan." />
+          <CheckboxGroupExample idPrefix="checkbox-group-disabled" disabled hint="Available after you choose a notification plan." />
         </InputVariation>
 
         <InputVariation
@@ -2142,7 +2179,7 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample invalid hint="Select at least one update type." />
+          <CheckboxGroupExample idPrefix="checkbox-group-invalid" invalid hint="Select at least one update type." />
         </InputVariation>
 
         <InputVariation
@@ -2263,6 +2300,7 @@ function CheckboxVariations() {
         >
           <CheckboxField
             id="checkbox-disabled-variation"
+            disabled
             label="Enable advanced analytics"
             hint="Available on the Business plan."
           >
@@ -2340,9 +2378,9 @@ function BasicExample({ kind }: { kind: FormKind }) {
   switch (kind) {
     case 'input':
       return (
-        <Field id="basic-input" label="Email address">
+        <Field id="intro-input" label="Email address">
           <input
-            id="basic-input"
+            id="intro-input"
             className={inputClass}
             type="email"
             placeholder="you@example.com"
@@ -2351,8 +2389,8 @@ function BasicExample({ kind }: { kind: FormKind }) {
       )
     case 'select':
       return (
-        <Field id="basic-select" label="Contact preference">
-          <select id="basic-select" className={inputClass} defaultValue="email">
+        <Field id="intro-select" label="Contact preference">
+          <select id="intro-select" className={inputClass} defaultValue="email">
             <option value="email">Email</option>
             <option value="phone">Phone</option>
           </select>
@@ -2360,9 +2398,9 @@ function BasicExample({ kind }: { kind: FormKind }) {
       )
     case 'textarea':
       return (
-        <Field id="basic-textarea" label="Message">
+        <Field id="intro-textarea" label="Message">
           <textarea
-            id="basic-textarea"
+            id="intro-textarea"
             className={`${inputClass} min-h-24 resize-y`}
             placeholder="Write a message"
           />
@@ -2370,8 +2408,8 @@ function BasicExample({ kind }: { kind: FormKind }) {
       )
     case 'checkbox':
       return (
-        <label className="flex items-center gap-3 text-sm" htmlFor="basic-checkbox">
-          <input id="basic-checkbox" className="size-4 accent-primary" type="checkbox" />
+        <label className="flex items-center gap-3 text-sm" htmlFor="intro-checkbox">
+          <input id="intro-checkbox" className="size-4 accent-primary" type="checkbox" />
           <span>Send me product updates</span>
         </label>
       )
@@ -2379,12 +2417,12 @@ function BasicExample({ kind }: { kind: FormKind }) {
       return (
         <fieldset className="space-y-3">
           <legend className="text-sm font-medium">Topics of interest</legend>
-          <label className="flex items-center gap-3 text-sm" htmlFor="basic-checkbox-a">
-            <input id="basic-checkbox-a" className="size-4 accent-primary" type="checkbox" />
+          <label className="flex items-center gap-3 text-sm" htmlFor="intro-checkbox-a">
+            <input id="intro-checkbox-a" className="size-4 accent-primary" type="checkbox" />
             <span>Accessibility</span>
           </label>
-          <label className="flex items-center gap-3 text-sm" htmlFor="basic-checkbox-b">
-            <input id="basic-checkbox-b" className="size-4 accent-primary" type="checkbox" />
+          <label className="flex items-center gap-3 text-sm" htmlFor="intro-checkbox-b">
+            <input id="intro-checkbox-b" className="size-4 accent-primary" type="checkbox" />
             <span>Design systems</span>
           </label>
         </fieldset>
@@ -2393,22 +2431,22 @@ function BasicExample({ kind }: { kind: FormKind }) {
       return (
         <fieldset className="space-y-3">
           <legend className="text-sm font-medium">Notification frequency</legend>
-          <label className="flex items-center gap-3 text-sm" htmlFor="basic-frequency">
+          <label className="flex items-center gap-3 text-sm" htmlFor="intro-frequency">
             <input
-              id="basic-frequency"
+              id="intro-frequency"
               className="size-4 accent-primary"
               type="radio"
-              name="basic-frequency"
+              name="intro-frequency"
               defaultChecked
             />
             <span>Immediately</span>
           </label>
-          <label className="flex items-center gap-3 text-sm" htmlFor="basic-frequency-daily">
+          <label className="flex items-center gap-3 text-sm" htmlFor="intro-frequency-daily">
             <input
-              id="basic-frequency-daily"
+              id="intro-frequency-daily"
               className="size-4 accent-primary"
               type="radio"
-              name="basic-frequency"
+              name="intro-frequency"
             />
             <span>Daily digest</span>
           </label>
@@ -2418,9 +2456,9 @@ function BasicExample({ kind }: { kind: FormKind }) {
       return <BasicComboboxExample />
     case 'datepicker':
       return (
-        <Field id="basic-datepicker" label="Start date">
+        <Field id="intro-datepicker" label="Start date">
           <input
-            id="basic-datepicker"
+            id="intro-datepicker"
             className={`${inputClass} [color-scheme:light]`}
             type="date"
           />
