@@ -16,6 +16,9 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  server: {
+    allowedHosts: ['legion-wsl-ubuntu.tail90e67e.ts.net'],
+  },
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
