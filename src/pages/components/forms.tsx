@@ -6,7 +6,7 @@
  */
 /* eslint-disable react-refresh/only-export-components */
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   AlignLeft,
   CalendarDays,
@@ -1512,6 +1512,25 @@ function RequiredRadioButtonExample() {
   )
 }
 
+function useComboboxOutsideClick(open: boolean, onClose: () => void) {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        onClose()
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    return () => document.removeEventListener('pointerdown', handlePointerDown)
+  }, [onClose, open])
+
+  return containerRef
+}
+
 type ComboboxVariationOption = {
   label: string
   group?: string
@@ -1547,6 +1566,7 @@ function ComboboxVariation({
   const [value, setValue] = useState('')
   const [selected, setSelected] = useState<string[]>([])
   const [open, setOpen] = useState(false)
+  const containerRef = useComboboxOutsideClick(open, () => setOpen(false))
   const filtered = comboboxVariationOptions.filter((option) => option.label.toLowerCase().includes(value.toLowerCase()))
   const groups = grouped
     ? Array.from(new Set(filtered.map((option) => option.group).filter(Boolean)))
@@ -1566,7 +1586,7 @@ function ComboboxVariation({
   }
 
   return (
-    <div className="space-y-2">
+    <div ref={containerRef} className="space-y-2">
       <label className="text-sm font-medium" htmlFor={id}>
         Country{multiple ? 's' : ''}
       </label>
@@ -1671,9 +1691,11 @@ function RequiredComboboxExample() {
   const options = comboboxVariationOptions.map((option) => option.label)
   const filtered = options.filter((option) => option.toLowerCase().includes(value.toLowerCase()))
   const [open, setOpen] = useState(false)
+  const containerRef = useComboboxOutsideClick(open, () => setOpen(false))
 
   return (
-    <form className="space-y-4" onSubmit={(event) => { event.preventDefault(); setSubmitted(true) }}>
+    <div ref={containerRef}>
+      <form className="space-y-4" onSubmit={(event) => { event.preventDefault(); setSubmitted(true) }}>
       <div className="space-y-2">
         <label className="text-sm font-medium" htmlFor="combobox-required">Country</label>
         <input
@@ -1718,7 +1740,8 @@ function RequiredComboboxExample() {
       </div>
       <button type="submit" className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Continue</button>
       {submitted && !error && <p className="text-sm text-muted-foreground" role="status" aria-live="polite">Country saved: {value}.</p>}
-    </form>
+      </form>
+    </div>
   )
 }
 
