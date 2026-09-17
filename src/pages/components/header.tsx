@@ -1,6 +1,5 @@
 import { ExampleVariation } from '@/components/layout/example-variation'
 import { ChevronDownIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 /**
  * ComponentsHeaderPage — Header component usage guide.
@@ -202,10 +201,10 @@ function ComponentsHeaderPage() {
                       <nav aria-label="Primary" className="flex flex-wrap items-center justify-end gap-1">
                         <a href="/layouts" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Layouts</a>
                         <DropdownMenuTrigger>
-                          <Button variant="ghost" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                          <button type="button" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                             Components
                             <ChevronDownIcon className="size-4 shrink-0" aria-hidden="true" />
-                          </Button>
+                          </button>
                           <DropdownMenu>
                             <DropdownMenuItem href="/components/forms">Forms</DropdownMenuItem>
                             <DropdownMenuItem href="/components/user-interface">User interface</DropdownMenuItem>
