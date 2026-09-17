@@ -187,6 +187,7 @@ function ComponentsSecondaryNavPage() {
                 >
                   Examples
                 </h2>
+                <p className="text-sm text-muted-foreground">Try it: Use Tab to reach the navigation, activate a link, and resize the page. Confirm that the active area is communicated without relying on color alone and that the links remain usable on narrow screens.</p>
                 <p className="leading-7 text-muted-foreground">
                   Use a short list of peer links for nearby pages. These are the same real anchors
                   people can use in the Header drawer on a smaller screen. The isolated row is

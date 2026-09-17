@@ -182,6 +182,7 @@ function ComponentsHeaderPage() {
                 >
                   Examples
                 </h2>
+                <p className="text-sm text-muted-foreground">Try it: Resize the page and move through the links with the keyboard. Confirm that the header remains identifiable, the current page is understandable, and focus stays visible as the layout changes.</p>
                 <p className="leading-7 text-muted-foreground">
                   This is the Header pattern in isolation: a logo, a short primary navigation list,
                   and the mobile menu behavior described above. The page shell already uses the same

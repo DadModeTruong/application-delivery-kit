@@ -178,6 +178,7 @@ function ComponentsFooterPage() {
                 >
                   Examples
                 </h2>
+                <p className="text-sm text-muted-foreground">Try it: Tab through the footer links and resize the page. Confirm that every link has a useful accessible name, focus is visible, and the supporting navigation does not compete with the primary navigation.</p>
                 <p className="leading-7 text-muted-foreground">
                   Keep supporting links available without competing with the page's main task. The
                   Footer below uses the shared GitHub link configuration used by the page shell.

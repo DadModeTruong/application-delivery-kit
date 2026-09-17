@@ -181,6 +181,7 @@ function ComponentsSidebarPage() {
                 >
                   Examples
                 </h2>
+                <p className="text-sm text-muted-foreground">Try it: Use Tab and activate a guide link, then resize the page. Confirm that the navigation has a meaningful label, the current location is clear, and the content remains reachable when the sidebar collapses or stacks.</p>
                 <p className="leading-7 text-muted-foreground">
                   Group links when people need a deeper map of the current section. The grouped
                   example below uses the same Navigation, Layout, and Display groups as this area.

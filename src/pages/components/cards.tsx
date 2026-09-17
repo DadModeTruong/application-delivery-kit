@@ -232,6 +232,7 @@ function ComponentsCardsPage() {
                   <h2 id="cards-examples-heading" className="text-2xl font-semibold tracking-tight">
                     Examples
                   </h2>
+                <p className="text-sm text-muted-foreground">Try it: Compare the cards at different widths and use any links or actions inside them with the keyboard. Confirm that grouping, hierarchy, and focus remain clear without making the entire card an ambiguous action.</p>
                   <p className="leading-7 text-muted-foreground">
                     The surface can look similar in each example. The semantic element changes with
                     the job the card performs. The examples use one column at narrow widths and add

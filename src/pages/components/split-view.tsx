@@ -205,6 +205,7 @@ function ComponentsSplitViewPage() {
                   >
                     Examples
                   </h2>
+                <p className="text-sm text-muted-foreground">Try it: Resize the page through narrow and wide widths. Confirm that the content stacks in a sensible order when side-by-side space is unavailable and that neither pane becomes unusably narrow.</p>
                   <p className="leading-7 text-muted-foreground">
                     These examples use the same content count while comparing the two supported
                     proportions. At narrow widths, Main stacks before Secondary; when Secondary is

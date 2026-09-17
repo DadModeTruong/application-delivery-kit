@@ -193,6 +193,7 @@ function ComponentsButtonsPage() {
                   >
                     Examples
                   </h2>
+                <p className="text-sm text-muted-foreground">Try it: Activate the examples with a mouse and keyboard, and inspect the disabled and loading states. Confirm that the action, state change, focus treatment, and accessible name remain clear without relying on color alone.</p>
                   <p className="leading-7 text-muted-foreground">
                     Start with the default variant for the main action. Use less emphasis for nearby
                     alternatives, and reserve destructive for an action that cannot be easily
