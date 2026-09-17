@@ -189,8 +189,8 @@ function ComponentsHeaderPage() {
                     <div className="flex items-center justify-between gap-6 border-b px-6 py-4">
                       <a href="/" className="font-semibold tracking-tight">Application Delivery Kit</a>
                       <nav aria-label="Primary navigation" className="flex flex-wrap items-center justify-end gap-2">
-                        <LinkButton href="/layouts" variant="outline">Layouts</LinkButton>
-                        <LinkButton href="/components" variant="outline">Components</LinkButton>
+                        <LinkButton href="/layouts" variant="ghost">Layouts</LinkButton>
+                        <LinkButton href="/components" variant="ghost">Components</LinkButton>
                       </nav>
                     </div>
                   </ExampleVariation>
