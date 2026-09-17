@@ -1,4 +1,5 @@
 import { ExampleVariation } from '@/components/layout/example-variation'
+import { Blocks, LayoutTemplate } from 'lucide-react'
 /**
  * ComponentsHeaderPage — Header component usage guide.
  *
@@ -200,6 +201,38 @@ function ComponentsHeaderPage() {
                         { label: 'Layouts', href: '/layouts' },
                         {
                           label: 'Components',
+                          children: [
+                            { label: 'Forms', href: '/components/forms' },
+                            { label: 'User interface', href: '/components/user-interface' },
+                            { label: 'Interaction', href: '/components/interaction' },
+                          ],
+                        },
+                      ]}
+                    />
+                  </ExampleVariation>
+
+                  <ExampleVariation
+                    title="With icons"
+                    description="Icons can reinforce familiar navigation labels while the text remains the primary cue."
+                    explanation="Use icons when they help people recognize a familiar destination or distinguish related navigation choices. Keep the visible label because icons alone are ambiguous, and use the same icon consistently wherever the destination appears."
+                    doItems={[
+                      "Pair each icon with a concise visible label and keep the icon secondary to the text.",
+                      "Use familiar, consistent icons such as layout or component symbols when they add recognition value.",
+                      "Keep icons decorative to assistive technology when the adjacent label already names the destination.",
+                    ]}
+                    dontItems={[
+                      "Do not replace the navigation label with an icon alone.",
+                      "Do not mix unrelated icon styles or use icons that require users to guess their meaning.",
+                      "Do not add icons only for decoration when they make the navigation row harder to scan.",
+                    ]}
+                  >
+                    <Header
+                      logo={{ href: '/', label: 'Application Delivery Kit' }}
+                      nav={[
+                        { label: 'Layouts', href: '/layouts', icon: LayoutTemplate },
+                        {
+                          label: 'Components',
+                          icon: Blocks,
                           children: [
                             { label: 'Forms', href: '/components/forms' },
                             { label: 'User interface', href: '/components/user-interface' },
