@@ -86,17 +86,13 @@ function ComponentsHeaderPage() {
                   id="navigation-header-what-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  What is it for?
+                  What is it?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   Header is the broadest navigation layer. Pass ordinary link data through{' '}
                   <code>nav</code>; the application or router still owns what happens at each path.
                 </p>
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold tracking-tight">Basic</h3>
-                  <p className="leading-7 text-muted-foreground">
-                    A simple system header keeps the application name on the left and ordinary navigation links on the right.
-                  </p>
                   <div className="overflow-hidden rounded-xl border">
                     <Header
                       logo={{ href: '/', label: 'Application Delivery Kit' }}
