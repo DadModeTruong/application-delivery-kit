@@ -1,5 +1,7 @@
 import { ExampleVariation } from '@/components/layout/example-variation'
-import { LinkButton } from '@/components/ui/button'
+import { ChevronDownIcon } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 /**
  * ComponentsHeaderPage — Header component usage guide.
  *
@@ -189,26 +191,27 @@ function ComponentsHeaderPage() {
                     <div className="flex items-center justify-between gap-6 px-4 py-3">
                       <a href="/" className="font-semibold tracking-tight">Application Delivery Kit</a>
                       <nav aria-label="Primary navigation" className="flex flex-wrap items-center justify-end gap-2">
-                        <LinkButton href="/layouts" variant="ghost">Layouts</LinkButton>
-                        <LinkButton href="/components" variant="ghost">Components</LinkButton>
+                        <a href="/layouts" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Layouts</a>
+                        <a href="/components" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Components</a>
                       </nav>
                     </div>
                   </ExampleVariation>
                   <ExampleVariation title="Basic, with dropdown" description="A dropdown groups related destinations under a clear parent label while keeping the header compact." explanation="A dropdown is appropriate when a parent category has several closely related destinations and showing every link inline would make the header difficult to scan. The parent label should communicate the category, and the open menu must be fully keyboard-operable in the production implementation." doItems={["Use a meaningful category label, such as Services, that describes the destinations inside.", "Keep the menu short and group only destinations that share a clear relationship.", "Use specific link text inside the menu and preserve visible focus, Escape dismissal, and focus restoration."]} dontItems={["Do not hide a single high-priority destination inside a dropdown.", "Do not use a dropdown as a substitute for unclear information architecture or a long sitemap.", "Do not use ambiguous labels such as More when the available destinations can be named directly."]}>
                     <div className="flex items-center justify-between gap-6 px-4 py-3">
                       <a href="/" className="font-semibold tracking-tight">Application Delivery Kit</a>
-                      <nav aria-label="Primary navigation" className="flex flex-wrap items-center justify-end gap-2">
-                        <LinkButton href="/layouts" variant="ghost">Layouts</LinkButton>
-                        <details className="relative">
-                          <summary className="flex cursor-pointer list-none items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                            Components
-                          </summary>
-                          <div className="absolute right-0 z-10 mt-2 min-w-48 rounded-md border bg-background p-1 shadow-md">
-                            <a href="/components/forms" className="block rounded-sm px-3 py-2 text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Forms</a>
-                            <a href="/components/user-interface" className="block rounded-sm px-3 py-2 text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">User interface</a>
-                            <a href="/components/interaction" className="block rounded-sm px-3 py-2 text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Interaction</a>
-                          </div>
-                        </details>
+                      <nav aria-label="Primary" className="flex flex-wrap items-center justify-end gap-1">
+                        <a href="/layouts" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Layouts</a>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger>
+                            <Button variant="ghost" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                              Components
+                              <ChevronDownIcon className="size-4 shrink-0" aria-hidden="true" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuItem href="/components/forms">Forms</DropdownMenuItem>
+                          <DropdownMenuItem href="/components/user-interface">User interface</DropdownMenuItem>
+                          <DropdownMenuItem href="/components/interaction">Interaction</DropdownMenuItem>
+                        </DropdownMenu>
                       </nav>
                     </div>
                   </ExampleVariation>
