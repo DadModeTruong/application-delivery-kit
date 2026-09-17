@@ -1,3 +1,4 @@
+import { ExampleVariation } from '@/components/layout/example-variation'
 /**
  * ComponentsCardsPage — Card component usage guide.
  *
@@ -233,59 +234,20 @@ function ComponentsCardsPage() {
                     Examples
                   </h2>
                 <p className="text-sm text-muted-foreground">Try it: Compare the cards at different widths and use any links or actions inside them with the keyboard. Confirm that grouping, hierarchy, and focus remain clear without making the entire card an ambiguous action.</p>
-                <div className="space-y-10">
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Static information card</h3><p className="mt-1 text-sm text-muted-foreground">A card can group related content without becoming an interaction.</p></div><div className="rounded-lg border bg-muted/20 p-6"><section aria-labelledby="card-static-example"><h4 id="card-static-example" className="font-semibold">Application status</h4><p className="mt-1 text-sm text-muted-foreground">Your application is being reviewed.</p></section></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">a bounded group needs visual hierarchy.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">a card boundary adds decoration without helping comprehension.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> the card has a useful heading and does not receive focus unless it contains a control.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Linked card</h3><p className="mt-1 text-sm text-muted-foreground">Make the actual link the interactive element.</p></div><div className="rounded-lg border bg-muted/20 p-6"><article><h4 className="font-semibold"><a href="#card-linked-example" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">View application details</a></h4><p className="mt-1 text-sm text-muted-foreground">Review status, documents, and next steps.</p></article></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">one destination describes the whole card.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">making every text fragment or the entire wrapper a competing link.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> the link name describes the destination and has a visible focus ring.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Card with internal action</h3><p className="mt-1 text-sm text-muted-foreground">Use a button when the action changes state instead of navigating.</p></div><div className="rounded-lg border bg-muted/20 p-6"><section aria-labelledby="card-action-example"><div className="flex flex-wrap items-start justify-between gap-3"><div><h4 id="card-action-example" className="font-semibold">Notifications</h4><p className="mt-1 text-sm text-muted-foreground">You have 3 unread notifications.</p></div><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Mark all read</button></div></section></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">an action applies to the card’s content without changing location.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">nesting a button inside a link or making the card and button perform different unclear actions.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> keyboard focus lands on the button and its result is communicated.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Responsive card grid</h3><p className="mt-1 text-sm text-muted-foreground">The grid changes density without changing the information hierarchy.</p></div><div className="grid gap-3 rounded-lg border bg-muted/20 p-6 sm:grid-cols-2"><section aria-labelledby="card-grid-one"><h4 id="card-grid-one" className="font-semibold">Plan A</h4><p className="mt-1 text-sm text-muted-foreground">For small teams</p></section><section aria-labelledby="card-grid-two"><h4 id="card-grid-two" className="font-semibold">Plan B</h4><p className="mt-1 text-sm text-muted-foreground">For growing teams</p></section></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">repeated items share a clear comparison structure.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">cards become too narrow or require line-by-line comparison.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> order, headings, and actions remain understandable at one column.</p>
-                    </div></article>
+
+                <div className="space-y-8">
+                  <ExampleVariation title="Static information card" description="A card can group related content without becoming an interaction." explanation="Use a card when a bounded group helps people scan related information. The card itself should not receive focus unless it contains an interactive element." doItems={["Give the content a useful heading and clear hierarchy.", "Let the content remain readable without relying on the card boundary alone."]} dontItems={["Do not make a static card look like an unavailable button.", "Do not add a card boundary when it provides no grouping or scanning value."]}>
+                    <section aria-labelledby="card-static-example"><h4 id="card-static-example" className="font-semibold">Application status</h4><p className="mt-1 text-sm text-muted-foreground">Your application is being reviewed.</p></section>
+                  </ExampleVariation>
+                  <ExampleVariation title="Linked card" description="Make the actual link the interactive element." explanation="A linked card works when one destination describes the whole item. Put focus on the link and make its accessible name describe where it goes." doItems={["Use one clear link with a destination-focused name.", "Keep supporting text available to explain the destination."]} dontItems={["Do not make the entire wrapper an ambiguous click target.", "Do not create several competing links to the same destination inside one card."]}>
+                    <article><h4 className="font-semibold"><a href="#card-linked-example" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">View application details</a></h4><p className="mt-1 text-sm text-muted-foreground">Review status, documents, and next steps.</p></article>
+                  </ExampleVariation>
+                  <ExampleVariation title="Card with internal action" description="Use a button when the action changes state instead of navigating." explanation="A card may contain an action that applies to its content, but the card and its action should not compete to perform different unclear things." doItems={["Use a button for a state change such as marking notifications read.", "Keep the action in the same reading and focus order as its heading."]} dontItems={["Do not nest a button inside a link.", "Do not make the card and its button perform different unclear actions."]}>
+                    <section aria-labelledby="card-action-example"><div className="flex flex-wrap items-start justify-between gap-3"><div><h4 id="card-action-example" className="font-semibold">Notifications</h4><p className="mt-1 text-sm text-muted-foreground">You have 3 unread notifications.</p></div><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Mark all read</button></div></section>
+                  </ExampleVariation>
+                  <ExampleVariation title="Responsive card grid" description="The grid changes density without changing the information hierarchy." explanation="A card grid is useful for repeated items with a shared comparison structure. At one column, the order and hierarchy should still make sense." doItems={["Use consistent headings and content order across cards.", "Test the one-column layout with long titles and actions."]} dontItems={["Do not make cards so narrow that their content becomes harder to scan.", "Do not use a grid for information that requires line-by-line comparison."]}>
+                    <div className="grid gap-3 sm:grid-cols-2"><section aria-labelledby="card-grid-one"><h4 id="card-grid-one" className="font-semibold">Plan A</h4><p className="mt-1 text-sm text-muted-foreground">For small teams</p></section><section aria-labelledby="card-grid-two"><h4 id="card-grid-two" className="font-semibold">Plan B</h4><p className="mt-1 text-sm text-muted-foreground">For growing teams</p></section></div>
+                  </ExampleVariation>
                 </div>
                   <p className="leading-7 text-muted-foreground">
                     The surface can look similar in each example. The semantic element changes with

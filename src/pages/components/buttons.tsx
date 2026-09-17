@@ -1,3 +1,4 @@
+import { ExampleVariation } from '@/components/layout/example-variation'
 /**
  * ComponentsButtonsPage — Button component usage guide.
  *
@@ -194,72 +195,23 @@ function ComponentsButtonsPage() {
                     Examples
                   </h2>
                 <p className="text-sm text-muted-foreground">Try it: Activate the examples with a mouse and keyboard, and inspect the disabled and loading states. Confirm that the action, state change, focus treatment, and accessible name remain clear without relying on color alone.</p>
-                <div className="space-y-10">
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Action hierarchy</h3><p className="mt-1 text-sm text-muted-foreground">Visual emphasis should match the consequence and frequency of the action.</p></div><div className="flex flex-wrap gap-3 rounded-lg border bg-muted/20 p-6"><button type="button" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Save changes</button><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Cancel</button><button type="button" className="rounded-md border border-destructive px-3 py-2 text-sm text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Delete draft</button></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">one primary action needs clear emphasis and secondary actions should remain available.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">every action is styled as primary or destructive styling is used for ordinary cancellation.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> labels describe outcomes and the destructive action is not distinguished by color alone.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Icon and text</h3><p className="mt-1 text-sm text-muted-foreground">Icons reinforce a familiar action; they do not replace a clear label when the action is unfamiliar.</p></div><div className="flex flex-wrap gap-3 rounded-lg border bg-muted/20 p-6"><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">＋ Add member</button><button type="button" aria-label="Open settings" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">⚙</button></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">the icon is recognizable and improves scanning.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">an icon-only action could be misunderstood or its meaning changes by context.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> icon-only buttons have an accessible name and a touch-sized target.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Loading and disabled</h3><p className="mt-1 text-sm text-muted-foreground">State changes should explain whether work is in progress or the action is unavailable.</p></div><div className="flex flex-wrap gap-3 rounded-lg border bg-muted/20 p-6"><button type="button" disabled aria-disabled="true" className="cursor-not-allowed rounded-md border px-3 py-2 text-sm opacity-60">Save unavailable</button><button type="button" aria-busy="true" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Saving…</button></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">disabled means the action cannot be used in the current context, or loading prevents duplicate work.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">disabling hides the reason a person cannot proceed or substitutes for read-only content.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> the implementation communicates busy state, preserves the action’s name, and restores focus appropriately.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Submit versus navigation</h3><p className="mt-1 text-sm text-muted-foreground">Use a button for an action and a link for a destination.</p></div><div className="flex flex-wrap gap-3 rounded-lg border bg-muted/20 p-6"><form className="flex flex-wrap gap-3"><label className="sr-only" htmlFor="button-example-title">Title</label><input id="button-example-title" className="rounded-md border px-3 py-2 text-sm" placeholder="Title" /><button type="submit" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Create</button></form><a href="#button-example-details" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">View details</a></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">submission changes data; use a link when activation changes location.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">styling a link as a button only because it looks prominent.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> native keyboard behavior, form submission, and destination announcements remain intact.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Menu trigger</h3><p className="mt-1 text-sm text-muted-foreground">A trigger must expose the relationship to the menu it opens.</p></div><div className="rounded-lg border bg-muted/20 p-6"><button type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="button-example-menu" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Actions ▾</button><div id="button-example-menu" role="menu" aria-label="Record actions" className="mt-2 w-40 rounded-md border bg-background p-1 text-sm"><a href="#button-edit" role="menuitem" className="block rounded px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Edit</a><a href="#button-archive" role="menuitem" className="block rounded px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Archive</a></div></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">several related actions need to share one trigger.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">a single common action is hidden behind an extra menu.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> expanded state, popup relationship, Arrow-key movement, Escape dismissal, and focus restoration are implemented together.</p>
-                    </div></article>
+
+                <div className="space-y-8">
+                  <ExampleVariation title="Action hierarchy" description="Visual emphasis should match the consequence and frequency of the action." explanation="Use one primary action when a task has a clear preferred outcome. Secondary and destructive actions should remain understandable without relying on visual emphasis alone." doItems={["Use labels that describe outcomes, such as Save changes or Delete draft.", "Keep the primary action visually distinct from secondary and destructive actions."]} dontItems={["Do not style every action as primary.", "Do not use destructive styling for ordinary cancellation or navigation."]}>
+                    <div className="flex flex-wrap gap-3"><button type="button" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Save changes</button><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Cancel</button><button type="button" className="rounded-md border border-destructive px-3 py-2 text-sm text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Delete draft</button></div>
+                  </ExampleVariation>
+                  <ExampleVariation title="Icon and text" description="Icons reinforce a familiar action; they do not replace a clear label when the action is unfamiliar." explanation="Use an icon with text when the action benefits from faster recognition. Icon-only buttons need an accessible name and should be reserved for familiar, space-constrained actions." doItems={["Give icon-only buttons a specific accessible name.", "Keep the target large enough for touch and keyboard use."]} dontItems={["Do not rely on an icon alone when its meaning is ambiguous.", "Do not remove the visible label just to make a button look smaller."]}>
+                    <div className="flex flex-wrap gap-3"><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">＋ Add member</button><button type="button" aria-label="Open settings" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">⚙</button></div>
+                  </ExampleVariation>
+                  <ExampleVariation title="Loading and disabled" description="State changes should explain whether work is in progress or the action is unavailable." explanation="Disabled means the action cannot be used in the current context. Loading means work is in progress and duplicate activation should be prevented while the result is pending." doItems={["Preserve the action’s purpose while communicating its changed state.", "Restore the normal state and focus behavior when work completes."]} dontItems={["Do not disable an action without explaining why it is unavailable.", "Do not show a loading label without communicating busy state in the implementation."]}>
+                    <div className="flex flex-wrap gap-3"><button type="button" disabled className="cursor-not-allowed rounded-md border px-3 py-2 text-sm opacity-60">Save unavailable</button><button type="button" aria-busy="true" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Saving…</button></div>
+                  </ExampleVariation>
+                  <ExampleVariation title="Submit versus navigation" description="Use a button for an action and a link for a destination." explanation="A submit button changes data through a form. A link changes location. Keeping those semantics honest gives people predictable keyboard and browser behavior." doItems={["Use type=submit for form submission and an anchor for navigation.", "Make the action or destination clear from its text."]} dontItems={["Do not use a button to imitate a page link.", "Do not style a link as a button just because it needs visual emphasis."]}>
+                    <div className="flex flex-wrap gap-3"><form className="flex flex-wrap gap-3"><label className="sr-only" htmlFor="button-example-title">Title</label><input id="button-example-title" className="rounded-md border px-3 py-2 text-sm" placeholder="Title" /><button type="submit" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Create</button></form><a href="#button-example-details" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">View details</a></div>
+                  </ExampleVariation>
+                  <ExampleVariation title="Menu trigger" description="A trigger must expose the relationship to the menu it opens." explanation="A menu trigger is more than a styled button. The production interaction needs a complete popup model: open state, focus movement, keyboard navigation, Escape, outside dismissal, and focus restoration." doItems={["Expose the menu relationship and expanded state.", "Move focus into the menu and return it to the trigger when the menu closes."]} dontItems={["Do not hide a single common action behind an unnecessary menu.", "Do not claim a complete menu interaction from aria-expanded alone."]}>
+                    <div><button type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="button-example-menu" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Actions ▾</button><div id="button-example-menu" role="menu" aria-label="Record actions" className="mt-2 w-40 rounded-md border p-1 text-sm"><a href="#button-edit" role="menuitem" className="block rounded px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Edit</a><a href="#button-archive" role="menuitem" className="block rounded px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Archive</a></div></div>
+                  </ExampleVariation>
                 </div>
                   <p className="leading-7 text-muted-foreground">
                     Start with the default variant for the main action. Use less emphasis for nearby

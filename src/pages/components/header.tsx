@@ -1,3 +1,4 @@
+import { ExampleVariation } from '@/components/layout/example-variation'
 /**
  * ComponentsHeaderPage — Header component usage guide.
  *
@@ -183,63 +184,17 @@ function ComponentsHeaderPage() {
                   Examples
                 </h2>
                 <p className="text-sm text-muted-foreground">Try it: Resize the page and move through the links with the keyboard. Confirm that the header remains identifiable, the current page is understandable, and focus stays visible as the layout changes.</p>
-                <div className="space-y-10">
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0">
-                    <div><h3 className="text-lg font-semibold">Basic global header</h3><p className="mt-1 text-sm text-muted-foreground">Brand identity and primary destinations share one predictable region.</p></div>
-                    <div className="rounded-lg border bg-muted/20 p-6"><header aria-label="Site header" className="flex flex-wrap items-center justify-between gap-4"><a href="#header-example-brand" className="font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Acme</a><nav aria-label="Primary navigation" className="flex flex-wrap gap-3 text-sm"><a href="#header-example-home" aria-current="page" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Home</a><a href="#header-example-work" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Work</a><a href="#header-example-about" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">About</a></nav></header></div>
-                    <div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">people need consistent access to identity and top-level destinations.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">the region is being used to hold every page-specific control.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> the header and primary navigation have meaningful landmarks and the current destination is not communicated by color alone.</p>
-                    </div>
-                  </article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Header with utility action</h3><p className="mt-1 text-sm text-muted-foreground">A global action stays separate from destination links.</p></div><div className="rounded-lg border bg-muted/20 p-6"><header aria-label="Account header" className="flex flex-wrap items-center justify-between gap-4"><span className="font-semibold">Acme workspace</span><div className="flex flex-wrap items-center gap-3"><nav aria-label="Workspace navigation" className="flex gap-3 text-sm"><a href="#header-example-dashboard" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Dashboard</a><a href="#header-example-reports" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Reports</a></nav><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Sign out</button></div></header></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">an action is available across the product and has a clear global consequence.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">the action only applies to the current page or record.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> links and buttons retain their native semantics and focus order.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Compact header</h3><p className="mt-1 text-sm text-muted-foreground">At narrow widths, preserve access to navigation instead of hiding it.</p></div><div className="rounded-lg border bg-muted/20 p-6"><header aria-label="Compact site header" className="flex items-center justify-between gap-3"><button type="button" aria-label="Open primary navigation" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Menu</button><span className="font-semibold">Acme</span><a href="#header-example-help" className="text-sm underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Help</a></header></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">the full navigation cannot fit without damaging readability or touch targets.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">a menu button would hide a destination people need to compare frequently.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> the trigger has an accessible name, a visible focus state, and a real open/close behavior in the production implementation.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Page-specific action</h3><p className="mt-1 text-sm text-muted-foreground">A local action belongs with the page heading, not in the global header.</p></div><div className="rounded-lg border bg-muted/20 p-6"><div className="flex flex-wrap items-center justify-between gap-4"><h3 className="font-semibold">Project settings</h3><button type="button" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Save changes</button></div></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">the action changes the current page or record.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">the action is needed from every page.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> its placement and accessible name explain its scope before activation.</p>
-                    </div></article>
+
+                <div className="space-y-8">
+                  <ExampleVariation title="Basic" description="Brand identity and primary destinations share one predictable region." explanation="A global header establishes where someone is and how to move through the product. Keep page-specific actions with the page content unless they truly apply everywhere." doItems={["Give the header and primary navigation meaningful accessible names.", "Keep the brand, primary destinations, and focus order consistent across pages."]} dontItems={["Do not put every page-specific action in the global header.", "Do not communicate the current destination through color alone."]}>
+                    <header aria-label="Site header" className="flex flex-wrap items-center justify-between gap-4"><a href="#header-basic-brand" className="font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Acme</a><nav aria-label="Primary navigation" className="flex flex-wrap gap-3 text-sm"><a href="#header-basic-home" aria-current="page" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Home</a><a href="#header-basic-work" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Work</a><a href="#header-basic-about" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">About</a></nav></header>
+                  </ExampleVariation>
+                  <ExampleVariation title="Header with utility action" description="A global action stays separate from destination links." explanation="Utility actions such as account access or sign out can live in the header when they are available across the product and have a clear global scope." doItems={["Separate navigation links from actions in the markup and focus order.", "Use an action label that describes the consequence, such as Sign out."]} dontItems={["Do not style a state-changing action as if it were a destination link.", "Do not place a local record action in a global utility area."]}>
+                    <header aria-label="Account header" className="flex flex-wrap items-center justify-between gap-4"><span className="font-semibold">Acme workspace</span><div className="flex flex-wrap items-center gap-3"><nav aria-label="Workspace navigation" className="flex gap-3 text-sm"><a href="#header-utility-dashboard" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Dashboard</a><a href="#header-utility-reports" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Reports</a></nav><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Sign out</button></div></header>
+                  </ExampleVariation>
+                  <ExampleVariation title="Compact header" description="At narrow widths, preserve access to navigation instead of hiding it." explanation="A compact header is a responsive arrangement, not permission to remove essential destinations. The production menu must manage its open state and focus." doItems={["Give the menu trigger a specific accessible name.", "Keep the brand and essential utility access visible at narrow widths."]} dontItems={["Do not hide navigation without providing an equivalent control.", "Do not treat a static menu button as a complete mobile navigation implementation."]}>
+                    <header aria-label="Compact site header" className="flex items-center justify-between gap-3"><button type="button" aria-label="Open primary navigation" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Menu</button><span className="font-semibold">Acme</span><a href="#header-compact-help" className="text-sm underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Help</a></header>
+                  </ExampleVariation>
                 </div>
                 <p className="leading-7 text-muted-foreground">
                   This is the Header pattern in isolation: a logo, a short primary navigation list,

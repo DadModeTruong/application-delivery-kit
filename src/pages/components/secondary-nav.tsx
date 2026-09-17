@@ -1,3 +1,4 @@
+import { ExampleVariation } from '@/components/layout/example-variation'
 /**
  * ComponentsSecondaryNavPage — SecondaryNav component usage guide.
  *
@@ -188,46 +189,17 @@ function ComponentsSecondaryNavPage() {
                   Examples
                 </h2>
                 <p className="text-sm text-muted-foreground">Try it: Use Tab to reach the navigation, activate a link, and resize the page. Confirm that the active area is communicated without relying on color alone and that the links remain usable on narrow screens.</p>
-                <div className="space-y-10">
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Basic contextual navigation</h3><p className="mt-1 text-sm text-muted-foreground">A labeled navigation region groups destinations inside one product area.</p></div><div className="rounded-lg border bg-muted/20 p-6"><nav aria-label="Project sections" className="flex flex-wrap gap-4 text-sm"><a href="#secondary-overview" aria-current="page" className="font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Overview</a><a href="#secondary-activity" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Activity</a><a href="#secondary-settings" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Settings</a></nav></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">people move between related sections while staying in the same area.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">there is only one destination or the items represent sequential steps.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> the navigation has a useful label and the active destination uses semantic state.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Long list with overflow</h3><p className="mt-1 text-sm text-muted-foreground">A bounded region can preserve access to all items without forcing the page wider.</p></div><div className="overflow-x-auto rounded-lg border bg-muted/20 p-6"><nav aria-label="Workspace sections" className="flex min-w-max gap-4 text-sm"><a href="#secondary-one" aria-current="page" className="font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Overview</a><a href="#secondary-two" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Members</a><a href="#secondary-three" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Billing</a><a href="#secondary-four" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Integrations</a><a href="#secondary-five" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Audit log</a></nav></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">horizontal scrolling is an understood, discoverable response to a short row of related links.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">users need to see all choices at once or the list is too long to scan.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> keyboard users can reach every item and the overflow treatment does not hide the active state.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Narrow-screen alternative</h3><p className="mt-1 text-sm text-muted-foreground">Collapse only when the implementation provides an equivalent menu.</p></div><div className="rounded-lg border bg-muted/20 p-6"><div className="flex items-center justify-between gap-3"><span className="font-semibold">Project sections</span><button type="button" aria-label="Open project sections" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Sections</button></div></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">the full row cannot remain readable at the target width.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">the menu hides high-frequency navigation without a strong reason.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> expanded state, focus movement, Escape dismissal, and focus restoration are implemented—not merely styled.</p>
-                    </div></article>
+
+                <div className="space-y-8">
+                  <ExampleVariation title="Basic" description="A labeled navigation region groups destinations inside one product area." explanation="Secondary navigation helps people move between related sections while staying in the same area. It is different from a stepper, which communicates progress through a sequence." doItems={["Give the navigation a specific label that distinguishes it from other navigation regions.", "Use a semantic current-page indicator for the active destination."]} dontItems={["Do not use secondary navigation for a single destination.", "Do not use it to represent required sequential steps."]}>
+                    <nav aria-label="Project sections" className="flex flex-wrap gap-4 text-sm"><a href="#secondary-basic-overview" aria-current="page" className="font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Overview</a><a href="#secondary-basic-activity" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Activity</a><a href="#secondary-basic-settings" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Settings</a></nav>
+                  </ExampleVariation>
+                  <ExampleVariation title="Long list with overflow" description="A bounded row preserves access to related destinations without forcing the page wider." explanation="Horizontal overflow can work for a short, related list when its affordance is discoverable. Every item still needs to be reachable with the keyboard." doItems={["Keep the active item and the start of the list easy to discover.", "Test keyboard access to every link and verify the row scrolls as needed."]} dontItems={["Do not hide important choices in an undiscoverable clipped region.", "Do not use overflow to avoid making a long information architecture clearer."]}>
+                    <div className="overflow-x-auto"><nav aria-label="Workspace sections" className="flex min-w-max gap-4 text-sm"><a href="#secondary-overview" aria-current="page" className="font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Overview</a><a href="#secondary-members" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Members</a><a href="#secondary-billing" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Billing</a><a href="#secondary-integrations" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Integrations</a><a href="#secondary-audit" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Audit log</a></nav></div>
+                  </ExampleVariation>
+                  <ExampleVariation title="Compact alternative" description="Collapse the row only when the implementation provides an equivalent menu." explanation="A compact control can preserve the same destinations at narrow widths, but the menu needs a complete open, dismiss, and focus-management behavior in the product." doItems={["Expose expanded state and the relationship to the menu.", "Restore focus to the trigger after dismissal."]} dontItems={["Do not replace a useful navigation row with an unlabeled generic menu.", "Do not rely on aria-expanded alone without implementing the interaction model."]}>
+                    <div className="flex items-center justify-between gap-3"><span className="font-semibold">Project sections</span><button type="button" aria-label="Open project sections" aria-haspopup="menu" aria-expanded="false" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Sections</button></div>
+                  </ExampleVariation>
                 </div>
                 <p className="leading-7 text-muted-foreground">
                   Use a short list of peer links for nearby pages. These are the same real anchors

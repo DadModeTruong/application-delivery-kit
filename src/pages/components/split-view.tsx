@@ -1,3 +1,4 @@
+import { ExampleVariation } from '@/components/layout/example-variation'
 /**
  * ComponentsSplitViewPage — Split View component usage guide.
  *
@@ -206,59 +207,20 @@ function ComponentsSplitViewPage() {
                     Examples
                   </h2>
                 <p className="text-sm text-muted-foreground">Try it: Resize the page through narrow and wide widths. Confirm that the content stacks in a sensible order when side-by-side space is unavailable and that neither pane becomes unusably narrow.</p>
-                <div className="space-y-10">
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Primary and contextual panes</h3><p className="mt-1 text-sm text-muted-foreground">The larger pane carries the main task while the secondary pane provides context.</p></div><div className="grid gap-3 rounded-lg border bg-muted/20 p-6 md:grid-cols-[2fr_1fr]"><section aria-labelledby="split-primary-example"><h4 id="split-primary-example" className="font-semibold">Application form</h4><p className="mt-1 text-sm text-muted-foreground">Main task content</p></section><aside aria-labelledby="split-context-example" className="border-t pt-3 md:border-l md:border-t-0 md:pl-3"><h4 id="split-context-example" className="font-semibold">Guidance</h4><p className="mt-1 text-sm text-muted-foreground">Helpful context</p></aside></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">the secondary content directly helps complete or understand the primary task.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">the panes represent unrelated tasks or both require equal priority.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> each pane has an appropriate heading/landmark and the DOM order follows the intended reading order.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Equal split</h3><p className="mt-1 text-sm text-muted-foreground">Two equally important views can share space when each remains usable.</p></div><div className="grid gap-3 rounded-lg border bg-muted/20 p-6 md:grid-cols-2"><section aria-labelledby="split-left-example"><h4 id="split-left-example" className="font-semibold">List</h4><p className="mt-1 text-sm text-muted-foreground">Choose an item</p></section><section aria-labelledby="split-right-example" className="border-t pt-3 md:border-l md:border-t-0 md:pl-3"><h4 id="split-right-example" className="font-semibold">Details</h4><p className="mt-1 text-sm text-muted-foreground">Review the item</p></section></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">users compare or move between two related views.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">either pane becomes too narrow to complete its task.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> focus and selection state remain understandable when the active item changes.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Stacked narrow layout</h3><p className="mt-1 text-sm text-muted-foreground">The relationship is preserved when side-by-side space is unavailable.</p></div><div className="space-y-3 rounded-lg border bg-muted/20 p-6"><section aria-labelledby="split-stack-main"><h4 id="split-stack-main" className="font-semibold">Main content</h4><p className="mt-1 text-sm text-muted-foreground">Presented first</p></section><aside aria-labelledby="split-stack-secondary" className="border-t pt-3"><h4 id="split-stack-secondary" className="font-semibold">Secondary content</h4><p className="mt-1 text-sm text-muted-foreground">Presented after the main task</p></aside></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">a narrow viewport would force either pane below a usable width.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">stacking changes the task order or hides necessary context too far below.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> the main pane appears first for keyboard and screen-reader users.</p>
-                    </div></article>
-                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Empty secondary pane</h3><p className="mt-1 text-sm text-muted-foreground">An unavailable context pane should explain what action will populate it.</p></div><div className="grid gap-3 rounded-lg border bg-muted/20 p-6 md:grid-cols-[2fr_1fr]"><section aria-labelledby="split-empty-main"><h4 id="split-empty-main" className="font-semibold">Choose a message</h4><p className="mt-1 text-sm text-muted-foreground">Select a message to review its details.</p></section><aside aria-labelledby="split-empty-secondary" className="border-t pt-3 md:border-l md:border-t-0 md:pl-3"><h4 id="split-empty-secondary" className="font-semibold">No message selected</h4><p className="mt-1 text-sm text-muted-foreground">Details will appear here.</p></aside></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-6 sm:grid-cols-2">
-                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
-                          <p className="font-semibold">Do</p>
-                          <p className="mt-1">the secondary pane depends on a primary selection.</p>
-                        </div>
-                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
-                          <p className="font-semibold">Don’t</p>
-                          <p className="mt-1">leaving a blank region would make the page appear broken.</p>
-                        </div>
-                      </div>
-                      <p><strong>Check:</strong> the empty state is announced by meaningful text, not only by whitespace.</p>
-                    </div></article>
+
+                <div className="space-y-8">
+                  <ExampleVariation title="Primary and contextual panes" description="The larger pane carries the main task while the secondary pane provides context." explanation="A split view is strongest when the secondary pane directly helps someone complete or understand the primary task. The DOM order should reflect that relationship." doItems={["Make the primary pane identifiable and place it first in reading order.", "Give each pane a useful heading or landmark."]} dontItems={["Do not place unrelated tasks side by side.", "Do not let either pane become too narrow to complete its task."]}>
+                    <div className="grid gap-3 md:grid-cols-[2fr_1fr]"><section aria-labelledby="split-primary-example"><h4 id="split-primary-example" className="font-semibold">Application form</h4><p className="mt-1 text-sm text-muted-foreground">Main task content</p></section><aside aria-labelledby="split-context-example" className="border-t pt-3 md:border-l md:border-t-0 md:pl-3"><h4 id="split-context-example" className="font-semibold">Guidance</h4><p className="mt-1 text-sm text-muted-foreground">Helpful context</p></aside></div>
+                  </ExampleVariation>
+                  <ExampleVariation title="Equal split" description="Two equally important views can share space when each remains usable." explanation="An equal split supports comparison or movement between related views. Selection and focus should remain clear when the active item changes." doItems={["Use equal space when both views have comparable priority.", "Preserve a clear relationship between selection and details."]} dontItems={["Do not use equal columns when one pane is clearly secondary.", "Do not force dense content into a pane that cannot support it."]}>
+                    <div className="grid gap-3 md:grid-cols-2"><section aria-labelledby="split-left-example"><h4 id="split-left-example" className="font-semibold">List</h4><p className="mt-1 text-sm text-muted-foreground">Choose an item</p></section><section aria-labelledby="split-right-example" className="border-t pt-3 md:border-l md:border-t-0 md:pl-3"><h4 id="split-right-example" className="font-semibold">Details</h4><p className="mt-1 text-sm text-muted-foreground">Review the item</p></section></div>
+                  </ExampleVariation>
+                  <ExampleVariation title="Stacked narrow layout" description="The relationship is preserved when side-by-side space is unavailable." explanation="At a narrow width, stacking should preserve the primary-to-secondary reading order and make both panes comfortable to use." doItems={["Show the main task before supporting context.", "Test the layout with long content and zoomed text."]} dontItems={["Do not preserve a desktop split that creates horizontal scrolling.", "Do not change the task order without explaining the new relationship."]}>
+                    <div className="space-y-3"><section aria-labelledby="split-stack-main"><h4 id="split-stack-main" className="font-semibold">Main content</h4><p className="mt-1 text-sm text-muted-foreground">Presented first</p></section><aside aria-labelledby="split-stack-secondary" className="border-t pt-3"><h4 id="split-stack-secondary" className="font-semibold">Secondary content</h4><p className="mt-1 text-sm text-muted-foreground">Presented after the main task</p></aside></div>
+                  </ExampleVariation>
+                  <ExampleVariation title="Empty secondary pane" description="An unavailable context pane should explain what action will populate it." explanation="When the secondary pane depends on a selection, an empty state keeps the relationship visible and tells people what to do next." doItems={["Explain why the pane is empty and how to populate it.", "Keep the primary selection task usable without the secondary pane."]} dontItems={["Do not leave an unexplained blank region.", "Do not use placeholder content that looks like real details."]}>
+                    <div className="grid gap-3 md:grid-cols-[2fr_1fr]"><section aria-labelledby="split-empty-main"><h4 id="split-empty-main" className="font-semibold">Choose a message</h4><p className="mt-1 text-sm text-muted-foreground">Select a message to review its details.</p></section><aside aria-labelledby="split-empty-secondary" className="border-t pt-3 md:border-l md:border-t-0 md:pl-3"><h4 id="split-empty-secondary" className="font-semibold">No message selected</h4><p className="mt-1 text-sm text-muted-foreground">Details will appear here.</p></aside></div>
+                  </ExampleVariation>
                 </div>
                   <p className="leading-7 text-muted-foreground">
                     These examples use the same content count while comparing the two supported
