@@ -1518,14 +1518,24 @@ function useComboboxOutsideClick(open: boolean, onClose: () => void) {
   useEffect(() => {
     if (!open) return
 
-    const handlePointerDown = (event: PointerEvent) => {
+    const handleMouseDown = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         onClose()
       }
     }
 
-    document.addEventListener('pointerdown', handlePointerDown)
-    return () => document.removeEventListener('pointerdown', handlePointerDown)
+    const handleFocusIn = (event: FocusEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        onClose()
+      }
+    }
+
+    document.addEventListener('mousedown', handleMouseDown)
+    document.addEventListener('focusin', handleFocusIn)
+    return () => {
+      document.removeEventListener('mousedown', handleMouseDown)
+      document.removeEventListener('focusin', handleFocusIn)
+    }
   }, [onClose, open])
 
   return containerRef
