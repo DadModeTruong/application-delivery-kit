@@ -186,7 +186,7 @@ function ComponentsHeaderPage() {
                 </p>
                 <div className="space-y-8">
                   <ExampleVariation title="Basic" description="The application header provides the product identity and primary navigation used throughout the site." explanation="Use the same header structure that appears in the application shell so the guide demonstrates the real pattern. Link text should tell people where the link goes or what area it represents before they activate it." doItems={["Use short, specific nouns or noun phrases that describe the destination, such as Components or Forms.", "Keep navigation labels consistent across the header, sidebar, page titles, and links to the same destination.", "Use the current-page state to identify where someone is without changing the link’s meaning."]} dontItems={["Do not use vague labels such as Click here, Learn more, or Go.", "Do not make labels unnecessarily clever, promotional, or dependent on surrounding visual context.", "Do not put page-specific actions in the global header unless they apply across the product."]}>
-                    <div className="flex items-center justify-between gap-6 border-b px-6 py-4">
+                    <div className="flex items-center justify-between gap-6 px-4 py-3">
                       <a href="/" className="font-semibold tracking-tight">Application Delivery Kit</a>
                       <nav aria-label="Primary navigation" className="flex flex-wrap items-center justify-end gap-2">
                         <LinkButton href="/layouts" variant="ghost">Layouts</LinkButton>
@@ -195,7 +195,22 @@ function ComponentsHeaderPage() {
                     </div>
                   </ExampleVariation>
                   <ExampleVariation title="Basic, with dropdown" description="A dropdown groups related destinations under a clear parent label while keeping the header compact." explanation="A dropdown is appropriate when a parent category has several closely related destinations and showing every link inline would make the header difficult to scan. The parent label should communicate the category, and the open menu must be fully keyboard-operable in the production implementation." doItems={["Use a meaningful category label, such as Services, that describes the destinations inside.", "Keep the menu short and group only destinations that share a clear relationship.", "Use specific link text inside the menu and preserve visible focus, Escape dismissal, and focus restoration."]} dontItems={["Do not hide a single high-priority destination inside a dropdown.", "Do not use a dropdown as a substitute for unclear information architecture or a long sitemap.", "Do not use ambiguous labels such as More when the available destinations can be named directly."]}>
-                    <header aria-label="Header with dropdown navigation" className="flex flex-wrap items-center justify-between gap-4"><a href="#header-dropdown-brand" className="font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Application Delivery Kit</a><nav aria-label="Primary navigation with services menu" className="flex flex-wrap items-center gap-4 text-sm"><a href="#header-dropdown-home" aria-current="page" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Home</a><details className="relative"><summary className="cursor-pointer list-none rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Services</summary><div className="absolute left-0 top-full z-10 mt-2 min-w-44 rounded-md border bg-background p-2 shadow-sm"><a href="#header-dropdown-consulting" className="block rounded px-2 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Consulting</a><a href="#header-dropdown-training" className="block rounded px-2 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Training</a></div></details><a href="#header-dropdown-contact" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Contact</a></nav></header>
+                    <div className="flex items-center justify-between gap-6 px-4 py-3">
+                      <a href="/" className="font-semibold tracking-tight">Application Delivery Kit</a>
+                      <nav aria-label="Primary navigation" className="flex flex-wrap items-center justify-end gap-2">
+                        <LinkButton href="/layouts" variant="ghost">Layouts</LinkButton>
+                        <details className="relative">
+                          <summary className="flex cursor-pointer list-none items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                            Components
+                          </summary>
+                          <div className="absolute right-0 z-10 mt-2 min-w-48 rounded-md border bg-background p-1 shadow-md">
+                            <a href="/components/forms" className="block rounded-sm px-3 py-2 text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Forms</a>
+                            <a href="/components/user-interface" className="block rounded-sm px-3 py-2 text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">User interface</a>
+                            <a href="/components/interaction" className="block rounded-sm px-3 py-2 text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Interaction</a>
+                          </div>
+                        </details>
+                      </nav>
+                    </div>
                   </ExampleVariation>
                 </div>
               </section>
