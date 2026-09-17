@@ -233,53 +233,53 @@ function ComponentsCardsPage() {
                     Examples
                   </h2>
                 <p className="text-sm text-muted-foreground">Try it: Compare the cards at different widths and use any links or actions inside them with the keyboard. Confirm that grouping, hierarchy, and focus remain clear without making the entire card an ambiguous action.</p>
-                <div className="space-y-6">
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">Static information card</h3><p className="mt-1 text-sm text-muted-foreground">A card can group related content without becoming an interaction.</p></div><div className="rounded-md border bg-muted/20 p-4"><section aria-labelledby="card-static-example"><h4 id="card-static-example" className="font-semibold">Application status</h4><p className="mt-1 text-sm text-muted-foreground">Your application is being reviewed.</p></section></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                <div className="space-y-10">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Static information card</h3><p className="mt-1 text-sm text-muted-foreground">A card can group related content without becoming an interaction.</p></div><div className="rounded-lg border bg-muted/20 p-6"><section aria-labelledby="card-static-example"><h4 id="card-static-example" className="font-semibold">Application status</h4><p className="mt-1 text-sm text-muted-foreground">Your application is being reviewed.</p></section></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">a bounded group needs visual hierarchy.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">a card boundary adds decoration without helping comprehension.</p>
                         </div>
                       </div>
                       <p><strong>Check:</strong> the card has a useful heading and does not receive focus unless it contains a control.</p>
                     </div></article>
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">Linked card</h3><p className="mt-1 text-sm text-muted-foreground">Make the actual link the interactive element.</p></div><div className="rounded-md border bg-muted/20 p-4"><article><h4 className="font-semibold"><a href="#card-linked-example" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">View application details</a></h4><p className="mt-1 text-sm text-muted-foreground">Review status, documents, and next steps.</p></article></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Linked card</h3><p className="mt-1 text-sm text-muted-foreground">Make the actual link the interactive element.</p></div><div className="rounded-lg border bg-muted/20 p-6"><article><h4 className="font-semibold"><a href="#card-linked-example" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">View application details</a></h4><p className="mt-1 text-sm text-muted-foreground">Review status, documents, and next steps.</p></article></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">one destination describes the whole card.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">making every text fragment or the entire wrapper a competing link.</p>
                         </div>
                       </div>
                       <p><strong>Check:</strong> the link name describes the destination and has a visible focus ring.</p>
                     </div></article>
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">Card with internal action</h3><p className="mt-1 text-sm text-muted-foreground">Use a button when the action changes state instead of navigating.</p></div><div className="rounded-md border bg-muted/20 p-4"><section aria-labelledby="card-action-example"><div className="flex flex-wrap items-start justify-between gap-3"><div><h4 id="card-action-example" className="font-semibold">Notifications</h4><p className="mt-1 text-sm text-muted-foreground">You have 3 unread notifications.</p></div><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Mark all read</button></div></section></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Card with internal action</h3><p className="mt-1 text-sm text-muted-foreground">Use a button when the action changes state instead of navigating.</p></div><div className="rounded-lg border bg-muted/20 p-6"><section aria-labelledby="card-action-example"><div className="flex flex-wrap items-start justify-between gap-3"><div><h4 id="card-action-example" className="font-semibold">Notifications</h4><p className="mt-1 text-sm text-muted-foreground">You have 3 unread notifications.</p></div><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Mark all read</button></div></section></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">an action applies to the card’s content without changing location.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">nesting a button inside a link or making the card and button perform different unclear actions.</p>
                         </div>
                       </div>
                       <p><strong>Check:</strong> keyboard focus lands on the button and its result is communicated.</p>
                     </div></article>
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">Responsive card grid</h3><p className="mt-1 text-sm text-muted-foreground">The grid changes density without changing the information hierarchy.</p></div><div className="grid gap-3 rounded-md border bg-muted/20 p-4 sm:grid-cols-2"><section aria-labelledby="card-grid-one"><h4 id="card-grid-one" className="font-semibold">Plan A</h4><p className="mt-1 text-sm text-muted-foreground">For small teams</p></section><section aria-labelledby="card-grid-two"><h4 id="card-grid-two" className="font-semibold">Plan B</h4><p className="mt-1 text-sm text-muted-foreground">For growing teams</p></section></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Responsive card grid</h3><p className="mt-1 text-sm text-muted-foreground">The grid changes density without changing the information hierarchy.</p></div><div className="grid gap-3 rounded-lg border bg-muted/20 p-6 sm:grid-cols-2"><section aria-labelledby="card-grid-one"><h4 id="card-grid-one" className="font-semibold">Plan A</h4><p className="mt-1 text-sm text-muted-foreground">For small teams</p></section><section aria-labelledby="card-grid-two"><h4 id="card-grid-two" className="font-semibold">Plan B</h4><p className="mt-1 text-sm text-muted-foreground">For growing teams</p></section></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">repeated items share a clear comparison structure.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">cards become too narrow or require line-by-line comparison.</p>
                         </div>

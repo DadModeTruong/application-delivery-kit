@@ -179,40 +179,40 @@ function ComponentsFooterPage() {
                   Examples
                 </h2>
                 <p className="text-sm text-muted-foreground">Try it: Tab through the footer links and resize the page. Confirm that every link has a useful accessible name, focus is visible, and the supporting navigation does not compete with the primary navigation.</p>
-                <div className="space-y-6">
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">Minimal supporting footer</h3><p className="mt-1 text-sm text-muted-foreground">A small footer handles ownership and essential supporting destinations.</p></div><div className="rounded-md border bg-muted/20 p-4"><footer aria-label="Site footer" className="flex flex-wrap items-center justify-between gap-3 text-sm"><span>© 2026 Acme</span><nav aria-label="Supporting navigation" className="flex flex-wrap gap-3"><a href="#footer-accessibility" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Accessibility</a><a href="#footer-privacy" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Privacy</a></nav></footer></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                <div className="space-y-10">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Minimal supporting footer</h3><p className="mt-1 text-sm text-muted-foreground">A small footer handles ownership and essential supporting destinations.</p></div><div className="rounded-lg border bg-muted/20 p-6"><footer aria-label="Site footer" className="flex flex-wrap items-center justify-between gap-3 text-sm"><span>© 2026 Acme</span><nav aria-label="Supporting navigation" className="flex flex-wrap gap-3"><a href="#footer-accessibility" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Accessibility</a><a href="#footer-privacy" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Privacy</a></nav></footer></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">the product has only a few supporting links.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">adding columns merely to make the footer look substantial.</p>
                         </div>
                       </div>
                       <p><strong>Check:</strong> the footer is labeled and links remain keyboard reachable at narrow widths.</p>
                     </div></article>
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">Multi-column footer</h3><p className="mt-1 text-sm text-muted-foreground">Related supporting destinations can be grouped when the information architecture justifies it.</p></div><div className="rounded-md border bg-muted/20 p-4"><footer aria-label="Expanded site footer" className="grid gap-4 text-sm sm:grid-cols-3"><div><p className="mb-2 font-semibold">Product</p><a href="#footer-features" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Features</a></div><div><p className="mb-2 font-semibold">Support</p><a href="#footer-help" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Help center</a></div><div><p className="mb-2 font-semibold">Company</p><a href="#footer-about" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">About us</a></div></footer></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Multi-column footer</h3><p className="mt-1 text-sm text-muted-foreground">Related supporting destinations can be grouped when the information architecture justifies it.</p></div><div className="rounded-lg border bg-muted/20 p-6"><footer aria-label="Expanded site footer" className="grid gap-4 text-sm sm:grid-cols-3"><div><p className="mb-2 font-semibold">Product</p><a href="#footer-features" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Features</a></div><div><p className="mb-2 font-semibold">Support</p><a href="#footer-help" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Help center</a></div><div><p className="mb-2 font-semibold">Company</p><a href="#footer-about" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">About us</a></div></footer></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">several stable groups need to be discoverable without competing with primary navigation.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">the footer duplicates the entire header or sidebar.</p>
                         </div>
                       </div>
                       <p><strong>Check:</strong> group labels are understandable and columns stack in a readable order.</p>
                     </div></article>
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">External and legal links</h3><p className="mt-1 text-sm text-muted-foreground">Link purpose and destination should be clear before activation.</p></div><div className="rounded-md border bg-muted/20 p-4"><footer aria-label="Legal footer" className="flex flex-wrap gap-3 text-sm"><a href="#footer-terms" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Terms of use</a><a href="https://www.w3.org/WAI/" target="_blank" rel="noreferrer" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">W3C accessibility resources <span className="sr-only">(opens in a new tab)</span></a></footer></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">External and legal links</h3><p className="mt-1 text-sm text-muted-foreground">Link purpose and destination should be clear before activation.</p></div><div className="rounded-lg border bg-muted/20 p-6"><footer aria-label="Legal footer" className="flex flex-wrap gap-3 text-sm"><a href="#footer-terms" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Terms of use</a><a href="https://www.w3.org/WAI/" target="_blank" rel="noreferrer" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">W3C accessibility resources <span className="sr-only">(opens in a new tab)</span></a></footer></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">legal, standards, or external support resources are required.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">an external destination is presented as if it were an internal page.</p>
                         </div>

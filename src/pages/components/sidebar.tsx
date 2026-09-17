@@ -182,40 +182,40 @@ function ComponentsSidebarPage() {
                   Examples
                 </h2>
                 <p className="text-sm text-muted-foreground">Try it: Use Tab and activate a guide link, then resize the page. Confirm that the navigation has a meaningful label, the current location is clear, and the content remains reachable when the sidebar collapses or stacks.</p>
-                <div className="space-y-6">
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">Grouped navigation</h3><p className="mt-1 text-sm text-muted-foreground">Meaningful groups help people predict where a destination belongs.</p></div><div className="rounded-md border bg-muted/20 p-4"><aside aria-label="Account navigation" className="space-y-4 text-sm"><div><p className="mb-2 font-semibold">Account</p><nav aria-label="Account links" className="space-y-2"><a href="#sidebar-profile" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Profile</a><a href="#sidebar-security" aria-current="page" className="block font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Security</a></nav></div><div><p className="mb-2 font-semibold">Workspace</p><a href="#sidebar-members" className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Members</a></div></aside></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                <div className="space-y-10">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Grouped navigation</h3><p className="mt-1 text-sm text-muted-foreground">Meaningful groups help people predict where a destination belongs.</p></div><div className="rounded-lg border bg-muted/20 p-6"><aside aria-label="Account navigation" className="space-y-4 text-sm"><div><p className="mb-2 font-semibold">Account</p><nav aria-label="Account links" className="space-y-2"><a href="#sidebar-profile" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Profile</a><a href="#sidebar-security" aria-current="page" className="block font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Security</a></nav></div><div><p className="mb-2 font-semibold">Workspace</p><a href="#sidebar-members" className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Members</a></div></aside></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">a product has enough related destinations to benefit from persistent orientation.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">a short list would be clearer as inline or secondary navigation.</p>
                         </div>
                       </div>
                       <p><strong>Check:</strong> the sidebar has a meaningful label, clear groups, and a semantic current-page marker.</p>
                     </div></article>
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">Nested navigation</h3><p className="mt-1 text-sm text-muted-foreground">Use nesting to show hierarchy, not to create an unrelated second menu.</p></div><div className="rounded-md border bg-muted/20 p-4"><aside aria-label="Documentation navigation" className="text-sm"><nav aria-label="Documentation links" className="space-y-2"><a href="#sidebar-docs" className="block font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Guides</a><div className="ml-4 space-y-2 border-l pl-3"><a href="#sidebar-foundations" aria-current="page" className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Foundations</a><a href="#sidebar-patterns" className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Patterns</a></div></nav></aside></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Nested navigation</h3><p className="mt-1 text-sm text-muted-foreground">Use nesting to show hierarchy, not to create an unrelated second menu.</p></div><div className="rounded-lg border bg-muted/20 p-6"><aside aria-label="Documentation navigation" className="text-sm"><nav aria-label="Documentation links" className="space-y-2"><a href="#sidebar-docs" className="block font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Guides</a><div className="ml-4 space-y-2 border-l pl-3"><a href="#sidebar-foundations" aria-current="page" className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Foundations</a><a href="#sidebar-patterns" className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Patterns</a></div></nav></aside></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">child pages are genuinely subordinate to a parent destination.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">nesting creates more than a few levels or hides destinations behind ambiguous labels.</p>
                         </div>
                       </div>
                       <p><strong>Check:</strong> hierarchy is conveyed in text and structure, not indentation or color alone.</p>
                     </div></article>
-                  <article className="space-y-4 rounded-lg border bg-card p-6"><div><h3 className="text-lg font-semibold">Compact or temporary sidebar</h3><p className="mt-1 text-sm text-muted-foreground">On small screens, a drawer or stacked region can replace persistent space.</p></div><div className="rounded-md border bg-muted/20 p-4"><div className="flex items-center justify-between gap-3"><span className="font-semibold">Settings</span><button type="button" aria-label="Open settings navigation" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Menu</button></div></div><div className="space-y-3 text-sm">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+                  <article className="space-y-8 border-b pb-10 last:border-0 last:pb-0"><div><h3 className="text-lg font-semibold">Compact or temporary sidebar</h3><p className="mt-1 text-sm text-muted-foreground">On small screens, a drawer or stacked region can replace persistent space.</p></div><div className="rounded-lg border bg-muted/20 p-6"><div className="flex items-center justify-between gap-3"><span className="font-semibold">Settings</span><button type="button" aria-label="Open settings navigation" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Menu</button></div></div><div className="space-y-3 text-sm">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="space-y-2 border-l-2 border-emerald-600 pl-4">
                           <p className="font-semibold">Do</p>
                           <p className="mt-1">persistent navigation would crowd the main content or reduce touch-target size.</p>
                         </div>
-                        <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-rose-950 dark:border-rose-900 dark:bg-rose-950/30 dark:text-rose-100">
+                        <div className="space-y-2 border-l-2 border-rose-600 pl-4">
                           <p className="font-semibold">Don’t</p>
                           <p className="mt-1">users need constant comparison between navigation and content.</p>
                         </div>
