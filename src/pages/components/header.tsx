@@ -194,21 +194,37 @@ function ComponentsHeaderPage() {
 
               <section className="space-y-5" aria-labelledby="navigation-header-examples-heading">
                 <h2 id="navigation-header-examples-heading" className="text-2xl font-semibold tracking-tight">
-                  Examples
+                  Examples and variations
                 </h2>
                 <p className="text-muted-foreground">
                   Compare the basic application header with a header that groups related destinations in a dropdown. Each example uses the same full-width variation structure as the Forms pages.
                 </p>
                 <div className="space-y-8">
-                  <ExampleVariation title="Basic" description="The application header provides the product identity and primary navigation used throughout the site." explanation="Use the same header structure that appears in the application shell so the guide demonstrates the real pattern. Link text should tell people where the link goes or what area it represents before they activate it." doItems={["Use short, specific nouns or noun phrases that describe the destination, such as Components or Forms.", "Keep navigation labels consistent across the header, sidebar, page titles, and links to the same destination.", "Use the current-page state to identify where someone is without changing the link’s meaning."]} dontItems={["Do not use vague labels such as Click here, Learn more, or Go.", "Do not make labels unnecessarily clever, promotional, or dependent on surrounding visual context.", "Do not put page-specific actions in the global header unless they apply across the product."]}>
-                    <Header
-                      logo={{ href: '/', label: 'Application Delivery Kit' }}
-                      nav={[
-                        { label: 'Layouts', href: '/layouts' },
-                        { label: 'Components', href: '/components' },
-                      ]}
-                    />
-                  </ExampleVariation>
+
+                  <ExampleVariation
+                  title="Basic"
+                  description="A simple system header keeps the application name on the left and ordinary navigation links on the right."
+                  explanation="Use the basic Header when the primary destinations can remain visible as individual links. The reusable component provides the shared layout, responsive behavior, focus treatment, and navigation semantics."
+                  doItems={[
+                    "Keep the application name or product identity on the left and primary destinations together on the right.",
+                    "Use ordinary links when each destination should be immediately visible and directly reachable.",
+                    "Let the reusable Header component provide consistent spacing, focus treatment, and responsive behavior.",
+                  ]}
+                  dontItems={[
+                    "Do not hide primary destinations in a dropdown when they can remain visible in the header.",
+                    "Do not recreate Header spacing or interaction styles in each page-level example.",
+                    "Do not use the global Header for actions that apply only to the current page.",
+                  ]}
+                >
+                  <Header
+                    logo={{ href: '/', label: 'Application Delivery Kit' }}
+                    nav={[
+                      { label: 'Layouts', href: '/layouts' },
+                      { label: 'Components', href: '/components' },
+                    ]}
+                  />
+                </ExampleVariation>
+
                   <ExampleVariation title="With dropdown" description="A dropdown groups related destinations under a clear parent label while keeping the header compact." explanation="A dropdown is appropriate when a parent category has several closely related destinations and showing every link inline would make the header difficult to scan. The parent label should communicate the category, and the open menu must be fully keyboard-operable in the production implementation." doItems={["Use a meaningful category label, such as Services, that describes the destinations inside.", "Keep the menu short and group only destinations that share a clear relationship.", "Use specific link text inside the menu and preserve visible focus, Escape dismissal, and focus restoration."]} dontItems={["Do not hide a single high-priority destination inside a dropdown.", "Do not use a dropdown as a substitute for unclear information architecture or a long sitemap.", "Do not use ambiguous labels such as More when the available destinations can be named directly."]}>
                     <Header
                       logo={{ href: '/', label: 'Application Delivery Kit' }}
