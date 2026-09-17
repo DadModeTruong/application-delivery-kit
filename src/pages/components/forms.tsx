@@ -1588,14 +1588,22 @@ function ComboboxVariation({
   return (
     <div ref={containerRef} className="space-y-2">
       <label className="text-sm font-medium" htmlFor={id}>
-        Country{multiple ? 's' : ''}
+        {multiple ? 'Countries' : 'Country'}
       </label>
       <div className="relative">
         {multiple && selected.length > 0 && (
           <div className="mb-2 flex flex-wrap gap-2" aria-label="Selected countries">
             {selected.map((item) => (
-              <span key={item} className="rounded-md border bg-muted px-2 py-1 text-xs">
+              <span key={item} className="inline-flex items-center gap-1 rounded-md border bg-muted px-2 py-1 text-xs">
                 {item}
+                <button
+                  type="button"
+                  className="rounded-sm px-1 text-muted-foreground hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-label={`Remove ${item}`}
+                  onClick={() => setSelected((current) => current.filter((selectedItem) => selectedItem !== item))}
+                >
+                  ×
+                </button>
               </span>
             ))}
           </div>
