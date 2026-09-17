@@ -1,6 +1,4 @@
 import { ExampleVariation } from '@/components/layout/example-variation'
-import { ChevronDownIcon } from 'lucide-react'
-import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 /**
  * ComponentsHeaderPage — Header component usage guide.
  *
@@ -187,32 +185,29 @@ function ComponentsHeaderPage() {
                 </p>
                 <div className="space-y-8">
                   <ExampleVariation title="Basic" description="The application header provides the product identity and primary navigation used throughout the site." explanation="Use the same header structure that appears in the application shell so the guide demonstrates the real pattern. Link text should tell people where the link goes or what area it represents before they activate it." doItems={["Use short, specific nouns or noun phrases that describe the destination, such as Components or Forms.", "Keep navigation labels consistent across the header, sidebar, page titles, and links to the same destination.", "Use the current-page state to identify where someone is without changing the link’s meaning."]} dontItems={["Do not use vague labels such as Click here, Learn more, or Go.", "Do not make labels unnecessarily clever, promotional, or dependent on surrounding visual context.", "Do not put page-specific actions in the global header unless they apply across the product."]}>
-                    <div className="flex items-center justify-between gap-6 px-4 py-3">
-                      <a href="/" className="font-semibold tracking-tight">Application Delivery Kit</a>
-                      <nav aria-label="Primary navigation" className="flex flex-wrap items-center justify-end gap-2">
-                        <a href="/layouts" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Layouts</a>
-                        <a href="/components" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Components</a>
-                      </nav>
-                    </div>
+                    <Header
+                      logo={{ href: '/', label: 'Application Delivery Kit' }}
+                      nav={[
+                        { label: 'Layouts', href: '/layouts' },
+                        { label: 'Components', href: '/components' },
+                      ]}
+                    />
                   </ExampleVariation>
                   <ExampleVariation title="Basic, with dropdown" description="A dropdown groups related destinations under a clear parent label while keeping the header compact." explanation="A dropdown is appropriate when a parent category has several closely related destinations and showing every link inline would make the header difficult to scan. The parent label should communicate the category, and the open menu must be fully keyboard-operable in the production implementation." doItems={["Use a meaningful category label, such as Services, that describes the destinations inside.", "Keep the menu short and group only destinations that share a clear relationship.", "Use specific link text inside the menu and preserve visible focus, Escape dismissal, and focus restoration."]} dontItems={["Do not hide a single high-priority destination inside a dropdown.", "Do not use a dropdown as a substitute for unclear information architecture or a long sitemap.", "Do not use ambiguous labels such as More when the available destinations can be named directly."]}>
-                    <div className="flex items-center justify-between gap-6 px-4 py-3">
-                      <a href="/" className="font-semibold tracking-tight">Application Delivery Kit</a>
-                      <nav aria-label="Primary" className="flex flex-wrap items-center justify-end gap-1">
-                        <a href="/layouts" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Layouts</a>
-                        <DropdownMenuTrigger>
-                          <button type="button" className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                            Components
-                            <ChevronDownIcon className="size-4 shrink-0" aria-hidden="true" />
-                          </button>
-                          <DropdownMenu>
-                            <DropdownMenuItem href="/components/forms">Forms</DropdownMenuItem>
-                            <DropdownMenuItem href="/components/user-interface">User interface</DropdownMenuItem>
-                            <DropdownMenuItem href="/components/interaction">Interaction</DropdownMenuItem>
-                          </DropdownMenu>
-                        </DropdownMenuTrigger>
-                      </nav>
-                    </div>
+                    <Header
+                      logo={{ href: '/', label: 'Application Delivery Kit' }}
+                      nav={[
+                        { label: 'Layouts', href: '/layouts' },
+                        {
+                          label: 'Components',
+                          children: [
+                            { label: 'Forms', href: '/components/forms' },
+                            { label: 'User interface', href: '/components/user-interface' },
+                            { label: 'Interaction', href: '/components/interaction' },
+                          ],
+                        },
+                      ]}
+                    />
                   </ExampleVariation>
                 </div>
               </section>
