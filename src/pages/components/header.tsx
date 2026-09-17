@@ -129,9 +129,10 @@ function ComponentsHeaderPage() {
                     When not to use it
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For every link in a deep section map.</li>
-                    <li>For a long list that needs grouping and scanning space.</li>
-                    <li>For section-only links that would compete with primary destinations.</li>
+                    <li>For a long or deeply nested information architecture; use a sidebar or section navigation instead.</li>
+                    <li>For page-specific tools that only make sense inside one workflow.</li>
+                    <li>When adding another menu would hide important destinations or make the header difficult to scan.</li>
+                    <li>As a replacement for a page heading, breadcrumb, or contextual navigation that tells people where they are.</li>
                   </ul>
                 </div>
               </section>
@@ -144,9 +145,11 @@ function ComponentsHeaderPage() {
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep the primary list short enough to scan.</li>
-                  <li>Use dropdowns for one level only.</li>
-                  <li>Keep actions visually separate from navigation.</li>
+                  <li>Keep primary navigation to the destinations most people need across the product.</li>
+                  <li>Use short, specific labels that describe the destination; keep wording consistent with page titles and side navigation.</li>
+                  <li>Use one level of grouping at most, and keep critical destinations visible without opening a menu.</li>
+                  <li>Separate navigation links from actions such as account, search, or sign out through spacing and grouping.</li>
+                  <li>Keep the logo recognizable and give it a useful home destination, with a visible focus state.</li>
                 </ul>
               </section>
 
@@ -162,11 +165,12 @@ function ComponentsHeaderPage() {
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>
-                    Keep the named <code>Primary</code> landmark.
-                  </li>
-                  <li>Use the skip link to reach Main.</li>
-                  <li>Test keyboard focus, dropdown controls, and the mobile drawer.</li>
+                  <li>Use a semantic <code>header</code> and a named <code>nav</code> landmark so assistive technology users can identify the region.</li>
+                  <li>Keep the skip link as the first keyboard stop that moves focus to the page’s <code>main</code> content.</li>
+                  <li>Give every link and menu trigger a clear accessible name; do not rely on an icon, color, or position alone.</li>
+                  <li>Expose expanded/collapsed state on menu triggers and ensure the popup has a meaningful relationship to its trigger.</li>
+                  <li>Verify keyboard order, visible focus, Escape dismissal, focus restoration, and screen-reader announcements for desktop and mobile menus.</li>
+                  <li>Do not use <code>aria-current</code> as decoration: apply it only to the link representing the current location.</li>
                 </ul>
               </section>
               <section className="space-y-5" aria-labelledby="navigation-header-responsive-heading">
@@ -184,8 +188,15 @@ function ComponentsHeaderPage() {
                 <p className="leading-7 text-muted-foreground">
                   The mobile menu is a replacement for the desktop link row, not a second copy of
                   it. Check that opening it exposes the same destinations and that focus can enter,
-                  move through, and leave the menu predictably.
+                  move through, and leave the menu predictably. Preserve a comfortable touch target,
+                  prevent the page behind the open menu from becoming confusing or accidentally active,
+                  and return focus to the trigger when the menu closes.
                 </p>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Test at narrow widths and with zoom: the logo, trigger, and essential action must remain usable without horizontal scrolling.</li>
+                  <li>Confirm the desktop and mobile versions expose the same destinations in a logical reading order.</li>
+                  <li>Do not make people depend on hover, precise pointer movement, or a hidden off-screen menu.</li>
+                </ul>
               </section>
 
               <section className="space-y-5" aria-labelledby="navigation-header-examples-heading">
@@ -193,7 +204,7 @@ function ComponentsHeaderPage() {
                   Examples and variations
                 </h2>
                 <p className="text-muted-foreground">
-                  Compare the basic application header with a header that groups related destinations in a dropdown. Each example uses the same full-width variation structure as the Forms pages.
+                  Compare a compact system header, grouped navigation, and icon-supported navigation. Each example uses the same production Header component and full-width variation structure as the Forms pages. Try each link and menu trigger with a keyboard as well as a pointer; the visible focus ring, expanded menu state, and focus return should match the interaction contract described above.
                 </p>
                 <div className="space-y-8">
 
