@@ -177,37 +177,19 @@ function ComponentsHeaderPage() {
               </section>
 
               <section className="space-y-5" aria-labelledby="navigation-header-examples-heading">
-                <h2
-                  id="navigation-header-examples-heading"
-                  className="text-2xl font-semibold tracking-tight"
-                >
+                <h2 id="navigation-header-examples-heading" className="text-2xl font-semibold tracking-tight">
                   Examples
                 </h2>
-                <p className="text-sm text-muted-foreground">Try it: Resize the page and move through the links with the keyboard. Confirm that the header remains identifiable, the current page is understandable, and focus stays visible as the layout changes.</p>
-
-                <div className="space-y-8">
-                  <ExampleVariation title="Basic" description="Brand identity and primary destinations share one predictable region." explanation="A global header establishes where someone is and how to move through the product. Keep page-specific actions with the page content unless they truly apply everywhere." doItems={["Give the header and primary navigation meaningful accessible names.", "Keep the brand, primary destinations, and focus order consistent across pages."]} dontItems={["Do not put every page-specific action in the global header.", "Do not communicate the current destination through color alone."]}>
-                    <header aria-label="Site header" className="flex flex-wrap items-center justify-between gap-4"><a href="#header-basic-brand" className="font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Acme</a><nav aria-label="Primary navigation" className="flex flex-wrap gap-3 text-sm"><a href="#header-basic-home" aria-current="page" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Home</a><a href="#header-basic-work" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Work</a><a href="#header-basic-about" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">About</a></nav></header>
-                  </ExampleVariation>
-                  <ExampleVariation title="Header with utility action" description="A global action stays separate from destination links." explanation="Utility actions such as account access or sign out can live in the header when they are available across the product and have a clear global scope." doItems={["Separate navigation links from actions in the markup and focus order.", "Use an action label that describes the consequence, such as Sign out."]} dontItems={["Do not style a state-changing action as if it were a destination link.", "Do not place a local record action in a global utility area."]}>
-                    <header aria-label="Account header" className="flex flex-wrap items-center justify-between gap-4"><span className="font-semibold">Acme workspace</span><div className="flex flex-wrap items-center gap-3"><nav aria-label="Workspace navigation" className="flex gap-3 text-sm"><a href="#header-utility-dashboard" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Dashboard</a><a href="#header-utility-reports" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Reports</a></nav><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Sign out</button></div></header>
-                  </ExampleVariation>
-                  <ExampleVariation title="Compact header" description="At narrow widths, preserve access to navigation instead of hiding it." explanation="A compact header is a responsive arrangement, not permission to remove essential destinations. The production menu must manage its open state and focus." doItems={["Give the menu trigger a specific accessible name.", "Keep the brand and essential utility access visible at narrow widths."]} dontItems={["Do not hide navigation without providing an equivalent control.", "Do not treat a static menu button as a complete mobile navigation implementation."]}>
-                    <header aria-label="Compact site header" className="flex items-center justify-between gap-3"><button type="button" aria-label="Open primary navigation" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Menu</button><span className="font-semibold">Acme</span><a href="#header-compact-help" className="text-sm underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Help</a></header>
-                  </ExampleVariation>
-                </div>
-                <p className="leading-7 text-muted-foreground">
-                  This is the Header pattern in isolation: a logo, a short primary navigation list,
-                  and the mobile menu behavior described above. The page shell already uses the same
-                  component at the top of this page. Resize the example to see the desktop links
-                  become a mobile menu, then open that menu with a mouse and keyboard. Verify the
-                  trigger and links have clear names and visible focus.
+                <p className="text-muted-foreground">
+                  Compare the basic application header with a header that groups related destinations in a dropdown. Each example uses the same full-width variation structure as the Forms pages.
                 </p>
-                <div className="overflow-hidden rounded-xl border">
-                  <Header
-                    logo={{ href: '/', label: 'Application Delivery Kit' }}
-                    nav={primaryNav}
-                  />
+                <div className="space-y-8">
+                  <ExampleVariation title="Basic" description="The application header provides the product identity and primary navigation used throughout the site." explanation="Use the same header structure that appears in the application shell so the guide demonstrates the real pattern. Link text should tell people where the link goes or what area it represents before they activate it." doItems={["Use short, specific nouns or noun phrases that describe the destination, such as Components or Forms.", "Keep navigation labels consistent across the header, sidebar, page titles, and links to the same destination.", "Use the current-page state to identify where someone is without changing the link’s meaning."]} dontItems={["Do not use vague labels such as Click here, Learn more, or Go.", "Do not make labels unnecessarily clever, promotional, or dependent on surrounding visual context.", "Do not put page-specific actions in the global header unless they apply across the product."]}>
+                    <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+                  </ExampleVariation>
+                  <ExampleVariation title="Basic, with dropdown" description="A dropdown groups related destinations under a clear parent label while keeping the header compact." explanation="A dropdown is appropriate when a parent category has several closely related destinations and showing every link inline would make the header difficult to scan. The parent label should communicate the category, and the open menu must be fully keyboard-operable in the production implementation." doItems={["Use a meaningful category label, such as Services, that describes the destinations inside.", "Keep the menu short and group only destinations that share a clear relationship.", "Use specific link text inside the menu and preserve visible focus, Escape dismissal, and focus restoration."]} dontItems={["Do not hide a single high-priority destination inside a dropdown.", "Do not use a dropdown as a substitute for unclear information architecture or a long sitemap.", "Do not use ambiguous labels such as More when the available destinations can be named directly."]}>
+                    <header aria-label="Header with dropdown navigation" className="flex flex-wrap items-center justify-between gap-4"><a href="#header-dropdown-brand" className="font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Application Delivery Kit</a><nav aria-label="Primary navigation with services menu" className="flex flex-wrap items-center gap-4 text-sm"><a href="#header-dropdown-home" aria-current="page" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Home</a><details className="relative"><summary className="cursor-pointer list-none rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Services</summary><div className="absolute left-0 top-full z-10 mt-2 min-w-44 rounded-md border bg-background p-2 shadow-sm"><a href="#header-dropdown-consulting" className="block rounded px-2 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Consulting</a><a href="#header-dropdown-training" className="block rounded px-2 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Training</a></div></details><a href="#header-dropdown-contact" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Contact</a></nav></header>
+                  </ExampleVariation>
                 </div>
               </section>
             </div>
