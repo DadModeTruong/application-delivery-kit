@@ -91,6 +91,17 @@ function ComponentsSecondaryNavPage() {
                   application-wide Header. It renders real anchors and marks the active page with{' '}
                   <code>aria-current="page"</code>.
                 </p>
+                <div className="overflow-hidden rounded-xl border">
+                  <SecondaryNav
+                    items={[
+                      { label: 'Overview', href: '#secondary-nav-overview' },
+                      { label: 'Guidance', href: '#secondary-nav-guidance' },
+                      { label: 'Resources', href: '#secondary-nav-resources' },
+                    ]}
+                    activeHref="#secondary-nav-overview"
+                    aria-label="Secondary navigation example"
+                  />
+                </div>
               </section>
               <section
                 className="grid gap-10 lg:grid-cols-2"
@@ -186,7 +197,7 @@ function ComponentsSecondaryNavPage() {
                   id="navigation-secondary-examples-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  Examples
+                  Examples and variations
                 </h2>
                 <p className="text-sm text-muted-foreground">
                   This example uses the application’s reusable SecondaryNav component for section-level
@@ -220,6 +231,54 @@ function ComponentsSecondaryNavPage() {
                         activeHref="#secondary-nav-overview"
                         aria-label="Project guide sections"
                       />
+                  </ExampleVariation>
+
+                  <ExampleVariation
+                    title="With active item"
+                    description="Use the active destination to show where the person is within the current section."
+                    explanation="The active state should identify the current destination through styling and semantics. Keep the link label aligned with the destination heading, and use the component’s activeHref contract so the current state is not communicated by color alone."
+                    doItems={[
+                      'Set activeHref to the current page or section destination.',
+                      'Preserve the same label and destination relationship across routes.',
+                    ]}
+                    dontItems={[
+                      'Use color alone to communicate the current location.',
+                      'Mark multiple destinations active at the same time.',
+                    ]}
+                  >
+                    <SecondaryNav
+                      items={[
+                        { label: 'Overview', href: '#secondary-nav-overview' },
+                        { label: 'Guidance', href: '#secondary-nav-guidance' },
+                        { label: 'Resources', href: '#secondary-nav-resources' },
+                      ]}
+                      activeHref="#secondary-nav-guidance"
+                      aria-label="Secondary navigation with active item"
+                    />
+                  </ExampleVariation>
+
+                  <ExampleVariation
+                    title="With longer labels"
+                    description="Keep meaningful section names when destinations need more context."
+                    explanation="Longer labels should remain understandable as the navigation adapts to the available width. Test wrapping, spacing, focus visibility, and the absence of page-level horizontal scrolling at narrow widths and high zoom."
+                    doItems={[
+                      'Use specific labels that match the destination’s visible heading.',
+                      'Test the full set of destinations at narrow widths and high zoom.',
+                    ]}
+                    dontItems={[
+                      'Shorten labels into ambiguous abbreviations just to preserve one line.',
+                      'Allow the navigation to create horizontal scrolling for the whole page.',
+                    ]}
+                  >
+                    <SecondaryNav
+                      items={[
+                        { label: 'Overview and key decisions', href: '#secondary-nav-overview' },
+                        { label: 'Implementation guidance', href: '#secondary-nav-guidance' },
+                        { label: 'Related resources and references', href: '#secondary-nav-resources' },
+                      ]}
+                      activeHref="#secondary-nav-overview"
+                      aria-label="Secondary navigation with longer labels"
+                    />
                   </ExampleVariation>
                 </div>
               </section>
