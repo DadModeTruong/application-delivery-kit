@@ -15,7 +15,7 @@ import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
-import { PanelsTopLeft, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
+import { Tabs, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
 // ---------------------------------------------------------------
@@ -36,7 +36,7 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
     label: 'Navigation',
     items: [
       { href: '/components/header', label: 'Header', icon: PanelTop },
-      { href: '/components/tab-navigation', label: 'Tab', icon: PanelsTopLeft },
+      { href: '/components/tab-navigation', label: 'Tab', icon: Tabs },
       { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
       { href: '/components/footer', label: 'Footer', icon: PanelBottom },
     ],
