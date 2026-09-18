@@ -60,8 +60,8 @@ function ComponentsInteractionPage() {
                   Interaction
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
-                  Interaction components help people do something: save a change, open a view, move
-                  somewhere else, or understand what is available right now.
+                  Interaction components help people change something, trigger a process, or move to
+                  another place. They expose an action, its current state, and its result.
                 </p>
               </section>
 
@@ -70,9 +70,9 @@ function ComponentsInteractionPage() {
                   What belongs here?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  This area covers controls that respond to input and communicate an action or
-                  state. The most important choice is the semantic one: use a button for an action
-                  and a link for navigation.
+                  This area covers controls and navigation patterns that respond to input and
+                  communicate an action or state. The most important choice is the semantic one: use
+                  a button for an action and a link for navigation.
                 </p>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>Give every control a clear name that describes the result.</li>

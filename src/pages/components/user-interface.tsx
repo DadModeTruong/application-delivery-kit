@@ -34,7 +34,7 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
     label: 'Navigation',
     items: [
       { href: '/components/header', label: 'Header', icon: PanelTop },
-      { href: '/components/tab-navigation', label: 'Tab', icon: Ellipsis },
+      { href: '/components/tab-navigation', label: 'Tab Navigation', icon: Ellipsis },
       { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
       { href: '/components/footer', label: 'Footer', icon: PanelBottom },
     ],
@@ -93,9 +93,9 @@ function ComponentsUserInterfacePage() {
                   What belongs here?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  This area covers display and structure primitives. These components shape how
-                  information is presented, but they do not decide what happens after someone
-                  activates a control.
+                  This area covers display, structure, and navigation primitives. These components
+                  establish hierarchy, grouping, and page structure; the Interaction area covers
+                  controls that trigger an action or communicate its state.
                 </p>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>Use them to group related information into a clear visual unit.</li>
