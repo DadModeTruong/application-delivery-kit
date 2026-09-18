@@ -110,31 +110,39 @@ function ComponentsCardsPage() {
                     When to use it
                   </h2>
                   <p className="leading-7 text-muted-foreground">
-                    Use Card when a bounded group helps people understand or compare related
-                    content.
+                    Use Card when a bounded group helps people understand or compare related content
+                    without turning every group into a control. It works well for a summary, status,
+                    result, or preview that benefits from a shared visual boundary.
                   </p>
-                  <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>When related information benefits from a visible boundary.</li>
-                    <li>When people need to scan several comparable items.</li>
-                    <li>When a group has its own heading and optional supporting action.</li>
-                    <li>When the boundary explains what belongs together.</li>
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                    <li>Choose it when the content is related enough to scan as one unit.</li>
+                    <li>Use a linked Card when the complete unit leads to one destination.</li>
+                    <li>
+                      Use a real button inside the Card when the action changes state or performs
+                      work.
+                    </li>
                   </ul>
                 </div>
-                <div className="space-y-5" aria-labelledby="cards-not-heading">
+                <div className="space-y-5">
                   <h2 id="cards-not-heading" className="text-2xl font-semibold tracking-tight">
                     When not to use it
                   </h2>
                   <p className="leading-7 text-muted-foreground">
-                    Use ordinary sections, headings, lists, and whitespace when the page flow
-                    already provides enough structure.
+                    Do not use Card as a default wrapper for every paragraph or as a substitute for
+                    hierarchy, spacing, or a page layout. Too many boundaries make a page noisy and
+                    make related content harder to compare.
                   </p>
-                  <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>Do not put a card around every paragraph or page section.</li>
-                    <li>Do not add a second card inside a card without a clear grouping reason.</li>
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                     <li>
-                      Do not use Card as a substitute for navigation, a form layout, or a dialog.
+                      Do not use it when whitespace or a heading already provides enough grouping.
                     </li>
-                    <li>Do not make the surface interactive just because it looks like a tile.</li>
+                    <li>
+                      Do not make a Card look clickable unless it has a real destination or action.
+                    </li>
+                    <li>
+                      Do not put multiple unrelated destinations or competing actions behind one
+                      surface.
+                    </li>
                   </ul>
                 </div>
               </section>
@@ -143,15 +151,21 @@ function ComponentsCardsPage() {
                 <h2 id="cards-design-heading" className="text-2xl font-semibold tracking-tight">
                   Design considerations
                 </h2>
-                <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Give each card one clear job and one clear reading path.</li>
-                  <li>Use a heading when the content is a distinct group.</li>
-                  <li>Keep titles and supporting text short enough to scan.</li>
-                  <li>Choose the number of columns from the content, not the available space.</li>
-                  <li>Use visual priority intentionally; not every card needs equal emphasis.</li>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>Give the Card one clear subject and a heading that names it.</li>
                   <li>
-                    Decide whether the group is information, a destination, or an action before
-                    choosing its surrounding element.
+                    Use the Card parts consistently: header for identity, content for detail, and
+                    footer for supporting actions.
+                  </li>
+                  <li>
+                    Keep the visual hierarchy inside the Card stronger than the boundary around it.
+                  </li>
+                  <li>
+                    Choose one interaction model per surface: static grouping, one destination, or
+                    explicit actions.
+                  </li>
+                  <li>
+                    Keep copy concise so the Card remains scannable beside neighboring content.
                   </li>
                 </ul>
               </section>
@@ -163,21 +177,27 @@ function ComponentsCardsPage() {
                 >
                   Accessibility considerations
                 </h2>
-                <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Use a real heading and keep the page heading hierarchy intact.</li>
-                  <li>Use a real anchor for navigation and a real button for an action.</li>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>
-                    Keep a static Card out of the tab order; its boundary does not need focus.
-                  </li>
-                  <li>Do not nest links or buttons inside a Card that is already one link.</li>
-                  <li>Keep visible focus styles on every link and button inside a Card.</li>
-                  <li>
-                    Make the link or button name describe its destination or action without relying
-                    on the card boundary, icon, or color.
+                    Give the Card a meaningful heading when it represents a distinct group; the
+                    local CardTitle primitive is visual, so use a real heading element in the
+                    content.
                   </li>
                   <li>
-                    Test each example by keyboard and with a screen reader so the heading,
-                    supporting text, and controls are announced once and in a useful order.
+                    Use a native link for navigation and a native button for an action. Do not nest
+                    interactive controls or make hover the only sign that a Card is interactive.
+                  </li>
+                  <li>
+                    Ensure the link or button has a visible focus indicator and remains usable with
+                    keyboard navigation.
+                  </li>
+                  <li>
+                    Keep the accessible name specific enough to explain the destination or action;
+                    visible text should normally provide that name.
+                  </li>
+                  <li>
+                    Check contrast, text resizing, forced-colors behavior, and reading order without
+                    relying on the Card border or color alone.
                   </li>
                 </ul>
               </section>
@@ -187,16 +207,26 @@ function ComponentsCardsPage() {
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Start with one column so each card remains readable at narrow widths. Add columns
-                  only when every card still has enough room for its heading, description, and
-                  action. Use the page-wide Columns pattern for a full page and container-responsive
-                  mode when cards live inside a constrained region such as a split pane.
+                  Start with one column so each Card remains readable at narrow widths and zoom
+                  levels. Add columns only when every Card still has enough room for its heading,
+                  description, and action.
                 </p>
-                <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep the DOM and reading order meaningful when a visual grid collapses.</li>
-                  <li>Test the longest realistic title, description, and action label.</li>
-                  <li>Check 200% zoom and narrow widths for clipping or horizontal scrolling.</li>
-                  <li>Do not reduce touch targets or hide card actions to preserve a grid.</li>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>
+                    Let text wrap instead of truncating names, destinations, or action labels.
+                  </li>
+                  <li>
+                    Preserve the same reading order and destination/action parity across
+                    breakpoints.
+                  </li>
+                  <li>
+                    Use the page-wide Columns pattern for a full page and container-responsive mode
+                    inside a constrained region such as a split pane.
+                  </li>
+                  <li>
+                    Verify narrow widths and 200% zoom without horizontal scrolling or cramped touch
+                    targets.
+                  </li>
                 </ul>
               </section>
 
@@ -219,7 +249,7 @@ function ComponentsCardsPage() {
                   <ExampleVariation
                     title="Static information"
                     description="Group related content without making the Card itself interactive."
-                    explanation="The Card provides visual grouping, while the heading and content provide the meaning. No focusable element is added when the group is informational only."
+                    explanation="The Card provides visual grouping while the heading and content provide the meaning. Try it: confirm that the group reads clearly without implying that the surface itself is clickable."
                     doItems={[
                       'Give the group a useful heading and a clear reading path.',
                       'Use the Card boundary to support scanning, not to replace the content hierarchy.',
@@ -246,7 +276,7 @@ function ComponentsCardsPage() {
                   <ExampleVariation
                     title="Linked Card"
                     description="Use one real link when the whole item represents one destination."
-                    explanation="The anchor owns the interaction and the Card provides the visual surface. The link name identifies the destination, so the card does not need a second nested link."
+                    explanation="The anchor owns the interaction and the Card provides the visual surface. Try it: tab to the link, confirm its focus indicator, activate it, and verify that it reaches the documented Header guide."
                     doItems={[
                       'Use a destination-focused link name and a real route.',
                       'Keep supporting text available to explain what the destination contains.',
@@ -279,7 +309,7 @@ function ComponentsCardsPage() {
                   <ExampleVariation
                     title="Card with an action"
                     description="Use a button when the card action changes state or performs work in place."
-                    explanation="The Card remains a container and the button owns the action. Placing the button in CardAction keeps it associated with the heading while preserving a separate focus target."
+                    explanation="The Card remains a container and the button owns the action. Try it: tab to “Mark all read,” activate it, and confirm that the action is announced and does not pretend to navigate to another page."
                     doItems={[
                       'Use a concise button name that describes the state change or result.',
                       'Keep the action in the same reading and focus order as the card heading.',
