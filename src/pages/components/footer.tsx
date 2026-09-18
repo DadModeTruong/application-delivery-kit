@@ -236,11 +236,11 @@ function ComponentsFooterPage() {
                 <div className="space-y-8 [&_*:has(>footer)]:!p-0 [&_*:has(>footer)]:overflow-hidden">
                   <ExampleVariation
                     title="Basic"
-                    description="Use a compact Footer when the page needs copyright information and one supporting destination."
-                    explanation="This keeps the Footer quiet and easy to scan: copyright is paired with one regular text link and no icon treatment."
+                    description="Use a compact Footer with copyright and regular text links when no icon treatment is needed."
+                    explanation="This basic variation is defined by its text-based links: the Footer stays quiet and scannable without using icons to identify destinations."
                     doItems={[
                       'Keep the link label specific and useful.',
-                      'Use this pattern when the page has only one important supporting destination.',
+                      'Use this pattern when regular text links communicate the destinations clearly.',
                     ]}
                     dontItems={[
                       'Do not add icons when a regular text link communicates the destination clearly.',
