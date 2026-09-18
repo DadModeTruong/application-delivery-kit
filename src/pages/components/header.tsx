@@ -1,3 +1,10 @@
+/**
+ * Header guide page.
+ *
+ * Use this page to copy the production Header composition and understand primary
+ * navigation, mobile navigation, focus order, and responsive behavior.
+ */
+
 import { ExampleVariation } from '@/components/layout/example-variation'
 import { Blocks, LayoutTemplate } from 'lucide-react'
 /**

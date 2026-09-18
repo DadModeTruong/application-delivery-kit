@@ -1,3 +1,11 @@
+/**
+ * Sidebar guide page.
+ *
+ * Use this page to copy the production Sidebar composition and understand
+ * persistent navigation, grouped links, active state, keyboard access, and
+ * narrow-screen behavior.
+ */
+
 import { ExampleVariation } from '@/components/layout/example-variation'
 /**
  * ComponentsSidebarPage — Sidebar component usage guide.

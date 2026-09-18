@@ -18,12 +18,44 @@ Open the local URL printed by Vite. The app uses clean, history-based routes:
 - `/layouts/secondary` — TabNavigation with Main
 - `/layouts/sidebar` — Sidebar beside Main
 - `/layouts/full` — TabNavigation and Sidebar together
+- `/components/user-interface` — User Interface area overview
+- `/components/interaction` — Interaction area overview
+- `/components/forms` — Forms area overview
 - `/components/header` — primary Header navigation
-- `/components/tab-navigation` — TabNavigation
-- `/components/sidebar` — Sidebar navigation
+- `/components/tab-navigation` — page-level tab-style navigation
+- `/components/sidebar` — persistent or contextual navigation
 - `/components/footer` — supporting Footer links
+- `/components/button` — action buttons and action states
+- `/components/card` — bounded content groups
+- `/components/split-view` — responsive two-region layouts
+- `/components/input` — text and email input
+- `/components/select` — native select control
+- `/components/textarea` — multiline text input
+- `/components/checkbox` — single boolean choice
+- `/components/checkbox-group` — independent multi-select choices
+- `/components/radio` — single-choice group
+- `/components/combobox` — searchable selection
+- `/components/datepicker` — date selection
 
 The pages are reference examples. They are not a separate product and the demo route table is not a consumer API.
+
+## Copy a pattern into your own React project
+
+Use the repository in this order when you want to reuse a component:
+
+1. **Start with the guide route** to understand the component's purpose, states, accessibility expectations, and responsive behavior.
+2. **Open the matching production primitive** in `src/components/ui/` or the hand-written composition in `src/components/layout/`.
+3. **Copy the smallest complete example** from the guide page, then remove the demo-only wrapper and page navigation around it.
+4. **Copy the supporting imports** and install the dependencies listed in `package.json` that the component actually uses.
+5. **Adapt labels, links, content, and data** to your application. Do not copy demo routes or placeholder content unchanged.
+6. **Keep the semantic behavior**: use links for navigation, buttons for actions, visible labels for controls, and keyboard-visible focus.
+
+The directory READMEs explain the copy boundaries in more detail:
+
+- [`src/pages/components/README.md`](./src/pages/components/README.md) — choose a guide and find its production source
+- [`src/components/README.md`](./src/components/README.md) — decide between `ui/` and `layout/`
+- [`src/components/layout/README.md`](./src/components/layout/README.md) — copy hand-written layout compositions
+- [`src/components/ui/README.md`](./src/components/ui/README.md) — add or copy shadcn-managed primitives
 
 ## Verify changes
 

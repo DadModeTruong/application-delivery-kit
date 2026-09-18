@@ -1,3 +1,10 @@
+/**
+ * Footer guide page.
+ *
+ * Use this page to copy the production Footer shell and learn how supporting
+ * links, visible labels, icons, and responsive layout work together.
+ */
+
 import { ExampleVariation } from '@/components/layout/example-variation'
 /**
  * ComponentsFooterPage — Footer component usage guide.

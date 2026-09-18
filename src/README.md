@@ -31,6 +31,10 @@ When a page or component changes, verify the affected route at a narrow width as
 
 ## Continue
 
+- [Page and route guide](./pages/README.md)
+- [Component guide pages](./pages/components/README.md)
+- [Layout guide pages](./pages/layouts/README.md)
+- [Demo helpers](./pages/demos/README.md)
 - [Component folders](./components/README.md)
 - [Layout components](./components/layout/README.md)
 - [Generated UI primitives](./components/ui/README.md)

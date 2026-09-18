@@ -4,9 +4,11 @@ Everything in this folder is generated and maintained by the
 [shadcn CLI](https://ui.shadcn.com). Treat these files as
 copy-in-then-customize scaffolding, not hand-written code.
 
-## Adding a new primitive
+## Adding or copying a primitive
 
-```powershell
+If the primitive already exists here, copy its import and the smallest usage example from the relevant guide page. If it is missing, generate it with:
+
+```bash
 pnpm dlx shadcn@latest add <component-name>
 ```
 

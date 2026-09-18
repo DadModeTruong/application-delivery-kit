@@ -1,3 +1,12 @@
+/**
+ * Button guide page.
+ *
+ * Use this page as a reference for action semantics, hierarchy, states, icons,
+ * loading, form submission, and menu triggers. The examples use the production
+ * Button and LinkButton primitives so the page can be read as an implementation
+ * guide, not only as a visual catalog.
+ */
+
 import { ExampleVariation } from '@/components/layout/example-variation'
 /**
  * ComponentsButtonsPage — Button component usage guide.

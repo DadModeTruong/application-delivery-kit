@@ -1,3 +1,11 @@
+/**
+ * Tab Navigation guide page.
+ *
+ * This component is page navigation built from real anchors. Use this page to
+ * understand when it differs from an in-page tab-panel widget and how to keep
+ * links, selected state, focus, and responsive behavior understandable.
+ */
+
 import { ExampleVariation } from '@/components/layout/example-variation'
 /**
  * ComponentsTabNavigationPage — TabNavigation component usage guide.

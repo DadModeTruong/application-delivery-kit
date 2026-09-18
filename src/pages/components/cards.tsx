@@ -1,3 +1,11 @@
+/**
+ * Card guide page.
+ *
+ * Use this page to learn when a bounded content group helps people scan and
+ * understand a page. Copy the production Card composition, not the surrounding
+ * documentation shell, when adapting an example to an application.
+ */
+
 import { ExampleVariation } from '@/components/layout/example-variation'
 import { Footer } from '@/components/layout/footer'
 import { Header, SkipLink } from '@/components/layout/header'
