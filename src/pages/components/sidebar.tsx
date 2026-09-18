@@ -83,7 +83,7 @@ function ComponentsSidebarPage() {
                   id="navigation-sidebar-what-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  What is it for?
+                  What is it?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   Sidebar gives a section enough space for groups, icons, and an active page state
@@ -96,6 +96,9 @@ function ComponentsSidebarPage() {
                     activeHref="/components/sidebar"
                   />
                 </div>
+                <p className="leading-7 text-muted-foreground">
+                  Sidebar navigation is a persistent, hierarchical map of an area’s destinations. Use it when people need to move among related pages while keeping their place in the main content; use Header for broad product navigation and SecondaryNav for a smaller set of nearby destinations.
+                </p>
               </section>
               <section
                 className="grid gap-10 lg:grid-cols-2"
