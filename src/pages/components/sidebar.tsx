@@ -222,14 +222,14 @@ function ComponentsSidebarPage() {
                     />
                   </ExampleVariation>
 
-                  <ExampleVariation title="Basic grouped sidebar" description="Meaningful groups help people predict where a destination belongs." explanation="A sidebar is useful when navigation should remain available while people work through the main content. Group labels should describe the information architecture, not merely decorate it." doItems={["Give the sidebar and its navigation a meaningful accessible name.", "Show the current page with semantic state and a visible treatment."]} dontItems={["Do not duplicate every header link without a clear reason.", "Do not rely on indentation, color, or position alone to communicate grouping."]}>
+                  <ExampleVariation title="Grouped" description="Meaningful groups help people predict where a destination belongs." explanation="A sidebar is useful when navigation should remain available while people work through the main content. Group labels should describe the information architecture, not merely decorate it." doItems={["Give the sidebar and its navigation a meaningful accessible name.", "Show the current page with semantic state and a visible treatment."]} dontItems={["Do not duplicate every header link without a clear reason.", "Do not rely on indentation, color, or position alone to communicate grouping."]}>
                     <Sidebar
                       aria-label="Example section navigation"
                       items={userInterfaceSidebarLinks}
                       activeHref="/components/sidebar"
                     />
                   </ExampleVariation>
-                  <ExampleVariation title="Nested navigation" description="Use nesting to show hierarchy, not to create an unrelated second menu." explanation="Nested navigation is appropriate when child pages are genuinely subordinate to a parent. Keep the hierarchy shallow enough to scan and operate." doItems={["Use text and structure to communicate parent and child relationships.", "Keep the active child and its parent context visible."]} dontItems={["Do not create deep nesting that hides destinations.", "Do not use indentation as the only indication of hierarchy."]}>
+                  <ExampleVariation title="With active item" description="Use the active state to show where people are within the current area." explanation="The active destination should be identifiable through styling and semantics, not color alone. Keep activeHref synchronized with the current route so people can understand where they are." doItems={["Use text and structure to communicate parent and child relationships.", "Keep the active child and its parent context visible."]} dontItems={["Do not create deep nesting that hides destinations.", "Do not use indentation as the only indication of hierarchy."]}>
                     <Sidebar
                       aria-label="Grouped section navigation"
                       items={userInterfaceSidebarLinks}
