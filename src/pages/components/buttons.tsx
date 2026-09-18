@@ -6,7 +6,7 @@ import { ExampleVariation } from '@/components/layout/example-variation'
  * variant, and when a link should be used instead of a button.
  */
 
-import { MousePointerClick } from 'lucide-react'
+import { LoaderCircle, MousePointerClick } from 'lucide-react'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
@@ -16,7 +16,7 @@ import { LayoutProvider } from '@/components/layout/layout-provider'
 import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Button, LinkButton } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from '../page-registry'
 
@@ -82,22 +82,25 @@ function ComponentsButtonsPage() {
                   What is it?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Button is the interaction primitive for actions such as saving, opening, applying,
-                  or removing something. It uses a real button underneath, so it can receive focus,
-                  respond to keyboard input, and expose its disabled state to assistive technology.
+                  A button is an interactive control that performs an action in the current context:
+                  saving, opening, applying, submitting, or removing something. Use a real link when
+                  the user is going to another destination. The Button primitive supplies consistent
+                  focus, disabled, size, and visual-variant behavior while the product team supplies
+                  the label and action.
                 </p>
-                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>The label tells people what result to expect.</li>
-                  <li>The variant controls visual emphasis, not the meaning of the action.</li>
-                  <li>The size and state help the control fit the surrounding task.</li>
-                  <li>
-                    A link remains the better choice when the control navigates to another page.
-                  </li>
-                  <li>
-                    Describe the outcome in the label before choosing a variant, size, icon, or
-                    state.
-                  </li>
-                </ul>
+                <div className="overflow-hidden rounded-lg border p-5 sm:p-6">
+                  <div className="space-y-3">
+                    <h3 className="text-base font-medium">Save a draft</h3>
+                    <p className="text-sm text-muted-foreground">
+                      A basic action button keeps the next step clear.
+                    </p>
+                    <Button type="button">Save draft</Button>
+                  </div>
+                </div>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Try it: move to the button with the keyboard and confirm that the focus indicator
+                  is visible before activating it.
+                </p>
               </section>
 
               <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="buttons-use-heading">
@@ -105,20 +108,32 @@ function ComponentsButtonsPage() {
                   <h2 id="buttons-use-heading" className="text-2xl font-semibold tracking-tight">
                     When to use it
                   </h2>
+                  <p className="leading-7 text-muted-foreground">
+                    Use a button for an immediate action that changes state, submits information,
+                    opens a menu, or starts a task without changing the destination.
+                  </p>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>When activating it changes something on the current page.</li>
-                    <li>When submitting, saving, confirming, or cancelling an interaction.</li>
-                    <li>When the action needs a clear keyboard and focus target.</li>
+                    <li>Choose a prominent style for the primary action in a clear task.</li>
+                    <li>
+                      Use a quieter style for supporting actions that should remain available.
+                    </li>
+                    <li>
+                      Use a destructive style only when the consequence is meaningful and clear.
+                    </li>
                   </ul>
                 </div>
-                <div className="space-y-5" aria-labelledby="buttons-not-heading">
+                <div className="space-y-5">
                   <h2 id="buttons-not-heading" className="text-2xl font-semibold tracking-tight">
                     When not to use it
                   </h2>
+                  <p className="leading-7 text-muted-foreground">
+                    Do not use button styling for navigation. A control that takes someone to a new
+                    route should be an anchor or LinkButton, even when it is styled like a button.
+                  </p>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>When the primary job is navigating to another URL; use a link instead.</li>
-                    <li>When plain text or a heading is enough to explain the page.</li>
-                    <li>When adding a control would make a low-risk reading flow feel heavier.</li>
+                    <li>Do not use a button when a plain text link is sufficient.</li>
+                    <li>Do not use a destructive style for routine or reversible actions.</li>
+                    <li>Do not make a whole card or unrelated region act like one giant button.</li>
                   </ul>
                 </div>
               </section>
@@ -128,15 +143,19 @@ function ComponentsButtonsPage() {
                   Design considerations
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>Use a short verb that describes the result: Save, Apply, or View details.</li>
-                  <li>Use one prominent action when several actions compete for attention.</li>
                   <li>
-                    Choose the visual variant according to the action's importance and consequence.
+                    Give each action one clear purpose and start the label with a specific verb.
                   </li>
-                  <li>Keep labels readable when buttons wrap or stack on smaller screens.</li>
                   <li>
-                    Make the action's importance and risk clear before choosing how much visual
-                    attention it receives.
+                    Use the visual hierarchy to show priority, not to make every action prominent.
+                  </li>
+                  <li>Keep related actions together and place the primary action consistently.</li>
+                  <li>
+                    Use the same label before and after an action unless the state change genuinely
+                    needs different wording.
+                  </li>
+                  <li>
+                    Do not use an icon, color, or shape as the only explanation of what will happen.
                   </li>
                 </ul>
               </section>
@@ -149,13 +168,25 @@ function ComponentsButtonsPage() {
                   Accessibility considerations
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>Use a real button for an action and a real anchor for navigation.</li>
-                  <li>Keep visible focus styles so keyboard users can see the active control.</li>
-                  <li>Do not rely on color alone to distinguish a destructive action.</li>
-                  <li>Give icon-only buttons an accessible label and keep the icon familiar.</li>
+                  <li>Use a native button for an action and a native anchor for navigation.</li>
                   <li>
-                    Test the control with a keyboard: it should be easy to reach, visibly focused,
-                    and understandable before and after activation.
+                    Give every button an accessible name; icon-only buttons need an explicit label.
+                  </li>
+                  <li>
+                    Keep focus visible, make the control keyboard operable, and do not communicate
+                    state by color alone.
+                  </li>
+                  <li>
+                    Use <code>type="button"</code> for non-submit controls inside forms and{' '}
+                    <code>type="submit"</code> only for the form’s submission action.
+                  </li>
+                  <li>
+                    When loading, expose progress in text or an accessible status and prevent
+                    duplicate activation without removing the action’s meaning.
+                  </li>
+                  <li>
+                    Use a disabled state only when the action is unavailable; do not use it as a
+                    substitute for an explanation or read-only content.
                   </li>
                 </ul>
               </section>
@@ -169,141 +200,217 @@ function ComponentsButtonsPage() {
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   Buttons can sit beside one another when their labels remain readable and the row
-                  still has room. On a narrow screen, let actions wrap or stack instead of shrinking
-                  the labels until their meaning is unclear.
+                  remains easy to scan. On narrow screens, let actions wrap or stack rather than
+                  shrinking text or creating a horizontal scroll area.
                 </p>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep the most important action easy to find when controls wrap.</li>
-                  <li>Do not hide a necessary action only because the viewport is narrow.</li>
+                  <li>Keep the primary action first in reading and focus order.</li>
                   <li>
-                    Check that labels, focus indicators, and activation targets remain comfortable
-                    to use.
+                    Preserve readable labels and comfortable touch targets at narrow widths and 200%
+                    zoom.
                   </li>
                   <li>
-                    Test the longest realistic label and the unavailable or destructive state at the
-                    narrowest supported width.
+                    Stack competing actions when side-by-side placement makes their hierarchy
+                    unclear.
+                  </li>
+                  <li>
+                    Keep icon-only controls large enough to operate and pair them with a tooltip or
+                    nearby visible explanation when the action is not obvious.
                   </li>
                 </ul>
               </section>
 
-              <section className="space-y-5" aria-labelledby="buttons-examples-heading">
-                <div className="space-y-2">
+              <section className="space-y-6" aria-labelledby="buttons-examples-heading">
+                <div className="space-y-3">
                   <h2
                     id="buttons-examples-heading"
                     className="text-2xl font-semibold tracking-tight"
                   >
-                    Examples
+                    Examples and variations
                   </h2>
-                <p className="text-sm text-muted-foreground">Try it: Activate the examples with a mouse and keyboard, and inspect the disabled and loading states. Confirm that the action, state change, focus treatment, and accessible name remain clear without relying on color alone.</p>
-
-                <div className="space-y-8">
-                  <ExampleVariation title="Action hierarchy" description="Visual emphasis should match the consequence and frequency of the action." explanation="Use one primary action when a task has a clear preferred outcome. Secondary and destructive actions should remain understandable without relying on visual emphasis alone." doItems={["Use labels that describe outcomes, such as Save changes or Delete draft.", "Keep the primary action visually distinct from secondary and destructive actions."]} dontItems={["Do not style every action as primary.", "Do not use destructive styling for ordinary cancellation or navigation."]}>
-                    <div className="flex flex-wrap gap-3"><button type="button" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Save changes</button><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Cancel</button><button type="button" className="rounded-md border border-destructive px-3 py-2 text-sm text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Delete draft</button></div>
-                  </ExampleVariation>
-                  <ExampleVariation title="Icon and text" description="Icons reinforce a familiar action; they do not replace a clear label when the action is unfamiliar." explanation="Use an icon with text when the action benefits from faster recognition. Icon-only buttons need an accessible name and should be reserved for familiar, space-constrained actions." doItems={["Give icon-only buttons a specific accessible name.", "Keep the target large enough for touch and keyboard use."]} dontItems={["Do not rely on an icon alone when its meaning is ambiguous.", "Do not remove the visible label just to make a button look smaller."]}>
-                    <div className="flex flex-wrap gap-3"><button type="button" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">＋ Add member</button><button type="button" aria-label="Open settings" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">⚙</button></div>
-                  </ExampleVariation>
-                  <ExampleVariation title="Loading and disabled" description="State changes should explain whether work is in progress or the action is unavailable." explanation="Disabled means the action cannot be used in the current context. Loading means work is in progress and duplicate activation should be prevented while the result is pending." doItems={["Preserve the action’s purpose while communicating its changed state.", "Restore the normal state and focus behavior when work completes."]} dontItems={["Do not disable an action without explaining why it is unavailable.", "Do not show a loading label without communicating busy state in the implementation."]}>
-                    <div className="flex flex-wrap gap-3"><button type="button" disabled className="cursor-not-allowed rounded-md border px-3 py-2 text-sm opacity-60">Save unavailable</button><button type="button" aria-busy="true" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Saving…</button></div>
-                  </ExampleVariation>
-                  <ExampleVariation title="Submit versus navigation" description="Use a button for an action and a link for a destination." explanation="A submit button changes data through a form. A link changes location. Keeping those semantics honest gives people predictable keyboard and browser behavior." doItems={["Use type=submit for form submission and an anchor for navigation.", "Make the action or destination clear from its text."]} dontItems={["Do not use a button to imitate a page link.", "Do not style a link as a button just because it needs visual emphasis."]}>
-                    <div className="flex flex-wrap gap-3"><form className="flex flex-wrap gap-3"><label className="sr-only" htmlFor="button-example-title">Title</label><input id="button-example-title" className="rounded-md border px-3 py-2 text-sm" placeholder="Title" /><button type="submit" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Create</button></form><a href="#button-example-details" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">View details</a></div>
-                  </ExampleVariation>
-                  <ExampleVariation title="Menu trigger" description="A trigger must expose the relationship to the menu it opens." explanation="A menu trigger is more than a styled button. The production interaction needs a complete popup model: open state, focus movement, keyboard navigation, Escape, outside dismissal, and focus restoration." doItems={["Expose the menu relationship and expanded state.", "Move focus into the menu and return it to the trigger when the menu closes."]} dontItems={["Do not hide a single common action behind an unnecessary menu.", "Do not claim a complete menu interaction from aria-expanded alone."]}>
-                    <div><button type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="button-example-menu" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Actions ▾</button><div id="button-example-menu" role="menu" aria-label="Record actions" className="mt-2 w-40 rounded-md border p-1 text-sm"><a href="#button-edit" role="menuitem" className="block rounded px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Edit</a><a href="#button-archive" role="menuitem" className="block rounded px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Archive</a></div></div>
-                  </ExampleVariation>
-                </div>
                   <p className="leading-7 text-muted-foreground">
-                    Start with the default variant for the main action. Use less emphasis for nearby
-                    alternatives, and reserve destructive for an action that cannot be easily
-                    undone. The controls wrap instead of shrinking their labels on narrow screens;
-                    keyboard focus and the action order should remain clear after they wrap.
+                    Compare the visual and semantic choices below. Each example changes one
+                    meaningful decision so teams can choose a style, size, state, or interaction
+                    model without treating every button as interchangeable.
                   </p>
                 </div>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Choose emphasis by consequence</CardTitle>
-                    <CardDescription>
-                      The visual treatment supports the meaning of the action; it does not replace a
-                      clear label.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-wrap items-center gap-3">
-                    <Button>Save changes</Button>
-                    <Button variant="outline">Cancel</Button>
-                    <Button variant="secondary">Preview</Button>
-                    <Button variant="ghost">More options</Button>
-                    <Button variant="destructive">Delete</Button>
-                    <Button variant="link">Learn more</Button>
-                  </CardContent>
-                </Card>
-              </section>
 
-              <section
-                className="grid gap-10 lg:grid-cols-2"
-                aria-labelledby="buttons-sizes-heading"
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Sizes</CardTitle>
-                    <CardDescription>
-                      Choose a size that fits the surrounding layout without making the label hard
-                      to read or the target hard to activate.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-wrap items-center gap-3">
-                    <Button size="xs">Extra small</Button>
-                    <Button size="sm">Small</Button>
-                    <Button>Default</Button>
-                    <Button size="lg">Large</Button>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>States</CardTitle>
-                    <CardDescription>
-                      A disabled button should explain that an action is unavailable, not look like
-                      a missing control.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-wrap items-center gap-3">
-                    <Button isDisabled>Unavailable</Button>
-                    <Button variant="outline" isDisabled>
-                      Cannot continue
-                    </Button>
-                  </CardContent>
-                </Card>
-              </section>
+                <div className="space-y-8">
+                  <ExampleVariation
+                    title="Styles and hierarchy"
+                    description="Use the variant that matches the action’s priority and consequence."
+                    explanation="Default is for the primary action, secondary and outline are for supporting actions, ghost is for low-emphasis actions, destructive signals an irreversible consequence, and link is for a quiet action that should read like a link. Try it: identify the one primary action, then check that the quieter styles do not compete with it."
+                    doItems={[
+                      'Use one clear primary style for the main action in a task.',
+                      'Use outline, secondary, ghost, or link styles to reduce emphasis for supporting actions.',
+                      'Reserve destructive for actions such as deleting or removing data.',
+                    ]}
+                    dontItems={[
+                      'Do not use destructive to attract attention to an ordinary action.',
+                      'Do not use link styling when the action needs strong prominence or a large target.',
+                      'Do not make every button in a group look equally primary.',
+                    ]}
+                  >
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button type="button">Default</Button>
+                      <Button type="button" variant="secondary">
+                        Secondary
+                      </Button>
+                      <Button type="button" variant="outline">
+                        Outline
+                      </Button>
+                      <Button type="button" variant="ghost">
+                        Ghost
+                      </Button>
+                      <Button type="button" variant="destructive">
+                        Delete
+                      </Button>
+                      <Button type="button" variant="link">
+                        View details
+                      </Button>
+                    </div>
+                  </ExampleVariation>
 
-              <section className="space-y-5" aria-labelledby="buttons-icon-heading">
-                <h2 id="buttons-icon-heading" className="text-2xl font-semibold tracking-tight">
-                  Icon buttons and links
-                </h2>
-                <p className="leading-7 text-muted-foreground">
-                  Use an icon button when the action is familiar and space is limited. Use a link
-                  button when the destination is another page; the visible treatment can match a
-                  button while the underlying element remains a link.
-                </p>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Use the semantic element that matches the job</CardTitle>
-                    <CardDescription>
-                      Icon-only controls need an accessible name. Destination controls should remain
-                      real links so browser navigation continues to work.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-wrap items-center gap-3">
-                    <Button size="icon" aria-label="Open actions">
-                      <MousePointerClick />
-                    </Button>
-                    <Button variant="outline" size="icon-sm" aria-label="Open actions">
-                      <MousePointerClick />
-                    </Button>
-                    <LinkButton href="/components/card" variant="outline">
-                      Read about Card
-                    </LinkButton>
-                  </CardContent>
-                </Card>
+                  <ExampleVariation
+                    title="Sizes"
+                    description="Choose a size that fits the density and importance of the surrounding task."
+                    explanation="Use the default size for most actions, a smaller size for compact supporting controls, and a larger size only when the action needs extra prominence or touch comfort. Try it: resize the viewport and confirm that each label remains readable without changing the action’s meaning."
+                    doItems={[
+                      'Use one size consistently within a related action group.',
+                      'Use the small size for dense supporting controls, not for essential mobile actions.',
+                      'Choose a larger target when the action needs extra prominence or touch comfort.',
+                    ]}
+                    dontItems={[
+                      'Do not use size alone to communicate priority; use the variant as well.',
+                      'Do not shrink text until labels become ambiguous or hard to tap.',
+                      'Do not mix arbitrary sizes in one group without a clear layout reason.',
+                    ]}
+                  >
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button type="button" size="sm">
+                        Small
+                      </Button>
+                      <Button type="button">Default</Button>
+                      <Button type="button" size="lg">
+                        Large
+                      </Button>
+                    </div>
+                  </ExampleVariation>
+
+                  <ExampleVariation
+                    title="Icon with text and icon only"
+                    description="Use icons to reinforce a visible label or to support a genuinely familiar icon-only action."
+                    explanation="A visible label is the clearest name for most actions. An icon-only button can work for a familiar, repeated action when its accessible name is explicit and its meaning is clear from context. Try it: tab to each control and confirm that the icon-only buttons still have a useful accessible name."
+                    doItems={[
+                      'Use an icon with text when the action may be unfamiliar or consequential.',
+                      'Give icon-only buttons an aria-label that describes the action, not the icon.',
+                      'Keep the icon and label aligned consistently across related controls.',
+                    ]}
+                    dontItems={[
+                      'Do not remove a useful label merely to save horizontal space.',
+                      'Do not use an unfamiliar icon as the only signifier for an important action.',
+                      'Do not create icon-only links or buttons without an accessible name.',
+                    ]}
+                  >
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button type="button">
+                        <MousePointerClick />
+                        Open interaction guide
+                      </Button>
+                      <Button type="button" size="icon" aria-label="Open interaction guide">
+                        <MousePointerClick />
+                      </Button>
+                      <LinkButton
+                        href="/components/card"
+                        variant="ghost"
+                        size="icon"
+                        aria-label="Read the Card guide"
+                      >
+                        <MousePointerClick />
+                      </LinkButton>
+                    </div>
+                  </ExampleVariation>
+
+                  <ExampleVariation
+                    title="Loading with text and spinner"
+                    description="Show progress without making the user guess whether an action was accepted."
+                    explanation="Text such as “Saving…” keeps the state understandable, while a spinner reinforces that work is in progress. Keep the accessible name meaningful, prevent duplicate activation, and restore the ordinary action state when work finishes. Try it: compare both loading treatments and confirm that progress is communicated without relying on motion alone."
+                    doItems={[
+                      'Use a text label when the action or wait state needs extra clarity.',
+                      'Use a spinner as supporting feedback and respect reduced-motion preferences in the implementation.',
+                      'Disable duplicate activation while the request is in progress.',
+                    ]}
+                    dontItems={[
+                      'Do not replace the label with an unexplained spinner for a consequential action.',
+                      'Do not leave a control looking active while it ignores repeated activation.',
+                      'Do not use loading as a permanent substitute for disabled, unavailable, or read-only state.',
+                    ]}
+                  >
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button type="button" isDisabled aria-busy="true">
+                        Saving…
+                      </Button>
+                      <Button type="button" isDisabled aria-busy="true" aria-label="Saving">
+                        <LoaderCircle className="animate-spin" aria-hidden="true" />
+                      </Button>
+                    </div>
+                  </ExampleVariation>
+
+                  <ExampleVariation
+                    title="Form submission"
+                    description="Use submit semantics for the action that sends the form, and keep other controls from submitting accidentally."
+                    explanation="The submit button is part of the form’s completion path. A secondary control inside the same form uses type=button so it does not submit by mistake. Try it: submit the form with the keyboard and confirm that the submit control is the only control that invokes submission."
+                    doItems={[
+                      'Use type=submit for the action that sends the form.',
+                      'Use explicit labels that describe the result, such as “Save changes” or “Create account”.',
+                      'Return a clear success or error state after submission.',
+                    ]}
+                    dontItems={[
+                      'Do not use a generic “Submit” label when the outcome can be named more clearly.',
+                      'Do not let reset, cancel, or help controls submit the form accidentally.',
+                      'Do not remove the submit action’s name while showing progress.',
+                    ]}
+                  >
+                    <form
+                      className="flex flex-wrap items-center gap-3"
+                      onSubmit={(event) => event.preventDefault()}
+                    >
+                      <Button type="submit">Save changes</Button>
+                      <Button type="button" variant="outline">
+                        Cancel
+                      </Button>
+                    </form>
+                  </ExampleVariation>
+
+                  <ExampleVariation
+                    title="Menu or dropdown trigger"
+                    description="A menu trigger is still a button: it opens a separate set of choices rather than performing one immediate action."
+                    explanation="Use a real menu trigger when the control opens related commands. The trigger needs an accessible name and expanded state, and the menu implementation owns keyboard navigation, Escape, focus movement, and focus restoration. Try it: open the menu, move through items with the keyboard, press Escape, and confirm focus returns to the trigger."
+                    doItems={[
+                      'Use a menu when several related commands need to share one control.',
+                      'Keep the trigger label focused on the group of commands it opens.',
+                      'Use the production menu primitive so keyboard and focus behavior are consistent.',
+                    ]}
+                    dontItems={[
+                      'Do not use a menu to hide one frequently needed primary action.',
+                      'Do not make a menu trigger look like a navigation link without showing its expanded state.',
+                      'Do not claim a static visual menu is interactive unless the open, keyboard, and dismissal behavior exists.',
+                    ]}
+                  >
+                    <div className="flex flex-wrap items-center gap-3">
+                      <DropdownMenuTrigger>
+                        <Button type="button" variant="outline" aria-haspopup="menu">
+                          More actions
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenu>
+                        <DropdownMenuItem>Duplicate</DropdownMenuItem>
+                        <DropdownMenuItem>Archive</DropdownMenuItem>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                      </DropdownMenu>
+                    </div>
+                  </ExampleVariation>
+                </div>
               </section>
             </div>
           </Main>
