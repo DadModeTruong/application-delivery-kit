@@ -85,6 +85,12 @@ function ComponentsFooterPage() {
                 >
                   What is it for?
                 </h2>
+                <p className="leading-7 text-muted-foreground">Use the Footer as an end-of-page region for legal, support, trust, and organizational destinations without competing with primary navigation.</p>
+                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+                  <li>Focus on secondary destinations such as Privacy, Terms, Accessibility, Help, Contact, or Status.</li>
+                  <li>Use a simple footer for focused applications and grouped content only when the information architecture needs it.</li>
+                  <li>Keep labels and order predictable across pages.</li>
+                </ul>
                 <p className="leading-7 text-muted-foreground">
                   Footer creates the page's ending landmark. Its optional link list is useful for
                   secondary destinations such as privacy, terms, contact, or project information.
@@ -101,7 +107,13 @@ function ComponentsFooterPage() {
                   >
                     When to use it
                   </h2>
-                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <p className="leading-7 text-muted-foreground">Use a footer when a destination is useful at the end of a page but does not need persistent prominence in the Header, Sidebar, or Tab navigation.</p>
+                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+                  <li>Use one row for a short set of links and groups for a larger public-site footer.</li>
+                  <li>Prioritize support, legal, accessibility, privacy, security, and organizational information.</li>
+                  <li>Do not duplicate every primary application destination.</li>
+                </ul>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                     <li>For supporting links shared across pages.</li>
                     <li>For copyright or ownership information.</li>
                     <li>When a destination does not need primary or section-level emphasis.</li>
@@ -114,7 +126,13 @@ function ComponentsFooterPage() {
                   >
                     When not to use it
                   </h2>
-                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <p className="leading-7 text-muted-foreground">Do not use the footer as a second site map or as a substitute for navigation needed during the main task.</p>
+                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+                  <li>Keep frequently used product areas in the Header, Sidebar, or Tab navigation.</li>
+                  <li>Do not hide required actions, task progress, or important alerts at the bottom of the page.</li>
+                  <li>If it becomes very tall, reduce or regroup links before adding interaction.</li>
+                </ul>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                     <li>For the main path people need to complete a task.</li>
                     <li>For a large grouped navigation system.</li>
                     <li>As a substitute for a clearly named section menu.</li>
@@ -129,6 +147,13 @@ function ComponentsFooterPage() {
                   Design considerations
                 </h2>
 
+                <p className="leading-7 text-muted-foreground">Use visual separation without making the footer feel like a second content area. A border, background change, and top spacing can establish the boundary while keeping content compact.</p>
+                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+                  <li>Use <code>contained</code> when aligning with page content and <code>full</code> when the background spans the viewport.</li>
+                  <li>Keep copyright text secondary to actionable links.</li>
+                  <li>Use clear group headings when the footer needs scanning support.</li>
+                  <li>Limit each group so the footer does not become an unstructured site map.</li>
+                </ul>
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
                   <li>Keep supporting links quiet and easy to scan.</li>
                   <li>Allow the row to wrap naturally on narrow screens.</li>
@@ -147,6 +172,13 @@ function ComponentsFooterPage() {
                   Accessibility considerations
                 </h2>
 
+                <p className="leading-7 text-muted-foreground">Treat the footer as a named page landmark and make its links behave like normal document navigation.</p>
+                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+                  <li>Use a <code>&lt;footer&gt;</code> region and labeled <code>&lt;nav&gt;</code> for footer navigation.</li>
+                  <li>Use real anchors with useful names, not generic clickable text or icons.</li>
+                  <li>Verify keyboard order, visible focus, target spacing, and text and focus contrast.</li>
+                  <li>Name icon-only social or external links and hide decorative icons from assistive technology.</li>
+                </ul>
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
                   <li>Keep the semantic footer landmark.</li>
                   <li>Use the named Footer navigation landmark when links exist.</li>
@@ -160,6 +192,13 @@ function ComponentsFooterPage() {
                 >
                   Responsive behavior
                 </h2>
+                <p className="leading-7 text-muted-foreground">Footer links should wrap naturally as the viewport narrows rather than forcing horizontal scrolling or unreadable text.</p>
+                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+                  <li>Preserve logical order when rows wrap.</li>
+                  <li>Test long labels, translations, browser zoom, and narrow windows.</li>
+                  <li>Keep enough gap between links for scanning and activation.</li>
+                  <li>If a complex footer needs mobile disclosure later, use an accessible disclosure pattern rather than hiding links with CSS.</li>
+                </ul>
                 <p className="leading-7 text-muted-foreground">
                   On wider screens, the Footer content can sit in one row. On narrow screens, the
                   copyright and link navigation wrap or stack naturally. Nothing is hidden, and the
@@ -179,7 +218,7 @@ function ComponentsFooterPage() {
                 >
                   Examples
                 </h2>
-                <p className="text-sm text-muted-foreground">Try it: Tab through the footer links and resize the page. Confirm that every link has a useful accessible name, focus is visible, and the supporting navigation does not compete with the primary navigation.</p>
+                <p className="text-sm text-muted-foreground">Try it: compare the contained and full-width examples, resize until links wrap, and zoom the browser. Tab through every link and confirm visible focus, logical order, useful labels, and a footer that remains secondary to primary navigation.</p>
 
                 <div className="space-y-8">
                   <ExampleVariation title="Minimal footer" description="A small footer handles ownership and essential supporting destinations." explanation="The footer supports the product; it should not compete with the header or become a second sitemap. Include only destinations people reasonably expect to find there." doItems={["Label supporting navigation separately from primary navigation.", "Keep essential accessibility, privacy, and ownership information easy to find."]} dontItems={["Do not add columns simply to make the footer look substantial.", "Do not hide the accessibility link in an unlabeled collection of links."]}>
@@ -198,8 +237,13 @@ function ComponentsFooterPage() {
                   Resize it to confirm the links wrap instead of overflowing, then tab through every
                   link to check the focus order and accessible names.
                 </p>
-                <div className="overflow-hidden rounded-xl border">
-                  <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+                <div className="space-y-4">
+                  <div className="overflow-hidden rounded-xl border">
+                    <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+                  </div>
+                  <div className="overflow-hidden rounded-xl border">
+                    <Footer size="full" copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+                  </div>
                 </div>
               </section>
             </div>
