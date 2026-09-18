@@ -5,7 +5,6 @@
  * responsive relationship without taking ownership of either area's content.
  */
 
-import { ExampleVariation } from '@/components/layout/example-variation'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
@@ -248,22 +247,17 @@ function ComponentsSplitViewPage() {
                   resize through narrow and wide widths. Confirm that focus returns to the opening
                   control, Main remains first, and neither pane becomes unusably narrow.
                 </p>
-                <div className="space-y-8">
-                  <ExampleVariation
-                    title="Main two-thirds, Secondary one-third"
-                    description="Give Main more room when Secondary provides context, a preview, or supporting details."
-                    explanation="This proportion keeps the primary task visually dominant while preserving a useful supporting area. The demo also shows the secondary area opening and closing in place."
-                    doItems={[
-                      'Use this proportion when the primary task needs more room than its supporting content.',
-                      'Keep the secondary content directly related to the current main task.',
-                      'Check that the main content remains usable when the secondary area is open.',
-                    ]}
-                    dontItems={[
-                      'Do not use the smaller pane for a second task with equal priority.',
-                      'Do not fill the secondary area with unrelated navigation or competing actions.',
-                      'Do not assume the desktop proportion will remain side by side at narrow widths.',
-                    ]}
-                  >
+                <div className="space-y-10">
+                  <div className="space-y-5">
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold tracking-tight">
+                        Main two-thirds, Secondary one-third
+                      </h3>
+                      <p className="text-muted-foreground">
+                        Give Main more room when Secondary provides context, a preview, or
+                        supporting details.
+                      </p>
+                    </div>
                     <SplitPaneDemo
                       secondarySize="third"
                       mainColumns={{
@@ -277,22 +271,41 @@ function ComponentsSplitViewPage() {
                       }}
                       secondaryCardCount={4}
                     />
-                  </ExampleVariation>
-                  <ExampleVariation
-                    title="Main half, Secondary half"
-                    description="Give both areas equal room when people need to compare or move between related views."
-                    explanation="An equal split is useful when neither area should be treated as a narrow detail column. The content and headings should still make the primary relationship clear."
-                    doItems={[
-                      'Use equal space for related views with comparable importance.',
-                      'Keep the relationship between the two areas explicit through headings and content.',
-                      'Test both panes with realistic content before choosing equal proportions.',
-                    ]}
-                    dontItems={[
-                      'Do not use equal columns when one area is clearly only supporting context.',
-                      'Do not allow dense content or long labels to make either pane difficult to use.',
-                      'Do not treat equal width as equal priority when the task order still matters.',
-                    ]}
-                  >
+                    <p className="text-muted-foreground">
+                      This proportion keeps the primary task visually dominant while preserving a
+                      useful supporting area.
+                    </p>
+                    <div className="grid gap-8 sm:grid-cols-2">
+                      <div>
+                        <h4 className="font-semibold">Do</h4>
+                        <ul className="mt-3 list-disc space-y-3 pl-5 text-muted-foreground">
+                          <li>Give the primary task more room than its supporting content.</li>
+                          <li>Keep Secondary directly related to the current Main task.</li>
+                          <li>Check that Main remains usable when Secondary is open.</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold">Don&apos;t</h4>
+                        <ul className="mt-3 list-disc space-y-3 pl-5 text-muted-foreground">
+                          <li>Use the smaller pane for a second task with equal priority.</li>
+                          <li>Fill Secondary with unrelated navigation or competing actions.</li>
+                          <li>
+                            Assume the desktop proportion stays side by side at narrow widths.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-5">
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold tracking-tight">
+                        Main half, Secondary half
+                      </h3>
+                      <p className="text-muted-foreground">
+                        Give both areas equal room when people need to compare or move between
+                        related views.
+                      </p>
+                    </div>
                     <SplitPaneDemo
                       secondarySize="half"
                       mainColumns={{
@@ -306,7 +319,39 @@ function ComponentsSplitViewPage() {
                       }}
                       secondaryCardCount={4}
                     />
-                  </ExampleVariation>
+                    <p className="text-muted-foreground">
+                      An equal split is useful when neither area should be treated as a narrow
+                      detail column. Keep the primary relationship clear through headings and
+                      content.
+                    </p>
+                    <div className="grid gap-8 sm:grid-cols-2">
+                      <div>
+                        <h4 className="font-semibold">Do</h4>
+                        <ul className="mt-3 list-disc space-y-3 pl-5 text-muted-foreground">
+                          <li>Use equal space for related views with comparable importance.</li>
+                          <li>Make the relationship between the areas explicit.</li>
+                          <li>
+                            Test both panes with realistic content before choosing equal
+                            proportions.
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold">Don&apos;t</h4>
+                        <ul className="mt-3 list-disc space-y-3 pl-5 text-muted-foreground">
+                          <li>
+                            Use equal columns when one area is clearly only supporting context.
+                          </li>
+                          <li>
+                            Allow dense content or long labels to make either pane difficult to use.
+                          </li>
+                          <li>
+                            Treat equal width as equal priority when task order still matters.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </section>
             </div>
