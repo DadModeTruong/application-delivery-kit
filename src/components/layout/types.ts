@@ -16,7 +16,7 @@ import type { LucideIcon } from 'lucide-react'
  * A leaf nav item — a real link to a page.
  *
  * Used everywhere a nav renders individual clickable links: Header
- * (primary + drawer), Footer, SecondaryNav, Sidebar, and inside
+ * (primary + drawer), Footer, TabNavigation, Sidebar, and inside
  * NavParent.children (dropdown menus).
  *
  * @property href     - The URL the link points to.
@@ -75,7 +75,7 @@ export type NavParent = {
  * A nav entry — either a leaf link or a parent with a submenu.
  *
  * Consumers that support dropdowns (Header primary nav) accept
- * `NavItem[]`. Consumers that don't (Footer, SecondaryNav, Sidebar
+ * `NavItem[]`. Consumers that don't (Footer, TabNavigation, Sidebar
  * items) accept `NavLeaf[]` directly — dropdowns don't make
  * semantic sense in those places.
  *

@@ -13,7 +13,7 @@ import { Footer } from '@/components/layout/footer'
 import { PageBody } from '@/components/layout/page-body'
 import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
-import { SecondaryNav } from '@/components/layout/secondary-nav'
+import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Button, LinkButton } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -52,8 +52,8 @@ const componentSidebarLinks: (NavLeaf | NavGroup)[] = [
 function ComponentsButtonsPage() {
   return (
     <LayoutProvider
-      secondaryNav={componentSectionLinks}
-      secondaryNavLabel="Component areas"
+      tabNavigation={componentSectionLinks}
+      tabNavigationLabel="Component areas"
       sidebarNav={componentSidebarLinks}
       sidebarNavLabel="Interaction"
       activeHref="/components/button"
@@ -61,7 +61,7 @@ function ComponentsButtonsPage() {
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Component areas" activeHref="/components/interaction" />
+        <TabNavigation aria-label="Component areas" activeHref="/components/interaction" />
         <PageBody>
           <Sidebar aria-label="Interaction components" />
           <Main size="full">

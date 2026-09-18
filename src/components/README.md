@@ -13,7 +13,7 @@ authorship model.
 
 - **`layout/`** — Hand-written layout primitives and composed
   components (Container, PageShell, PageBody, Header, Main, Footer,
-  SecondaryNav, Sidebar, LayoutProvider). These follow our in-repo
+  TabNavigation, Sidebar, LayoutProvider). These follow our in-repo
   authoring conventions. See [`layout/README.md`](./layout/README.md)
   for the pattern.
 
@@ -35,7 +35,7 @@ hand-written work outside that blast radius.
 Types used by two or more layout components live in
 [`layout/types.ts`](./layout/types.ts). Current shared types:
 
-- `NavLeaf` — consumed by Header, Footer, SecondaryNav, Sidebar,
+- `NavLeaf` — consumed by Header, Footer, TabNavigation, Sidebar,
   MobileNav, and inside `NavParent.children`
 - `NavParent` — consumed by Header (via `NavItem` union)
 - `NavItem` — union of `NavLeaf | NavParent`, consumed by Header
@@ -58,7 +58,7 @@ import { Main } from "@/components/layout/main"
 import { Footer } from "@/components/layout/footer"
 import { PageShell } from "@/components/layout/page-shell"
 import { PageBody } from "@/components/layout/page-body"
-import { SecondaryNav } from "@/components/layout/secondary-nav"
+import { TabNavigation } from "@/components/layout/tab-navigation"
 import { Sidebar } from "@/components/layout/sidebar"
 import { Header, SkipLink } from "@/components/layout/header"
 import { LayoutProvider } from "@/components/layout/layout-provider"

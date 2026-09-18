@@ -12,7 +12,7 @@ import { Footer } from '@/components/layout/footer'
 import { PageBody } from '@/components/layout/page-body'
 import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
-import { SecondaryNav } from '@/components/layout/secondary-nav'
+import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Columns } from '@/components/layout/columns'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
@@ -59,8 +59,8 @@ const sidebarEntries: (NavLeaf | NavGroup)[] = [
 function LayoutsFullPage() {
   return (
     <LayoutProvider
-      secondaryNav={sectionNav}
-      secondaryNavLabel="Documentation"
+      tabNavigation={sectionNav}
+      tabNavigationLabel="Documentation"
       sidebarNav={sidebarEntries}
       sidebarNavLabel="On this page"
       activeHref="/layouts/full"
@@ -68,7 +68,7 @@ function LayoutsFullPage() {
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Documentation" />
+        <TabNavigation aria-label="Documentation" />
         <PageBody>
           <Sidebar aria-label="On this page" />
           <Main size="full">
@@ -160,7 +160,7 @@ function LayoutsFullPage() {
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Give Header, SecondaryNav, and Sidebar distinct accessible names.</li>
+                  <li>Give Header, TabNavigation, and Sidebar distinct accessible names.</li>
                   <li>
                     Keep one clear <code>h1</code> in Main and verify that Main remains first in the
                     reading order.
@@ -180,7 +180,7 @@ function LayoutsFullPage() {
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  On a narrow screen, SecondaryNav and the Sidebar move into the mobile menu, and
+                  On a narrow screen, TabNavigation and the Sidebar move into the mobile menu, and
                   Main begins with one vertical stack. On wider screens, the section-link row and
                   Sidebar take their places, while cards use only the remaining Main width. Main
                   stays first in the reading order, and each navigation region keeps its own job.
@@ -197,7 +197,7 @@ function LayoutsFullPage() {
                   </h2>
                   <p className="leading-7 text-muted-foreground">
                     Start with one content group in a vertical stack. As the available width grows,
-                    cards can sit side by side, but SecondaryNav and the Sidebar both reduce the
+                    cards can sit side by side, but TabNavigation and the Sidebar both reduce the
                     space available to each card.
                   </p>
                   <p className="leading-7 text-muted-foreground">
@@ -219,7 +219,7 @@ function LayoutsFullPage() {
                   Optional split view
                 </h2>
                 <p className="text-muted-foreground">
-                  The base layout already uses Header navigation, SecondaryNav, and Sidebar. A split
+                  The base layout already uses Header navigation, TabNavigation, and Sidebar. A split
                   view is an optional extension for supporting content inside Main, not another
                   required navigation layer. Because the shell already uses substantial width, this
                   example uses an even split.

@@ -1,17 +1,17 @@
 /**
  * LayoutProvider — shares layout config across page-chrome components.
  *
- * Some layout components (SecondaryNav, Sidebar) need to appear in
+ * Some layout components (TabNavigation, Sidebar) need to appear in
  * two places: their own dedicated slot on desktop, and inside the
  * Header's mobile drawer. Rather than duplicate their `items` prop
  * on both Header and the component itself, consumers pass config
  * to a single provider and both components read it.
  *
- * The provider is optional — SecondaryNav and Sidebar can be used
+ * The provider is optional — TabNavigation and Sidebar can be used
  * standalone by passing props directly. Explicit props always
  * override context (standard React pattern).
  *
- * `secondaryNavLabel` / `sidebarNavLabel` are visible drawer
+ * `tabNavigationLabel` / `sidebarNavLabel` are visible drawer
  * headings, separate from the components' `aria-label` (which is
  * the landmark name for screen readers). Usually you'll set both
  * to the same value, but they're independent so consumers can pick
@@ -20,15 +20,15 @@
  *
  * @example
  * <LayoutProvider
- *   secondaryNav={[
+ *   tabNavigation={[
  *     { href: "/docs/overview", label: "Overview" },
  *     { href: "/docs/theming", label: "Theming" },
  *   ]}
- *   secondaryNavLabel="Documentation"
+ *   tabNavigationLabel="Documentation"
  *   activeHref={pathname}
  * >
  *   <Header logo={...} nav={primaryNav} />
- *   <SecondaryNav aria-label="Documentation" />
+ *   <TabNavigation aria-label="Documentation" />
  *   <Main>...</Main>
  *   <Footer copyright={...} />
  * </LayoutProvider>
@@ -43,26 +43,26 @@ import type { NavLeaf, NavGroup } from './types'
 
 type LayoutContextValue = {
   /**
-   * Items for the SecondaryNav component. When present, Header's
+   * Items for the TabNavigation component. When present, Header's
    * mobile drawer will render them below the primary nav.
    *
-   * Typed as NavLeaf[] because SecondaryNav doesn't support
+   * Typed as NavLeaf[] because TabNavigation doesn't support
    * dropdowns — its consumers are tabs, which shouldn't have
    * submenus. (Header's `nav` prop still accepts NavItem[] with
    * NavParent dropdowns; those live on the primary nav only.)
    */
-  secondaryNav?: NavLeaf[]
+  tabNavigation?: NavLeaf[]
   /**
-   * Visible heading text for the secondary-nav section inside
+   * Visible heading text for the tab-navigation section inside
    * Header's mobile drawer. When omitted, the drawer uses a
    * generic fallback ("Section"). Usually set to the same value
-   * as SecondaryNav's `aria-label` for consistency.
+   * as TabNavigation's `aria-label` for consistency.
    */
-  secondaryNavLabel?: string
+  tabNavigationLabel?: string
   /**
    * Items for the Sidebar component. When present, Header's mobile
    * drawer will render them below the primary nav (and below
-   * secondaryNav if both are present).
+   * tabNavigation if both are present).
    *
    * Typed as (NavLeaf | NavGroup)[] — Sidebar supports grouping
    * as its hierarchy primitive but not dropdowns.
@@ -76,7 +76,7 @@ type LayoutContextValue = {
    */
   sidebarNavLabel?: string
   /**
-   * Currently active URL. Used by SecondaryNav and Sidebar to
+   * Currently active URL. Used by TabNavigation and Sidebar to
    * apply `aria-current="page"` and active-state styling. Match
    * is exact (`item.href === activeHref`).
    */
@@ -86,7 +86,7 @@ type LayoutContextValue = {
 // Safe default: an empty object. useLayout() never returns
 // undefined, so consumers can destructure without null-checks.
 // A component with no provider above it behaves as if all
-// context fields were omitted — SecondaryNav/Sidebar fall back
+// context fields were omitted — TabNavigation/Sidebar fall back
 // to their own props or render nothing.
 const LayoutContext = React.createContext<LayoutContextValue>({})
 
@@ -113,15 +113,15 @@ function LayoutProvider({ children, ...value }: LayoutProviderProps) {
   // render, so we can't just pass `value` directly.
   const memoized = React.useMemo<LayoutContextValue>(
     () => ({
-      secondaryNav: value.secondaryNav,
-      secondaryNavLabel: value.secondaryNavLabel,
+      tabNavigation: value.tabNavigation,
+      tabNavigationLabel: value.tabNavigationLabel,
       sidebarNav: value.sidebarNav,
       sidebarNavLabel: value.sidebarNavLabel,
       activeHref: value.activeHref,
     }),
     [
-      value.secondaryNav,
-      value.secondaryNavLabel,
+      value.tabNavigation,
+      value.tabNavigationLabel,
       value.sidebarNav,
       value.sidebarNavLabel,
       value.activeHref,
@@ -143,10 +143,10 @@ function LayoutProvider({ children, ...value }: LayoutProviderProps) {
  * field as potentially undefined.
  *
  * @example
- * function SecondaryNav({ items: itemsProp, activeHref: activeProp }: Props) {
+ * function TabNavigation({ items: itemsProp, activeHref: activeProp }: Props) {
  *   const ctx = useLayout()
  *   // Explicit prop overrides context, context falls back to []
- *   const items = itemsProp ?? ctx.secondaryNav ?? []
+ *   const items = itemsProp ?? ctx.tabNavigation ?? []
  *   const activeHref = activeProp ?? ctx.activeHref
  *   ...
  * }

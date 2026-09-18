@@ -3,7 +3,7 @@
  *
  * Every page in the demo (and every consumer app using this kit)
  * wraps its shell in the same pattern: SkipLink, Header, optional
- * SecondaryNav / PageBody, Main, Footer. Without a wrapping element
+ * TabNavigation / PageBody, Main, Footer. Without a wrapping element
  * that owns the viewport height, short pages leave the Footer
  * floating mid-viewport — the browser has no reason to push it down
  * because the content doesn't fill the screen.
@@ -75,11 +75,11 @@ type PageShellProps = React.ComponentProps<'div'>
  * </PageShell>
  *
  * @example
- * // Full layout — SecondaryNav sits between Header and PageBody.
+ * // Full layout — TabNavigation sits between Header and PageBody.
  * <PageShell>
  *   <SkipLink />
  *   <Header ... />
- *   <SecondaryNav ... />
+ *   <TabNavigation ... />
  *   <PageBody>
  *     <Sidebar ... />
  *     <Main size="full">...</Main>

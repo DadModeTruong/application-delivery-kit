@@ -11,7 +11,7 @@ import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { PageBody } from '@/components/layout/page-body'
 import { LayoutProvider } from '@/components/layout/layout-provider'
-import { SecondaryNav } from '@/components/layout/secondary-nav'
+import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
@@ -37,7 +37,7 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
     label: 'Navigation',
     items: [
       { href: '/components/header', label: 'Header', icon: PanelTop },
-      { href: '/components/secondary-nav', label: 'SecondaryNav', icon: List },
+      { href: '/components/tab-navigation', label: 'TabNavigation', icon: List },
       { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
       { href: '/components/footer', label: 'Footer', icon: PanelBottom },
     ],
@@ -54,8 +54,8 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
 function ComponentsHeaderPage() {
   return (
     <LayoutProvider
-      secondaryNav={componentSectionLinks}
-      secondaryNavLabel="Component areas"
+      tabNavigation={componentSectionLinks}
+      tabNavigationLabel="Component areas"
       sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
       activeHref="/components/header"
@@ -63,7 +63,7 @@ function ComponentsHeaderPage() {
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Component areas" activeHref="/components/user-interface" />
+        <TabNavigation aria-label="Component areas" activeHref="/components/user-interface" />
         <PageBody>
           <Sidebar aria-label="User Interface" />
           <Main size="full">

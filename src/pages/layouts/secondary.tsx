@@ -1,7 +1,7 @@
 /**
  * LayoutsSecondaryPage — reference guide for section-level navigation.
  *
- * Explains when a horizontal secondary navigation helps people move between
+ * Explains when a horizontal tab navigation helps people move between
  * sibling pages, and when it creates unnecessary competition with primary nav.
  */
 
@@ -10,7 +10,7 @@ import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
-import { SecondaryNav } from '@/components/layout/secondary-nav'
+import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Columns } from '@/components/layout/columns'
 import type { NavLeaf } from '@/components/layout/types'
 import { DemoCard } from '../demos/demo-card'
@@ -42,14 +42,14 @@ const sectionNav: NavLeaf[] = [
 function LayoutsSecondaryPage() {
   return (
     <LayoutProvider
-      secondaryNav={sectionNav}
-      secondaryNavLabel="Documentation"
+      tabNavigation={sectionNav}
+      tabNavigationLabel="Documentation"
       activeHref="/layouts/secondary"
     >
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Documentation" />
+        <TabNavigation aria-label="Documentation" />
         <Main>
           <div className="space-y-14 pb-12">
             <section className="space-y-5 pt-6" aria-labelledby="secondary-heading">
@@ -135,7 +135,7 @@ function LayoutsSecondaryPage() {
 
               <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
                 <li>
-                  Give SecondaryNav its own accessible name so it is distinct from Header
+                  Give TabNavigation its own accessible name so it is distinct from Header
                   navigation.
                 </li>
                 <li>
@@ -159,7 +159,7 @@ function LayoutsSecondaryPage() {
               </h2>
               <p className="leading-7 text-muted-foreground">
                 On a narrow screen, the section links move into the mobile menu and Main begins with
-                one vertical stack. On wider screens, the named SecondaryNav stays above Main, while
+                one vertical stack. On wider screens, the named TabNavigation stays above Main, while
                 cards move side by side only when the remaining content width keeps them comfortable
                 to read.
               </p>
@@ -200,7 +200,7 @@ function LayoutsSecondaryPage() {
                 Optional split view
               </h2>
               <p className="text-muted-foreground">
-                The base layout uses SecondaryNav above one Main area. A split view is an optional
+                The base layout uses TabNavigation above one Main area. A split view is an optional
                 extension for pages that also need supporting content beside the primary work. The
                 demonstrations show two ways to share the remaining width.
               </p>

@@ -24,7 +24,7 @@ import { LayoutsSecondaryPage } from './layouts/secondary'
 import { LayoutsSidebarPage } from './layouts/sidebar'
 import { LayoutsFullPage } from './layouts/full'
 import { ComponentsHeaderPage } from './components/header'
-import { ComponentsSecondaryNavPage } from './components/secondary-nav'
+import { ComponentsTabNavigationPage } from './components/tab-navigation'
 import { ComponentsSidebarPage } from './components/sidebar'
 import { ComponentsFooterPage } from './components/footer'
 import { ComponentsCardsPage } from './components/cards'
@@ -70,7 +70,7 @@ const routes: Route[] = [
   { path: '/layouts/sidebar', component: LayoutsSidebarPage },
   { path: '/layouts/full', component: LayoutsFullPage },
   { path: '/components/header', component: ComponentsHeaderPage },
-  { path: '/components/secondary-nav', component: ComponentsSecondaryNavPage },
+  { path: '/components/tab-navigation', component: ComponentsTabNavigationPage },
   { path: '/components/sidebar', component: ComponentsSidebarPage },
   { path: '/components/footer', component: ComponentsFooterPage },
   { path: '/components/user-interface', component: ComponentsUserInterfacePage },

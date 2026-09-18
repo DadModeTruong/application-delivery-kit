@@ -17,11 +17,11 @@
  * appear as labeled groups with indented children in the drawer.
  *
  * When a LayoutProvider is above Header in the tree with
- * `secondaryNav` or `sidebarNav` config, those items are rendered
+ * `tabNavigation` or `sidebarNav` config, those items are rendered
  * as extra sections inside the mobile drawer — so consumers get
- * a single unified menu on mobile without SecondaryNav / Sidebar
+ * a single unified menu on mobile without TabNavigation / Sidebar
  * needing their own drawers. The drawer section headings come
- * from `secondaryNavLabel` / `sidebarNavLabel` on the provider.
+ * from `tabNavigationLabel` / `sidebarNavLabel` on the provider.
  *
  * Renders semantic <header> + <nav aria-label="Primary"> for
  * screen-reader landmark navigation.
@@ -221,11 +221,11 @@ const inlineTriggerClass =
 function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained' }: HeaderProps) {
   const scrolled = useScrolledPast(10)
 
-  // Pull secondaryNav / sidebarNav (plus their drawer heading
+  // Pull tabNavigation / sidebarNav (plus their drawer heading
   // labels) from LayoutProvider so MobileNav can render them
   // as extra drawer sections. Empty object default means no
   // provider = no extra sections.
-  const { secondaryNav, secondaryNavLabel, sidebarNav, sidebarNavLabel } = useLayout()
+  const { tabNavigation, tabNavigationLabel, sidebarNav, sidebarNavLabel } = useLayout()
 
   // Tailwind can't consume dynamic class strings, so we map the
   // breakpoint prop to a static class string. `hidden md:flex`
@@ -290,7 +290,7 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
 
           {/* Actions + mobile hamburger.
               Actions are always visible; hamburger is breakpoint-gated.
-              secondaryNav/sidebarNav (+ their labels) come from
+              tabNavigation/sidebarNav (+ their labels) come from
               LayoutProvider context and get rendered as extra drawer
               sections on mobile. */}
           <div className="flex items-center gap-2">
@@ -298,8 +298,8 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
             <div className={mobileNavVisibility}>
               <MobileNav
                 nav={nav}
-                secondaryNav={secondaryNav}
-                secondaryNavLabel={secondaryNavLabel}
+                tabNavigation={tabNavigation}
+                tabNavigationLabel={tabNavigationLabel}
                 sidebarNav={sidebarNav}
                 sidebarNavLabel={sidebarNavLabel}
               />

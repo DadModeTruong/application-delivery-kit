@@ -6,7 +6,7 @@ conventions below. Reference implementations:
 - `container.tsx` — the simplest example (variants + cva)
 - `main.tsx`, `footer.tsx`, `page-body.tsx`, `page-shell.tsx` —
   preset components (no variants, no cva)
-- `secondary-nav.tsx` — preset with LayoutProvider integration and
+- `tab-navigation.tsx` — preset with LayoutProvider integration and
   Nova pill styling on real anchor navigation
 - `sidebar/` — multi-file component with barrel; Nova visual language
 - `header/` — multi-file component with barrel (includes MobileNav, SkipLink)
@@ -127,7 +127,7 @@ export { Component, type ComponentProps }
 
 ## Layout size API (page-chrome consistency)
 
-Header, Main, Footer, PageBody, and SecondaryNav share a single
+Header, Main, Footer, PageBody, and TabNavigation share a single
 `size` prop with two values:
 
 - **`"contained"`** (default) — Container `2xl` (~1536px max-width).
@@ -185,31 +185,31 @@ PageShell.
 
 ### With secondary tabs above main
 
-SecondaryNav sits between Header and Main (or Header and PageBody).
+TabNavigation sits between Header and Main (or Header and PageBody).
 Reads its items from LayoutProvider so the mobile drawer picks them up
 too:
 
 ```tsx
-<LayoutProvider secondaryNav={sectionTabs} secondaryNavLabel="Docs">
+<LayoutProvider tabNavigation={sectionTabs} tabNavigationLabel="Docs">
   <PageShell>
     <Header />
-    <SecondaryNav aria-label="Docs" />
+    <TabNavigation aria-label="Docs" />
     <Main>…</Main>
     <Footer />
   </PageShell>
 </LayoutProvider>
 ```
 
-### Full docs shell (SecondaryNav + Sidebar)
+### Full docs shell (TabNavigation + Sidebar)
 
 Combines everything. LayoutProvider sits outside PageShell so its
 context is available to Header (for the mobile drawer) as well as
-SecondaryNav and Sidebar.
+TabNavigation and Sidebar.
 
 ```tsx
 <LayoutProvider
-  secondaryNav={sectionTabs}
-  secondaryNavLabel="Documentation"
+  tabNavigation={sectionTabs}
+  tabNavigationLabel="Documentation"
   sidebarNav={sidebarEntries}
   sidebarNavLabel="On this page"
   activeHref={pathname}
@@ -217,7 +217,7 @@ SecondaryNav and Sidebar.
   <PageShell>
     <SkipLink />
     <Header />
-    <SecondaryNav aria-label="Documentation" />
+    <TabNavigation aria-label="Documentation" />
     <PageBody>
       <Sidebar aria-label="On this page" />
       <Main size="full">…</Main>
@@ -253,22 +253,22 @@ inner components.
 
 ## LayoutProvider — shared config for multi-slot components
 
-Some components (`SecondaryNav`, `Sidebar`) need to appear in **two
+Some components (`TabNavigation`, `Sidebar`) need to appear in **two
 places at once**: their dedicated desktop slot, AND inside Header's
 mobile drawer. `LayoutProvider` centralizes their config so consumers
 don't pass items twice.
 
 ```tsx
 <LayoutProvider
-  secondaryNav={sectionTabs}
-  secondaryNavLabel="Documentation"   // drawer heading, matches aria-label
+  tabNavigation={sectionTabs}
+  tabNavigationLabel="Documentation"   // drawer heading, matches aria-label
   sidebarNav={sidebarEntries}
   sidebarNavLabel="On this page"      // drawer heading
   activeHref={pathname}
 >
   <PageShell>
     <Header />
-    <SecondaryNav aria-label="Documentation" />
+    <TabNavigation aria-label="Documentation" />
     <PageBody>
       <Sidebar aria-label="On this page" />
       <Main size="full">…</Main>
@@ -279,9 +279,9 @@ don't pass items twice.
 ```
 
 **Rules of thumb:**
-- Explicit props on `SecondaryNav` / `Sidebar` override context.
+- Explicit props on `TabNavigation` / `Sidebar` override context.
 - Provider is optional — components work with just props too.
-- `secondaryNavLabel` / `sidebarNavLabel` control the drawer section
+- `tabNavigationLabel` / `sidebarNavLabel` control the drawer section
   headings. Set them alongside items when using the provider.
 - `aria-label` on the components themselves is still required — it's
   the landmark name for screen readers, independent of the drawer
@@ -306,9 +306,9 @@ A discriminated union covers three shapes:
 | --- | --- |
 | `Header.nav` | `NavItem[]` (= `(NavLeaf \| NavParent)[]`) |
 | `Footer.links` | `NavLeaf[]` |
-| `SecondaryNav.items` | `NavLeaf[]` |
+| `TabNavigation.items` | `NavLeaf[]` |
 | `Sidebar.items` | `(NavLeaf \| NavGroup)[]` |
-| `LayoutContext.secondaryNav` | `NavLeaf[]` |
+| `LayoutContext.tabNavigation` | `NavLeaf[]` |
 | `LayoutContext.sidebarNav` | `(NavLeaf \| NavGroup)[]` |
 
 Only Header supports dropdowns. Only Sidebar supports groups. Both
@@ -338,9 +338,9 @@ Any icon-shaped React component (`(props) => JSX`) satisfies
 `LucideIcon` — bring your own SVG if needed (see CONTRIBUTING for the
 brand-icon inline-SVG pattern).
 
-## SecondaryNav — Nova pill styling on real anchors
+## TabNavigation — Nova pill styling on real anchors
 
-SecondaryNav renders a shadcn Nova "pill" tab row inside a muted
+TabNavigation renders a shadcn Nova "pill" tab row inside a muted
 rounded tray, but is built on real `<a>` anchors — not React Aria
 Tabs. The `ui/tabs.tsx` primitive is React Aria under the hood and
 manages selection state internally; it can't drive anchor navigation
@@ -349,11 +349,11 @@ inside a `role="tab"` element also produces invalid ARIA.
 
 Rule: use `ui/tabs.tsx` for real tab-panel UIs (settings screens,
 preview/code toggles). For navigate-between-pages scenarios like
-SecondaryNav, hand-roll pill classes on `<nav>` + `<a>` so
+TabNavigation, hand-roll pill classes on `<nav>` + `<a>` so
 middle-click, Cmd+click, browser tooltips, and crawlability all work.
 
 Structural pattern for a hugged widget that aligns with page content
-(SecondaryNav uses this):
+(TabNavigation uses this):
 
 ```
 <nav> full-width landmark, py-3 breathing room
@@ -385,7 +385,7 @@ each its own `<nav>` landmark:
 1. **Primary** — always present. Renders `Header.nav`. `NavParent`
    items appear as small-caps labels with indented children (no
    dropdown on touch).
-2. **{secondaryNavLabel}** — rendered when `LayoutContext.secondaryNav`
+2. **{tabNavigationLabel}** — rendered when `LayoutContext.tabNavigation`
    is set. Section heading uses the label; falls back to "Section".
 3. **{sidebarNavLabel}** — rendered when `LayoutContext.sidebarNav`
    is set. Groups render as small-caps sub-labels with indented items.
@@ -415,7 +415,7 @@ Layout-provider follows the same "accepted warning" pattern for its
 ## When to use a folder vs. a single file
 
 - **Single file** (`container.tsx`, `main.tsx`, `footer.tsx`,
-  `secondary-nav.tsx`, `page-body.tsx`, `page-shell.tsx`,
+  `tab-navigation.tsx`, `page-body.tsx`, `page-shell.tsx`,
   `layout-provider.tsx`) — one component, one file. Use this by default.
 - **Folder** (`header/`, `sidebar/`) — the component has ~3+ concerns
   worth splitting (Header has SkipLink + MobileNav + main composition;

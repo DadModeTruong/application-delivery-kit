@@ -22,7 +22,7 @@ import { cn } from 'cn'
  *
  * Exported so wrapper components can reuse the exact class output
  * without re-implementing the size mapping. Header, Footer, Main,
- * PageBody, and SecondaryNav all delegate width to Container via
+ * PageBody, and TabNavigation all delegate width to Container via
  * this function.
  *
  * @example

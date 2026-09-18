@@ -15,11 +15,11 @@ Open the local URL printed by Vite. The app uses clean, history-based routes:
 
 - `/` — project introduction
 - `/layouts/header-only` — Header, Main, and Footer
-- `/layouts/secondary` — SecondaryNav with Main
+- `/layouts/secondary` — TabNavigation with Main
 - `/layouts/sidebar` — Sidebar beside Main
-- `/layouts/full` — SecondaryNav and Sidebar together
+- `/layouts/full` — TabNavigation and Sidebar together
 - `/components/header` — primary Header navigation
-- `/components/secondary-nav` — SecondaryNav
+- `/components/tab-navigation` — TabNavigation
 - `/components/sidebar` — Sidebar navigation
 - `/components/footer` — supporting Footer links
 

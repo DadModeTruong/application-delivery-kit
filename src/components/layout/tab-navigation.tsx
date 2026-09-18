@@ -1,5 +1,5 @@
 /**
- * SecondaryNav — horizontal sub-nav bar below the Header.
+ * TabNavigation — horizontal sub-nav bar below the Header.
  *
  * Sits between Header and Main to provide section-level navigation
  * (e.g., Docs → Overview / Installation / Theming). Not sticky —
@@ -45,7 +45,7 @@ import type { NavLeaf } from './types'
 // Types
 // ---------------------------------------------------------------
 
-type SecondaryNavProps = {
+type TabNavigationProps = {
   /**
    * Accessible name for the landmark. Required — screen readers
    * announce this when users jump between page landmarks. Use a
@@ -54,7 +54,7 @@ type SecondaryNavProps = {
   'aria-label': string
   /**
    * Nav items. When omitted, reads from LayoutProvider's
-   * `secondaryNav`. Explicit prop overrides context.
+   * `tabNavigation`. Explicit prop overrides context.
    *
    * Typed as NavLeaf[] (not NavItem[]) — dropdowns don't
    * semantically belong in a tab bar. If you need multi-level
@@ -90,15 +90,15 @@ type SecondaryNavProps = {
  * picks up the same items via LayoutProvider context.
  *
  * @example
- * <LayoutProvider secondaryNav={docsNav} activeHref={pathname}>
+ * <LayoutProvider tabNavigation={docsNav} activeHref={pathname}>
  *   <Header logo={...} nav={primaryNav} />
- *   <SecondaryNav aria-label="Docs" />
+ *   <TabNavigation aria-label="Docs" />
  *   <Main>...</Main>
  * </LayoutProvider>
  *
  * @example
  * // Standalone (no provider), explicit props:
- * <SecondaryNav
+ * <TabNavigation
  *   aria-label="Docs"
  *   items={[
  *     { href: "/docs/overview", label: "Overview" },
@@ -107,26 +107,26 @@ type SecondaryNavProps = {
  *   activeHref="/docs/theming"
  * />
  */
-function SecondaryNav({
+function TabNavigation({
   'aria-label': ariaLabel,
   items: itemsProp,
   activeHref: activeHrefProp,
   size = 'contained',
-}: SecondaryNavProps) {
+}: TabNavigationProps) {
   const ctx = useLayout()
 
   // Explicit prop wins, then context, then empty array.
-  const items = itemsProp ?? ctx.secondaryNav ?? []
+  const items = itemsProp ?? ctx.tabNavigation ?? []
   const activeHref = activeHrefProp ?? ctx.activeHref
 
   // No items resolved — render nothing. Safe no-op so consumers
-  // can drop <SecondaryNav /> into a shell unconditionally.
+  // can drop <TabNavigation /> into a shell unconditionally.
   if (items.length === 0) return null
 
   return (
     <nav
       aria-label={ariaLabel}
-      data-slot="secondary-nav"
+      data-slot="tab-navigation"
       data-size={size}
       className={cn(
         // Hidden on mobile — Header's drawer renders these items.
@@ -198,4 +198,4 @@ function SecondaryNav({
   )
 }
 
-export { SecondaryNav, type SecondaryNavProps }
+export { TabNavigation, type TabNavigationProps }

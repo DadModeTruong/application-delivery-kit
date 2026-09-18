@@ -12,15 +12,15 @@
  * a labeled sub-group with indented children rather than as a
  * dropdown (dropdowns inside a drawer would be awkward on touch).
  *
- * When Header is inside a LayoutProvider that supplies secondaryNav
+ * When Header is inside a LayoutProvider that supplies tabNavigation
  * or sidebarNav, those items appear as extra drawer sections below
  * the primary nav — divided visually so screen-reader landmark
  * navigation still works section-by-section. Section headings come
- * from `secondaryNavLabel` / `sidebarNavLabel` on the provider,
+ * from `tabNavigationLabel` / `sidebarNavLabel` on the provider,
  * with generic fallbacks if the consumer omitted them.
  *
  * Visual hierarchy (small-caps at every level, sized to signal depth):
- * - SectionHeading (secondaryNavLabel, sidebarNavLabel): landmark
+ * - SectionHeading (tabNavigationLabel, sidebarNavLabel): landmark
  *   boundary — biggest.
  * - SubGroupLabel (NavParent labels, NavGroup labels): sub-group
  *   inside a section — smaller + lighter weight, indented children.
@@ -44,16 +44,16 @@ type MobileNavProps = {
    */
   nav: NavItem[]
   /**
-   * Optional secondary nav items (from LayoutProvider). Rendered
+   * Optional tab navigation items (from LayoutProvider). Rendered
    * as a second section under the primary nav with its own heading.
    */
-  secondaryNav?: NavLeaf[]
+  tabNavigation?: NavLeaf[]
   /**
    * Visible heading text for the secondary section (from
-   * LayoutProvider's `secondaryNavLabel`). Falls back to a generic
+   * LayoutProvider's `tabNavigationLabel`). Falls back to a generic
    * label when omitted.
    */
-  secondaryNavLabel?: string
+  tabNavigationLabel?: string
   /**
    * Optional sidebar nav items (from LayoutProvider). Rendered as
    * a third section — supports flat items or grouped items.
@@ -180,26 +180,26 @@ function DrawerParent({
  * // Rendered internally by Header (not called directly):
  * <MobileNav
  *   nav={primaryNav}
- *   secondaryNav={ctx.secondaryNav}
- *   secondaryNavLabel={ctx.secondaryNavLabel}
+ *   tabNavigation={ctx.tabNavigation}
+ *   tabNavigationLabel={ctx.tabNavigationLabel}
  *   sidebarNav={ctx.sidebarNav}
  *   sidebarNavLabel={ctx.sidebarNavLabel}
  * />
  */
 function MobileNav({
   nav,
-  secondaryNav,
-  secondaryNavLabel,
+  tabNavigation,
+  tabNavigationLabel,
   sidebarNav,
   sidebarNavLabel,
 }: MobileNavProps) {
-  const hasSecondary = secondaryNav && secondaryNav.length > 0
+  const hasSecondary = tabNavigation && tabNavigation.length > 0
   const hasSidebar = sidebarNav && sidebarNav.length > 0
 
   // Section-heading text: consumer-provided label wins, generic
   // fallback otherwise. Kept in variables for readability at the
   // render site.
-  const secondaryHeading = secondaryNavLabel ?? 'Section'
+  const secondaryHeading = tabNavigationLabel ?? 'Section'
   const sidebarHeading = sidebarNavLabel ?? 'Pages'
 
   return (
@@ -244,7 +244,7 @@ function MobileNav({
               <hr className="my-2 border-border" />
               <SectionHeading id="mobile-nav-secondary">{secondaryHeading}</SectionHeading>
               <nav aria-labelledby="mobile-nav-secondary" className="flex flex-col gap-1">
-                {secondaryNav.map((item) => (
+                {tabNavigation.map((item) => (
                   <DrawerLink key={item.href} item={item} />
                 ))}
               </nav>

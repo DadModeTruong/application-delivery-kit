@@ -1,6 +1,6 @@
 import { ExampleVariation } from '@/components/layout/example-variation'
 /**
- * ComponentsSecondaryNavPage — SecondaryNav component usage guide.
+ * ComponentsTabNavigationPage — TabNavigation component usage guide.
  *
  * Explains how to keep a short set of peer links together inside a section.
  */
@@ -9,7 +9,7 @@ import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { PageBody } from '@/components/layout/page-body'
 import { LayoutProvider } from '@/components/layout/layout-provider'
-import { SecondaryNav } from '@/components/layout/secondary-nav'
+import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
@@ -35,7 +35,7 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
     label: 'Navigation',
     items: [
       { href: '/components/header', label: 'Header', icon: PanelTop },
-      { href: '/components/secondary-nav', label: 'SecondaryNav', icon: List },
+      { href: '/components/tab-navigation', label: 'TabNavigation', icon: List },
       { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
       { href: '/components/footer', label: 'Footer', icon: PanelBottom },
     ],
@@ -49,19 +49,19 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
     items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
   },
 ]
-function ComponentsSecondaryNavPage() {
+function ComponentsTabNavigationPage() {
   return (
     <LayoutProvider
-      secondaryNav={componentSectionLinks}
-      secondaryNavLabel="Component areas"
+      tabNavigation={componentSectionLinks}
+      tabNavigationLabel="Component areas"
       sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
-      activeHref="/components/secondary-nav"
+      activeHref="/components/tab-navigation"
     >
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Component areas" activeHref="/components/user-interface" />
+        <TabNavigation aria-label="Component areas" activeHref="/components/user-interface" />
         <PageBody>
           <Sidebar aria-label="User Interface" />
           <Main size="full">
@@ -71,10 +71,10 @@ function ComponentsSecondaryNavPage() {
                   id="navigation-secondary-heading"
                   className="text-4xl font-semibold tracking-tight"
                 >
-                  Secondary navigation
+                  Tab navigation
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
-                  Use SecondaryNav for a short row of peer links inside the current section. On
+                  Use TabNavigation for a short row of peer links inside the current section. On
                   smaller screens, LayoutProvider makes the same links available in the Header
                   drawer.
                 </p>
@@ -87,18 +87,18 @@ function ComponentsSecondaryNavPage() {
                   What is it?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  SecondaryNav gives people nearby context without mixing section links into the
+                  TabNavigation gives people nearby context without mixing section links into the
                   application-wide Header. It renders real anchors and marks the active page with{' '}
                   <code>aria-current="page"</code>.
                 </p>
                 <div className="overflow-hidden rounded-xl border">
-                  <SecondaryNav
+                  <TabNavigation
                     items={[
-                      { label: 'Overview', href: '#secondary-nav-overview' },
-                      { label: 'Guidance', href: '#secondary-nav-guidance' },
-                      { label: 'Resources', href: '#secondary-nav-resources' },
+                      { label: 'Overview', href: '#tab-navigation-overview' },
+                      { label: 'Guidance', href: '#tab-navigation-guidance' },
+                      { label: 'Resources', href: '#tab-navigation-resources' },
                     ]}
-                    aria-label="Secondary navigation example"
+                    aria-label="Tab navigation example"
                   />
                 </div>
               </section>
@@ -200,20 +200,20 @@ function ComponentsSecondaryNavPage() {
                   Examples and variations
                 </h2>
                 <p className="text-muted-foreground">
-                  This example uses the application’s reusable SecondaryNav component for section-level
+                  This example uses the application’s reusable TabNavigation component for section-level
                   links beneath a page or application Header.
                 </p>
                 <p className="text-muted-foreground">
                   Try it: Use Tab to reach the links, activate a destination, and resize the page. On
-                  narrow screens, the visible SecondaryNav row intentionally disappears because the same
+                  narrow screens, the visible TabNavigation row intentionally disappears because the same
                   links move into the Header’s mobile drawer; confirm the destinations remain available
                   there and the active location is still clear.
                 </p>
-                <div className="space-y-8 [&_*:has(>[data-slot=secondary-nav])]:!p-0 [&_*:has(>[data-slot=secondary-nav])]:overflow-hidden">
+                <div className="space-y-8 [&_*:has(>[data-slot=tab-navigation])]:!p-0 [&_*:has(>[data-slot=tab-navigation])]:overflow-hidden">
                   <ExampleVariation
                     title="Basic"
                     description="A short row of links helps people move between closely related pages in the same section."
-                    explanation="SecondaryNav is for the current section’s immediate destinations—not the application’s broadest navigation. The reusable component receives the link data and active destination, then supplies the shared layout, current-state treatment, and responsive behavior used by the application."
+                    explanation="TabNavigation is for the current section’s immediate destinations—not the application’s broadest navigation. The reusable component receives the link data and active destination, then supplies the shared layout, current-state treatment, and responsive behavior used by the application."
                     doItems={[
                       'Use concise, parallel labels that match the destination page titles.',
                       'Pass the current route as activeHref so location is communicated by more than color.',
@@ -227,11 +227,11 @@ function ComponentsSecondaryNavPage() {
                       'Do not make labels vague, inconsistent, or so long that the row becomes difficult to scan or use on small screens.',
                     ]}
                   >
-                    <SecondaryNav
+                    <TabNavigation
                         items={[
-                          { label: 'Overview', href: '#secondary-nav-overview' },
-                          { label: 'Guidance', href: '#secondary-nav-guidance' },
-                          { label: 'Examples', href: '#secondary-nav-examples' },
+                          { label: 'Overview', href: '#tab-navigation-overview' },
+                          { label: 'Guidance', href: '#tab-navigation-guidance' },
+                          { label: 'Examples', href: '#tab-navigation-examples' },
                         ]}
                             aria-label="Project guide sections"
                       />
@@ -250,14 +250,14 @@ function ComponentsSecondaryNavPage() {
                       'Mark multiple destinations active at the same time.',
                     ]}
                   >
-                    <SecondaryNav
+                    <TabNavigation
                       items={[
-                        { label: 'Overview', href: '#secondary-nav-overview' },
-                        { label: 'Guidance', href: '#secondary-nav-guidance' },
-                        { label: 'Resources', href: '#secondary-nav-resources' },
+                        { label: 'Overview', href: '#tab-navigation-overview' },
+                        { label: 'Guidance', href: '#tab-navigation-guidance' },
+                        { label: 'Resources', href: '#tab-navigation-resources' },
                       ]}
-                      activeHref="#secondary-nav-guidance"
-                      aria-label="Secondary navigation with active item"
+                      activeHref="#tab-navigation-guidance"
+                      aria-label="Tab navigation with active item"
                     />
                   </ExampleVariation>
 
@@ -274,13 +274,13 @@ function ComponentsSecondaryNavPage() {
                       'Allow the navigation to create horizontal scrolling for the whole page.',
                     ]}
                   >
-                    <SecondaryNav
+                    <TabNavigation
                       items={[
-                        { label: 'Overview and key decisions', href: '#secondary-nav-overview' },
-                        { label: 'Implementation guidance', href: '#secondary-nav-guidance' },
-                        { label: 'Related resources and references', href: '#secondary-nav-resources' },
+                        { label: 'Overview and key decisions', href: '#tab-navigation-overview' },
+                        { label: 'Implementation guidance', href: '#tab-navigation-guidance' },
+                        { label: 'Related resources and references', href: '#tab-navigation-resources' },
                       ]}
-                        aria-label="Secondary navigation with longer labels"
+                        aria-label="Tab navigation with longer labels"
                     />
                   </ExampleVariation>
                 </div>
@@ -294,4 +294,4 @@ function ComponentsSecondaryNavPage() {
   )
 }
 
-export { ComponentsSecondaryNavPage }
+export { ComponentsTabNavigationPage }

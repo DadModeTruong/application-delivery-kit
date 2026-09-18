@@ -156,7 +156,7 @@ function HomePage() {
               >
                 <h3 className="text-xl font-semibold">Navigation guides</h3>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  Look at the Header, SecondaryNav, Sidebar, and Footer separately. These pages make
+                  Look at the Header, TabNavigation, Sidebar, and Footer separately. These pages make
                   each navigation region's job, mobile behavior, and keyboard expectations easier to
                   review.
                 </p>
@@ -313,10 +313,10 @@ function HomePage() {
                 </p>
               </a>
               <a
-                href="/components/secondary-nav"
+                href="/components/tab-navigation"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <h3 className="font-semibold">SecondaryNav</h3>
+                <h3 className="font-semibold">TabNavigation</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   A related-page row that moves into the mobile hierarchy.
                 </p>

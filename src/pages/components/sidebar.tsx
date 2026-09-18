@@ -9,12 +9,12 @@ import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { PageBody } from '@/components/layout/page-body'
 import { LayoutProvider } from '@/components/layout/layout-provider'
-import { SecondaryNav } from '@/components/layout/secondary-nav'
+import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { primaryNav, footerLinks } from '../page-registry'
-import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
+import { PanelsTopLeft, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
 // ---------------------------------------------------------------
@@ -35,7 +35,7 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
     label: 'Navigation',
     items: [
       { href: '/components/header', label: 'Header', icon: PanelTop },
-      { href: '/components/secondary-nav', label: 'SecondaryNav', icon: List },
+      { href: '/components/tab-navigation', label: 'Tab navigation', icon: PanelsTopLeft },
       { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
       { href: '/components/footer', label: 'Footer', icon: PanelBottom },
     ],
@@ -52,15 +52,15 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
 
 const basicSidebarLinks: NavLeaf[] = [
   { href: '/components/sidebar', label: 'Overview' },
-  { href: '/components/secondary-nav', label: 'Secondary navigation' },
+  { href: '/components/tab-navigation', label: 'Tab navigation' },
   { href: '/components/header', label: 'Header' },
 ]
 
 function ComponentsSidebarPage() {
   return (
     <LayoutProvider
-      secondaryNav={componentSectionLinks}
-      secondaryNavLabel="Component areas"
+      tabNavigation={componentSectionLinks}
+      tabNavigationLabel="Component areas"
       sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
       activeHref="/components/sidebar"
@@ -68,7 +68,7 @@ function ComponentsSidebarPage() {
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Component areas" activeHref="/components/user-interface" />
+        <TabNavigation aria-label="Component areas" activeHref="/components/user-interface" />
         <PageBody>
           <Sidebar aria-label="User Interface" />
           <Main size="full">
@@ -106,7 +106,7 @@ function ComponentsSidebarPage() {
                   />
                 </div>
                 <p className="leading-7 text-muted-foreground">
-                  Sidebar navigation is a persistent, hierarchical map of an area’s destinations. Use it when people need to move among related pages while keeping their place in the main content; use Header for broad product navigation and SecondaryNav for a smaller set of nearby destinations.
+                  Sidebar navigation is a persistent, hierarchical map of an area’s destinations. Use it when people need to move among related pages while keeping their place in the main content; use Header for broad product navigation and TabNavigation for a smaller set of nearby destinations.
                 </p>
               </section>
               <section
@@ -135,7 +135,7 @@ function ComponentsSidebarPage() {
                     When not to use it
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For only two or three peer links; SecondaryNav may be clearer.</li>
+                    <li>For only two or three peer links; TabNavigation may be clearer.</li>
                     <li>For broad destinations shared by the whole application; use Header instead.</li>
                     <li>For deeply nested navigation that needs more than one supported grouping level.</li>
                     <li>When the rail would take more space than the content earns or hide the main task.</li>
@@ -227,7 +227,7 @@ function ComponentsSidebarPage() {
                     ]}
                     dontItems={[
                       'Add group headings when all destinations belong to the same level.',
-                      'Use a Sidebar for a short list that would be clearer as Secondary navigation.',
+                      'Use a Sidebar for a short list that would be clearer as Tab navigation.',
                     ]}
                   >
                     <Sidebar

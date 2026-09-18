@@ -11,9 +11,9 @@ import { Footer } from '@/components/layout/footer'
 import { PageBody } from '@/components/layout/page-body'
 import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
-import { SecondaryNav } from '@/components/layout/secondary-nav'
+import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
-import { List, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
+import { PanelsTopLeft, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 
 // ---------------------------------------------------------------
@@ -34,7 +34,7 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
     label: 'Navigation',
     items: [
       { href: '/components/header', label: 'Header', icon: PanelTop },
-      { href: '/components/secondary-nav', label: 'SecondaryNav', icon: List },
+      { href: '/components/tab-navigation', label: 'Tab navigation', icon: PanelsTopLeft },
       { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
       { href: '/components/footer', label: 'Footer', icon: PanelBottom },
     ],
@@ -60,8 +60,8 @@ import { primaryNav, footerLinks } from '../page-registry'
 function ComponentsUserInterfacePage() {
   return (
     <LayoutProvider
-      secondaryNav={componentSectionLinks}
-      secondaryNavLabel="Component areas"
+      tabNavigation={componentSectionLinks}
+      tabNavigationLabel="Component areas"
       sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
       activeHref="/components/user-interface"
@@ -69,7 +69,7 @@ function ComponentsUserInterfacePage() {
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Component areas" />
+        <TabNavigation aria-label="Component areas" />
         <PageBody>
           <Sidebar aria-label="User Interface" />
           <Main size="full">
@@ -118,7 +118,7 @@ function ComponentsUserInterfacePage() {
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {[
                     ['Header', '/components/header', 'Global identity and primary navigation.'],
-                    ['Secondary navigation', '/components/secondary-nav', 'Navigation within a section or area.'],
+                    ['Tab navigation', '/components/tab-navigation', 'Navigation within a section or area.'],
                     ['Sidebar', '/components/sidebar', 'Persistent or contextual navigation.'],
                     ['Footer', '/components/footer', 'Supporting links and page-level closure.'],
                     ['Split View', '/components/split-view', 'Related content shown side by side.'],

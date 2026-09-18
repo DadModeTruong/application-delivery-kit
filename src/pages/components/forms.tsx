@@ -23,7 +23,7 @@ import { Footer } from '@/components/layout/footer'
 import { PageBody } from '@/components/layout/page-body'
 import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
-import { SecondaryNav } from '@/components/layout/secondary-nav'
+import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from '../page-registry'
@@ -2832,8 +2832,8 @@ function FormGuide({
   const detail = sectionDetails[kind]
   return (
     <LayoutProvider
-      secondaryNav={componentAreaLinks}
-      secondaryNavLabel="Component areas"
+      tabNavigation={componentAreaLinks}
+      tabNavigationLabel="Component areas"
       sidebarNav={formComponents}
       sidebarNavLabel="Forms components"
       activeHref={activeHref}
@@ -2841,7 +2841,7 @@ function FormGuide({
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Component areas" activeHref="/components/forms" />
+        <TabNavigation aria-label="Component areas" activeHref="/components/forms" />
         <PageBody>
           <Sidebar aria-label="Forms components" />
           <Main size="full">
@@ -2911,8 +2911,8 @@ function FormGuide({
 function ComponentsFormsPage() {
   return (
     <LayoutProvider
-      secondaryNav={componentAreaLinks}
-      secondaryNavLabel="Component areas"
+      tabNavigation={componentAreaLinks}
+      tabNavigationLabel="Component areas"
       sidebarNav={formComponents}
       sidebarNavLabel="Forms components"
       activeHref="/components/forms"
@@ -2920,7 +2920,7 @@ function ComponentsFormsPage() {
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Component areas" />
+        <TabNavigation aria-label="Component areas" />
         <PageBody>
           <Sidebar aria-label="Forms components" />
           <Main size="full">
