@@ -242,6 +242,9 @@ function ComponentsButtonsPage() {
                     description="Use the variant that matches the action’s priority and consequence."
                     explanation="Use visual emphasis to communicate priority and consequence. Compare the styles below, then choose the least prominent style that still makes the action clear."
                     doItems={[
+                      'Use one clear primary style for the main action in a task.',
+                      'Use outline, secondary, ghost, or link styles to reduce emphasis for supporting actions.',
+                      'Reserve destructive for actions such as deleting or removing data.',
                       'Default: use for the primary action in a task.',
                       'Secondary and outline: use for supporting actions that should remain available without competing with the primary action.',
                       'Ghost: use for low-emphasis actions when a full button surface would add unnecessary weight.',
@@ -385,8 +388,8 @@ function ComponentsButtonsPage() {
                         </Button>
                       </form>
                       <p className="text-sm leading-6 text-muted-foreground">
-                        The Save changes button submits this form. Cancel uses{' '}
-                        <code>type="button"</code> so it does not submit.
+                        The Save changes button submits this form using <code>type="submit"</code>.
+                        Cancel uses <code>type="button"</code> so it does not submit.
                       </p>
                     </div>
                   </ExampleVariation>
