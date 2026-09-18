@@ -124,11 +124,6 @@ function ComponentsTabNavigationPage() {
                     <li>When the links share one clear section identity.</li>
                     <li>When a horizontal row remains easy to scan.</li>
                   </ul>
-              <p className="leading-7 text-muted-foreground">
-                A good fit is a page family such as a project overview, settings area, or
-                service workspace where each destination is a peer and people benefit from
-                seeing the available choices without opening another menu.
-              </p>
                 </div>
                 <div className="space-y-5" aria-labelledby="navigation-tab-not-heading">
                   <h2
@@ -142,12 +137,6 @@ function ComponentsTabNavigationPage() {
                     <li>For broad application destinations.</li>
                     <li>When the row would wrap into an unclear second menu.</li>
                   </ul>
-              <p className="leading-7 text-muted-foreground">
-                Choose a Sidebar when the destinations need hierarchy, grouping, or room to
-                grow. Choose a Header when the links represent product-wide areas. If choosing
-                a link should switch content in place rather than navigate to a destination, use
-                an interactive Tabs pattern instead of navigation links.
-              </p>
                 </div>
               </section>
               <section className="space-y-5" aria-labelledby="navigation-tab-design-heading">
