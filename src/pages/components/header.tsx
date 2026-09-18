@@ -32,7 +32,7 @@ const componentSectionLinks: NavLeaf[] = [
 ]
 
 const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
-  { href: "/components/user-interface", label: "User Interface" },
+  { href: '/components/user-interface', label: 'User Interface' },
   {
     label: 'Navigation',
     items: [
@@ -103,6 +103,11 @@ function ComponentsHeaderPage() {
                     />
                   </div>
                 </div>
+
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Try it: tab through the header links and confirm focus follows the visual order,
+                  then resize to check that the navigation remains usable.
+                </p>
               </section>
               <section
                 className="grid gap-10 lg:grid-cols-2"
@@ -129,10 +134,19 @@ function ComponentsHeaderPage() {
                     When not to use it
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For a long or deeply nested information architecture; use a sidebar or section navigation instead.</li>
+                    <li>
+                      For a long or deeply nested information architecture; use a sidebar or section
+                      navigation instead.
+                    </li>
                     <li>For page-specific tools that only make sense inside one workflow.</li>
-                    <li>When adding another menu would hide important destinations or make the header difficult to scan.</li>
-                    <li>As a replacement for a page heading, breadcrumb, or contextual navigation that tells people where they are.</li>
+                    <li>
+                      When adding another menu would hide important destinations or make the header
+                      difficult to scan.
+                    </li>
+                    <li>
+                      As a replacement for a page heading, breadcrumb, or contextual navigation that
+                      tells people where they are.
+                    </li>
                   </ul>
                 </div>
               </section>
@@ -145,11 +159,25 @@ function ComponentsHeaderPage() {
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep primary navigation to the destinations most people need across the product.</li>
-                  <li>Use short, specific labels that describe the destination; keep wording consistent with page titles and side navigation.</li>
-                  <li>Use one level of grouping at most, and keep critical destinations visible without opening a menu.</li>
-                  <li>Separate navigation links from actions such as account, search, or sign out through spacing and grouping.</li>
-                  <li>Keep the logo recognizable and give it a useful home destination, with a visible focus state.</li>
+                  <li>
+                    Keep primary navigation to the destinations most people need across the product.
+                  </li>
+                  <li>
+                    Use short, specific labels that describe the destination; keep wording
+                    consistent with page titles and side navigation.
+                  </li>
+                  <li>
+                    Use one level of grouping at most, and keep critical destinations visible
+                    without opening a menu.
+                  </li>
+                  <li>
+                    Separate navigation links from actions such as account, search, or sign out
+                    through spacing and grouping.
+                  </li>
+                  <li>
+                    Keep the logo recognizable and give it a useful home destination, with a visible
+                    focus state.
+                  </li>
                 </ul>
               </section>
 
@@ -165,12 +193,30 @@ function ComponentsHeaderPage() {
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Use a semantic <code>header</code> and a named <code>nav</code> landmark so assistive technology users can identify the region.</li>
-                  <li>Keep the skip link as the first keyboard stop that moves focus to the page’s <code>main</code> content.</li>
-                  <li>Give every link and menu trigger a clear accessible name; do not rely on an icon, color, or position alone.</li>
-                  <li>Expose expanded/collapsed state on menu triggers and ensure the popup has a meaningful relationship to its trigger.</li>
-                  <li>Verify keyboard order, visible focus, Escape dismissal, focus restoration, and screen-reader announcements for desktop and mobile menus.</li>
-                  <li>Do not use <code>aria-current</code> as decoration: apply it only to the link representing the current location.</li>
+                  <li>
+                    Use a semantic <code>header</code> and a named <code>nav</code> landmark so
+                    assistive technology users can identify the region.
+                  </li>
+                  <li>
+                    Keep the skip link as the first keyboard stop that moves focus to the page’s{' '}
+                    <code>main</code> content.
+                  </li>
+                  <li>
+                    Give every link and menu trigger a clear accessible name; do not rely on an
+                    icon, color, or position alone.
+                  </li>
+                  <li>
+                    Expose expanded/collapsed state on menu triggers and ensure the popup has a
+                    meaningful relationship to its trigger.
+                  </li>
+                  <li>
+                    Verify keyboard order, visible focus, Escape dismissal, focus restoration, and
+                    screen-reader announcements for desktop and mobile menus.
+                  </li>
+                  <li>
+                    Do not use <code>aria-current</code> as decoration: apply it only to the link
+                    representing the current location.
+                  </li>
                 </ul>
               </section>
               <section className="space-y-5" aria-labelledby="navigation-header-responsive-heading">
@@ -189,51 +235,82 @@ function ComponentsHeaderPage() {
                   The mobile menu is a replacement for the desktop link row, not a second copy of
                   it. Check that opening it exposes the same destinations and that focus can enter,
                   move through, and leave the menu predictably. Preserve a comfortable touch target,
-                  prevent the page behind the open menu from becoming confusing or accidentally active,
-                  and return focus to the trigger when the menu closes.
+                  prevent the page behind the open menu from becoming confusing or accidentally
+                  active, and return focus to the trigger when the menu closes.
                 </p>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>Test at narrow widths and with zoom: the logo, trigger, and essential action must remain usable without horizontal scrolling.</li>
-                  <li>Confirm the desktop and mobile versions expose the same destinations in a logical reading order.</li>
-                  <li>Do not make people depend on hover, precise pointer movement, or a hidden off-screen menu.</li>
+                  <li>
+                    Test at narrow widths and with zoom: the logo, trigger, and essential action
+                    must remain usable without horizontal scrolling.
+                  </li>
+                  <li>
+                    Confirm the desktop and mobile versions expose the same destinations in a
+                    logical reading order.
+                  </li>
+                  <li>
+                    Do not make people depend on hover, precise pointer movement, or a hidden
+                    off-screen menu.
+                  </li>
                 </ul>
               </section>
 
               <section className="space-y-5" aria-labelledby="navigation-header-examples-heading">
-                <h2 id="navigation-header-examples-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="navigation-header-examples-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Examples and variations
                 </h2>
                 <p className="text-muted-foreground">
-                  Compare a compact system header, grouped navigation, and icon-supported navigation. Each example uses the same production Header component and full-width variation structure as the Forms pages.
+                  Compare a compact system header, grouped navigation, and icon-supported
+                  navigation. Each example uses the same production Header component and full-width
+                  variation structure as the Forms pages.
                 </p>
-                <p className="text-sm text-muted-foreground">Try it: move through the Header links and actions with the keyboard, verify the skip link, open the mobile navigation, resize the page, and confirm focus remains visible and the navigation order stays logical.</p>
+                <p className="text-sm text-muted-foreground">
+                  Try it: move through the Header links and actions with the keyboard, verify the
+                  skip link, open the mobile navigation, resize the page, and confirm focus remains
+                  visible and the navigation order stays logical.
+                </p>
                 <div className="space-y-8 [&_[data-slot=header]]:!border-b-0 [&_*:has(>[data-slot=header])]:!p-0 [&_*:has(>[data-slot=header])]:overflow-hidden">
+                  <ExampleVariation
+                    title="Basic"
+                    description="A simple system header keeps the application name on the left and ordinary navigation links on the right."
+                    explanation="Use the basic Header when the primary destinations can remain visible as individual links. The reusable component provides the shared layout, responsive behavior, focus treatment, and navigation semantics."
+                    doItems={[
+                      'Keep the application name or product identity on the left and primary destinations together on the right.',
+                      'Use ordinary links when each destination should be immediately visible and directly reachable.',
+                      'Let the reusable Header component provide consistent spacing, focus treatment, and responsive behavior.',
+                    ]}
+                    dontItems={[
+                      'Do not hide primary destinations in a dropdown when they can remain visible in the header.',
+                      'Do not recreate Header spacing or interaction styles in each page-level example.',
+                      'Do not use the global Header for actions that apply only to the current page.',
+                    ]}
+                  >
+                    <Header
+                      logo={{ href: '/', label: 'Application Delivery Kit' }}
+                      nav={[
+                        { label: 'Layouts', href: '/layouts' },
+                        { label: 'Components', href: '/components' },
+                      ]}
+                    />
+                  </ExampleVariation>
 
                   <ExampleVariation
-                  title="Basic"
-                  description="A simple system header keeps the application name on the left and ordinary navigation links on the right."
-                  explanation="Use the basic Header when the primary destinations can remain visible as individual links. The reusable component provides the shared layout, responsive behavior, focus treatment, and navigation semantics."
-                  doItems={[
-                    "Keep the application name or product identity on the left and primary destinations together on the right.",
-                    "Use ordinary links when each destination should be immediately visible and directly reachable.",
-                    "Let the reusable Header component provide consistent spacing, focus treatment, and responsive behavior.",
-                  ]}
-                  dontItems={[
-                    "Do not hide primary destinations in a dropdown when they can remain visible in the header.",
-                    "Do not recreate Header spacing or interaction styles in each page-level example.",
-                    "Do not use the global Header for actions that apply only to the current page.",
-                  ]}
-                >
-                  <Header
-                    logo={{ href: '/', label: 'Application Delivery Kit' }}
-                    nav={[
-                      { label: 'Layouts', href: '/layouts' },
-                      { label: 'Components', href: '/components' },
+                    title="With dropdown"
+                    description="A dropdown groups related destinations under a clear parent label while keeping the header compact."
+                    explanation="A dropdown is appropriate when a parent category has several closely related destinations and showing every link inline would make the header difficult to scan. The parent label should communicate the category, and the open menu must be fully keyboard-operable in the production implementation."
+                    doItems={[
+                      'Use a meaningful category label, such as Services, that describes the destinations inside.',
+                      'Keep the menu short and group only destinations that share a clear relationship.',
+                      'Use specific link text inside the menu and preserve visible focus, Escape dismissal, and focus restoration.',
                     ]}
-                  />
-                </ExampleVariation>
-
-                  <ExampleVariation title="With dropdown" description="A dropdown groups related destinations under a clear parent label while keeping the header compact." explanation="A dropdown is appropriate when a parent category has several closely related destinations and showing every link inline would make the header difficult to scan. The parent label should communicate the category, and the open menu must be fully keyboard-operable in the production implementation." doItems={["Use a meaningful category label, such as Services, that describes the destinations inside.", "Keep the menu short and group only destinations that share a clear relationship.", "Use specific link text inside the menu and preserve visible focus, Escape dismissal, and focus restoration."]} dontItems={["Do not hide a single high-priority destination inside a dropdown.", "Do not use a dropdown as a substitute for unclear information architecture or a long sitemap.", "Do not use ambiguous labels such as More when the available destinations can be named directly."]}>
+                    dontItems={[
+                      'Do not hide a single high-priority destination inside a dropdown.',
+                      'Do not use a dropdown as a substitute for unclear information architecture or a long sitemap.',
+                      'Do not use ambiguous labels such as More when the available destinations can be named directly.',
+                    ]}
+                  >
                     <Header
                       logo={{ href: '/', label: 'Application Delivery Kit' }}
                       nav={[
@@ -255,14 +332,14 @@ function ComponentsHeaderPage() {
                     description="Icons can reinforce familiar navigation labels while the text remains the primary cue."
                     explanation="Use icons when they help people recognize a familiar destination or distinguish related navigation choices. Keep the visible label because icons alone are ambiguous, and use the same icon consistently wherever the destination appears."
                     doItems={[
-                      "Pair each icon with a concise visible label and keep the icon secondary to the text.",
-                      "Use familiar, consistent icons such as layout or component symbols when they add recognition value.",
-                      "Keep icons decorative to assistive technology when the adjacent label already names the destination.",
+                      'Pair each icon with a concise visible label and keep the icon secondary to the text.',
+                      'Use familiar, consistent icons such as layout or component symbols when they add recognition value.',
+                      'Keep icons decorative to assistive technology when the adjacent label already names the destination.',
                     ]}
                     dontItems={[
-                      "Do not replace the navigation label with an icon alone.",
-                      "Do not mix unrelated icon styles or use icons that require users to guess their meaning.",
-                      "Do not add icons only for decoration when they make the navigation row harder to scan.",
+                      'Do not replace the navigation label with an icon alone.',
+                      'Do not mix unrelated icon styles or use icons that require users to guess their meaning.',
+                      'Do not add icons only for decoration when they make the navigation row harder to scan.',
                     ]}
                   >
                     <Header

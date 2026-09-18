@@ -309,8 +309,8 @@ function ComponentsFooterPage() {
                   </ExampleVariation>
                   <ExampleVariation
                     title="Production shell"
-                    description="Use the shared application configuration when Footer includes a recognizable external destination."
-                    explanation="This variation uses the same footerLinks data as the application shell. The GitHub icon is decorative because the visible GitHub label names the destination, and the external-link behavior is communicated by the component."
+                    description="Use icon-and-text links when the production shell needs recognizable destinations and supporting visual cues."
+                    explanation="This variation uses the same footerLinks data as the application shell, including links that pair a visible label with a supporting icon. The icon is decorative when the text already names the destination; external-link behavior remains part of the link contract."
                     doItems={[
                       'Centralize shared Footer link data so shell and guides do not drift.',
                       'Keep the visible label understandable without relying on the icon.',
@@ -322,28 +322,6 @@ function ComponentsFooterPage() {
                     ]}
                   >
                     <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-                  </ExampleVariation>
-                  <ExampleVariation
-                    title="Full width"
-                    description="Use the full layout when the Footer boundary or background should span the available page width."
-                    explanation="The content remains the same Footer pattern; only the layout width changes. Confirm that the footer still aligns with the surrounding shell and wraps cleanly at narrow widths."
-                    doItems={[
-                      'Choose full width when the surrounding visual treatment spans the viewport or layout region.',
-                      'Check alignment with Header, Main, and page-level background treatment.',
-                    ]}
-                    dontItems={[
-                      'Do not use full width to compensate for unclear content hierarchy.',
-                      'Do not introduce horizontal scrolling when long labels wrap.',
-                    ]}
-                  >
-                    <Footer
-                      size="full"
-                      copyright={<>© 2026 Tommy Truong</>}
-                      links={[
-                        { href: '/privacy', label: 'Privacy' },
-                        { href: '/accessibility', label: 'Accessibility' },
-                      ]}
-                    />
                   </ExampleVariation>
                 </div>
               </section>

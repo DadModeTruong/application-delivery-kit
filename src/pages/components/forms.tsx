@@ -725,9 +725,9 @@ function SelectVariations() {
           Examples and variations
         </h2>
         <p className="leading-7 text-muted-foreground">
-          These examples show how a Select changes when people need a prompt, explanation, validation,
-          unavailable options, grouping, scrolling, or search. Use the guidance to choose the simplest
-          behavior that fits the decision.
+          These examples show how a Select changes when people need a prompt, explanation,
+          validation, unavailable options, grouping, scrolling, or search. Use the guidance to
+          choose the simplest behavior that fits the decision.
         </p>
       </div>
       <div className="grid gap-8">
@@ -1030,8 +1030,8 @@ function TextareaVariations() {
         </h2>
         <p className="leading-7 text-muted-foreground">
           These examples show how the same Text area changes as the task needs a prompt, persistent
-          guidance, availability, validation, or a required response. Use the Do and Don't guidance to
-          choose only the support people need at the moment of writing.
+          guidance, availability, validation, or a required response. Use the Do and Don't guidance
+          to choose only the support people need at the moment of writing.
         </p>
       </div>
       <div className="grid gap-8">
@@ -1282,7 +1282,10 @@ function CheckboxGroupField({
   children: React.ReactNode
 }) {
   return (
-    <fieldset className="space-y-3" aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}>
+    <fieldset
+      className="space-y-3"
+      aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}
+    >
       <legend className="text-sm font-medium">{label}</legend>
       {hint && !error && (
         <p id={`${id}-hint`} className="text-sm text-muted-foreground">
@@ -1318,7 +1321,11 @@ function CheckboxGroupExample({
       error={invalid ? 'Choose at least one update type.' : undefined}
     >
       {['Product news', 'Accessibility improvements', 'Events and webinars'].map((option) => (
-        <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`${idPrefix}-${option}`}>
+        <label
+          key={option}
+          className="flex items-start gap-3 text-sm"
+          htmlFor={`${idPrefix}-${option}`}
+        >
           <input
             id={`${idPrefix}-${option}`}
             className="mt-1 size-4 accent-primary disabled:cursor-not-allowed disabled:opacity-50"
@@ -1336,7 +1343,10 @@ function RequiredCheckboxGroupExample() {
   const [selected, setSelected] = useState<string[]>([])
   const [submitted, setSubmitted] = useState(false)
   const options = ['Product news', 'Accessibility improvements', 'Events and webinars']
-  const error = submitted && selected.length === 0 ? 'Choose at least one update type before continuing.' : undefined
+  const error =
+    submitted && selected.length === 0
+      ? 'Choose at least one update type before continuing.'
+      : undefined
 
   return (
     <form
@@ -1346,14 +1356,22 @@ function RequiredCheckboxGroupExample() {
         setSubmitted(true)
       }}
     >
-      <fieldset className="space-y-3" aria-describedby={error ? 'checkbox-group-required-error' : 'checkbox-group-required-hint'}>
+      <fieldset
+        className="space-y-3"
+        aria-describedby={error ? 'checkbox-group-required-error' : 'checkbox-group-required-hint'}
+      >
         <legend className="text-sm font-medium">Which updates would you like to receive?</legend>
         <p id="checkbox-group-required-hint" className="text-sm text-muted-foreground">
-          Required. Try submitting with no choices selected to see the error. Select one or more choices and submit again.
+          Required. Try submitting with no choices selected to see the error. Select one or more
+          choices and submit again.
         </p>
         <div className="space-y-3">
           {options.map((option) => (
-            <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`checkbox-group-required-${option}`}>
+            <label
+              key={option}
+              className="flex items-start gap-3 text-sm"
+              htmlFor={`checkbox-group-required-${option}`}
+            >
               <input
                 id={`checkbox-group-required-${option}`}
                 className="mt-1 size-4 accent-primary"
@@ -1362,7 +1380,9 @@ function RequiredCheckboxGroupExample() {
                 onChange={(event) => {
                   setSubmitted(false)
                   setSelected((current) =>
-                    event.target.checked ? [...current, option] : current.filter((item) => item !== option),
+                    event.target.checked
+                      ? [...current, option]
+                      : current.filter((item) => item !== option),
                   )
                 }}
               />
@@ -1384,7 +1404,8 @@ function RequiredCheckboxGroupExample() {
       </button>
       {submitted && !error && (
         <p className="text-sm text-muted-foreground" role="status" aria-live="polite">
-          Preferences saved with {selected.length} update type{selected.length === 1 ? '' : 's'} selected.
+          Preferences saved with {selected.length} update type{selected.length === 1 ? '' : 's'}{' '}
+          selected.
         </p>
       )}
     </form>
@@ -1405,7 +1426,10 @@ function RadioGroupField({
   children: React.ReactNode
 }) {
   return (
-    <fieldset className="space-y-3" aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}>
+    <fieldset
+      className="space-y-3"
+      aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}
+    >
       <legend className="text-sm font-medium">{label}</legend>
       {hint && !error && (
         <p id={`${id}-hint`} className="text-sm text-muted-foreground">
@@ -1443,7 +1467,11 @@ function RadioButtonExample({
       error={invalid ? 'Choose one contact method.' : undefined}
     >
       {options.map((option) => (
-        <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`${idPrefix}-${option}`}>
+        <label
+          key={option}
+          className="flex items-start gap-3 text-sm"
+          htmlFor={`${idPrefix}-${option}`}
+        >
           <input
             id={`${idPrefix}-${option}`}
             className="mt-1 size-4 accent-primary disabled:cursor-not-allowed disabled:opacity-50"
@@ -1473,14 +1501,22 @@ function RequiredRadioButtonExample() {
         setSubmitted(true)
       }}
     >
-      <fieldset className="space-y-3" aria-describedby={error ? 'radio-button-required-error' : 'radio-button-required-hint'}>
+      <fieldset
+        className="space-y-3"
+        aria-describedby={error ? 'radio-button-required-error' : 'radio-button-required-hint'}
+      >
         <legend className="text-sm font-medium">How should we contact you?</legend>
         <p id="radio-button-required-hint" className="text-sm text-muted-foreground">
-          Required. Try submitting without a choice to see the error. Select one option and submit again.
+          Required. Try submitting without a choice to see the error. Select one option and submit
+          again.
         </p>
         <div className="space-y-3">
           {options.map((option) => (
-            <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`radio-button-required-${option}`}>
+            <label
+              key={option}
+              className="flex items-start gap-3 text-sm"
+              htmlFor={`radio-button-required-${option}`}
+            >
               <input
                 id={`radio-button-required-${option}`}
                 className="mt-1 size-4 accent-primary"
@@ -1584,7 +1620,9 @@ function ComboboxVariation({
   const [open, setOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
   const containerRef = useComboboxOutsideClick(open, () => setOpen(false))
-  const filtered = comboboxVariationOptions.filter((option) => option.label.toLowerCase().includes(value.toLowerCase()))
+  const filtered = comboboxVariationOptions.filter((option) =>
+    option.label.toLowerCase().includes(value.toLowerCase()),
+  )
   const groups = grouped
     ? Array.from(new Set(filtered.map((option) => option.group).filter(Boolean)))
     : [undefined]
@@ -1592,7 +1630,9 @@ function ComboboxVariation({
 
   const choose = (option: string) => {
     if (multiple) {
-      setSelected((current) => (current.includes(option) ? current.filter((item) => item !== option) : [...current, option]))
+      setSelected((current) =>
+        current.includes(option) ? current.filter((item) => item !== option) : [...current, option],
+      )
       setValue('')
       setActiveIndex(-1)
       setOpen(true)
@@ -1613,13 +1653,20 @@ function ComboboxVariation({
         {multiple && selected.length > 0 && (
           <div className="mb-2 flex flex-wrap gap-2" aria-label="Selected countries">
             {selected.map((item) => (
-              <span key={item} className="inline-flex items-center gap-1 rounded-md border bg-muted px-2 py-1 text-xs">
+              <span
+                key={item}
+                className="inline-flex items-center gap-1 rounded-md border bg-muted px-2 py-1 text-xs"
+              >
                 {item}
                 <button
                   type="button"
                   className="rounded-sm px-1 text-muted-foreground hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   aria-label={`Remove ${item}`}
-                  onClick={() => setSelected((current) => current.filter((selectedItem) => selectedItem !== item))}
+                  onClick={() =>
+                    setSelected((current) =>
+                      current.filter((selectedItem) => selectedItem !== item),
+                    )
+                  }
                 >
                   ×
                 </button>
@@ -1684,36 +1731,51 @@ function ComboboxVariation({
           )}
         </div>
         {open && !disabled && (
-          <ul id={`${id}-listbox`} className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md border bg-popover p-1 text-sm shadow-md" role="listbox" aria-label="Country options">
-            {filtered.length === 0 && <li className="px-2 py-2 text-muted-foreground">No countries found.</li>}
+          <ul
+            id={`${id}-listbox`}
+            className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md border bg-popover p-1 text-sm shadow-md"
+            role="listbox"
+            aria-label="Country options"
+          >
+            {filtered.length === 0 && (
+              <li className="px-2 py-2 text-muted-foreground">No countries found.</li>
+            )}
             {groups.map((group) => {
               const options = filtered.filter((option) => !group || option.group === group)
               if (options.length === 0) return null
               return (
-                <li key={group || 'all'} role={group ? 'group' : undefined} aria-label={group || undefined}>
-                  {group && <div className="px-2 pb-1 pt-2 text-xs font-semibold text-muted-foreground">{group}</div>}
+                <li
+                  key={group || 'all'}
+                  role={group ? 'group' : undefined}
+                  aria-label={group || undefined}
+                >
+                  {group && (
+                    <div className="px-2 pb-1 pt-2 text-xs font-semibold text-muted-foreground">
+                      {group}
+                    </div>
+                  )}
                   <ul>
                     {options.map((option) => {
                       const optionIndex = filtered.findIndex((item) => item.label === option.label)
                       return (
-                      <li
-                        id={`${id}-option-${optionIndex}`}
-                        key={option.label}
-                        role="option"
-                        aria-selected={selected.includes(option.label)}
-                        className="cursor-pointer rounded-sm px-2 py-2 hover:bg-muted"
-                        tabIndex={-1}
-                        onMouseDown={(event) => event.preventDefault()}
-                        onKeyDown={(event) => {
-                          if (event.key === 'Enter' || event.key === ' ') {
-                            event.preventDefault()
-                            choose(option.label)
-                          }
-                        }}
-                        onClick={() => choose(option.label)}
-                      >
-                        {option.label}
-                      </li>
+                        <li
+                          id={`${id}-option-${optionIndex}`}
+                          key={option.label}
+                          role="option"
+                          aria-selected={selected.includes(option.label)}
+                          className="cursor-pointer rounded-sm px-2 py-2 hover:bg-muted"
+                          tabIndex={-1}
+                          onMouseDown={(event) => event.preventDefault()}
+                          onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault()
+                              choose(option.label)
+                            }
+                          }}
+                          onClick={() => choose(option.label)}
+                        >
+                          {option.label}
+                        </li>
                       )
                     })}
                   </ul>
@@ -1723,9 +1785,21 @@ function ComboboxVariation({
           </ul>
         )}
       </div>
-      {hint && !invalid && <p id={`${id}-hint`} className="text-sm text-muted-foreground">{hint}</p>}
-      {invalid && <p id={`${id}-error`} className="text-sm text-destructive" role="alert">Choose a country from the available options.</p>}
-      {selected.length > 0 && <p className="text-sm text-muted-foreground" role="status">Selected: {selected.join(', ')}</p>}
+      {hint && !invalid && (
+        <p id={`${id}-hint`} className="text-sm text-muted-foreground">
+          {hint}
+        </p>
+      )}
+      {invalid && (
+        <p id={`${id}-error`} className="text-sm text-destructive" role="alert">
+          Choose a country from the available options.
+        </p>
+      )}
+      {selected.length > 0 && (
+        <p className="text-sm text-muted-foreground" role="status">
+          Selected: {selected.join(', ')}
+        </p>
+      )}
     </div>
   )
 }
@@ -1742,59 +1816,115 @@ function RequiredComboboxExample() {
 
   return (
     <div ref={containerRef}>
-      <form className="space-y-4" onSubmit={(event) => { event.preventDefault(); setSubmitted(true) }}>
-      <div className="space-y-2">
-        <label className="block text-sm font-medium" htmlFor="combobox-required">Country</label>
-        <input
-          id="combobox-required"
-          className={`h-10 w-full rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${error ? 'border-destructive' : 'border-input'}`}
-          type="text"
-          role="combobox"
-          value={value}
-          placeholder="Search countries"
-          aria-expanded={open}
-          aria-controls="combobox-required-listbox"
-          aria-activedescendant={activeIndex >= 0 ? `combobox-required-option-${activeIndex}` : undefined}
-          aria-autocomplete="list"
-          aria-describedby={error ? 'combobox-required-error' : 'combobox-required-hint'}
-          onFocus={() => setOpen(true)}
-          onChange={(event) => { setValue(event.target.value); setSubmitted(false); setOpen(true) }}
-          onKeyDown={(event) => {
-            if (event.key === 'Escape') { setOpen(false); setActiveIndex(-1); return }
-            if (event.key === 'ArrowDown' && filtered.length > 0) { event.preventDefault(); setOpen(true); setActiveIndex((current) => (current + 1) % filtered.length) }
-            if (event.key === 'ArrowUp' && filtered.length > 0) { event.preventDefault(); setOpen(true); setActiveIndex((current) => (current <= 0 ? filtered.length - 1 : current - 1)) }
-            if (event.key === 'Enter' && filtered[activeIndex >= 0 ? activeIndex : 0]) { event.preventDefault(); setValue(filtered[activeIndex >= 0 ? activeIndex : 0]); setActiveIndex(-1); setOpen(false) }
-          }}
-        />
-        {open && (
-          <ul id="combobox-required-listbox" className="max-h-48 overflow-auto rounded-md border bg-popover p-1 text-sm shadow-md" role="listbox" aria-label="Country options">
-            {filtered.map((option, optionIndex) => <li
-              id={`combobox-required-option-${optionIndex}`}
-              key={option}
-              role="option"
-              aria-selected={option === value}
-              className="cursor-pointer rounded-sm px-2 py-2 hover:bg-muted"
-              tabIndex={-1}
-              onMouseDown={(event) => event.preventDefault()}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  event.preventDefault()
-                  setValue(option)
-                  setActiveIndex(-1)
-                  setOpen(false)
-                }
-              }}
-              onClick={() => { setValue(option); setOpen(false) }}
+      <form
+        className="space-y-4"
+        onSubmit={(event) => {
+          event.preventDefault()
+          setSubmitted(true)
+        }}
+      >
+        <div className="space-y-2">
+          <label className="block text-sm font-medium" htmlFor="combobox-required">
+            Country
+          </label>
+          <input
+            id="combobox-required"
+            className={`h-10 w-full rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${error ? 'border-destructive' : 'border-input'}`}
+            type="text"
+            role="combobox"
+            value={value}
+            placeholder="Search countries"
+            aria-expanded={open}
+            aria-controls="combobox-required-listbox"
+            aria-activedescendant={
+              activeIndex >= 0 ? `combobox-required-option-${activeIndex}` : undefined
+            }
+            aria-autocomplete="list"
+            aria-describedby={error ? 'combobox-required-error' : 'combobox-required-hint'}
+            onFocus={() => setOpen(true)}
+            onChange={(event) => {
+              setValue(event.target.value)
+              setSubmitted(false)
+              setOpen(true)
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape') {
+                setOpen(false)
+                setActiveIndex(-1)
+                return
+              }
+              if (event.key === 'ArrowDown' && filtered.length > 0) {
+                event.preventDefault()
+                setOpen(true)
+                setActiveIndex((current) => (current + 1) % filtered.length)
+              }
+              if (event.key === 'ArrowUp' && filtered.length > 0) {
+                event.preventDefault()
+                setOpen(true)
+                setActiveIndex((current) => (current <= 0 ? filtered.length - 1 : current - 1))
+              }
+              if (event.key === 'Enter' && filtered[activeIndex >= 0 ? activeIndex : 0]) {
+                event.preventDefault()
+                setValue(filtered[activeIndex >= 0 ? activeIndex : 0])
+                setActiveIndex(-1)
+                setOpen(false)
+              }
+            }}
+          />
+          {open && (
+            <ul
+              id="combobox-required-listbox"
+              className="max-h-48 overflow-auto rounded-md border bg-popover p-1 text-sm shadow-md"
+              role="listbox"
+              aria-label="Country options"
             >
-              {option}
-            </li>)}
-          </ul>
+              {filtered.map((option, optionIndex) => (
+                <li
+                  id={`combobox-required-option-${optionIndex}`}
+                  key={option}
+                  role="option"
+                  aria-selected={option === value}
+                  className="cursor-pointer rounded-sm px-2 py-2 hover:bg-muted"
+                  tabIndex={-1}
+                  onMouseDown={(event) => event.preventDefault()}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      setValue(option)
+                      setActiveIndex(-1)
+                      setOpen(false)
+                    }
+                  }}
+                  onClick={() => {
+                    setValue(option)
+                    setOpen(false)
+                  }}
+                >
+                  {option}
+                </li>
+              ))}
+            </ul>
+          )}
+          <p id="combobox-required-hint" className="text-sm text-muted-foreground">
+            Required. Try submitting without a country to see the error.
+          </p>
+          {error && (
+            <p id="combobox-required-error" className="text-sm text-destructive" role="alert">
+              {error}
+            </p>
+          )}
+        </div>
+        <button
+          type="submit"
+          className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          Continue
+        </button>
+        {submitted && !error && (
+          <p className="text-sm text-muted-foreground" role="status" aria-live="polite">
+            Country saved: {value}.
+          </p>
         )}
-        <p id="combobox-required-hint" className="text-sm text-muted-foreground">Required. Try submitting without a country to see the error.</p>
-        {error && <p id="combobox-required-error" className="text-sm text-destructive" role="alert">{error}</p>}
-      </div>
-      <button type="submit" className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Continue</button>
-      {submitted && !error && <p className="text-sm text-muted-foreground" role="status" aria-live="polite">Country saved: {value}.</p>}
       </form>
     </div>
   )
@@ -1812,7 +1942,9 @@ function DatePickerVariation({
   const id = `datepicker-variation-${disabled ? 'disabled' : invalid ? 'invalid' : hint ? 'helper' : 'basic'}`
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-medium" htmlFor={id}>Date</label>
+      <label className="block text-sm font-medium" htmlFor={id}>
+        Date
+      </label>
       <input
         id={id}
         className={`[color-scheme:light] h-10 rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 ${invalid ? 'border-destructive' : 'border-input'}`}
@@ -1820,8 +1952,16 @@ function DatePickerVariation({
         disabled={disabled}
         aria-describedby={invalid ? `${id}-error` : hint ? `${id}-hint` : undefined}
       />
-      {hint && !invalid && <p id={`${id}-hint`} className="text-sm text-muted-foreground">{hint}</p>}
-      {invalid && <p id={`${id}-error`} className="text-sm text-destructive" role="alert">Enter a valid date in the allowed range.</p>}
+      {hint && !invalid && (
+        <p id={`${id}-hint`} className="text-sm text-muted-foreground">
+          {hint}
+        </p>
+      )}
+      {invalid && (
+        <p id={`${id}-error`} className="text-sm text-destructive" role="alert">
+          Enter a valid date in the allowed range.
+        </p>
+      )}
     </div>
   )
 }
@@ -1832,22 +1972,48 @@ function RequiredDatePickerExample() {
   const error = submitted && !value ? 'Choose a date before continuing.' : undefined
 
   return (
-    <form className="space-y-4" onSubmit={(event) => { event.preventDefault(); setSubmitted(true) }}>
+    <form
+      className="space-y-4"
+      onSubmit={(event) => {
+        event.preventDefault()
+        setSubmitted(true)
+      }}
+    >
       <div className="space-y-2">
-        <label className="block text-sm font-medium" htmlFor="datepicker-required">Start date</label>
+        <label className="block text-sm font-medium" htmlFor="datepicker-required">
+          Start date
+        </label>
         <input
           id="datepicker-required"
           className={`[color-scheme:light] h-10 rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${error ? 'border-destructive' : 'border-input'}`}
           type="date"
           value={value}
           aria-describedby={error ? 'datepicker-required-error' : 'datepicker-required-hint'}
-          onChange={(event) => { setValue(event.target.value); setSubmitted(false) }}
+          onChange={(event) => {
+            setValue(event.target.value)
+            setSubmitted(false)
+          }}
         />
-        <p id="datepicker-required-hint" className="text-sm text-muted-foreground">Required. Try submitting without a date to see the error.</p>
-        {error && <p id="datepicker-required-error" className="text-sm text-destructive" role="alert">{error}</p>}
+        <p id="datepicker-required-hint" className="text-sm text-muted-foreground">
+          Required. Try submitting without a date to see the error.
+        </p>
+        {error && (
+          <p id="datepicker-required-error" className="text-sm text-destructive" role="alert">
+            {error}
+          </p>
+        )}
       </div>
-      <button type="submit" className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Continue</button>
-      {submitted && !error && <p className="text-sm text-muted-foreground" role="status" aria-live="polite">Start date saved: {value}.</p>}
+      <button
+        type="submit"
+        className="rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        Continue
+      </button>
+      {submitted && !error && (
+        <p className="text-sm text-muted-foreground" role="status" aria-live="polite">
+          Start date saved: {value}.
+        </p>
+      )}
     </form>
   )
 }
@@ -1860,12 +2026,47 @@ function DateRangePickerExample() {
     <div className="space-y-4">
       <p className="text-sm font-medium">Date range</p>
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-range-start">Start date</label><input id="datepicker-range-start" className="[color-scheme:light] h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={start} onChange={(event) => setStart(event.target.value)} /></div>
-        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-range-end">End date</label><input id="datepicker-range-end" className={`h-10 w-full rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${invalid ? 'border-destructive' : 'border-input'}`} type="date" value={end} min={start || undefined} onChange={(event) => setEnd(event.target.value)} aria-invalid={invalid || undefined} aria-describedby={invalid ? 'datepicker-range-error' : 'datepicker-range-hint'} /></div>
+        <div className="space-y-2">
+          <label className="block text-sm font-medium" htmlFor="datepicker-range-start">
+            Start date
+          </label>
+          <input
+            id="datepicker-range-start"
+            className="[color-scheme:light] h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            type="date"
+            value={start}
+            onChange={(event) => setStart(event.target.value)}
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="block text-sm font-medium" htmlFor="datepicker-range-end">
+            End date
+          </label>
+          <input
+            id="datepicker-range-end"
+            className={`h-10 w-full rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring ${invalid ? 'border-destructive' : 'border-input'}`}
+            type="date"
+            value={end}
+            min={start || undefined}
+            onChange={(event) => setEnd(event.target.value)}
+            aria-invalid={invalid || undefined}
+            aria-describedby={invalid ? 'datepicker-range-error' : 'datepicker-range-hint'}
+          />
+        </div>
       </div>
-      <p id="datepicker-range-hint" className="text-sm text-muted-foreground">Choose the first and last day of your stay.</p>
-      {invalid && <p id="datepicker-range-error" className="text-sm text-destructive" role="alert">The end date must be on or after the start date.</p>}
-      {start && end && !invalid && <p className="text-sm text-muted-foreground" role="status">Range: {start} through {end}.</p>}
+      <p id="datepicker-range-hint" className="text-sm text-muted-foreground">
+        Choose the first and last day of your stay.
+      </p>
+      {invalid && (
+        <p id="datepicker-range-error" className="text-sm text-destructive" role="alert">
+          The end date must be on or after the start date.
+        </p>
+      )}
+      {start && end && !invalid && (
+        <p className="text-sm text-muted-foreground" role="status">
+          Range: {start} through {end}.
+        </p>
+      )}
     </div>
   )
 }
@@ -1876,11 +2077,39 @@ function DateTimePickerExample() {
   return (
     <div className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-time-date">Date</label><input id="datepicker-time-date" className="[color-scheme:light] h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="date" value={date} onChange={(event) => setDate(event.target.value)} /></div>
-        <div className="space-y-2"><label className="block text-sm font-medium" htmlFor="datepicker-time-time">Time</label><input id="datepicker-time-time" className="[color-scheme:light] h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring" type="time" value={time} onChange={(event) => setTime(event.target.value)} /></div>
+        <div className="space-y-2">
+          <label className="block text-sm font-medium" htmlFor="datepicker-time-date">
+            Date
+          </label>
+          <input
+            id="datepicker-time-date"
+            className="[color-scheme:light] h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            type="date"
+            value={date}
+            onChange={(event) => setDate(event.target.value)}
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="block text-sm font-medium" htmlFor="datepicker-time-time">
+            Time
+          </label>
+          <input
+            id="datepicker-time-time"
+            className="[color-scheme:light] h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            type="time"
+            value={time}
+            onChange={(event) => setTime(event.target.value)}
+          />
+        </div>
       </div>
-      <p id="datepicker-time-hint" className="text-sm text-muted-foreground">Choose the appointment time in Eastern Time. You can change it before confirming.</p>
-      {date && time && <p className="text-sm text-muted-foreground" role="status">Appointment: {date} at {time} Eastern Time.</p>}
+      <p id="datepicker-time-hint" className="text-sm text-muted-foreground">
+        Choose the appointment time in Eastern Time. You can change it before confirming.
+      </p>
+      {date && time && (
+        <p className="text-sm text-muted-foreground" role="status">
+          Appointment: {date} at {time} Eastern Time.
+        </p>
+      )}
     </div>
   )
 }
@@ -1889,29 +2118,163 @@ function DatepickerVariations() {
   return (
     <section className="space-y-8" aria-labelledby="datepicker-variations-heading">
       <div className="space-y-5">
-        <h2 id="datepicker-variations-heading" className="text-2xl font-semibold tracking-tight">Examples and variations</h2>
-        <p className="leading-7 text-muted-foreground">A Datepicker helps people enter or choose a calendar date. Use clear labels, sensible constraints, and explicit time-zone guidance when a date represents a real-world event.</p>
+        <h2 id="datepicker-variations-heading" className="text-2xl font-semibold tracking-tight">
+          Examples and variations
+        </h2>
+        <p className="leading-7 text-muted-foreground">
+          A Datepicker helps people enter or choose a calendar date. Use clear labels, sensible
+          constraints, and explicit time-zone guidance when a date represents a real-world event.
+        </p>
       </div>
       <div className="grid gap-8">
-        <InputVariation title="Basic" description="A date input with a visible label and no additional supporting text." guidance={<InputGuidance intro="Native date inputs generally do not need placeholder text: the browser supplies the date format and calendar affordance. If a custom date field uses a placeholder, use it only as an example and never as the label." dos={['Use a visible label that names the date’s purpose, such as “Move-in date.”', 'Accept the format people use in their locale and avoid making them guess the order of month, day, and year.', 'Use a calendar picker when browsing dates is easier than typing, while keeping the field editable.']} donts={['Do not use placeholder text as the only label or instruction.', 'Do not use a Datepicker when a month/year selector or plain text is the better input.', 'Do not silently reinterpret an ambiguous date such as 03/04/2027.']} />}>
+        <InputVariation
+          title="Basic"
+          description="A date input with a visible label and no additional supporting text."
+          guidance={
+            <InputGuidance
+              intro="Native date inputs generally do not need placeholder text: the browser supplies the date format and calendar affordance. If a custom date field uses a placeholder, use it only as an example and never as the label."
+              dos={[
+                'Use a visible label that names the date’s purpose, such as “Move-in date.”',
+                'Accept the format people use in their locale and avoid making them guess the order of month, day, and year.',
+                'Use a calendar picker when browsing dates is easier than typing, while keeping the field editable.',
+              ]}
+              donts={[
+                'Do not use placeholder text as the only label or instruction.',
+                'Do not use a Datepicker when a month/year selector or plain text is the better input.',
+                'Do not silently reinterpret an ambiguous date such as 03/04/2027.',
+              ]}
+            />
+          }
+        >
           <DatePickerVariation />
         </InputVariation>
-        <InputVariation title="With helper text" description="A date input with persistent guidance about format, constraints, or purpose." guidance={<InputGuidance intro="Use helper text when people need context that remains useful while choosing a date, such as an event deadline, allowed date window, or local time-zone rule." dos={['Explain the date’s purpose or constraint without repeating the label.', 'State important boundaries before people choose, such as “Choose a date within the next 30 days.”', 'Associate the description with the input using aria-describedby.']} donts={['Do not hide essential date rules in optional help.', 'Do not use helper text to announce an invalid date; use an error message for that.', 'Do not give a format instruction that conflicts with the browser or locale.']} />}>
+        <InputVariation
+          title="With helper text"
+          description="A date input with persistent guidance about format, constraints, or purpose."
+          guidance={
+            <InputGuidance
+              intro="Use helper text when people need context that remains useful while choosing a date, such as an event deadline, allowed date window, or local time-zone rule."
+              dos={[
+                'Explain the date’s purpose or constraint without repeating the label.',
+                'State important boundaries before people choose, such as “Choose a date within the next 30 days.”',
+                'Associate the description with the input using aria-describedby.',
+              ]}
+              donts={[
+                'Do not hide essential date rules in optional help.',
+                'Do not use helper text to announce an invalid date; use an error message for that.',
+                'Do not give a format instruction that conflicts with the browser or locale.',
+              ]}
+            />
+          }
+        >
           <DatePickerVariation hint="Choose a date within the next 30 days." />
         </InputVariation>
-        <InputVariation title="Disabled" description="A date input that is unavailable in the current context." guidance={<InputGuidance intro="Disable a Datepicker only when the date cannot be changed right now, such as when another selection determines it or the workflow is temporarily unavailable." dos={['Explain why the date is unavailable and what action could activate it.', 'Keep the label and any current value understandable in the disabled state.', 'Use read-only text when people need to review or copy the date.']} donts={['Do not disable a date merely to prevent mistakes; constrain or validate it instead.', 'Do not disable it while loading without communicating that work is in progress.', 'Do not make a disabled date field the only place important information is available.']} />}>
+        <InputVariation
+          title="Disabled"
+          description="A date input that is unavailable in the current context."
+          guidance={
+            <InputGuidance
+              intro="Disable a Datepicker only when the date cannot be changed right now, such as when another selection determines it or the workflow is temporarily unavailable."
+              dos={[
+                'Explain why the date is unavailable and what action could activate it.',
+                'Keep the label and any current value understandable in the disabled state.',
+                'Use read-only text when people need to review or copy the date.',
+              ]}
+              donts={[
+                'Do not disable a date merely to prevent mistakes; constrain or validate it instead.',
+                'Do not disable it while loading without communicating that work is in progress.',
+                'Do not make a disabled date field the only place important information is available.',
+              ]}
+            />
+          }
+        >
           <DatePickerVariation disabled hint="Available after you choose a service." />
         </InputVariation>
-        <InputVariation title="Invalid" description="A date that violates an actionable rule and needs correction." guidance={<InputGuidance intro="Show an invalid state when the entered date is missing, malformed, outside an allowed range, or conflicts with another date and the person can correct it." dos={['Name the problem and the correction, including the allowed range when useful.', 'Keep the entered value visible so people can correct it without starting over.', 'Associate the error with the input and communicate it with text, not color alone.']} donts={['Do not show an error before people have had a fair chance to choose a date.', 'Do not rely on a red border or calendar icon without an explanation.', 'Do not say only “Invalid date”; explain what a valid date looks like.']} />}>
-          <DatePickerVariation invalid hint="The selected date is outside the available service window." />
+        <InputVariation
+          title="Invalid"
+          description="A date that violates an actionable rule and needs correction."
+          guidance={
+            <InputGuidance
+              intro="Show an invalid state when the entered date is missing, malformed, outside an allowed range, or conflicts with another date and the person can correct it."
+              dos={[
+                'Name the problem and the correction, including the allowed range when useful.',
+                'Keep the entered value visible so people can correct it without starting over.',
+                'Associate the error with the input and communicate it with text, not color alone.',
+              ]}
+              donts={[
+                'Do not show an error before people have had a fair chance to choose a date.',
+                'Do not rely on a red border or calendar icon without an explanation.',
+                'Do not say only “Invalid date”; explain what a valid date looks like.',
+              ]}
+            />
+          }
+        >
+          <DatePickerVariation
+            invalid
+            hint="The selected date is outside the available service window."
+          />
         </InputVariation>
-        <InputVariation title="Required" description="A date input that must have a valid value before the task can continue." guidance={<InputGuidance intro="Use a required Datepicker when the task cannot proceed without knowing the date and there is no safe default." dos={['Label the date by its purpose and state any important date boundary.', 'Write an error that names the missing action, such as “Choose a date before continuing.”', 'Return focus to the field when validation fails and preserve what the person entered.']} donts={['Do not use an error that only says “Required.”', 'Do not pre-fill a consequential date when doing so could conceal an important decision.', 'Do not require a date when the task can proceed without one.']} />}>
+        <InputVariation
+          title="Required"
+          description="A date input that must have a valid value before the task can continue."
+          guidance={
+            <InputGuidance
+              intro="Use a required Datepicker when the task cannot proceed without knowing the date and there is no safe default."
+              dos={[
+                'Label the date by its purpose and state any important date boundary.',
+                'Write an error that names the missing action, such as “Choose a date before continuing.”',
+                'Return focus to the field when validation fails and preserve what the person entered.',
+              ]}
+              donts={[
+                'Do not use an error that only says “Required.”',
+                'Do not pre-fill a consequential date when doing so could conceal an important decision.',
+                'Do not require a date when the task can proceed without one.',
+              ]}
+            />
+          }
+        >
           <RequiredDatePickerExample />
         </InputVariation>
-        <InputVariation title="Range picker" description="Two related date inputs for selecting a start and end date." guidance={<InputGuidance intro="Allow range selection when the task has a beginning and an end, such as a stay, reporting period, or date filter." dos={['Label both endpoints clearly as start and end, and explain whether the endpoints are inclusive.', 'Prevent or validate an end date before the start date and show the selected range.', 'Use a range picker when the relationship between the two dates matters.']} donts={['Do not use a range when people need only one date.', 'Do not make people infer which date is the start or end from position alone.', 'Do not silently adjust one endpoint when the other changes.']} />}>
+        <InputVariation
+          title="Range picker"
+          description="Two related date inputs for selecting a start and end date."
+          guidance={
+            <InputGuidance
+              intro="Allow range selection when the task has a beginning and an end, such as a stay, reporting period, or date filter."
+              dos={[
+                'Label both endpoints clearly as start and end, and explain whether the endpoints are inclusive.',
+                'Prevent or validate an end date before the start date and show the selected range.',
+                'Use a range picker when the relationship between the two dates matters.',
+              ]}
+              donts={[
+                'Do not use a range when people need only one date.',
+                'Do not make people infer which date is the start or end from position alone.',
+                'Do not silently adjust one endpoint when the other changes.',
+              ]}
+            />
+          }
+        >
           <DateRangePickerExample />
         </InputVariation>
-        <InputVariation title="Time picker" description="A date and time selection for scheduling a specific moment." guidance={<InputGuidance intro="Allow time selection with a date when the task represents a specific moment, such as an appointment, delivery, or scheduled publication." dos={['State the time zone and whether the time uses a 12-hour or 24-hour convention.', 'Use the smallest precision the task needs and explain the consequence of changing the time.', 'Keep date and time labels separate so people can review each part.']} donts={['Do not ask for a time when only a date or approximate period matters.', 'Do not assume the user’s time zone for a cross-region event without stating it.', 'Do not hide daylight-saving or unavailable-time rules when they affect scheduling.']} />}>
+        <InputVariation
+          title="Time picker"
+          description="A date and time selection for scheduling a specific moment."
+          guidance={
+            <InputGuidance
+              intro="Allow time selection with a date when the task represents a specific moment, such as an appointment, delivery, or scheduled publication."
+              dos={[
+                'State the time zone and whether the time uses a 12-hour or 24-hour convention.',
+                'Use the smallest precision the task needs and explain the consequence of changing the time.',
+                'Keep date and time labels separate so people can review each part.',
+              ]}
+              donts={[
+                'Do not ask for a time when only a date or approximate period matters.',
+                'Do not assume the user’s time zone for a cross-region event without stating it.',
+                'Do not hide daylight-saving or unavailable-time rules when they affect scheduling.',
+              ]}
+            />
+          }
+        >
           <DateTimePickerExample />
         </InputVariation>
       </div>
@@ -1923,33 +2286,191 @@ function ComboboxVariations() {
   return (
     <section className="space-y-8" aria-labelledby="combobox-variations-heading">
       <div className="space-y-5">
-        <h2 id="combobox-variations-heading" className="text-2xl font-semibold tracking-tight">Examples and variations</h2>
-        <p className="leading-7 text-muted-foreground">A Combobox combines an editable text input with a filtered list of suggestions. People can type to narrow the list, then choose a result.</p>
+        <h2 id="combobox-variations-heading" className="text-2xl font-semibold tracking-tight">
+          Examples and variations
+        </h2>
+        <p className="leading-7 text-muted-foreground">
+          A Combobox combines an editable text input with a filtered list of suggestions. People can
+          type to narrow the list, then choose a result.
+        </p>
       </div>
       <div className="grid gap-8">
-        <InputVariation title="Basic" description="An editable, filterable input with a single selection and no supporting text." guidance={<InputGuidance intro="A Combobox is useful when people may know part of a value and need suggestions while typing. The visible label names the field; a placeholder can show an example or format, but it cannot replace the label." dos={['Use a concise label and a familiar example as placeholder text when it helps people understand what to type.', 'Filter suggestions as people type and show a clear no-results message.', 'Let people use the keyboard to focus, filter, select, and dismiss the popup.']} donts={['Do not use placeholder text as the only label or instruction.', 'Do not use a Combobox when the list is short and a static set of radio buttons is easier to compare.', 'Do not make suggestions unrelated to the typed value or hide the current selection.']} />}>
+        <InputVariation
+          title="Basic"
+          description="An editable, filterable input with a single selection and no supporting text."
+          guidance={
+            <InputGuidance
+              intro="A Combobox is useful when people may know part of a value and need suggestions while typing. The visible label names the field; a placeholder can show an example or format, but it cannot replace the label."
+              dos={[
+                'Use a concise label and a familiar example as placeholder text when it helps people understand what to type.',
+                'Filter suggestions as people type and show a clear no-results message.',
+                'Let people use the keyboard to focus, filter, select, and dismiss the popup.',
+              ]}
+              donts={[
+                'Do not use placeholder text as the only label or instruction.',
+                'Do not use a Combobox when the list is short and a static set of radio buttons is easier to compare.',
+                'Do not make suggestions unrelated to the typed value or hide the current selection.',
+              ]}
+            />
+          }
+        >
           <ComboboxVariation />
         </InputVariation>
-        <InputVariation title="With helper text" description="A single-selection Combobox with persistent guidance about the value or search behavior." guidance={<InputGuidance intro="Use helper text when people need context that remains useful while searching, such as accepted formats, data source, or whether they can choose only existing values." dos={['Explain what the suggestions represent and whether a matching option must be selected.', 'Keep essential instructions visible and associate them with the input using aria-describedby.', 'Use plain language that helps people decide what to type.']} donts={['Do not repeat the label in the helper text.', 'Do not hide required rules or important consequences in optional help.', 'Do not use helper text for a validation failure; use an error message for that.']} />}>
+        <InputVariation
+          title="With helper text"
+          description="A single-selection Combobox with persistent guidance about the value or search behavior."
+          guidance={
+            <InputGuidance
+              intro="Use helper text when people need context that remains useful while searching, such as accepted formats, data source, or whether they can choose only existing values."
+              dos={[
+                'Explain what the suggestions represent and whether a matching option must be selected.',
+                'Keep essential instructions visible and associate them with the input using aria-describedby.',
+                'Use plain language that helps people decide what to type.',
+              ]}
+              donts={[
+                'Do not repeat the label in the helper text.',
+                'Do not hide required rules or important consequences in optional help.',
+                'Do not use helper text for a validation failure; use an error message for that.',
+              ]}
+            />
+          }
+        >
           <ComboboxVariation hint="Choose a country from the suggestions. Start typing to filter the list." />
         </InputVariation>
-        <InputVariation title="Disabled" description="A Combobox that is unavailable in the current context." guidance={<InputGuidance intro="Disable a Combobox only when people cannot search or change the value right now, such as when another setting controls the field or required data is still unavailable." dos={['Explain why it is unavailable and what action could activate it.', 'Keep the label, current value, and supporting context understandable.', 'Use read-only text when people need to review or copy the value.']} donts={['Do not disable the field merely to prevent mistakes; validate or explain instead.', 'Do not disable it during loading without communicating that work is in progress.', 'Do not make a disabled field the only place important information is available.']} />}>
+        <InputVariation
+          title="Disabled"
+          description="A Combobox that is unavailable in the current context."
+          guidance={
+            <InputGuidance
+              intro="Disable a Combobox only when people cannot search or change the value right now, such as when another setting controls the field or required data is still unavailable."
+              dos={[
+                'Explain why it is unavailable and what action could activate it.',
+                'Keep the label, current value, and supporting context understandable.',
+                'Use read-only text when people need to review or copy the value.',
+              ]}
+              donts={[
+                'Do not disable the field merely to prevent mistakes; validate or explain instead.',
+                'Do not disable it during loading without communicating that work is in progress.',
+                'Do not make a disabled field the only place important information is available.',
+              ]}
+            />
+          }
+        >
           <ComboboxVariation disabled hint="Available after you select an organization." />
         </InputVariation>
-        <InputVariation title="Invalid" description="A Combobox whose value or selection conflicts with an actionable rule." guidance={<InputGuidance intro="Show an invalid state after people have had a fair chance to enter or choose a value and the value needs correction, such as when it is required or not in the available list." dos={['Explain what is wrong and the action that will fix it.', 'Keep the entered value visible so people can edit it rather than starting over.', 'Associate the error with the input using aria-describedby and communicate it with text, not color alone.']} donts={['Do not show an error before people have had a fair chance to interact.', 'Do not rely on a red border or icon without an explanation.', 'Do not write “Invalid value” without saying what a valid value looks like.']} />}>
+        <InputVariation
+          title="Invalid"
+          description="A Combobox whose value or selection conflicts with an actionable rule."
+          guidance={
+            <InputGuidance
+              intro="Show an invalid state after people have had a fair chance to enter or choose a value and the value needs correction, such as when it is required or not in the available list."
+              dos={[
+                'Explain what is wrong and the action that will fix it.',
+                'Keep the entered value visible so people can edit it rather than starting over.',
+                'Associate the error with the input using aria-describedby and communicate it with text, not color alone.',
+              ]}
+              donts={[
+                'Do not show an error before people have had a fair chance to interact.',
+                'Do not rely on a red border or icon without an explanation.',
+                'Do not write “Invalid value” without saying what a valid value looks like.',
+              ]}
+            />
+          }
+        >
           <ComboboxVariation invalid hint="The selected country is no longer available." />
         </InputVariation>
-        <InputVariation title="Required" description="A Combobox that requires a valid country before the task can continue." guidance={<InputGuidance intro="Use a required Combobox when the task cannot proceed without a value and there is no safe default." dos={['State what people must choose and whether the value must come from the suggestions.', 'Write an error that names the missing action, such as “Choose a country before continuing.”', 'Preserve the entered text and return focus to the field when validation fails.']} donts={['Do not use an error that only says “Required.”', 'Do not pre-fill a required value when doing so could conceal an important decision.', 'Do not require a value when the task can proceed without it.']} />}>
+        <InputVariation
+          title="Required"
+          description="A Combobox that requires a valid country before the task can continue."
+          guidance={
+            <InputGuidance
+              intro="Use a required Combobox when the task cannot proceed without a value and there is no safe default."
+              dos={[
+                'State what people must choose and whether the value must come from the suggestions.',
+                'Write an error that names the missing action, such as “Choose a country before continuing.”',
+                'Preserve the entered text and return focus to the field when validation fails.',
+              ]}
+              donts={[
+                'Do not use an error that only says “Required.”',
+                'Do not pre-fill a required value when doing so could conceal an important decision.',
+                'Do not require a value when the task can proceed without it.',
+              ]}
+            />
+          }
+        >
           <RequiredComboboxExample />
         </InputVariation>
-        <InputVariation title="Multiple" description="A filterable Combobox that allows several independent selections." guidance={<InputGuidance intro="Allow multiple selection when people may need more than one related value, such as several notification topics or regions." dos={['Tell people that multiple values are allowed and show selected values as removable or otherwise understandable items.', 'Keep the input available after each selection so people can continue searching.', 'Set and communicate selection limits when the list or workflow requires them.']} donts={['Do not allow multiple selection when exactly one value is required; use a single-selection Combobox or radio group.', 'Do not hide selected values or make people remember what they chose.', 'Do not silently remove selections when the input is cleared.']} />}>
-          <ComboboxVariation multiple hint="Select one or more countries. Keep typing to find additional options." />
+        <InputVariation
+          title="Multiple"
+          description="A filterable Combobox that allows several independent selections."
+          guidance={
+            <InputGuidance
+              intro="Allow multiple selection when people may need more than one related value, such as several notification topics or regions."
+              dos={[
+                'Tell people that multiple values are allowed and show selected values as removable or otherwise understandable items.',
+                'Keep the input available after each selection so people can continue searching.',
+                'Set and communicate selection limits when the list or workflow requires them.',
+              ]}
+              donts={[
+                'Do not allow multiple selection when exactly one value is required; use a single-selection Combobox or radio group.',
+                'Do not hide selected values or make people remember what they chose.',
+                'Do not silently remove selections when the input is cleared.',
+              ]}
+            />
+          }
+        >
+          <ComboboxVariation
+            multiple
+            hint="Select one or more countries. Keep typing to find additional options."
+          />
         </InputVariation>
-        <InputVariation title="Option to clear" description="A single-selection Combobox with an explicit way to remove the current value." guidance={<InputGuidance intro="Offer a clear option when the field is optional or when replacing a selection is less clear than resetting it." dos={['Give the clear control an accessible name that identifies what will be cleared.', 'Return the field to its empty state and communicate the result clearly.', 'Keep the clear action separate from choosing a suggestion.']} donts={['Do not add a clear action to a required field unless clearing is a valid temporary state.', 'Do not make people delete a long value manually when a clear action is expected.', 'Do not clear the value without a visible or announced result.']} />}>
-          <ComboboxVariation clearable hint="Optional. Clear the country if you do not want to filter by one." />
+        <InputVariation
+          title="Option to clear"
+          description="A single-selection Combobox with an explicit way to remove the current value."
+          guidance={
+            <InputGuidance
+              intro="Offer a clear option when the field is optional or when replacing a selection is less clear than resetting it."
+              dos={[
+                'Give the clear control an accessible name that identifies what will be cleared.',
+                'Return the field to its empty state and communicate the result clearly.',
+                'Keep the clear action separate from choosing a suggestion.',
+              ]}
+              donts={[
+                'Do not add a clear action to a required field unless clearing is a valid temporary state.',
+                'Do not make people delete a long value manually when a clear action is expected.',
+                'Do not clear the value without a visible or announced result.',
+              ]}
+            />
+          }
+        >
+          <ComboboxVariation
+            clearable
+            hint="Optional. Clear the country if you do not want to filter by one."
+          />
         </InputVariation>
-        <InputVariation title="Groups" description="Suggestions organized under meaningful headings to make a larger set easier to scan." guidance={<InputGuidance intro="Group items when categories are meaningful to the decision and help people find a result. Grouping should reduce search effort, not add decorative hierarchy." dos={['Use short, recognizable group names that describe the options below them.', 'Keep groups mutually understandable and use a consistent organizing principle.', 'Preserve filtering so empty groups disappear and matching options remain easy to find.']} donts={['Do not group a short list when headings add more work than clarity.', 'Do not mix organizing principles, such as geography and popularity, in the same list.', 'Do not use group names that are vague, duplicated, or not announced to assistive technology.']} />}>
-          <ComboboxVariation grouped hint="Suggestions are grouped by region to make the list easier to scan." />
+        <InputVariation
+          title="Groups"
+          description="Suggestions organized under meaningful headings to make a larger set easier to scan."
+          guidance={
+            <InputGuidance
+              intro="Group items when categories are meaningful to the decision and help people find a result. Grouping should reduce search effort, not add decorative hierarchy."
+              dos={[
+                'Use short, recognizable group names that describe the options below them.',
+                'Keep groups mutually understandable and use a consistent organizing principle.',
+                'Preserve filtering so empty groups disappear and matching options remain easy to find.',
+              ]}
+              donts={[
+                'Do not group a short list when headings add more work than clarity.',
+                'Do not mix organizing principles, such as geography and popularity, in the same list.',
+                'Do not use group names that are vague, duplicated, or not announced to assistive technology.',
+              ]}
+            />
+          }
+        >
+          <ComboboxVariation
+            grouped
+            hint="Suggestions are grouped by region to make the list easier to scan."
+          />
         </InputVariation>
       </div>
     </section>
@@ -1964,7 +2485,8 @@ function RadioButtonVariations() {
           Examples and variations
         </h2>
         <p className="leading-7 text-muted-foreground">
-          Radio Buttons present mutually exclusive options. Use the group legend to describe the single decision and each visible label to identify one possible answer.
+          Radio Buttons present mutually exclusive options. Use the group legend to describe the
+          single decision and each visible label to identify one possible answer.
         </p>
       </div>
       <div className="grid gap-8">
@@ -2009,7 +2531,10 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample idPrefix="radio-button-helper" hint="Choose the method you check most often. You can change this preference later." />
+          <RadioButtonExample
+            idPrefix="radio-button-helper"
+            hint="Choose the method you check most often. You can change this preference later."
+          />
         </InputVariation>
 
         <InputVariation
@@ -2031,7 +2556,11 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample idPrefix="radio-button-disabled" disabled hint="Available after you add a verified contact method." />
+          <RadioButtonExample
+            idPrefix="radio-button-disabled"
+            disabled
+            hint="Available after you add a verified contact method."
+          />
         </InputVariation>
 
         <InputVariation
@@ -2053,7 +2582,11 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample idPrefix="radio-button-invalid" invalid hint="Select one contact method to continue." />
+          <RadioButtonExample
+            idPrefix="radio-button-invalid"
+            invalid
+            hint="Select one contact method to continue."
+          />
         </InputVariation>
 
         <InputVariation
@@ -2086,11 +2619,15 @@ function CheckboxGroupVariations() {
   return (
     <section className="space-y-8" aria-labelledby="checkbox-group-variations-heading">
       <div className="space-y-5">
-        <h2 id="checkbox-group-variations-heading" className="text-2xl font-semibold tracking-tight">
+        <h2
+          id="checkbox-group-variations-heading"
+          className="text-2xl font-semibold tracking-tight"
+        >
           Examples and variations
         </h2>
         <p className="leading-7 text-muted-foreground">
-          A Checkbox Group presents several related independent choices under one clear legend. Use the group to organize the choices and the individual labels to explain each option.
+          A Checkbox Group presents several related independent choices under one clear legend. Use
+          the group to organize the choices and the individual labels to explain each option.
         </p>
       </div>
       <div className="grid gap-8">
@@ -2135,7 +2672,10 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample idPrefix="checkbox-group-helper" hint="Select all that apply. We will use these choices to tailor your notifications." />
+          <CheckboxGroupExample
+            idPrefix="checkbox-group-helper"
+            hint="Select all that apply. We will use these choices to tailor your notifications."
+          />
         </InputVariation>
 
         <InputVariation
@@ -2157,7 +2697,11 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample idPrefix="checkbox-group-disabled" disabled hint="Available after you choose a notification plan." />
+          <CheckboxGroupExample
+            idPrefix="checkbox-group-disabled"
+            disabled
+            hint="Available after you choose a notification plan."
+          />
         </InputVariation>
 
         <InputVariation
@@ -2179,7 +2723,11 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample idPrefix="checkbox-group-invalid" invalid hint="Select at least one update type." />
+          <CheckboxGroupExample
+            idPrefix="checkbox-group-invalid"
+            invalid
+            hint="Select at least one update type."
+          />
         </InputVariation>
 
         <InputVariation
@@ -2216,9 +2764,9 @@ function CheckboxVariations() {
           Examples and variations
         </h2>
         <p className="leading-7 text-muted-foreground">
-          These examples show how a Checkbox changes as the choice needs a label, persistent guidance,
-          availability, validation, or a required acknowledgment. The label should always explain the
-          independent choice people are making.
+          These examples show how a Checkbox changes as the choice needs a label, persistent
+          guidance, availability, validation, or a required acknowledgment. The label should always
+          explain the independent choice people are making.
         </p>
       </div>
       <div className="grid gap-8">
@@ -2242,7 +2790,11 @@ function CheckboxVariations() {
           }
         >
           <CheckboxField id="checkbox-basic-variation" label="Send me product updates">
-            <input id="checkbox-basic-variation" className="mt-1 size-4 accent-primary" type="checkbox" />
+            <input
+              id="checkbox-basic-variation"
+              className="mt-1 size-4 accent-primary"
+              type="checkbox"
+            />
           </CheckboxField>
         </InputVariation>
 
@@ -2859,6 +3411,11 @@ function FormGuide({
                 <div className={panelClass}>
                   <div className="max-w-xl">
                     <BasicExample kind={kind} />
+                    <p className="text-sm leading-6 text-muted-foreground">
+                      Try it: focus the control, identify its visible label and any help or error
+                      text, then use the keyboard to complete the basic interaction for this
+                      control.
+                    </p>
                   </div>
                 </div>
               </section>
@@ -2962,8 +3519,8 @@ function ComponentsFormsPage() {
                   </h2>
                   <p className="leading-7 text-muted-foreground">
                     Start with the guide that matches the value or decision your interface needs to
-                    collect. Each guide includes a basic example, state variations, content guidance,
-                    accessibility considerations, and responsive behavior.
+                    collect. Each guide includes a basic example, state variations, content
+                    guidance, accessibility considerations, and responsive behavior.
                   </p>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -2972,7 +3529,11 @@ function ComponentsFormsPage() {
                     ['Select', '/components/select', 'One choice from a known list.'],
                     ['Text area', '/components/textarea', 'Longer, free-form responses.'],
                     ['Checkbox', '/components/checkbox', 'One independent choice.'],
-                    ['Checkbox group', '/components/checkbox-group', 'Several choices that may all apply.'],
+                    [
+                      'Checkbox group',
+                      '/components/checkbox-group',
+                      'Several choices that may all apply.',
+                    ],
                     ['Radio button', '/components/radio', 'Exactly one choice from a small set.'],
                     ['Combobox', '/components/combobox', 'Searchable or filterable choices.'],
                     ['Datepicker', '/components/datepicker', 'Calendar dates and date ranges.'],
@@ -3003,7 +3564,10 @@ function ComponentsFormsPage() {
                     <li>Uses labels that describe the value, not just the visual appearance.</li>
                     <li>Shows required, optional, unavailable, and invalid states in text.</li>
                     <li>Preserves the user’s input when validation finds a problem.</li>
-                    <li>Connects labels, instructions, values, and errors for keyboard and assistive-technology users.</li>
+                    <li>
+                      Connects labels, instructions, values, and errors for keyboard and
+                      assistive-technology users.
+                    </li>
                   </ul>
                 </div>
                 <div className="space-y-5" aria-labelledby="forms-not-heading">
@@ -3014,7 +3578,10 @@ function ComponentsFormsPage() {
                     <li>Use placeholder text as the only label or instruction.</li>
                     <li>Make a long list of choices harder to use than a searchable combobox.</li>
                     <li>Rely on color, position, or an icon alone to communicate an error.</li>
-                    <li>Use a disabled state when people need to review or copy the value; use read-only presentation instead.</li>
+                    <li>
+                      Use a disabled state when people need to review or copy the value; use
+                      read-only presentation instead.
+                    </li>
                   </ul>
                 </div>
               </section>
@@ -3033,9 +3600,13 @@ function ComponentsFormsPage() {
                     choices.
                   </li>
                   <li>Use Datepicker for dates while keeping a keyboard-friendly input path.</li>
-                  <li>Use helper text for persistent context and error text for a problem that needs correction.</li>
                   <li>
-                    Test the complete form with a keyboard, a screen reader, and a narrow viewport before shipping it.
+                    Use helper text for persistent context and error text for a problem that needs
+                    correction.
+                  </li>
+                  <li>
+                    Test the complete form with a keyboard, a screen reader, and a narrow viewport
+                    before shipping it.
                   </li>
                 </ul>
               </section>
