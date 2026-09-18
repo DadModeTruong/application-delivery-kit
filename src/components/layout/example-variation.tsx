@@ -24,7 +24,7 @@ export function ExampleVariation({
         <p className="text-muted-foreground">{description}</p>
       </div>
       <div className="rounded-lg border p-5 sm:p-6">{children}</div>
-      <p className="text-muted-foreground">{explanation}</p>
+      <div className="text-muted-foreground">{explanation}</div>
       <div className="grid gap-8 sm:grid-cols-2">
         <div>
           <h4 className="font-semibold">Do</h4>

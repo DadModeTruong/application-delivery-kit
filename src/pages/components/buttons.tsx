@@ -245,25 +245,25 @@ function ComponentsButtonsPage() {
                         Use visual emphasis to communicate priority and consequence. Compare the
                         styles below, then choose the least prominent style that still makes the
                         action clear.
-                        <span className="mt-3 block">
-                          Default: use for the primary action in a task.
-                        </span>
-                        <span className="block">
-                          Secondary and outline: use for supporting actions that should remain
-                          available without competing with the primary action.
-                        </span>
-                        <span className="block">
-                          Ghost: use for low-emphasis actions when a full button surface would add
-                          unnecessary weight.
-                        </span>
-                        <span className="block">
-                          Destructive: use for irreversible or high-consequence actions such as
-                          deleting or removing data.
-                        </span>
-                        <span className="block">
-                          Link: use for a quiet action that should read like a link rather than a
-                          prominent button.
-                        </span>
+                        <ul className="mt-3 list-disc space-y-2 pl-5">
+                          <li>Default: use for the primary action in a task.</li>
+                          <li>
+                            Secondary and outline: use for supporting actions that should remain
+                            available without competing with the primary action.
+                          </li>
+                          <li>
+                            Ghost: use for low-emphasis actions when a full button surface would add
+                            unnecessary weight.
+                          </li>
+                          <li>
+                            Destructive: use for irreversible or high-consequence actions such as
+                            deleting or removing data.
+                          </li>
+                          <li>
+                            Link: use for a quiet action that should read like a link rather than a
+                            prominent button.
+                          </li>
+                        </ul>
                       </>
                     }
                     doItems={[
