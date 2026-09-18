@@ -83,7 +83,7 @@ function ComponentsFooterPage() {
                   id="navigation-footer-what-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  What is it for?
+                  What is it?
                 </h2>
                 <p className="leading-7 text-muted-foreground">Use the Footer as an end-of-page region for legal, support, trust, and organizational destinations without competing with primary navigation.</p>
                 <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
@@ -219,6 +219,10 @@ function ComponentsFooterPage() {
                   Compare a minimal Footer with the current application Footer. Both examples use the
                   reusable Footer component; the difference is the link data passed to it.
                 </p>
+                <p className="text-sm text-muted-foreground">
+                  Try it: tab through each link, resize until the links wrap, and verify that focus remains
+                  visible, the link order is logical, and the Footer stays secondary to primary navigation.
+                </p>
                 <div className="space-y-8">
                   <ExampleVariation
                     title="Basic"
@@ -233,12 +237,10 @@ function ComponentsFooterPage() {
                       'Do not use the Footer as a replacement for primary navigation.',
                     ]}
                   >
-                    <div className="overflow-hidden rounded-xl border">
-                      <Footer
+                    <Footer
                         copyright={<>© 2026 Tommy Truong</>}
                         links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
                       />
-                    </div>
                   </ExampleVariation>
                   <ExampleVariation
                     title="With icon"
@@ -254,9 +256,7 @@ function ComponentsFooterPage() {
                       'Do not add social or external links without a clear purpose.',
                     ]}
                   >
-                    <div className="overflow-hidden rounded-xl border">
-                      <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-                    </div>
+                    <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
                   </ExampleVariation>
                 </div>
               </section>
