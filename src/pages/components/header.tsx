@@ -206,11 +206,7 @@ function ComponentsHeaderPage() {
                 <p className="text-muted-foreground">
                   Compare a compact system header, grouped navigation, and icon-supported navigation. Each example uses the same production Header component and full-width variation structure as the Forms pages.
                 </p>
-                <p className="text-muted-foreground">
-                  Try it: Use Tab to reach each link or menu trigger, activate the dropdown, and resize
-                  the page. Confirm that focus is visible, the expanded menu is understandable, and the
-                  same destinations remain reachable in the mobile menu.
-                </p>
+                <p className="text-sm text-muted-foreground">Try it: move through the Header links and actions with the keyboard, verify the skip link, open the mobile navigation, resize the page, and confirm focus remains visible and the navigation order stays logical.</p>
                 <div className="space-y-8 [&_[data-slot=header]]:!border-b-0 [&_*:has(>[data-slot=header])]:!p-0 [&_*:has(>[data-slot=header])]:overflow-hidden">
 
                   <ExampleVariation

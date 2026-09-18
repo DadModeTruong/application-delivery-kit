@@ -227,12 +227,7 @@ function ComponentsTabNavigationPage() {
                   navigation links, so selecting one should take the person to a destination and
                   preserve normal browser history and link behavior.
                 </p>
-                <p className="text-muted-foreground">
-                  Try it: Use Tab to reach the links, activate a destination, and resize the page. On
-                  narrow screens, the visible TabNavigation row intentionally disappears because the same
-                  links move into the Header’s mobile drawer; confirm the destinations remain available
-                  there and the active location is still clear.
-                </p>
+                <p className="text-sm text-muted-foreground">Try it: move through the navigation links with the keyboard, activate a destination, resize until labels wrap or move to the mobile replacement, and confirm only the intended current destination is active with visible focus.</p>
                 <div className="space-y-8 [&_*:has(>[data-slot=tab-navigation])]:!p-0 [&_*:has(>[data-slot=tab-navigation])]:overflow-hidden">
                   <ExampleVariation
                     title="Basic"
