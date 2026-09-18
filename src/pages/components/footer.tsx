@@ -73,7 +73,7 @@ function ComponentsFooterPage() {
                 >
                   Footer navigation
                 </h1>
-                <p className="max-w-3xl text-xl leading-8 text-muted-foreground">
+                <p className="text-xl leading-8 text-muted-foreground">
                   Use Footer for supporting information and destinations at the end of a page,
                   without competing with the page&apos;s main task or primary navigation.
                 </p>
@@ -86,14 +86,14 @@ function ComponentsFooterPage() {
                 >
                   What is it?
                 </h2>
-                <p className="max-w-3xl leading-7 text-muted-foreground">
+                <p className="leading-7 text-muted-foreground">
                   Footer is the page-ending region for secondary destinations such as privacy,
                   accessibility, help, contact, status, and ownership information. Place it after{' '}
                   <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm">Main</code> or{' '}
                   <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm">PageBody</code>, not
                   inside the main content area.
                 </p>
-                <p className="max-w-3xl leading-7 text-muted-foreground">
+                <p className="leading-7 text-muted-foreground">
                   The basic pattern is a quiet row with caller-owned copyright content and a small
                   set of specific links. When links are present, Footer adds a named navigation
                   landmark and keeps the links as normal keyboard-reachable anchors.
@@ -175,7 +175,7 @@ function ComponentsFooterPage() {
                 >
                   Design considerations
                 </h2>
-                <p className="max-w-3xl leading-7 text-muted-foreground">
+                <p className="leading-7 text-muted-foreground">
                   Keep Footer visually secondary while making its destinations easy to scan. The
                   component supports contained or full-width layout, optional borders, caller-owned
                   copyright React content, and links with optional icons and external-link
@@ -211,7 +211,7 @@ function ComponentsFooterPage() {
                 >
                   Accessibility considerations
                 </h2>
-                <p className="max-w-3xl leading-7 text-muted-foreground">
+                <p className="leading-7 text-muted-foreground">
                   Place Footer after the page&apos;s main content so the native{' '}
                   <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm">footer</code>{' '}
                   element represents the page&apos;s content-info landmark. When links are provided,
@@ -249,7 +249,7 @@ function ComponentsFooterPage() {
                 >
                   Responsive behavior
                 </h2>
-                <p className="max-w-3xl leading-7 text-muted-foreground">
+                <p className="leading-7 text-muted-foreground">
                   Footer uses wrapping flex layouts: the copyright content and link navigation wrap
                   as space becomes limited. It is not a fixed or sticky control, and links should
                   remain available without horizontal scrolling.
@@ -277,12 +277,12 @@ function ComponentsFooterPage() {
                 >
                   Examples and variations
                 </h2>
-                <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+                <p className="text-sm leading-6 text-muted-foreground">
                   Compare the basic text-link pattern with the production shell configuration and a
                   full-width layout. Each preview uses the reusable Footer component; only its
                   supported data and layout options change.
                 </p>
-                <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+                <p className="text-sm leading-6 text-muted-foreground">
                   Try it: tab through every link, activate the external link, and resize until the
                   content wraps. Confirm that focus stays visible, link purpose remains clear, and
                   no destination becomes unreachable.
