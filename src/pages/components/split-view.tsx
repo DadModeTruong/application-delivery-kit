@@ -248,7 +248,7 @@ function ComponentsSplitViewPage() {
                   control, Main remains first, and neither pane becomes unusably narrow.
                 </p>
                 <div className="space-y-10">
-                  <div className="space-y-5">
+                  <article className="space-y-6 rounded-lg border p-6 sm:p-8">
                     <div className="space-y-2">
                       <h3 className="text-xl font-semibold tracking-tight">
                         Main two-thirds, Secondary one-third
@@ -295,8 +295,8 @@ function ComponentsSplitViewPage() {
                         </ul>
                       </div>
                     </div>
-                  </div>
-                  <div className="space-y-5">
+                  </article>
+                  <article className="space-y-6 rounded-lg border p-6 sm:p-8">
                     <div className="space-y-2">
                       <h3 className="text-xl font-semibold tracking-tight">
                         Main half, Secondary half
@@ -351,7 +351,7 @@ function ComponentsSplitViewPage() {
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </article>
                 </div>
               </section>
             </div>
