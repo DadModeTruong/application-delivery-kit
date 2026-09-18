@@ -98,7 +98,6 @@ function ComponentsSecondaryNavPage() {
                       { label: 'Guidance', href: '#secondary-nav-guidance' },
                       { label: 'Resources', href: '#secondary-nav-resources' },
                     ]}
-                    activeHref="#secondary-nav-overview"
                     aria-label="Secondary navigation example"
                   />
                 </div>
@@ -234,8 +233,7 @@ function ComponentsSecondaryNavPage() {
                           { label: 'Guidance', href: '#secondary-nav-guidance' },
                           { label: 'Examples', href: '#secondary-nav-examples' },
                         ]}
-                        activeHref="#secondary-nav-overview"
-                        aria-label="Project guide sections"
+                            aria-label="Project guide sections"
                       />
                   </ExampleVariation>
 
@@ -282,8 +280,7 @@ function ComponentsSecondaryNavPage() {
                         { label: 'Implementation guidance', href: '#secondary-nav-guidance' },
                         { label: 'Related resources and references', href: '#secondary-nav-resources' },
                       ]}
-                      activeHref="#secondary-nav-overview"
-                      aria-label="Secondary navigation with longer labels"
+                        aria-label="Secondary navigation with longer labels"
                     />
                   </ExampleVariation>
                 </div>
