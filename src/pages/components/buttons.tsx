@@ -7,6 +7,7 @@ import { ExampleVariation } from '@/components/layout/example-variation'
  */
 
 import { LoaderCircle, MousePointerClick } from 'lucide-react'
+import { Pressable } from 'react-aria-components'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
@@ -239,11 +240,13 @@ function ComponentsButtonsPage() {
                   <ExampleVariation
                     title="Styles and hierarchy"
                     description="Use the variant that matches the action’s priority and consequence."
-                    explanation="Default is for the primary action, secondary and outline are for supporting actions, ghost is for low-emphasis actions, destructive signals an irreversible consequence, and link is for a quiet action that should read like a link. Try it: identify the one primary action, then check that the quieter styles do not compete with it."
+                    explanation="Use visual emphasis to communicate priority and consequence. Compare the styles below, then choose the least prominent style that still makes the action clear."
                     doItems={[
-                      'Use one clear primary style for the main action in a task.',
-                      'Use outline, secondary, ghost, or link styles to reduce emphasis for supporting actions.',
-                      'Reserve destructive for actions such as deleting or removing data.',
+                      'Default: use for the primary action in a task.',
+                      'Secondary and outline: use for supporting actions that should remain available without competing with the primary action.',
+                      'Ghost: use for low-emphasis actions when a full button surface would add unnecessary weight.',
+                      'Destructive: use for irreversible or high-consequence actions such as deleting or removing data.',
+                      'Link: use for a quiet action that should read like a link rather than a prominent button.',
                     ]}
                     dontItems={[
                       'Do not use destructive to attract attention to an ordinary action.',
@@ -359,11 +362,11 @@ function ComponentsButtonsPage() {
                   <ExampleVariation
                     title="Form submission"
                     description="Use submit semantics for the action that sends the form, and keep other controls from submitting accidentally."
-                    explanation="The submit button is part of the form’s completion path. A secondary control inside the same form uses type=button so it does not submit by mistake. Try it: submit the form with the keyboard and confirm that the submit control is the only control that invokes submission."
+                    explanation="Inside a form, declare each button's role so the browser and assistive technology know what it does. The submit button sends the form; other controls must explicitly opt out of submission."
                     doItems={[
                       'Use type=submit for the action that sends the form.',
-                      'Use explicit labels that describe the result, such as “Save changes” or “Create account”.',
-                      'Return a clear success or error state after submission.',
+                      'Use type=button for cancel, reset, help, or other controls that must not submit the form.',
+                      'Use an explicit label that describes the result, such as “Save changes” or “Create account”.',
                     ]}
                     dontItems={[
                       'Do not use a generic “Submit” label when the outcome can be named more clearly.',
@@ -371,15 +374,21 @@ function ComponentsButtonsPage() {
                       'Do not remove the submit action’s name while showing progress.',
                     ]}
                   >
-                    <form
-                      className="flex flex-wrap items-center gap-3"
-                      onSubmit={(event) => event.preventDefault()}
-                    >
-                      <Button type="submit">Save changes</Button>
-                      <Button type="button" variant="outline">
-                        Cancel
-                      </Button>
-                    </form>
+                    <div className="space-y-3">
+                      <form
+                        className="flex flex-wrap items-center gap-3"
+                        onSubmit={(event) => event.preventDefault()}
+                      >
+                        <Button type="submit">Save changes</Button>
+                        <Button type="button" variant="outline">
+                          Cancel
+                        </Button>
+                      </form>
+                      <p className="text-sm leading-6 text-muted-foreground">
+                        The Save changes button submits this form. Cancel uses{' '}
+                        <code>type="button"</code> so it does not submit.
+                      </p>
+                    </div>
                   </ExampleVariation>
 
                   <ExampleVariation
@@ -399,15 +408,17 @@ function ComponentsButtonsPage() {
                   >
                     <div className="flex flex-wrap items-center gap-3">
                       <DropdownMenuTrigger>
-                        <Button type="button" variant="outline" aria-haspopup="menu">
-                          More actions
-                        </Button>
+                        <Pressable>
+                          <Button type="button" variant="outline" aria-haspopup="menu">
+                            More actions
+                          </Button>
+                        </Pressable>
+                        <DropdownMenu>
+                          <DropdownMenuItem>Duplicate</DropdownMenuItem>
+                          <DropdownMenuItem>Archive</DropdownMenuItem>
+                          <DropdownMenuItem>Delete</DropdownMenuItem>
+                        </DropdownMenu>
                       </DropdownMenuTrigger>
-                      <DropdownMenu>
-                        <DropdownMenuItem>Duplicate</DropdownMenuItem>
-                        <DropdownMenuItem>Archive</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                      </DropdownMenu>
                     </div>
                   </ExampleVariation>
                 </div>
