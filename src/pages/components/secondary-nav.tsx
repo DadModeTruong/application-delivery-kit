@@ -211,8 +211,7 @@ function ComponentsSecondaryNavPage() {
                       'Do not make labels vague, inconsistent, or so long that the row becomes difficult to scan or use on small screens.',
                     ]}
                   >
-                    <div className="overflow-hidden rounded-xl border">
-                      <SecondaryNav
+                    <SecondaryNav
                         items={[
                           { label: 'Overview', href: '#secondary-nav-overview' },
                           { label: 'Guidance', href: '#secondary-nav-guidance' },
@@ -221,7 +220,6 @@ function ComponentsSecondaryNavPage() {
                         activeHref="#secondary-nav-overview"
                         aria-label="Project guide sections"
                       />
-                    </div>
                   </ExampleVariation>
                 </div>
               </section>
