@@ -65,7 +65,7 @@ function ComponentsFooterPage() {
         <PageBody>
           <Sidebar aria-label="User Interface" />
           <Main size="full">
-            <div className="space-y-12 pb-12 pt-6">
+            <div className="space-y-12 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
               <section className="space-y-5" aria-labelledby="navigation-footer-heading">
                 <h1
                   id="navigation-footer-heading"
