@@ -204,7 +204,7 @@ function ComponentsSecondaryNavPage() {
                   links beneath a page or application Header. Use Tab to reach the navigation, activate
                   a link, and resize the page to check the active state and narrow-screen behavior.
                 </p>
-                <div className="space-y-8">
+                <div className="space-y-8 [&_*:has(>[data-slot=secondary-nav])]:!p-0 [&_*:has(>[data-slot=secondary-nav])]:overflow-hidden">
                   <ExampleVariation
                     title="Basic"
                     description="A short row of links helps people move between closely related pages in the same section."
