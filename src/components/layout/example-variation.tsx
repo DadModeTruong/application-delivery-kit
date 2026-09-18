@@ -4,7 +4,7 @@ type ExampleVariationProps = {
   title: string
   description: string
   children: ReactNode
-  explanation: string
+  explanation: ReactNode
   doItems: string[]
   dontItems: string[]
 }
@@ -29,13 +29,17 @@ export function ExampleVariation({
         <div>
           <h4 className="font-semibold">Do</h4>
           <ul className="mt-3 list-disc space-y-3 pl-5 text-muted-foreground">
-            {doItems.map((item) => <li key={item}>{item}</li>)}
+            {doItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
         <div>
           <h4 className="font-semibold">Don&apos;t</h4>
           <ul className="mt-3 list-disc space-y-3 pl-5 text-muted-foreground">
-            {dontItems.map((item) => <li key={item}>{item}</li>)}
+            {dontItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
       </div>

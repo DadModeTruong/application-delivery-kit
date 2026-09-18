@@ -240,16 +240,36 @@ function ComponentsButtonsPage() {
                   <ExampleVariation
                     title="Styles and hierarchy"
                     description="Use the variant that matches the action’s priority and consequence."
-                    explanation="Use visual emphasis to communicate priority and consequence. Compare the styles below, then choose the least prominent style that still makes the action clear."
+                    explanation={
+                      <>
+                        Use visual emphasis to communicate priority and consequence. Compare the
+                        styles below, then choose the least prominent style that still makes the
+                        action clear.
+                        <span className="mt-3 block">
+                          Default: use for the primary action in a task.
+                        </span>
+                        <span className="block">
+                          Secondary and outline: use for supporting actions that should remain
+                          available without competing with the primary action.
+                        </span>
+                        <span className="block">
+                          Ghost: use for low-emphasis actions when a full button surface would add
+                          unnecessary weight.
+                        </span>
+                        <span className="block">
+                          Destructive: use for irreversible or high-consequence actions such as
+                          deleting or removing data.
+                        </span>
+                        <span className="block">
+                          Link: use for a quiet action that should read like a link rather than a
+                          prominent button.
+                        </span>
+                      </>
+                    }
                     doItems={[
                       'Use one clear primary style for the main action in a task.',
                       'Use outline, secondary, ghost, or link styles to reduce emphasis for supporting actions.',
                       'Reserve destructive for actions such as deleting or removing data.',
-                      'Default: use for the primary action in a task.',
-                      'Secondary and outline: use for supporting actions that should remain available without competing with the primary action.',
-                      'Ghost: use for low-emphasis actions when a full button surface would add unnecessary weight.',
-                      'Destructive: use for irreversible or high-consequence actions such as deleting or removing data.',
-                      'Link: use for a quiet action that should read like a link rather than a prominent button.',
                     ]}
                     dontItems={[
                       'Do not use destructive to attract attention to an ordinary action.',
