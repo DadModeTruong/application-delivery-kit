@@ -100,7 +100,7 @@ function ComponentsSidebarPage() {
                   <Sidebar
                     aria-label="Sidebar recognition example"
                     items={basicSidebarLinks}
-                    activeHref="/components/sidebar"
+                    activeHref=""
                   />
                 </div>
                 <p className="leading-7 text-muted-foreground">
@@ -218,7 +218,7 @@ function ComponentsSidebarPage() {
                     <Sidebar
                       aria-label="Basic section navigation"
                       items={basicSidebarLinks}
-                      activeHref="/components/sidebar"
+                      activeHref=""
                     />
                   </ExampleVariation>
 
@@ -226,10 +226,16 @@ function ComponentsSidebarPage() {
                     <Sidebar
                       aria-label="Example section navigation"
                       items={userInterfaceSidebarLinks}
-                      activeHref="/components/sidebar"
+                      activeHref=""
                     />
                   </ExampleVariation>
-                  <ExampleVariation title="With active item" description="Use the active state to show where people are within the current area." explanation="The active destination should be identifiable through styling and semantics, not color alone. Keep activeHref synchronized with the current route so people can understand where they are." doItems={["Use text and structure to communicate parent and child relationships.", "Keep the active child and its parent context visible."]} dontItems={["Do not create deep nesting that hides destinations.", "Do not use indentation as the only indication of hierarchy."]}>
+                  <ExampleVariation title="With active item" description="Use the active state to show where people are within the current area." explanation="The active destination should be identifiable through styling and semantics, not color alone. Keep activeHref synchronized with the current route so people can understand where they are." doItems={[
+                      'Set activeHref to the destination that represents the current page.',
+                      'Keep the active treatment visible and understandable in every layout.',
+                    ]} dontItems={[
+                      'Use color alone to communicate the current location.',
+                      'Mark multiple destinations active at the same time.',
+                    ]}>
                     <Sidebar
                       aria-label="Grouped section navigation"
                       items={userInterfaceSidebarLinks}
@@ -240,7 +246,7 @@ function ComponentsSidebarPage() {
                     <Sidebar
                       aria-label="Compact section navigation"
                       items={userInterfaceSidebarLinks}
-                      activeHref="/components/sidebar"
+                      activeHref=""
                       variant="icon-only"
                     />
                   </ExampleVariation>
