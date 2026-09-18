@@ -30,7 +30,7 @@ const componentSectionLinks: NavLeaf[] = [
 ]
 
 const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
-  { href: "/components/user-interface", label: "User Interface" },
+  { href: '/components/user-interface', label: 'User Interface' },
   {
     label: 'Navigation',
     items: [
@@ -73,12 +73,12 @@ function ComponentsFooterPage() {
                 >
                   Footer navigation
                 </h1>
-                <p className="text-xl leading-8 text-muted-foreground">
-                  Use Footer for supporting information and links that should remain available
-                  without competing with the page's main task.
+                <p className="max-w-3xl text-xl leading-8 text-muted-foreground">
+                  Use Footer for supporting information and destinations at the end of a page,
+                  without competing with the page&apos;s main task or primary navigation.
                 </p>
-
               </section>
+
               <section className="space-y-5" aria-labelledby="navigation-footer-what-heading">
                 <h2
                   id="navigation-footer-what-heading"
@@ -86,27 +86,35 @@ function ComponentsFooterPage() {
                 >
                   What is it?
                 </h2>
-                <p className="leading-7 text-muted-foreground">Use the Footer as an end-of-page region for legal, support, trust, and organizational destinations without competing with primary navigation.</p>
-                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
-                  <li>Focus on secondary destinations such as Privacy, Terms, Accessibility, Help, Contact, or Status.</li>
-                  <li>Use a simple footer for focused applications and grouped content only when the information architecture needs it.</li>
-                  <li>Keep labels and order predictable across pages.</li>
-                </ul>
-                <p className="leading-7 text-muted-foreground">
-                  Footer creates the page's ending landmark. Its optional link list is useful for
-                  secondary destinations such as privacy, terms, contact, or project information.
+                <p className="max-w-3xl leading-7 text-muted-foreground">
+                  Footer is the page-ending region for secondary destinations such as privacy,
+                  accessibility, help, contact, status, and ownership information. Place it after{' '}
+                  <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm">Main</code> or{' '}
+                  <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm">PageBody</code>, not
+                  inside the main content area.
                 </p>
-                <div className="space-y-4">
-                  <div className="overflow-hidden rounded-xl border">
-                    <Footer
-                      bordered={false}
-                      copyright={<>© 2026 Tommy Truong</>}
-                      links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
-                    />
-                  </div>
+                <p className="max-w-3xl leading-7 text-muted-foreground">
+                  The basic pattern is a quiet row with caller-owned copyright content and a small
+                  set of specific links. When links are present, Footer adds a named navigation
+                  landmark and keeps the links as normal keyboard-reachable anchors.
+                </p>
+                <div className="overflow-hidden rounded-xl border">
+                  <Footer
+                    bordered={false}
+                    copyright={<>© 2026 Tommy Truong</>}
+                    links={[
+                      { href: '/privacy', label: 'Privacy' },
+                      { href: '/accessibility', label: 'Accessibility' },
+                    ]}
+                  />
                 </div>
-
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Try it: tab through the links and resize the preview. The links should remain
+                  ordinary anchors with visible focus, and the row should wrap rather than scroll
+                  horizontally.
+                </p>
               </section>
+
               <section
                 className="grid gap-10 lg:grid-cols-2"
                 aria-labelledby="navigation-footer-use-heading"
@@ -118,16 +126,19 @@ function ComponentsFooterPage() {
                   >
                     When to use it
                   </h2>
-                  <p className="leading-7 text-muted-foreground">Use a footer when a destination is useful at the end of a page but does not need persistent prominence in the Header, Sidebar, or Tab navigation.</p>
-                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
-                  <li>Use one row for a short set of links and groups for a larger public-site footer.</li>
-                  <li>Prioritize support, legal, accessibility, privacy, security, and organizational information.</li>
-                  <li>Do not duplicate every primary application destination.</li>
-                </ul>
-                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For supporting links shared across pages.</li>
-                    <li>For copyright or ownership information.</li>
-                    <li>When a destination does not need primary or section-level emphasis.</li>
+                  <p className="leading-7 text-muted-foreground">
+                    Use Footer when a destination is useful at the end of a page but does not need
+                    persistent prominence during the main task.
+                  </p>
+                  <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                    <li>
+                      For a short set of legal, support, accessibility, or organizational links.
+                    </li>
+                    <li>For copyright or ownership information shared across pages.</li>
+                    <li>
+                      For destinations that should be easy to find without becoming primary
+                      navigation.
+                    </li>
                   </ul>
                 </div>
                 <div className="space-y-5" aria-labelledby="navigation-footer-not-heading">
@@ -137,19 +148,26 @@ function ComponentsFooterPage() {
                   >
                     When not to use it
                   </h2>
-                  <p className="leading-7 text-muted-foreground">Do not use the footer as a second site map or as a substitute for navigation needed during the main task.</p>
-                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
-                  <li>Keep frequently used product areas in the Header, Sidebar, or Tab navigation.</li>
-                  <li>Do not hide required actions, task progress, or important alerts at the bottom of the page.</li>
-                  <li>If it becomes very tall, reduce or regroup links before adding interaction.</li>
-                </ul>
-                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For the main path people need to complete a task.</li>
-                    <li>For a large grouped navigation system.</li>
-                    <li>As a substitute for a clearly named section menu.</li>
+                  <p className="leading-7 text-muted-foreground">
+                    Do not use Footer as a second site map or as a substitute for navigation needed
+                    while someone is completing the main task.
+                  </p>
+                  <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                    <li>
+                      Keep frequently used product areas in Header, Sidebar, or Tab navigation.
+                    </li>
+                    <li>
+                      Do not hide required actions, progress, or important alerts only at the bottom
+                      of the page.
+                    </li>
+                    <li>
+                      Do not turn a small footer into dense grouped navigation without a clear
+                      information-architecture need.
+                    </li>
                   </ul>
                 </div>
               </section>
+
               <section className="space-y-5" aria-labelledby="navigation-footer-design-heading">
                 <h2
                   id="navigation-footer-design-heading"
@@ -157,18 +175,29 @@ function ComponentsFooterPage() {
                 >
                   Design considerations
                 </h2>
-
-                <p className="leading-7 text-muted-foreground">Use visual separation without making the footer feel like a second content area. A border, background change, and top spacing can establish the boundary while keeping content compact.</p>
-                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
-                  <li>Use <code>contained</code> when aligning with page content and <code>full</code> when the background spans the viewport.</li>
-                  <li>Keep copyright text secondary to actionable links.</li>
-                  <li>Use clear group headings when the footer needs scanning support.</li>
-                  <li>Limit each group so the footer does not become an unstructured site map.</li>
-                </ul>
-                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep supporting links quiet and easy to scan.</li>
-                  <li>Allow the row to wrap naturally on narrow screens.</li>
-                  <li>Keep the Footer aligned with Header and Main.</li>
+                <p className="max-w-3xl leading-7 text-muted-foreground">
+                  Keep Footer visually secondary while making its destinations easy to scan. The
+                  component supports contained or full-width layout, optional borders, caller-owned
+                  copyright React content, and links with optional icons and external-link
+                  treatment.
+                </p>
+                <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>
+                    Use <code>contained</code> when the footer aligns with page content and{' '}
+                    <code>full</code> when its layout spans the available width.
+                  </li>
+                  <li>
+                    Use a border or background change to establish the page-ending boundary without
+                    making a second content area.
+                  </li>
+                  <li>
+                    Keep link labels specific and ordered consistently; do not add a familiar icon
+                    when text already communicates the destination.
+                  </li>
+                  <li>
+                    Use shared application link data for the production shell so examples do not
+                    drift from the real Footer.
+                  </li>
                 </ul>
               </section>
 
@@ -182,20 +211,37 @@ function ComponentsFooterPage() {
                 >
                   Accessibility considerations
                 </h2>
-
-                <p className="leading-7 text-muted-foreground">Treat the footer as a named page landmark and make its links behave like normal document navigation.</p>
-                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
-                  <li>Use a <code>&lt;footer&gt;</code> region and labeled <code>&lt;nav&gt;</code> for footer navigation.</li>
-                  <li>Use real anchors with useful names, not generic clickable text or icons.</li>
-                  <li>Verify keyboard order, visible focus, target spacing, and text and focus contrast.</li>
-                  <li>Name icon-only social or external links and hide decorative icons from assistive technology.</li>
-                </ul>
-                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep the semantic footer landmark.</li>
-                  <li>Use the named Footer navigation landmark when links exist.</li>
-                  <li>Check focus visibility and the stacked mobile layout.</li>
+                <p className="max-w-3xl leading-7 text-muted-foreground">
+                  Place Footer after the page&apos;s main content so the native{' '}
+                  <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm">footer</code>{' '}
+                  element represents the page&apos;s content-info landmark. When links are provided,
+                  the component supplies a named{' '}
+                  <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm">Footer</code>{' '}
+                  navigation landmark.
+                </p>
+                <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>
+                    Use real anchors with meaningful names; do not use generic clickable text or
+                    icon-only links.
+                  </li>
+                  <li>
+                    Keep visible focus indicators, logical keyboard order, and enough spacing for
+                    touch activation.
+                  </li>
+                  <li>
+                    Treat leading icons as decorative when the visible label is the accessible name.
+                  </li>
+                  <li>
+                    If an external link opens a new tab, make that behavior clear to assistive
+                    technology and users.
+                  </li>
+                  <li>
+                    Test link purpose, text and focus contrast, forced-colors behavior, and landmark
+                    order in the complete page.
+                  </li>
                 </ul>
               </section>
+
               <section className="space-y-5" aria-labelledby="navigation-footer-responsive-heading">
                 <h2
                   id="navigation-footer-responsive-heading"
@@ -203,72 +249,103 @@ function ComponentsFooterPage() {
                 >
                   Responsive behavior
                 </h2>
-                <p className="leading-7 text-muted-foreground">Footer links should wrap naturally as the viewport narrows rather than forcing horizontal scrolling or unreadable text.</p>
-                <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
-                  <li>Preserve logical order when rows wrap.</li>
-                  <li>Test long labels, translations, browser zoom, and narrow windows.</li>
-                  <li>Keep enough gap between links for scanning and activation.</li>
-                  <li>If a complex footer needs mobile disclosure later, use an accessible disclosure pattern rather than hiding links with CSS.</li>
+                <p className="max-w-3xl leading-7 text-muted-foreground">
+                  Footer uses wrapping flex layouts: the copyright content and link navigation wrap
+                  as space becomes limited. It is not a fixed or sticky control, and links should
+                  remain available without horizontal scrolling.
+                </p>
+                <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>Test contained and full-width layouts at narrow widths and browser zoom.</li>
+                  <li>
+                    Use the longest realistic copyright and link labels when checking wrap points.
+                  </li>
+                  <li>
+                    Preserve source order so copyright content and links remain understandable when
+                    they wrap.
+                  </li>
+                  <li>
+                    If a complex footer needs mobile disclosure, use an accessible disclosure
+                    pattern rather than hiding links with CSS.
+                  </li>
                 </ul>
-                <p className="leading-7 text-muted-foreground">
-                  On wider screens, the Footer content can sit in one row. On narrow screens, the
-                  copyright and link navigation wrap or stack naturally. Nothing is hidden, and the
-                  links remain reachable without horizontal scrolling.
-                </p>
-                <p className="leading-7 text-muted-foreground">
-                  Check the narrow version with the longest realistic link label. Make sure each
-                  link keeps a visible focus indicator, the Footer landmark remains discoverable,
-                  and the link navigation has its own name when it is present.
-                </p>
               </section>
 
-                            <section className="space-y-5" aria-labelledby="navigation-footer-examples-heading">
-                <h2 id="navigation-footer-examples-heading" className="text-2xl font-semibold tracking-tight">
+              <section className="space-y-5" aria-labelledby="navigation-footer-examples-heading">
+                <h2
+                  id="navigation-footer-examples-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Examples and variations
                 </h2>
-                <p className="text-sm text-muted-foreground">
-                  Compare a minimal Footer with the current application Footer. Both examples use the
-                  reusable Footer component; the difference is the link data passed to it.
+                <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+                  Compare the basic text-link pattern with the production shell configuration and a
+                  full-width layout. Each preview uses the reusable Footer component; only its
+                  supported data and layout options change.
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  Try it: tab through each link, resize until the links wrap, and verify that focus remains
-                  visible, the link order is logical, and the Footer stays secondary to primary navigation.
+                <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+                  Try it: tab through every link, activate the external link, and resize until the
+                  content wraps. Confirm that focus stays visible, link purpose remains clear, and
+                  no destination becomes unreachable.
                 </p>
                 <div className="space-y-8 [&_*:has(>footer)]:!p-0 [&_*:has(>footer)]:overflow-hidden">
                   <ExampleVariation
                     title="Basic"
-                    description="Use a compact Footer with copyright and regular text links when no icon treatment is needed."
-                    explanation="This basic variation is defined by its text-based links: the Footer stays quiet and scannable without using icons to identify destinations."
+                    description="Use a compact text-link Footer when a few supporting destinations are enough."
+                    explanation="The caller provides copyright content and ordinary same-site link destinations. Replace these illustrative paths with destinations that exist in the consuming application."
                     doItems={[
-                      'Keep the link label specific and useful.',
-                      'Use this pattern when regular text links communicate the destinations clearly.',
+                      'Keep link labels specific and useful.',
+                      'Use a small set of destinations that support the page without duplicating primary navigation.',
                     ]}
                     dontItems={[
-                      'Do not add icons when a regular text link communicates the destination clearly.',
-                      'Do not use the Footer as a replacement for primary navigation.',
+                      'Do not use placeholder anchors that have no destination.',
+                      'Do not make Footer the only way to reach an important task action.',
                     ]}
                   >
                     <Footer
-                        bordered={false}
-                        copyright={<>© 2026 Tommy Truong</>}
-                        links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
-                      />
+                      copyright={<>© 2026 Tommy Truong</>}
+                      links={[
+                        { href: '/privacy', label: 'Privacy' },
+                        { href: '/accessibility', label: 'Accessibility' },
+                      ]}
+                    />
                   </ExampleVariation>
                   <ExampleVariation
-                    title="With icon"
-                    description="Use an icon-bearing external link when the destination has a recognizable service identity, like the current application Footer."
-                    explanation="The reusable Footer receives the shared footerLinks configuration, including the GitHub icon, external destination, and accessible label used by the application shell."
+                    title="Production shell"
+                    description="Use the shared application configuration when Footer includes a recognizable external destination."
+                    explanation="This variation uses the same footerLinks data as the application shell. The GitHub icon is decorative because the visible GitHub label names the destination, and the external-link behavior is communicated by the component."
                     doItems={[
-                      'Use a familiar icon to reinforce an external service link.',
-                      'Keep the visible label and accessible name understandable without the icon.',
-                      'Use the same link configuration as the application shell when demonstrating the production pattern.',
+                      'Centralize shared Footer link data so shell and guides do not drift.',
+                      'Keep the visible label understandable without relying on the icon.',
+                      'Use external-link behavior only when opening a new tab is an intentional product choice.',
                     ]}
                     dontItems={[
-                      'Do not make an icon-only link the only way to understand the destination.',
-                      'Do not add social or external links without a clear purpose.',
+                      'Do not copy repository-specific links into another product without changing their destination and purpose.',
+                      'Do not make an icon-only link the only name for an external destination.',
                     ]}
                   >
-                    <Footer bordered={false} copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+                    <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+                  </ExampleVariation>
+                  <ExampleVariation
+                    title="Full width"
+                    description="Use the full layout when the Footer boundary or background should span the available page width."
+                    explanation="The content remains the same Footer pattern; only the layout width changes. Confirm that the footer still aligns with the surrounding shell and wraps cleanly at narrow widths."
+                    doItems={[
+                      'Choose full width when the surrounding visual treatment spans the viewport or layout region.',
+                      'Check alignment with Header, Main, and page-level background treatment.',
+                    ]}
+                    dontItems={[
+                      'Do not use full width to compensate for unclear content hierarchy.',
+                      'Do not introduce horizontal scrolling when long labels wrap.',
+                    ]}
+                  >
+                    <Footer
+                      size="full"
+                      copyright={<>© 2026 Tommy Truong</>}
+                      links={[
+                        { href: '/privacy', label: 'Privacy' },
+                        { href: '/accessibility', label: 'Accessibility' },
+                      ]}
+                    />
                   </ExampleVariation>
                 </div>
               </section>
