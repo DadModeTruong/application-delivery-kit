@@ -66,9 +66,9 @@ function ComponentsTabNavigationPage() {
           <Sidebar aria-label="User Interface" />
           <Main size="full">
             <div className="space-y-12 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
-              <section className="space-y-5" aria-labelledby="navigation-secondary-heading">
+              <section className="space-y-5" aria-labelledby="navigation-tab-heading">
                 <h1
-                  id="navigation-secondary-heading"
+                  id="navigation-tab-heading"
                   className="text-4xl font-semibold tracking-tight"
                 >
                   Tab navigation
@@ -79,9 +79,9 @@ function ComponentsTabNavigationPage() {
                   drawer.
                 </p>
               </section>
-              <section className="space-y-5" aria-labelledby="navigation-secondary-what-heading">
+              <section className="space-y-5" aria-labelledby="navigation-tab-what-heading">
                 <h2
-                  id="navigation-secondary-what-heading"
+                  id="navigation-tab-what-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   What is it?
@@ -90,6 +90,12 @@ function ComponentsTabNavigationPage() {
                   TabNavigation gives people nearby context without mixing section links into the
                   application-wide Header. It renders real anchors and marks the active page with{' '}
                   <code>aria-current="page"</code>.
+                </p>
+                <p className="leading-7 text-muted-foreground">
+                  Tab navigation is a reusable section-level pattern, not a second primary
+                  navigation system. It gives a page family one predictable place for nearby
+                  destinations while leaving broad product movement to the Header and deeper
+                  information architecture to the Sidebar.
                 </p>
                 <div className="overflow-hidden rounded-xl border">
                   <TabNavigation
@@ -104,11 +110,11 @@ function ComponentsTabNavigationPage() {
               </section>
               <section
                 className="grid gap-10 lg:grid-cols-2"
-                aria-labelledby="navigation-secondary-use-heading"
+                aria-labelledby="navigation-tab-use-heading"
               >
                 <div className="space-y-5">
                   <h2
-                    id="navigation-secondary-use-heading"
+                    id="navigation-tab-use-heading"
                     className="text-2xl font-semibold tracking-tight"
                   >
                     When to use it
@@ -118,10 +124,15 @@ function ComponentsTabNavigationPage() {
                     <li>When the links share one clear section identity.</li>
                     <li>When a horizontal row remains easy to scan.</li>
                   </ul>
+              <p className="leading-7 text-muted-foreground">
+                A good fit is a page family such as a project overview, settings area, or
+                service workspace where each destination is a peer and people benefit from
+                seeing the available choices without opening another menu.
+              </p>
                 </div>
-                <div className="space-y-5" aria-labelledby="navigation-secondary-not-heading">
+                <div className="space-y-5" aria-labelledby="navigation-tab-not-heading">
                   <h2
-                    id="navigation-secondary-not-heading"
+                    id="navigation-tab-not-heading"
                     className="text-2xl font-semibold tracking-tight"
                   >
                     When not to use it
@@ -131,29 +142,37 @@ function ComponentsTabNavigationPage() {
                     <li>For broad application destinations.</li>
                     <li>When the row would wrap into an unclear second menu.</li>
                   </ul>
+              <p className="leading-7 text-muted-foreground">
+                Choose a Sidebar when the destinations need hierarchy, grouping, or room to
+                grow. Choose a Header when the links represent product-wide areas. If choosing
+                a link should switch content in place rather than navigate to a destination, use
+                an interactive Tabs pattern instead of navigation links.
+              </p>
                 </div>
               </section>
-              <section className="space-y-5" aria-labelledby="navigation-secondary-design-heading">
+              <section className="space-y-5" aria-labelledby="navigation-tab-design-heading">
                 <h2
-                  id="navigation-secondary-design-heading"
+                  id="navigation-tab-design-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Design considerations
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep labels short and parallel.</li>
-                  <li>Keep the active state visually clear.</li>
-                  <li>Use the same links in the mobile drawer, not a second data set.</li>
+                  <li>Keep labels short, parallel, and ordered in the same way as the page content.</li>
+                <li>Keep the active state visually clear and tied to the destination URL.</li>
+                <li>Use the same links in the mobile drawer, not a second data set.</li>
+                <li>Keep the number of destinations small enough to scan without wrapping.</li>
+                <li>Use stable spacing and a clear boundary so the row reads as navigation, not a second page title.</li>
                 </ul>
               </section>
 
               <section
                 className="space-y-5"
-                aria-labelledby="navigation-secondary-accessibility-heading"
+                aria-labelledby="navigation-tab-accessibility-heading"
               >
                 <h2
-                  id="navigation-secondary-accessibility-heading"
+                  id="navigation-tab-accessibility-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Accessibility considerations
@@ -164,15 +183,18 @@ function ComponentsTabNavigationPage() {
                     Give the landmark a specific <code>aria-label</code>.
                   </li>
                   <li>Use real links so keyboard and browser link actions work.</li>
-                  <li>Verify the mobile replacement remains named and reachable.</li>
+                <li>Expose the current destination with <code>aria-current="page"</code> as well as a visible style.</li>
+                <li>Keep focus indicators visible against the navigation background and preserve a logical tab order.</li>
+                <li>Verify the mobile replacement remains named and reachable.</li>
+                <li>Do not use color alone to communicate the active destination; text, underline, weight, or another cue should reinforce it.</li>
                 </ul>
               </section>
               <section
                 className="space-y-5"
-                aria-labelledby="navigation-secondary-responsive-heading"
+                aria-labelledby="navigation-tab-responsive-heading"
               >
                 <h2
-                  id="navigation-secondary-responsive-heading"
+                  id="navigation-tab-responsive-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Responsive behavior
@@ -187,14 +209,20 @@ function ComponentsTabNavigationPage() {
                   Keep one shared link list so the desktop and mobile paths stay in sync. Test the
                   active link, keyboard focus, and the named navigation landmark at both widths.
                 </p>
+                <p className="leading-7 text-muted-foreground">
+                  Also test zoom and long translated labels. The component may disappear at a
+                  breakpoint, but the destinations must not disappear from the user experience;
+                  they should remain available through the Header’s mobile drawer with the same
+                  names, order, and current-location cue.
+                </p>
               </section>
 
               <section
                 className="space-y-5"
-                aria-labelledby="navigation-secondary-examples-heading"
+                aria-labelledby="navigation-tab-examples-heading"
               >
                 <h2
-                  id="navigation-secondary-examples-heading"
+                  id="navigation-tab-examples-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
                   Examples and variations
@@ -202,6 +230,13 @@ function ComponentsTabNavigationPage() {
                 <p className="text-muted-foreground">
                   This example uses the application’s reusable TabNavigation component for section-level
                   links beneath a page or application Header.
+                </p>
+                <p className="text-muted-foreground">
+                  Compare the variations as decisions: start with a neutral row, add an active
+                  destination only when current location matters, and then test whether longer
+                  labels still preserve scanning, focus visibility, and usable space. These are
+                  navigation links, so selecting one should take the person to a destination and
+                  preserve normal browser history and link behavior.
                 </p>
                 <p className="text-muted-foreground">
                   Try it: Use Tab to reach the links, activate a destination, and resize the page. On
