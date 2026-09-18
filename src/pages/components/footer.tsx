@@ -77,6 +77,13 @@ function ComponentsFooterPage() {
                   Use Footer for supporting information and links that should remain available
                   without competing with the page's main task.
                 </p>
+                <div className="pt-2">
+                  <Footer
+                    bordered={false}
+                    copyright={<>© 2026 Tommy Truong</>}
+                    links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
+                  />
+                </div>
               </section>
               <section className="space-y-5" aria-labelledby="navigation-footer-what-heading">
                 <h2
@@ -238,6 +245,7 @@ function ComponentsFooterPage() {
                     ]}
                   >
                     <Footer
+                        bordered={false}
                         copyright={<>© 2026 Tommy Truong</>}
                         links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
                       />
@@ -256,7 +264,7 @@ function ComponentsFooterPage() {
                       'Do not add social or external links without a clear purpose.',
                     ]}
                   >
-                    <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+                    <Footer bordered={false} copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
                   </ExampleVariation>
                 </div>
               </section>

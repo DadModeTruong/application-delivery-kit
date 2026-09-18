@@ -39,6 +39,8 @@ type FooterProps = {
    * - "full": edge-to-edge with horizontal padding only.
    */
   size?: 'contained' | 'full'
+  /** Whether to show the footer's separating top border. */
+  bordered?: boolean
 }
 
 // ---------------------------------------------------------------
@@ -75,7 +77,7 @@ type FooterProps = {
  *   ]}
  * />
  */
-function Footer({ copyright, links, size = 'contained' }: FooterProps) {
+function Footer({ copyright, links, size = 'contained', bordered = true }: FooterProps) {
   return (
     <footer
       data-slot="footer"
@@ -83,7 +85,7 @@ function Footer({ copyright, links, size = 'contained' }: FooterProps) {
       className={cn(
         // Top border marks the page/footer boundary. No background —
         // Footer sits on the page, unlike Header which overlays it.
-        'w-full border-t border-border',
+        bordered ? 'w-full border-t border-border' : 'w-full',
         // Content padding; height is driven by content, not fixed.
         'py-6',
       )}
