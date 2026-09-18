@@ -6,6 +6,7 @@ import { ExampleVariation } from '@/components/layout/example-variation'
  * variant, and when a link should be used instead of a button.
  */
 
+import { useState } from 'react'
 import { LoaderCircle, MousePointerClick } from 'lucide-react'
 import { Pressable } from 'react-aria-components'
 import { Header, SkipLink } from '@/components/layout/header'
@@ -51,6 +52,8 @@ const componentSidebarLinks: (NavLeaf | NavGroup)[] = [
  * { path: '/components/button', component: ComponentsButtonsPage }
  */
 function ComponentsButtonsPage() {
+  const [formStatus, setFormStatus] = useState('')
+
   return (
     <LayoutProvider
       tabNavigation={componentSectionLinks}
@@ -207,6 +210,10 @@ function ComponentsButtonsPage() {
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>Keep the primary action first in reading and focus order.</li>
                   <li>
+                    When actions stack on mobile, preserve their priority and keep the full label
+                    visible; do not rely on position or color alone.
+                  </li>
+                  <li>
                     Preserve readable labels and comfortable touch targets at narrow widths and 200%
                     zoom.
                   </li>
@@ -264,6 +271,10 @@ function ComponentsButtonsPage() {
                             prominent button.
                           </li>
                         </ul>
+                        <p className="mt-3">
+                          Try it: identify the one primary action, then check that the quieter
+                          styles do not compete with it.
+                        </p>
                       </>
                     }
                     doItems={[
@@ -400,16 +411,26 @@ function ComponentsButtonsPage() {
                     <div className="space-y-3">
                       <form
                         className="flex flex-wrap items-center gap-3"
-                        onSubmit={(event) => event.preventDefault()}
+                        onSubmit={(event) => {
+                          event.preventDefault()
+                          setFormStatus('Changes saved.')
+                        }}
                       >
                         <Button type="submit">Save changes</Button>
                         <Button type="button" variant="outline">
                           Cancel
                         </Button>
                       </form>
+                      <p id="button-form-status" className="text-sm font-medium" aria-live="polite">
+                        {formStatus}
+                      </p>
                       <p className="text-sm leading-6 text-muted-foreground">
                         The Save changes button submits this form using <code>type="submit"</code>.
                         Cancel uses <code>type="button"</code> so it does not submit.
+                      </p>
+                      <p className="text-sm leading-6 text-muted-foreground">
+                        Try it: submit the form with the keyboard and confirm that “Changes saved.”
+                        appears without leaving the page.
                       </p>
                     </div>
                   </ExampleVariation>
