@@ -215,7 +215,7 @@ function ComponentsCardsPage() {
                     action card exposes one clearly named button.
                   </p>
                 </div>
-                <div className="space-y-8">
+                <div className="space-y-8 [&_*:has(>[data-slot=card])]:!rounded-none [&_*:has(>[data-slot=card])]:!border-0 [&_*:has(>[data-slot=card])]:!p-0 [&_*:has(>a>[data-slot=card])]:!rounded-none [&_*:has(>a>[data-slot=card])]:!border-0 [&_*:has(>a>[data-slot=card])]:!p-0">
                   <ExampleVariation
                     title="Static information"
                     description="Group related content without making the Card itself interactive."
