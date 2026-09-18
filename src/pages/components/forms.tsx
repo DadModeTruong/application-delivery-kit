@@ -2822,6 +2822,17 @@ function GuideList({ items }: { items: string[] }) {
     </ul>
   )
 }
+const tryItText: Record<FormKind, string> = {
+  input: 'enter an email address, then confirm the label, input type, and any validation message remain clear.',
+  select: 'open the list and choose a contact preference with the keyboard, then confirm the selected option is clear.',
+  textarea: 'enter a multiline message and resize the field, then confirm the label and entered content remain understandable.',
+  checkbox: 'toggle the product-updates option with the keyboard, then confirm its checked state is visible without relying on color alone.',
+  'checkbox-group': 'select more than one topic, then confirm each option can be changed independently and the group remains understandable.',
+  'radio-group': 'choose a single notification method, then use the arrow keys to change the selection and confirm only one option is selected.',
+  combobox: 'type to filter the available options, choose one, and confirm the chosen value is announced and remains visible.',
+  datepicker: 'open the calendar, navigate to a date with the keyboard, and select it while confirming the chosen date is clear.',
+}
+
 function FormGuide({
   title,
   description,
@@ -2861,10 +2872,7 @@ function FormGuide({
                     <BasicExample kind={kind} />
                   </div>
                 </div>
-                <p className="text-sm leading-6 text-muted-foreground">
-                  Try it: focus the control, identify its visible label and any help or error text,
-                  then use the keyboard to complete the basic interaction for this control.
-                </p>
+                <p className="text-sm leading-6 text-muted-foreground">Try it: {tryItText[kind]}</p>
               </section>
               <section className="grid gap-10 lg:grid-cols-2">
                 <div className="space-y-5">
