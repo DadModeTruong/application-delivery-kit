@@ -5,6 +5,7 @@
  * responsive relationship without taking ownership of either area's content.
  */
 
+import { ExampleVariation } from '@/components/layout/example-variation'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
@@ -248,12 +249,21 @@ function ComponentsSplitViewPage() {
                   control, Main remains first, and neither pane becomes unusably narrow.
                 </p>
                 <div className="space-y-8">
-                  <div className="space-y-3">
-                    <h3 className="text-xl font-semibold">Main two-thirds, Secondary one-third</h3>
-                    <p className="text-muted-foreground">
-                      Choose the one-third variation when Main carries most of the work and
-                      Secondary provides context or a preview.
-                    </p>
+                  <ExampleVariation
+                    title="Main two-thirds, Secondary one-third"
+                    description="Give Main more room when Secondary provides context, a preview, or supporting details."
+                    explanation="This proportion keeps the primary task visually dominant while preserving a useful supporting area. The demo also shows the secondary area opening and closing in place."
+                    doItems={[
+                      'Use this proportion when the primary task needs more room than its supporting content.',
+                      'Keep the secondary content directly related to the current main task.',
+                      'Check that the main content remains usable when the secondary area is open.',
+                    ]}
+                    dontItems={[
+                      'Do not use the smaller pane for a second task with equal priority.',
+                      'Do not fill the secondary area with unrelated navigation or competing actions.',
+                      'Do not assume the desktop proportion will remain side by side at narrow widths.',
+                    ]}
+                  >
                     <SplitPaneDemo
                       secondarySize="third"
                       mainColumns={{
@@ -267,13 +277,22 @@ function ComponentsSplitViewPage() {
                       }}
                       secondaryCardCount={4}
                     />
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="text-xl font-semibold">Main half, Secondary half</h3>
-                    <p className="text-muted-foreground">
-                      Choose the half variation when both areas need similar room for comparison or
-                      related work.
-                    </p>
+                  </ExampleVariation>
+                  <ExampleVariation
+                    title="Main half, Secondary half"
+                    description="Give both areas equal room when people need to compare or move between related views."
+                    explanation="An equal split is useful when neither area should be treated as a narrow detail column. The content and headings should still make the primary relationship clear."
+                    doItems={[
+                      'Use equal space for related views with comparable importance.',
+                      'Keep the relationship between the two areas explicit through headings and content.',
+                      'Test both panes with realistic content before choosing equal proportions.',
+                    ]}
+                    dontItems={[
+                      'Do not use equal columns when one area is clearly only supporting context.',
+                      'Do not allow dense content or long labels to make either pane difficult to use.',
+                      'Do not treat equal width as equal priority when the task order still matters.',
+                    ]}
+                  >
                     <SplitPaneDemo
                       secondarySize="half"
                       mainColumns={{
@@ -287,7 +306,7 @@ function ComponentsSplitViewPage() {
                       }}
                       secondaryCardCount={4}
                     />
-                  </div>
+                  </ExampleVariation>
                 </div>
               </section>
             </div>
