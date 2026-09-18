@@ -77,15 +77,6 @@ function ComponentsFooterPage() {
                   Use Footer for supporting information and links that should remain available
                   without competing with the page's main task.
                 </p>
-                <div className="space-y-4">
-                  <div className="overflow-hidden rounded-xl border">
-                    <Footer
-                      bordered={false}
-                      copyright={<>© 2026 Tommy Truong</>}
-                      links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
-                    />
-                  </div>
-                </div>
 
               </section>
               <section className="space-y-5" aria-labelledby="navigation-footer-what-heading">
@@ -105,6 +96,16 @@ function ComponentsFooterPage() {
                   Footer creates the page's ending landmark. Its optional link list is useful for
                   secondary destinations such as privacy, terms, contact, or project information.
                 </p>
+                <div className="space-y-4">
+                  <div className="overflow-hidden rounded-xl border">
+                    <Footer
+                      bordered={false}
+                      copyright={<>© 2026 Tommy Truong</>}
+                      links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
+                    />
+                  </div>
+                </div>
+
               </section>
               <section
                 className="grid gap-10 lg:grid-cols-2"
