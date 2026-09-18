@@ -93,7 +93,7 @@ function ComponentsHeaderPage() {
                   <code>nav</code>; the application or router still owns what happens at each path.
                 </p>
                 <div className="space-y-4">
-                  <div className="overflow-hidden">
+                  <div className="overflow-hidden rounded-xl border">
                     <Header
                       logo={{ href: '/', label: 'Application Delivery Kit' }}
                       nav={[
