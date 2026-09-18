@@ -211,45 +211,58 @@ function ComponentsFooterPage() {
                 </p>
               </section>
 
-              <section className="space-y-5" aria-labelledby="navigation-footer-examples-heading">
-                <h2
-                  id="navigation-footer-examples-heading"
-                  className="text-2xl font-semibold tracking-tight"
-                >
-                  Examples
+                            <section className="space-y-5" aria-labelledby="navigation-footer-examples-heading">
+                <h2 id="navigation-footer-examples-heading" className="text-2xl font-semibold tracking-tight">
+                  Examples and variations
                 </h2>
-                <p className="text-sm text-muted-foreground">Try it: compare the contained and full-width examples, resize until links wrap, and zoom the browser. Tab through every link and confirm visible focus, logical order, useful labels, and a footer that remains secondary to primary navigation.</p>
-
-                <div className="space-y-8">
-                  <ExampleVariation title="Minimal footer" description="A small footer handles ownership and essential supporting destinations." explanation="The footer supports the product; it should not compete with the header or become a second sitemap. Include only destinations people reasonably expect to find there." doItems={["Label supporting navigation separately from primary navigation.", "Keep essential accessibility, privacy, and ownership information easy to find."]} dontItems={["Do not add columns simply to make the footer look substantial.", "Do not hide the accessibility link in an unlabeled collection of links."]}>
-                    <footer aria-label="Site footer" className="flex flex-wrap items-center justify-between gap-3 text-sm"><span>© 2026 Acme</span><nav aria-label="Supporting navigation" className="flex flex-wrap gap-3"><a href="#footer-accessibility" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Accessibility</a><a href="#footer-privacy" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Privacy</a></nav></footer>
-                  </ExampleVariation>
-                  <ExampleVariation title="Multi-column footer" description="Related supporting destinations can be grouped when the information architecture justifies it." explanation="Multiple columns help when there are several stable groups of supporting links. On smaller screens, those groups should stack in a sensible reading order." doItems={["Use concise, meaningful group labels.", "Preserve the group order and link relationships when columns stack."]} dontItems={["Do not duplicate the entire header or sidebar.", "Do not create groups with only one unclear or low-value link."]}>
-                    <footer aria-label="Expanded site footer" className="grid gap-4 text-sm sm:grid-cols-3"><div><p className="mb-2 font-semibold">Product</p><a href="#footer-features" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Features</a></div><div><p className="mb-2 font-semibold">Support</p><a href="#footer-help" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Help center</a></div><div><p className="mb-2 font-semibold">Company</p><a href="#footer-about" className="block underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">About us</a></div></footer>
-                  </ExampleVariation>
-                  <ExampleVariation title="External and legal links" description="Link purpose and destination should be clear before activation." explanation="External standards, legal documents, and support resources may belong in the footer when people expect to find them there. Disclose a new tab when one is used." doItems={["Use link text that names the destination or purpose.", "Disclose new-tab behavior to sighted and screen-reader users."]} dontItems={["Do not present an external destination as if it were an internal page.", "Do not use vague link text such as Read more or Click here."]}>
-                    <footer aria-label="Legal footer" className="flex flex-wrap gap-3 text-sm"><a href="#footer-terms" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Terms of use</a><a href="https://www.w3.org/WAI/" target="_blank" rel="noreferrer" className="underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">W3C accessibility resources <span className="sr-only">(opens in a new tab)</span></a></footer>
-                  </ExampleVariation>
-                </div>
-                <p className="leading-7 text-muted-foreground">
-                  Keep supporting links available without competing with the page's main task. The
-                  Footer below uses the shared GitHub link configuration used by the page shell.
-                  Resize it to confirm the links wrap instead of overflowing, then tab through every
-                  link to check the focus order and accessible names.
+                <p className="text-sm text-muted-foreground">
+                  Compare a minimal Footer with the current application Footer. Both examples use the
+                  reusable Footer component; the difference is the link data passed to it.
                 </p>
-                <div className="space-y-4">
-                  <div className="overflow-hidden rounded-xl border">
-                    <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-                  </div>
-                  <div className="overflow-hidden rounded-xl border">
-                    <Footer size="full" copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-                  </div>
+                <div className="space-y-8">
+                  <ExampleVariation
+                    title="Basic"
+                    description="Use a compact Footer when the page needs copyright information and one supporting destination."
+                    explanation="This keeps the Footer quiet and easy to scan: copyright is paired with one regular text link and no icon treatment."
+                    doItems={[
+                      'Keep the link label specific and useful.',
+                      'Use this pattern when the page has only one important supporting destination.',
+                    ]}
+                    dontItems={[
+                      'Do not add icons when a regular text link communicates the destination clearly.',
+                      'Do not use the Footer as a replacement for primary navigation.',
+                    ]}
+                  >
+                    <div className="overflow-hidden rounded-xl border">
+                      <Footer
+                        copyright={<>© 2026 Tommy Truong</>}
+                        links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
+                      />
+                    </div>
+                  </ExampleVariation>
+                  <ExampleVariation
+                    title="With icon"
+                    description="Use an icon-bearing external link when the destination has a recognizable service identity, like the current application Footer."
+                    explanation="The reusable Footer receives the shared footerLinks configuration, including the GitHub icon, external destination, and accessible label used by the application shell."
+                    doItems={[
+                      'Use a familiar icon to reinforce an external service link.',
+                      'Keep the visible label and accessible name understandable without the icon.',
+                      'Use the same link configuration as the application shell when demonstrating the production pattern.',
+                    ]}
+                    dontItems={[
+                      'Do not make an icon-only link the only way to understand the destination.',
+                      'Do not add social or external links without a clear purpose.',
+                    ]}
+                  >
+                    <div className="overflow-hidden rounded-xl border">
+                      <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+                    </div>
+                  </ExampleVariation>
                 </div>
               </section>
             </div>
           </Main>
         </PageBody>
-        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
       </PageShell>
     </LayoutProvider>
   )
