@@ -35,7 +35,7 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
     label: 'Navigation',
     items: [
       { href: '/components/header', label: 'Header', icon: PanelTop },
-      { href: '/components/tab-navigation', label: 'TabNavigation', icon: List },
+      { href: '/components/tab-navigation', label: 'Tab', icon: List },
       { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
       { href: '/components/footer', label: 'Footer', icon: PanelBottom },
     ],
