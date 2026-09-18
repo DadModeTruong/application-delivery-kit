@@ -275,6 +275,7 @@ function ComponentsFooterPage() {
             </div>
           </Main>
         </PageBody>
+        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
       </PageShell>
     </LayoutProvider>
   )
