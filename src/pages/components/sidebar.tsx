@@ -49,6 +49,13 @@ const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
     items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
   },
 ]
+
+const basicSidebarLinks: NavLeaf[] = [
+  { href: '/components/sidebar', label: 'Overview' },
+  { href: '/components/secondary-nav', label: 'Secondary navigation' },
+  { href: '/components/header', label: 'Header' },
+]
+
 function ComponentsSidebarPage() {
   return (
     <LayoutProvider
@@ -92,7 +99,7 @@ function ComponentsSidebarPage() {
                 <div className="overflow-hidden rounded-xl border">
                   <Sidebar
                     aria-label="Sidebar recognition example"
-                    items={userInterfaceSidebarLinks}
+                    items={basicSidebarLinks}
                     activeHref="/components/sidebar"
                   />
                 </div>
@@ -195,6 +202,26 @@ function ComponentsSidebarPage() {
                 <p className="text-sm text-muted-foreground">Try it: Use Tab and activate a guide link, then resize the page. Confirm that the navigation has a meaningful label, the current location is clear, and the content remains reachable when the sidebar collapses or stacks.</p>
 
                 <div className="space-y-8 [&_*:has(>[data-slot=sidebar])]:!p-0 [&_*:has(>[data-slot=sidebar])]:overflow-hidden">
+                  <ExampleVariation
+                    title="Basic"
+                    description="A short, ungrouped list is the simplest Sidebar pattern."
+                    explanation="Use a basic Sidebar when an area has a small set of peer destinations and grouping would add more structure than people need. Keep the labels specific and preserve the current destination state."
+                    doItems={[
+                      'Use a short list of peer destinations with clear labels.',
+                      'Keep the active destination visible and semantically identified.',
+                    ]}
+                    dontItems={[
+                      'Add group headings when all destinations belong to the same level.',
+                      'Use a Sidebar for a short list that would be clearer as Secondary navigation.',
+                    ]}
+                  >
+                    <Sidebar
+                      aria-label="Basic section navigation"
+                      items={basicSidebarLinks}
+                      activeHref="/components/sidebar"
+                    />
+                  </ExampleVariation>
+
                   <ExampleVariation title="Basic grouped sidebar" description="Meaningful groups help people predict where a destination belongs." explanation="A sidebar is useful when navigation should remain available while people work through the main content. Group labels should describe the information architecture, not merely decorate it." doItems={["Give the sidebar and its navigation a meaningful accessible name.", "Show the current page with semantic state and a visible treatment."]} dontItems={["Do not duplicate every header link without a clear reason.", "Do not rely on indentation, color, or position alone to communicate grouping."]}>
                     <Sidebar
                       aria-label="Example section navigation"
