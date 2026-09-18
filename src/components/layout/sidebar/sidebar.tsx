@@ -130,9 +130,16 @@ function SidebarItem({
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
       )}
     >
-      {item.icon && (
+      {item.icon ? (
         <item.icon className={cn('shrink-0', iconOnly ? 'size-5' : 'size-4')} aria-hidden="true" />
-      )}
+      ) : iconOnly ? (
+        <span
+          className="flex size-5 shrink-0 items-center justify-center text-xs font-semibold"
+          aria-hidden="true"
+        >
+          {item.label.charAt(0).toUpperCase()}
+        </span>
+      ) : null}
       {!iconOnly && item.label}
       {item.external && !iconOnly && <span className="sr-only"> (opens in new window)</span>}
     </a>
