@@ -2859,12 +2859,12 @@ function FormGuide({
                 <div className={panelClass}>
                   <div className="max-w-xl">
                     <BasicExample kind={kind} />
-                    <p className="text-sm leading-6 text-muted-foreground">
-                      Try it: focus the control, identify its visible label and any help or error text,
-                      then use the keyboard to complete the basic interaction for this control.
-                    </p>
                   </div>
                 </div>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Try it: focus the control, identify its visible label and any help or error text,
+                  then use the keyboard to complete the basic interaction for this control.
+                </p>
               </section>
               <section className="grid gap-10 lg:grid-cols-2">
                 <div className="space-y-5">
