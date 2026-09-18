@@ -30,7 +30,7 @@ const componentSectionLinks: NavLeaf[] = [
 ]
 
 const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
+  { href: "/components/user-interface", label: "User Interface" },
   {
     label: 'Navigation',
     items: [
@@ -67,7 +67,10 @@ function ComponentsTabNavigationPage() {
           <Main size="full">
             <div className="space-y-12 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
               <section className="space-y-5" aria-labelledby="navigation-tab-heading">
-                <h1 id="navigation-tab-heading" className="text-4xl font-semibold tracking-tight">
+                <h1
+                  id="navigation-tab-heading"
+                  className="text-4xl font-semibold tracking-tight"
+                >
                   Tab navigation
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
@@ -106,8 +109,7 @@ function ComponentsTabNavigationPage() {
                 </div>
 
                 <p className="text-sm leading-6 text-muted-foreground">
-                  Try it: tab to each tab, activate one, and confirm the selected tab and page
-                  content stay understandable without relying on color alone.
+                  Try it: tab to each tab, activate one, and confirm the selected tab and page content stay understandable without relying on color alone.
                 </p>
               </section>
               <section
@@ -150,20 +152,18 @@ function ComponentsTabNavigationPage() {
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>
-                    Keep labels short, parallel, and ordered in the same way as the page content.
-                  </li>
-                  <li>Keep the active state visually clear and tied to the destination URL.</li>
-                  <li>Use the same links in the mobile drawer, not a second data set.</li>
-                  <li>Keep the number of destinations small enough to scan without wrapping.</li>
-                  <li>
-                    Use stable spacing and a clear boundary so the row reads as navigation, not a
-                    second page title.
-                  </li>
+                  <li>Keep labels short, parallel, and ordered in the same way as the page content.</li>
+                <li>Keep the active state visually clear and tied to the destination URL.</li>
+                <li>Use the same links in the mobile drawer, not a second data set.</li>
+                <li>Keep the number of destinations small enough to scan without wrapping.</li>
+                <li>Use stable spacing and a clear boundary so the row reads as navigation, not a second page title.</li>
                 </ul>
               </section>
 
-              <section className="space-y-5" aria-labelledby="navigation-tab-accessibility-heading">
+              <section
+                className="space-y-5"
+                aria-labelledby="navigation-tab-accessibility-heading"
+              >
                 <h2
                   id="navigation-tab-accessibility-heading"
                   className="text-2xl font-semibold tracking-tight"
@@ -176,22 +176,16 @@ function ComponentsTabNavigationPage() {
                     Give the landmark a specific <code>aria-label</code>.
                   </li>
                   <li>Use real links so keyboard and browser link actions work.</li>
-                  <li>
-                    Expose the current destination with <code>aria-current="page"</code> as well as
-                    a visible style.
-                  </li>
-                  <li>
-                    Keep focus indicators visible against the navigation background and preserve a
-                    logical tab order.
-                  </li>
-                  <li>Verify the mobile replacement remains named and reachable.</li>
-                  <li>
-                    Do not use color alone to communicate the active destination; text, underline,
-                    weight, or another cue should reinforce it.
-                  </li>
+                <li>Expose the current destination with <code>aria-current="page"</code> as well as a visible style.</li>
+                <li>Keep focus indicators visible against the navigation background and preserve a logical tab order.</li>
+                <li>Verify the mobile replacement remains named and reachable.</li>
+                <li>Do not use color alone to communicate the active destination; text, underline, weight, or another cue should reinforce it.</li>
                 </ul>
               </section>
-              <section className="space-y-5" aria-labelledby="navigation-tab-responsive-heading">
+              <section
+                className="space-y-5"
+                aria-labelledby="navigation-tab-responsive-heading"
+              >
                 <h2
                   id="navigation-tab-responsive-heading"
                   className="text-2xl font-semibold tracking-tight"
@@ -202,8 +196,7 @@ function ComponentsTabNavigationPage() {
                   On wider screens, the short section-link row sits below the Header. On narrow
                   screens, this row disappears rather than wrapping into a cramped strip; the same
                   links move into the Header’s mobile menu. The desktop preview disappearing at a
-                  breakpoint is therefore an intentional responsive replacement, not missing
-                  content.
+                  breakpoint is therefore an intentional responsive replacement, not missing content.
                 </p>
                 <p className="leading-7 text-muted-foreground">
                   Keep one shared link list so the desktop and mobile paths stay in sync. Test the
@@ -211,13 +204,16 @@ function ComponentsTabNavigationPage() {
                 </p>
                 <p className="leading-7 text-muted-foreground">
                   Also test zoom and long translated labels. The component may disappear at a
-                  breakpoint, but the destinations must not disappear from the user experience; they
-                  should remain available through the Header’s mobile drawer with the same names,
-                  order, and current-location cue.
+                  breakpoint, but the destinations must not disappear from the user experience;
+                  they should remain available through the Header’s mobile drawer with the same
+                  names, order, and current-location cue.
                 </p>
               </section>
 
-              <section className="space-y-5" aria-labelledby="navigation-tab-examples-heading">
+              <section
+                className="space-y-5"
+                aria-labelledby="navigation-tab-examples-heading"
+              >
                 <h2
                   id="navigation-tab-examples-heading"
                   className="text-2xl font-semibold tracking-tight"
@@ -225,8 +221,8 @@ function ComponentsTabNavigationPage() {
                   Examples and variations
                 </h2>
                 <p className="text-muted-foreground">
-                  This example uses the application’s reusable TabNavigation component for
-                  section-level links beneath a page or application Header.
+                  This example uses the application’s reusable TabNavigation component for section-level
+                  links beneath a page or application Header.
                 </p>
                 <p className="text-muted-foreground">
                   Compare the variations as decisions: start with a neutral row, add an active
@@ -235,11 +231,7 @@ function ComponentsTabNavigationPage() {
                   navigation links, so selecting one should take the person to a destination and
                   preserve normal browser history and link behavior.
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  Try it: move through the navigation links with the keyboard, activate a
-                  destination, resize until labels wrap or move to the mobile replacement, and
-                  confirm only the intended current destination is active with visible focus.
-                </p>
+                <p className="text-sm text-muted-foreground">Try it: move through the navigation links with the keyboard, activate a destination, resize until labels wrap or move to the mobile replacement, and confirm only the intended current destination is active with visible focus.</p>
                 <div className="space-y-8 [&_*:has(>[data-slot=tab-navigation])]:!p-0 [&_*:has(>[data-slot=tab-navigation])]:overflow-hidden">
                   <ExampleVariation
                     title="Basic"
@@ -259,13 +251,13 @@ function ComponentsTabNavigationPage() {
                     ]}
                   >
                     <TabNavigation
-                      items={[
-                        { label: 'Overview', href: '#tab-navigation-overview' },
-                        { label: 'Guidance', href: '#tab-navigation-guidance' },
-                        { label: 'Examples', href: '#tab-navigation-examples' },
-                      ]}
-                      aria-label="Project guide sections"
-                    />
+                        items={[
+                          { label: 'Overview', href: '#tab-navigation-overview' },
+                          { label: 'Guidance', href: '#tab-navigation-guidance' },
+                          { label: 'Examples', href: '#tab-navigation-examples' },
+                        ]}
+                            aria-label="Project guide sections"
+                      />
                   </ExampleVariation>
 
                   <ExampleVariation
@@ -309,12 +301,9 @@ function ComponentsTabNavigationPage() {
                       items={[
                         { label: 'Overview and key decisions', href: '#tab-navigation-overview' },
                         { label: 'Implementation guidance', href: '#tab-navigation-guidance' },
-                        {
-                          label: 'Related resources and references',
-                          href: '#tab-navigation-resources',
-                        },
+                        { label: 'Related resources and references', href: '#tab-navigation-resources' },
                       ]}
-                      aria-label="Tab navigation with longer labels"
+                        aria-label="Tab navigation with longer labels"
                     />
                   </ExampleVariation>
                 </div>
