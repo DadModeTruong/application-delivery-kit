@@ -88,10 +88,8 @@ function ComponentsFooterPage() {
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   Footer is the page-ending region for secondary destinations such as privacy,
-                  accessibility, help, contact, status, and ownership information. Place it after{' '}
-                  <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm">Main</code> or{' '}
-                  <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm">PageBody</code>, not
-                  inside the main content area.
+                  accessibility, help, contact, status, and ownership information. Place it after
+                  the page&apos;s main content, not inside the main content area.
                 </p>
                 <p className="leading-7 text-muted-foreground">
                   The basic pattern is a quiet row with caller-owned copyright content and a small
