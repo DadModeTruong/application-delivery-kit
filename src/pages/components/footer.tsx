@@ -77,13 +77,16 @@ function ComponentsFooterPage() {
                   Use Footer for supporting information and links that should remain available
                   without competing with the page's main task.
                 </p>
-                <div className="pt-2">
-                  <Footer
-                    bordered={false}
-                    copyright={<>© 2026 Tommy Truong</>}
-                    links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
-                  />
+                <div className="space-y-4">
+                  <div className="overflow-hidden rounded-xl border">
+                    <Footer
+                      bordered={false}
+                      copyright={<>© 2026 Tommy Truong</>}
+                      links={[{ href: '#footer-basic-link', label: 'Privacy' }]}
+                    />
+                  </div>
                 </div>
+
               </section>
               <section className="space-y-5" aria-labelledby="navigation-footer-what-heading">
                 <h2
@@ -230,7 +233,7 @@ function ComponentsFooterPage() {
                   Try it: tab through each link, resize until the links wrap, and verify that focus remains
                   visible, the link order is logical, and the Footer stays secondary to primary navigation.
                 </p>
-                <div className="space-y-8">
+                <div className="space-y-8 [&_*:has(>footer)]:!p-0 [&_*:has(>footer)]:overflow-hidden">
                   <ExampleVariation
                     title="Basic"
                     description="Use a compact Footer when the page needs copyright information and one supporting destination."
