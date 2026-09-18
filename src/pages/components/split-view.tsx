@@ -74,9 +74,9 @@ function ComponentsSplitViewPage() {
                   Split View
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
-                  Use Split View when a main task benefits from supporting information beside it.
-                  The main area stays first, the secondary area can be hidden when it is not needed,
-                  and both areas stack naturally on smaller screens.
+                  Use Split View when a primary task benefits from supporting information beside it.
+                  The primary area stays first in reading order, the supporting area can be hidden
+                  when it is not needed, and both areas stack naturally on smaller screens.
                 </p>
               </section>
 
@@ -85,9 +85,10 @@ function ComponentsSplitViewPage() {
                   What is it?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Split View is a relationship between two areas: Main holds the primary task, while
-                  Secondary holds details, a preview, or another supporting view. SplitPane controls
-                  their space and stacking; it does not decide what either area means.
+                  Split View is a relationship between two areas: the primary area holds the main
+                  task, while the supporting area holds details, a preview, or another related view.
+                  SplitPane controls their proportion, stacking, and visibility; the consuming page
+                  still owns the content, selection, and show/hide interaction.
                 </p>
                 <div className="overflow-hidden rounded-xl border">
                   <SplitPane secondarySize="third">
@@ -160,10 +161,12 @@ function ComponentsSplitViewPage() {
                   Design considerations
                 </h2>
                 <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Give Main the primary job and make that job clear in its heading.</li>
                   <li>
-                    Use a one-third secondary area when Main needs more room; use equal halves when
-                    both areas need similar space.
+                    Give the primary area the clearest task and the strongest content hierarchy.
+                  </li>
+                  <li>
+                    Use a one-third supporting area when the primary task needs more room; use equal
+                    halves when both views need comparable space.
                   </li>
                   <li>Start with supporting details hidden when they are helpful but optional.</li>
                   <li>
@@ -171,8 +174,8 @@ function ComponentsSplitViewPage() {
                     from the space available.
                   </li>
                   <li>
-                    Do not use a split only because the page has room for two columns. The
-                    relationship should help people work.
+                    Make the relationship visible through headings, selection state, and concise
+                    supporting content.
                   </li>
                 </ul>
               </section>
@@ -185,10 +188,12 @@ function ComponentsSplitViewPage() {
                   Accessibility considerations
                 </h2>
                 <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep Main first in the DOM so it remains first when the areas stack.</li>
                   <li>
-                    Give a secondary area a useful heading and landmark label when its purpose is
-                    not already clear.
+                    Keep the primary area first in the DOM so it remains first when the areas stack.
+                  </li>
+                  <li>
+                    Give the supporting area a useful heading; use its aside landmark when it
+                    contains a distinct, related region.
                   </li>
                   <li>
                     Use a real button for showing or hiding details, with an expanded state and a
@@ -198,6 +203,10 @@ function ComponentsSplitViewPage() {
                   <li>
                     Ensure hidden details are removed from the accessibility tree and every control
                     has a clear name.
+                  </li>
+                  <li>
+                    Do not rely on position or color alone to explain which record or item the
+                    supporting area describes; expose that relationship in text and state.
                   </li>
                 </ul>
               </section>
@@ -210,22 +219,27 @@ function ComponentsSplitViewPage() {
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Split View stacks Main before Secondary on narrow screens. At the large
-                  breakpoint, the third variation gives Main two-thirds and Secondary one-third of
-                  the available content width. The half variation gives both areas equal space. If
-                  Secondary is hidden, Main expands to one full-width column.
+                  Split View stacks the primary area before the supporting area on narrow screens.
+                  At the large breakpoint, the one-third proportion gives the primary area
+                  two-thirds and the supporting area one-third of the available content width. The
+                  half proportion gives both areas equal space. If the supporting area is hidden,
+                  the primary area expands to one full-width column.
                 </p>
                 <ul className="list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
                   <li>
                     Test the narrow layout with long headings, descriptions, and action labels.
                   </li>
                   <li>
-                    Confirm that both areas remain usable at browser zoom and without scrolling
-                    horizontally.
+                    Confirm that both areas remain usable at 200% zoom and without horizontal
+                    scrolling.
                   </li>
                   <li>
-                    Check that the primary-to-secondary reading order still makes sense when
+                    Check that the primary-to-supporting reading order still makes sense when
                     stacked.
+                  </li>
+                  <li>
+                    Verify that hiding the supporting area does not strand its trigger, focus, or
+                    required content.
                   </li>
                 </ul>
               </section>
@@ -295,6 +309,11 @@ function ComponentsSplitViewPage() {
                         </ul>
                       </div>
                     </div>
+                    <p className="text-sm leading-6 text-muted-foreground">
+                      <strong>Check:</strong> Open and close details at wide and narrow widths. The
+                      primary task should stay usable, the supporting content should remain related,
+                      and focus should return to the opening control when details close.
+                    </p>
                   </article>
                   <article className="space-y-6 rounded-lg border p-6 sm:p-8">
                     <div className="space-y-2">
@@ -351,6 +370,11 @@ function ComponentsSplitViewPage() {
                         </ul>
                       </div>
                     </div>
+                    <p className="text-sm leading-6 text-muted-foreground">
+                      <strong>Check:</strong> Compare the two areas with realistic content at wide
+                      and narrow widths. Both should remain readable, while headings and reading
+                      order still communicate which task comes first.
+                    </p>
                   </article>
                 </div>
               </section>

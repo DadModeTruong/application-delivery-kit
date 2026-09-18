@@ -51,6 +51,7 @@ function SplitPaneDemo({
 }: SplitPaneDemoProps) {
   const [secondaryVisible, setSecondaryVisible] = useState(false)
   const secondaryId = useId()
+  const secondaryHeadingId = useId()
   const mainToggleRef = useRef<HTMLButtonElement>(null)
   const wasSecondaryVisible = useRef(false)
 
@@ -120,12 +121,14 @@ function SplitPaneDemo({
       </div>
       <SecondaryPane
         id={secondaryId}
-        aria-label="Secondary area"
+        aria-labelledby={secondaryHeadingId}
         hidden={!secondaryVisible}
         className="space-y-3 rounded-xl border p-6"
       >
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <h3 className="text-lg font-semibold">Secondary area</h3>
+          <h3 id={secondaryHeadingId} className="text-lg font-semibold">
+            Secondary area
+          </h3>
           <Button
             type="button"
             variant="outline"
