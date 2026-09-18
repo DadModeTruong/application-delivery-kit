@@ -206,7 +206,7 @@ function ComponentsHeaderPage() {
                 <p className="text-muted-foreground">
                   Compare a compact system header, grouped navigation, and icon-supported navigation. Each example uses the same production Header component and full-width variation structure as the Forms pages. Try each link and menu trigger with a keyboard as well as a pointer; the visible focus ring, expanded menu state, and focus return should match the interaction contract described above.
                 </p>
-                <div className="space-y-8 [&_[data-slot=header]]:!border-b-0 [&_*:has(>[data-slot=header])]:!p-0">
+                <div className="space-y-8 [&_[data-slot=header]]:!border-b-0 [&_*:has(>[data-slot=header])]:!p-0 [&_*:has(>[data-slot=header])]:overflow-hidden">
 
                   <ExampleVariation
                   title="Basic"
