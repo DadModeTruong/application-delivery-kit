@@ -181,7 +181,8 @@ function ComponentsSecondaryNavPage() {
                 <p className="leading-7 text-muted-foreground">
                   On wider screens, the short section-link row sits below the Header. On narrow
                   screens, this row disappears rather than wrapping into a cramped strip; the same
-                  links are replaced by the Header's mobile menu.
+                  links move into the Header’s mobile menu. The desktop preview disappearing at a
+                  breakpoint is therefore an intentional responsive replacement, not missing content.
                 </p>
                 <p className="leading-7 text-muted-foreground">
                   Keep one shared link list so the desktop and mobile paths stay in sync. Test the
@@ -201,8 +202,13 @@ function ComponentsSecondaryNavPage() {
                 </h2>
                 <p className="text-muted-foreground">
                   This example uses the application’s reusable SecondaryNav component for section-level
-                  links beneath a page or application Header. Use Tab to reach the navigation, activate
-                  a link, and resize the page to check the active state and narrow-screen behavior.
+                  links beneath a page or application Header.
+                </p>
+                <p className="text-muted-foreground">
+                  Try it: Use Tab to reach the links, activate a destination, and resize the page. On
+                  narrow screens, the visible SecondaryNav row intentionally disappears because the same
+                  links move into the Header’s mobile drawer; confirm the destinations remain available
+                  there and the active location is still clear.
                 </p>
                 <div className="space-y-8 [&_*:has(>[data-slot=secondary-nav])]:!p-0 [&_*:has(>[data-slot=secondary-nav])]:overflow-hidden">
                   <ExampleVariation
