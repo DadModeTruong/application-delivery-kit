@@ -84,7 +84,7 @@ function ComponentsSecondaryNavPage() {
                   id="navigation-secondary-what-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  What is it for?
+                  What is it?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
                   SecondaryNav gives people nearby context without mixing section links into the
@@ -188,31 +188,41 @@ function ComponentsSecondaryNavPage() {
                 >
                   Examples
                 </h2>
-                <p className="text-sm text-muted-foreground">Try it: Use Tab to reach the navigation, activate a link, and resize the page. Confirm that the active area is communicated without relying on color alone and that the links remain usable on narrow screens.</p>
-
-                <div className="space-y-8">
-                  <ExampleVariation title="Basic" description="A labeled navigation region groups destinations inside one product area." explanation="Secondary navigation helps people move between related sections while staying in the same area. It is different from a stepper, which communicates progress through a sequence." doItems={["Give the navigation a specific label that distinguishes it from other navigation regions.", "Use a semantic current-page indicator for the active destination."]} dontItems={["Do not use secondary navigation for a single destination.", "Do not use it to represent required sequential steps."]}>
-                    <nav aria-label="Project sections" className="flex flex-wrap gap-4 text-sm"><a href="#secondary-basic-overview" aria-current="page" className="font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Overview</a><a href="#secondary-basic-activity" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Activity</a><a href="#secondary-basic-settings" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Settings</a></nav>
-                  </ExampleVariation>
-                  <ExampleVariation title="Long list with overflow" description="A bounded row preserves access to related destinations without forcing the page wider." explanation="Horizontal overflow can work for a short, related list when its affordance is discoverable. Every item still needs to be reachable with the keyboard." doItems={["Keep the active item and the start of the list easy to discover.", "Test keyboard access to every link and verify the row scrolls as needed."]} dontItems={["Do not hide important choices in an undiscoverable clipped region.", "Do not use overflow to avoid making a long information architecture clearer."]}>
-                    <div className="overflow-x-auto"><nav aria-label="Workspace sections" className="flex min-w-max gap-4 text-sm"><a href="#secondary-overview" aria-current="page" className="font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Overview</a><a href="#secondary-members" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Members</a><a href="#secondary-billing" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Billing</a><a href="#secondary-integrations" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Integrations</a><a href="#secondary-audit" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Audit log</a></nav></div>
-                  </ExampleVariation>
-                  <ExampleVariation title="Compact alternative" description="Collapse the row only when the implementation provides an equivalent menu." explanation="A compact control can preserve the same destinations at narrow widths, but the menu needs a complete open, dismiss, and focus-management behavior in the product." doItems={["Expose expanded state and the relationship to the menu.", "Restore focus to the trigger after dismissal."]} dontItems={["Do not replace a useful navigation row with an unlabeled generic menu.", "Do not rely on aria-expanded alone without implementing the interaction model."]}>
-                    <div className="flex items-center justify-between gap-3"><span className="font-semibold">Project sections</span><button type="button" aria-label="Open project sections" aria-haspopup="menu" aria-expanded="false" className="rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Sections</button></div>
-                  </ExampleVariation>
-                </div>
-                <p className="leading-7 text-muted-foreground">
-                  Use a short list of peer links for nearby pages. These are the same real anchors
-                  people can use in the Header drawer on a smaller screen. The isolated row is
-                  intentionally hidden on narrow screens, so use the page Header above to inspect
-                  the mobile replacement and confirm the current page remains announced.
+                <p className="text-sm text-muted-foreground">
+                  This example uses the application’s reusable SecondaryNav component for section-level
+                  links beneath a page or application Header. Use Tab to reach the navigation, activate
+                  a link, and resize the page to check the active state and narrow-screen behavior.
                 </p>
-                <div className="rounded-xl border">
-                  <SecondaryNav
-                    aria-label="Example section links"
-                    items={componentSectionLinks}
-                    activeHref="/components/user-interface"
-                  />
+                <div className="space-y-8">
+                  <ExampleVariation
+                    title="Basic"
+                    description="A short row of links helps people move between closely related pages in the same section."
+                    explanation="SecondaryNav is for the current section’s immediate destinations—not the application’s broadest navigation. The reusable component receives the link data and active destination, then supplies the shared layout, current-state treatment, and responsive behavior used by the application."
+                    doItems={[
+                      'Use concise, parallel labels that match the destination page titles.',
+                      'Pass the current route as activeHref so location is communicated by more than color.',
+                      'Keep the list short and limited to sibling pages people need within the same section.',
+                      'Confirm the navigation has a meaningful accessible label when a page contains more than one navigation landmark.',
+                    ]}
+                    dontItems={[
+                      'Do not put the entire application sitemap or deeply nested destinations in this row.',
+                      'Do not use it as a substitute for a page heading, breadcrumb, or sidebar navigation.',
+                      'Do not rely on hover, position, or color alone to identify the current page.',
+                      'Do not make labels vague, inconsistent, or so long that the row becomes difficult to scan or use on small screens.',
+                    ]}
+                  >
+                    <div className="overflow-hidden rounded-xl border">
+                      <SecondaryNav
+                        items={[
+                          { label: 'Overview', href: '#secondary-nav-overview' },
+                          { label: 'Guidance', href: '#secondary-nav-guidance' },
+                          { label: 'Examples', href: '#secondary-nav-examples' },
+                        ]}
+                        activeHref="#secondary-nav-overview"
+                        aria-label="Project guide sections"
+                      />
+                    </div>
+                  </ExampleVariation>
                 </div>
               </section>
             </div>
