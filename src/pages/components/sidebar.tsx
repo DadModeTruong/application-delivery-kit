@@ -218,25 +218,6 @@ function ComponentsSidebarPage() {
                     />
                   </ExampleVariation>
                 </div>
-                <p className="leading-7 text-muted-foreground">
-                  Group links when people need a deeper map of the current section. The grouped
-                  example below uses the same Navigation, Layout, and Display groups as this area.
-                  It is visible at medium widths and above; on a narrow screen, the rail
-                  intentionally disappears and these same links are available from the Header's
-                  mobile menu.
-                </p>
-                <p className="leading-7 text-muted-foreground">
-                  Resize the example and test both paths: use a keyboard to reach the menu trigger,
-                  open the drawer, move through the grouped links, and close it without losing your
-                  place.
-                </p>
-                <div className="rounded-xl border">
-                  <Sidebar
-                    aria-label="Example section navigation"
-                    items={userInterfaceSidebarLinks}
-                    activeHref="/components/sidebar"
-                  />
-                </div>
               </section>
             </div>
           </Main>
