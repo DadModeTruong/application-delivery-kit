@@ -93,8 +93,10 @@ function ComponentsSidebarPage() {
                   What is it?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Sidebar gives a section enough space for groups, icons, and an active page state
-                  without making the Header carry every link.
+                  Sidebar gives a section enough space for grouped destinations, optional icons, and a
+                  visible current-page state without making the Header carry every link. It is a
+                  persistent navigation landmark beside Main on wider screens; on smaller screens,
+                  the same navigation data moves into the Header’s temporary drawer.
                 </p>
                 <div className="overflow-hidden rounded-xl border">
                   <Sidebar
@@ -119,9 +121,10 @@ function ComponentsSidebarPage() {
                     When to use it
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For a deeper set of related pages.</li>
-                    <li>When grouped labels improve scanning.</li>
-                    <li>When the page has enough width for a persistent rail.</li>
+                    <li>For a deeper set of related pages that benefits from a persistent map.</li>
+                    <li>When meaningful group labels help people predict where a destination belongs.</li>
+                    <li>When the page has enough width for a rail without compressing the main task.</li>
+                    <li>When the same navigation can become a clearly named, keyboard-operable mobile drawer.</li>
                   </ul>
                 </div>
                 <div className="space-y-5" aria-labelledby="navigation-sidebar-not-heading">
@@ -132,9 +135,10 @@ function ComponentsSidebarPage() {
                     When not to use it
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>For only two or three peer links.</li>
-                    <li>For broad destinations shared by the whole application.</li>
-                    <li>When the rail would take more space than the content earns.</li>
+                    <li>For only two or three peer links; SecondaryNav may be clearer.</li>
+                    <li>For broad destinations shared by the whole application; use Header instead.</li>
+                    <li>For deeply nested navigation that needs more than one supported grouping level.</li>
+                    <li>When the rail would take more space than the content earns or hide the main task.</li>
                   </ul>
                 </div>
               </section>
@@ -147,9 +151,11 @@ function ComponentsSidebarPage() {
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep groups meaningful and short.</li>
-                  <li>Use icons only when they help recognition.</li>
-                  <li>Keep Main first in the DOM reading order.</li>
+                  <li>Use group headings that describe the information architecture, not visual decoration.</li>
+                  <li>Keep one supported grouping level; use Header dropdowns or another pattern when deeper disclosure is needed.</li>
+                  <li>Use icons only when they add recognition value, and keep labels visible in the labeled variant.</li>
+                  <li>Keep labels concise, parallel, and consistent with page titles and related navigation.</li>
+                  <li>Preserve the main content’s width and reading order; the rail should support the task, not compete with it.</li>
                 </ul>
               </section>
 
@@ -165,9 +171,12 @@ function ComponentsSidebarPage() {
                 </h2>
 
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Give the rail a specific landmark name.</li>
-                  <li>Mark the current page on its link.</li>
-                  <li>Test the mobile drawer and keyboard focus order.</li>
+                  <li>Give the sidebar landmark a specific name, and avoid reusing an indistinguishable label when other navigation landmarks are nearby.</li>
+                  <li>Use real links so browser navigation, keyboard activation, and link context work as expected.</li>
+                  <li>Mark only the current destination with <code>aria-current="page"</code>; do not use color or indentation as the only state cue.</li>
+                  <li>Keep the main content earlier in the DOM reading order when the visual rail is beside it.</li>
+                  <li>In icon-only mode, provide a visible or programmatic label for every link and test tooltip/focus behavior without a pointer.</li>
+                  <li>When the rail becomes a drawer, test the trigger name and expanded state, focus entry, Escape/outside dismissal, and focus restoration.</li>
                 </ul>
               </section>
               <section
@@ -181,14 +190,15 @@ function ComponentsSidebarPage() {
                   Responsive behavior
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  On wider screens, the Sidebar sits beside Main. On narrow screens, the visible
-                  rail disappears so it does not compete with the page content; its same grouped
-                  links move into the Header's mobile menu. Main remains the first reading area.
+                  On wider screens, the Sidebar sits beside Main. On narrow screens, the visible rail
+                  disappears so it does not compete with the page content; its same grouped links move
+                  into the Header’s mobile menu. Main remains the first reading area.
                 </p>
                 <p className="leading-7 text-muted-foreground">
-                  This is expected, not missing content. Open the mobile menu to reach the groups,
-                  and confirm that the drawer has a clear name, the current page is still marked,
-                  and focus returns to the menu trigger when it closes.
+                  This is expected, not missing content. Open the mobile menu to reach the groups, and
+                  confirm that the drawer has a clear name, the current page is still marked, and focus
+                  returns to the menu trigger when it closes. Test at narrow widths and high zoom so
+                  labels, touch targets, and the main content remain usable without horizontal scrolling.
                 </p>
               </section>
 
@@ -199,7 +209,12 @@ function ComponentsSidebarPage() {
                 >
                   Examples and variations
                 </h2>
-                <p className="text-sm text-muted-foreground">Try it: Use Tab and activate a guide link, then resize the page. Confirm that the navigation has a meaningful label, the current location is clear, and the content remains reachable when the sidebar collapses or stacks.</p>
+                <p className="text-muted-foreground">
+                  Try it: Use Tab to move through the links, activate a destination, and resize the page.
+                  Confirm that the sidebar has a meaningful name, the current location is clear, and
+                  the same destinations remain reachable when the persistent rail becomes a mobile
+                  drawer.
+                </p>
 
                 <div className="space-y-8 [&_*:has(>[data-slot=sidebar])]:!p-0 [&_*:has(>[data-slot=sidebar])]:overflow-hidden">
                   <ExampleVariation
@@ -208,7 +223,7 @@ function ComponentsSidebarPage() {
                     explanation="Use a basic Sidebar when an area has a small set of peer destinations and grouping would add more structure than people need. Keep the labels specific and preserve the current destination state."
                     doItems={[
                       'Use a short list of peer destinations with clear labels.',
-                      'Keep the active destination visible and semantically identified.',
+                      'Pass the current route explicitly when the consuming page needs an active destination.',
                     ]}
                     dontItems={[
                       'Add group headings when all destinations belong to the same level.',
@@ -222,7 +237,19 @@ function ComponentsSidebarPage() {
                     />
                   </ExampleVariation>
 
-                  <ExampleVariation title="Grouped" description="Meaningful groups help people predict where a destination belongs." explanation="A sidebar is useful when navigation should remain available while people work through the main content. Group labels should describe the information architecture, not merely decorate it." doItems={["Give the sidebar and its navigation a meaningful accessible name.", "Show the current page with semantic state and a visible treatment."]} dontItems={["Do not duplicate every header link without a clear reason.", "Do not rely on indentation, color, or position alone to communicate grouping."]}>
+                  <ExampleVariation
+                    title="Grouped"
+                    description="Meaningful groups help people predict where a destination belongs."
+                    explanation="A sidebar is useful when navigation should remain available while people work through the main content. Group labels should describe the information architecture, not merely decorate it."
+                    doItems={[
+                      'Give the sidebar and its navigation a meaningful accessible name.',
+                      'Use group labels to communicate information architecture, not just visual separation.',
+                    ]}
+                    dontItems={[
+                      'Do not duplicate every header link without a clear reason.',
+                      'Do not rely on indentation, color, or position alone to communicate grouping.',
+                    ]}
+                  >
                     <Sidebar
                       aria-label="Example section navigation"
                       items={userInterfaceSidebarLinks}
@@ -239,12 +266,21 @@ function ComponentsSidebarPage() {
                     <Sidebar
                       aria-label="Grouped section navigation"
                       items={userInterfaceSidebarLinks}
-                      activeHref="/components/forms"
+                      activeHref="/components/sidebar"
                     />
                   </ExampleVariation>
-                  <ExampleVariation title="Compact or temporary sidebar" description="On small screens, a drawer or stacked region can replace persistent space." explanation="Responsive navigation should preserve the same destinations while adapting the amount of persistent space. A temporary drawer needs focus management, a close action, and dismissal behavior." doItems={["Keep the main content first in the reading order when the navigation is temporary.", "Make the trigger, close control, and expanded state understandable."]} dontItems={["Do not remove navigation because it does not fit beside the content.", "Do not trap focus or leave focus behind an open drawer."]}>
+                  <ExampleVariation
+                    title="Icon-only"
+                    description="An icon-only rail preserves navigation when the available space is limited."
+                    explanation="Use the icon-only variant only when every destination has a recognizable icon and a usable label is still available through focus or tooltip behavior. This is a visual-density option, not a replacement for the mobile drawer; on small screens, the same navigation should remain available through the Header menu." doItems={[
+                      'Pair every icon with a label that remains available to screen readers and keyboard users.',
+                      'Use icon-only mode only when the destination set is familiar and the rail has enough room.',
+                    ]} dontItems={[
+                      'Do not make an icon-only rail the only path to an unfamiliar destination.',
+                      'Do not rely on hover-only tooltips or leave keyboard focus without a useful label.',
+                    ]}>
                     <Sidebar
-                      aria-label="Compact section navigation"
+                      aria-label="Icon-only section navigation"
                       items={userInterfaceSidebarLinks}
                       activeHref=""
                       variant="icon-only"

@@ -199,7 +199,7 @@ function ComponentsSecondaryNavPage() {
                 >
                   Examples and variations
                 </h2>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground">
                   This example uses the application’s reusable SecondaryNav component for section-level
                   links beneath a page or application Header. Use Tab to reach the navigation, activate
                   a link, and resize the page to check the active state and narrow-screen behavior.
