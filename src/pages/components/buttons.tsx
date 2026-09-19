@@ -18,40 +18,12 @@ import { ExampleVariation } from '@/components/layout/example-variation'
 import { useState } from 'react'
 import { LoaderCircle, MousePointerClick } from 'lucide-react'
 import { Pressable } from 'react-aria-components'
-import { Header, SkipLink } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
-import { Footer } from '@/components/layout/footer'
-import { PageBody } from '@/components/layout/page-body'
-import { PageShell } from '@/components/layout/page-shell'
-import { LayoutProvider } from '@/components/layout/layout-provider'
-import { TabNavigation } from '@/components/layout/tab-navigation'
-import { Sidebar } from '@/components/layout/sidebar'
 import { Button, LinkButton } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import type { NavGroup, NavLeaf } from '@/components/layout/types'
+import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { interactionSidebarLinks } from '@/config/component-navigation'
 import { primaryNav, footerLinks } from '../page-registry'
 
-// ---------------------------------------------------------------
-// Component-area navigation
-// ---------------------------------------------------------------
-
-const componentSectionLinks: NavLeaf[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
-  { href: '/components/interaction', label: 'Interaction' },
-  { href: '/components/forms', label: 'Forms' },
-]
-
-const componentSidebarLinks: (NavLeaf | NavGroup)[] = [
-  { href: '/components/interaction', label: 'Interaction' },
-  {
-    label: 'Actions',
-    items: [{ href: '/components/button', label: 'Button', icon: MousePointerClick }],
-  },
-]
-
-// ---------------------------------------------------------------
-// Page
-// ---------------------------------------------------------------
 
 /**
  * Button component reference page. Mounted by the demo router at
@@ -64,20 +36,15 @@ function ComponentsButtonsPage() {
   const [formStatus, setFormStatus] = useState('')
 
   return (
-    <LayoutProvider
-      tabNavigation={componentSectionLinks}
-      tabNavigationLabel="Component areas"
-      sidebarNav={componentSidebarLinks}
-      sidebarNavLabel="Interaction"
+    <ComponentGuideShell
+      primaryNav={primaryNav}
+      footerLinks={footerLinks}
       activeHref="/components/button"
+      tabActiveHref="/components/interaction"
+      sidebarNav={interactionSidebarLinks}
+      sidebarNavLabel="Interaction"
+      sidebarAriaLabel="Interaction components"
     >
-      <PageShell>
-        <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <TabNavigation aria-label="Component areas" activeHref="/components/interaction" />
-        <PageBody>
-          <Sidebar aria-label="Interaction components" />
-          <Main size="full">
             <div className="space-y-14">
               <section className="space-y-5" aria-labelledby="buttons-heading">
                 <h1 id="buttons-heading" className="text-4xl font-semibold tracking-tight">
@@ -477,11 +444,7 @@ function ComponentsButtonsPage() {
                 </div>
               </section>
             </div>
-          </Main>
-        </PageBody>
-        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-      </PageShell>
-    </LayoutProvider>
+      </ComponentGuideShell>
   )
 }
 

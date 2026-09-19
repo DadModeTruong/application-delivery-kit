@@ -5,31 +5,10 @@
  * then directs people to the component guides.
  */
 
-import { MousePointerClick } from 'lucide-react'
-import { Header, SkipLink } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
-import { Footer } from '@/components/layout/footer'
-import { PageBody } from '@/components/layout/page-body'
-import { PageShell } from '@/components/layout/page-shell'
-import { LayoutProvider } from '@/components/layout/layout-provider'
-import { TabNavigation } from '@/components/layout/tab-navigation'
-import { Sidebar } from '@/components/layout/sidebar'
-import type { NavGroup, NavLeaf } from '@/components/layout/types'
+import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { interactionSidebarLinks } from '@/config/component-navigation'
 import { primaryNav, footerLinks } from '../page-registry'
 
-const componentAreaLinks: NavLeaf[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
-  { href: '/components/interaction', label: 'Interaction' },
-  { href: '/components/forms', label: 'Forms' },
-]
-
-const interactionComponents: (NavLeaf | NavGroup)[] = [
-  { href: '/components/interaction', label: 'Interaction' },
-  {
-    label: 'Actions',
-    items: [{ href: '/components/button', label: 'Button', icon: MousePointerClick }],
-  },
-]
 
 /**
  * Interaction area introduction. Mounted by the demo router at
@@ -40,20 +19,14 @@ const interactionComponents: (NavLeaf | NavGroup)[] = [
  */
 function ComponentsInteractionPage() {
   return (
-    <LayoutProvider
-      tabNavigation={componentAreaLinks}
-      tabNavigationLabel="Component areas"
-      sidebarNav={interactionComponents}
-      sidebarNavLabel="Interaction components"
+    <ComponentGuideShell
+      primaryNav={primaryNav}
+      footerLinks={footerLinks}
       activeHref="/components/interaction"
+      tabActiveHref="/components/interaction"
+      sidebarNav={interactionSidebarLinks}
+      sidebarNavLabel="Interaction components"
     >
-      <PageShell>
-        <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <TabNavigation aria-label="Component areas" />
-        <PageBody>
-          <Sidebar aria-label="Interaction components" />
-          <Main size="full">
             <div className="space-y-14">
               <section className="space-y-5" aria-labelledby="interaction-heading">
                 <h1 id="interaction-heading" className="text-4xl font-semibold tracking-tight">
@@ -186,11 +159,7 @@ function ComponentsInteractionPage() {
                 </ul>
               </section>
             </div>
-          </Main>
-        </PageBody>
-        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-      </PageShell>
-    </LayoutProvider>
+      </ComponentGuideShell>
   )
 }
 
