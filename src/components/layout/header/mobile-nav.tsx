@@ -220,7 +220,7 @@ function MobileNav({
           <SheetTitle className="sr-only">Navigation menu</SheetTitle>
         </SheetHeader>
 
-        <div className="flex flex-col gap-1 p-4">
+        <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-4">
           {/* Primary section. `aria-label="Primary"` matches the
               desktop nav's label so users have a consistent
               landmark name across viewports. Parents render as

@@ -68,7 +68,7 @@ function ComponentsSplitViewPage() {
         <PageBody>
           <Sidebar aria-label="User Interface" />
           <Main size="full">
-            <div className="space-y-12 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+            <div className="space-y-12 pb-12 pt-6">
               <section className="space-y-5" aria-labelledby="split-view-heading">
                 <h1 id="split-view-heading" className="text-4xl font-semibold tracking-tight">
                   Split View
