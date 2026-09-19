@@ -4,8 +4,6 @@
  * Form controls collect information. Each guide keeps the semantic HTML
  * behavior visible while demonstrating the equivalent shadcn-style pattern.
  */
-/* eslint-disable react-refresh/only-export-components */
-
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { formSidebarLinks } from '@/config/component-navigation'
 import { primaryNav, footerLinks } from '../page-registry'
@@ -387,7 +385,7 @@ const tryItText: Record<FormKind, string> = {
   datepicker: 'open the calendar, navigate to a date with the keyboard, and select it while confirming the chosen date is clear.',
 }
 
-function FormGuide({
+export function FormGuide({
   title,
   description,
   kind,
@@ -594,65 +592,4 @@ function ComponentsFormsPage() {
   )
 }
 
-const guides: Record<Exclude<FormKind, 'input'> | 'input', [string, string]> = {
-  input: [
-    'Input',
-    'Use Input for a short, single-line value such as a name, email address, or search term.',
-  ],
-  select: [
-    'Select',
-    'Use Select when people choose one option from a known, relatively stable list.',
-  ],
-  textarea: [
-    'Text area',
-    'Use Text area for a longer, free-form response that may need multiple lines.',
-  ],
-  checkbox: [
-    'Checkbox',
-    'Use Checkbox for an independent yes/no preference or a choice that can be selected on its own.',
-  ],
-  'checkbox-group': [
-    'Checkbox group',
-    'Use a Checkbox group when people may choose zero, one, or several related options.',
-  ],
-  'radio-group': [
-    'Radio button',
-    'Use Radio buttons as a group when people must choose exactly one option from a small set of mutually exclusive choices.',
-  ],
-  combobox: [
-    'Combobox',
-    'Use Combobox when people need to choose from a list that can be searched or filtered.',
-  ],
-  datepicker: [
-    'Datepicker',
-    'Use Datepicker for a calendar date. Preserve a usable text and keyboard path alongside calendar affordances.',
-  ],
-}
-
-function makeGuide(kind: FormKind, activeHref?: string) {
-  const [title, description] = guides[kind]
-  return function GuidePage() {
-    return <FormGuide kind={kind} title={title} description={description} activeHref={activeHref} />
-  }
-}
-
-const ComponentsInputPage = makeGuide('input')
-const ComponentsSelectPage = makeGuide('select')
-const ComponentsTextareaPage = makeGuide('textarea')
-const ComponentsCheckboxPage = makeGuide('checkbox')
-const ComponentsCheckboxGroupPage = makeGuide('checkbox-group')
-const ComponentsRadioPage = makeGuide('radio-group', '/components/radio')
-const ComponentsComboboxPage = makeGuide('combobox')
-const ComponentsDatepickerPage = makeGuide('datepicker')
-
-export {
-  ComponentsFormsPage,
-  ComponentsInputPage,
-  ComponentsSelectPage,
-  ComponentsTextareaPage,
-  ComponentsCheckboxPage,
-  ComponentsCheckboxGroupPage,
-  ComponentsRadioPage,
-  ComponentsComboboxPage,
-  ComponentsDatepickerPage,
-}
+export { ComponentsFormsPage }

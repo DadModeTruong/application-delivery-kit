@@ -32,17 +32,15 @@ import { ComponentsSplitViewPage } from './components/split-view'
 import { ComponentsButtonsPage } from './components/buttons'
 import { ComponentsUserInterfacePage } from './components/user-interface'
 import { ComponentsInteractionPage } from './components/interaction'
-import {
-  ComponentsFormsPage,
-  ComponentsInputPage,
-  ComponentsSelectPage,
-  ComponentsTextareaPage,
-  ComponentsCheckboxPage,
-  ComponentsCheckboxGroupPage,
-  ComponentsRadioPage,
-  ComponentsComboboxPage,
-  ComponentsDatepickerPage,
-} from './components/forms'
+import { ComponentsFormsPage } from './components/forms'
+import { ComponentsInputPage } from './components/input'
+import { ComponentsSelectPage } from './components/select'
+import { ComponentsTextareaPage } from './components/textarea'
+import { ComponentsCheckboxPage } from './components/checkbox'
+import { ComponentsCheckboxGroupPage } from './components/checkbox-group'
+import { ComponentsRadioPage } from './components/radio'
+import { ComponentsComboboxPage } from './components/combobox'
+import { ComponentsDatepickerPage } from './components/datepicker'
 
 // ---------------------------------------------------------------
 // Routes
