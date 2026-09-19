@@ -27,7 +27,7 @@ pnpm lint
 pnpm build
 ```
 
-When a page or component changes, verify the affected route at a narrow width as well as a desktop width. Keep the route table and global navigation data in `pages/page-registry.tsx` accurate when adding or renaming a page. Keep each component guide's local area-navigation links aligned with its sibling guides.
+When a page or component changes, verify the affected route at a narrow width as well as a desktop width. Keep the route table and global navigation data in `routes/route-manifest.ts` accurate when adding or renaming a page. Keep each component guide's local area-navigation links aligned with its sibling guides.
 
 ## Continue
 

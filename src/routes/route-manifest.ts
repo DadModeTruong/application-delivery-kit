@@ -84,4 +84,3 @@ export const routes: Route[] = [
   { path: '/components/split-view', component: ComponentsSplitViewPage },
   { path: '/components/button', component: ComponentsButtonsPage },
 ]
-
