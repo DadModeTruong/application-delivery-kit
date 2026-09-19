@@ -8,7 +8,6 @@ import type { ReactNode } from 'react'
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { formSidebarLinks } from '@/config/component-navigation'
-import { primaryNav, footerLinks } from '../page-registry'
 
 
 
@@ -411,8 +410,6 @@ export function FormGuide({
   const detail = sectionDetails[kind]
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref={activeHref}
       tabActiveHref="/components/forms"
       sidebarNav={formSidebarLinks}

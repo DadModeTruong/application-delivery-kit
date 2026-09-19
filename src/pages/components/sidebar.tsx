@@ -17,7 +17,6 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 import type { NavLeaf } from '@/components/layout/types'
-import { primaryNav, footerLinks } from '../page-registry'
 
 const basicSidebarLinks: NavLeaf[] = [
   { href: '/components/sidebar', label: 'Overview' },
@@ -28,8 +27,6 @@ const basicSidebarLinks: NavLeaf[] = [
 function ComponentsSidebarPage() {
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref="/components/sidebar"
       tabActiveHref="/components/user-interface"
       sidebarNav={userInterfaceSidebarLinks}

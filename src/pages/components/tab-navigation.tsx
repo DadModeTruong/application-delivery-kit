@@ -16,13 +16,10 @@ import { ExampleVariation } from '@/components/layout/example-variation'
 import { TabNavigation } from '@/components/layout/tab-navigation'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
-import { primaryNav, footerLinks } from '../page-registry'
 
 function ComponentsTabNavigationPage() {
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref="/components/tab-navigation"
       tabActiveHref="/components/user-interface"
       sidebarNav={userInterfaceSidebarLinks}

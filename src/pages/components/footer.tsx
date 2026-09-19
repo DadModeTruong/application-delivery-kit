@@ -1,3 +1,4 @@
+import { primaryNav, footerLinks } from '@/config/site-navigation'
 /**
  * Footer guide page.
  *
@@ -15,13 +16,10 @@ import { ExampleVariation } from '@/components/layout/example-variation'
 import { Footer } from '@/components/layout/footer'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
-import { primaryNav, footerLinks } from '../page-registry'
 
 function ComponentsFooterPage() {
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref="/components/footer"
       tabActiveHref="/components/user-interface"
       sidebarNav={userInterfaceSidebarLinks}

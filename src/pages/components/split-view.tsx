@@ -8,14 +8,11 @@
 import { SecondaryPane, SplitPane } from '@/components/layout/split-pane'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
-import { primaryNav, footerLinks } from '../page-registry'
 import { SplitPaneDemo } from '../demos/split-pane-demo'
 
 function ComponentsSplitViewPage() {
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref="/components/split-view"
       tabActiveHref="/components/user-interface"
       sidebarNav={userInterfaceSidebarLinks}

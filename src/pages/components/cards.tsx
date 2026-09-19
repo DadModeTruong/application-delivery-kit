@@ -11,13 +11,10 @@ import { Card, CardAction, CardContent, CardDescription, CardHeader } from '@/co
 import { Button } from '@/components/ui/button'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
-import { primaryNav, footerLinks } from '../page-registry'
 
 function ComponentsCardsPage() {
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref="/components/card"
       tabActiveHref="/components/user-interface"
       sidebarNav={userInterfaceSidebarLinks}

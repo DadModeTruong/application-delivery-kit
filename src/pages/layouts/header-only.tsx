@@ -1,3 +1,4 @@
+import { primaryNav, footerLinks } from '@/config/site-navigation'
 /**
  * LayoutsHeaderOnlyPage — simple Header + Main + Footer layout reference.
  *
@@ -13,7 +14,6 @@ import { PageShell } from '@/components/layout/page-shell'
 import { Columns } from '@/components/layout/columns'
 import { DemoCard } from '../demos/demo-card'
 import { SplitPaneDemo } from '../demos/split-pane-demo'
-import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
 // Page

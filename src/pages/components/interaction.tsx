@@ -7,7 +7,6 @@
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { interactionSidebarLinks } from '@/config/component-navigation'
-import { primaryNav, footerLinks } from '../page-registry'
 
 
 /**
@@ -20,8 +19,6 @@ import { primaryNav, footerLinks } from '../page-registry'
 function ComponentsInteractionPage() {
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref="/components/interaction"
       tabActiveHref="/components/interaction"
       sidebarNav={interactionSidebarLinks}

@@ -22,7 +22,6 @@ import { Button, LinkButton } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { interactionSidebarLinks } from '@/config/component-navigation'
-import { primaryNav, footerLinks } from '../page-registry'
 
 
 /**
@@ -37,8 +36,6 @@ function ComponentsButtonsPage() {
 
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref="/components/button"
       tabActiveHref="/components/interaction"
       sidebarNav={interactionSidebarLinks}

@@ -1,3 +1,4 @@
+import { primaryNav, footerLinks } from '@/config/site-navigation'
 /**
  * LayoutsSecondaryPage — reference guide for section-level navigation.
  *
@@ -15,7 +16,6 @@ import { Columns } from '@/components/layout/columns'
 import type { NavLeaf } from '@/components/layout/types'
 import { DemoCard } from '../demos/demo-card'
 import { SplitPaneDemo } from '../demos/split-pane-demo'
-import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
 // Demo config

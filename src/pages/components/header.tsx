@@ -17,13 +17,10 @@ import { Blocks, LayoutTemplate } from 'lucide-react'
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
-import { primaryNav, footerLinks } from '../page-registry'
 
 function ComponentsHeaderPage() {
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref="/components/header"
       tabActiveHref="/components/user-interface"
       sidebarNav={userInterfaceSidebarLinks}

@@ -7,14 +7,11 @@
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { formSidebarLinks } from '@/config/component-navigation'
-import { primaryNav, footerLinks } from '../page-registry'
 
 
 function ComponentsFormsPage() {
   return (
     <ComponentGuideShell
-      primaryNav={primaryNav}
-      footerLinks={footerLinks}
       activeHref="/components/forms"
       tabActiveHref="/components/forms"
       sidebarNav={formSidebarLinks}
