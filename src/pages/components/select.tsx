@@ -241,9 +241,9 @@ function SelectVariations() {
           Examples and variations
         </h2>
         <p className="leading-7 text-muted-foreground">
-          These examples show how a Select changes when people need a prompt, explanation, validation,
-          unavailable options, grouping, scrolling, or search. Use the guidance to choose the simplest
-          behavior that fits the decision.
+          These examples show how a Select changes when people need a prompt, explanation,
+          validation, unavailable options, grouping, scrolling, or search. Use the guidance to
+          choose the simplest behavior that fits the decision.
         </p>
       </div>
       <div className="grid gap-8">
@@ -498,11 +498,26 @@ function SelectVariations() {
 }
 
 function BasicSelectExample() {
-  return <Field id="intro-select" label="Contact preference"><select id="intro-select" className={inputClass} defaultValue="email"><option value="email">Email</option><option value="phone">Phone</option></select></Field>
+  return (
+    <Field id="intro-select" label="Contact preference">
+      <select id="intro-select" className={inputClass} defaultValue="email">
+        <option value="email">Email</option>
+        <option value="phone">Phone</option>
+      </select>
+    </Field>
+  )
 }
 
 function ComponentsSelectPage() {
-  return <FormGuide kind="select" title="Select" description="Use Select when people choose one option from a known, relatively stable list." basicExample={<BasicSelectExample />} variations={<SelectVariations />} />
+  return (
+    <FormGuide
+      kind="select"
+      title="Select"
+      description="Use Select when people choose one option from a known, relatively stable list."
+      basicExample={<BasicSelectExample />}
+      variations={<SelectVariations />}
+    />
+  )
 }
 
 export { ComponentsSelectPage }

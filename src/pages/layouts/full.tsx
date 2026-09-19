@@ -219,10 +219,10 @@ function LayoutsFullPage() {
                   Optional split view
                 </h2>
                 <p className="text-muted-foreground">
-                  The base layout already uses Header navigation, TabNavigation, and Sidebar. A split
-                  view is an optional extension for supporting content inside Main, not another
-                  required navigation layer. Because the shell already uses substantial width, this
-                  example uses an even split.
+                  The base layout already uses Header navigation, TabNavigation, and Sidebar. A
+                  split view is an optional extension for supporting content inside Main, not
+                  another required navigation layer. Because the shell already uses substantial
+                  width, this example uses an even split.
                 </p>
               </div>
               <div className="space-y-8">

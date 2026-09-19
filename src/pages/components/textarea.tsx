@@ -50,8 +50,8 @@ function TextareaVariations() {
         </h2>
         <p className="leading-7 text-muted-foreground">
           These examples show how the same Text area changes as the task needs a prompt, persistent
-          guidance, availability, validation, or a required response. Use the Do and Don't guidance to
-          choose only the support people need at the moment of writing.
+          guidance, availability, validation, or a required response. Use the Do and Don't guidance
+          to choose only the support people need at the moment of writing.
         </p>
       </div>
       <div className="grid gap-8">
@@ -211,11 +211,27 @@ function TextareaVariations() {
 }
 
 function BasicTextareaExample() {
-  return <Field id="intro-textarea" label="Message"><textarea id="intro-textarea" className={`${inputClass} min-h-24 resize-y`} placeholder="Write a message" /></Field>
+  return (
+    <Field id="intro-textarea" label="Message">
+      <textarea
+        id="intro-textarea"
+        className={`${inputClass} min-h-24 resize-y`}
+        placeholder="Write a message"
+      />
+    </Field>
+  )
 }
 
 function ComponentsTextareaPage() {
-  return <FormGuide kind="textarea" title="Text area" description="Use Text area for a longer, free-form response that may need multiple lines." basicExample={<BasicTextareaExample />} variations={<TextareaVariations />} />
+  return (
+    <FormGuide
+      kind="textarea"
+      title="Text area"
+      description="Use Text area for a longer, free-form response that may need multiple lines."
+      basicExample={<BasicTextareaExample />}
+      variations={<TextareaVariations />}
+    />
+  )
 }
 
 export { ComponentsTextareaPage }

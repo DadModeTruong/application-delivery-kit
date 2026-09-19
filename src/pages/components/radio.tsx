@@ -15,7 +15,10 @@ function RadioGroupField({
   children: React.ReactNode
 }) {
   return (
-    <fieldset className="space-y-3" aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}>
+    <fieldset
+      className="space-y-3"
+      aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}
+    >
       <legend className="text-sm font-medium">{label}</legend>
       {hint && !error && (
         <p id={`${id}-hint`} className="text-sm text-muted-foreground">
@@ -53,7 +56,11 @@ function RadioButtonExample({
       error={invalid ? 'Choose one contact method.' : undefined}
     >
       {options.map((option) => (
-        <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`${idPrefix}-${option}`}>
+        <label
+          key={option}
+          className="flex items-start gap-3 text-sm"
+          htmlFor={`${idPrefix}-${option}`}
+        >
           <input
             id={`${idPrefix}-${option}`}
             className="mt-1 size-4 accent-primary disabled:cursor-not-allowed disabled:opacity-50"
@@ -83,14 +90,22 @@ function RequiredRadioButtonExample() {
         setSubmitted(true)
       }}
     >
-      <fieldset className="space-y-3" aria-describedby={error ? 'radio-button-required-error' : 'radio-button-required-hint'}>
+      <fieldset
+        className="space-y-3"
+        aria-describedby={error ? 'radio-button-required-error' : 'radio-button-required-hint'}
+      >
         <legend className="text-sm font-medium">How should we contact you?</legend>
         <p id="radio-button-required-hint" className="text-sm text-muted-foreground">
-          Required. Try submitting without a choice to see the error. Select one option and submit again.
+          Required. Try submitting without a choice to see the error. Select one option and submit
+          again.
         </p>
         <div className="space-y-3">
           {options.map((option) => (
-            <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`radio-button-required-${option}`}>
+            <label
+              key={option}
+              className="flex items-start gap-3 text-sm"
+              htmlFor={`radio-button-required-${option}`}
+            >
               <input
                 id={`radio-button-required-${option}`}
                 className="mt-1 size-4 accent-primary"
@@ -136,7 +151,8 @@ function RadioButtonVariations() {
           Examples and variations
         </h2>
         <p className="leading-7 text-muted-foreground">
-          Radio Buttons present mutually exclusive options. Use the group legend to describe the single decision and each visible label to identify one possible answer.
+          Radio Buttons present mutually exclusive options. Use the group legend to describe the
+          single decision and each visible label to identify one possible answer.
         </p>
       </div>
       <div className="grid gap-8">
@@ -181,7 +197,10 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample idPrefix="radio-button-helper" hint="Choose the method you check most often. You can change this preference later." />
+          <RadioButtonExample
+            idPrefix="radio-button-helper"
+            hint="Choose the method you check most often. You can change this preference later."
+          />
         </InputVariation>
 
         <InputVariation
@@ -203,7 +222,11 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample idPrefix="radio-button-disabled" disabled hint="Available after you add a verified contact method." />
+          <RadioButtonExample
+            idPrefix="radio-button-disabled"
+            disabled
+            hint="Available after you add a verified contact method."
+          />
         </InputVariation>
 
         <InputVariation
@@ -225,7 +248,11 @@ function RadioButtonVariations() {
             />
           }
         >
-          <RadioButtonExample idPrefix="radio-button-invalid" invalid hint="Select one contact method to continue." />
+          <RadioButtonExample
+            idPrefix="radio-button-invalid"
+            invalid
+            hint="Select one contact method to continue."
+          />
         </InputVariation>
 
         <InputVariation
@@ -255,11 +282,43 @@ function RadioButtonVariations() {
 }
 
 function BasicRadioExample() {
-  return <fieldset className="space-y-3"><legend className="text-sm font-medium">Notification frequency</legend><label className="flex items-center gap-3 text-sm" htmlFor="intro-frequency"><input id="intro-frequency" className="size-4 accent-primary" type="radio" name="intro-frequency" defaultChecked /><span>Immediately</span></label><label className="flex items-center gap-3 text-sm" htmlFor="intro-frequency-daily"><input id="intro-frequency-daily" className="size-4 accent-primary" type="radio" name="intro-frequency" /><span>Daily digest</span></label></fieldset>
+  return (
+    <fieldset className="space-y-3">
+      <legend className="text-sm font-medium">Notification frequency</legend>
+      <label className="flex items-center gap-3 text-sm" htmlFor="intro-frequency">
+        <input
+          id="intro-frequency"
+          className="size-4 accent-primary"
+          type="radio"
+          name="intro-frequency"
+          defaultChecked
+        />
+        <span>Immediately</span>
+      </label>
+      <label className="flex items-center gap-3 text-sm" htmlFor="intro-frequency-daily">
+        <input
+          id="intro-frequency-daily"
+          className="size-4 accent-primary"
+          type="radio"
+          name="intro-frequency"
+        />
+        <span>Daily digest</span>
+      </label>
+    </fieldset>
+  )
 }
 
 function ComponentsRadioPage() {
-  return <FormGuide kind="radio-group" title="Radio button" description="Use Radio buttons as a group when people must choose exactly one option from a small set of mutually exclusive choices." activeHref="/components/radio" basicExample={<BasicRadioExample />} variations={<RadioButtonVariations />} />
+  return (
+    <FormGuide
+      kind="radio-group"
+      title="Radio button"
+      description="Use Radio buttons as a group when people must choose exactly one option from a small set of mutually exclusive choices."
+      activeHref="/components/radio"
+      basicExample={<BasicRadioExample />}
+      variations={<RadioButtonVariations />}
+    />
+  )
 }
 
 export { ComponentsRadioPage }

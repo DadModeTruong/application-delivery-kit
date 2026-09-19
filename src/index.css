@@ -132,7 +132,6 @@
   }
 }
 
-
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
   ::view-transition-old(*),

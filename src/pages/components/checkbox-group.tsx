@@ -15,7 +15,10 @@ function CheckboxGroupField({
   children: React.ReactNode
 }) {
   return (
-    <fieldset className="space-y-3" aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}>
+    <fieldset
+      className="space-y-3"
+      aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}
+    >
       <legend className="text-sm font-medium">{label}</legend>
       {hint && !error && (
         <p id={`${id}-hint`} className="text-sm text-muted-foreground">
@@ -51,7 +54,11 @@ function CheckboxGroupExample({
       error={invalid ? 'Choose at least one update type.' : undefined}
     >
       {['Product news', 'Accessibility improvements', 'Events and webinars'].map((option) => (
-        <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`${idPrefix}-${option}`}>
+        <label
+          key={option}
+          className="flex items-start gap-3 text-sm"
+          htmlFor={`${idPrefix}-${option}`}
+        >
           <input
             id={`${idPrefix}-${option}`}
             className="mt-1 size-4 accent-primary disabled:cursor-not-allowed disabled:opacity-50"
@@ -69,7 +76,10 @@ function RequiredCheckboxGroupExample() {
   const [selected, setSelected] = useState<string[]>([])
   const [submitted, setSubmitted] = useState(false)
   const options = ['Product news', 'Accessibility improvements', 'Events and webinars']
-  const error = submitted && selected.length === 0 ? 'Choose at least one update type before continuing.' : undefined
+  const error =
+    submitted && selected.length === 0
+      ? 'Choose at least one update type before continuing.'
+      : undefined
 
   return (
     <form
@@ -79,14 +89,22 @@ function RequiredCheckboxGroupExample() {
         setSubmitted(true)
       }}
     >
-      <fieldset className="space-y-3" aria-describedby={error ? 'checkbox-group-required-error' : 'checkbox-group-required-hint'}>
+      <fieldset
+        className="space-y-3"
+        aria-describedby={error ? 'checkbox-group-required-error' : 'checkbox-group-required-hint'}
+      >
         <legend className="text-sm font-medium">Which updates would you like to receive?</legend>
         <p id="checkbox-group-required-hint" className="text-sm text-muted-foreground">
-          Required. Try submitting with no choices selected to see the error. Select one or more choices and submit again.
+          Required. Try submitting with no choices selected to see the error. Select one or more
+          choices and submit again.
         </p>
         <div className="space-y-3">
           {options.map((option) => (
-            <label key={option} className="flex items-start gap-3 text-sm" htmlFor={`checkbox-group-required-${option}`}>
+            <label
+              key={option}
+              className="flex items-start gap-3 text-sm"
+              htmlFor={`checkbox-group-required-${option}`}
+            >
               <input
                 id={`checkbox-group-required-${option}`}
                 className="mt-1 size-4 accent-primary"
@@ -95,7 +113,9 @@ function RequiredCheckboxGroupExample() {
                 onChange={(event) => {
                   setSubmitted(false)
                   setSelected((current) =>
-                    event.target.checked ? [...current, option] : current.filter((item) => item !== option),
+                    event.target.checked
+                      ? [...current, option]
+                      : current.filter((item) => item !== option),
                   )
                 }}
               />
@@ -117,7 +137,8 @@ function RequiredCheckboxGroupExample() {
       </button>
       {submitted && !error && (
         <p className="text-sm text-muted-foreground" role="status" aria-live="polite">
-          Preferences saved with {selected.length} update type{selected.length === 1 ? '' : 's'} selected.
+          Preferences saved with {selected.length} update type{selected.length === 1 ? '' : 's'}{' '}
+          selected.
         </p>
       )}
     </form>
@@ -128,11 +149,15 @@ function CheckboxGroupVariations() {
   return (
     <section className="space-y-8" aria-labelledby="checkbox-group-variations-heading">
       <div className="space-y-5">
-        <h2 id="checkbox-group-variations-heading" className="text-2xl font-semibold tracking-tight">
+        <h2
+          id="checkbox-group-variations-heading"
+          className="text-2xl font-semibold tracking-tight"
+        >
           Examples and variations
         </h2>
         <p className="leading-7 text-muted-foreground">
-          A Checkbox Group presents several related independent choices under one clear legend. Use the group to organize the choices and the individual labels to explain each option.
+          A Checkbox Group presents several related independent choices under one clear legend. Use
+          the group to organize the choices and the individual labels to explain each option.
         </p>
       </div>
       <div className="grid gap-8">
@@ -177,7 +202,10 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample idPrefix="checkbox-group-helper" hint="Select all that apply. We will use these choices to tailor your notifications." />
+          <CheckboxGroupExample
+            idPrefix="checkbox-group-helper"
+            hint="Select all that apply. We will use these choices to tailor your notifications."
+          />
         </InputVariation>
 
         <InputVariation
@@ -199,7 +227,11 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample idPrefix="checkbox-group-disabled" disabled hint="Available after you choose a notification plan." />
+          <CheckboxGroupExample
+            idPrefix="checkbox-group-disabled"
+            disabled
+            hint="Available after you choose a notification plan."
+          />
         </InputVariation>
 
         <InputVariation
@@ -221,7 +253,11 @@ function CheckboxGroupVariations() {
             />
           }
         >
-          <CheckboxGroupExample idPrefix="checkbox-group-invalid" invalid hint="Select at least one update type." />
+          <CheckboxGroupExample
+            idPrefix="checkbox-group-invalid"
+            invalid
+            hint="Select at least one update type."
+          />
         </InputVariation>
 
         <InputVariation
@@ -251,11 +287,31 @@ function CheckboxGroupVariations() {
 }
 
 function BasicCheckboxGroupExample() {
-  return <fieldset className="space-y-3"><legend className="text-sm font-medium">Topics of interest</legend><label className="flex items-center gap-3 text-sm" htmlFor="intro-checkbox-a"><input id="intro-checkbox-a" className="size-4 accent-primary" type="checkbox" /><span>Accessibility</span></label><label className="flex items-center gap-3 text-sm" htmlFor="intro-checkbox-b"><input id="intro-checkbox-b" className="size-4 accent-primary" type="checkbox" /><span>Design systems</span></label></fieldset>
+  return (
+    <fieldset className="space-y-3">
+      <legend className="text-sm font-medium">Topics of interest</legend>
+      <label className="flex items-center gap-3 text-sm" htmlFor="intro-checkbox-a">
+        <input id="intro-checkbox-a" className="size-4 accent-primary" type="checkbox" />
+        <span>Accessibility</span>
+      </label>
+      <label className="flex items-center gap-3 text-sm" htmlFor="intro-checkbox-b">
+        <input id="intro-checkbox-b" className="size-4 accent-primary" type="checkbox" />
+        <span>Design systems</span>
+      </label>
+    </fieldset>
+  )
 }
 
 function ComponentsCheckboxGroupPage() {
-  return <FormGuide kind="checkbox-group" title="Checkbox group" description="Use a Checkbox group when people may choose zero, one, or several related options." basicExample={<BasicCheckboxGroupExample />} variations={<CheckboxGroupVariations />} />
+  return (
+    <FormGuide
+      kind="checkbox-group"
+      title="Checkbox group"
+      description="Use a Checkbox group when people may choose zero, one, or several related options."
+      basicExample={<BasicCheckboxGroupExample />}
+      variations={<CheckboxGroupVariations />}
+    />
+  )
 }
 
 export { ComponentsCheckboxGroupPage }

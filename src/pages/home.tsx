@@ -156,9 +156,9 @@ function HomePage() {
               >
                 <h3 className="text-xl font-semibold">Navigation guides</h3>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  Look at the Header, TabNavigation, Sidebar, and Footer separately. These pages make
-                  each navigation region's job, mobile behavior, and keyboard expectations easier to
-                  review.
+                  Look at the Header, TabNavigation, Sidebar, and Footer separately. These pages
+                  make each navigation region's job, mobile behavior, and keyboard expectations
+                  easier to review.
                 </p>
                 <span className="mt-5 inline-flex font-medium underline decoration-muted-foreground/50 underline-offset-4">
                   Start with Header navigation

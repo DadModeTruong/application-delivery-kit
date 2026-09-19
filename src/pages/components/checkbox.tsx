@@ -87,9 +87,9 @@ function CheckboxVariations() {
           Examples and variations
         </h2>
         <p className="leading-7 text-muted-foreground">
-          These examples show how a Checkbox changes as the choice needs a label, persistent guidance,
-          availability, validation, or a required acknowledgment. The label should always explain the
-          independent choice people are making.
+          These examples show how a Checkbox changes as the choice needs a label, persistent
+          guidance, availability, validation, or a required acknowledgment. The label should always
+          explain the independent choice people are making.
         </p>
       </div>
       <div className="grid gap-8">
@@ -113,7 +113,11 @@ function CheckboxVariations() {
           }
         >
           <CheckboxField id="checkbox-basic-variation" label="Send me product updates">
-            <input id="checkbox-basic-variation" className="mt-1 size-4 accent-primary" type="checkbox" />
+            <input
+              id="checkbox-basic-variation"
+              className="mt-1 size-4 accent-primary"
+              type="checkbox"
+            />
           </CheckboxField>
         </InputVariation>
 
@@ -246,11 +250,24 @@ function CheckboxVariations() {
 }
 
 function BasicCheckboxExample() {
-  return <label className="flex items-center gap-3 text-sm" htmlFor="intro-checkbox"><input id="intro-checkbox" className="size-4 accent-primary" type="checkbox" /><span>Send me product updates</span></label>
+  return (
+    <label className="flex items-center gap-3 text-sm" htmlFor="intro-checkbox">
+      <input id="intro-checkbox" className="size-4 accent-primary" type="checkbox" />
+      <span>Send me product updates</span>
+    </label>
+  )
 }
 
 function ComponentsCheckboxPage() {
-  return <FormGuide kind="checkbox" title="Checkbox" description="Use Checkbox for an independent yes/no preference or a choice that can be selected on its own." basicExample={<BasicCheckboxExample />} variations={<CheckboxVariations />} />
+  return (
+    <FormGuide
+      kind="checkbox"
+      title="Checkbox"
+      description="Use Checkbox for an independent yes/no preference or a choice that can be selected on its own."
+      basicExample={<BasicCheckboxExample />}
+      variations={<CheckboxVariations />}
+    />
+  )
 }
 
 export { ComponentsCheckboxPage }

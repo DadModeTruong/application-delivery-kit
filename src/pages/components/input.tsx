@@ -259,7 +259,15 @@ function BasicInputExample() {
 }
 
 function ComponentsInputPage() {
-  return <FormGuide kind="input" title="Input" description="Use Input for a short, single-line value such as a name, email address, or search term." basicExample={<BasicInputExample />} variations={<InputVariations />} />
+  return (
+    <FormGuide
+      kind="input"
+      title="Input"
+      description="Use Input for a short, single-line value such as a name, email address, or search term."
+      basicExample={<BasicInputExample />}
+      variations={<InputVariations />}
+    />
+  )
 }
 
 export { ComponentsInputPage }
