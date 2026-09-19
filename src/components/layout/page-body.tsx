@@ -93,7 +93,7 @@ function PageBody({ className, size = 'contained', children, ...props }: PageBod
         // grow with its content. h-full lets the Sidebar + Main
         // pair stretch to PageBody's height when we're growing to
         // fill viewport space (short demo pages).
-        className="flex h-full px-0 sm:px-0 lg:px-0"
+        className="flex h-full"
       >
         {children}
       </Container>
