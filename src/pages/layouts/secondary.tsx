@@ -51,8 +51,8 @@ function LayoutsSecondaryPage() {
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <TabNavigation aria-label="Documentation" />
         <Main>
-          <div className="space-y-14 pb-12">
-            <section className="space-y-5 pt-6" aria-labelledby="secondary-heading">
+          <div className="space-y-14">
+            <section className="space-y-5" aria-labelledby="secondary-heading">
               <h1 id="secondary-heading" className="text-4xl font-semibold tracking-tight">
                 Keep related pages together without making them the whole page.
               </h1>

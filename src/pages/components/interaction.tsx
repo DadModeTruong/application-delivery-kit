@@ -54,7 +54,7 @@ function ComponentsInteractionPage() {
         <PageBody>
           <Sidebar aria-label="Interaction components" />
           <Main size="full">
-            <div className="space-y-14 pb-12 pt-6">
+            <div className="space-y-14">
               <section className="space-y-5" aria-labelledby="interaction-heading">
                 <h1 id="interaction-heading" className="text-4xl font-semibold tracking-tight">
                   Interaction

@@ -29,8 +29,8 @@ function HomePage() {
       <SkipLink />
       <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
-        <div className="space-y-16 pb-12">
-          <section className="space-y-6 pt-8" aria-labelledby="intro-heading">
+        <div className="space-y-16">
+          <section className="space-y-6" aria-labelledby="intro-heading">
             <h1 id="intro-heading" className="text-4xl font-semibold tracking-tight sm:text-5xl">
               A place to start when a page needs to make sense.
             </h1>

@@ -31,8 +31,8 @@ function LayoutsHeaderOnlyPage() {
       <SkipLink />
       <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
-        <div className="space-y-14 pb-12">
-          <section className="space-y-5 pt-6" aria-labelledby="header-only-heading">
+        <div className="space-y-14">
+          <section className="space-y-5" aria-labelledby="header-only-heading">
             <h1 id="header-only-heading" className="text-4xl font-semibold tracking-tight">
               Keep the page focused when the content has one clear job.
             </h1>
