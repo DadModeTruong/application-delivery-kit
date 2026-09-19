@@ -7,69 +7,23 @@
  */
 
 import { ExampleVariation } from '@/components/layout/example-variation'
-import { Footer } from '@/components/layout/footer'
-import { Header, SkipLink } from '@/components/layout/header'
-import { LayoutProvider } from '@/components/layout/layout-provider'
-import { Main } from '@/components/layout/main'
-import { PageBody } from '@/components/layout/page-body'
-import { PageShell } from '@/components/layout/page-shell'
-import { Sidebar } from '@/components/layout/sidebar'
-import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Card, CardAction, CardContent, CardDescription, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Ellipsis, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
-import type { NavGroup, NavLeaf } from '@/components/layout/types'
+import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 import { primaryNav, footerLinks } from '../page-registry'
-
-// ---------------------------------------------------------------
-// Component-area navigation
-// ---------------------------------------------------------------
-
-// Kept local by design so each guide is self-contained. Keep these links and groups
-// aligned across the sibling component guides.
-const componentSectionLinks: NavLeaf[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
-  { href: '/components/interaction', label: 'Interaction' },
-  { href: '/components/forms', label: 'Forms' },
-]
-
-const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
-  {
-    label: 'Navigation',
-    items: [
-      { href: '/components/header', label: 'Header', icon: PanelTop },
-      { href: '/components/tab-navigation', label: 'Tab', icon: Ellipsis },
-      { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
-      { href: '/components/footer', label: 'Footer', icon: PanelBottom },
-    ],
-  },
-  {
-    label: 'Layout',
-    items: [{ href: '/components/split-view', label: 'Split View', icon: PanelRight }],
-  },
-  {
-    label: 'Display',
-    items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
-  },
-]
 
 function ComponentsCardsPage() {
   return (
-    <LayoutProvider
-      tabNavigation={componentSectionLinks}
-      tabNavigationLabel="Component areas"
+    <ComponentGuideShell
+      primaryNav={primaryNav}
+      footerLinks={footerLinks}
+      activeHref="/components/card"
+      tabActiveHref="/components/user-interface"
       sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
-      activeHref="/components/card"
+      sidebarAriaLabel="User Interface"
     >
-      <PageShell>
-        <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <TabNavigation aria-label="Component areas" activeHref="/components/user-interface" />
-        <PageBody>
-          <Sidebar aria-label="User Interface" />
-          <Main size="full">
             <div className="space-y-12">
               <section className="space-y-5" aria-labelledby="cards-heading">
                 <h1 id="cards-heading" className="text-4xl font-semibold tracking-tight">
@@ -349,11 +303,7 @@ function ComponentsCardsPage() {
                 </div>
               </section>
             </div>
-          </Main>
-        </PageBody>
-        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-      </PageShell>
-    </LayoutProvider>
+      </ComponentGuideShell>
   )
 }
 

@@ -5,69 +5,23 @@
  * responsive relationship without taking ownership of either area's content.
  */
 
-import { Header, SkipLink } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
-import { Footer } from '@/components/layout/footer'
-import { PageBody } from '@/components/layout/page-body'
-import { PageShell } from '@/components/layout/page-shell'
-import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryPane, SplitPane } from '@/components/layout/split-pane'
-import { TabNavigation } from '@/components/layout/tab-navigation'
-import { Sidebar } from '@/components/layout/sidebar'
+import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 import { primaryNav, footerLinks } from '../page-registry'
-import { Ellipsis, PanelBottom, PanelLeft, PanelRight, PanelTop, SquareStack } from 'lucide-react'
-import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { SplitPaneDemo } from '../demos/split-pane-demo'
-
-// ---------------------------------------------------------------
-// Component-area navigation
-// ---------------------------------------------------------------
-
-// Kept local by design so each guide is self-contained. Keep these links and groups
-// aligned across the sibling component guides.
-const componentSectionLinks: NavLeaf[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
-  { href: '/components/interaction', label: 'Interaction' },
-  { href: '/components/forms', label: 'Forms' },
-]
-
-const userInterfaceSidebarLinks: (NavLeaf | NavGroup)[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
-  {
-    label: 'Navigation',
-    items: [
-      { href: '/components/header', label: 'Header', icon: PanelTop },
-      { href: '/components/tab-navigation', label: 'Tab', icon: Ellipsis },
-      { href: '/components/sidebar', label: 'Sidebar', icon: PanelLeft },
-      { href: '/components/footer', label: 'Footer', icon: PanelBottom },
-    ],
-  },
-  {
-    label: 'Layout',
-    items: [{ href: '/components/split-view', label: 'Split View', icon: PanelRight }],
-  },
-  {
-    label: 'Display',
-    items: [{ href: '/components/card', label: 'Card', icon: SquareStack }],
-  },
-]
 
 function ComponentsSplitViewPage() {
   return (
-    <LayoutProvider
-      tabNavigation={componentSectionLinks}
-      tabNavigationLabel="Component areas"
+    <ComponentGuideShell
+      primaryNav={primaryNav}
+      footerLinks={footerLinks}
+      activeHref="/components/split-view"
+      tabActiveHref="/components/user-interface"
       sidebarNav={userInterfaceSidebarLinks}
       sidebarNavLabel="User Interface"
-      activeHref="/components/split-view"
+      sidebarAriaLabel="User Interface"
     >
-      <PageShell>
-        <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <TabNavigation aria-label="Component areas" activeHref="/components/user-interface" />
-        <PageBody>
-          <Sidebar aria-label="User Interface" />
-          <Main size="full">
             <div className="space-y-12">
               <section className="space-y-5" aria-labelledby="split-view-heading">
                 <h1 id="split-view-heading" className="text-4xl font-semibold tracking-tight">
@@ -379,11 +333,7 @@ function ComponentsSplitViewPage() {
                 </div>
               </section>
             </div>
-          </Main>
-        </PageBody>
-        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-      </PageShell>
-    </LayoutProvider>
+      </ComponentGuideShell>
   )
 }
 
