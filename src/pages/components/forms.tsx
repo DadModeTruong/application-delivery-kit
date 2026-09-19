@@ -2856,7 +2856,7 @@ function FormGuide({
         <PageBody>
           <Sidebar aria-label="Forms components" />
           <Main size="full">
-            <div className="space-y-14 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+            <div className="space-y-14">
               <section className="space-y-5">
                 <h1 className="text-4xl font-semibold tracking-tight">{title}</h1>
                 <p className="text-xl leading-8 text-muted-foreground">{description}</p>
@@ -2936,7 +2936,7 @@ function ComponentsFormsPage() {
         <PageBody>
           <Sidebar aria-label="Forms components" />
           <Main size="full">
-            <div className="space-y-14 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+            <div className="space-y-14">
               <section className="space-y-5" aria-labelledby="forms-heading">
                 <h1 id="forms-heading" className="text-4xl font-semibold tracking-tight">
                   Forms

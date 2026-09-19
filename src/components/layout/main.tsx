@@ -7,8 +7,8 @@
  * Two intents (consistent with Header/Footer):
  * - `contained` (default): Container 2xl (~1536px max-width),
  *   matches Header/Footer default alignment.
- * - `full`: edge-to-edge with horizontal padding only, for
- *   full-bleed dashboards and hero sections.
+ * - `full`: fills its parent layout. When used inside
+ *   PageBody, the outer PageBody container owns the page gutter.
  *
  * Always renders <main id="main-content"> so the SkipLink from
  * @/components/layout/header has a target. The id is intentionally
@@ -79,12 +79,17 @@ function Main({ className, size = 'contained', children, ...props }: MainProps) 
         // flex-1 + min-w-0 lets Main fill remaining space when it's
         // a flex child (Sidebar layouts). No-op outside flex context.
         'flex-1 min-w-0',
-        'pt-3 pb-12 lg:pt-4',
+        'pt-6 pb-12 lg:pt-8',
         className,
       )}
       {...props}
     >
-      <Container size={containerSizeFor[size]}>{children}</Container>
+      <Container
+        size={containerSizeFor[size]}
+        className={size === 'full' ? '!px-0 md:!px-6 lg:!px-8' : undefined}
+      >
+        {children}
+      </Container>
     </main>
   )
 }

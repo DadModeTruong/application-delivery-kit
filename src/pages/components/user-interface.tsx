@@ -73,7 +73,7 @@ function ComponentsUserInterfacePage() {
         <PageBody>
           <Sidebar aria-label="User Interface" />
           <Main size="full">
-            <div className="space-y-14 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+            <div className="space-y-14">
               <section className="space-y-5" aria-labelledby="user-interface-heading">
                 <h1 id="user-interface-heading" className="text-4xl font-semibold tracking-tight">
                   User Interface
@@ -118,7 +118,7 @@ function ComponentsUserInterfacePage() {
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {[
                     ['Header', '/components/header', 'Global identity and primary navigation.'],
-                    ['Tab navigation', '/components/tab-navigation', 'Navigation within a section or area.'],
+                    ['Tab Navigation', '/components/tab-navigation', 'Navigation within a section or area.'],
                     ['Sidebar', '/components/sidebar', 'Persistent or contextual navigation.'],
                     ['Footer', '/components/footer', 'Supporting links and page-level closure.'],
                     ['Split View', '/components/split-view', 'Related content shown side by side.'],

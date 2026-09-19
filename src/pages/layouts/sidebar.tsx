@@ -62,8 +62,8 @@ function LayoutsSidebarPage() {
         <PageBody>
           <Sidebar aria-label="Documentation" />
           <Main size="full">
-            <div className="space-y-14 pb-12">
-              <section className="space-y-5 pt-6" aria-labelledby="sidebar-heading">
+            <div className="space-y-14">
+              <section className="space-y-5" aria-labelledby="sidebar-heading">
                 <h1 id="sidebar-heading" className="text-4xl font-semibold tracking-tight">
                   Give larger sections a clear map without taking over the page.
                 </h1>

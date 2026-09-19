@@ -78,7 +78,7 @@ function ComponentsButtonsPage() {
         <PageBody>
           <Sidebar aria-label="Interaction components" />
           <Main size="full">
-            <div className="space-y-14 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+            <div className="space-y-14">
               <section className="space-y-5" aria-labelledby="buttons-heading">
                 <h1 id="buttons-heading" className="text-4xl font-semibold tracking-tight">
                   Buttons should make an action clear.

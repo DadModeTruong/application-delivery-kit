@@ -72,8 +72,8 @@ function LayoutsFullPage() {
         <PageBody>
           <Sidebar aria-label="On this page" />
           <Main size="full">
-            <div className="space-y-14 pb-12">
-              <section className="space-y-5 pt-6" aria-labelledby="full-heading">
+            <div className="space-y-14">
+              <section className="space-y-5" aria-labelledby="full-heading">
                 <h1 id="full-heading" className="text-4xl font-semibold tracking-tight">
                   Use the full layout only when people need it.
                 </h1>
