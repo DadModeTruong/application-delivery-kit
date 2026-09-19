@@ -1,18 +1,11 @@
 /**
  * Route manifest.
  *
- * Exports the route table used by App.tsx's history router, plus the
- * shared nav configs (primaryNav, footerLinks) that every demo
- * page consumes. Centralizing these means one edit updates the
- * whole demo — a page can't drift from the rest by accident.
+ * Exports the route table used by App.tsx's history router.
  *
- * When adding a new demo page:
- *   1. Create the page in this folder.
- *   2. Import it here.
- *   3. Add an entry to `routes` with a path.
- *   4. If the page should appear in Header's primary nav, add it
- *      to `primaryNav` (a top-level entry or inside the Layouts
- *      dropdown).
+ * Shared site navigation is intentionally kept in `src/config/` so route
+ * ownership and navigation ownership stay separate. See
+ * `src/pages/adding-a-page.md` for the complete page checklist.
  */
 
 import type { ComponentType } from 'react'
@@ -50,14 +43,10 @@ type Route = {
 }
 
 /**
- * Route table for the history router in App.tsx. First entry is the
- * home / fallback route — unknown paths fall back to it.
+ * Route table consumed by the history router in App.tsx.
  *
- * @example
- * // Consumed by App.tsx's history router:
- * const route = routes.find((r) => r.path === path) ?? routes[0]
- * const Page = route.component
- * return <Page />
+ * Unknown paths are handled by the explicit NotFoundPage in App.tsx rather
+ * than silently rendering the home page.
  */
 export const routes: Route[] = [
   { path: '/', component: HomePage },

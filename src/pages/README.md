@@ -7,7 +7,7 @@ This directory contains the pages rendered by the small history-based router in 
 - [Component guides](./components/README.md) — reusable component documentation and examples.
 - [Layout guides](./layouts/README.md) — complete page-shell compositions.
 - [Demo helpers](./demos/README.md) — small compositions used by layout or component pages.
-- [`../routes/route-manifest.ts`](./../routes/route-manifest.ts) — the route table and global navigation data.
+- [`../routes/route-manifest.ts`](../routes/route-manifest.ts) — the route table. Shared site navigation lives in [`../config/site-navigation.tsx`](../config/site-navigation.tsx), while component-area navigation lives in [`../config/component-navigation.ts`](../config/component-navigation.ts).
 
 ## Copy/paste rule
 
@@ -16,6 +16,8 @@ The files in `pages/` show how components are composed in the reference app. The
 Keep demo-only route data, reference navigation, and documentation wrappers out of the application feature you are building.
 
 ## Adding a page
+
+Follow the complete [adding-a-page checklist](./adding-a-page.md). The short version is:
 
 1. Add the page under the directory that matches its role.
 2. Export the page component.
