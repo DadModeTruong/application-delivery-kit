@@ -86,7 +86,7 @@ function Sheet({
       >
         <SheetPrimitive
           data-slot="sheet"
-          className="[display:inherit] h-full max-h-[inherit] [flex-direction:inherit] [gap:inherit] outline-none"
+          className="[display:inherit] h-full min-h-0 max-h-[inherit] [flex-direction:inherit] [gap:inherit] outline-none"
         >
           {children}
           {showCloseButton && (

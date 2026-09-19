@@ -8,48 +8,12 @@
 
 import { useEffect, useRef, useState } from 'react'
 import {
-  AlignLeft,
-  CalendarDays,
-  CheckSquare,
   ChevronsUpDown,
-  ListChecks,
-  ListFilter,
-  Radio,
-  TextCursorInput,
 } from 'lucide-react'
-import { Header, SkipLink } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
-import { Footer } from '@/components/layout/footer'
-import { PageBody } from '@/components/layout/page-body'
-import { PageShell } from '@/components/layout/page-shell'
-import { LayoutProvider } from '@/components/layout/layout-provider'
-import { TabNavigation } from '@/components/layout/tab-navigation'
-import { Sidebar } from '@/components/layout/sidebar'
-import type { NavGroup, NavLeaf } from '@/components/layout/types'
+import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { formSidebarLinks } from '@/config/component-navigation'
 import { primaryNav, footerLinks } from '../page-registry'
 
-const componentAreaLinks: NavLeaf[] = [
-  { href: '/components/user-interface', label: 'User Interface' },
-  { href: '/components/interaction', label: 'Interaction' },
-  { href: '/components/forms', label: 'Forms' },
-]
-
-const formComponents: (NavLeaf | NavGroup)[] = [
-  { href: '/components/forms', label: 'Forms' },
-  {
-    label: 'Form controls',
-    items: [
-      { href: '/components/input', label: 'Input', icon: TextCursorInput },
-      { href: '/components/select', label: 'Select', icon: ListFilter },
-      { href: '/components/textarea', label: 'Text area', icon: AlignLeft },
-      { href: '/components/checkbox', label: 'Checkbox', icon: CheckSquare },
-      { href: '/components/checkbox-group', label: 'Checkbox group', icon: ListChecks },
-      { href: '/components/radio', label: 'Radio button', icon: Radio },
-      { href: '/components/combobox', label: 'Combobox', icon: ChevronsUpDown },
-      { href: '/components/datepicker', label: 'Datepicker', icon: CalendarDays },
-    ],
-  },
-]
 
 const inputClass =
   'mt-2 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring'
@@ -2842,20 +2806,14 @@ function FormGuide({
   const content = guideContent[kind]
   const detail = sectionDetails[kind]
   return (
-    <LayoutProvider
-      tabNavigation={componentAreaLinks}
-      tabNavigationLabel="Component areas"
-      sidebarNav={formComponents}
-      sidebarNavLabel="Forms components"
+    <ComponentGuideShell
+      primaryNav={primaryNav}
+      footerLinks={footerLinks}
       activeHref={activeHref}
+      tabActiveHref="/components/forms"
+      sidebarNav={formSidebarLinks}
+      sidebarNavLabel="Forms components"
     >
-      <PageShell>
-        <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <TabNavigation aria-label="Component areas" activeHref="/components/forms" />
-        <PageBody>
-          <Sidebar aria-label="Forms components" />
-          <Main size="full">
             <div className="space-y-14">
               <section className="space-y-5">
                 <h1 className="text-4xl font-semibold tracking-tight">{title}</h1>
@@ -2912,30 +2870,20 @@ function FormGuide({
               {kind === 'combobox' && <ComboboxVariations />}
               {kind === 'datepicker' && <DatepickerVariations />}
             </div>
-          </Main>
-        </PageBody>
-        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-      </PageShell>
-    </LayoutProvider>
+      </ComponentGuideShell>
   )
 }
 
 function ComponentsFormsPage() {
   return (
-    <LayoutProvider
-      tabNavigation={componentAreaLinks}
-      tabNavigationLabel="Component areas"
-      sidebarNav={formComponents}
-      sidebarNavLabel="Forms components"
+    <ComponentGuideShell
+      primaryNav={primaryNav}
+      footerLinks={footerLinks}
       activeHref="/components/forms"
+      tabActiveHref="/components/forms"
+      sidebarNav={formSidebarLinks}
+      sidebarNavLabel="Forms components"
     >
-      <PageShell>
-        <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <TabNavigation aria-label="Component areas" />
-        <PageBody>
-          <Sidebar aria-label="Forms components" />
-          <Main size="full">
             <div className="space-y-14">
               <section className="space-y-5" aria-labelledby="forms-heading">
                 <h1 id="forms-heading" className="text-4xl font-semibold tracking-tight">
@@ -3052,11 +3000,7 @@ function ComponentsFormsPage() {
                 </ul>
               </section>
             </div>
-          </Main>
-        </PageBody>
-        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
-      </PageShell>
-    </LayoutProvider>
+      </ComponentGuideShell>
   )
 }
 
