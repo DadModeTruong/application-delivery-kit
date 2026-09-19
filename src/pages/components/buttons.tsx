@@ -1,38 +1,57 @@
-/**
- * Button guide page.
- *
- * Use this page as a reference for action semantics, hierarchy, states, icons,
- * loading, form submission, and menu triggers. The examples use the production
- * Button and LinkButton primitives so the page can be read as an implementation
- * guide, not only as a visual catalog.
- */
-
-import { ExampleVariation } from '@/components/layout/example-variation'
-/**
- * ComponentsButtonsPage — Button component usage guide.
- *
- * Explains how buttons communicate actions, how to choose a visual
- * variant, and when a link should be used instead of a button.
- */
-
 import { useState } from 'react'
 import { LoaderCircle, MousePointerClick } from 'lucide-react'
 import { Pressable } from 'react-aria-components'
+import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { ExampleVariation } from '@/components/layout/example-variation'
+import { interactionSidebarLinks } from '@/config/component-navigation'
 import { Button, LinkButton } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
-import { interactionSidebarLinks } from '@/config/component-navigation'
 
 /**
- * Button component reference page. Mounted by the demo router at
- * `/components/button`.
+ * Interactive form example used by the Form submission variation.
  *
- * @example
- * { path: '/components/button', component: ComponentsButtonsPage }
+ * Keeping the stateful example separate makes the route page easier to scan
+ * while keeping the example close to the guide that explains it.
  */
-function ComponentsButtonsPage() {
+function ButtonFormExample() {
   const [formStatus, setFormStatus] = useState('')
 
+  return (
+    <div className="space-y-3">
+      <form
+        className="flex flex-wrap items-center gap-3"
+        onSubmit={(event) => {
+          event.preventDefault()
+          setFormStatus('Changes saved.')
+        }}
+      >
+        <Button type="submit">Save changes</Button>
+        <Button type="button" variant="outline">
+          Cancel
+        </Button>
+      </form>
+      <p id="button-form-status" className="text-sm font-medium" aria-live="polite">
+        {formStatus}
+      </p>
+      <p className="text-sm leading-6 text-muted-foreground">
+        The Save changes button submits this form using <code>type="submit"</code>. Cancel uses{' '}
+        <code>type="button"</code> so it does not submit.
+      </p>
+      <p className="text-sm leading-6 text-muted-foreground">
+        Try it: submit the form with the keyboard and confirm that “Changes saved.” appears without
+        leaving the page.
+      </p>
+    </div>
+  )
+}
+
+/**
+ * Button guide page.
+ *
+ * Teaches action semantics, hierarchy, states, icons, loading, form submission,
+ * and menu triggers using the production Button and LinkButton primitives.
+ */
+function ComponentsButtonsPage() {
   return (
     <ComponentGuideShell
       activeHref="/components/button"
@@ -44,7 +63,7 @@ function ComponentsButtonsPage() {
       <div className="space-y-14">
         <section className="space-y-5" aria-labelledby="buttons-heading">
           <h1 id="buttons-heading" className="text-4xl font-semibold tracking-tight">
-            Buttons should make an action clear.
+            Button
           </h1>
           <p className="text-xl leading-8 text-muted-foreground">
             Use Button when someone is asking the page to do something. The label, visual emphasis,
@@ -357,31 +376,7 @@ function ComponentsButtonsPage() {
                 'Do not remove the submit action’s name while showing progress.',
               ]}
             >
-              <div className="space-y-3">
-                <form
-                  className="flex flex-wrap items-center gap-3"
-                  onSubmit={(event) => {
-                    event.preventDefault()
-                    setFormStatus('Changes saved.')
-                  }}
-                >
-                  <Button type="submit">Save changes</Button>
-                  <Button type="button" variant="outline">
-                    Cancel
-                  </Button>
-                </form>
-                <p id="button-form-status" className="text-sm font-medium" aria-live="polite">
-                  {formStatus}
-                </p>
-                <p className="text-sm leading-6 text-muted-foreground">
-                  The Save changes button submits this form using <code>type="submit"</code>. Cancel
-                  uses <code>type="button"</code> so it does not submit.
-                </p>
-                <p className="text-sm leading-6 text-muted-foreground">
-                  Try it: submit the form with the keyboard and confirm that “Changes saved.”
-                  appears without leaving the page.
-                </p>
-              </div>
+              <ButtonFormExample />
             </ExampleVariation>
 
             <ExampleVariation
