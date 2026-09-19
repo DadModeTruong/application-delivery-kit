@@ -7,8 +7,8 @@
  * Two intents (consistent with Header/Footer):
  * - `contained` (default): Container 2xl (~1536px max-width),
  *   matches Header/Footer default alignment.
- * - `full`: edge-to-edge within its parent layout. When used inside
- *   PageBody, the outer PageBody container owns the page gutter.
+ * - `full`: edge-to-edge within its parent layout, with the standard
+ *   responsive horizontal gutter.
  *
  * Always renders <main id="main-content"> so the SkipLink from
  * @/components/layout/header has a target. The id is intentionally
@@ -84,9 +84,7 @@ function Main({ className, size = 'contained', children, ...props }: MainProps) 
       )}
       {...props}
     >
-      <Container size={containerSizeFor[size]} className={size === 'full' ? '!px-0' : undefined}>
-        {children}
-      </Container>
+      <Container size={containerSizeFor[size]}>{children}</Container>
     </main>
   )
 }
