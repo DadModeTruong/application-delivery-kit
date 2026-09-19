@@ -1,5 +1,5 @@
 import { FormGuide } from './form-guide'
-import { inputClass, InputGuidance, InputVariation } from './form-example-primitives'
+import { InputGuidance, InputVariation } from './form-example-primitives'
 import { useEffect, useRef, useState } from 'react'
 function BasicComboboxExample() {
   // The basic example changes configuration, not keyboard semantics.

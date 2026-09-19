@@ -1,4 +1,4 @@
-import { primaryNav, footerLinks } from '@/config/site-navigation'
+import { footerLinks } from '@/config/site-navigation'
 /**
  * Footer guide page.
  *
