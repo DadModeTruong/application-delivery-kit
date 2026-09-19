@@ -1,5 +1,5 @@
 import { FormGuide } from './form-guide'
-import { InputGuidance, InputVariation } from './form-control-shared'
+import { InputGuidance, InputVariation } from './form-example-primitives'
 import { useState } from 'react'
 function CheckboxField({
   id,

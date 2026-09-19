@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 
 const inputClass =
   'mt-2 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring'
-const panelClass = 'rounded-xl border bg-card p-6 shadow-xs'
 
 function Field({
   id,
@@ -87,4 +86,4 @@ function InputGuidance({ intro, dos, donts }: { intro: string; dos: string[]; do
   )
 }
 
-export { Field, InputGuidance, InputVariation, inputClass, panelClass }
+export { Field, InputGuidance, InputVariation, inputClass }

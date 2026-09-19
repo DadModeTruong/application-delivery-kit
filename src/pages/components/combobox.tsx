@@ -1,5 +1,5 @@
 import { FormGuide } from './form-guide'
-import { inputClass, InputGuidance, InputVariation } from './form-control-shared'
+import { inputClass, InputGuidance, InputVariation } from './form-example-primitives'
 import { useEffect, useRef, useState } from 'react'
 import { ChevronsUpDown } from 'lucide-react'
 function BasicComboboxExample() {

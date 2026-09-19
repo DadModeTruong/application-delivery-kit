@@ -1,5 +1,5 @@
 import { FormGuide } from './form-guide'
-import { Field, inputClass, InputGuidance, InputVariation } from './form-control-shared'
+import { Field, inputClass, InputGuidance, InputVariation } from './form-example-primitives'
 import { useState } from 'react'
 function SelectOptionButton({
   option,

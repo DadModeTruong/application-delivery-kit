@@ -1,6 +1,6 @@
 import { FormGuide } from './form-guide'
 import { useState } from 'react'
-import { Field, inputClass, InputGuidance, InputVariation } from './form-control-shared'
+import { Field, inputClass, InputGuidance, InputVariation } from './form-example-primitives'
 
 function RequiredInputExample() {
   const [submitted, setSubmitted] = useState(false)
