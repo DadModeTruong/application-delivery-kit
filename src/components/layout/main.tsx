@@ -86,7 +86,7 @@ function Main({ className, size = 'contained', children, ...props }: MainProps) 
     >
       <Container
         size={containerSizeFor[size]}
-        className={size === 'full' ? '!px-0 sm:!px-6 lg:!px-8' : undefined}
+        className={size === 'full' ? '!px-0 lg:!px-8' : undefined}
       >
         {children}
       </Container>
