@@ -6,12 +6,18 @@
  * documentation shell, when adapting an example to an application.
  */
 
-import { ExampleVariation } from '@/components/layout/example-variation'
-import { Card, CardAction, CardContent, CardDescription, CardHeader } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { ExampleVariation } from '@/components/layout/example-variation'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
+import { Button } from '@/components/ui/button'
+import { Card, CardAction, CardContent, CardDescription, CardHeader } from '@/components/ui/card'
 
+/**
+ * Card guide page.
+ *
+ * Teaches when a bounded content group helps people scan a page and how to
+ * choose between static information, one destination, and explicit actions.
+ */
 function ComponentsCardsPage() {
   return (
     <ComponentGuideShell
@@ -42,20 +48,18 @@ function ComponentsCardsPage() {
             for a header, content, action, and footer. The default Card renders as a div, so the
             content and the semantic element around it determine what the group means.
           </p>
-          <div className="overflow-hidden rounded-xl border">
-            <Card>
-              <CardHeader>
-                <h3 className="text-base leading-snug font-medium">Application status</h3>
-                <CardDescription>Your application is being reviewed.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  The card groups the status and its supporting message; it is not an action by
-                  itself.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          <Card>
+            <CardHeader>
+              <h3 className="text-base leading-snug font-medium">Application status</h3>
+              <CardDescription>Your application is being reviewed.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                The card groups the status and its supporting message; it is not an action by
+                itself.
+              </p>
+            </CardContent>
+          </Card>
           <p className="text-sm leading-6 text-muted-foreground">
             Try it: identify the heading, then tab through the page. The static card should not
             receive focus unless it contains a real link or button.
@@ -186,9 +190,10 @@ function ComponentsCardsPage() {
               action card exposes one clearly named button.
             </p>
           </div>
-          <div className="space-y-8 [&_*:has(>[data-slot=card])]:!rounded-none [&_*:has(>[data-slot=card])]:!border-0 [&_*:has(>[data-slot=card])]:!p-0 [&_*:has(>a>[data-slot=card])]:!rounded-none [&_*:has(>a>[data-slot=card])]:!border-0 [&_*:has(>a>[data-slot=card])]:!p-0">
+          <div className="space-y-8">
             <ExampleVariation
               title="Static information"
+              exampleClassName="rounded-none border-0 p-0"
               description="Group related content without making the Card itself interactive."
               explanation="The Card provides visual grouping while the heading and content provide the meaning. Try it: confirm that the group reads clearly without implying that the surface itself is clickable."
               doItems={[
@@ -216,6 +221,7 @@ function ComponentsCardsPage() {
 
             <ExampleVariation
               title="Linked Card"
+              exampleClassName="rounded-none border-0 p-0"
               description="Use one real link when the whole item represents one destination."
               explanation="The anchor owns the interaction and the Card provides the visual surface. Try it: tab to the link, confirm its focus indicator, activate it, and verify that it reaches the documented Header guide."
               doItems={[
@@ -249,6 +255,7 @@ function ComponentsCardsPage() {
 
             <ExampleVariation
               title="Card with an action"
+              exampleClassName="rounded-none border-0 p-0"
               description="Use a button when the card action changes state or performs work in place."
               explanation="The Card remains a container and the button owns the action. Try it: tab to “Mark all read,” activate it, and confirm that the action is announced and does not pretend to navigate to another page."
               doItems={[
