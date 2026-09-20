@@ -1,0 +1,75 @@
+/**
+ * Route manifest.
+ *
+ * Exports the route table used by App.tsx's history router.
+ *
+ * Shared site navigation is intentionally kept in `src/config/` so route
+ * ownership and navigation ownership stay separate. See
+ * `src/pages/adding-a-page.md` for the complete page checklist.
+ */
+
+import type { ComponentType } from 'react'
+import { HomePage } from '@/pages/home'
+import { LayoutsHeaderOnlyPage } from '@/pages/layouts/header-only'
+import { LayoutsSecondaryPage } from '@/pages/layouts/secondary'
+import { LayoutsSidebarPage } from '@/pages/layouts/sidebar'
+import { LayoutsFullPage } from '@/pages/layouts/full'
+import { ComponentsHeaderPage } from '@/pages/components/header'
+import { ComponentsTabNavigationPage } from '@/pages/components/tab-navigation'
+import { ComponentsSidebarPage } from '@/pages/components/sidebar'
+import { ComponentsFooterPage } from '@/pages/components/footer'
+import { ComponentsCardsPage } from '@/pages/components/cards'
+import { ComponentsSplitViewPage } from '@/pages/components/split-view'
+import { ComponentsButtonsPage } from '@/pages/components/buttons'
+import { ComponentsUserInterfacePage } from '@/pages/components/user-interface'
+import { ComponentsInteractionPage } from '@/pages/components/interaction'
+import { ComponentsFormsPage } from '@/pages/components/forms'
+import { ComponentsInputPage } from '@/pages/components/input'
+import { ComponentsSelectPage } from '@/pages/components/select'
+import { ComponentsTextareaPage } from '@/pages/components/textarea'
+import { ComponentsCheckboxPage } from '@/pages/components/checkbox'
+import { ComponentsCheckboxGroupPage } from '@/pages/components/checkbox-group'
+import { ComponentsRadioPage } from '@/pages/components/radio'
+import { ComponentsComboboxPage } from '@/pages/components/combobox'
+import { ComponentsDatepickerPage } from '@/pages/components/datepicker'
+
+// ---------------------------------------------------------------
+// Routes
+// ---------------------------------------------------------------
+
+type Route = {
+  path: string
+  component: ComponentType
+}
+
+/**
+ * Route table consumed by the history router in App.tsx.
+ *
+ * Unknown paths are handled by the explicit NotFoundPage in App.tsx rather
+ * than silently rendering the home page.
+ */
+export const routes: Route[] = [
+  { path: '/', component: HomePage },
+  { path: '/layouts/header-only', component: LayoutsHeaderOnlyPage },
+  { path: '/layouts/secondary', component: LayoutsSecondaryPage },
+  { path: '/layouts/sidebar', component: LayoutsSidebarPage },
+  { path: '/layouts/full', component: LayoutsFullPage },
+  { path: '/components/header', component: ComponentsHeaderPage },
+  { path: '/components/tab-navigation', component: ComponentsTabNavigationPage },
+  { path: '/components/sidebar', component: ComponentsSidebarPage },
+  { path: '/components/footer', component: ComponentsFooterPage },
+  { path: '/components/user-interface', component: ComponentsUserInterfacePage },
+  { path: '/components/interaction', component: ComponentsInteractionPage },
+  { path: '/components/forms', component: ComponentsFormsPage },
+  { path: '/components/input', component: ComponentsInputPage },
+  { path: '/components/select', component: ComponentsSelectPage },
+  { path: '/components/textarea', component: ComponentsTextareaPage },
+  { path: '/components/checkbox', component: ComponentsCheckboxPage },
+  { path: '/components/checkbox-group', component: ComponentsCheckboxGroupPage },
+  { path: '/components/radio', component: ComponentsRadioPage },
+  { path: '/components/combobox', component: ComponentsComboboxPage },
+  { path: '/components/datepicker', component: ComponentsDatepickerPage },
+  { path: '/components/card', component: ComponentsCardsPage },
+  { path: '/components/split-view', component: ComponentsSplitViewPage },
+  { path: '/components/button', component: ComponentsButtonsPage },
+]

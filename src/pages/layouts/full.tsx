@@ -1,3 +1,4 @@
+import { primaryNav, footerLinks } from '@/config/site-navigation'
 /**
  * LayoutsFullPage — reference guide for the most information-dense shell.
  *
@@ -18,7 +19,6 @@ import { Columns } from '@/components/layout/columns'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { DemoCard } from '../demos/demo-card'
 import { SplitPaneDemo } from '../demos/split-pane-demo'
-import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
 // Demo config
@@ -219,10 +219,10 @@ function LayoutsFullPage() {
                   Optional split view
                 </h2>
                 <p className="text-muted-foreground">
-                  The base layout already uses Header navigation, TabNavigation, and Sidebar. A split
-                  view is an optional extension for supporting content inside Main, not another
-                  required navigation layer. Because the shell already uses substantial width, this
-                  example uses an even split.
+                  The base layout already uses Header navigation, TabNavigation, and Sidebar. A
+                  split view is an optional extension for supporting content inside Main, not
+                  another required navigation layer. Because the shell already uses substantial
+                  width, this example uses an even split.
                 </p>
               </div>
               <div className="space-y-8">

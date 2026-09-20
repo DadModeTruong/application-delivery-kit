@@ -23,7 +23,7 @@ This is a focused React reference application for exploring clear, accessible, r
 - Hand-written layout components go in `src/components/layout/`.
 - shadcn-generated primitives go in `src/components/ui/`.
 - Route-level pages go in `src/pages/components/` or `src/pages/layouts/`; demo-only helpers go in `src/pages/demos/`.
-- The route table and global navigation data belong in `src/pages/page-registry.tsx`; component-area navigation stays local to each guide.
+- The route table belongs in `src/routes/route-manifest.ts`; shared site navigation belongs in `src/config/site-navigation.tsx`; component-area navigation belongs in `src/config/component-navigation.ts`.
 - Small shared utilities go in `src/lib/`.
 
 See the relevant [directory README](./src/components/README.md) before adding or moving files.

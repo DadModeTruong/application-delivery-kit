@@ -1,3 +1,4 @@
+import { primaryNav, footerLinks } from '@/config/site-navigation'
 /**
  * LayoutsSidebarPage — reference guide for persistent section navigation.
  *
@@ -17,7 +18,6 @@ import { Columns } from '@/components/layout/columns'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { DemoCard } from '../demos/demo-card'
 import { SplitPaneDemo } from '../demos/split-pane-demo'
-import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
 // Demo config

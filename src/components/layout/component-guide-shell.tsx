@@ -17,11 +17,12 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { TabNavigation } from '@/components/layout/tab-navigation'
 import type { NavGroup, NavItem, NavLeaf } from '@/components/layout/types'
 import { componentAreaLinks } from '@/config/component-navigation'
+import { footerLinks, primaryNav } from '@/config/site-navigation'
 
 type ComponentGuideShellProps = {
   children: ReactNode
-  primaryNav: NavItem[]
-  footerLinks: NavLeaf[]
+  primaryNav?: NavItem[]
+  footerLinks?: NavLeaf[]
   activeHref: string
   tabActiveHref: string
   sidebarNav: (NavLeaf | NavGroup)[]
@@ -31,8 +32,8 @@ type ComponentGuideShellProps = {
 
 export function ComponentGuideShell({
   children,
-  primaryNav,
-  footerLinks,
+  primaryNav: shellPrimaryNav = primaryNav,
+  footerLinks: shellFooterLinks = footerLinks,
   activeHref,
   tabActiveHref,
   sidebarNav,
@@ -49,13 +50,13 @@ export function ComponentGuideShell({
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={shellPrimaryNav} />
         <TabNavigation aria-label="Component areas" activeHref={tabActiveHref} />
         <PageBody>
           <Sidebar aria-label={sidebarAriaLabel} />
           <Main size="full">{children}</Main>
         </PageBody>
-        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+        <Footer copyright={<>© 2026 Tommy Truong</>} links={shellFooterLinks} />
       </PageShell>
     </LayoutProvider>
   )

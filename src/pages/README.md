@@ -7,7 +7,7 @@ This directory contains the pages rendered by the small history-based router in 
 - [Component guides](./components/README.md) — reusable component documentation and examples.
 - [Layout guides](./layouts/README.md) — complete page-shell compositions.
 - [Demo helpers](./demos/README.md) — small compositions used by layout or component pages.
-- [`page-registry.tsx`](./page-registry.tsx) — the route table and global navigation data.
+- [`../routes/route-manifest.ts`](../routes/route-manifest.ts) — the route table. Shared site navigation lives in [`../config/site-navigation.tsx`](../config/site-navigation.tsx), while component-area navigation lives in [`../config/component-navigation.ts`](../config/component-navigation.ts).
 
 ## Copy/paste rule
 
@@ -17,9 +17,11 @@ Keep demo-only route data, reference navigation, and documentation wrappers out 
 
 ## Adding a page
 
+Follow the complete [adding-a-page checklist](./adding-a-page.md). The short version is:
+
 1. Add the page under the directory that matches its role.
 2. Export the page component.
-3. Add its route to `page-registry.tsx`.
+3. Add its route to `../routes/route-manifest.ts`.
 4. Add or update the relevant navigation entry.
 5. Add the page to the nearest directory README.
 6. Run `pnpm lint`, `pnpm build`, and `git diff --check`.

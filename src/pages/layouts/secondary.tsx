@@ -1,3 +1,4 @@
+import { primaryNav, footerLinks } from '@/config/site-navigation'
 /**
  * LayoutsSecondaryPage — reference guide for section-level navigation.
  *
@@ -15,7 +16,6 @@ import { Columns } from '@/components/layout/columns'
 import type { NavLeaf } from '@/components/layout/types'
 import { DemoCard } from '../demos/demo-card'
 import { SplitPaneDemo } from '../demos/split-pane-demo'
-import { primaryNav, footerLinks } from '../page-registry'
 
 // ---------------------------------------------------------------
 // Demo config
@@ -159,9 +159,9 @@ function LayoutsSecondaryPage() {
               </h2>
               <p className="leading-7 text-muted-foreground">
                 On a narrow screen, the section links move into the mobile menu and Main begins with
-                one vertical stack. On wider screens, the named TabNavigation stays above Main, while
-                cards move side by side only when the remaining content width keeps them comfortable
-                to read.
+                one vertical stack. On wider screens, the named TabNavigation stays above Main,
+                while cards move side by side only when the remaining content width keeps them
+                comfortable to read.
               </p>
             </section>
 
