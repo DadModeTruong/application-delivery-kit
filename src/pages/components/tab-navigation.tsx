@@ -1,20 +1,13 @@
 /**
- * Tab Navigation guide page.
+ * Tab Navigation guide.
  *
- * This component is page navigation built from real anchors. Use this page to
- * understand when it differs from an in-page tab-panel widget and how to keep
- * links, selected state, focus, and responsive behavior understandable.
+ * Teaches short, URL-based peer navigation and distinguishes it from an
+ * in-page tab-panel widget.
  */
 
-import { ExampleVariation } from '@/components/layout/example-variation'
-/**
- * ComponentsTabNavigationPage — TabNavigation component usage guide.
- *
- * Explains how to keep a short set of peer links together inside a section.
- */
-
-import { TabNavigation } from '@/components/layout/tab-navigation'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { ExampleVariation } from '@/components/layout/example-variation'
+import { TabNavigation } from '@/components/layout/tab-navigation'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 
 function ComponentsTabNavigationPage() {

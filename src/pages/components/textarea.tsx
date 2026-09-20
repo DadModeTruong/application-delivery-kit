@@ -1,6 +1,15 @@
+/**
+ * Text area guide page.
+ *
+ * Uses the shared FormGuide renderer to teach multiline input, guidance,
+ * validation, disabled state, and required submission.
+ */
+
+import { useState } from 'react'
+
 import { FormGuide } from './form-guide'
 import { Field, inputClass, InputGuidance, InputVariation } from './form-example-primitives'
-import { useState } from 'react'
+
 function RequiredTextareaExample() {
   const [submitted, setSubmitted] = useState(false)
 

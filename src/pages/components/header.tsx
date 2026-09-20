@@ -1,21 +1,14 @@
 /**
- * Header guide page.
+ * Header navigation guide.
  *
- * Use this page to copy the production Header composition and understand primary
- * navigation, mobile navigation, focus order, and responsive behavior.
+ * Teaches product-wide destinations, actions, responsive navigation, and focus
+ * behavior using the production Header composition.
  */
 
+import { Blocks, LayoutTemplate } from 'lucide-react'
+import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { ExampleVariation } from '@/components/layout/example-variation'
 import { Header } from '@/components/layout/header'
-import { Blocks, LayoutTemplate } from 'lucide-react'
-/**
- * ComponentsHeaderPage — Header component usage guide.
- *
- * Explains how the Header handles broad destinations, actions, and
- * responsive navigation without taking ownership of application routing.
- */
-
-import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 
 function ComponentsHeaderPage() {

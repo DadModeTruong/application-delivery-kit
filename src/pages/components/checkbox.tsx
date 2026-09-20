@@ -1,6 +1,15 @@
+/**
+ * Checkbox guide page.
+ *
+ * Uses the shared FormGuide renderer to teach one boolean choice, helper and
+ * error content, disabled state, and required agreement.
+ */
+
+import { useState } from 'react'
+
 import { FormGuide } from './form-guide'
 import { InputGuidance, InputVariation } from './form-example-primitives'
-import { useState } from 'react'
+
 function CheckboxField({
   id,
   label,

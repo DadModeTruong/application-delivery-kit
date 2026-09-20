@@ -1,6 +1,15 @@
+/**
+ * Checkbox group guide page.
+ *
+ * Uses the shared FormGuide renderer to teach related independent choices,
+ * fieldset and legend semantics, validation, and disabled options.
+ */
+
+import { useState } from 'react'
+
 import { FormGuide } from './form-guide'
 import { InputGuidance, InputVariation } from './form-example-primitives'
-import { useState } from 'react'
+
 function CheckboxGroupField({
   id,
   label,

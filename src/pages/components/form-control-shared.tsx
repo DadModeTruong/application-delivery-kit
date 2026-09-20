@@ -1,6 +1,4 @@
 /** Small presentation helpers shared by routed form guides. */
-import type { ReactNode } from 'react'
-
 export const panelClass = 'rounded-xl border bg-card p-6 shadow-xs'
 
 export function GuideList({ items }: { items: string[] }) {
@@ -12,5 +10,3 @@ export function GuideList({ items }: { items: string[] }) {
     </ul>
   )
 }
-
-export type FormExample = ReactNode

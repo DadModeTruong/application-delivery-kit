@@ -1,6 +1,14 @@
+/**
+ * Datepicker guide page.
+ *
+ * Uses the shared FormGuide renderer to teach native date input states,
+ * validation, required values, ranges, and time selection.
+ */
+
+import { useState } from 'react'
+
 import { FormGuide } from './form-guide'
 import { Field, inputClass, InputGuidance, InputVariation } from './form-example-primitives'
-import { useState } from 'react'
 
 function DatePickerVariation({
   hint,

@@ -1,21 +1,15 @@
-import { footerLinks } from '@/config/site-navigation'
 /**
- * Footer guide page.
+ * Footer navigation guide.
  *
- * Use this page to copy the production Footer shell and learn how supporting
- * links, visible labels, icons, and responsive layout work together.
+ * Teaches supporting destinations, landmarks, visible labels, icons, and
+ * responsive footer layout using the production Footer composition.
  */
 
-import { ExampleVariation } from '@/components/layout/example-variation'
-/**
- * ComponentsFooterPage — Footer component usage guide.
- *
- * Explains how Footer provides quiet supporting navigation at the end of a page.
- */
-
-import { Footer } from '@/components/layout/footer'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { ExampleVariation } from '@/components/layout/example-variation'
+import { Footer } from '@/components/layout/footer'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
+import { footerLinks } from '@/config/site-navigation'
 
 function ComponentsFooterPage() {
   return (

@@ -1,6 +1,15 @@
+/**
+ * Select guide page.
+ *
+ * Uses the shared FormGuide renderer to teach prompts, states, grouping,
+ * bounded options, and the difference between Select and Combobox.
+ */
+
+import { useState } from 'react'
+
 import { FormGuide } from './form-guide'
 import { Field, inputClass, InputGuidance, InputVariation } from './form-example-primitives'
-import { useState } from 'react'
+
 function SelectOptionButton({
   option,
   selected,

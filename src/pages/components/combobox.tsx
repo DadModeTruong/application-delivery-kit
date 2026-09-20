@@ -1,6 +1,15 @@
+/**
+ * Combobox guide page.
+ *
+ * Uses the shared FormGuide renderer to teach searchable selection, keyboard
+ * behavior, grouping, clearing, validation, and no-results feedback.
+ */
+
+import { useEffect, useRef, useState } from 'react'
+
 import { FormGuide } from './form-guide'
 import { InputGuidance, InputVariation } from './form-example-primitives'
-import { useEffect, useRef, useState } from 'react'
+
 function BasicComboboxExample() {
   // The basic example changes configuration, not keyboard semantics.
   return <ComboboxVariation />

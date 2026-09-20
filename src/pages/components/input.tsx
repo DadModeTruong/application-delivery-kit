@@ -1,5 +1,13 @@
-import { FormGuide } from './form-guide'
+/**
+ * Input guide page.
+ *
+ * Uses the shared FormGuide renderer to teach text input states, validation,
+ * helper content, and file selection.
+ */
+
 import { useState } from 'react'
+
+import { FormGuide } from './form-guide'
 import { Field, inputClass, InputGuidance, InputVariation } from './form-example-primitives'
 
 function RequiredInputExample() {

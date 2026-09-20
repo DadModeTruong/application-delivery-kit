@@ -1,6 +1,15 @@
+/**
+ * Radio button guide page.
+ *
+ * Uses the shared FormGuide renderer to teach one choice from a group,
+ * fieldset and legend semantics, validation, and disabled options.
+ */
+
+import { useState } from 'react'
+
 import { FormGuide } from './form-guide'
 import { InputGuidance, InputVariation } from './form-example-primitives'
-import { useState } from 'react'
+
 function RadioGroupField({
   id,
   label,

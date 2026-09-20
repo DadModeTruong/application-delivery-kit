@@ -1,20 +1,13 @@
 /**
- * Sidebar guide page.
+ * Sidebar navigation guide.
  *
- * Use this page to copy the production Sidebar composition and understand
- * persistent navigation, grouped links, active state, keyboard access, and
- * narrow-screen behavior.
+ * Teaches grouped destinations, hierarchy, active state, keyboard access, and
+ * the responsive replacement used on narrow screens.
  */
 
-import { ExampleVariation } from '@/components/layout/example-variation'
-/**
- * ComponentsSidebarPage — Sidebar component usage guide.
- *
- * Explains how grouped section links support deeper navigation beside Main.
- */
-
-import { Sidebar } from '@/components/layout/sidebar'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { ExampleVariation } from '@/components/layout/example-variation'
+import { Sidebar } from '@/components/layout/sidebar'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 import type { NavLeaf } from '@/components/layout/types'
 
