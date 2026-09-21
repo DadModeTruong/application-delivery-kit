@@ -4,21 +4,15 @@ import type { LucideIcon } from 'lucide-react'
 import type { NavItem, NavLeaf } from '@/components/layout/types'
 const primaryNav: NavItem[] = [
   {
-    label: 'Layouts',
-    children: [
-      { href: '/layouts/header-only', label: 'Header Only' },
-      { href: '/layouts/secondary', label: 'Secondary' },
-      { href: '/layouts/sidebar', label: 'Sidebar' },
-      { href: '/layouts/full', label: 'Full' },
-    ],
-  },
-  {
     label: 'Components',
     children: [
       { href: '/components/user-interface', label: 'User Interface' },
       { href: '/components/interaction', label: 'Interaction' },
       { href: '/components/forms', label: 'Forms' },
     ],
+  },  {
+    label: 'Examples',
+    children: [{ href: '/examples/layouts', label: 'Layouts' }],
   },
 ]
 const GithubIcon: LucideIcon = (({ className, ...props }: SVGProps<SVGSVGElement>) => (
