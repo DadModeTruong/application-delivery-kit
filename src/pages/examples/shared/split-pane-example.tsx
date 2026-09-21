@@ -1,16 +1,16 @@
 /**
- * SplitPaneDemo — shared reference content for the layout guide pages.
+ * SplitPaneExample — shared reference content for the layout guide pages.
  *
  * Shows the supported Main + Secondary arrangements with the actual
  * container-responsive column settings used inside each pane. Keep this
- * demo private to the pages folder; consumers should use SplitPane directly.
+ * example private to the pages folder; consumers should use SplitPane directly.
  */
 
 import { useEffect, useId, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Columns, type ColumnsProps } from '@/components/layout/columns'
 import { SecondaryPane, SplitPane, type SecondarySize } from '@/components/layout/split-pane'
-import { DemoCard } from '../demos/demo-card'
+import { ExampleCard } from './example-card'
 
 // ---------------------------------------------------------------
 // Types
@@ -18,7 +18,7 @@ import { DemoCard } from '../demos/demo-card'
 
 type SplitColumns = Pick<ColumnsProps, 'base' | 'sm' | 'md' | 'lg'>
 
-type SplitPaneDemoProps = {
+type SplitPaneExampleProps = {
   secondarySize: SecondarySize
   mainColumns: {
     visible: SplitColumns
@@ -42,13 +42,13 @@ type SplitPaneDemoProps = {
  * @example
  * See the layout pages for complete configurations.
  */
-function SplitPaneDemo({
+function SplitPaneExample({
   secondarySize,
   mainColumns,
   mainCardCount,
   secondaryColumns,
   secondaryCardCount,
-}: SplitPaneDemoProps) {
+}: SplitPaneExampleProps) {
   const [secondaryVisible, setSecondaryVisible] = useState(false)
   const secondaryId = useId()
   const secondaryHeadingId = useId()
@@ -104,7 +104,7 @@ function SplitPaneDemo({
         </div>
         <Columns responsive="container" {...activeColumns} gap="lg">
           {Array.from({ length: mainCardCount }, (_, i) => (
-            <DemoCard key={i} title={`Main card ${i + 1}`} />
+            <ExampleCard key={i} title={`Main card ${i + 1}`} />
           ))}
         </Columns>
         <p className="leading-7 text-muted-foreground">
@@ -145,7 +145,7 @@ function SplitPaneDemo({
         </p>
         <Columns responsive="container" {...activeSecondaryColumns} gap="sm">
           {Array.from({ length: secondaryCardCount }, (_, i) => (
-            <DemoCard key={i} title={`Secondary card ${i + 1}`} />
+            <ExampleCard key={i} title={`Secondary card ${i + 1}`} />
           ))}
         </Columns>
         <p className="leading-7 text-muted-foreground">
@@ -157,4 +157,4 @@ function SplitPaneDemo({
   )
 }
 
-export { SplitPaneDemo }
+export { SplitPaneExample }

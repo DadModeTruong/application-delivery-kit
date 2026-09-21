@@ -1,5 +1,5 @@
-/** Interactive Header Only layout demo route. */
-import { LayoutDemo } from '@/pages/demos/layout-demo'
+/** Interactive Header Only layout example route. */
+import { LayoutExample } from '@/pages/examples/shared/layout-example'
 export function LayoutsHeaderOnlyPage() {
-  return <LayoutDemo variant="header-only" />
+  return <LayoutExample variant="header-only" />
 }

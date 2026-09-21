@@ -6,8 +6,8 @@ Use this checklist whenever you add a route to the Application Delivery Kit. The
 
 - Put a component guide in `src/pages/components/`.
 - Put a Layouts decision guide in `src/pages/examples/`.
-- Put a focused interactive layout demo in `src/pages/layouts/`.
-- Put a small page-only helper or shared demo composition in `src/pages/demos/` only when it is reused by a layout or guide page and is not a production component.
+- Put a focused interactive layout example in `src/pages/layouts/`.
+- Put a small page-only helper or shared example composition in `src/pages/examples/` only when it is reused by a layout or guide page and is not a production component.
 - Put reusable production behavior in `src/components/`, not in a page file.
 
 ## 2. Choose a predictable file name
@@ -70,7 +70,7 @@ Choose navigation based on where the page belongs:
 
 ## 6. Add the page to the directory guide
 
-Update the nearest README, usually `src/pages/components/README.md`, `src/pages/examples/README.md`, or `src/pages/layouts/README.md`, with the new file and a one-line description. Keep decision-guide documentation separate from interactive demo documentation.
+Update the nearest README, usually `src/pages/components/README.md`, `src/pages/examples/README.md`, or `src/pages/layouts/README.md`, with the new file and a one-line description. Keep decision-guide documentation separate from interactive example documentation.
 
 ## 7. Write comments that help the next developer
 

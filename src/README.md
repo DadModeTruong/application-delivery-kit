@@ -5,7 +5,7 @@ This directory contains the React source for the reference application.
 ## Directory and file map
 
 - `components/` — reusable UI primitives and hand-written layout components.
-- `pages/` — reference pages grouped into `components/`, `examples/`, `layouts/`, and `demos/`.
+- `pages/` — reference pages grouped into `components/`, `examples/`, `layouts/`, and `examples/`.
 - `lib/` — small shared implementation utilities.
 - `App.tsx` — history-based route selection and page rendering.
 - `main.tsx` — browser entry point that mounts the React app.
@@ -35,8 +35,8 @@ When a page or component changes, verify the affected route at a narrow width as
 - [Adding a page](./pages/adding-a-page.md)
 - [Component guide pages](./pages/components/README.md)
 - [Layouts decision guides](./pages/examples/README.md)
-- [Interactive layout demos](./pages/layouts/README.md)
-- [Demo helpers](./pages/demos/README.md)
+- [Interactive layout examples](./pages/layouts/README.md)
+- [Example helpers](./pages/examples/README.md)
 - [Component folders](./components/README.md)
 - [Layout components](./components/layout/README.md)
 - [Generated UI primitives](./components/ui/README.md)

@@ -16,7 +16,7 @@ type LayoutGuide = {
   futureProofing: string[]
   accessibility: string[]
   responsive: string
-  demoHref: string
+  exampleHref: string
 }
 
 const guides: Record<string, LayoutGuide> = {
@@ -72,7 +72,7 @@ const guides: Record<string, LayoutGuide> = {
     ],
     responsive:
       'Header navigation moves into the mobile menu at narrow widths. Main remains the primary reading region and content groups stack until each has enough room to sit side by side. The layout should not need a second mobile-only navigation system.',
-    demoHref: '/layouts/header-only',
+    exampleHref: '/layouts/header-only',
   },
   secondary: {
     name: 'Secondary',
@@ -126,7 +126,7 @@ const guides: Record<string, LayoutGuide> = {
     ],
     responsive:
       'The section links move into the mobile menu on narrow screens. Main becomes one vertical flow, while the desktop row remains above Main only when there is enough width. Decide whether the mobile menu needs a distinct section heading so the links remain understandable.',
-    demoHref: '/layouts/secondary',
+    exampleHref: '/layouts/secondary',
   },
   sidebar: {
     name: 'Sidebar',
@@ -183,7 +183,7 @@ const guides: Record<string, LayoutGuide> = {
     ],
     responsive:
       'Sidebar moves into the mobile menu at narrow widths. Main stays first in the reading order; on wider screens the Sidebar shares the capped PageBody width with Main. Verify that opening the mobile navigation does not create duplicate or conflicting navigation landmarks.',
-    demoHref: '/layouts/sidebar',
+    exampleHref: '/layouts/sidebar',
   },
   full: {
     name: 'Full',
@@ -241,7 +241,7 @@ const guides: Record<string, LayoutGuide> = {
     ],
     responsive:
       'Both contextual navigation regions move into the mobile menu on narrow screens. On wide screens they occupy their separate positions while Main uses the remaining width. Test the mobile menu as a complete information architecture, not just as a collapsed desktop layout.',
-    demoHref: '/layouts/full',
+    exampleHref: '/layouts/full',
   },
 }
 
@@ -264,16 +264,16 @@ function LayoutDetailPage({ slug }: { slug: keyof typeof guides }) {
           <div className="space-y-4 pt-2">
             <h3 className="text-xl font-semibold tracking-tight">Example</h3>
             <p className="leading-7 text-muted-foreground">
-              Open the interactive demo in a separate tab to inspect the live layout, resize it, and
-              try its navigation.
+              Open the interactive example in a separate tab to inspect the live layout, resize it,
+              and try its navigation.
             </p>
             <a
-              href={guide.demoHref}
+              href={guide.exampleHref}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md border px-4 py-2 font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              Open {guide.name} demo <ExternalLink className="size-4" aria-hidden="true" />
+              Open {guide.name} example <ExternalLink className="size-4" aria-hidden="true" />
               <span className="sr-only"> (opens in new window)</span>
             </a>
           </div>

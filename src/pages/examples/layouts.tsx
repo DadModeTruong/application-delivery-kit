@@ -45,7 +45,7 @@ function LayoutsExamplesPage() {
           </h2>
           <p className="leading-7 text-muted-foreground">
             These are complete page-shell patterns, not another component category. Use the detail
-            guides to make an intentional decision; use the separate demo pages to inspect the
+            guides to make an intentional decision; use the separate example pages to inspect the
             production composition. Do not select a more complex shell simply because it looks more
             complete in a static mockup.
           </p>

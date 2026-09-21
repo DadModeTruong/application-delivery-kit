@@ -9,7 +9,7 @@ import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { interactionSidebarLinks } from '@/config/component-navigation'
 
 /**
- * Interaction area introduction. Mounted by the demo router at
+ * Interaction area introduction. Mounted by the example router at
  * `/components/interaction`.
  *
  * @example

@@ -11,18 +11,18 @@ import { TabNavigation } from '@/components/layout/tab-navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Columns } from '@/components/layout/columns'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
-import { DemoCard } from '@/pages/demos/demo-card'
+import { ExampleCard } from '@/pages/examples/shared/example-card'
 
-type LayoutDemoProps = { variant: 'header-only' | 'secondary' | 'sidebar' | 'full' }
+type LayoutExampleProps = { variant: 'header-only' | 'secondary' | 'sidebar' | 'full' }
 
-type DemoGuidance = {
+type ExampleGuidance = {
   name: string
   purpose: string
   inspect: string[]
   risk: string
 }
 
-const guidance: Record<LayoutDemoProps['variant'], DemoGuidance> = {
+const guidance: Record<LayoutExampleProps['variant'], ExampleGuidance> = {
   'header-only': {
     name: 'Header Only',
     purpose:
@@ -76,25 +76,29 @@ const labels = {
   full: 'Full',
 } as const
 
-function LayoutDemo({ variant }: LayoutDemoProps) {
+function LayoutExample({ variant }: LayoutExampleProps) {
   const hasTabs = variant === 'secondary' || variant === 'full'
   const hasSidebar = variant === 'sidebar' || variant === 'full'
   const tabNavigation: NavLeaf[] = [
     { href: `/layouts/${variant}`, label: 'Overview' },
-    { href: `/layouts/${variant}#demo-content-heading`, label: 'Demo content' },
+    { href: `/layouts/${variant}#example-content-heading`, label: 'Example content' },
     { href: `/examples/layouts/${variant}`, label: 'Decision guide' },
   ]
   const sidebarNav: (NavLeaf | NavGroup)[] = [
     { href: `/layouts/${variant}`, label: 'Overview', icon: Home },
     {
-      label: 'Explore this demo',
+      label: 'Explore this example',
       items: [
         {
           href: `/layouts/${variant}#${variant}-inspect-heading`,
           label: 'What to look for',
           icon: Rocket,
         },
-        { href: `/layouts/${variant}#demo-content-heading`, label: 'Demo content', icon: Palette },
+        {
+          href: `/layouts/${variant}#example-content-heading`,
+          label: 'Example content',
+          icon: Palette,
+        },
       ],
     },
     {
@@ -105,22 +109,22 @@ function LayoutDemo({ variant }: LayoutDemoProps) {
   return (
     <LayoutProvider
       tabNavigation={hasTabs ? tabNavigation : undefined}
-      tabNavigationLabel="Demo sections"
+      tabNavigationLabel="Example sections"
       sidebarNav={hasSidebar ? sidebarNav : undefined}
-      sidebarNavLabel="Demo pages"
+      sidebarNavLabel="Example pages"
       activeHref={`/layouts/${variant}`}
     >
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        {hasTabs && <TabNavigation aria-label="Demo sections" />}
+        {hasTabs && <TabNavigation aria-label="Example sections" />}
         {hasSidebar ? (
           <PageBody>
-            <Sidebar aria-label="Demo pages" />
-            <DemoMain variant={variant} />
+            <Sidebar aria-label="Example pages" />
+            <ExampleMain variant={variant} />
           </PageBody>
         ) : (
-          <DemoMain variant={variant} />
+          <ExampleMain variant={variant} />
         )}
         <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
       </PageShell>
@@ -128,31 +132,31 @@ function LayoutDemo({ variant }: LayoutDemoProps) {
   )
 }
 
-function DemoMain({ variant }: LayoutDemoProps) {
-  const demo = guidance[variant]
+function ExampleMain({ variant }: LayoutExampleProps) {
+  const example = guidance[variant]
   return (
     <Main size={variant === 'header-only' || variant === 'secondary' ? undefined : 'full'}>
       <div className="space-y-10">
-        <section className="space-y-3" aria-labelledby={`${variant}-demo-heading`}>
+        <section className="space-y-3" aria-labelledby={`${variant}-example-heading`}>
           <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-            Interactive demo
+            Interactive example
           </p>
-          <h1 id={`${variant}-demo-heading`} className="text-4xl font-semibold tracking-tight">
+          <h1 id={`${variant}-example-heading`} className="text-4xl font-semibold tracking-tight">
             {labels[variant]}
           </h1>
-          <p className="text-xl leading-8 text-muted-foreground">{demo.purpose}</p>
+          <p className="text-xl leading-8 text-muted-foreground">{example.purpose}</p>
         </section>
         <section className="space-y-5" aria-labelledby={`${variant}-inspect-heading`}>
           <h2 id={`${variant}-inspect-heading`} className="text-2xl font-semibold tracking-tight">
             What to look for
           </h2>
           <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-            {demo.inspect.map((item) => (
+            {example.inspect.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
           <p className="leading-7 text-muted-foreground">
-            <strong className="text-foreground">Watch for:</strong> {demo.risk}
+            <strong className="text-foreground">Watch for:</strong> {example.risk}
           </p>
           <p className="leading-7 text-muted-foreground">
             For the full decision guidance, open the{' '}
@@ -162,12 +166,12 @@ function DemoMain({ variant }: LayoutDemoProps) {
             .
           </p>
         </section>
-        <section className="space-y-4" aria-labelledby={`${variant}-demo-content-heading`}>
+        <section className="space-y-4" aria-labelledby={`${variant}-example-content-heading`}>
           <h2
-            id={`${variant}-demo-content-heading`}
+            id={`${variant}-example-content-heading`}
             className="text-2xl font-semibold tracking-tight"
           >
-            Demo content
+            Example content
           </h2>
           <p className="leading-7 text-muted-foreground">
             This content is intentionally simple. Replace it with representative production content
@@ -176,7 +180,7 @@ function DemoMain({ variant }: LayoutDemoProps) {
           </p>
           <Columns base={1} sm={2} lg={3}>
             {Array.from({ length: 6 }, (_, i) => (
-              <DemoCard key={i} title={`Content ${i + 1}`} />
+              <ExampleCard key={i} title={`Content ${i + 1}`} />
             ))}
           </Columns>
         </section>
@@ -185,4 +189,4 @@ function DemoMain({ variant }: LayoutDemoProps) {
   )
 }
 
-export { LayoutDemo }
+export { LayoutExample }

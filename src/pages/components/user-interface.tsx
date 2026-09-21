@@ -9,7 +9,7 @@ import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 
 /**
- * User Interface area introduction. Mounted by the demo router at
+ * User Interface area introduction. Mounted by the example router at
  * `/components/user-interface`.
  *
  * @example

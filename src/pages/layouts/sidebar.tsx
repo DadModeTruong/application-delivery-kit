@@ -1,5 +1,5 @@
-/** Interactive Sidebar layout demo route. */
-import { LayoutDemo } from '@/pages/demos/layout-demo'
+/** Interactive Sidebar layout example route. */
+import { LayoutExample } from '@/pages/examples/shared/layout-example'
 export function LayoutsSidebarPage() {
-  return <LayoutDemo variant="sidebar" />
+  return <LayoutExample variant="sidebar" />
 }

@@ -1,7 +1,7 @@
 /**
  * PageShell — outermost page wrapper that pins Footer to the bottom.
  *
- * Every page in the demo (and every consumer app using this kit)
+ * Every page in the example (and every consumer app using this kit)
  * wraps its shell in the same pattern: SkipLink, Header, optional
  * TabNavigation / PageBody, Main, Footer. Without a wrapping element
  * that owns the viewport height, short pages leave the Footer

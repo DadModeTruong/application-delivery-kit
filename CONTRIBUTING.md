@@ -23,8 +23,8 @@ This is a focused React reference application for exploring clear, accessible, r
 - Hand-written layout components go in `src/components/layout/`.
 - shadcn-generated primitives go in `src/components/ui/`.
 - Component guide pages go in `src/pages/components/`.
-- Layouts decision-guide pages go in `src/pages/examples/`; focused interactive layout demos remain in `src/pages/layouts/`.
-- Demo-only compositions go in `src/pages/demos/`.
+- Layouts decision-guide pages go in `src/pages/examples/`; focused interactive layout examples remain in `src/pages/layouts/`.
+- Example-only compositions go in `src/pages/examples/`.
 - The route table belongs in `src/routes/route-manifest.ts`; shared site navigation belongs in `src/config/site-navigation.tsx`; component-area navigation belongs in `src/config/component-navigation.tsx`; Layouts-area navigation belongs in `src/config/layout-navigation.tsx`.
 - Small shared utilities go in `src/lib/`.
 

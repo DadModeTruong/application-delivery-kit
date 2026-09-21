@@ -1,5 +1,5 @@
-/** Interactive Secondary layout demo route. */
-import { LayoutDemo } from '@/pages/demos/layout-demo'
+/** Interactive Secondary layout example route. */
+import { LayoutExample } from '@/pages/examples/shared/layout-example'
 export function LayoutsSecondaryPage() {
-  return <LayoutDemo variant="secondary" />
+  return <LayoutExample variant="secondary" />
 }

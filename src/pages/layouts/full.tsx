@@ -1,5 +1,5 @@
-/** Interactive Full layout demo route. */
-import { LayoutDemo } from '@/pages/demos/layout-demo'
+/** Interactive Full layout example route. */
+import { LayoutExample } from '@/pages/examples/shared/layout-example'
 export function LayoutsFullPage() {
-  return <LayoutDemo variant="full" />
+  return <LayoutExample variant="full" />
 }
