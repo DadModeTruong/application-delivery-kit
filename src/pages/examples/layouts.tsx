@@ -48,8 +48,8 @@ function LayoutsExamplesPage() {
             <li><strong className="text-foreground">Record the decision.</strong> Document why this pattern was chosen, what would trigger a change, and which exceptions are not allowed.</li>
           </ol>
         </section>
-        <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="layouts-cost-heading">
-          <div className="space-y-5">
+        <section className="grid gap-10 lg:grid-cols-2">
+          <section className="space-y-5" aria-labelledby="layouts-cost-heading">
             <h2 id="layouts-cost-heading" className="text-2xl font-semibold tracking-tight">Why layout changes are expensive</h2>
             <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
               <li>Routes, links, breadcrumbs, active states, and analytics may all depend on the navigation model.</li>
@@ -57,8 +57,8 @@ function LayoutsExamplesPage() {
               <li>Accessibility review must cover landmarks, reading order, focus movement, names, and current-page state.</li>
               <li>Content, permissions, localization, support documentation, and training can all encode the old structure.</li>
             </ul>
-          </div>
-          <div className="space-y-5" aria-labelledby="layouts-risk-heading">
+          </section>
+          <section className="space-y-5" aria-labelledby="layouts-risk-heading">
             <h2 id="layouts-risk-heading" className="text-2xl font-semibold tracking-tight">Signals that the choice needs more thought</h2>
             <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
               <li>The team is adding navigation because people cannot find content, but the underlying grouping is unclear.</li>
@@ -67,7 +67,7 @@ function LayoutsExamplesPage() {
               <li>A second navigation layer has no clearly different job from the first.</li>
               <li>The proposed Full layout cannot explain why both contextual regions are necessary.</li>
             </ul>
-          </div>
+          </section>
         </section>
         <section className="space-y-5" aria-labelledby="layouts-roles-heading">
           <h2 id="layouts-roles-heading" className="text-2xl font-semibold tracking-tight">Team review: who needs to be involved?</h2>

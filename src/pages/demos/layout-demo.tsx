@@ -56,13 +56,13 @@ function LayoutDemo({ variant }: LayoutDemoProps) {
   const hasSidebar = variant === 'sidebar' || variant === 'full'
   const tabNavigation: NavLeaf[] = [
     { href: `/layouts/${variant}`, label: 'Overview' },
-    { href: `/layouts/${variant}/install`, label: 'Install' },
-    { href: `/layouts/${variant}/theming`, label: 'Theming' },
+    { href: `/layouts/${variant}#demo-content-heading`, label: 'Demo content' },
+    { href: `/examples/layouts/${variant}`, label: 'Decision guide' },
   ]
   const sidebarNav: (NavLeaf | NavGroup)[] = [
     { href: `/layouts/${variant}`, label: 'Overview', icon: Home },
-    { label: 'Guidance', items: [{ href: `/layouts/${variant}/install`, label: 'Install', icon: Rocket }, { href: `/layouts/${variant}/theming`, label: 'Theming', icon: Palette }] },
-    { label: 'More', items: [{ href: `/layouts/${variant}/parts`, label: 'Parts', icon: Puzzle }] },
+    { label: 'Explore this demo', items: [{ href: `/layouts/${variant}#${variant}-inspect-heading`, label: 'What to look for', icon: Rocket }, { href: `/layouts/${variant}#demo-content-heading`, label: 'Demo content', icon: Palette }] },
+    { label: 'Continue', items: [{ href: `/examples/layouts/${variant}`, label: 'Decision guide', icon: Puzzle }] },
   ]
   return (
     <LayoutProvider tabNavigation={hasTabs ? tabNavigation : undefined} tabNavigationLabel="Demo sections" sidebarNav={hasSidebar ? sidebarNav : undefined} sidebarNavLabel="Demo pages" activeHref={`/layouts/${variant}`}>
