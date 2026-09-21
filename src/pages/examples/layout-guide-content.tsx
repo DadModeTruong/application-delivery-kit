@@ -69,6 +69,11 @@ function LayoutDetailPage({ slug }: { slug: keyof typeof guides }) {
         <section className="space-y-5" aria-labelledby={`${slug}-what-heading`}>
           <h2 id={`${slug}-what-heading`} className="text-2xl font-semibold tracking-tight">What is this layout?</h2>
           <p className="leading-7 text-muted-foreground">{guide.what}</p>
+          <div className="space-y-4 pt-2">
+            <h3 className="text-xl font-semibold tracking-tight">Example</h3>
+            <p className="leading-7 text-muted-foreground">Open the interactive demo in a separate tab to inspect the live layout, resize it, and try its navigation.</p>
+            <a href={guide.demoHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md border px-4 py-2 font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Open {guide.name} demo <ExternalLink className="size-4" aria-hidden="true" /><span className="sr-only"> (opens in new window)</span></a>
+          </div>
         </section>
         <section className="grid gap-10 lg:grid-cols-2" aria-labelledby={`${slug}-use-heading`}>
           <div className="space-y-5"><h2 id={`${slug}-use-heading`} className="text-2xl font-semibold tracking-tight">When to use it</h2><ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">{guide.use.map((item) => <li key={item}>{item}</li>)}</ul></div>
@@ -77,11 +82,7 @@ function LayoutDetailPage({ slug }: { slug: keyof typeof guides }) {
         <GuidanceSection id={`${slug}-design-heading`} title="Design considerations" items={guide.design} />
         <GuidanceSection id={`${slug}-accessibility-heading`} title="Accessibility considerations" items={guide.accessibility} />
         <section className="space-y-5" aria-labelledby={`${slug}-responsive-heading`}><h2 id={`${slug}-responsive-heading`} className="text-2xl font-semibold tracking-tight">Responsive behavior</h2><p className="leading-7 text-muted-foreground">{guide.responsive}</p></section>
-        <section className="space-y-5" aria-labelledby={`${slug}-example-heading`}>
-          <h2 id={`${slug}-example-heading`} className="text-2xl font-semibold tracking-tight">Example</h2>
-          <p className="leading-7 text-muted-foreground">Open the interactive demo in a separate tab to inspect the live layout, resize it, and try its navigation.</p>
-          <a href={guide.demoHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md border px-4 py-2 font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Open {guide.name} demo <ExternalLink className="size-4" aria-hidden="true" /><span className="sr-only"> (opens in new window)</span></a>
-        </section>
+
       </div>
     </LayoutGuideShell>
   )
