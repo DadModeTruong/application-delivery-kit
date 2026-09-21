@@ -22,8 +22,10 @@ This is a focused React reference application for exploring clear, accessible, r
 
 - Hand-written layout components go in `src/components/layout/`.
 - shadcn-generated primitives go in `src/components/ui/`.
-- Route-level pages go in `src/pages/components/` or `src/pages/layouts/`; demo-only helpers go in `src/pages/demos/`.
-- The route table belongs in `src/routes/route-manifest.ts`; shared site navigation belongs in `src/config/site-navigation.tsx`; component-area navigation belongs in `src/config/component-navigation.ts`.
+- Component guide pages go in `src/pages/components/`.
+- Layouts decision-guide pages go in `src/pages/examples/`; focused interactive layout demos remain in `src/pages/layouts/`.
+- Demo-only compositions go in `src/pages/demos/`.
+- The route table belongs in `src/routes/route-manifest.ts`; shared site navigation belongs in `src/config/site-navigation.tsx`; component-area navigation belongs in `src/config/component-navigation.tsx`; Layouts-area navigation belongs in `src/config/layout-navigation.tsx`.
 - Small shared utilities go in `src/lib/`.
 
 See the relevant [directory README](./src/components/README.md) before adding or moving files.
@@ -86,8 +88,10 @@ Also manually inspect the affected route at desktop and narrow widths. For navig
 
 - Use `git mv` when renaming or moving files.
 - Rebase or amend only local, unpushed commits.
-- The repository currently works directly on `main`.
-- Push only after local verification and review.
+- Start normal feature work from the latest `develop` branch.
+- Use a `feat/`, `fix/`, `docs/`, `chore/`, or `ci/` branch; do not develop directly on `main` or `develop`.
+- Open a pull request into `develop` after local verification and review.
+- Push only the feature branch after local verification and review.
 
 ## License
 

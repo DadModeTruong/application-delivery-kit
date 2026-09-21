@@ -44,8 +44,8 @@ function ComponentsHeaderPage() {
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
                 nav={[
-                  { label: 'Layouts', href: '/layouts' },
-                  { label: 'Components', href: '/components' },
+                  { label: 'Examples', href: '/examples/layouts' },
+                  { label: 'Components', href: '/components/user-interface' },
                 ]}
               />
             </div>
@@ -234,8 +234,8 @@ function ComponentsHeaderPage() {
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
                 nav={[
-                  { label: 'Layouts', href: '/layouts' },
-                  { label: 'Components', href: '/components' },
+                  { label: 'Examples', href: '/examples/layouts' },
+                  { label: 'Components', href: '/components/user-interface' },
                 ]}
               />
             </ExampleVariation>
@@ -258,7 +258,7 @@ function ComponentsHeaderPage() {
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
                 nav={[
-                  { label: 'Layouts', href: '/layouts' },
+                  { label: 'Examples', href: '/examples/layouts' },
                   {
                     label: 'Components',
                     children: [
@@ -289,7 +289,7 @@ function ComponentsHeaderPage() {
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
                 nav={[
-                  { label: 'Layouts', href: '/layouts', icon: LayoutTemplate },
+                  { label: 'Examples', href: '/examples/layouts', icon: LayoutTemplate },
                   {
                     label: 'Components',
                     icon: Blocks,

@@ -183,7 +183,7 @@ const inlineTriggerClass =
  *   logo={{ href: "/", label: "Application Delivery Kit" }}
  *   nav={[
  *     { href: "/docs", label: "Docs" },
- *     { href: "/components", label: "Components" },
+ *     { href: "/components/user-interface", label: "Components" },
  *   ]}
  *   actions={<LinkButton href="/github" variant="outline">GitHub</LinkButton>}
  * />

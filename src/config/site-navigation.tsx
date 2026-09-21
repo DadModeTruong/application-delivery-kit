@@ -10,7 +10,8 @@ const primaryNav: NavItem[] = [
       { href: '/components/interaction', label: 'Interaction' },
       { href: '/components/forms', label: 'Forms' },
     ],
-  },  {
+  },
+  {
     label: 'Examples',
     children: [{ href: '/examples/layouts', label: 'Layouts' }],
   },
