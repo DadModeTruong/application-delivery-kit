@@ -26,25 +26,25 @@ const guidance: Record<LayoutDemoProps['variant'], DemoGuidance> = {
   'header-only': {
     name: 'Header Only',
     purpose: 'Inspect the smallest complete shell and confirm that Main can provide enough orientation without contextual navigation.',
-    inspect: ['Does the page still make sense from a deep link?', 'Would adding more destinations make the Header carry too much product structure?', 'Does the narrow menu preserve the same global navigation without adding a second system?'],
+    inspect: ['Can you tell what this page is for as soon as it opens?', 'If the product had five more pages like this, would the top navigation still be easy to understand?', 'On a small screen, can you still find the main site links without needing a second navigation bar?'],
     risk: 'The common failure mode is quietly accumulating page-specific links until a new navigation pattern is needed.',
   },
   secondary: {
     name: 'Secondary',
     purpose: 'Inspect a short set of peer destinations and verify that the row remains understandable, usable, and distinguishable from primary navigation.',
-    inspect: ['Are these links truly peers?', 'What happens when labels grow, links disappear, or the row no longer fits?', 'Does the mobile version preserve the section relationship and current page?'],
+    inspect: ['Do all of these links belong to the same small group of pages?', 'If the link names became longer or one link disappeared, would this row still be easy to use?', 'On a small screen, can people still tell that these links belong together and see which page is selected?'],
     risk: 'The common failure mode is using a flat row for a hierarchy that needs groups or a Sidebar.',
   },
   sidebar: {
     name: 'Sidebar',
     purpose: 'Inspect a grouped section map beside Main and test whether the navigation helps orientation without stealing too much content width.',
-    inspect: ['Can people predict what belongs in each group?', 'Does Main retain enough width for its real content?', 'Does the mobile transformation preserve hierarchy without duplicate landmarks?'],
+    inspect: ['Can you tell why the links are grouped the way they are?', 'Does the main content still have enough room to read and complete the task?', 'On a small screen, does the menu keep the groups and links in an order that still makes sense?'],
     risk: 'The common failure mode is turning the Sidebar into an ungoverned list of every possible destination.',
   },
   full: {
     name: 'Full',
     purpose: 'Inspect the combined shell and verify that the section row and Sidebar have genuinely different jobs.',
-    inspect: ['Can the team explain why both contextual navigation layers are required?', 'Does Main remain the visual and task priority?', 'Does the mobile menu remain understandable when both navigation trees move into it?'],
+    inspect: ['Can you explain in plain words what the top row is for and what the sidebar is for?', 'Does the main content still feel like the most important part of the page?', 'On a small screen, can people use both sets of links without feeling lost or seeing the same links repeated?'],
     risk: 'The common failure mode is paying the highest maintenance cost for navigation that duplicates itself or is not needed.',
   },
 }
@@ -87,7 +87,7 @@ function DemoMain({ variant }: LayoutDemoProps) {
         <p className="text-xl leading-8 text-muted-foreground">{demo.purpose}</p>
       </section>
       <section className="space-y-5" aria-labelledby={`${variant}-inspect-heading`}>
-        <h2 id={`${variant}-inspect-heading`} className="text-2xl font-semibold tracking-tight">What to inspect</h2>
+        <h2 id={`${variant}-inspect-heading`} className="text-2xl font-semibold tracking-tight">What to look for</h2>
         <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">{demo.inspect.map((item) => <li key={item}>{item}</li>)}</ul>
         <p className="leading-7 text-muted-foreground"><strong className="text-foreground">Watch for:</strong> {demo.risk}</p>
         <p className="leading-7 text-muted-foreground">For the full decision guidance, open the <a className="underline underline-offset-4" href={`/examples/layouts/${variant}`}>detail guide</a>.</p>
