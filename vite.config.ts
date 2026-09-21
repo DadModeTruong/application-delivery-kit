@@ -2,7 +2,7 @@
  * Vite configuration for the Application Delivery Kit reference application.
  *
  * Registers the React and Tailwind plugins and resolves the `@` alias to
- * `src` so application imports stay stable as the demo grows.
+ * `src` so application imports stay stable as the example grows.
  *
  * @example
  * // Run the development server or production build with the project scripts.

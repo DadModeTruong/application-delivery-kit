@@ -1,10 +1,10 @@
 /**
- * DemoCard — shared placeholder card for layout demo pages.
+ * ExampleCard — shared placeholder card for layout example pages.
  *
- * Wraps shadcn Nova's compound Card API so every layout demo
+ * Wraps shadcn Nova's compound Card API so every layout example
  * exercises the real primitive (not muted placeholder divs).
  *
- * Underscore-prefixed filename marks this as demo-only
+ * Underscore-prefixed filename marks this as example-only
  * scaffolding — not part of the library's public surface, not
  * copied into consumer projects via the shadcn-style registry.
  *
@@ -23,23 +23,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 // ---------------------------------------------------------------
 
 /**
- * Placeholder card used across the layout demo pages. Renders a
+ * Placeholder card used across the layout example pages. Renders a
  * Nova Card with a title, optional description, and optional body
  * text (default placeholder body if omitted).
  *
  * @example
  * // Bare — just a title with the default placeholder body
- * <DemoCard title="Card 1" />
+ * <ExampleCard title="Card 1" />
  *
  * @example
  * // With a subheading
- * <DemoCard title="Card 2" description="Optional subheading" />
+ * <ExampleCard title="Card 2" description="Optional subheading" />
  *
  * @example
  * // With custom body text
- * <DemoCard title="Card 3" body="Custom body text" />
+ * <ExampleCard title="Card 3" body="Custom body text" />
  */
-export function DemoCard({
+export function ExampleCard({
   title,
   description,
   body,

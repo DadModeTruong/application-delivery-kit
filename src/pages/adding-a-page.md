@@ -5,8 +5,9 @@ Use this checklist whenever you add a route to the Application Delivery Kit. The
 ## 1. Decide what kind of page it is
 
 - Put a component guide in `src/pages/components/`.
-- Put a complete shell or layout example in `src/pages/layouts/`.
-- Put a small page-only helper in `src/pages/demos/` only when it is reused by a layout or guide page and is not a production component.
+- Put a Layouts decision guide in `src/pages/examples/`.
+- Put a focused interactive layout example in `src/pages/layouts/`.
+- Put a small page-only helper or shared example composition in `src/pages/examples/` only when it is reused by a layout or guide page and is not a production component.
 - Put reusable production behavior in `src/components/`, not in a page file.
 
 ## 2. Choose a predictable file name
@@ -62,13 +63,14 @@ The route manifest is the only place that maps a URL to a page component. Do not
 Choose navigation based on where the page belongs:
 
 - Add a broad site link to `src/config/site-navigation.tsx` only when the page should appear in the shared Header or Footer.
-- Add a component-area or sibling-guide link to `src/config/component-navigation.ts` when it belongs to an existing guide family.
+- Add a component-area or sibling-guide link to `src/config/component-navigation.tsx` when it belongs to an existing guide family.
+- Add an Examples > Layouts link to `src/config/layout-navigation.tsx` when it belongs to the Layouts decision-guide family.
 - Do not import the route manifest into navigation configuration.
 - Do not create a second navigation list inside a page when the same links belong to a shared guide area.
 
 ## 6. Add the page to the directory guide
 
-Update the nearest README, usually `src/pages/components/README.md` or `src/pages/layouts/README.md`, with the new file and a one-line description.
+Update the nearest README, usually `src/pages/components/README.md`, `src/pages/examples/README.md`, or `src/pages/layouts/README.md`, with the new file and a one-line description. Keep decision-guide documentation separate from interactive example documentation.
 
 ## 7. Write comments that help the next developer
 

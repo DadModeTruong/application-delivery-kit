@@ -8,7 +8,7 @@
 import { SecondaryPane, SplitPane } from '@/components/layout/split-pane'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
-import { SplitPaneDemo } from '../demos/split-pane-demo'
+import { SplitPaneExample } from '../examples/shared/split-pane-example'
 
 function ComponentsSplitViewPage() {
   return (
@@ -185,8 +185,8 @@ function ComponentsSplitViewPage() {
             Examples and variations
           </h2>
           <p className="text-sm leading-6 text-muted-foreground">
-            These previews use the reusable Split View demo. Compare the supported proportions and
-            the open/closed secondary-area behavior rather than treating the content cards as a
+            These previews use the reusable Split View example. Compare the supported proportions
+            and the open/closed secondary-area behavior rather than treating the content cards as a
             required pattern.
           </p>
           <p className="text-sm leading-6 text-muted-foreground">
@@ -205,7 +205,7 @@ function ComponentsSplitViewPage() {
                   details.
                 </p>
               </div>
-              <SplitPaneDemo
+              <SplitPaneExample
                 secondarySize="third"
                 mainColumns={{
                   visible: { base: 1, sm: 2, md: 2, lg: 3 },
@@ -254,7 +254,7 @@ function ComponentsSplitViewPage() {
                   views.
                 </p>
               </div>
-              <SplitPaneDemo
+              <SplitPaneExample
                 secondarySize="half"
                 mainColumns={{
                   visible: { base: 1, sm: 2, md: 2, lg: 3 },

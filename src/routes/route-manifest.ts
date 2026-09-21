@@ -10,6 +10,11 @@
 
 import type { ComponentType } from 'react'
 import { HomePage } from '@/pages/home'
+import { LayoutsExamplesPage } from '@/pages/examples/layouts'
+import { LayoutsHeaderOnlyGuidePage } from '@/pages/examples/header-only'
+import { LayoutsSecondaryGuidePage } from '@/pages/examples/secondary'
+import { LayoutsSidebarGuidePage } from '@/pages/examples/sidebar'
+import { LayoutsFullGuidePage } from '@/pages/examples/full'
 import { LayoutsHeaderOnlyPage } from '@/pages/layouts/header-only'
 import { LayoutsSecondaryPage } from '@/pages/layouts/secondary'
 import { LayoutsSidebarPage } from '@/pages/layouts/sidebar'
@@ -50,6 +55,11 @@ type Route = {
  */
 export const routes: Route[] = [
   { path: '/', component: HomePage },
+  { path: '/examples/layouts', component: LayoutsExamplesPage },
+  { path: '/examples/layouts/header-only', component: LayoutsHeaderOnlyGuidePage },
+  { path: '/examples/layouts/secondary', component: LayoutsSecondaryGuidePage },
+  { path: '/examples/layouts/sidebar', component: LayoutsSidebarGuidePage },
+  { path: '/examples/layouts/full', component: LayoutsFullGuidePage },
   { path: '/layouts/header-only', component: LayoutsHeaderOnlyPage },
   { path: '/layouts/secondary', component: LayoutsSecondaryPage },
   { path: '/layouts/sidebar', component: LayoutsSidebarPage },

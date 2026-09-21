@@ -12,7 +12,7 @@ This repository contains the React reference application. Keep changes focused o
 ## Boundaries
 
 - `src/components/ui/` is disposable shadcn-generated output. Put maintained behavior in hand-written components outside that directory.
-- Keep the demo router and route data in `src/pages/` accurate when pages are added or renamed.
+- Keep the example router and route data in `src/pages/` accurate when pages are added or renamed.
 - Prefer small, reviewable changes over broad rewrites or new dependencies.
 - Keep the implementation limited to the React app; do not add unrelated framework implementations or a separate process/documentation system.
 

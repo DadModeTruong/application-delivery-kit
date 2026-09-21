@@ -43,7 +43,7 @@ The form guide uses a shared renderer and control-specific examples:
 2. Find the production component in `src/components/ui/` or `src/components/layout/`.
 3. Find the guide’s basic example or the variation that matches your need.
 4. Copy the production component import and the smallest complete JSX example.
-5. Replace demo copy, route data, and IDs with application-specific values.
+5. Replace example copy, route data, and IDs with application-specific values.
 6. Preserve the semantic element, accessible name, keyboard behavior, visible focus, and responsive classes.
 
 The guide page itself includes the full application shell. Do not copy `PageShell`, `Header`, `Sidebar`, or guide-navigation code unless you are building another page with the same shell.

@@ -1,38 +1,22 @@
-# `src/pages/layouts/` — complete layout examples
+# `src/pages/layouts/` — focused interactive layout examples
 
-These pages show how the hand-written layout components compose into complete page shells. They are the best place to start when you need a page-level structure rather than one isolated component.
+These routes are interactive previews of complete page shells. They are intentionally lighter than the decision guides: use them to resize the page, inspect navigation, test reading order, and replace the sample content with realistic content.
+
+For the cross-functional decision guidance, use [`src/pages/examples/README.md`](../examples/README.md) and the matching detail guide. Do not treat the example pages as the source of truth for when a pattern should be chosen.
 
 ## Routes
 
-- `/layouts/header-only` — Header, Main, and Footer without a sidebar
-- `/layouts/secondary` — secondary TabNavigation above Main
-- `/layouts/sidebar` — Sidebar beside Main
-- `/layouts/full` — TabNavigation and Sidebar together
+- `/layouts/header-only` — Header, Main, and Footer without contextual navigation
+- `/layouts/secondary` — a short section-navigation row above Main
+- `/layouts/sidebar` — grouped section navigation beside Main
+- `/layouts/full` — section navigation and Sidebar together
 
-## Copy/paste starting points
+## What to test in an example
 
-### Simple page
+- Replace the sample cards with representative headings, labels, content length, and actions.
+- Resize to a narrow viewport and verify the mobile navigation remains understandable.
+- Check keyboard focus, skip-link behavior, current location, and reading order.
+- Test long labels, deep links, permissions, localization, and likely future navigation growth.
+- Return to the matching decision guide before approving the layout.
 
-Start with `header-only.tsx` when the page needs a header, one main content region, and a footer.
-
-### Section navigation
-
-Start with `secondary.tsx` when the page needs page-level navigation above the main content.
-
-### Documentation or dashboard shell
-
-Start with `sidebar.tsx` when the page needs persistent or contextual navigation.
-
-### Full documentation shell
-
-Start with `full.tsx` when the page needs both secondary navigation and a sidebar. This is the most complete `LayoutProvider` example.
-
-## Important composition rules
-
-- `PageShell` is the outermost wrapper and pins the footer on short pages.
-- Put `LayoutProvider` outside `PageShell` when Header needs the shared navigation context for its mobile drawer.
-- Use `PageBody` to keep Sidebar and Main aligned with the page chrome.
-- Use `Main size="full"` inside a sidebar layout so the parent owns the width cap.
-- Include `SkipLink` on page-level layouts and keep the `Main` target ID intact.
-
-For the individual component APIs, see [`src/components/layout/README.md`](../../components/layout/README.md).
+The route-owned files are thin wrappers around [`src/pages/examples/shared/layout-example.tsx`](../examples/shared/layout-example.tsx). The production primitives remain in [`src/components/layout/README.md`](../../components/layout/README.md).

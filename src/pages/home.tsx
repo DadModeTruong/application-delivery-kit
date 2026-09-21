@@ -18,7 +18,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 // ---------------------------------------------------------------
 
 /**
- * Project introduction page. Mounted by the demo router at `/`.
+ * Project introduction page. Mounted by the example router at `/`.
  *
  * @example
  * { path: '/', component: HomePage }
