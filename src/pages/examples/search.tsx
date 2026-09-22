@@ -34,7 +34,7 @@ function SearchExamplesPage() {
       <div className="space-y-14">
         <section className="space-y-5" aria-labelledby="search-heading">
           <h1 id="search-heading" className="text-4xl font-semibold tracking-tight">
-            Search pages
+            Search
           </h1>
           <p className="text-xl leading-8 text-muted-foreground">
             Page-level experiences that help people find a known or partially known item across a

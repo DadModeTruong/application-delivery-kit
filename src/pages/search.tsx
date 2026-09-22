@@ -129,7 +129,7 @@ function SearchPage() {
             className="font-medium text-primary underline underline-offset-4"
             href="/examples/search"
           >
-            Read the Search pages guide
+            Read the Search guide
           </a>
           .
         </p>
