@@ -1,8 +1,6 @@
-/** Navigation for the standalone layout examples area. */
+/** Navigation for the standalone Layout examples area. */
 import { PanelLeft, PanelTop, Rows3, ScreenShare } from 'lucide-react'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
-
-export const layoutAreaLinks: NavLeaf[] = [{ href: '/examples/layouts', label: 'Layouts' }]
 
 export const layoutSidebarLinks: (NavLeaf | NavGroup)[] = [
   { href: '/examples/layouts', label: 'Layouts' },

@@ -10,7 +10,8 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { TabNavigation } from '@/components/layout/tab-navigation'
 import type { NavItem, NavLeaf } from '@/components/layout/types'
 import { footerLinks, primaryNav } from '@/config/site-navigation'
-import { searchAreaLinks, searchSidebarLinks } from '@/config/search-navigation'
+import { examplesAreaLinks } from '@/config/examples-navigation'
+import { searchSidebarLinks } from '@/config/search-navigation'
 
 type SearchGuideShellProps = {
   children: ReactNode
@@ -27,7 +28,7 @@ export function SearchGuideShell({
 }: SearchGuideShellProps) {
   return (
     <LayoutProvider
-      tabNavigation={searchAreaLinks}
+      tabNavigation={examplesAreaLinks}
       tabNavigationLabel="Examples"
       sidebarNav={searchSidebarLinks}
       sidebarNavLabel="Search"

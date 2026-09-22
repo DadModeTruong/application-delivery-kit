@@ -10,7 +10,8 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { TabNavigation } from '@/components/layout/tab-navigation'
 import type { NavGroup, NavItem, NavLeaf } from '@/components/layout/types'
 import { footerLinks, primaryNav } from '@/config/site-navigation'
-import { layoutAreaLinks, layoutSidebarLinks } from '@/config/layout-navigation'
+import { examplesAreaLinks } from '@/config/examples-navigation'
+import { layoutSidebarLinks } from '@/config/layout-navigation'
 
 type LayoutGuideShellProps = {
   children: ReactNode
@@ -29,7 +30,7 @@ export function LayoutGuideShell({
 }: LayoutGuideShellProps) {
   return (
     <LayoutProvider
-      tabNavigation={layoutAreaLinks}
+      tabNavigation={examplesAreaLinks}
       tabNavigationLabel="Examples"
       sidebarNav={sidebarNav}
       sidebarNavLabel="Layouts"
