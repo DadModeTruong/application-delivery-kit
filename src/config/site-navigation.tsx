@@ -13,7 +13,10 @@ const primaryNav: NavItem[] = [
   },
   {
     label: 'Examples',
-    children: [{ href: '/examples/layouts', label: 'Layouts' }],
+    children: [
+      { href: '/examples/layouts', label: 'Layouts' },
+      { href: '/examples/search', label: 'Search' },
+    ],
   },
 ]
 const GithubIcon: LucideIcon = (({ className, ...props }: SVGProps<SVGSVGElement>) => (

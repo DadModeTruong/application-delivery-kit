@@ -1,8 +1,10 @@
-# `src/pages/examples/` — Layouts detail guides
+# `src/pages/examples/` — standalone example detail guides
 
-This directory owns the standalone Examples > Layouts information architecture. The landing page explains the area; each routed detail page explains one complete page-shell pattern and links to its focused interactive example.
+This directory owns decision and guidance pages for standalone example areas. Each area landing or detail guide explains the pattern; focused interactive demos live in separate page directories so the two page types keep distinct jobs.
 
 ## Routes
+
+### Layouts
 
 - `/examples/layouts` — Layouts landing page
 - `/examples/layouts/header-only`
@@ -10,4 +12,8 @@ This directory owns the standalone Examples > Layouts information architecture. 
 - `/examples/layouts/sidebar`
 - `/examples/layouts/full`
 
-The interactive previews remain under `/layouts/*` so the detail guides and the examples have distinct jobs: guidance belongs in this directory; the example pages let people inspect and resize the shell with minimal distraction.
+### Search
+
+- `/examples/search` — Search pages guidance and decision framework
+
+The Search demo remains under `/search`, while the Layouts demos remain under `/layouts/*`. Guidance pages own recommendations; demo pages let people inspect a focused production composition.

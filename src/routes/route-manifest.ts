@@ -19,6 +19,8 @@ import { LayoutsHeaderOnlyPage } from '@/pages/layouts/header-only'
 import { LayoutsSecondaryPage } from '@/pages/layouts/secondary'
 import { LayoutsSidebarPage } from '@/pages/layouts/sidebar'
 import { LayoutsFullPage } from '@/pages/layouts/full'
+import { SearchExamplesPage } from '@/pages/examples/search'
+import { SearchPage } from '@/pages/search'
 import { ComponentsHeaderPage } from '@/pages/components/header'
 import { ComponentsTabNavigationPage } from '@/pages/components/tab-navigation'
 import { ComponentsSidebarPage } from '@/pages/components/sidebar'
@@ -64,6 +66,8 @@ export const routes: Route[] = [
   { path: '/layouts/secondary', component: LayoutsSecondaryPage },
   { path: '/layouts/sidebar', component: LayoutsSidebarPage },
   { path: '/layouts/full', component: LayoutsFullPage },
+  { path: '/examples/search', component: SearchExamplesPage },
+  { path: '/search', component: SearchPage },
   { path: '/components/header', component: ComponentsHeaderPage },
   { path: '/components/tab-navigation', component: ComponentsTabNavigationPage },
   { path: '/components/sidebar', component: ComponentsSidebarPage },
