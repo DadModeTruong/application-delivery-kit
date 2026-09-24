@@ -7,7 +7,7 @@ This directory contains the pages rendered by the small history-based router in 
 - [Component guides](./components/README.md) — reusable component documentation and examples.
 - [Layouts decision guides](./examples/README.md) — cross-functional guidance for choosing a page-shell pattern.
 - [Interactive layout examples](./layouts/README.md) — focused previews for resizing and inspecting each composition.
-- [Example helpers](./examples/README.md) — small compositions used by layout or component pages.
+- [Shared example compositions](./examples/shared/README.md) — small compositions used by layout or component pages.
 - [`../routes/route-manifest.ts`](../routes/route-manifest.ts) — the route table. Shared site navigation lives in [`../config/site-navigation.tsx`](../config/site-navigation.tsx), while component-area navigation lives in [`../config/component-navigation.tsx`](../config/component-navigation.tsx) and Layouts navigation lives in [`../config/layout-navigation.tsx`](../config/layout-navigation.tsx).
 
 ## Copy/paste rule
@@ -22,7 +22,7 @@ Follow the complete [adding-a-page checklist](./adding-a-page.md). The short ver
 
 1. Add the page under the directory that matches its role (`components/` for component guides, `examples/` for decision guides, `layouts/` for focused layout examples).
 2. Export the page component.
-3. Add its route to `../routes/route-manifest.ts`.
+3. Add its route and hierarchical browser title to `../routes/route-manifest.ts`.
 4. Add or update the relevant navigation entry.
 5. Add the page to the nearest directory README.
 6. Run `pnpm lint`, `pnpm build`, and `git diff --check`.

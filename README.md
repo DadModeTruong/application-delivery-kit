@@ -1,8 +1,8 @@
-# React application delivery kit
+# Application Delivery Kit
 
-A Vite + React reference application for exploring clear, accessible, responsive page layouts and navigation.
+A Vite + React reference application for the Application Delivery Kit: a practical system for connecting product needs, page patterns, implementation, accessibility, testing, and evidence.
 
-This repository is intentionally focused on the React app: its source code, styling, configuration, and the README files that explain how those pieces fit together. The broader application-delivery artifacts are being kept separate for now.
+This repository is intentionally focused on the React app: its source code, styling, configuration, and the README files that explain how those pieces fit together. The broader application-delivery playbook is intentionally maintained separately; this repository is the runnable React reference application.
 
 ## Run the app
 
@@ -65,10 +65,18 @@ The directory READMEs explain the copy boundaries in more detail:
 - [`src/components/layout/README.md`](./src/components/layout/README.md) — copy hand-written layout compositions
 - [`src/components/ui/README.md`](./src/components/ui/README.md) — add or copy shadcn-managed primitives
 
+## Page titles
+
+The route manifest owns the browser title for every page. Titles use the hierarchy `Application Delivery Kit | Area | Page`, and the app shell applies the active route title during both direct loads and client-side navigation. When adding or renaming a route, update its `title` metadata in `src/routes/route-manifest.ts` and keep the hierarchy aligned with the visible navigation.
+
 ## Verify changes
 
 ```bash
+pnpm format:check
 pnpm lint
+pnpm typecheck
+pnpm check:routes
+pnpm test
 pnpm build
 git diff --check
 ```
