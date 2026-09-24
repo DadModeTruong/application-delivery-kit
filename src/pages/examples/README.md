@@ -14,6 +14,14 @@ This directory owns decision and guidance pages for standalone example areas. Ea
 
 ### Search
 
-- `/examples/search` — Search pages guidance and decision framework
+- `/examples/search` — Search convention landing page
+- `/search` — Collection search
+- `/search/global` — Global search
+- `/search/filters` — Search with filters
+- `/search/directory` — Directory search
+- `/search/autocomplete` — Autocomplete lookup
+- `/search/command-palette` — Command palette
+- `/search/advanced` — Advanced search
+- `/search/table` — Table search
 
-The Search demo remains under `/search`, while the Layouts demos remain under `/layouts/*`. Guidance pages own recommendations; demo pages let people inspect a focused production composition.
+The Search landing page explains how to choose a convention; each route provides a practical composition with focused guidance. The Layouts demos remain under `/layouts/*`.

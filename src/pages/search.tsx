@@ -123,6 +123,57 @@ function SearchPage() {
           )}
         </section>
 
+        <section className="space-y-5" aria-labelledby="search-conventions-heading">
+          <div>
+            <h2 id="search-conventions-heading" className="text-2xl font-semibold tracking-tight">
+              Other search conventions
+            </h2>
+            <p className="mt-2 leading-7 text-muted-foreground">
+              Compare this complete collection-search experience with other practical search jobs.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              [
+                '/search/global',
+                'Global search',
+                'Find destinations and content across the product.',
+              ],
+              [
+                '/search/filters',
+                'Search with filters',
+                'Narrow a meaningful collection with refinements.',
+              ],
+              [
+                '/search/directory',
+                'Directory search',
+                'Find people or entities with identifying context.',
+              ],
+              [
+                '/search/autocomplete',
+                'Autocomplete lookup',
+                'Choose a known option while typing.',
+              ],
+              ['/search/command-palette', 'Command palette', 'Navigate or run actions quickly.'],
+              ['/search/advanced', 'Advanced search', 'Build a precise multi-field query.'],
+              [
+                '/search/table',
+                'Table search',
+                'Search structured records without losing context.',
+              ],
+            ].map(([href, title, description]) => (
+              <a
+                key={href}
+                href={href}
+                className="rounded-xl border bg-card p-5 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <h3 className="font-semibold text-foreground">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+
         <p className="border-t pt-6 text-sm leading-6 text-muted-foreground">
           Looking for the recommendations behind this composition?{' '}
           <a

@@ -21,6 +21,13 @@ import { LayoutsSidebarPage } from '@/pages/layouts/sidebar'
 import { LayoutsFullPage } from '@/pages/layouts/full'
 import { SearchExamplesPage } from '@/pages/examples/search'
 import { SearchPage } from '@/pages/search'
+import { SearchGlobalPage } from '@/pages/search-global'
+import { SearchFiltersPage } from '@/pages/search-filters'
+import { SearchDirectoryPage } from '@/pages/search-directory'
+import { SearchAutocompletePage } from '@/pages/search-autocomplete'
+import { SearchCommandPalettePage } from '@/pages/search-command-palette'
+import { SearchAdvancedPage } from '@/pages/search-advanced'
+import { SearchTablePage } from '@/pages/search-table'
 import { ComponentsHeaderPage } from '@/pages/components/header'
 import { ComponentsTabNavigationPage } from '@/pages/components/tab-navigation'
 import { ComponentsSidebarPage } from '@/pages/components/sidebar'
@@ -68,6 +75,13 @@ export const routes: Route[] = [
   { path: '/layouts/full', component: LayoutsFullPage },
   { path: '/examples/search', component: SearchExamplesPage },
   { path: '/search', component: SearchPage },
+  { path: '/search/global', component: SearchGlobalPage },
+  { path: '/search/filters', component: SearchFiltersPage },
+  { path: '/search/directory', component: SearchDirectoryPage },
+  { path: '/search/autocomplete', component: SearchAutocompletePage },
+  { path: '/search/command-palette', component: SearchCommandPalettePage },
+  { path: '/search/advanced', component: SearchAdvancedPage },
+  { path: '/search/table', component: SearchTablePage },
   { path: '/components/header', component: ComponentsHeaderPage },
   { path: '/components/tab-navigation', component: ComponentsTabNavigationPage },
   { path: '/components/sidebar', component: ComponentsSidebarPage },
