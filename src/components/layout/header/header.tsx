@@ -12,7 +12,7 @@ import { cn } from 'cn'
 import { Container } from '@/components/layout/container'
 import { DesktopNavigation } from './desktop-navigation'
 import { MobileNavigation } from './mobile-navigation'
-import type { MobileNavigationSection, NavItem } from '../types'
+import type { NavItem } from '../types'
 
 type HeaderLogoConfig = {
   href: string
@@ -28,8 +28,6 @@ type HeaderProps = {
   navigationLabel?: string
   /** Right-side application-level actions. */
   actions?: React.ReactNode
-  /** Additional labelled groups shown inside the mobile drawer. */
-  mobileSections?: MobileNavigationSection[]
   /** Viewport width at which inline navigation appears. */
   mobileBreakpoint?: 'md' | 'lg'
   /** Layout width behavior. */
@@ -76,7 +74,6 @@ function Header({
   nav = [],
   navigationLabel = 'Global navigation',
   actions,
-  mobileSections = [],
   mobileBreakpoint = 'md',
   size = 'contained',
 }: HeaderProps) {
@@ -85,7 +82,7 @@ function Header({
   const desktopVisibility = isMd ? 'hidden md:flex' : 'hidden lg:flex'
   const mobileVisibility = isMd ? 'md:hidden' : 'lg:hidden'
   const headerHeight = isMd ? 'h-14 md:h-16' : 'h-14 lg:h-16'
-  const hasMobileNavigation = nav.length > 0 || mobileSections.length > 0
+  const hasMobileNavigation = nav.length > 0
 
   return (
     <header
@@ -115,11 +112,7 @@ function Header({
             {actions}
             {hasMobileNavigation && (
               <div className={mobileVisibility}>
-                <MobileNavigation
-                  items={nav}
-                  sections={mobileSections}
-                  navigationLabel={navigationLabel}
-                />
+                <MobileNavigation items={nav} navigationLabel={navigationLabel} />
               </div>
             )}
           </div>

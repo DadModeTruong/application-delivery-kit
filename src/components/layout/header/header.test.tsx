@@ -24,13 +24,19 @@ describe('Header', () => {
     )
   })
 
-  it('renders generic mobile sections with labelled navigation landmarks', () => {
+  it('keeps leaf items as links and renders dropdown parents as mobile sections', () => {
     render(
       <MobileNavigation
-        items={[{ href: '/home', label: 'Home' }]}
-        sections={[
-          { label: 'Primary navigation', items: [{ href: '/dashboard', label: 'Dashboard' }] },
-          { label: 'On this page', items: [{ href: '#overview', label: 'Overview' }] },
+        items={[
+          { href: '/home', label: 'Home' },
+          {
+            label: 'Components',
+            children: [
+              { href: '/components/forms', label: 'Forms' },
+              { href: '/components/user-interface', label: 'User interface' },
+            ],
+          },
+          { href: '/examples', label: 'Examples' },
         ]}
       />,
     )
@@ -38,15 +44,12 @@ describe('Header', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Open navigation menu' }))
 
     expect(screen.getByRole('navigation', { name: 'Global navigation' })).toBeTruthy()
-    expect(screen.getByRole('navigation', { name: 'Primary navigation' })).toBeTruthy()
-    expect(screen.getByRole('navigation', { name: 'On this page' })).toBeTruthy()
-
-    const labelledSections = screen
-      .getAllByRole('navigation')
-      .filter((navigation) => navigation.getAttribute('aria-labelledby'))
-    expect(labelledSections).toHaveLength(3)
-    expect(labelledSections[1].getAttribute('aria-labelledby')).not.toBe(
-      labelledSections[2].getAttribute('aria-labelledby'),
-    )
+    expect(screen.getByRole('link', { name: 'Home' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Examples' })).toBeTruthy()
+    expect(screen.getByText('Components')).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Forms' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'User interface' })).toBeTruthy()
+    expect(screen.queryByRole('navigation', { name: 'Primary navigation' })).toBeNull()
+    expect(screen.queryByRole('navigation', { name: 'On this page' })).toBeNull()
   })
 })

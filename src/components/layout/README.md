@@ -379,19 +379,18 @@ LayoutProvider integration preserved.
 
 ## Mobile drawer hierarchy
 
-The reusable `MobileNavigation` component renders labelled sections
-inside the drawer, each with its own `<nav>` landmark:
+The reusable `MobileNavigation` component derives its structure from the
+Header `nav` items. It renders one labelled `<nav>` landmark:
 
-1. **Header navigation** — renders the Header navigation items. Its
-   label is configurable; it may represent global, primary, or
-   section-level navigation.
-2. **Additional sections** — optional `MobileNavigationSection` values
-   supplied by the consuming shell. These can represent primary,
-   section, sidebar, or page navigation without coupling the component
-   to a particular provider.
+1. **Leaf items** — top-level items without `children` remain individual
+   links in both desktop and mobile navigation.
+2. **Dropdown parents** — top-level items with `children` remain desktop
+   dropdown triggers. In the mobile drawer, the parent label becomes a
+   subgroup heading and its children render as indented links.
 
-`ApplicationHeader` adapts `LayoutProvider` values into these generic
-sections for the Application Delivery Kit shell.
+This keeps desktop and mobile navigation aligned without a separate
+mobile-only navigation data model. `ApplicationHeader` is a thin
+application-shell wrapper and does not add provider-owned mobile sections.
 
 Visual hierarchy uses small-caps at every level, sized to communicate
 depth:
@@ -427,9 +426,8 @@ Layout-provider follows the same "accepted warning" pattern for its
 ## Shared types
 
 Types used by two or more layout components live in `types.ts`.
-Currently: `NavLeaf`, `NavParent`, `NavItem` (union), `NavGroup`,
-`MobileNavigationSection`, plus the `isNavParent` and `isNavGroup`
-type guards. When a type graduates
+Currently: `NavLeaf`, `NavParent`, `NavItem` (union), and `NavGroup`,
+plus the `isNavParent` and `isNavGroup` type guards. When a type graduates
 from one-consumer to two-consumers, move it and update the previous
 location to re-export from `types.ts` for backward compatibility.
 

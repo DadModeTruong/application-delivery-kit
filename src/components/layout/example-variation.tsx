@@ -4,7 +4,7 @@
  *
  * The legacy shape remains available while guide pages migrate incrementally.
  * New examples should provide a summary, Try it instruction, and Guidance,
- * Code, Story & criteria, and Verification content.
+ * Code, Criteria, and Verification content.
  */
 
 import * as React from 'react'
@@ -19,20 +19,38 @@ type ExampleGuidance = {
   considerations?: string[]
 }
 
+type ExampleCodeItem = {
+  name: string
+  type: string
+  description: ReactNode
+  example?: string
+}
+
 type ExampleCode = {
   language?: string
   source: string
+  html: string
+  props?: ExampleCodeItem[]
+  attributes?: ExampleCodeItem[]
   notes?: ReactNode
 }
 
 type AcceptanceCriterion = {
-  title?: string
-  text: string
+  given: string
+  when: string
+  then: string
+  and?: string[]
 }
 
-type VerificationSection = {
+type VerificationCase = {
   title: string
-  items: string[]
+  steps: string[]
+  expected: string
+}
+
+type VerificationScenario = {
+  title: string
+  cases: VerificationCase[]
 }
 
 type ExampleRequirements = {
@@ -41,7 +59,7 @@ type ExampleRequirements = {
 }
 
 type ExampleVerification = {
-  sections: VerificationSection[]
+  scenarios: VerificationScenario[]
 }
 
 type ExampleSupplemental = {
@@ -72,12 +90,74 @@ type LegacyExampleVariationProps = ExampleVariationBaseProps & {
 
 type ExampleVariationProps = StandardizedExampleVariationProps | LegacyExampleVariationProps
 
-function CodeBlock({ code }: { code: ExampleCode }) {
+function CodeBlock({ code, idPrefix }: { code: ExampleCode; idPrefix: string }) {
   return (
-    <div className="space-y-4">
-      <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-sm leading-6 text-foreground">
-        <code>{code.source}</code>
-      </pre>
+    <div className="space-y-8">
+      <section aria-labelledby={`${idPrefix}-application-code-heading`}>
+        <h4 id={`${idPrefix}-application-code-heading`} className="font-semibold text-foreground">
+          Application Delivery Kit code
+        </h4>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+          Use this TSX when building with the Application Delivery Kit component API.
+        </p>
+        <pre className="mt-4 overflow-x-auto rounded-lg bg-muted p-4 text-sm leading-6 text-foreground">
+          <code>{code.source}</code>
+        </pre>
+        {code.props && code.props.length > 0 && (
+          <div className="mt-5">
+            <h5 className="font-semibold text-foreground">Props used in this example</h5>
+            <dl className="mt-3 divide-y rounded-md border text-sm">
+              {code.props.map((prop) => (
+                <div
+                  key={prop.name}
+                  className="grid gap-1 p-3 sm:grid-cols-[minmax(9rem,16rem)_minmax(0,1fr)]"
+                >
+                  <dt className="font-mono font-semibold text-foreground">{prop.name}</dt>
+                  <dd className="space-y-1 text-muted-foreground">
+                    <div>
+                      <code>{prop.type}</code>
+                      {prop.example ? ` — ${prop.example}` : null}
+                    </div>
+                    <div>{prop.description}</div>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+      </section>
+      <section aria-labelledby={`${idPrefix}-rendered-html-heading`}>
+        <h4 id={`${idPrefix}-rendered-html-heading`} className="font-semibold text-foreground">
+          Rendered HTML structure
+        </h4>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+          This is the current browser structure produced by the reusable component, including the
+          styling classes and data attributes used by this example. Preserve the semantic elements,
+          responsive classes, focus classes, and state attributes when adapting the pattern.
+        </p>
+        <pre className="mt-4 overflow-x-auto rounded-lg bg-muted p-4 text-sm leading-6 text-foreground">
+          <code>{code.html}</code>
+        </pre>
+        {code.attributes && code.attributes.length > 0 && (
+          <div className="mt-5">
+            <h5 className="font-semibold text-foreground">Attributes and styling hooks</h5>
+            <dl className="mt-3 divide-y rounded-md border text-sm">
+              {code.attributes.map((attribute) => (
+                <div
+                  key={attribute.name}
+                  className="grid gap-1 p-3 sm:grid-cols-[minmax(9rem,16rem)_minmax(0,1fr)]"
+                >
+                  <dt className="font-mono font-semibold text-foreground">{attribute.name}</dt>
+                  <dd className="space-y-1 text-muted-foreground">
+                    <div>{attribute.example ? <code>{attribute.example}</code> : null}</div>
+                    <div>{attribute.description}</div>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+      </section>
       {code.notes && <div className="text-sm leading-6 text-muted-foreground">{code.notes}</div>}
     </div>
   )
@@ -128,16 +208,26 @@ function RequirementsPanel({ requirements }: { requirements: ExampleRequirements
       </div>
       <div>
         <h4 className="font-semibold text-foreground">Acceptance criteria</h4>
-        <ul className="mt-3 space-y-4">
-          {requirements.acceptanceCriteria.map((criterion) => (
-            <li key={criterion.title ?? criterion.text} className="rounded-md border p-4 leading-7">
-              {criterion.title && (
-                <strong className="mr-2 text-foreground">{criterion.title}</strong>
-              )}
-              {criterion.text}
+        <ol className="mt-3 list-decimal space-y-5 pl-5 leading-7">
+          {requirements.acceptanceCriteria.map((criterion, index) => (
+            <li key={`${criterion.given}-${index}`} className="pl-2">
+              <strong className="text-foreground">Given</strong> {criterion.given}
+              <ol type="a" className="mt-2 list-[lower-alpha] space-y-2 pl-6">
+                <li>
+                  <strong className="text-foreground">When</strong> {criterion.when}
+                </li>
+                <li>
+                  <strong className="text-foreground">Then</strong> {criterion.then}
+                </li>
+                {criterion.and?.map((statement) => (
+                  <li key={statement}>
+                    <strong className="text-foreground">And</strong> {statement}
+                  </li>
+                ))}
+              </ol>
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </div>
   )
@@ -151,23 +241,37 @@ function VerificationPanel({
   idPrefix: string
 }) {
   return (
-    <div className="grid gap-6 text-muted-foreground sm:grid-cols-2">
-      {verification.sections.map((section) => (
+    <div className="space-y-8 text-muted-foreground">
+      {verification.scenarios.map((scenario, scenarioIndex) => (
         <section
-          key={section.title}
-          aria-labelledby={`${idPrefix}-${section.title}-verification-heading`}
+          key={scenario.title}
+          aria-labelledby={`${idPrefix}-scenario-${scenarioIndex}-heading`}
         >
           <h4
-            id={`${idPrefix}-${section.title}-verification-heading`}
+            id={`${idPrefix}-scenario-${scenarioIndex}-heading`}
             className="font-semibold text-foreground"
           >
-            {section.title}
+            {scenario.title}
           </h4>
-          <ul className="mt-3 list-disc space-y-3 pl-5">
-            {section.items.map((item) => (
-              <li key={item}>{item}</li>
+          <div className="mt-5 space-y-8">
+            {scenario.cases.map((testCase) => (
+              <article key={testCase.title} className="space-y-4">
+                <h5 className="font-medium text-foreground">{testCase.title}</h5>
+                <div>
+                  <h6 className="text-sm font-medium text-foreground">Steps</h6>
+                  <ol className="mt-2 list-decimal space-y-2 pl-5">
+                    {testCase.steps.map((step) => (
+                      <li key={step}>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+                <p className="border-l-2 border-primary/40 pl-4 leading-7">
+                  <strong className="font-medium text-foreground">Expected result: </strong>
+                  {testCase.expected}
+                </p>
+              </article>
             ))}
-          </ul>
+          </div>
         </section>
       ))}
     </div>
@@ -191,7 +295,7 @@ function StandardizedExample({
   }
 
   return (
-    <article className="space-y-6 rounded-lg border p-6 sm:p-8">
+    <article className="space-y-6">
       <div className="space-y-2">
         <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
         <p className="text-muted-foreground">{summary}</p>
@@ -201,25 +305,30 @@ function StandardizedExample({
         <strong className="mr-2 text-foreground">Try it:</strong>
         {tryIt}
       </div>
-      <Tabs defaultSelectedKey={tabIds.guidance} className="min-w-0">
-        <TabsList aria-label={`${title} supplemental information`} className="max-w-full flex-wrap">
+      <Tabs defaultSelectedKey={tabIds.guidance} className="min-w-0 gap-2">
+        <TabsList
+          aria-label={`${title} supplemental information`}
+          className="max-w-full flex-wrap"
+        >
           <TabsTrigger id={tabIds.guidance}>Guidance</TabsTrigger>
           <TabsTrigger id={tabIds.code}>Code</TabsTrigger>
-          <TabsTrigger id={tabIds.requirements}>Story &amp; criteria</TabsTrigger>
+          <TabsTrigger id={tabIds.requirements}>Criteria</TabsTrigger>
           <TabsTrigger id={tabIds.verification}>Verification</TabsTrigger>
         </TabsList>
-        <TabsContent id={tabIds.guidance} className="pt-4">
-          <GuidancePanel guidance={supplemental.guidance} />
-        </TabsContent>
-        <TabsContent id={tabIds.code} className="pt-4">
-          <CodeBlock code={supplemental.code} />
-        </TabsContent>
-        <TabsContent id={tabIds.requirements} className="pt-4">
-          <RequirementsPanel requirements={supplemental.requirements} />
-        </TabsContent>
-        <TabsContent id={tabIds.verification} className="pt-4">
-          <VerificationPanel verification={supplemental.verification} idPrefix={idPrefix} />
-        </TabsContent>
+        <div className="rounded-lg border bg-card p-4 sm:p-6">
+          <TabsContent id={tabIds.guidance}>
+            <GuidancePanel guidance={supplemental.guidance} />
+          </TabsContent>
+          <TabsContent id={tabIds.code}>
+            <CodeBlock code={supplemental.code} idPrefix={idPrefix} />
+          </TabsContent>
+          <TabsContent id={tabIds.requirements}>
+            <RequirementsPanel requirements={supplemental.requirements} />
+          </TabsContent>
+          <TabsContent id={tabIds.verification}>
+            <VerificationPanel verification={supplemental.verification} idPrefix={idPrefix} />
+          </TabsContent>
+        </div>
       </Tabs>
     </article>
   )
@@ -279,5 +388,6 @@ export type {
   ExampleRequirements,
   ExampleSupplemental,
   ExampleVerification,
-  VerificationSection,
+  VerificationCase,
+  VerificationScenario,
 }

@@ -155,9 +155,3 @@ export type NavGroup = {
 export function isNavGroup(x: NavLeaf | NavGroup): x is NavGroup {
   return 'items' in x
 }
-
-/** A labelled navigation group rendered by mobile navigation. */
-export type MobileNavigationSection = {
-  label: string
-  items: (NavLeaf | NavGroup)[]
-}

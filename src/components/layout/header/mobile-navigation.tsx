@@ -1,29 +1,21 @@
 /**
  * MobileNavigation — reusable trigger and drawer for navigation groups.
  *
- * It accepts generic labelled sections so callers can combine global,
- * primary, section, or page navigation without coupling this component to
- * a particular application context or layout provider.
+ * It derives mobile groups from the same navigation items used by Header:
+ * leaf items remain links, while dropdown parents become labelled groups.
  */
 
 import * as React from 'react'
 import { MenuIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import {
-  isNavGroup,
-  isNavParent,
-  type MobileNavigationSection,
-  type NavItem,
-  type NavLeaf,
-} from '../types'
+import { isNavParent, type NavItem, type NavLeaf } from '../types'
 
 const linkClass =
   'inline-flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[current=true]:bg-muted'
 
 type MobileNavigationProps = {
   items: NavItem[]
-  sections?: MobileNavigationSection[]
   title?: string
   triggerLabel?: string
   navigationLabel?: string
@@ -47,9 +39,9 @@ function DrawerLink({ item }: { item: NavLeaf }) {
 
 function SubGroupLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+    <h3 className="px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
       {children}
-    </div>
+    </h3>
   )
 }
 
@@ -69,39 +61,13 @@ function DrawerParent({ item }: { item: Extract<NavItem, { children: NavLeaf[] }
   )
 }
 
-function NavigationEntries({
-  items,
-}: {
-  items: (NavLeaf | { label: string; items: NavLeaf[] })[]
-}) {
-  return (
-    <>
-      {items.map((entry, index) =>
-        isNavGroup(entry) ? (
-          <div key={`group-${entry.label}-${index}`} className="flex flex-col gap-1">
-            <SubGroupLabel>{entry.label}</SubGroupLabel>
-            <div className="flex flex-col gap-1 pl-6">
-              {entry.items.map((item) => (
-                <DrawerLink key={item.href} item={item} />
-              ))}
-            </div>
-          </div>
-        ) : (
-          <DrawerLink key={entry.href} item={entry} />
-        ),
-      )}
-    </>
-  )
-}
-
 function MobileNavigation({
   items,
-  sections = [],
   title = 'Navigation menu',
   triggerLabel = 'Open navigation menu',
   navigationLabel = 'Global navigation',
 }: MobileNavigationProps) {
-  const primaryHeadingId = React.useId()
+  const navigationHeadingId = React.useId()
 
   return (
     <SheetTrigger>
@@ -113,9 +79,9 @@ function MobileNavigation({
           <SheetTitle className="sr-only">{title}</SheetTitle>
         </SheetHeader>
         <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-4">
-          <nav aria-labelledby={primaryHeadingId} className="flex flex-col gap-1">
+          <nav aria-labelledby={navigationHeadingId} className="flex flex-col gap-1">
             <h2
-              id={primaryHeadingId}
+              id={navigationHeadingId}
               className="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground"
             >
               {navigationLabel}
@@ -128,24 +94,6 @@ function MobileNavigation({
               ),
             )}
           </nav>
-
-          {sections.map((section, index) => {
-            const sectionId = `${primaryHeadingId}-section-${index}`
-            return (
-              <React.Fragment key={`${section.label}-${index}`}>
-                <hr className="my-2 border-border" />
-                <h2
-                  id={sectionId}
-                  className="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground"
-                >
-                  {section.label}
-                </h2>
-                <nav aria-labelledby={sectionId} className="flex flex-col gap-1">
-                  <NavigationEntries items={section.items} />
-                </nav>
-              </React.Fragment>
-            )
-          })}
         </div>
       </Sheet>
     </SheetTrigger>
