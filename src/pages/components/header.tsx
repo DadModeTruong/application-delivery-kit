@@ -227,25 +227,85 @@ function ComponentsHeaderPage() {
             the Forms pages.
           </p>
           <p className="text-sm text-muted-foreground">
-            Try it: move through the Header links and actions with the keyboard, verify the skip
-            link, open the mobile navigation, resize the page, and confirm focus remains visible and
-            the navigation order stays logical.
+            Each example includes a focused Try it instruction plus Guidance, Code, Story &amp;
+            criteria, and Verification tabs for the roles involved in designing, building, and
+            reviewing the component.
           </p>
           <div className="space-y-8 [&_[data-slot=header]]:!border-b-0 [&_*:has(>[data-slot=header])]:!p-0 [&_*:has(>[data-slot=header])]:overflow-hidden">
             <ExampleVariation
               title="Basic"
-              description="A simple system header keeps the application name on the left and ordinary navigation links on the right."
-              explanation="Use the basic Header when global or section destinations can remain visible as individual links. The reusable component provides the shared layout, responsive behavior, focus treatment, and navigation semantics."
-              doItems={[
-                'Keep the application name or product identity on the left and the Header navigation together on the right.',
-                'Use ordinary links when each destination should be immediately visible and directly reachable.',
-                'Let the reusable Header component provide consistent spacing, focus treatment, and responsive behavior.',
-              ]}
-              dontItems={[
-                'Do not hide an important Header destination in a dropdown when it can remain visible in the header.',
-                'Do not recreate Header spacing or interaction styles in each page-level example.',
-                'Do not use the global Header for actions that apply only to the current page.',
-              ]}
+              summary="A simple system header keeps the application name on the left and ordinary navigation links on the right."
+              tryIt="Tab through the Header links, identify the current destination, and resize the page to see when the navigation changes presentation."
+              supplemental={{
+                guidance: {
+                  explanation:
+                    'Use the basic Header when global or section destinations can remain visible as individual links. The reusable component provides the shared layout, responsive behavior, focus treatment, and navigation semantics.',
+                  doItems: [
+                    'Keep the application name or product identity on the left and the Header navigation together on the right.',
+                    'Use ordinary links when each destination should be immediately visible and directly reachable.',
+                    'Let the reusable Header component provide consistent spacing, focus treatment, and responsive behavior.',
+                  ],
+                  dontItems: [
+                    'Do not hide an important Header destination in a dropdown when it can remain visible in the header.',
+                    'Do not recreate Header spacing or interaction styles in each page-level example.',
+                    'Do not use the global Header for actions that apply only to the current page.',
+                  ],
+                },
+                code: {
+                  language: 'tsx',
+                  source: `<Header
+  logo={{ href: '/', label: 'Application Delivery Kit' }}
+  navigationLabel="Global navigation"
+  nav={[
+    { label: 'Examples', href: '/examples/layouts' },
+    { label: 'Components', href: '/components/user-interface' },
+  ]}
+/>`,
+                },
+                requirements: {
+                  userStory:
+                    'As an application user, I want to find global or section destinations in a consistent Header so that I can move through the application without searching page content.',
+                  acceptanceCriteria: [
+                    {
+                      title: 'Landmark',
+                      text: 'Given the Header is rendered, then its navigation has an accurate accessible label.',
+                    },
+                    {
+                      title: 'Current state',
+                      text: 'Given one link represents the current location, then it exposes aria-current="page" and a visible current-state treatment.',
+                    },
+                    {
+                      title: 'Responsive behavior',
+                      text: 'Given the viewport becomes narrow, then the same destinations remain available through the mobile navigation.',
+                    },
+                  ],
+                },
+                verification: {
+                  sections: [
+                    {
+                      title: 'Functional',
+                      items: [
+                        'Render the Header with direct navigation links.',
+                        'Confirm the supplied logo and every navigation destination are present.',
+                      ],
+                    },
+                    {
+                      title: 'Keyboard',
+                      items: [
+                        'Tab through the logo and links in visual order.',
+                        'Confirm focus remains visible and the current link is understandable without relying on color alone.',
+                      ],
+                    },
+                    {
+                      title: 'Responsive and accessibility',
+                      items: [
+                        'Check the mobile trigger below the configured breakpoint.',
+                        'Confirm the navigation landmark has the supplied accessible label and no duplicate IDs are introduced.',
+                      ],
+                    },
+                  ],
+                },
+              }}
             >
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
@@ -258,18 +318,91 @@ function ComponentsHeaderPage() {
 
             <ExampleVariation
               title="Global header with mobile sections"
-              description="A Header can provide global navigation while a Sidebar or section navigation remains the primary navigation for the application area."
-              explanation="Use navigationLabel to name the Header landmark accurately, then pass additional labelled mobileSections when navigation that lives in a Sidebar or another desktop region needs a mobile home. The Header does not need to know where those sections came from."
-              doItems={[
-                'Label the Header navigation according to its role, such as Global navigation.',
-                'Keep application-area primary navigation in the Sidebar when that is the clearest desktop structure.',
-                'Provide generic labelled mobile sections so the mobile menu preserves the navigation hierarchy.',
-              ]}
-              dontItems={[
-                'Do not label every navigation landmark Primary navigation when the regions have different roles.',
-                'Do not make the reusable Header read Sidebar or LayoutProvider context directly.',
-                'Do not flatten global, primary, and page navigation into one unlabeled mobile list.',
-              ]}
+              summary="A Header can provide global navigation while a Sidebar or section navigation remains the primary navigation for the application area."
+              tryIt="Use the keyboard to open the mobile navigation, then inspect the labelled Global navigation, Primary navigation, and On this page sections."
+              supplemental={{
+                guidance: {
+                  explanation:
+                    'Use navigationLabel to name the Header landmark accurately, then pass additional labelled mobileSections when navigation that lives in a Sidebar or another desktop region needs a mobile home. The Header does not need to know where those sections came from.',
+                  doItems: [
+                    'Label the Header navigation according to its role, such as Global navigation.',
+                    'Keep application-area primary navigation in the Sidebar when that is the clearest desktop structure.',
+                    'Provide generic labelled mobile sections so the mobile menu preserves the navigation hierarchy.',
+                  ],
+                  dontItems: [
+                    'Do not label every navigation landmark Primary navigation when the regions have different roles.',
+                    'Do not make the reusable Header read Sidebar or LayoutProvider context directly.',
+                    'Do not flatten global, primary, and page navigation into one unlabeled mobile list.',
+                  ],
+                },
+                code: {
+                  language: 'tsx',
+                  source: `<Header
+  logo={{ href: '/', label: 'Application Delivery Kit' }}
+  navigationLabel="Global navigation"
+  nav={[
+    { label: 'Examples', href: '/examples/layouts' },
+    { label: 'Help', href: '/help' },
+  ]}
+  mobileSections={[
+    {
+      label: 'Primary navigation',
+      items: [
+        { label: 'Dashboard', href: '/dashboard' },
+        { label: 'Projects', href: '/projects' },
+      ],
+    },
+    {
+      label: 'On this page',
+      items: [{ label: 'Overview', href: '#overview' }],
+    },
+  ]}
+/>`,
+                },
+                requirements: {
+                  userStory:
+                    'As a user of an application with Sidebar navigation, I want the mobile menu to preserve the difference between global, primary, and page navigation so that I can understand where each link takes me.',
+                  acceptanceCriteria: [
+                    {
+                      title: 'Roles',
+                      text: 'Given multiple navigation regions exist, then each region has a label that describes its role.',
+                    },
+                    {
+                      title: 'Mobile sections',
+                      text: 'Given the viewport is below the mobile breakpoint, then global, primary, and page navigation remain available as labelled sections.',
+                    },
+                    {
+                      title: 'Context boundary',
+                      text: 'Given the Header is reused elsewhere, then it accepts generic sections without reading Sidebar or LayoutProvider context.',
+                    },
+                  ],
+                },
+                verification: {
+                  sections: [
+                    {
+                      title: 'Functional',
+                      items: [
+                        'Open the mobile navigation and confirm all three labelled sections are present.',
+                        'Confirm each section contains only the links supplied for that section.',
+                      ],
+                    },
+                    {
+                      title: 'Keyboard',
+                      items: [
+                        'Open the menu with the keyboard.',
+                        'Use Escape to close it and confirm focus returns to the menu trigger.',
+                      ],
+                    },
+                    {
+                      title: 'Accessibility',
+                      items: [
+                        'Inspect the navigation landmarks and confirm their names distinguish Global navigation, Primary navigation, and On this page.',
+                        'Check that section relationships use unique IDs.',
+                      ],
+                    },
+                  ],
+                },
+              }}
             >
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
@@ -296,18 +429,84 @@ function ComponentsHeaderPage() {
 
             <ExampleVariation
               title="With dropdown"
-              description="A dropdown groups related destinations under a clear parent label while keeping the header compact."
-              explanation="A dropdown is appropriate when a parent category has several closely related destinations and showing every link inline would make the header difficult to scan. The parent label should communicate the category, and the open menu must be fully keyboard-operable in the production implementation."
-              doItems={[
-                'Use a meaningful category label, such as Services, that describes the destinations inside.',
-                'Keep the menu short and group only destinations that share a clear relationship.',
-                'Use specific link text inside the menu and preserve visible focus, Escape dismissal, and focus restoration.',
-              ]}
-              dontItems={[
-                'Do not hide a single high-priority destination inside a dropdown.',
-                'Do not use a dropdown as a substitute for unclear information architecture or a long sitemap.',
-                'Do not use ambiguous labels such as More when the available destinations can be named directly.',
-              ]}
+              summary="A dropdown groups related destinations under a clear parent label while keeping the Header compact."
+              tryIt="Open the Components menu with pointer and keyboard input, move through its items, then dismiss it with Escape."
+              supplemental={{
+                guidance: {
+                  explanation:
+                    'A dropdown is appropriate when a parent category has several closely related destinations and showing every link inline would make the Header difficult to scan. The parent label should communicate the category, and the open menu must be fully keyboard-operable.',
+                  doItems: [
+                    'Use a meaningful category label, such as Components, that describes the destinations inside.',
+                    'Keep the menu short and group only destinations that share a clear relationship.',
+                    'Use specific link text inside the menu and preserve visible focus, Escape dismissal, and focus restoration.',
+                  ],
+                  dontItems: [
+                    'Do not hide a single high-priority destination inside a dropdown.',
+                    'Do not use a dropdown as a substitute for unclear information architecture or a long sitemap.',
+                    'Do not use ambiguous labels such as More when the available destinations can be named directly.',
+                  ],
+                },
+                code: {
+                  language: 'tsx',
+                  source: `<Header
+  logo={{ href: '/', label: 'Application Delivery Kit' }}
+  nav={[
+    { label: 'Examples', href: '/examples/layouts' },
+    {
+      label: 'Components',
+      children: [
+        { label: 'Forms', href: '/components/forms' },
+        { label: 'User interface', href: '/components/user-interface' },
+        { label: 'Interaction', href: '/components/interaction' },
+      ],
+    },
+  ]}
+/>`,
+                },
+                requirements: {
+                  userStory:
+                    'As an application user, I want related destinations grouped under a meaningful menu label so that I can find a category of pages without scanning an overcrowded Header.',
+                  acceptanceCriteria: [
+                    {
+                      title: 'Trigger',
+                      text: 'Given the grouped navigation is rendered, then the parent is an accessible menu trigger with an accurate name and expanded state.',
+                    },
+                    {
+                      title: 'Menu items',
+                      text: 'Given the menu is open, then each child destination is keyboard-operable and has specific visible link text.',
+                    },
+                    {
+                      title: 'Dismissal',
+                      text: 'Given the menu is open, when the user presses Escape or dismisses it, then the menu closes and focus returns appropriately.',
+                    },
+                  ],
+                },
+                verification: {
+                  sections: [
+                    {
+                      title: 'Functional',
+                      items: [
+                        'Open the Components menu and confirm all child links are present.',
+                        'Activate a child link and confirm it navigates to the expected destination.',
+                      ],
+                    },
+                    {
+                      title: 'Keyboard',
+                      items: [
+                        'Reach and open the menu trigger with the keyboard.',
+                        'Move through menu items, press Escape, and confirm focus restoration.',
+                      ],
+                    },
+                    {
+                      title: 'Accessibility',
+                      items: [
+                        'Confirm the trigger exposes expanded/collapsed state.',
+                        'Confirm the menu and its items have meaningful accessible names.',
+                      ],
+                    },
+                  ],
+                },
+              }}
             >
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
@@ -327,18 +526,85 @@ function ComponentsHeaderPage() {
 
             <ExampleVariation
               title="With icons"
-              description="Icons can reinforce familiar navigation labels while the text remains the primary cue."
-              explanation="Use icons when they help people recognize a familiar destination or distinguish related navigation choices. Keep the visible label because icons alone are ambiguous, and use the same icon consistently wherever the destination appears."
-              doItems={[
-                'Pair each icon with a concise visible label and keep the icon secondary to the text.',
-                'Use familiar, consistent icons such as layout or component symbols when they add recognition value.',
-                'Keep icons decorative to assistive technology when the adjacent label already names the destination.',
-              ]}
-              dontItems={[
-                'Do not replace the navigation label with an icon alone.',
-                'Do not mix unrelated icon styles or use icons that require users to guess their meaning.',
-                'Do not add icons only for decoration when they make the navigation row harder to scan.',
-              ]}
+              summary="Icons can reinforce familiar navigation labels while visible text remains the primary cue."
+              tryIt="Move through the icon-supported links and dropdown trigger with the keyboard, confirming that the visible labels still provide the names."
+              supplemental={{
+                guidance: {
+                  explanation:
+                    'Use icons when they help people recognize a familiar destination or distinguish related navigation choices. Keep the visible label because icons alone are ambiguous, and use the same icon consistently wherever the destination appears.',
+                  doItems: [
+                    'Pair each icon with a concise visible label and keep the icon secondary to the text.',
+                    'Use familiar, consistent icons such as layout or component symbols when they add recognition value.',
+                    'Keep icons decorative to assistive technology when the adjacent label already names the destination.',
+                  ],
+                  dontItems: [
+                    'Do not replace the navigation label with an icon alone.',
+                    'Do not mix unrelated icon styles or use icons that require users to guess their meaning.',
+                    'Do not add icons only for decoration when they make the navigation row harder to scan.',
+                  ],
+                },
+                code: {
+                  language: 'tsx',
+                  source: `<Header
+  logo={{ href: '/', label: 'Application Delivery Kit' }}
+  nav={[
+    { label: 'Examples', href: '/examples/layouts', icon: LayoutTemplate },
+    {
+      label: 'Components',
+      icon: Blocks,
+      children: [
+        { label: 'Forms', href: '/components/forms' },
+        { label: 'User interface', href: '/components/user-interface' },
+        { label: 'Interaction', href: '/components/interaction' },
+      ],
+    },
+  ]}
+/>`,
+                },
+                requirements: {
+                  userStory:
+                    'As a user, I want familiar icons to reinforce navigation labels so that I can recognize destinations quickly without having to interpret icons by themselves.',
+                  acceptanceCriteria: [
+                    {
+                      title: 'Names',
+                      text: 'Given an icon appears beside a navigation label, then the visible label remains the accessible name.',
+                    },
+                    {
+                      title: 'Decoration',
+                      text: 'Given the text already names the destination, then the icon is hidden from assistive technology.',
+                    },
+                    {
+                      title: 'Consistency',
+                      text: 'Given the same destination appears in multiple contexts, then its icon treatment is consistent. ',
+                    },
+                  ],
+                },
+                verification: {
+                  sections: [
+                    {
+                      title: 'Functional',
+                      items: [
+                        'Confirm icon-supported links and grouped navigation behave the same as their text-only equivalents.',
+                        'Confirm icons do not change the destination or link target.',
+                      ],
+                    },
+                    {
+                      title: 'Keyboard',
+                      items: [
+                        'Navigate through every icon-supported item with the keyboard.',
+                        'Confirm focus remains visible around the complete interactive target.',
+                      ],
+                    },
+                    {
+                      title: 'Accessibility',
+                      items: [
+                        'Inspect the accessibility tree and confirm decorative icons are hidden.',
+                        'Confirm each link and trigger has a clear accessible name from its visible text.',
+                      ],
+                    },
+                  ],
+                },
+              }}
             >
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
