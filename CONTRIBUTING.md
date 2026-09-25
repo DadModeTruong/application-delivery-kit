@@ -25,7 +25,7 @@ This is a focused React reference application for exploring clear, accessible, r
 - Component guide pages go in `src/pages/components/`.
 - Layouts decision-guide pages go in `src/pages/examples/`; focused interactive layout examples remain in `src/pages/layouts/`.
 - Example-only compositions go in `src/pages/examples/`.
-- The route table belongs in `src/routes/route-manifest.ts`; shared site navigation belongs in `src/config/site-navigation.tsx`; component-area navigation belongs in `src/config/component-navigation.tsx`; Layouts-area navigation belongs in `src/config/layout-navigation.tsx`.
+- The route table belongs in `src/routes/route-manifest.ts`; each route also owns its browser `title` metadata. Shared site navigation belongs in `src/config/site-navigation.tsx`; component-area navigation belongs in `src/config/component-navigation.tsx`; Layouts-area navigation belongs in `src/config/layout-navigation.tsx`.
 - Small shared utilities go in `src/lib/`.
 
 See the relevant [directory README](./src/components/README.md) before adding or moving files.
@@ -42,6 +42,7 @@ Before considering a component or page complete:
 - [ ] The page reflows at 320px without horizontal overflow.
 - [ ] There are no console warnings.
 - [ ] Exported components have useful JSDoc examples where the source pattern calls for them.
+- [ ] New or renamed routes have a matching hierarchical browser title in the route manifest.
 
 ## Comments
 
@@ -75,7 +76,11 @@ feat: add mobile navigation guide page
 ## Verification before committing
 
 ```bash
+pnpm format:check
 pnpm lint
+pnpm typecheck
+pnpm check:routes
+pnpm test
 pnpm build
 git diff --check
 ```

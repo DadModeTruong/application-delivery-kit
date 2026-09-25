@@ -47,16 +47,20 @@ Use real production primitives in the examples. Keep the documentation shell aro
 
 ## 4. Add the route
 
-Import the page and add one entry to `src/routes/route-manifest.ts`:
+Import the page and add one entry, including its hierarchical browser title, to `src/routes/route-manifest.ts`:
 
 ```tsx
 import { ComponentsNotificationBannerPage } from '@/pages/components/notification-banner'
 
 // inside routes
-{ path: '/components/notification-banner', component: ComponentsNotificationBannerPage },
+{
+  path: '/components/notification-banner',
+  component: ComponentsNotificationBannerPage,
+  title: 'Application Delivery Kit | Components | User Interface | Notification Banner',
+},
 ```
 
-The route manifest is the only place that maps a URL to a page component. Do not add route definitions to individual pages or navigation files.
+The route manifest is the only place that maps a URL to a page component and its browser title. Do not add route definitions to individual pages or navigation files. Keep the title hierarchy consistent with the visible area and guide navigation.
 
 ## 5. Add the right navigation
 
@@ -102,7 +106,7 @@ Then open the new route and check it at a wide viewport and a narrow viewport. F
 
 A page is ready when:
 
-- its file name, export name, route, and navigation placement agree
+- its file name, export name, route, browser title, and navigation placement agree
 - its examples use the real production primitives
 - its content follows the guide structure
 - its accessibility and responsive behavior are explained
