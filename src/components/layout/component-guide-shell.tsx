@@ -8,7 +8,8 @@
 
 import type { ReactNode } from 'react'
 import { Footer } from '@/components/layout/footer'
-import { Header, SkipLink } from '@/components/layout/header'
+import { SkipLink } from '@/components/layout/header'
+import { ApplicationHeader } from '@/components/layout/application-header'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { Main } from '@/components/layout/main'
 import { PageBody } from '@/components/layout/page-body'
@@ -50,7 +51,10 @@ export function ComponentGuideShell({
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={shellPrimaryNav} />
+        <ApplicationHeader
+          logo={{ href: '/', label: 'Application Delivery Kit' }}
+          nav={shellPrimaryNav}
+        />
         <TabNavigation aria-label="Component areas" activeHref={tabActiveHref} />
         <PageBody>
           <Sidebar aria-label={sidebarAriaLabel} />

@@ -1,87 +1,60 @@
 /**
- * Header — sticky site header with logo, primary nav, and actions.
+ * Header — reusable application-shell header with optional navigation.
  *
- * Preset API: pass structured props, get an opinionated header
- * that handles responsive layout, accessibility landmarks, and
- * scroll-triggered styling automatically.
- *
- * Layout: logo pinned to the left, nav + actions grouped on the
- * right. `justify-between` separates the two groups.
- *
- * Below `mobileBreakpoint`, the nav collapses into a hamburger
- * button that opens a right-side drawer (see mobile-nav.tsx).
- * At or above the breakpoint, nav links render inline.
- *
- * Nav items that have `children` (NavParent) render as dropdown
- * menus on desktop via React Aria's MenuTrigger; on mobile they
- * appear as labeled groups with indented children in the drawer.
- *
- * When a LayoutProvider is above Header in the tree with
- * `tabNavigation` or `sidebarNav` config, those items are rendered
- * as extra sections inside the mobile drawer — so consumers get
- * a single unified menu on mobile without TabNavigation / Sidebar
- * needing their own drawers. The drawer section headings come
- * from `tabNavigationLabel` / `sidebarNavLabel` on the provider.
- *
- * Renders semantic <header> + <nav aria-label="Primary"> for
- * screen-reader landmark navigation.
+ * The component owns header layout, responsive presentation, and navigation
+ * interaction. Consumers own branding, route state, navigation meaning, and
+ * router integration. Header navigation is intentionally neutral: it may be
+ * global, primary, or section-level depending on the consuming application.
  */
 
 import * as React from 'react'
-import { ChevronDownIcon } from 'lucide-react'
-import { Pressable } from 'react-aria-components'
 import { cn } from 'cn'
 import { Container } from '@/components/layout/container'
-import { useLayout } from '@/components/layout/layout-provider'
-import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { MobileNav } from './mobile-nav'
-import { isNavParent, type NavItem, type NavLeaf, type NavParent } from '../types'
+import { DesktopNavigation } from './desktop-navigation'
+import { MobileNavigation } from './mobile-navigation'
+import type { MobileNavigationSection, NavItem } from '../types'
 
-// ---------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------
+type HeaderLogoConfig = {
+  href: string
+  label: string
+}
 
 type HeaderProps = {
-  /** Brand mark shown on the left. Usually a link home. */
-  logo: {
-    href: string
-    label: string
-  }
-  /**
-   * Primary nav entries. Accepts a mix of NavLeaf (plain links)
-   * and NavParent (dropdown triggers with children). Left-to-right
-   * in render order, right-aligned adjacent to the actions.
-   */
-  nav: NavItem[]
-  /** Right-side content: theme toggle, CTA button, avatar, etc. */
+  /** Custom logo/brand content, or the simple href + label form. */
+  logo: React.ReactNode | HeaderLogoConfig
+  /** Optional Header navigation. It is not assumed to be the primary nav. */
+  nav?: NavItem[]
+  /** Accessible label for the Header navigation landmark. */
+  navigationLabel?: string
+  /** Right-side application-level actions. */
   actions?: React.ReactNode
-  /**
-   * Viewport width at which inline nav appears. Below this,
-   * the nav collapses into a hamburger + drawer.
-   * Default: "md" (768px). Use "lg" (1024px) if you have 7+
-   * nav items or unusually long labels.
-   */
+  /** Additional labelled groups shown inside the mobile drawer. */
+  mobileSections?: MobileNavigationSection[]
+  /** Viewport width at which inline navigation appears. */
   mobileBreakpoint?: 'md' | 'lg'
-  /**
-   * Layout width behavior.
-   * - "contained" (default): Container 2xl (~1536px max-width).
-   * - "full": edge-to-edge with horizontal padding only.
-   */
+  /** Layout width behavior. */
   size?: 'contained' | 'full'
 }
 
-// ---------------------------------------------------------------
-// Scroll detection
-// ---------------------------------------------------------------
+function isHeaderLogoConfig(value: React.ReactNode | HeaderLogoConfig): value is HeaderLogoConfig {
+  return typeof value === 'object' && value !== null && 'href' in value && 'label' in value
+}
 
-/**
- * Returns true once the page has scrolled past `threshold` pixels.
- * Used to toggle the blur + border-bottom styling on the header.
- *
- * Kept as a hook (not inline) so the effect logic is testable
- * and reusable — you may want the same signal for a back-to-top
- * button or a shrinking search bar later.
- */
+function HeaderLogo({ logo }: { logo: HeaderProps['logo'] }) {
+  if (!isHeaderLogoConfig(logo)) {
+    return <>{logo}</>
+  }
+
+  return (
+    <a
+      href={logo.href}
+      className="rounded-sm font-heading text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+    >
+      {logo.label}
+    </a>
+  )
+}
+
 function useScrolledPast(threshold: number): boolean {
   const [scrolled, setScrolled] = React.useState(false)
 
@@ -89,8 +62,7 @@ function useScrolledPast(threshold: number): boolean {
     function onScroll() {
       setScrolled(window.scrollY > threshold)
     }
-    // Check on mount in case the page loads mid-scroll (e.g.,
-    // navigation back to a scroll-restored position).
+
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -99,140 +71,21 @@ function useScrolledPast(threshold: number): boolean {
   return scrolled
 }
 
-// ---------------------------------------------------------------
-// Inline nav item renderers
-// ---------------------------------------------------------------
-
-/**
- * Renders a NavLeaf as a plain anchor in the inline (desktop) nav.
- * Shared trigger class list keeps parent triggers visually identical
- * to leaf links (so the row reads as one nav, not two styles).
- */
-function InlineLeaf({ item }: { item: NavLeaf }) {
-  return (
-    <a
-      href={item.href}
-      {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      className={inlineTriggerClass}
-    >
-      {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
-      {item.label}
-      {item.external && <span className="sr-only"> (opens in new window)</span>}
-    </a>
-  )
-}
-
-/**
- * Renders a NavParent as a click-to-open dropdown trigger with a
- * chevron affordance. Uses React Aria's MenuTrigger (via shadcn's
- * DropdownMenu primitive) for full a11y — keyboard nav, focus
- * trap, escape-to-close, and dismiss-on-outside-click.
- *
- * The button is wrapped in <Pressable> because React Aria's
- * MenuTrigger only wires trigger behavior onto RAC Button or
- * Pressable children; a plain <button> renders visually but
- * silently no-ops as a trigger.
- */
-function InlineParent({ item }: { item: NavParent }) {
-  return (
-    <DropdownMenuTrigger>
-      <Pressable>
-        <button type="button" className={inlineTriggerClass}>
-          {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
-          {item.label}
-          <ChevronDownIcon className="size-4 shrink-0" aria-hidden="true" />
-        </button>
-      </Pressable>
-      <DropdownMenu>
-        {item.children.map((child) => (
-          <DropdownMenuItem
-            key={child.href}
-            href={child.href}
-            textValue={child.label}
-            {...(child.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            className="w-full items-center gap-2"
-          >
-            {child.icon && <child.icon className="size-4 shrink-0" aria-hidden="true" />}
-            {child.label}
-            {child.external && <span className="sr-only"> (opens in new window)</span>}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenu>
-    </DropdownMenuTrigger>
-  )
-}
-
-/**
- * Shared className for inline nav triggers (both leaf anchors and
- * parent buttons). Extracted so both variants stay visually
- * identical — critical because the nav should read as one row, not
- * two competing styles.
- */
-const inlineTriggerClass =
-  'inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
-
-// ---------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------
-
-/**
- * Sticky top header with logo (left) and nav + actions (right).
- *
- * @example
- * <Header
- *   logo={{ href: "/", label: "Application Delivery Kit" }}
- *   nav={[
- *     { href: "/docs", label: "Docs" },
- *     { href: "/components/user-interface", label: "Components" },
- *   ]}
- *   actions={<LinkButton href="/github" variant="outline">GitHub</LinkButton>}
- * />
- *
- * @example
- * // Full-width header for dashboard layouts
- * <Header size="full" logo={...} nav={...} />
- *
- * @example
- * // Nav items with icons (Lucide components)
- * import { Home, Book, Info } from "lucide-react"
- * <Header
- *   nav={[
- *     { href: "/", label: "Home", icon: Home },
- *     { href: "/docs", label: "Docs", icon: Book },
- *     { href: "/about", label: "About", icon: Info },
- *   ]}
- * />
- *
- * @example
- * // Nav with a dropdown parent (NavParent)
- * <Header
- *   nav={[
- *     { href: "/", label: "Home" },
- *     {
- *       label: "Layouts",
- *       children: [
- *         { href: "/layouts/secondary", label: "Secondary" },
- *         { href: "/layouts/sidebar",   label: "Sidebar" },
- *       ],
- *     },
- *   ]}
- * />
- */
-function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained' }: HeaderProps) {
+function Header({
+  logo,
+  nav = [],
+  navigationLabel = 'Global navigation',
+  actions,
+  mobileSections = [],
+  mobileBreakpoint = 'md',
+  size = 'contained',
+}: HeaderProps) {
   const scrolled = useScrolledPast(10)
-
-  // Pull tabNavigation / sidebarNav (plus their drawer heading
-  // labels) from LayoutProvider so MobileNav can render them
-  // as extra drawer sections. Empty object default means no
-  // provider = no extra sections.
-  const { tabNavigation, tabNavigationLabel, sidebarNav, sidebarNavLabel } = useLayout()
-
-  // Tailwind can't consume dynamic class strings, so we map the
-  // breakpoint prop to a static class string. `hidden md:flex`
-  // shows the inline nav at md+; `md:hidden` hides the hamburger
-  // at md+. Swap md↔lg based on the prop.
-  const inlineNavVisibility = mobileBreakpoint === 'md' ? 'hidden md:flex' : 'hidden lg:flex'
-  const mobileNavVisibility = mobileBreakpoint === 'md' ? 'md:hidden' : 'lg:hidden'
+  const isMd = mobileBreakpoint === 'md'
+  const desktopVisibility = isMd ? 'hidden md:flex' : 'hidden lg:flex'
+  const mobileVisibility = isMd ? 'md:hidden' : 'lg:hidden'
+  const headerHeight = isMd ? 'h-14 md:h-16' : 'h-14 lg:h-16'
+  const hasMobileNavigation = nav.length > 0 || mobileSections.length > 0
 
   return (
     <header
@@ -240,70 +93,35 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
       data-scrolled={scrolled}
       data-size={size}
       className={cn(
-        // Sticky + full width. z-40 sits below skip-link (z-100)
-        // but above page content.
         'sticky top-0 z-40 w-full',
-        // Responsive height — 56px mobile, 64px desktop.
-        'h-14 md:h-16',
-        // Base background, transparent at top of page.
+        headerHeight,
         'bg-background/0 transition-[background-color,border-color,backdrop-filter] duration-150',
-        // Scrolled state — background blur + subtle border.
-        // We target our own data attribute for clarity.
-        'data-[scrolled=true]:bg-background/80 data-[scrolled=true]:border-b data-[scrolled=true]:border-border data-[scrolled=true]:backdrop-blur-sm',
+        'data-[scrolled=true]:border-b data-[scrolled=true]:border-border data-[scrolled=true]:bg-background/80 data-[scrolled=true]:backdrop-blur-sm',
       )}
     >
       <Container
         size={size === 'full' ? 'full' : '2xl'}
-        // Two top-level flex children (logo left, right-group right).
-        // justify-between pins them to opposite edges.
         className="flex h-full items-center justify-between gap-4"
       >
-        {/* Logo — left. Plain <a> for now; consumers can wrap
-            with their router link if needed via a future prop. */}
-        <a
-          href={logo.href}
-          className="font-heading text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-        >
-          {logo.label}
-        </a>
+        <HeaderLogo logo={logo} />
 
-        {/* Right group — inline nav + actions + mobile hamburger.
-            Grouped so justify-between pushes them together on the
-            right edge instead of centering the nav. */}
-        <div className="flex items-center gap-4">
-          {/* Inline nav — visible at/above breakpoint. Renders
-              NavLeaf as an anchor and NavParent as a dropdown; both
-              share `inlineTriggerClass` so the row looks uniform.
-              Key strategy: leaves use item.href (unique); parents
-              use item.label (also unique in practice — no two nav
-              entries should share a label). Index fallback handles
-              the theoretical dup case. */}
-          <nav aria-label="Primary" className={cn('items-center gap-1', inlineNavVisibility)}>
-            {nav.map((item, i) =>
-              isNavParent(item) ? (
-                <InlineParent key={`parent-${item.label}-${i}`} item={item} />
-              ) : (
-                <InlineLeaf key={item.href} item={item} />
-              ),
-            )}
-          </nav>
-
-          {/* Actions + mobile hamburger.
-              Actions are always visible; hamburger is breakpoint-gated.
-              tabNavigation/sidebarNav (+ their labels) come from
-              LayoutProvider context and get rendered as extra drawer
-              sections on mobile. */}
-          <div className="flex items-center gap-2">
-            {actions}
-            <div className={mobileNavVisibility}>
-              <MobileNav
-                nav={nav}
-                tabNavigation={tabNavigation}
-                tabNavigationLabel={tabNavigationLabel}
-                sidebarNav={sidebarNav}
-                sidebarNavLabel={sidebarNavLabel}
-              />
+        <div className="flex min-w-0 items-center gap-4">
+          {nav.length > 0 && (
+            <div className={cn(desktopVisibility, 'min-w-0')}>
+              <DesktopNavigation items={nav} label={navigationLabel} />
             </div>
+          )}
+          <div className="flex shrink-0 items-center gap-2">
+            {actions}
+            {hasMobileNavigation && (
+              <div className={mobileVisibility}>
+                <MobileNavigation
+                  items={nav}
+                  sections={mobileSections}
+                  navigationLabel={navigationLabel}
+                />
+              </div>
+            )}
           </div>
         </div>
       </Container>

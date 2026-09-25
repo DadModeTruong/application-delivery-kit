@@ -9,7 +9,7 @@ conventions below. Reference implementations:
 - `tab-navigation.tsx` — preset with LayoutProvider integration and
   Nova pill styling on real anchor navigation
 - `sidebar/` — multi-file component with barrel; Nova visual language
-- `header/` — multi-file component with barrel (includes MobileNav, SkipLink)
+- `header/` — multi-file component with barrel (includes MobileNavigation, SkipLink)
 - `layout-provider.tsx` — shared config context
 - `split-pane.tsx` — responsive main + secondary content layout
 - `columns.tsx` — responsive equal-width grid; use
@@ -296,7 +296,7 @@ A discriminated union covers three shapes:
 - **`NavLeaf`** — real link: `{ href, label, external?, icon? }`. Every
   actual navigation target.
 - **`NavParent`** — dropdown trigger: `{ label, icon?, children: NavLeaf[] }`.
-  One level deep, no href, only meaningful in Header's primary nav.
+  One level deep, no href, only meaningful in Header navigation.
 - **`NavGroup`** — labeled group of leaves: `{ label, items: NavLeaf[] }`.
   Only used by Sidebar for section headings.
 
@@ -379,17 +379,19 @@ LayoutProvider integration preserved.
 
 ## Mobile drawer hierarchy
 
-Header's `MobileNav` stacks up to three sections inside the drawer,
-each its own `<nav>` landmark:
+The reusable `MobileNavigation` component renders labelled sections
+inside the drawer, each with its own `<nav>` landmark:
 
-1. **Primary** — always present. Renders `Header.nav`. `NavParent`
-   items appear as small-caps labels with indented children (no
-   dropdown on touch).
-2. **{tabNavigationLabel}** — rendered when `LayoutContext.tabNavigation`
-   is set. Section heading uses the label; falls back to "Section".
-3. **{sidebarNavLabel}** — rendered when `LayoutContext.sidebarNav`
-   is set. Groups render as small-caps sub-labels with indented items.
-   Falls back to "Pages".
+1. **Header navigation** — renders the Header navigation items. Its
+   label is configurable; it may represent global, primary, or
+   section-level navigation.
+2. **Additional sections** — optional `MobileNavigationSection` values
+   supplied by the consuming shell. These can represent primary,
+   section, sidebar, or page navigation without coupling the component
+   to a particular provider.
+
+`ApplicationHeader` adapts `LayoutProvider` values into these generic
+sections for the Application Delivery Kit shell.
 
 Visual hierarchy uses small-caps at every level, sized to communicate
 depth:
@@ -418,15 +420,16 @@ Layout-provider follows the same "accepted warning" pattern for its
   `tab-navigation.tsx`, `page-body.tsx`, `page-shell.tsx`,
   `layout-provider.tsx`) — one component, one file. Use this by default.
 - **Folder** (`header/`, `sidebar/`) — the component has ~3+ concerns
-  worth splitting (Header has SkipLink + MobileNav + main composition;
+  worth splitting (Header has SkipLink + MobileNavigation + main composition;
   Sidebar has room to grow). Include a barrel `index.ts` with the
   public API and any re-exports of shared types.
 
 ## Shared types
 
 Types used by two or more layout components live in `types.ts`.
-Currently: `NavLeaf`, `NavParent`, `NavItem` (union), `NavGroup`, plus
-the `isNavParent` and `isNavGroup` type guards. When a type graduates
+Currently: `NavLeaf`, `NavParent`, `NavItem` (union), `NavGroup`,
+`MobileNavigationSection`, plus the `isNavParent` and `isNavGroup`
+type guards. When a type graduates
 from one-consumer to two-consumers, move it and update the previous
 location to re-export from `types.ts` for backward compatibility.
 
@@ -436,7 +439,8 @@ Non-negotiable for anything in this folder:
 
 - Semantic HTML first (`<header>`, `<nav>`, `<main>`, `<footer>`,
   `<aside>`)
-- ARIA labels on landmarks (`<nav aria-label="Primary">`)
+- Configurable accessible labels on navigation landmarks
+  (`<nav aria-label="Global navigation">`)
 - Screen-reader hints for icon-only interactive elements
 - `focus-visible:` (not `focus:`) for focus rings
 - Reflow at 320px viewport width — never break

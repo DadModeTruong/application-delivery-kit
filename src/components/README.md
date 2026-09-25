@@ -36,7 +36,7 @@ Types used by two or more layout components live in
 [`layout/types.ts`](./layout/types.ts). Current shared types:
 
 - `NavLeaf` — consumed by Header, Footer, TabNavigation, Sidebar,
-  MobileNav, and inside `NavParent.children`
+  MobileNavigation, and inside `NavParent.children`
 - `NavParent` — consumed by Header (via `NavItem` union)
 - `NavItem` — union of `NavLeaf | NavParent`, consumed by Header
 - `NavGroup` — consumed by Sidebar for section headings

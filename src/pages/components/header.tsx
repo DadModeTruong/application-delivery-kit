@@ -26,9 +26,10 @@ function ComponentsHeaderPage() {
             Header navigation
           </h1>
           <p className="text-xl leading-8 text-muted-foreground">
-            Use Header for the destinations people need across the whole application. It provides
-            the top-level landmark, logo, primary links, optional dropdowns, actions, and mobile
-            menu trigger.
+            Use Header for global or top-level destinations that belong in the application shell. It
+            provides the top-level landmark, logo, optional navigation, actions, and mobile menu
+            trigger. The Header navigation does not have to be the application's primary navigation;
+            a Sidebar can own that role instead.
           </p>
         </section>
         <section className="space-y-5" aria-labelledby="navigation-header-what-heading">
@@ -36,16 +37,19 @@ function ComponentsHeaderPage() {
             What is it?
           </h2>
           <p className="leading-7 text-muted-foreground">
-            Header is the broadest navigation layer. Pass ordinary link data through{' '}
-            <code>nav</code>; the application or router still owns what happens at each path.
+            Header is the application shell's top navigation layer. Pass ordinary link data through{' '}
+            <code>nav</code>, set <code>navigationLabel</code> to describe that landmark, and let
+            the application provide current-link state. The Header does not inspect the router or
+            decide whether its links are global, primary, or section-level.
           </p>
           <div className="space-y-4">
             <div className="overflow-hidden rounded-xl border">
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
+                navigationLabel="Global navigation"
                 nav={[
                   { label: 'Examples', href: '/examples/layouts' },
-                  { label: 'Components', href: '/components/user-interface' },
+                  { label: 'Components', href: '/components/user-interface', current: true },
                 ]}
               />
             </div>
@@ -68,9 +72,18 @@ function ComponentsHeaderPage() {
               When to use it
             </h2>
             <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-              <li>For destinations that remain useful across the application.</li>
+              <li>
+                For global or top-level destinations that remain useful across the application.
+              </li>
+              <li>
+                When the Header should provide global navigation while a Sidebar owns primary
+                navigation.
+              </li>
               <li>For one-level groups of related top-level links.</li>
-              <li>For a logo, primary navigation, and a small set of actions.</li>
+              <li>
+                For a logo, optional Header navigation, and a small set of application-level
+                actions.
+              </li>
             </ul>
           </div>
           <div className="space-y-5" aria-labelledby="navigation-header-not-heading">
@@ -107,7 +120,8 @@ function ComponentsHeaderPage() {
 
           <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
             <li>
-              Keep primary navigation to the destinations most people need across the product.
+              Keep Header navigation limited to the destinations most people need across the
+              product.
             </li>
             <li>
               Use short, specific labels that describe the destination; keep wording consistent with
@@ -138,8 +152,9 @@ function ComponentsHeaderPage() {
 
           <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
             <li>
-              Use a semantic <code>header</code> and a named <code>nav</code> landmark so assistive
-              technology users can identify the region.
+              Use a semantic <code>header</code> and a clearly labelled <code>nav</code> landmark so
+              assistive technology users can identify the Header navigation layer. The label may be
+              Global navigation or Primary navigation depending on the application shell.
             </li>
             <li>
               Keep the skip link as the first keyboard stop that moves focus to the page’s{' '}
@@ -171,16 +186,17 @@ function ComponentsHeaderPage() {
             Responsive behavior
           </h2>
           <p className="leading-7 text-muted-foreground">
-            On wider screens, the primary links sit in the Header. On narrow screens, they move into
-            the mobile menu and the menu trigger remains available, so the Header does not crowd the
-            page. The logo and the main task remain easy to find.
+            On wider screens, the Header navigation sits beside the logo and actions. On narrow
+            screens, that navigation moves into the mobile menu. The consuming shell may also
+            provide labelled mobile sections for Sidebar, section, or page navigation.
           </p>
           <p className="leading-7 text-muted-foreground">
             The mobile menu is a replacement for the desktop link row, not a second copy of it.
-            Check that opening it exposes the same destinations and that focus can enter, move
-            through, and leave the menu predictably. Preserve a comfortable touch target, prevent
-            the page behind the open menu from becoming confusing or accidentally active, and return
-            focus to the trigger when the menu closes.
+            Additional labelled sections preserve navigation hierarchy when a Sidebar or section
+            navigation also needs a mobile home. Check that opening it exposes the same destinations
+            and that focus can enter, move through, and leave the menu predictably. Preserve a
+            comfortable touch target, prevent the page behind the open menu from becoming confusing
+            or accidentally active, and return focus to the trigger when the menu closes.
           </p>
           <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
             <li>
@@ -219,14 +235,14 @@ function ComponentsHeaderPage() {
             <ExampleVariation
               title="Basic"
               description="A simple system header keeps the application name on the left and ordinary navigation links on the right."
-              explanation="Use the basic Header when the primary destinations can remain visible as individual links. The reusable component provides the shared layout, responsive behavior, focus treatment, and navigation semantics."
+              explanation="Use the basic Header when global or section destinations can remain visible as individual links. The reusable component provides the shared layout, responsive behavior, focus treatment, and navigation semantics."
               doItems={[
-                'Keep the application name or product identity on the left and primary destinations together on the right.',
+                'Keep the application name or product identity on the left and the Header navigation together on the right.',
                 'Use ordinary links when each destination should be immediately visible and directly reachable.',
                 'Let the reusable Header component provide consistent spacing, focus treatment, and responsive behavior.',
               ]}
               dontItems={[
-                'Do not hide primary destinations in a dropdown when they can remain visible in the header.',
+                'Do not hide an important Header destination in a dropdown when it can remain visible in the header.',
                 'Do not recreate Header spacing or interaction styles in each page-level example.',
                 'Do not use the global Header for actions that apply only to the current page.',
               ]}
@@ -236,6 +252,44 @@ function ComponentsHeaderPage() {
                 nav={[
                   { label: 'Examples', href: '/examples/layouts' },
                   { label: 'Components', href: '/components/user-interface' },
+                ]}
+              />
+            </ExampleVariation>
+
+            <ExampleVariation
+              title="Global header with mobile sections"
+              description="A Header can provide global navigation while a Sidebar or section navigation remains the primary navigation for the application area."
+              explanation="Use navigationLabel to name the Header landmark accurately, then pass additional labelled mobileSections when navigation that lives in a Sidebar or another desktop region needs a mobile home. The Header does not need to know where those sections came from."
+              doItems={[
+                'Label the Header navigation according to its role, such as Global navigation.',
+                'Keep application-area primary navigation in the Sidebar when that is the clearest desktop structure.',
+                'Provide generic labelled mobile sections so the mobile menu preserves the navigation hierarchy.',
+              ]}
+              dontItems={[
+                'Do not label every navigation landmark Primary navigation when the regions have different roles.',
+                'Do not make the reusable Header read Sidebar or LayoutProvider context directly.',
+                'Do not flatten global, primary, and page navigation into one unlabeled mobile list.',
+              ]}
+            >
+              <Header
+                logo={{ href: '/', label: 'Application Delivery Kit' }}
+                navigationLabel="Global navigation"
+                nav={[
+                  { label: 'Examples', href: '/examples/layouts' },
+                  { label: 'Help', href: '/help' },
+                ]}
+                mobileSections={[
+                  {
+                    label: 'Primary navigation',
+                    items: [
+                      { label: 'Dashboard', href: '/dashboard' },
+                      { label: 'Projects', href: '/projects' },
+                    ],
+                  },
+                  {
+                    label: 'On this page',
+                    items: [{ label: 'Overview', href: '#overview' }],
+                  },
                 ]}
               />
             </ExampleVariation>
