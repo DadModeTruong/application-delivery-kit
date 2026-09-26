@@ -233,31 +233,42 @@ function AcceptanceCriteriaPanel({
       )}
       <div>
         <h4 className="font-semibold text-foreground">Acceptance criteria</h4>
-        <ol className="mt-3 list-decimal space-y-5 pl-5 leading-7">
+        <ol className="mt-4 space-y-4">
           {criteria.map((criterion, index) => (
-            <li key={`${criterion.given}-${index}`} className="pl-2">
-              {criterion.id && (
-                <code className="mr-2 text-xs text-muted-foreground">{criterion.id}</code>
-              )}
-              {criterion.requirementRefs && criterion.requirementRefs.length > 0 && (
-                <p className="mb-2 text-sm text-muted-foreground">
-                  Satisfies: {criterion.requirementRefs.join(', ')}
-                </p>
-              )}
-              <strong className="text-foreground">Given</strong> {criterion.given}
-              <ol type="a" className="mt-2 list-[lower-alpha] space-y-2 pl-6">
-                <li>
-                  <strong className="text-foreground">When</strong> {criterion.when}
-                </li>
-                <li>
-                  <strong className="text-foreground">Then</strong> {criterion.then}
-                </li>
-                {criterion.and?.map((statement) => (
-                  <li key={statement}>
-                    <strong className="text-foreground">And</strong> {statement}
-                  </li>
-                ))}
-              </ol>
+            <li key={`${criterion.given}-${index}`}>
+              <article className="rounded-md border bg-background p-4 sm:p-5">
+                {(criterion.id || criterion.requirementRefs?.length) && (
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b pb-3 text-xs text-muted-foreground">
+                    {criterion.id && <code>{criterion.id}</code>}
+                    {criterion.requirementRefs && criterion.requirementRefs.length > 0 && (
+                      <span>Satisfies: {criterion.requirementRefs.join(', ')}</span>
+                    )}
+                  </div>
+                )}
+                <dl className="mt-3 space-y-3 leading-7">
+                  <div className="sm:grid sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-3">
+                    <dt className="font-semibold text-foreground">Given</dt>
+                    <dd>{criterion.given}</dd>
+                  </div>
+                  <div className="sm:grid sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-3">
+                    <dt className="font-semibold text-foreground">When</dt>
+                    <dd>{criterion.when}</dd>
+                  </div>
+                  <div className="sm:grid sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-3">
+                    <dt className="font-semibold text-foreground">Then</dt>
+                    <dd>{criterion.then}</dd>
+                  </div>
+                  {criterion.and?.map((statement) => (
+                    <div
+                      key={statement}
+                      className="sm:grid sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-3"
+                    >
+                      <dt className="font-semibold text-foreground">And</dt>
+                      <dd>{statement}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </article>
             </li>
           ))}
         </ol>
@@ -319,45 +330,50 @@ function VerificationPanel({
           key={scenario.title}
           aria-labelledby={`${idPrefix}-scenario-${scenarioIndex}-heading`}
         >
-          <h4
-            id={`${idPrefix}-scenario-${scenarioIndex}-heading`}
-            className="font-semibold text-foreground"
-          >
-            {scenario.title}
-          </h4>
-          <div className="mt-5 space-y-8">
+          <div className="border-b pb-3">
+            <h4
+              id={`${idPrefix}-scenario-${scenarioIndex}-heading`}
+              className="font-semibold text-foreground"
+            >
+              {scenario.title}
+            </h4>
+            {scenario.role && <p className="mt-1 text-sm">Primary role: {scenario.role}</p>}
+          </div>
+          <div className="mt-4 space-y-4">
             {scenario.cases.map((testCase) => (
-              <article key={testCase.title} className="space-y-4">
-                <h5 className="font-medium text-foreground">
-                  {testCase.id && (
-                    <code className="mr-2 text-xs font-normal text-muted-foreground">
-                      {testCase.id}
-                    </code>
+              <article key={testCase.title} className="rounded-md border bg-background p-4 sm:p-5">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                  <h5 className="font-medium text-foreground">
+                    {testCase.id && (
+                      <code className="mr-2 text-xs font-normal text-muted-foreground">
+                        {testCase.id}
+                      </code>
+                    )}
+                    {testCase.title}
+                  </h5>
+                  {testCase.role && (
+                    <span className="text-xs text-muted-foreground">{testCase.role}</span>
                   )}
-                  {testCase.title}
-                </h5>
-                {(scenario.role || testCase.role) && (
-                  <p className="text-sm text-muted-foreground">
-                    Primary role: {testCase.role ?? scenario.role}
-                  </p>
-                )}
+                </div>
                 {testCase.criterionRefs && testCase.criterionRefs.length > 0 && (
-                  <p className="text-sm text-muted-foreground">
+                  <p className="mt-2 text-xs text-muted-foreground">
                     Verifies: {testCase.criterionRefs.join(', ')}
                   </p>
                 )}
-                <div>
-                  <h6 className="text-sm font-medium text-foreground">Steps</h6>
-                  <ol className="mt-2 list-decimal space-y-2 pl-5">
-                    {testCase.steps.map((step) => (
-                      <li key={step}>{step}</li>
-                    ))}
-                  </ol>
+                <div className="mt-4 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.8fr)]">
+                  <div>
+                    <h6 className="text-sm font-medium text-foreground">Steps</h6>
+                    <ol className="mt-2 list-decimal space-y-2 pl-5 leading-6">
+                      {testCase.steps.map((step) => (
+                        <li key={step}>{step}</li>
+                      ))}
+                    </ol>
+                  </div>
+                  <div className="border-l-2 border-primary/40 pl-4">
+                    <h6 className="text-sm font-medium text-foreground">Expected result</h6>
+                    <p className="mt-2 leading-7">{testCase.expected}</p>
+                  </div>
                 </div>
-                <p className="border-l-2 border-primary/40 pl-4 leading-7">
-                  <strong className="font-medium text-foreground">Expected result</strong>:
-                  {testCase.expected}
-                </p>
               </article>
             ))}
           </div>
