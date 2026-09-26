@@ -93,10 +93,9 @@ describe('ExampleVariation supplemental content', () => {
     expect(screen.getByText('Given')).toBeTruthy()
     expect(screen.getByText('When')).toBeTruthy()
     expect(screen.getByText('Then')).toBeTruthy()
-    expect(document.querySelectorAll('dl')).toHaveLength(1)
-    expect(document.querySelectorAll('dl dt')).toHaveLength(3)
-    expect(document.querySelectorAll('dl dd')).toHaveLength(3)
-    expect(document.querySelectorAll('article.rounded-md.border')).toHaveLength(1)
+    expect(document.querySelectorAll('ol[type="a"]')).toHaveLength(1)
+    expect(document.querySelectorAll('ol[type="a"] > li')).toHaveLength(2)
+    expect(document.querySelectorAll('ol[type="a"] .rounded-md.border')).toHaveLength(0)
 
     fireEvent.click(screen.getByRole('tab', { name: 'Verification' }))
 
