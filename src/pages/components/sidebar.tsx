@@ -157,6 +157,48 @@ const basicSupplemental = {
   requirements: {
     userStory:
       'As a person navigating an application area, I want a clearly labelled list of related destinations so that I can move between pages and understand where I am.',
+    groups: [
+      {
+        title: 'Business requirements',
+        items: [
+          'People can identify this navigation as the collection of destinations for the current application area.',
+          'People can understand which page they are currently viewing.',
+          'People can reach the other supplied destinations without leaving the application shell.',
+        ],
+      },
+      {
+        title: 'Functional requirements',
+        items: [
+          'The Sidebar presents the supplied destinations in the order provided by the application.',
+          'Selecting a destination follows that destination’s configured link.',
+          'When no destinations are supplied, the page does not show an empty navigation area.',
+        ],
+      },
+      {
+        title: 'Non-functional requirements',
+        items: [
+          'The desktop rail remains visually distinct from the main content.',
+          'The navigation remains usable when the persistent rail is hidden at smaller widths.',
+          'The Sidebar does not create a second or conflicting mobile navigation model.',
+        ],
+      },
+      {
+        title: 'Accessibility requirements',
+        items: [
+          'The Sidebar has one clear, distinguishable navigation name.',
+          'Keyboard users can reach and activate every visible destination in order.',
+          'The current destination is not communicated through color alone.',
+        ],
+      },
+      {
+        title: 'Technical requirements',
+        items: [
+          'Navigation data and current-page decisions are supplied by the consuming application.',
+          'The reusable Sidebar does not require router context to render.',
+          'The rail uses the labeled variant’s documented width, spacing, and responsive visibility behavior.',
+        ],
+      },
+    ],
     acceptanceCriteria: [
       {
         given: 'the Sidebar receives three flat destinations',
@@ -223,6 +265,7 @@ const basicSupplemental = {
       },
     ],
   },
+  tabLayout: 'requirements' as const,
   verification: {
     scenarios: [
       {
@@ -382,6 +425,48 @@ const groupedSupplemental = {
   requirements: {
     userStory:
       'As a person working in a larger application area, I want related destinations grouped by purpose so that I can scan the navigation and choose the right page.',
+    groups: [
+      {
+        title: 'Business requirements',
+        items: [
+          'People can scan related destinations by the purpose of each group.',
+          'People can understand which group contains the page they are viewing.',
+          'People can use the same information hierarchy when the application presents navigation in another responsive format.',
+        ],
+      },
+      {
+        title: 'Functional requirements',
+        items: [
+          'The Sidebar presents group headings before their links.',
+          'The order of groups and links matches the supplied navigation model.',
+          'Selecting a grouped destination follows its configured link without requiring a disclosure interaction.',
+        ],
+      },
+      {
+        title: 'Non-functional requirements',
+        items: [
+          'Group separation is understandable without relying on color alone.',
+          'Long group or destination labels remain understandable in the labeled presentation.',
+          'The grouped hierarchy can be reused by the application’s mobile composition.',
+        ],
+      },
+      {
+        title: 'Accessibility requirements',
+        items: [
+          'Groups remain inside one named navigation landmark.',
+          'Decorative icons do not create duplicate or confusing link names.',
+          'Keyboard focus follows the visible group and link order.',
+        ],
+      },
+      {
+        title: 'Technical requirements',
+        items: [
+          'The reusable Sidebar supports one grouping level for this pattern.',
+          'Group headings are presentation structure, not additional navigation landmarks or false controls.',
+          'The application owns permissions, route matching, and responsive composition.',
+        ],
+      },
+    ],
     acceptanceCriteria: [
       {
         given: 'items contains Getting started and Workspace groups',
@@ -442,6 +527,7 @@ const groupedSupplemental = {
       },
     ],
   },
+  tabLayout: 'requirements' as const,
   verification: {
     scenarios: [
       {
@@ -568,6 +654,48 @@ const activeSupplemental = {
   requirements: {
     userStory:
       'As a person using an application, I want the Sidebar to identify the page I am viewing so that I can maintain context while moving through the area.',
+    groups: [
+      {
+        title: 'Business requirements',
+        items: [
+          'People can tell which destination represents the page they are viewing.',
+          'People can move to another destination and understand that the selected location has changed.',
+          'People are not given a false current location when no supplied destination matches.',
+        ],
+      },
+      {
+        title: 'Functional requirements',
+        items: [
+          'The Sidebar selects the destination whose href exactly matches the application-provided active href.',
+          'Changing the active href moves the selected state to the new matching destination.',
+          'A partial or prefix match does not select a destination.',
+        ],
+      },
+      {
+        title: 'Non-functional requirements',
+        items: [
+          'Current and focus states remain distinguishable when they appear together.',
+          'The current location remains understandable in the application’s responsive presentation.',
+          'A missing match leaves all destinations usable rather than disabling navigation.',
+        ],
+      },
+      {
+        title: 'Accessibility requirements',
+        items: [
+          'The current destination is identified programmatically as well as visually.',
+          'Non-current destinations are not announced as current.',
+          'Keyboard users can focus and activate both current and non-current destinations.',
+        ],
+      },
+      {
+        title: 'Technical requirements',
+        items: [
+          'The consuming application supplies activeHref or explicit current state.',
+          'Sidebar does not inspect router context or calculate application-specific route meaning.',
+          'The active state is represented by the component’s documented current-state hooks.',
+        ],
+      },
+    ],
     acceptanceCriteria: [
       {
         given: 'activeHref exactly matches one destination',
@@ -623,6 +751,7 @@ const activeSupplemental = {
       },
     ],
   },
+  tabLayout: 'requirements' as const,
   verification: {
     scenarios: [
       {
@@ -757,6 +886,48 @@ const iconOnlySupplemental = {
   requirements: {
     userStory:
       'As a person with limited horizontal space, I want a compact Sidebar that retains accessible labels so that I can navigate without losing destination meaning.',
+    groups: [
+      {
+        title: 'Business requirements',
+        items: [
+          'People can use a compact navigation when horizontal space is limited.',
+          'People can still understand what each icon-only destination means.',
+          'People can reach the same destinations when the compact rail is replaced on smaller screens.',
+        ],
+      },
+      {
+        title: 'Functional requirements',
+        items: [
+          'The icon-only variant presents each destination as a compact square target.',
+          'Each destination retains its complete label even when the visible text is hidden.',
+          'An item without an icon receives a safe visual fallback without losing its label.',
+        ],
+      },
+      {
+        title: 'Non-functional requirements',
+        items: [
+          'Compact targets remain consistent in size and spacing.',
+          'Current and focus states remain visible in the compact presentation.',
+          'The compact rail does not introduce unintended horizontal scrolling at the narrowest supported width.',
+        ],
+      },
+      {
+        title: 'Accessibility requirements',
+        items: [
+          'Every icon-only link has a complete programmatic accessible name.',
+          'Decorative icons and fallback letters are not announced as separate content.',
+          'Keyboard users can discover, focus, and activate each compact destination without relying on a pointer.',
+        ],
+      },
+      {
+        title: 'Technical requirements',
+        items: [
+          'The icon-only variant uses the documented compact width and target dimensions.',
+          'The application supplies icons and labels; Sidebar owns the compact visual presentation.',
+          'Responsive replacement of the hidden rail remains an application-shell responsibility.',
+        ],
+      },
+    ],
     acceptanceCriteria: [
       {
         given: 'Sidebar uses the icon-only variant',
@@ -823,6 +994,7 @@ const iconOnlySupplemental = {
       },
     ],
   },
+  tabLayout: 'requirements' as const,
   verification: {
     scenarios: [
       {

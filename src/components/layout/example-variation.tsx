@@ -53,9 +53,15 @@ type VerificationScenario = {
   cases: VerificationCase[]
 }
 
+type ExampleRequirementGroup = {
+  title: string
+  items: string[]
+}
+
 type ExampleRequirements = {
-  userStory: ReactNode
-  acceptanceCriteria: AcceptanceCriterion[]
+  userStory?: ReactNode
+  groups?: ExampleRequirementGroup[]
+  acceptanceCriteria?: AcceptanceCriterion[]
 }
 
 type ExampleVerification = {
@@ -67,6 +73,7 @@ type ExampleSupplemental = {
   code: ExampleCode
   requirements: ExampleRequirements
   verification: ExampleVerification
+  tabLayout?: 'default' | 'requirements'
 }
 
 type ExampleVariationBaseProps = {
@@ -199,17 +206,27 @@ function GuidancePanel({ guidance }: { guidance: ExampleGuidance }) {
   )
 }
 
-function RequirementsPanel({ requirements }: { requirements: ExampleRequirements }) {
+function AcceptanceCriteriaPanel({
+  requirements,
+  showUserStory = true,
+}: {
+  requirements: ExampleRequirements
+  showUserStory?: boolean
+}) {
+  const criteria = requirements.acceptanceCriteria ?? []
+
   return (
     <div className="space-y-6 text-muted-foreground">
-      <div>
-        <h4 className="font-semibold text-foreground">User story</h4>
-        <p className="mt-3 leading-7">{requirements.userStory}</p>
-      </div>
+      {showUserStory && requirements.userStory && (
+        <div>
+          <h4 className="font-semibold text-foreground">User story</h4>
+          <p className="mt-3 leading-7">{requirements.userStory}</p>
+        </div>
+      )}
       <div>
         <h4 className="font-semibold text-foreground">Acceptance criteria</h4>
         <ol className="mt-3 list-decimal space-y-5 pl-5 leading-7">
-          {requirements.acceptanceCriteria.map((criterion, index) => (
+          {criteria.map((criterion, index) => (
             <li key={`${criterion.given}-${index}`} className="pl-2">
               <strong className="text-foreground">Given</strong> {criterion.given}
               <ol type="a" className="mt-2 list-[lower-alpha] space-y-2 pl-6">
@@ -231,6 +248,35 @@ function RequirementsPanel({ requirements }: { requirements: ExampleRequirements
       </div>
     </div>
   )
+}
+
+function RequirementsPanel({ requirements }: { requirements: ExampleRequirements }) {
+  if (requirements.groups) {
+    return (
+      <div className="space-y-8 text-muted-foreground">
+        {requirements.userStory && (
+          <div>
+            <h4 className="font-semibold text-foreground">Purpose</h4>
+            <p className="mt-3 leading-7">{requirements.userStory}</p>
+          </div>
+        )}
+        {requirements.groups.map((group) => (
+          <section key={group.title}>
+            <h4 className="font-semibold text-foreground">{group.title}</h4>
+            <ol className="mt-3 list-decimal space-y-3 pl-5 leading-7">
+              {group.items.map((item) => (
+                <li key={item} className="pl-2">
+                  {item}
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
+    )
+  }
+
+  return <AcceptanceCriteriaPanel requirements={requirements} />
 }
 
 function VerificationPanel({
@@ -291,6 +337,7 @@ function StandardizedExample({
     guidance: `${idPrefix}-guidance`,
     code: `${idPrefix}-code`,
     requirements: `${idPrefix}-requirements`,
+    acceptanceCriteria: `${idPrefix}-acceptance-criteria`,
     verification: `${idPrefix}-verification`,
   }
 
@@ -308,23 +355,53 @@ function StandardizedExample({
       <Tabs defaultSelectedKey={tabIds.guidance} className="min-w-0 gap-2">
         <TabsList aria-label={`${title} supplemental information`} className="max-w-full flex-wrap">
           <TabsTrigger id={tabIds.guidance}>Guidance</TabsTrigger>
-          <TabsTrigger id={tabIds.code}>Code</TabsTrigger>
-          <TabsTrigger id={tabIds.requirements}>Criteria</TabsTrigger>
-          <TabsTrigger id={tabIds.verification}>Verification</TabsTrigger>
+          {supplemental.tabLayout === 'requirements' ? (
+            <>
+              <TabsTrigger id={tabIds.requirements}>Requirements</TabsTrigger>
+              <TabsTrigger id={tabIds.acceptanceCriteria}>Criteria</TabsTrigger>
+              <TabsTrigger id={tabIds.verification}>Verification</TabsTrigger>
+              <TabsTrigger id={tabIds.code}>Code</TabsTrigger>
+            </>
+          ) : (
+            <>
+              <TabsTrigger id={tabIds.code}>Code</TabsTrigger>
+              <TabsTrigger id={tabIds.requirements}>Criteria</TabsTrigger>
+              <TabsTrigger id={tabIds.verification}>Verification</TabsTrigger>
+            </>
+          )}
         </TabsList>
         <div className="rounded-lg border bg-card p-4 sm:p-6">
           <TabsContent id={tabIds.guidance}>
             <GuidancePanel guidance={supplemental.guidance} />
           </TabsContent>
-          <TabsContent id={tabIds.code}>
-            <CodeBlock code={supplemental.code} idPrefix={idPrefix} />
-          </TabsContent>
-          <TabsContent id={tabIds.requirements}>
-            <RequirementsPanel requirements={supplemental.requirements} />
-          </TabsContent>
-          <TabsContent id={tabIds.verification}>
-            <VerificationPanel verification={supplemental.verification} idPrefix={idPrefix} />
-          </TabsContent>
+          {supplemental.tabLayout === 'requirements' ? (
+            <>
+              <TabsContent id={tabIds.requirements}>
+                <RequirementsPanel requirements={supplemental.requirements} />
+              </TabsContent>
+              <TabsContent id={tabIds.acceptanceCriteria}>
+                <AcceptanceCriteriaPanel requirements={supplemental.requirements} />
+              </TabsContent>
+              <TabsContent id={tabIds.verification}>
+                <VerificationPanel verification={supplemental.verification} idPrefix={idPrefix} />
+              </TabsContent>
+              <TabsContent id={tabIds.code}>
+                <CodeBlock code={supplemental.code} idPrefix={idPrefix} />
+              </TabsContent>
+            </>
+          ) : (
+            <>
+              <TabsContent id={tabIds.code}>
+                <CodeBlock code={supplemental.code} idPrefix={idPrefix} />
+              </TabsContent>
+              <TabsContent id={tabIds.requirements}>
+                <RequirementsPanel requirements={supplemental.requirements} />
+              </TabsContent>
+              <TabsContent id={tabIds.verification}>
+                <VerificationPanel verification={supplemental.verification} idPrefix={idPrefix} />
+              </TabsContent>
+            </>
+          )}
         </div>
       </Tabs>
     </article>
