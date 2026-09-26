@@ -236,13 +236,15 @@ function AcceptanceCriteriaPanel({
         <ol className="mt-3 list-decimal space-y-5 pl-5 leading-7">
           {criteria.map((criterion, index) => (
             <li key={`${criterion.given}-${index}`} className="pl-2">
-              {criterion.id && (
-                <code className="mr-2 text-xs text-muted-foreground">{criterion.id}</code>
-              )}
-              {criterion.requirementRefs && criterion.requirementRefs.length > 0 && (
-                <p className="mb-2 text-sm text-muted-foreground">
-                  Satisfies: {criterion.requirementRefs.join(', ')}
-                </p>
+              {(criterion.id || criterion.requirementRefs?.length) && (
+                <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+                  {criterion.id && (
+                    <code className="text-sm font-medium text-foreground">{criterion.id}</code>
+                  )}
+                  {criterion.requirementRefs && criterion.requirementRefs.length > 0 && (
+                    <span>Satisfies: {criterion.requirementRefs.join(', ')}</span>
+                  )}
+                </div>
               )}
               <strong className="text-foreground">Given</strong> {criterion.given}
               <ol type="a" className="mt-2 list-[lower-alpha] space-y-2 pl-6">
@@ -281,14 +283,14 @@ function RequirementsPanel({ requirements }: { requirements: ExampleRequirements
             <h4 className="font-semibold text-foreground">
               {group.title}
               {group.id && (
-                <code className="ml-2 text-xs font-normal text-muted-foreground">{group.id}</code>
+                <code className="ml-2 text-sm font-medium text-foreground">{group.id}</code>
               )}
             </h4>
             <ol className="mt-3 list-decimal space-y-3 pl-5 leading-7">
               {group.items.map((item, itemIndex) => (
                 <li key={item} className="pl-2">
                   {group.id && (
-                    <code className="mr-2 text-xs text-muted-foreground">
+                    <code className="mr-2 text-sm font-medium text-foreground">
                       {group.id}-{String(itemIndex + 1).padStart(2, '0')}
                     </code>
                   )}
@@ -325,42 +327,44 @@ function VerificationPanel({
           >
             {scenario.title}
           </h4>
-          <div className="mt-5 space-y-8">
+          <ol className="mt-5 list-decimal space-y-8 pl-5">
             {scenario.cases.map((testCase) => (
-              <article key={testCase.title} className="space-y-4">
-                <h5 className="font-medium text-foreground">
-                  {testCase.id && (
-                    <code className="mr-2 text-xs font-normal text-muted-foreground">
-                      {testCase.id}
-                    </code>
+              <li key={testCase.title} className="pl-2">
+                <article className="space-y-4">
+                  <h5 className="font-medium text-foreground">
+                    {testCase.id && (
+                      <code className="mr-2 text-sm font-medium text-foreground">
+                        {testCase.id}
+                      </code>
+                    )}
+                    {testCase.title}
+                  </h5>
+                  {(scenario.role || testCase.role) && (
+                    <p className="text-sm text-muted-foreground">
+                      Primary role: {testCase.role ?? scenario.role}
+                    </p>
                   )}
-                  {testCase.title}
-                </h5>
-                {(scenario.role || testCase.role) && (
-                  <p className="text-sm text-muted-foreground">
-                    Primary role: {testCase.role ?? scenario.role}
+                  {testCase.criterionRefs && testCase.criterionRefs.length > 0 && (
+                    <p className="text-sm text-muted-foreground">
+                      Verifies: {testCase.criterionRefs.join(', ')}
+                    </p>
+                  )}
+                  <div>
+                    <h6 className="text-sm font-medium text-foreground">Steps</h6>
+                    <ol className="mt-2 list-decimal space-y-2 pl-5">
+                      {testCase.steps.map((step) => (
+                        <li key={step}>{step}</li>
+                      ))}
+                    </ol>
+                  </div>
+                  <p className="border-l-2 border-primary/40 pl-4 leading-7">
+                    <strong className="font-medium text-foreground">Expected result</strong>:
+                    {testCase.expected}
                   </p>
-                )}
-                {testCase.criterionRefs && testCase.criterionRefs.length > 0 && (
-                  <p className="text-sm text-muted-foreground">
-                    Verifies: {testCase.criterionRefs.join(', ')}
-                  </p>
-                )}
-                <div>
-                  <h6 className="text-sm font-medium text-foreground">Steps</h6>
-                  <ol className="mt-2 list-decimal space-y-2 pl-5">
-                    {testCase.steps.map((step) => (
-                      <li key={step}>{step}</li>
-                    ))}
-                  </ol>
-                </div>
-                <p className="border-l-2 border-primary/40 pl-4 leading-7">
-                  <strong className="font-medium text-foreground">Expected result</strong>:
-                  {testCase.expected}
-                </p>
-              </article>
+                </article>
+              </li>
             ))}
-          </div>
+          </ol>
         </section>
       ))}
     </div>

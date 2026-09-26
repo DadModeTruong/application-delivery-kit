@@ -432,10 +432,10 @@ Standardized component examples use five supplemental tabs in this order:
 Requirements, criteria, and verification must be traceable rather than merely
 related by topic:
 
-- Requirement groups have stable IDs such as `FR-SID-BASIC`.
-- Requirement items are addressable as `FR-SID-BASIC-01`.
-- Acceptance criteria have stable IDs such as `AC-SID-BASIC-01` and identify the requirement groups they satisfy.
-- Verification cases have stable IDs such as `VR-SID-BASIC-01`, identify their primary review role, and identify the criteria they verify.
+- Requirement groups have stable IDs such as `FR-BASIC`.
+- Requirement items are addressable as `FR-BASIC-01`.
+- Acceptance criteria have stable IDs such as `AC-BASIC-01` and identify the requirement groups they satisfy.
+- Verification cases have stable IDs such as `VR-BASIC-01`, identify their primary review role, and identify the criteria they verify.
 - Every applicable requirement must have at least one acceptance criterion and at least one verification case.
 - Behaviors that are not owned by the component must be stated explicitly as application-owned or out of scope; they must not be left ambiguous.
 

@@ -159,7 +159,7 @@ const basicSupplemental = {
       'As a person navigating an application area, I want a clearly labelled list of related destinations so that I can move between pages and understand where I am.',
     groups: [
       {
-        id: 'BR-SID-BASIC',
+        id: 'BR-BASIC',
         title: 'Business requirements',
         items: [
           'People can identify this navigation as the collection of destinations for the current application area.',
@@ -168,7 +168,7 @@ const basicSupplemental = {
         ],
       },
       {
-        id: 'FR-SID-BASIC',
+        id: 'FR-BASIC',
         title: 'Functional requirements',
         items: [
           'The Sidebar presents the supplied destinations in the order provided by the application.',
@@ -177,7 +177,7 @@ const basicSupplemental = {
         ],
       },
       {
-        id: 'NFR-SID-BASIC',
+        id: 'NFR-BASIC',
         title: 'Non-functional requirements',
         items: [
           'The desktop rail remains visually distinct from the main content.',
@@ -186,7 +186,7 @@ const basicSupplemental = {
         ],
       },
       {
-        id: 'A11Y-SID-BASIC',
+        id: 'A11Y-BASIC',
         title: 'Accessibility requirements',
         items: [
           'The Sidebar has one clear, distinguishable navigation name.',
@@ -195,7 +195,7 @@ const basicSupplemental = {
         ],
       },
       {
-        id: 'TR-SID-BASIC',
+        id: 'TR-BASIC',
         title: 'Technical requirements',
         items: [
           'Navigation data and current-page decisions are supplied by the consuming application.',
@@ -206,8 +206,8 @@ const basicSupplemental = {
     ],
     acceptanceCriteria: [
       {
-        id: 'AC-SID-BASIC-01',
-        requirementRefs: ['FR-SID-BASIC-01'],
+        id: 'AC-BASIC-01',
+        requirementRefs: ['FR-BASIC-01'],
         given: 'the Sidebar receives three flat destinations',
         when: 'the rail renders at a supported desktop width',
         then: 'one labelled navigation landmark contains the destinations in the supplied order',
@@ -217,8 +217,8 @@ const basicSupplemental = {
         ],
       },
       {
-        id: 'AC-SID-BASIC-02',
-        requirementRefs: ['NFR-SID-BASIC-01'],
+        id: 'AC-BASIC-02',
+        requirementRefs: ['NFR-BASIC-01'],
         given: 'Overview is the current destination',
         when: 'the Sidebar renders',
         then: 'Overview is clearly identified as the page being viewed',
@@ -229,39 +229,39 @@ const basicSupplemental = {
         ],
       },
       {
-        id: 'AC-SID-BASIC-03',
-        requirementRefs: ['A11Y-SID-BASIC-01'],
+        id: 'AC-BASIC-03',
+        requirementRefs: ['A11Y-BASIC-01'],
         given: 'a person points to an inactive link',
         when: 'the hover state appears',
         then: 'the link gains a clear visual surface without changing size or order',
         and: ['the hover treatment is not the only way to understand the destination'],
       },
       {
-        id: 'AC-SID-BASIC-04',
-        requirementRefs: ['FR-SID-BASIC-02'],
+        id: 'AC-BASIC-04',
+        requirementRefs: ['FR-BASIC-02'],
         given: 'a person uses the keyboard',
         when: 'focus moves through the links',
         then: 'every link can be focused and activated in order',
         and: ['the focus indicator is visible', 'Enter follows the selected link'],
       },
       {
-        id: 'AC-SID-BASIC-05',
-        requirementRefs: ['NFR-SID-BASIC-02'],
+        id: 'AC-BASIC-05',
+        requirementRefs: ['NFR-BASIC-02'],
         given: 'the viewport becomes narrow',
         when: 'the persistent rail is no longer appropriate',
         then: 'the rail is hidden and the application can provide the same destinations through its chosen mobile presentation',
         and: ['Sidebar does not invent a second navigation model'],
       },
       {
-        id: 'AC-SID-BASIC-06',
-        requirementRefs: ['A11Y-SID-BASIC-02'],
+        id: 'AC-BASIC-06',
+        requirementRefs: ['A11Y-BASIC-02'],
         given: 'items is empty or omitted',
         when: 'the component renders',
         then: 'no empty Sidebar rail or empty navigation landmark appears',
       },
       {
-        id: 'AC-SID-BASIC-07',
-        requirementRefs: ['FR-SID-BASIC-03'],
+        id: 'AC-BASIC-07',
+        requirementRefs: ['FR-BASIC-03'],
         given: 'the Sidebar appears beside Header or tabs',
         when: 'landmarks are announced',
         then: 'people can distinguish the Sidebar navigation from the other navigation layers',
@@ -271,16 +271,16 @@ const basicSupplemental = {
         ],
       },
       {
-        id: 'AC-SID-BASIC-08',
-        requirementRefs: ['A11Y-SID-BASIC-03'],
+        id: 'AC-BASIC-08',
+        requirementRefs: ['A11Y-BASIC-03'],
         given: 'a person views the rail at desktop width',
         when: 'the page is laid out',
         then: 'the rail does not overlap or reorder the main content unexpectedly',
         and: ['the right border separates the rail from Main', 'the links remain inside the rail'],
       },
       {
-        id: 'AC-SID-BASIC-09',
-        requirementRefs: ['NFR-SID-BASIC-03'],
+        id: 'AC-BASIC-09',
+        requirementRefs: ['NFR-BASIC-03'],
         given: 'the application supplies a destination href',
         when: 'the person activates its link',
         then: 'the browser follows that destination as normal navigation',
@@ -296,8 +296,8 @@ const basicSupplemental = {
         role: 'Product owner / BA',
         cases: [
           {
-            id: 'VR-SID-BASIC-01',
-            criterionRefs: ['AC-SID-BASIC-01'],
+            id: 'VR-BASIC-01',
+            criterionRefs: ['AC-BASIC-01'],
             title: 'Landmark and order',
             steps: [
               'Render the flat Sidebar at desktop width.',
@@ -308,8 +308,8 @@ const basicSupplemental = {
               'One labelled Sidebar rail contains the links in order inside the intended desktop presentation.',
           },
           {
-            id: 'VR-SID-BASIC-02',
-            criterionRefs: ['AC-SID-BASIC-02'],
+            id: 'VR-BASIC-02',
+            criterionRefs: ['AC-BASIC-02'],
             title: 'Idle and hover treatment',
             steps: [
               'Inspect an inactive link class list.',
@@ -320,8 +320,8 @@ const basicSupplemental = {
               'The link keeps its dimensions while its surface and text treatment change as intended; no layout shift occurs.',
           },
           {
-            id: 'VR-SID-BASIC-03',
-            criterionRefs: ['AC-SID-BASIC-03'],
+            id: 'VR-BASIC-03',
+            criterionRefs: ['AC-BASIC-03'],
             title: 'Destination outcome',
             steps: ['Focus Tab navigation.', 'Press Enter.', 'Inspect the destination.'],
             expected: 'The focused link follows its supplied href as normal navigation.',
@@ -333,8 +333,8 @@ const basicSupplemental = {
         role: 'Accessibility QA',
         cases: [
           {
-            id: 'VR-SID-BASIC-04',
-            criterionRefs: ['AC-SID-BASIC-04'],
+            id: 'VR-BASIC-04',
+            criterionRefs: ['AC-BASIC-04'],
             title: 'Current destination',
             steps: [
               'Inspect Overview.',
@@ -345,8 +345,8 @@ const basicSupplemental = {
               'Only Overview is visually current and exposes aria-current="page" and data-active="true"; other links remain unselected.',
           },
           {
-            id: 'VR-SID-BASIC-05',
-            criterionRefs: ['AC-SID-BASIC-05'],
+            id: 'VR-BASIC-05',
+            criterionRefs: ['AC-BASIC-05'],
             title: 'Landmark separation',
             steps: [
               'Render Sidebar beside Header and tabs.',
@@ -362,8 +362,8 @@ const basicSupplemental = {
         role: 'Functional QA / Responsive QA',
         cases: [
           {
-            id: 'VR-SID-BASIC-06',
-            criterionRefs: ['AC-SID-BASIC-06'],
+            id: 'VR-BASIC-06',
+            criterionRefs: ['AC-BASIC-06'],
             title: 'Keyboard traversal',
             steps: [
               'Tab through every visible link.',
@@ -374,8 +374,8 @@ const basicSupplemental = {
               'Every link is reachable in order, focus is visible, and activation follows the link.',
           },
           {
-            id: 'VR-SID-BASIC-07',
-            criterionRefs: ['AC-SID-BASIC-07'],
+            id: 'VR-BASIC-07',
+            criterionRefs: ['AC-BASIC-07'],
             title: 'Empty state',
             steps: [
               'Render with items={[]}.',
@@ -384,8 +384,8 @@ const basicSupplemental = {
             expected: 'No empty rail or empty Sidebar navigation landmark is rendered.',
           },
           {
-            id: 'VR-SID-BASIC-08',
-            criterionRefs: ['AC-SID-BASIC-08', 'AC-SID-BASIC-09'],
+            id: 'VR-BASIC-08',
+            criterionRefs: ['AC-BASIC-08', 'AC-BASIC-09'],
             title: 'Narrow viewport',
             steps: [
               'Resize below the desktop breakpoint.',
@@ -469,7 +469,7 @@ const groupedSupplemental = {
       'As a person working in a larger application area, I want related destinations grouped by purpose so that I can scan the navigation and choose the right page.',
     groups: [
       {
-        id: 'BR-SID-GROUPED',
+        id: 'BR-GROUPED',
         title: 'Business requirements',
         items: [
           'People can scan related destinations by the purpose of each group.',
@@ -478,7 +478,7 @@ const groupedSupplemental = {
         ],
       },
       {
-        id: 'FR-SID-GROUPED',
+        id: 'FR-GROUPED',
         title: 'Functional requirements',
         items: [
           'The Sidebar presents group headings before their links.',
@@ -487,7 +487,7 @@ const groupedSupplemental = {
         ],
       },
       {
-        id: 'NFR-SID-GROUPED',
+        id: 'NFR-GROUPED',
         title: 'Non-functional requirements',
         items: [
           'Group separation is understandable without relying on color alone.',
@@ -496,7 +496,7 @@ const groupedSupplemental = {
         ],
       },
       {
-        id: 'A11Y-SID-GROUPED',
+        id: 'A11Y-GROUPED',
         title: 'Accessibility requirements',
         items: [
           'Groups remain inside one named navigation landmark.',
@@ -505,7 +505,7 @@ const groupedSupplemental = {
         ],
       },
       {
-        id: 'TR-SID-GROUPED',
+        id: 'TR-GROUPED',
         title: 'Technical requirements',
         items: [
           'The reusable Sidebar supports one grouping level for this pattern.',
@@ -516,8 +516,8 @@ const groupedSupplemental = {
     ],
     acceptanceCriteria: [
       {
-        id: 'AC-SID-GROUPED-01',
-        requirementRefs: ['FR-SID-GROUPED-01'],
+        id: 'AC-GROUPED-01',
+        requirementRefs: ['FR-GROUPED-01'],
         given: 'items contains Getting started and Workspace groups',
         when: 'the Sidebar renders',
         then: 'each group heading appears before its links in the supplied order',
@@ -527,16 +527,16 @@ const groupedSupplemental = {
         ],
       },
       {
-        id: 'AC-SID-GROUPED-02',
-        requirementRefs: ['A11Y-SID-GROUPED-01'],
+        id: 'AC-GROUPED-02',
+        requirementRefs: ['A11Y-GROUPED-01'],
         given: 'a group contains multiple links',
         when: 'the person scans it',
         then: 'the visible order and shared spacing communicate that the links belong together',
         and: ['headings are concise', 'the hierarchy does not rely on color alone'],
       },
       {
-        id: 'AC-SID-GROUPED-03',
-        requirementRefs: ['FR-SID-GROUPED-02'],
+        id: 'AC-GROUPED-03',
+        requirementRefs: ['FR-GROUPED-02'],
         given: 'a link has an icon and visible label',
         when: 'the link renders',
         then: 'the icon supports recognition while the visible label remains the destination name',
@@ -546,16 +546,16 @@ const groupedSupplemental = {
         ],
       },
       {
-        id: 'AC-SID-GROUPED-04',
-        requirementRefs: ['NFR-SID-GROUPED-01'],
+        id: 'AC-GROUPED-04',
+        requirementRefs: ['NFR-GROUPED-01'],
         given: 'Overview is current inside Getting started',
         when: 'the Sidebar renders',
         then: 'the current link is identified without hiding its group context',
         and: ['the heading remains visible', 'non-current links remain ordinary links'],
       },
       {
-        id: 'AC-SID-GROUPED-05',
-        requirementRefs: ['FR-SID-GROUPED-03'],
+        id: 'AC-GROUPED-05',
+        requirementRefs: ['FR-GROUPED-03'],
         given: 'the second group follows the first',
         when: 'the visual layout renders',
         then: 'the groups are separated consistently',
@@ -565,24 +565,24 @@ const groupedSupplemental = {
         ],
       },
       {
-        id: 'AC-SID-GROUPED-06',
-        requirementRefs: ['A11Y-SID-GROUPED-02', 'A11Y-SID-GROUPED-03'],
+        id: 'AC-GROUPED-06',
+        requirementRefs: ['A11Y-GROUPED-02', 'A11Y-GROUPED-03'],
         given: 'a person uses the keyboard',
         when: 'focus moves through groups',
         then: 'links are reached in DOM and visual order',
         and: ['headings are not false controls', 'Enter activates the focused link'],
       },
       {
-        id: 'AC-SID-GROUPED-07',
-        requirementRefs: ['NFR-SID-GROUPED-02', 'NFR-SID-GROUPED-03'],
+        id: 'AC-GROUPED-07',
+        requirementRefs: ['NFR-GROUPED-02', 'NFR-GROUPED-03'],
         given: 'a group label or link label is long',
         when: 'the labeled rail is viewed',
         then: 'the information remains understandable and the application can make an intentional wrapping decision',
         and: ['the label is not silently replaced by an icon'],
       },
       {
-        id: 'AC-SID-GROUPED-08',
-        requirementRefs: ['TR-SID-GROUPED-01', 'TR-SID-GROUPED-02', 'TR-SID-GROUPED-03'],
+        id: 'AC-GROUPED-08',
+        requirementRefs: ['TR-GROUPED-01', 'TR-GROUPED-02', 'TR-GROUPED-03'],
         given: 'the desktop rail is hidden for a responsive presentation',
         when: 'the application rebuilds navigation',
         then: 'the same group data can be reused without Sidebar context',
@@ -598,8 +598,8 @@ const groupedSupplemental = {
         role: 'Product owner / BA',
         cases: [
           {
-            id: 'VR-SID-GROUPED-01',
-            criterionRefs: ['AC-SID-GROUPED-01'],
+            id: 'VR-GROUPED-01',
+            criterionRefs: ['AC-GROUPED-01'],
             title: 'Group structure',
             steps: [
               'Render the grouped Sidebar.',
@@ -610,8 +610,8 @@ const groupedSupplemental = {
               'One navigation landmark contains Getting started followed by Workspace; each heading precedes its links and no group creates a nested nav.',
           },
           {
-            id: 'VR-SID-GROUPED-02',
-            criterionRefs: ['AC-SID-GROUPED-02'],
+            id: 'VR-GROUPED-02',
+            criterionRefs: ['AC-GROUPED-02'],
             title: 'Group spacing',
             steps: [
               'Inspect the first and second group wrappers.',
@@ -621,8 +621,8 @@ const groupedSupplemental = {
               'The first group has no inter-group spacing and the later group is separated consistently without changing link order.',
           },
           {
-            id: 'VR-SID-GROUPED-03',
-            criterionRefs: ['AC-SID-GROUPED-03'],
+            id: 'VR-GROUPED-03',
+            criterionRefs: ['AC-GROUPED-03'],
             title: 'Long-label resilience',
             steps: [
               'Use a long group or link label in the example data.',
@@ -638,16 +638,16 @@ const groupedSupplemental = {
         role: 'Accessibility QA',
         cases: [
           {
-            id: 'VR-SID-GROUPED-04',
-            criterionRefs: ['AC-SID-GROUPED-04'],
+            id: 'VR-GROUPED-04',
+            criterionRefs: ['AC-GROUPED-04'],
             title: 'Decorative icons',
             steps: ['Inspect every rendered SVG.', 'Inspect each link accessible name.'],
             expected:
               'Icons are decorative and each accessible link name remains its visible text label.',
           },
           {
-            id: 'VR-SID-GROUPED-05',
-            criterionRefs: ['AC-SID-GROUPED-05'],
+            id: 'VR-GROUPED-05',
+            criterionRefs: ['AC-GROUPED-05'],
             title: 'Grouped current destination',
             steps: [
               'Inspect Overview and Settings.',
@@ -657,8 +657,8 @@ const groupedSupplemental = {
               'Overview alone is current while Getting started remains visible as its context.',
           },
           {
-            id: 'VR-SID-GROUPED-06',
-            criterionRefs: ['AC-SID-GROUPED-06'],
+            id: 'VR-GROUPED-06',
+            criterionRefs: ['AC-GROUPED-06'],
             title: 'Normal link activation',
             steps: ['Focus a grouped link.', 'Press Enter.'],
             expected: 'The link follows its href; group headings are not false controls.',
@@ -670,16 +670,16 @@ const groupedSupplemental = {
         role: 'Functional QA / Responsive QA',
         cases: [
           {
-            id: 'VR-SID-GROUPED-07',
-            criterionRefs: ['AC-SID-GROUPED-07'],
+            id: 'VR-GROUPED-07',
+            criterionRefs: ['AC-GROUPED-07'],
             title: 'Sequential focus',
             steps: ['Tab from the first link through the final link.', 'Observe focus rings.'],
             expected:
               'Focus follows the grouped DOM order and each link has visible focus treatment.',
           },
           {
-            id: 'VR-SID-GROUPED-08',
-            criterionRefs: ['AC-SID-GROUPED-08'],
+            id: 'VR-GROUPED-08',
+            criterionRefs: ['AC-GROUPED-08'],
             title: 'Responsive data ownership',
             steps: [
               'Hide the desktop rail at a narrow width.',
@@ -738,7 +738,7 @@ const activeSupplemental = {
       'As a person using an application, I want the Sidebar to identify the page I am viewing so that I can maintain context while moving through the area.',
     groups: [
       {
-        id: 'BR-SID-ACTIVE',
+        id: 'BR-ACTIVE',
         title: 'Business requirements',
         items: [
           'People can tell which destination represents the page they are viewing.',
@@ -747,7 +747,7 @@ const activeSupplemental = {
         ],
       },
       {
-        id: 'FR-SID-ACTIVE',
+        id: 'FR-ACTIVE',
         title: 'Functional requirements',
         items: [
           'The Sidebar selects the destination whose href exactly matches the application-provided active href.',
@@ -756,7 +756,7 @@ const activeSupplemental = {
         ],
       },
       {
-        id: 'NFR-SID-ACTIVE',
+        id: 'NFR-ACTIVE',
         title: 'Non-functional requirements',
         items: [
           'Current and focus states remain distinguishable when they appear together.',
@@ -765,7 +765,7 @@ const activeSupplemental = {
         ],
       },
       {
-        id: 'A11Y-SID-ACTIVE',
+        id: 'A11Y-ACTIVE',
         title: 'Accessibility requirements',
         items: [
           'The current destination is identified programmatically as well as visually.',
@@ -774,7 +774,7 @@ const activeSupplemental = {
         ],
       },
       {
-        id: 'TR-SID-ACTIVE',
+        id: 'TR-ACTIVE',
         title: 'Technical requirements',
         items: [
           'The consuming application supplies activeHref or explicit current state.',
@@ -785,8 +785,8 @@ const activeSupplemental = {
     ],
     acceptanceCriteria: [
       {
-        id: 'AC-SID-ACTIVE-01',
-        requirementRefs: ['FR-SID-ACTIVE-01', 'TR-SID-ACTIVE-01'],
+        id: 'AC-ACTIVE-01',
+        requirementRefs: ['FR-ACTIVE-01', 'TR-ACTIVE-01'],
         given: 'activeHref exactly matches one destination',
         when: 'the Sidebar renders',
         then: 'only that destination is selected',
@@ -797,8 +797,8 @@ const activeSupplemental = {
         ],
       },
       {
-        id: 'AC-SID-ACTIVE-02',
-        requirementRefs: ['FR-SID-ACTIVE-02', 'TR-SID-ACTIVE-02'],
+        id: 'AC-ACTIVE-02',
+        requirementRefs: ['FR-ACTIVE-02', 'TR-ACTIVE-02'],
         given: 'the application changes activeHref to another exact destination',
         when: 'the Sidebar rerenders',
         then: 'the selected state moves to the new destination',
@@ -808,8 +808,8 @@ const activeSupplemental = {
         ],
       },
       {
-        id: 'AC-SID-ACTIVE-03',
-        requirementRefs: ['FR-SID-ACTIVE-03', 'TR-SID-ACTIVE-03'],
+        id: 'AC-ACTIVE-03',
+        requirementRefs: ['FR-ACTIVE-03', 'TR-ACTIVE-03'],
         given: 'activeHref matches no destination',
         when: 'the Sidebar renders',
         then: 'no destination is presented as current',
@@ -819,32 +819,32 @@ const activeSupplemental = {
         ],
       },
       {
-        id: 'AC-SID-ACTIVE-04',
-        requirementRefs: ['A11Y-SID-ACTIVE-01'],
+        id: 'AC-ACTIVE-04',
+        requirementRefs: ['A11Y-ACTIVE-01'],
         given: 'the current link receives keyboard focus',
         when: 'the focus state appears',
         then: 'current and focus treatments remain visible together',
         and: ['the target does not move', 'the person can still identify and activate it'],
       },
       {
-        id: 'AC-SID-ACTIVE-05',
-        requirementRefs: ['NFR-SID-ACTIVE-01'],
+        id: 'AC-ACTIVE-05',
+        requirementRefs: ['NFR-ACTIVE-01'],
         given: 'a person selects a non-current link',
         when: 'the browser follows the link',
         then: 'the application can update the supplied current state after navigation',
         and: ['Sidebar does not calculate a conflicting state'],
       },
       {
-        id: 'AC-SID-ACTIVE-06',
-        requirementRefs: ['NFR-SID-ACTIVE-02'],
+        id: 'AC-ACTIVE-06',
+        requirementRefs: ['NFR-ACTIVE-02'],
         given: 'the current route is represented at narrow width',
         when: 'the responsive presentation appears',
         then: 'the current destination remains identifiable in the application’s mobile composition',
         and: ['the desktop-only visual treatment is not the only current cue'],
       },
       {
-        id: 'AC-SID-ACTIVE-07',
-        requirementRefs: ['A11Y-SID-ACTIVE-02', 'A11Y-SID-ACTIVE-03'],
+        id: 'AC-ACTIVE-07',
+        requirementRefs: ['A11Y-ACTIVE-02', 'A11Y-ACTIVE-03'],
         given: 'the Sidebar is viewed with Header and tabs',
         when: 'landmarks are announced',
         then: 'the selected Sidebar destination remains associated with the Sidebar landmark',
@@ -860,23 +860,23 @@ const activeSupplemental = {
         role: 'Product owner / BA',
         cases: [
           {
-            id: 'VR-SID-ACTIVE-01',
-            criterionRefs: ['AC-SID-ACTIVE-01'],
+            id: 'VR-ACTIVE-01',
+            criterionRefs: ['AC-ACTIVE-01'],
             title: 'Exact match',
             steps: ['Render with activeHref="/components/sidebar".', 'Inspect every link.'],
             expected:
               'Only the exact matching link has active styling, data-active="true", and aria-current="page".',
           },
           {
-            id: 'VR-SID-ACTIVE-02',
-            criterionRefs: ['AC-SID-ACTIVE-02'],
+            id: 'VR-ACTIVE-02',
+            criterionRefs: ['AC-ACTIVE-02'],
             title: 'State transition',
             steps: ['Change activeHref to /components/header.', 'Rerender and inspect both links.'],
             expected: 'The active state moves to Header and is removed from the previous link.',
           },
           {
-            id: 'VR-SID-ACTIVE-03',
-            criterionRefs: ['AC-SID-ACTIVE-03'],
+            id: 'VR-ACTIVE-03',
+            criterionRefs: ['AC-ACTIVE-03'],
             title: 'No-match boundary',
             steps: ['Render with an href that matches no item.', 'Query for aria-current="page".'],
             expected: 'All links remain usable and no link is presented as current.',
@@ -888,16 +888,16 @@ const activeSupplemental = {
         role: 'Functional QA',
         cases: [
           {
-            id: 'VR-SID-ACTIVE-04',
-            criterionRefs: ['AC-SID-ACTIVE-04'],
+            id: 'VR-ACTIVE-04',
+            criterionRefs: ['AC-ACTIVE-04'],
             title: 'Current plus focus',
             steps: ['Focus the current link with Tab.', 'Compare focus and current treatment.'],
             expected:
               'Both states remain visible without moving the link or removing its accessible name.',
           },
           {
-            id: 'VR-SID-ACTIVE-05',
-            criterionRefs: ['AC-SID-ACTIVE-05'],
+            id: 'VR-ACTIVE-05',
+            criterionRefs: ['AC-ACTIVE-05'],
             title: 'Activation outcome',
             steps: [
               'Focus a non-current link.',
@@ -914,8 +914,8 @@ const activeSupplemental = {
         role: 'Accessibility QA / Responsive QA',
         cases: [
           {
-            id: 'VR-SID-ACTIVE-06',
-            criterionRefs: ['AC-SID-ACTIVE-06'],
+            id: 'VR-ACTIVE-06',
+            criterionRefs: ['AC-ACTIVE-06'],
             title: 'Narrow current state',
             steps: [
               'Resize below the persistent-rail breakpoint.',
@@ -925,8 +925,8 @@ const activeSupplemental = {
             expected: 'The current location remains understandable in the responsive presentation.',
           },
           {
-            id: 'VR-SID-ACTIVE-07',
-            criterionRefs: ['AC-SID-ACTIVE-07'],
+            id: 'VR-ACTIVE-07',
+            criterionRefs: ['AC-ACTIVE-07'],
             title: 'Landmark association',
             steps: [
               'Render alongside Header and tabs.',
@@ -1006,7 +1006,7 @@ const iconOnlySupplemental = {
       'As a person with limited horizontal space, I want a compact Sidebar that retains accessible labels so that I can navigate without losing destination meaning.',
     groups: [
       {
-        id: 'BR-SID-ICON',
+        id: 'BR-ICON',
         title: 'Business requirements',
         items: [
           'People can use a compact navigation when horizontal space is limited.',
@@ -1015,7 +1015,7 @@ const iconOnlySupplemental = {
         ],
       },
       {
-        id: 'FR-SID-ICON',
+        id: 'FR-ICON',
         title: 'Functional requirements',
         items: [
           'The icon-only variant presents each destination as a compact square target.',
@@ -1024,7 +1024,7 @@ const iconOnlySupplemental = {
         ],
       },
       {
-        id: 'NFR-SID-ICON',
+        id: 'NFR-ICON',
         title: 'Non-functional requirements',
         items: [
           'Compact targets remain consistent in size and spacing.',
@@ -1033,7 +1033,7 @@ const iconOnlySupplemental = {
         ],
       },
       {
-        id: 'A11Y-SID-ICON',
+        id: 'A11Y-ICON',
         title: 'Accessibility requirements',
         items: [
           'Every icon-only link has a complete programmatic accessible name.',
@@ -1042,7 +1042,7 @@ const iconOnlySupplemental = {
         ],
       },
       {
-        id: 'TR-SID-ICON',
+        id: 'TR-ICON',
         title: 'Technical requirements',
         items: [
           'The icon-only variant uses the documented compact width and target dimensions.',
@@ -1053,8 +1053,8 @@ const iconOnlySupplemental = {
     ],
     acceptanceCriteria: [
       {
-        id: 'AC-SID-ICON-01',
-        requirementRefs: ['FR-SID-ICON-01'],
+        id: 'AC-ICON-01',
+        requirementRefs: ['FR-ICON-01'],
         given: 'Sidebar uses the icon-only variant',
         when: 'the rail renders at desktop width',
         then: 'the rail becomes a compact navigation surface',
@@ -1064,8 +1064,8 @@ const iconOnlySupplemental = {
         ],
       },
       {
-        id: 'AC-SID-ICON-02',
-        requirementRefs: ['A11Y-SID-ICON-01'],
+        id: 'AC-ICON-02',
+        requirementRefs: ['A11Y-ICON-01'],
         given: 'a link label is hidden visually',
         when: 'the person inspects or focuses it',
         then: 'the complete destination name remains available',
@@ -1075,8 +1075,8 @@ const iconOnlySupplemental = {
         ],
       },
       {
-        id: 'AC-SID-ICON-03',
-        requirementRefs: ['A11Y-SID-ICON-02'],
+        id: 'AC-ICON-03',
+        requirementRefs: ['A11Y-ICON-02'],
         given: 'an item has an icon',
         when: 'the compact link renders',
         then: 'the icon appears as a decorative visual cue',
@@ -1086,48 +1086,48 @@ const iconOnlySupplemental = {
         ],
       },
       {
-        id: 'AC-SID-ICON-04',
-        requirementRefs: ['A11Y-SID-ICON-03'],
+        id: 'AC-ICON-04',
+        requirementRefs: ['A11Y-ICON-03'],
         given: 'an item has no icon',
         when: 'the compact link renders',
         then: 'a safe first-letter visual fallback appears',
         and: ['the fallback is decorative', 'the complete item label remains programmatic'],
       },
       {
-        id: 'AC-SID-ICON-05',
-        requirementRefs: ['NFR-SID-ICON-01'],
+        id: 'AC-ICON-05',
+        requirementRefs: ['NFR-ICON-01'],
         given: 'the current item receives focus',
         when: 'the compact link is active',
         then: 'current styling and focus styling remain visible together',
         and: ['aria-current remains available', 'the target remains the documented size'],
       },
       {
-        id: 'AC-SID-ICON-06',
-        requirementRefs: ['A11Y-SID-ICON-02'],
+        id: 'AC-ICON-06',
+        requirementRefs: ['A11Y-ICON-02'],
         given: 'a person uses the keyboard without a pointer',
         when: 'an icon-only link receives focus',
         then: 'the destination can still be identified and activated',
         and: ['focus is visible', 'the link itself remains the keyboard target'],
       },
       {
-        id: 'AC-SID-ICON-07',
-        requirementRefs: ['NFR-SID-ICON-02', 'FR-SID-ICON-02'],
+        id: 'AC-ICON-07',
+        requirementRefs: ['NFR-ICON-02', 'FR-ICON-02'],
         given: 'the viewport becomes narrow',
         when: 'the persistent rail is hidden',
         then: 'the application provides its chosen responsive navigation',
         and: ['Sidebar does not synthesize a separate mobile model'],
       },
       {
-        id: 'AC-SID-ICON-08',
-        requirementRefs: ['NFR-SID-ICON-03', 'FR-SID-ICON-03'],
+        id: 'AC-ICON-08',
+        requirementRefs: ['NFR-ICON-03', 'FR-ICON-03'],
         given: 'the compact rail contains multiple groups',
         when: 'the visual layout renders',
         then: 'group boundaries remain understandable through spacing or dividers',
         and: ['group headings may be hidden but grouping is not silently reordered'],
       },
       {
-        id: 'AC-SID-ICON-09',
-        requirementRefs: ['NFR-SID-ICON-03'],
+        id: 'AC-ICON-09',
+        requirementRefs: ['NFR-ICON-03'],
         given: 'the compact rail is viewed at the narrowest supported width',
         when: 'the layout reflows',
         then: 'the rail does not create unintended horizontal scrolling',
@@ -1143,8 +1143,8 @@ const iconOnlySupplemental = {
         role: 'Product owner / Design QA',
         cases: [
           {
-            id: 'VR-SID-ICON-01',
-            criterionRefs: ['AC-SID-ICON-01'],
+            id: 'VR-ICON-01',
+            criterionRefs: ['AC-ICON-01'],
             title: 'Variant and target size',
             steps: [
               'Render icon-only mode at desktop width.',
@@ -1154,8 +1154,8 @@ const iconOnlySupplemental = {
               'The rail uses the icon-only presentation and each link is a documented 40px square target.',
           },
           {
-            id: 'VR-SID-ICON-02',
-            criterionRefs: ['AC-SID-ICON-02'],
+            id: 'VR-ICON-02',
+            criterionRefs: ['AC-ICON-02'],
             title: 'Icon and fallback',
             steps: [
               'Render one item with an icon and one without.',
@@ -1165,8 +1165,8 @@ const iconOnlySupplemental = {
               'The icon or first-letter fallback is decorative and each link retains its complete accessible label.',
           },
           {
-            id: 'VR-SID-ICON-03',
-            criterionRefs: ['AC-SID-ICON-03'],
+            id: 'VR-ICON-03',
+            criterionRefs: ['AC-ICON-03'],
             title: 'Group boundaries',
             steps: [
               'Render compact mode with multiple groups.',
@@ -1182,8 +1182,8 @@ const iconOnlySupplemental = {
         role: 'Accessibility QA',
         cases: [
           {
-            id: 'VR-SID-ICON-04',
-            criterionRefs: ['AC-SID-ICON-04'],
+            id: 'VR-ICON-04',
+            criterionRefs: ['AC-ICON-04'],
             title: 'Programmatic label',
             steps: [
               'Focus an icon-only link with Tab.',
@@ -1193,8 +1193,8 @@ const iconOnlySupplemental = {
               'The link remains the keyboard target, has a complete accessible name, and its label can be discovered without pointer-only interaction.',
           },
           {
-            id: 'VR-SID-ICON-05',
-            criterionRefs: ['AC-SID-ICON-05'],
+            id: 'VR-ICON-05',
+            criterionRefs: ['AC-ICON-05'],
             title: 'Current plus focus',
             steps: [
               'Render the current compact link.',
@@ -1205,8 +1205,8 @@ const iconOnlySupplemental = {
               'Current and focus states are simultaneously visible and do not change target size.',
           },
           {
-            id: 'VR-SID-ICON-06',
-            criterionRefs: ['AC-SID-ICON-06'],
+            id: 'VR-ICON-06',
+            criterionRefs: ['AC-ICON-06'],
             title: 'Activation',
             steps: ['Press Enter on the focused compact link.', 'Observe the destination.'],
             expected: 'The compact link activates as normal navigation.',
@@ -1218,8 +1218,8 @@ const iconOnlySupplemental = {
         role: 'Responsive QA',
         cases: [
           {
-            id: 'VR-SID-ICON-07',
-            criterionRefs: ['AC-SID-ICON-07'],
+            id: 'VR-ICON-07',
+            criterionRefs: ['AC-ICON-07'],
             title: 'Narrow transformation',
             steps: [
               'Resize below the persistent-rail breakpoint.',
@@ -1229,8 +1229,8 @@ const iconOnlySupplemental = {
               'The Sidebar hides and the application provides another usable path to the same destinations.',
           },
           {
-            id: 'VR-SID-ICON-08',
-            criterionRefs: ['AC-SID-ICON-08', 'AC-SID-ICON-09'],
+            id: 'VR-ICON-08',
+            criterionRefs: ['AC-ICON-08', 'AC-ICON-09'],
             title: 'Narrowest supported width',
             steps: [
               'Test the narrowest supported viewport.',
