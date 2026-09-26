@@ -41,8 +41,6 @@ const basicHeaderProps = [
   headerPropExplanations.nav,
 ]
 
-const mobileHeaderProps = basicHeaderProps
-
 const dropdownHeaderProps = [headerPropExplanations.logo, headerPropExplanations.nav]
 
 const iconHeaderProps = [headerPropExplanations.logo, headerPropExplanations.nav]
