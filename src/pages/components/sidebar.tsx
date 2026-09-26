@@ -63,105 +63,182 @@ const sidebarProps = {
   },
 }
 
-const sidebarAttributes = [
+const sidebarCodeAttributes = [
+  {
+    name: 'aria-label',
+    type: 'accessible-name attribute',
+    example: 'aria-label="Documentation navigation"',
+    description:
+      'Names the Sidebar navigation landmark. Use a distinct name when Header, tabs, or another navigation landmark appears on the same page.',
+  },
   {
     name: 'aria-current',
-    type: 'accessibility attribute',
+    type: 'accessibility state',
     example: 'aria-current="page"',
     description:
-      'Identifies the link representing the current page. Only the current destination should receive this state.',
+      'Identifies the link representing the current page. It is rendered only when the application marks the item current.',
   },
   {
     name: 'data-active',
-    type: 'state attribute',
+    type: 'state styling hook',
     example: 'data-active="true"',
     description:
-      'Provides a styling hook that mirrors the application-supplied current state without replacing aria-current.',
+      'Mirrors the current state for styling. It does not replace aria-current and should not be the only current-location cue.',
+  },
+  {
+    name: 'data-slot',
+    type: 'component hook',
+    example: 'data-slot="sidebar"',
+    description:
+      'Identifies the Sidebar root for inspection and targeted styling without changing the semantic structure.',
   },
   {
     name: 'data-variant',
-    type: 'variant attribute',
-    example: 'data-variant="labeled"',
+    type: 'variant state',
+    example: 'data-variant="labeled" | "icon-only"',
     description:
-      'Identifies the selected Sidebar presentation for intentional styling and inspection.',
+      'Identifies the selected visual-density variant so styles can target a deliberate presentation.',
   },
   {
     name: 'class',
     type: 'utility class list',
-    example: 'hidden md:block w-60 border-r focus-visible:ring-2',
+    example: 'hidden md:block w-60 shrink-0 border-r border-border p-3 focus-visible:ring-2',
     description:
-      'Provides layout, responsive visibility, spacing, hover, active, and focus-visible styling hooks.',
+      'Provides responsive visibility, rail width, spacing, border treatment, hover/active surfaces, and keyboard focus styling. Preserve these hooks when adapting the output.',
   },
 ]
-
-const groupedSource = `<Sidebar
-  aria-label="Documentation navigation"
-  items={sidebarItems}
-  activeHref={pathname}
-/>`
-
-const groupedHtml = `<aside data-slot="sidebar" data-variant="labeled">
-  <nav aria-label="Documentation navigation">
-    <div>
-      <div>Getting started</div>
-      <a href="/components/sidebar" aria-current="page" data-active="true">
-        Overview
-      </a>
-    </div>
-  </nav>
-</aside>`
 
 const basicSupplemental = {
   guidance: {
     explanation:
-      'Use a flat Sidebar when an area has a small set of peer destinations and grouping would add more structure than value.',
+      'Use a flat Sidebar when an area has a small set of peer destinations and grouping would add more structure than value. The application supplies the links and current state; Sidebar renders the labelled landmark and link treatment.',
     doItems: [
-      'Pass the navigation list explicitly.',
-      'Mark the current destination through route state or current: true.',
+      'Pass a concise list of real destinations through items and give the landmark a distinct aria-label.',
+      'Use activeHref for an exact application-owned route match, or current: true when route state is already normalized in the navigation data.',
+      'Keep the labeled variant visible at desktop widths so labels remain scannable.',
     ],
     dontItems: [
-      'Use a Sidebar for only two or three peer destinations when tabs are clearer.',
-      'Make the active state depend on color alone.',
+      'Do not use a Sidebar for only two or three peer destinations when TabNavigation is clearer.',
+      'Do not make the current state depend on color, position, or indentation alone.',
+      'Do not make Sidebar infer route state from a router or browser location.',
     ],
   },
   code: {
-    source: `<Sidebar\n  aria-label="Section navigation"\n  items={sectionLinks}\n  activeHref={pathname}\n/>`,
-    html: '<aside data-slot="sidebar"><nav aria-label="Section navigation">…</nav></aside>',
+    language: 'tsx',
+    source: `<Sidebar
+  aria-label="Section navigation"
+  items={[
+    { href: '/components/sidebar', label: 'Overview', current: true },
+    { href: '/components/tab-navigation', label: 'Tab navigation' },
+    { href: '/components/header', label: 'Header' },
+  ]}
+  activeHref={pathname}
+/>`,
+    html: `<aside data-slot="sidebar" data-variant="labeled"
+  class="hidden md:block w-60 shrink-0 border-r border-border p-3">
+  <nav aria-label="Section navigation" class="flex flex-col gap-0.5">
+    <a href="/components/sidebar" aria-current="page" data-active="true"
+      class="flex items-center rounded-md gap-3 px-3 py-2 text-sm font-medium
+        text-muted-foreground transition-colors hover:bg-muted hover:text-foreground
+        data-[active=true]:bg-muted data-[active=true]:text-foreground
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+      Overview
+    </a>
+    <a href="/components/tab-navigation"
+      class="flex items-center rounded-md gap-3 px-3 py-2 text-sm font-medium
+        text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:ring-2">
+      Tab navigation
+    </a>
+  </nav>
+</aside>`,
     props: [sidebarProps.items, sidebarProps.activeHref, sidebarProps.ariaLabel],
-    attributes: sidebarAttributes,
+    attributes: sidebarCodeAttributes,
   },
   requirements: {
     userStory:
       'As a person navigating an application area, I want a clearly labelled list of related destinations so that I can move between pages and understand where I am.',
     acceptanceCriteria: [
       {
-        given: 'a Sidebar has a flat list of destinations',
-        when: 'the page renders',
-        then: 'each destination is a keyboard-operable link',
-        and: ['the navigation landmark has the supplied accessible name'],
+        given: 'Sidebar receives the three flat links shown in the example',
+        when: 'the component renders at a desktop-width breakpoint',
+        then: 'one navigation landmark contains the links in the supplied order',
+        and: [
+          'the root has data-slot="sidebar" and data-variant="labeled"',
+          'the rail uses the labeled width and border treatment',
+          'each destination is a real anchor with visible text',
+        ],
       },
       {
-        given: 'the application identifies the current route',
+        given: 'the application marks Overview as current',
         when: 'the Sidebar renders',
-        then: 'only that destination is marked current',
-        and: ['the link exposes aria-current="page"'],
+        then: 'Overview receives the active visual treatment and aria-current="page"',
+        and: [
+          'Overview also exposes data-active="true"',
+          'Tab navigation and Header do not receive current state from Sidebar',
+        ],
+      },
+      {
+        given: 'a person uses only the keyboard',
+        when: 'they tab through the Sidebar links',
+        then: 'each link receives focus in DOM order',
+        and: [
+          'the focus-visible ring is visible',
+          'Enter activates the focused destination as a normal link',
+        ],
+      },
+      {
+        given: 'the viewport is below the Sidebar desktop breakpoint',
+        when: 'the component renders',
+        then: 'the persistent rail is hidden without changing the supplied navigation data',
+        and: ['the application is responsible for composing an accessible mobile replacement'],
+      },
+      {
+        given: 'items is empty or omitted',
+        when: 'the component renders',
+        then: 'Sidebar renders no rail',
+        and: ['the page does not receive an empty navigation landmark'],
       },
     ],
   },
   verification: {
     scenarios: [
       {
-        title: 'Flat navigation and current state',
+        title: 'Flat structure and visual state',
         cases: [
           {
-            title: 'Keyboard and semantics',
+            title: 'Desktop structure',
             steps: [
-              'Render Sidebar with sectionLinks and pathname.',
-              'Tab through the links.',
-              'Inspect the current link with accessibility tools.',
+              'Render Sidebar with the three example links at a desktop-width viewport.',
+              'Query the navigation landmark by Section navigation.',
+              'Inspect the root data attributes and computed layout classes.',
             ],
             expected:
-              'All links receive focus in order and the current destination has aria-current="page".',
+              'One labelled navigation landmark appears inside a labeled 240px rail with the expected border, padding, and link order.',
+          },
+          {
+            title: 'Current destination',
+            steps: [
+              'Inspect the Overview link.',
+              'Inspect Tab navigation and Header.',
+              'Compare the active classes and ARIA state.',
+            ],
+            expected:
+              'Only Overview has data-active="true", active styling, and aria-current="page"; the other links remain ordinary links.',
+          },
+        ],
+      },
+      {
+        title: 'Keyboard and responsive behavior',
+        cases: [
+          {
+            title: 'Keyboard traversal',
+            steps: [
+              'Move focus with Tab.',
+              'Activate a link with Enter.',
+              'Repeat at a narrow viewport.',
+            ],
+            expected:
+              'Every visible link has a focus-visible ring and normal link activation; the persistent rail is hidden below the breakpoint without producing a duplicate empty landmark.',
           },
         ],
       },
@@ -172,56 +249,143 @@ const basicSupplemental = {
 const groupedSupplemental = {
   guidance: {
     explanation:
-      'Use labelled groups when the information architecture itself helps people predict where a destination belongs. Sidebar supports one grouping level.',
+      'Use labelled groups when the information architecture helps people predict where a destination belongs. Sidebar supports one grouping level: each NavGroup renders a heading followed by leaf links.',
     doItems: [
-      'Use concise group headings that describe the content.',
-      'Keep the same navigation tree available to the application’s responsive composition.',
+      'Use concise group headings that describe the information architecture rather than visual decoration.',
+      'Keep group order and item order aligned with the application’s information architecture.',
+      'Use icons only when they add recognition value; keep labels visible in the labeled variant.',
     ],
     dontItems: [
-      'Nest groups indefinitely.',
-      'Use headings only as visual decoration or rely on indentation alone.',
+      'Do not nest groups indefinitely or put dropdown parents inside NavGroup items.',
+      'Do not rely on indentation, icon shape, or color alone to communicate group membership.',
+      'Do not create another navigation landmark for every group; the Sidebar remains one labelled nav.',
     ],
     considerations: [
-      'Sidebar owns presentation and link semantics; the application owns route matching, permissions, and responsive composition.',
+      'Sidebar owns group presentation and link semantics. The application owns route matching, permissions, and any mobile transformation.',
     ],
   },
   code: {
-    source: groupedSource,
-    html: groupedHtml,
+    language: 'tsx',
+    source: `<Sidebar
+  aria-label="Documentation navigation"
+  items={[
+    {
+      label: 'Getting started',
+      items: [
+        { href: '/components/sidebar', label: 'Overview', current: true, icon: BookOpen },
+        { href: '/components/header', label: 'Header', icon: LayoutDashboard },
+      ],
+    },
+    {
+      label: 'Workspace',
+      items: [{ href: '/components/user-interface', label: 'Settings', icon: Settings }],
+    },
+  ]}
+  activeHref={pathname}
+/>`,
+    html: `<aside data-slot="sidebar" data-variant="labeled"
+  class="hidden md:block w-60 shrink-0 border-r border-border p-3">
+  <nav aria-label="Documentation navigation" class="flex flex-col gap-0.5">
+    <div class="flex flex-col gap-0.5">
+      <div class="px-3 pb-1 text-xs font-medium text-muted-foreground/70">Getting started</div>
+      <a href="/components/sidebar" aria-current="page" data-active="true"
+        class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium
+          text-muted-foreground transition-colors hover:bg-muted hover:text-foreground
+          data-[active=true]:bg-muted data-[active=true]:text-foreground
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+        <svg aria-hidden="true" class="size-4 shrink-0">…</svg> Overview
+      </a>
+      <a href="/components/header" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium
+        text-muted-foreground hover:bg-muted focus-visible:ring-2">
+        <svg aria-hidden="true" class="size-4 shrink-0">…</svg> Header
+      </a>
+    </div>
+    <div class="mt-4 flex flex-col gap-0.5">
+      <div class="px-3 pb-1 text-xs font-medium text-muted-foreground/70">Workspace</div>
+      <a href="/components/user-interface" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium">…</a>
+    </div>
+  </nav>
+</aside>`,
     props: [sidebarProps.items, sidebarProps.activeHref, sidebarProps.ariaLabel],
-    attributes: sidebarAttributes,
+    attributes: sidebarCodeAttributes,
   },
   requirements: {
     userStory:
       'As a person working in a larger application area, I want related destinations grouped by purpose so that I can scan the navigation and choose the right page.',
     acceptanceCriteria: [
       {
-        given: 'the navigation contains labelled groups',
+        given: 'items contains the Getting started and Workspace groups',
         when: 'the Sidebar renders',
-        then: 'each group heading precedes its links',
-        and: ['links remain real anchors', 'the hierarchy is understandable without color'],
+        then: 'one navigation landmark presents each group heading before its links',
+        and: [
+          'Getting started appears before Workspace',
+          'the supplied link order is preserved inside each group',
+          'group headings are not separate navigation landmarks',
+        ],
       },
       {
-        given: 'Header or tabs also provide navigation',
-        when: 'landmarks are announced',
-        then: 'the Sidebar has a distinct accessible name',
+        given: 'a link has an icon and visible label',
+        when: 'the link renders',
+        then: 'the icon is decorative and the visible label remains the accessible link name',
+        and: ['the SVG receives aria-hidden="true"', 'the label remains visible in labeled mode'],
+      },
+      {
+        given: 'a group contains the current destination',
+        when: 'the Sidebar renders',
+        then: 'the current link receives active styling and aria-current="page"',
+        and: ['the group heading remains visible', 'non-current links remain unselected'],
+      },
+      {
+        given: 'a group is first or follows another group',
+        when: 'the visual layout renders',
+        then: 'the first group has no inter-group margin and later groups have separation',
+        and: ['spacing and headings communicate grouping without relying on color alone'],
+      },
+      {
+        given: 'the application needs a mobile or temporary presentation',
+        when: 'the desktop Sidebar is hidden',
+        then: 'the application can reuse the same group data without requiring Sidebar context',
       },
     ],
   },
   verification: {
     scenarios: [
       {
-        title: 'Grouped navigation',
+        title: 'Grouped hierarchy',
         cases: [
           {
-            title: 'Hierarchy and landmark naming',
+            title: 'Structure and order',
             steps: [
               'Render groupedSidebarLinks.',
-              'Query navigation landmarks by name.',
-              'Review group headings and link order.',
+              'Query the single Documentation navigation landmark.',
+              'Inspect headings, links, and group wrappers.',
             ],
             expected:
-              'One navigation landmark named Documentation navigation contains the labelled groups and their links.',
+              'The landmark contains Getting started followed by Workspace; each heading precedes its own links and no subgroup creates a nested nav landmark.',
+          },
+          {
+            title: 'Icon and label semantics',
+            steps: [
+              'Inspect each rendered icon.',
+              'Query the accessible name of each link.',
+              'Hide or ignore decorative SVG content.',
+            ],
+            expected: 'Icons are aria-hidden and each link name comes from its visible text label.',
+          },
+        ],
+      },
+      {
+        title: 'Grouped keyboard behavior',
+        cases: [
+          {
+            title: 'Sequential focus',
+            steps: [
+              'Tab from the first link through the final link.',
+              'Observe focus-visible styling.',
+              'Activate the current link with Enter.',
+            ],
+            expected:
+              'Focus follows DOM/group order, every link has a visible focus treatment, and activation remains normal link navigation.',
           },
         ],
       },
@@ -232,48 +396,97 @@ const groupedSupplemental = {
 const activeSupplemental = {
   guidance: {
     explanation:
-      'Use explicit current state to show the person’s location. The application should calculate route state; Sidebar should render it consistently.',
+      'Use explicit current state to show the person’s location. The application calculates route state; Sidebar renders the state consistently rather than inspecting a router.',
     doItems: [
-      'Use activeHref for exact route matching or current: true for an already-normalized navigation model.',
-      'Keep the active treatment visible in labeled and icon-only variants.',
+      'Use activeHref for an exact match when the application has a pathname, or current: true when the navigation model already contains selection state.',
+      'Keep the active treatment visible and understandable in labeled and icon-only variants.',
+      'Verify that only one destination is selected for a given navigation tree.',
     ],
     dontItems: [
-      'Mark multiple destinations current.',
-      'Have Sidebar inspect browser or router state internally.',
+      'Do not mark a parent or sibling current merely because it is near the current page.',
+      'Do not use color alone to communicate selection.',
+      'Do not let Sidebar and Header calculate conflicting current states independently.',
     ],
   },
   code: {
-    source: `<Sidebar\n  aria-label="Workspace navigation"\n  items={workspaceItems}\n  activeHref={pathname}\n/>`,
-    html: '<a href="/components/sidebar" aria-current="page" data-active="true" class="…">Overview</a>',
+    language: 'tsx',
+    source: `<Sidebar
+  aria-label="Workspace navigation"
+  items={workspaceItems}
+  activeHref={pathname}
+/>`,
+    html: `<a href="/components/sidebar" aria-current="page" data-active="true"
+  class="flex items-center rounded-md gap-3 px-3 py-2 text-sm font-medium
+    text-muted-foreground transition-colors hover:bg-muted hover:text-foreground
+    data-[active=true]:bg-muted data-[active=true]:text-foreground
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+  Overview
+</a>
+<a href="/components/header" data-active="false"
+  class="flex items-center rounded-md gap-3 px-3 py-2 text-sm font-medium
+    text-muted-foreground transition-colors hover:bg-muted hover:text-foreground
+    data-[active=true]:bg-muted data-[active=true]:text-foreground
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+  Header
+</a>`,
     props: [sidebarProps.items, sidebarProps.activeHref, sidebarProps.ariaLabel],
-    attributes: [sidebarAttributes[0], sidebarAttributes[1]],
+    attributes: [sidebarCodeAttributes[1], sidebarCodeAttributes[2], sidebarCodeAttributes[5]],
   },
   requirements: {
     userStory:
       'As a person using an application, I want the Sidebar to identify the page I am viewing so that I can maintain context while moving through the area.',
     acceptanceCriteria: [
       {
-        given: 'the application supplies current route state',
-        when: 'the matching Sidebar item renders',
-        then: 'the item has active styling and aria-current="page"',
-        and: ['non-current items do not expose aria-current'],
+        given: 'activeHref matches /components/sidebar',
+        when: 'the Sidebar renders',
+        then: 'the Overview link is the only selected destination',
+        and: [
+          'Overview has data-active="true" and aria-current="page"',
+          'the active row uses the muted surface and foreground text treatment',
+          'other links do not have aria-current="page"',
+        ],
+      },
+      {
+        given: 'the application changes activeHref to another exact href',
+        when: 'the Sidebar rerenders',
+        then: 'the active state moves to the matching link',
+        and: [
+          'the previous link loses its active state',
+          'no partial or prefix match selects a different route',
+        ],
+      },
+      {
+        given: 'a person navigates with the keyboard',
+        when: 'they focus or activate a current or non-current link',
+        then: 'focus-visible and selection states remain distinguishable',
+        and: ['Enter follows the link href', 'selection is not communicated by color alone'],
       },
     ],
   },
   verification: {
     scenarios: [
       {
-        title: 'Current destination',
+        title: 'Selection outcome',
         cases: [
           {
-            title: 'Active-state rendering',
+            title: 'Exact current match',
             steps: [
-              'Render Sidebar with activeHref set to /components/sidebar.',
-              'Inspect the matching link.',
-              'Inspect a non-current link.',
+              'Render with activeHref="/components/sidebar".',
+              'Inspect Overview, Header, and Tab navigation.',
+              'Change activeHref to /components/header and rerender.',
             ],
             expected:
-              'The matching link has data-active="true" and aria-current="page"; the other link has neither current state.',
+              'The matching exact href alone has active styling, data-active="true", and aria-current="page"; the state moves when activeHref changes.',
+          },
+          {
+            title: 'Keyboard selection',
+            steps: [
+              'Tab to the current link.',
+              'Confirm the focus-visible ring.',
+              'Press Enter and observe navigation.',
+            ],
+            expected:
+              'The current link has both a visible focus treatment and current semantics, and Enter performs normal link navigation.',
           },
         ],
       },
@@ -284,48 +497,154 @@ const activeSupplemental = {
 const iconOnlySupplemental = {
   guidance: {
     explanation:
-      'Use icon-only mode only when the available width requires higher density and the destination set is familiar. It is not a substitute for a mobile navigation strategy.',
+      'Use icon-only mode when the available desktop width requires higher density and every destination has a recognizable icon or safe fallback label. This is a visual variant, not a replacement for responsive navigation.',
     doItems: [
-      'Provide recognizable icons and preserve labels for assistive technology and focus.',
-      'Test keyboard focus and tooltip behavior without a pointer.',
+      'Provide a useful label for every link; Sidebar applies aria-label when the visible label is hidden.',
+      'Keep the compact target at the documented 40px square and preserve focus-visible treatment.',
+      'Test tooltip/focus behavior without a pointer and provide a separate mobile composition when the rail is hidden.',
     ],
     dontItems: [
-      'Do not make unlabeled icons the only navigation cue.',
-      'Do not treat icon-only mode as permission to remove the mobile experience.',
+      'Do not remove the programmatic label because the icon appears self-explanatory.',
+      'Do not make hover the only way to discover a destination label.',
+      'Do not use icon-only mode for a long unfamiliar information architecture without another visible orientation cue.',
+    ],
+    considerations: [
+      'When an item has no icon, the component renders the first letter as a decorative fallback; the link’s aria-label remains the complete item label.',
     ],
   },
   code: {
-    source: `<Sidebar\n  aria-label="Workspace navigation"\n  items={workspaceItems}\n  variant="icon-only"\n/>`,
-    html: '<a aria-label="Overview" data-active="true" class="h-10 w-10 justify-center">…</a>',
-    props: [sidebarProps.items, sidebarProps.ariaLabel, sidebarProps.variant],
-    attributes: [sidebarAttributes[2], sidebarAttributes[3]],
+    language: 'tsx',
+    source: `<Sidebar
+  aria-label="Compact workspace navigation"
+  items={workspaceItems}
+  activeHref={pathname}
+  variant="icon-only"
+/>`,
+    html: `<aside data-slot="sidebar" data-variant="icon-only"
+  class="hidden md:block w-14 shrink-0 border-r border-border px-2 py-4">
+  <nav aria-label="Compact workspace navigation" class="flex flex-col gap-0.5">
+    <a href="/components/sidebar" aria-label="Overview"
+      aria-current="page" data-active="true"
+      class="flex h-10 w-10 items-center justify-center rounded-md
+        text-muted-foreground transition-colors hover:bg-muted hover:text-foreground
+        data-[active=true]:bg-muted data-[active=true]:text-foreground
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+      <svg aria-hidden="true" class="size-5 shrink-0">…</svg>
+    </a>
+    <a href="/components/header" aria-label="Header"
+      class="flex h-10 w-10 items-center justify-center rounded-md
+        text-muted-foreground transition-colors hover:bg-muted hover:text-foreground
+        data-[active=true]:bg-muted data-[active=true]:text-foreground
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+      <span aria-hidden="true" class="flex size-5 items-center justify-center text-xs font-semibold">H</span>
+    </a>
+  </nav>
+</aside>`,
+    props: [
+      sidebarProps.items,
+      sidebarProps.activeHref,
+      sidebarProps.ariaLabel,
+      sidebarProps.variant,
+    ],
+    attributes: [
+      sidebarCodeAttributes[0],
+      sidebarCodeAttributes[1],
+      sidebarCodeAttributes[2],
+      sidebarCodeAttributes[4],
+      sidebarCodeAttributes[5],
+    ],
   },
   requirements: {
     userStory:
       'As a person with limited horizontal space, I want a compact Sidebar that retains accessible labels so that I can navigate without losing destination meaning.',
     acceptanceCriteria: [
       {
-        given: 'Sidebar uses icon-only mode',
-        when: 'a destination receives keyboard focus',
-        then: 'its accessible name identifies the destination',
-        and: ['the tooltip or equivalent label is available without requiring hover'],
+        given: 'Sidebar uses variant="icon-only"',
+        when: 'the rail renders at a desktop width',
+        then: 'the root uses the icon-only width and each visible link is a compact square target',
+        and: [
+          'the root exposes data-variant="icon-only"',
+          'the rail uses w-14 with px-2 py-4',
+          'each link uses h-10 w-10 and remains keyboard focusable',
+        ],
+      },
+      {
+        given: 'a link label is hidden visually',
+        when: 'the link is inspected or focused',
+        then: 'the link retains its complete accessible name',
+        and: [
+          'aria-label equals the item label',
+          'the icon is aria-hidden',
+          'a tooltip can expose the same label to sighted keyboard or pointer users',
+        ],
+      },
+      {
+        given: 'an item has no icon',
+        when: 'icon-only mode renders it',
+        then: 'a first-letter visual fallback appears without replacing the accessible label',
+      },
+      {
+        given: 'the current item is rendered in icon-only mode',
+        when: 'a person inspects or focuses it',
+        then: 'current styling, aria-current="page", and focus-visible styling remain available',
+      },
+      {
+        given: 'the viewport is below the persistent-rail breakpoint',
+        when: 'the application renders its responsive shell',
+        then: 'the application provides the navigation through its chosen mobile composition',
+        and: ['Sidebar itself does not infer or synthesize that mobile composition'],
       },
     ],
   },
   verification: {
     scenarios: [
       {
-        title: 'Compact navigation',
+        title: 'Compact visual treatment',
         cases: [
           {
-            title: 'Accessible icon-only links',
+            title: 'Icon and fallback rendering',
             steps: [
-              'Render Sidebar with variant="icon-only".',
-              'Focus each link with the keyboard.',
-              'Inspect the accessible name.',
+              'Render icon-only mode with one icon item and one item without an icon.',
+              'Inspect the root variant and link classes.',
+              'Inspect SVG/span accessibility attributes.',
             ],
             expected:
-              'Every link has a useful accessible name and visible focus treatment; no destination depends on pointer hover alone.',
+              'The rail is 56px wide, links are 40px squares, icons and fallback letters are decorative, and each link retains its full accessible label.',
+          },
+          {
+            title: 'Tooltip and keyboard label',
+            steps: [
+              'Focus an icon-only link with Tab.',
+              'Move across the link with a pointer.',
+              'Inspect the tooltip or equivalent visible label.',
+            ],
+            expected:
+              'The destination label is available without requiring hover alone and focus remains visibly indicated.',
+          },
+        ],
+      },
+      {
+        title: 'State and responsive edge conditions',
+        cases: [
+          {
+            title: 'Current compact item',
+            steps: [
+              'Render with the first item current.',
+              'Inspect aria-current and data-active.',
+              'Focus the current item.',
+            ],
+            expected:
+              'The current compact link retains active surface, current semantics, and a visible focus ring simultaneously.',
+          },
+          {
+            title: 'Narrow viewport',
+            steps: [
+              'Render below the md breakpoint.',
+              'Inspect the Sidebar landmark.',
+              'Open the application-provided mobile navigation.',
+            ],
+            expected:
+              'The persistent Sidebar is hidden and the application’s mobile composition remains the available path to the same destinations.',
           },
         ],
       },
