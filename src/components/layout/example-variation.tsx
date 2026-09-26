@@ -36,6 +36,8 @@ type ExampleCode = {
 }
 
 type AcceptanceCriterion = {
+  id?: string
+  requirementRefs?: string[]
   given: string
   when: string
   then: string
@@ -43,17 +45,23 @@ type AcceptanceCriterion = {
 }
 
 type VerificationCase = {
+  id?: string
+  criterionRefs?: string[]
+  role?: string
   title: string
   steps: string[]
   expected: string
 }
 
 type VerificationScenario = {
+  id?: string
+  role?: string
   title: string
   cases: VerificationCase[]
 }
 
 type ExampleRequirementGroup = {
+  id?: string
   title: string
   items: string[]
 }
@@ -228,6 +236,14 @@ function AcceptanceCriteriaPanel({
         <ol className="mt-3 list-decimal space-y-5 pl-5 leading-7">
           {criteria.map((criterion, index) => (
             <li key={`${criterion.given}-${index}`} className="pl-2">
+              {criterion.id && (
+                <code className="mr-2 text-xs text-muted-foreground">{criterion.id}</code>
+              )}
+              {criterion.requirementRefs && criterion.requirementRefs.length > 0 && (
+                <p className="mb-2 text-sm text-muted-foreground">
+                  Satisfies: {criterion.requirementRefs.join(', ')}
+                </p>
+              )}
               <strong className="text-foreground">Given</strong> {criterion.given}
               <ol type="a" className="mt-2 list-[lower-alpha] space-y-2 pl-6">
                 <li>
@@ -262,10 +278,20 @@ function RequirementsPanel({ requirements }: { requirements: ExampleRequirements
         )}
         {requirements.groups.map((group) => (
           <section key={group.title}>
-            <h4 className="font-semibold text-foreground">{group.title}</h4>
+            <h4 className="font-semibold text-foreground">
+              {group.title}
+              {group.id && (
+                <code className="ml-2 text-xs font-normal text-muted-foreground">{group.id}</code>
+              )}
+            </h4>
             <ol className="mt-3 list-decimal space-y-3 pl-5 leading-7">
-              {group.items.map((item) => (
+              {group.items.map((item, itemIndex) => (
                 <li key={item} className="pl-2">
+                  {group.id && (
+                    <code className="mr-2 text-xs text-muted-foreground">
+                      {group.id}-{String(itemIndex + 1).padStart(2, '0')}
+                    </code>
+                  )}
                   {item}
                 </li>
               ))}
@@ -302,7 +328,24 @@ function VerificationPanel({
           <div className="mt-5 space-y-8">
             {scenario.cases.map((testCase) => (
               <article key={testCase.title} className="space-y-4">
-                <h5 className="font-medium text-foreground">{testCase.title}</h5>
+                <h5 className="font-medium text-foreground">
+                  {testCase.id && (
+                    <code className="mr-2 text-xs font-normal text-muted-foreground">
+                      {testCase.id}
+                    </code>
+                  )}
+                  {testCase.title}
+                </h5>
+                {(scenario.role || testCase.role) && (
+                  <p className="text-sm text-muted-foreground">
+                    Primary role: {testCase.role ?? scenario.role}
+                  </p>
+                )}
+                {testCase.criterionRefs && testCase.criterionRefs.length > 0 && (
+                  <p className="text-sm text-muted-foreground">
+                    Verifies: {testCase.criterionRefs.join(', ')}
+                  </p>
+                )}
                 <div>
                   <h6 className="text-sm font-medium text-foreground">Steps</h6>
                   <ol className="mt-2 list-decimal space-y-2 pl-5">

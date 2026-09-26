@@ -102,6 +102,84 @@ describe('ExampleVariation supplemental content', () => {
     expect(screen.getByText('Expected result')).toBeTruthy()
   })
 
+  it('renders layered requirements and traceability metadata in the standard order', () => {
+    const layeredSupplemental = {
+      ...supplemental,
+      tabLayout: 'requirements' as const,
+      requirements: {
+        userStory: 'As a reviewer, I want traceable requirements.',
+        groups: [
+          {
+            id: 'BR-TEST',
+            title: 'Business requirements',
+            items: ['The outcome is understandable.'],
+          },
+        ],
+        acceptanceCriteria: [
+          {
+            id: 'AC-TEST-01',
+            requirementRefs: ['BR-TEST-01'],
+            given: 'the requirement is present',
+            when: 'the example is reviewed',
+            then: 'the requirement is understandable',
+          },
+        ],
+      },
+      verification: {
+        scenarios: [
+          {
+            title: 'Traceability',
+            role: 'BA / QA',
+            cases: [
+              {
+                id: 'VR-TEST-01',
+                criterionRefs: ['AC-TEST-01'],
+                title: 'Review the requirement',
+                steps: ['Review the requirement.'],
+                expected: 'The requirement is covered.',
+              },
+            ],
+          },
+        ],
+      },
+    }
+
+    render(
+      <ExampleVariation
+        title="Layered example"
+        summary="A layered summary"
+        tryIt="Review the example."
+        supplemental={layeredSupplemental}
+      >
+        <div>Layered live example</div>
+      </ExampleVariation>,
+    )
+
+    expect(screen.getAllByRole('tab').map((tab) => tab.textContent)).toEqual([
+      'Guidance',
+      'Requirements',
+      'Criteria',
+      'Verification',
+      'Code',
+    ])
+
+    fireEvent.click(screen.getByRole('tab', { name: 'Requirements' }))
+    expect(screen.getByText('BR-TEST')).toBeTruthy()
+    expect(screen.getByText('BR-TEST-01')).toBeTruthy()
+
+    fireEvent.click(screen.getByRole('tab', { name: 'Criteria' }))
+    expect(screen.getByText('AC-TEST-01')).toBeTruthy()
+    expect(screen.getByText('Satisfies: BR-TEST-01')).toBeTruthy()
+
+    fireEvent.click(screen.getByRole('tab', { name: 'Verification' }))
+    expect(screen.getByText('VR-TEST-01')).toBeTruthy()
+    expect(screen.getByText('Primary role: BA / QA')).toBeTruthy()
+    expect(screen.getByText('Verifies: AC-TEST-01')).toBeTruthy()
+
+    fireEvent.click(screen.getByRole('tab', { name: 'Code' }))
+    expect(screen.getByText('<Example />')).toBeTruthy()
+  })
+
   it('keeps tab and verification relationships unique across examples', () => {
     render(
       <>

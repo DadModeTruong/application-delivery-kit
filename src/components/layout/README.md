@@ -419,6 +419,39 @@ plus the `isNavParent` and `isNavGroup` type guards. When a type graduates
 from one-consumer to two-consumers, move it and update the previous
 location to re-export from `types.ts` for backward compatibility.
 
+## Guide requirements and traceability
+
+Standardized component examples use five supplemental tabs in this order:
+
+1. **Guidance** — design intent, usage guidance, and ownership boundaries.
+2. **Requirements** — ordered Business, Functional, Non-functional, Accessibility, and Technical requirements.
+3. **Criteria** — observable Given/When/Then/And acceptance criteria.
+4. **Verification** — role-aware scenarios, steps, expected results, and evidence.
+5. **Code** — the implementation reference and rendered HTML contract.
+
+Requirements, criteria, and verification must be traceable rather than merely
+related by topic:
+
+- Requirement groups have stable IDs such as `FR-SID-BASIC`.
+- Requirement items are addressable as `FR-SID-BASIC-01`.
+- Acceptance criteria have stable IDs such as `AC-SID-BASIC-01` and identify the requirement groups they satisfy.
+- Verification cases have stable IDs such as `VR-SID-BASIC-01`, identify their primary review role, and identify the criteria they verify.
+- Every applicable requirement must have at least one acceptance criterion and at least one verification case.
+- Behaviors that are not owned by the component must be stated explicitly as application-owned or out of scope; they must not be left ambiguous.
+
+This creates a complete refinement chain:
+
+```text
+Business requirement
+  → Functional / quality / accessibility / technical requirement
+    → Acceptance criterion
+      → Verification case and evidence
+```
+
+A new component guide should use this structure from its first example. Legacy
+examples may retain the older tab layout while they are being migrated, but
+new standardized examples should not introduce untraceable requirements.
+
 ## A11y baseline
 
 Non-negotiable for anything in this folder:
