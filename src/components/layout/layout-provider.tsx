@@ -1,22 +1,17 @@
 /**
  * LayoutProvider — shares layout config across page-chrome components.
  *
- * Some layout components (TabNavigation, Sidebar) need to appear in
- * two places: their own dedicated slot on desktop, and inside the
- * application shell's mobile drawer. The shell adapter translates
- * this context into generic MobileNavigation sections; the reusable
- * Header does not read this provider directly.
+ * TabNavigation can receive shared section data from this provider.
+ * The reusable Header and Sidebar remain independent from this context;
+ * an application shell composes their props explicitly.
  *
  * The provider is optional — TabNavigation and Sidebar can be used
  * standalone by passing props directly. Explicit props always
  * override context (standard React pattern).
  *
- * `tabNavigationLabel` / `sidebarNavLabel` are visible drawer
- * headings, separate from the components' `aria-label` (which is
- * the landmark name for screen readers). Usually you'll set both
- * to the same value, but they're independent so consumers can pick
- * a shorter drawer heading if the aria-label is verbose (e.g.,
- * aria-label="Product documentation sections", drawer heading="Docs").
+ * `tabNavigationLabel` describes shared tab-navigation data when an
+ * application shell needs it elsewhere. Component landmarks are named
+ * by their own `aria-label` props.
  *
  * @example
  * <LayoutProvider
@@ -35,7 +30,7 @@
  */
 
 import * as React from 'react'
-import type { NavLeaf, NavGroup } from './types'
+import type { NavLeaf } from './types'
 
 // ---------------------------------------------------------------
 // Context
@@ -57,21 +52,6 @@ type LayoutContextValue = {
    * Usually set to the same value as TabNavigation's `aria-label`.
    */
   tabNavigationLabel?: string
-  /**
-   * Items for the Sidebar component. The application shell may adapt
-   * them into a labelled MobileNavigation section.
-   *
-   * Typed as (NavLeaf | NavGroup)[] — Sidebar supports grouping
-   * as its hierarchy primitive but not dropdowns.
-   */
-  sidebarNav?: (NavLeaf | NavGroup)[]
-  /**
-   * Visible heading text for the sidebar section inside Header's
-   * mobile drawer. When omitted, the drawer uses a generic
-   * fallback ("Pages"). Usually set to the same value as Sidebar's
-   * `aria-label` for consistency.
-   */
-  sidebarNavLabel?: string
   /**
    * Currently active URL. Used by TabNavigation and Sidebar to
    * apply `aria-current="page"` and active-state styling. Match
@@ -112,17 +92,9 @@ function LayoutProvider({ children, ...value }: LayoutProviderProps) {
     () => ({
       tabNavigation: value.tabNavigation,
       tabNavigationLabel: value.tabNavigationLabel,
-      sidebarNav: value.sidebarNav,
-      sidebarNavLabel: value.sidebarNavLabel,
       activeHref: value.activeHref,
     }),
-    [
-      value.tabNavigation,
-      value.tabNavigationLabel,
-      value.sidebarNav,
-      value.sidebarNavLabel,
-      value.activeHref,
-    ],
+    [value.tabNavigation, value.tabNavigationLabel, value.activeHref],
   )
 
   return <LayoutContext.Provider value={memoized}>{children}</LayoutContext.Provider>

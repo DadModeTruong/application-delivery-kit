@@ -266,7 +266,7 @@ function VerificationPanel({
                   </ol>
                 </div>
                 <p className="border-l-2 border-primary/40 pl-4 leading-7">
-                  <strong className="font-medium text-foreground">Expected result: </strong>
+                  <strong className="font-medium text-foreground">Expected result</strong>:
                   {testCase.expected}
                 </p>
               </article>

@@ -59,7 +59,7 @@ type PageBodyProps = React.ComponentProps<'div'> & {
  * // Sidebar layout — PageBody caps width, Main goes full inside
  * <Header />
  * <PageBody size="contained">
- *   <Sidebar aria-label="Docs" />
+ *   <Sidebar aria-label="Docs" items={docsSidebar} activeHref={pathname} />
  *   <Main size="full">…</Main>
  * </PageBody>
  * <Footer />
@@ -67,7 +67,7 @@ type PageBodyProps = React.ComponentProps<'div'> & {
  * @example
  * // Full-bleed sidebar layout
  * <PageBody size="full">
- *   <Sidebar aria-label="Docs" />
+ *   <Sidebar aria-label="Docs" items={docsSidebar} activeHref={pathname} />
  *   <Main size="full">…</Main>
  * </PageBody>
  */

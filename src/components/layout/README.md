@@ -186,8 +186,8 @@ PageShell.
 ### With secondary tabs above main
 
 TabNavigation sits between Header and Main (or Header and PageBody).
-Reads its items from LayoutProvider so the mobile drawer picks them up
-too:
+It can receive shared tab data from LayoutProvider when the application
+shell needs that configuration in more than one place:
 
 ```tsx
 <LayoutProvider tabNavigation={sectionTabs} tabNavigationLabel="Docs">
@@ -202,16 +202,14 @@ too:
 
 ### Full docs shell (TabNavigation + Sidebar)
 
-Combines everything. LayoutProvider sits outside PageShell so its
-context is available to Header (for the mobile drawer) as well as
-TabNavigation and Sidebar.
+Combines everything. LayoutProvider supplies shared tab configuration;
+Sidebar receives its navigation tree and current state explicitly so the
+reusable component remains independent from application context.
 
 ```tsx
 <LayoutProvider
   tabNavigation={sectionTabs}
   tabNavigationLabel="Documentation"
-  sidebarNav={sidebarEntries}
-  sidebarNavLabel="On this page"
   activeHref={pathname}
 >
   <PageShell>
@@ -219,7 +217,7 @@ TabNavigation and Sidebar.
     <Header />
     <TabNavigation aria-label="Documentation" />
     <PageBody>
-      <Sidebar aria-label="On this page" />
+      <Sidebar aria-label="On this page" items={sidebarEntries} activeHref={pathname} />
       <Main size="full">…</Main>
     </PageBody>
     <Footer />
@@ -251,26 +249,21 @@ PageShell has no `size`, no variants, no other props beyond `children`
 and `className`. If you need to customize width, that belongs on the
 inner components.
 
-## LayoutProvider — shared config for multi-slot components
+## LayoutProvider — shared tab configuration
 
-Some components (`TabNavigation`, `Sidebar`) need to appear in **two
-places at once**: their dedicated desktop slot, AND inside Header's
-mobile drawer. `LayoutProvider` centralizes their config so consumers
-don't pass items twice.
+`LayoutProvider` is optional context for layout components that need
+shared tab-navigation data. It does not own the reusable Header or
+Sidebar. Pass Header navigation, Sidebar items, and current state at
+the application-shell boundary so routing and information architecture
+remain application-owned.
 
 ```tsx
-<LayoutProvider
-  tabNavigation={sectionTabs}
-  tabNavigationLabel="Documentation"   // drawer heading, matches aria-label
-  sidebarNav={sidebarEntries}
-  sidebarNavLabel="On this page"      // drawer heading
-  activeHref={pathname}
->
+<LayoutProvider tabNavigation={sectionTabs} activeHref={pathname}>
   <PageShell>
-    <Header />
+    <Header logo={logo} nav={primaryNav} />
     <TabNavigation aria-label="Documentation" />
     <PageBody>
-      <Sidebar aria-label="On this page" />
+      <Sidebar aria-label="On this page" items={sidebarEntries} activeHref={pathname} />
       <Main size="full">…</Main>
     </PageBody>
     <Footer />
@@ -279,15 +272,10 @@ don't pass items twice.
 ```
 
 **Rules of thumb:**
-- Explicit props on `TabNavigation` / `Sidebar` override context.
-- Provider is optional — components work with just props too.
-- `tabNavigationLabel` / `sidebarNavLabel` control the drawer section
-  headings. Set them alongside items when using the provider.
-- `aria-label` on the components themselves is still required — it's
-  the landmark name for screen readers, independent of the drawer
-  heading (usually you'll set both to the same value).
-- Provider sits **outside** PageShell so Header (inside PageShell) can
-  still consume the context.
+- Pass `items` and `activeHref` explicitly to Sidebar.
+- Mark an individual navigation item with `current: true` when the application already has route state in its navigation model.
+- Use distinct labels for Header, tabs, and Sidebar landmarks.
+- Keep responsive replacement composition at the application boundary; Sidebar does not infer a router or read LayoutProvider.
 
 ## Navigation types (NavLeaf, NavParent, NavGroup)
 
