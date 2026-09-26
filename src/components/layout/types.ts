@@ -35,6 +35,8 @@ import type { LucideIcon } from 'lucide-react'
 export type NavLeaf = {
   href: string
   label: string
+  /** Marks the destination represented by the current location. */
+  current?: boolean
   external?: boolean
   icon?: LucideIcon
 }
@@ -67,6 +69,8 @@ export type NavLeaf = {
  */
 export type NavParent = {
   label: string
+  /** Marks this category as containing the current destination. */
+  current?: boolean
   icon?: LucideIcon
   children: NavLeaf[]
 }

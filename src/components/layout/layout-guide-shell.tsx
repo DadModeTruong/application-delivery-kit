@@ -1,7 +1,8 @@
 /** Shared page shell for the Layouts examples area. */
 import type { ReactNode } from 'react'
 import { Footer } from '@/components/layout/footer'
-import { Header, SkipLink } from '@/components/layout/header'
+import { SkipLink } from '@/components/layout/header'
+import { ApplicationHeader } from '@/components/layout/application-header'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { Main } from '@/components/layout/main'
 import { PageBody } from '@/components/layout/page-body'
@@ -37,7 +38,10 @@ export function LayoutGuideShell({
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={shellPrimaryNav} />
+        <ApplicationHeader
+          logo={{ href: '/', label: 'Application Delivery Kit' }}
+          nav={shellPrimaryNav}
+        />
         <TabNavigation aria-label="Examples" activeHref="/examples/layouts" />
         <PageBody>
           <Sidebar aria-label="Layouts" />

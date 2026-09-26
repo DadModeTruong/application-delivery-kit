@@ -28,22 +28,62 @@ export function ComponentsNotificationBannerPage() {
 
 Keep page-specific examples and small helpers in the same file while they are only used by that page. Move a helper into `src/components/` or `src/lib/` only when it has a clear second consumer.
 
-## 3. Follow the guide-page structure
+## 3. Follow the canonical component-guide structure
+
+Use `src/pages/components/header.tsx` as the current reference model for
+page anatomy, visual rhythm, and role-based example detail. Adapt its
+content to the new component; do not copy Header-specific concepts.
 
 A component guide normally follows this order:
 
 1. Page title and purpose
-2. What is it?
-3. Basic example
-4. When to use it
-5. When not to use it
-6. Design considerations
-7. Accessibility considerations
-8. Responsive behavior
-9. Examples and variations
-10. Questions to ask
+2. What is it? with a real preview and page-level Try it guidance
+3. When to use it
+4. When not to use it
+5. Design considerations
+6. Accessibility considerations
+7. Responsive behavior
+8. Examples and variations
+9. Questions to ask
 
-Use real production primitives in the examples. Keep the documentation shell around the example, but make the example itself easy to copy.
+Each standardized variation follows this order:
+
+1. Title
+2. Short summary of the distinct teaching purpose
+3. Live production-backed example
+4. Specific Try it instruction with an observable expected result
+5. Tabs for `Guidance`, `Code`, `Criteria`, and `Verification`
+
+Keep the variation title, summary, live example, and Try it instruction in
+the page flow rather than wrapping the entire variation in a card. Place
+the tab list outside the bounded card and put only the active tab content
+inside it. Use one consistent Try it treatment and typography/color
+hierarchy across the whole page.
+
+Use the tabs as delivery artifacts:
+
+- **Guidance** explains why and when, including Do's and Don'ts.
+- **Code** shows exact copyable TSX, representative rendered
+  semantic/styled HTML, and only the props and attributes used by that
+  variation.
+- **Criteria** contains a copyable User Story and granular
+  Given/When/Then/And acceptance criteria.
+- **Verification** contains named scenarios and test cases with ordered
+  steps and precise expected results.
+
+Criteria and Verification must be exhaustive for the behavior the live
+example actually demonstrates. Cover selection outcomes, state changes,
+keyboard and focus behavior, accessibility semantics, responsive
+transformation, visual boundaries, and relevant edge conditions. Keep
+Criteria focused on what must be true and Verification focused on how to
+prove it; do not copy one into the other.
+
+Read the complete page after editing. Confirm that every example has one
+distinct purpose, every visible Try it instruction matches its actual
+props/state, the tabs agree with the live preview and production
+implementation, and no stale API or layout references remain. See
+[`src/pages/components/README.md`](./components/README.md) for the full
+convention.
 
 ## 4. Add the route
 
@@ -108,7 +148,10 @@ A page is ready when:
 
 - its file name, export name, route, browser title, and navigation placement agree
 - its examples use the real production primitives
-- its content follows the guide structure
+- its content follows the canonical guide structure
+- each variation has a distinct purpose and standardized tabs
+- Criteria and Verification are granular, traceable, and grounded in the
+  actual example
 - its accessibility and responsive behavior are explained
 - the nearest README is updated
 - local verification passes

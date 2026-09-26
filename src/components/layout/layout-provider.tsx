@@ -3,9 +3,9 @@
  *
  * Some layout components (TabNavigation, Sidebar) need to appear in
  * two places: their own dedicated slot on desktop, and inside the
- * Header's mobile drawer. Rather than duplicate their `items` prop
- * on both Header and the component itself, consumers pass config
- * to a single provider and both components read it.
+ * application shell's mobile drawer. The shell adapter translates
+ * this context into generic MobileNavigation sections; the reusable
+ * Header does not read this provider directly.
  *
  * The provider is optional — TabNavigation and Sidebar can be used
  * standalone by passing props directly. Explicit props always
@@ -43,26 +43,23 @@ import type { NavLeaf, NavGroup } from './types'
 
 type LayoutContextValue = {
   /**
-   * Items for the TabNavigation component. When present, Header's
-   * mobile drawer will render them below the primary nav.
+   * Items for the TabNavigation component. The application shell may
+   * adapt them into a labelled MobileNavigation section.
    *
    * Typed as NavLeaf[] because TabNavigation doesn't support
    * dropdowns — its consumers are tabs, which shouldn't have
    * submenus. (Header's `nav` prop still accepts NavItem[] with
-   * NavParent dropdowns; those live on the primary nav only.)
+   * NavParent dropdowns; those live on Header navigation only.)
    */
   tabNavigation?: NavLeaf[]
   /**
-   * Visible heading text for the tab-navigation section inside
-   * Header's mobile drawer. When omitted, the drawer uses a
-   * generic fallback ("Section"). Usually set to the same value
-   * as TabNavigation's `aria-label` for consistency.
+   * Suggested label for a shell-adapted tab-navigation section.
+   * Usually set to the same value as TabNavigation's `aria-label`.
    */
   tabNavigationLabel?: string
   /**
-   * Items for the Sidebar component. When present, Header's mobile
-   * drawer will render them below the primary nav (and below
-   * tabNavigation if both are present).
+   * Items for the Sidebar component. The application shell may adapt
+   * them into a labelled MobileNavigation section.
    *
    * Typed as (NavLeaf | NavGroup)[] — Sidebar supports grouping
    * as its hierarchy primitive but not dropdowns.
