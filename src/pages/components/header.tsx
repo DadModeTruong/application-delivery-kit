@@ -161,8 +161,8 @@ function ComponentsHeaderPage() {
 
           <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
             <strong className="mr-2 text-foreground">Try it:</strong>
-            Tab through the brand and navigation links, activate a destination, then resize to
-            check that the same navigation remains usable in the mobile presentation.
+            Tab through the brand and navigation links, activate a destination, then resize to check
+            that the same navigation remains usable in the mobile presentation.
           </div>
         </section>
         <section
@@ -330,13 +330,14 @@ function ComponentsHeaderPage() {
           </h2>
           <p className="text-muted-foreground">
             Compare a basic Header, custom brand content, explicit current-page state, grouped
-            navigation, and icon-supported navigation. Each variation uses the same production Header
-            component while isolating one implementation or behavior decision.
+            navigation, and icon-supported navigation. Each variation uses the same production
+            Header component while isolating one implementation or behavior decision.
           </p>
           <p className="leading-7 text-muted-foreground">
-            Each variation includes a focused Try it instruction followed by Guidance, Code, Criteria,
-            and Verification tabs. Use the live preview to experience the behavior, Code to adapt the
-            implementation, Criteria to agree what must be true, and Verification to prove it.
+            Each variation includes a focused Try it instruction followed by Guidance, Code,
+            Criteria, and Verification tabs. Use the live preview to experience the behavior, Code
+            to adapt the implementation, Criteria to agree what must be true, and Verification to
+            prove it.
           </p>
           <div className="space-y-8 [&_[data-slot=header]]:!border-b-0 [&_*:has(>[data-slot=header])]:!p-0 [&_*:has(>[data-slot=header])]:overflow-hidden">
             <ExampleVariation
@@ -392,7 +393,8 @@ function ComponentsHeaderPage() {
 </header>`,
                 },
                 requirements: {
-                  userStory: 'As an application user, I want a consistent Header with clearly named destinations so that I can identify the application, choose a destination, and continue using the application at different screen sizes.',
+                  userStory:
+                    'As an application user, I want a consistent Header with clearly named destinations so that I can identify the application, choose a destination, and continue using the application at different screen sizes.',
                   acceptanceCriteria: [
                     {
                       given: 'the Header is rendered',
@@ -501,7 +503,8 @@ function ComponentsHeaderPage() {
                             'Inspect its href.',
                             'Activate the brand link.',
                           ],
-                          expected: 'The link is named Application Delivery Kit, points to /, and navigates to the application home when activated.',
+                          expected:
+                            'The link is named Application Delivery Kit, points to /, and navigates to the application home when activated.',
                         },
                         {
                           title: 'Check the brand target and focus',
@@ -510,7 +513,8 @@ function ComponentsHeaderPage() {
                             'Observe the complete brand target while focused.',
                             'Activate it with Enter.',
                           ],
-                          expected: 'The complete brand target has a visible focus indicator, Enter activates the link, and the link does not require a pointer.',
+                          expected:
+                            'The complete brand target has a visible focus indicator, Enter activates the link, and the link does not require a pointer.',
                         },
                       ],
                     },
@@ -524,7 +528,8 @@ function ComponentsHeaderPage() {
                             'Inspect Examples and Components.',
                             'Record each visible label and href.',
                           ],
-                          expected: 'One navigation landmark is named Global navigation; Examples points to /examples/layouts and Components points to /components/user-interface.',
+                          expected:
+                            'One navigation landmark is named Global navigation; Examples points to /examples/layouts and Components points to /components/user-interface.',
                         },
                         {
                           title: 'Select each destination',
@@ -535,7 +540,8 @@ function ComponentsHeaderPage() {
                             'Activate Components.',
                             'Confirm the Components destination loads.',
                           ],
-                          expected: 'Each link navigates to its own configured destination and neither link behaves like a non-navigation action.',
+                          expected:
+                            'Each link navigates to its own configured destination and neither link behaves like a non-navigation action.',
                         },
                       ],
                     },
@@ -549,7 +555,8 @@ function ComponentsHeaderPage() {
                             'Scroll down.',
                             'Inspect the Header while it remains visible.',
                           ],
-                          expected: 'The Header remains available at the top of the viewport, its scrolled presentation is visible, and its brand and links remain readable and usable.',
+                          expected:
+                            'The Header remains available at the top of the viewport, its scrolled presentation is visible, and its brand and links remain readable and usable.',
                         },
                         {
                           title: 'Compare desktop and mobile',
@@ -558,7 +565,8 @@ function ComponentsHeaderPage() {
                             'Resize below the mobile breakpoint.',
                             'Open the mobile navigation.',
                           ],
-                          expected: 'The desktop links are replaced by the mobile trigger, and opening the mobile navigation reveals the same Examples and Components destinations.',
+                          expected:
+                            'The desktop links are replaced by the mobile trigger, and opening the mobile navigation reveals the same Examples and Components destinations.',
                         },
                         {
                           title: 'Check narrow-width boundaries',
@@ -567,7 +575,8 @@ function ComponentsHeaderPage() {
                             'Inspect the brand, trigger, and mobile links.',
                             'Attempt horizontal scrolling.',
                           ],
-                          expected: 'No brand, label, trigger, or link is clipped; the Header does not create unintended horizontal scrolling.',
+                          expected:
+                            'No brand, label, trigger, or link is clipped; the Header does not create unintended horizontal scrolling.',
                         },
                       ],
                     },
@@ -581,7 +590,8 @@ function ComponentsHeaderPage() {
                             'Press Tab repeatedly through the Header.',
                             'Record the order of focused elements.',
                           ],
-                          expected: 'Focus reaches the brand and each available Header control in a logical visual order, and every focused target has a visible indicator.',
+                          expected:
+                            'Focus reaches the brand and each available Header control in a logical visual order, and every focused target has a visible indicator.',
                         },
                         {
                           title: 'Operate the mobile trigger',
@@ -591,7 +601,8 @@ function ComponentsHeaderPage() {
                             'Press Enter or Space.',
                             'Use the keyboard to reach a mobile link.',
                           ],
-                          expected: 'The trigger opens the mobile navigation, the mobile links are reachable, and no destination requires pointer input.',
+                          expected:
+                            'The trigger opens the mobile navigation, the mobile links are reachable, and no destination requires pointer input.',
                         },
                       ],
                     },
@@ -672,7 +683,8 @@ function ComponentsHeaderPage() {
 </header>`,
                 },
                 requirements: {
-                  userStory: 'As an application team, I want to replace the default text logo with custom brand content so that the Header can represent the product identity without losing clear naming, responsive behavior, or keyboard access.',
+                  userStory:
+                    'As an application team, I want to replace the default text logo with custom brand content so that the Header can represent the product identity without losing clear naming, responsive behavior, or keyboard access.',
                   acceptanceCriteria: [
                     {
                       given: 'the Header receives the custom logo slot',
@@ -732,9 +744,7 @@ function ComponentsHeaderPage() {
                       given: 'the custom logo Header contains navigation',
                       when: 'a user or assistive technology inspects the shell',
                       then: 'the Global navigation landmark and its destinations remain available and correctly named',
-                      and: [
-                        'customizing the logo does not remove or rename the navigation',
-                      ],
+                      and: ['customizing the logo does not remove or rename the navigation'],
                     },
                     {
                       given: 'the viewport crosses the mobile breakpoint',
@@ -768,7 +778,8 @@ function ComponentsHeaderPage() {
                             'Inspect the visible brand target.',
                             'Inspect its href and accessible name.',
                           ],
-                          expected: 'The mark and text are inside one link, the link points to /, and its accessible name is Application Delivery Kit.',
+                          expected:
+                            'The mark and text are inside one link, the link points to /, and its accessible name is Application Delivery Kit.',
                         },
                         {
                           title: 'Activate the custom brand',
@@ -777,7 +788,8 @@ function ComponentsHeaderPage() {
                             'Press Enter.',
                             'Observe the resulting destination.',
                           ],
-                          expected: 'The complete brand link has visible focus, Enter activates it, and the application navigates to /.',
+                          expected:
+                            'The complete brand link has visible focus, Enter activates it, and the application navigates to /.',
                         },
                         {
                           title: 'Check decorative artwork',
@@ -785,7 +797,8 @@ function ComponentsHeaderPage() {
                             'Inspect the ADK mark in the accessibility tree.',
                             'Inspect the visible Application Delivery Kit text.',
                           ],
-                          expected: 'The mark is hidden as decorative artwork, and the product name supplies the meaningful accessible name without duplication.',
+                          expected:
+                            'The mark is hidden as decorative artwork, and the product name supplies the meaningful accessible name without duplication.',
                         },
                       ],
                     },
@@ -798,7 +811,8 @@ function ComponentsHeaderPage() {
                             'Render at a wide viewport.',
                             'Compare the mark, product name, navigation, and available clear space.',
                           ],
-                          expected: 'The mark and text are legible and aligned, clear space is preserved, and the brand does not crowd the navigation.',
+                          expected:
+                            'The mark and text are legible and aligned, clear space is preserved, and the brand does not crowd the navigation.',
                         },
                         {
                           title: 'Check small-screen presentation',
@@ -807,7 +821,8 @@ function ComponentsHeaderPage() {
                             'Open the mobile navigation.',
                             'Inspect the custom brand and trigger.',
                           ],
-                          expected: 'The brand remains legible and unclipped, the trigger remains reachable, and the custom logo does not overlap the trigger or drawer content.',
+                          expected:
+                            'The brand remains legible and unclipped, the trigger remains reachable, and the custom logo does not overlap the trigger or drawer content.',
                         },
                         {
                           title: 'Check narrowest supported width',
@@ -815,7 +830,8 @@ function ComponentsHeaderPage() {
                             'Resize to the narrowest supported width.',
                             'Inspect the brand boundary and attempt horizontal scrolling.',
                           ],
-                          expected: 'The mark and product name remain understandable, the brand target remains usable, and no unintended horizontal overflow is introduced.',
+                          expected:
+                            'The mark and product name remain understandable, the brand target remains usable, and no unintended horizontal overflow is introduced.',
                         },
                       ],
                     },
@@ -829,7 +845,8 @@ function ComponentsHeaderPage() {
                             'Tab to the custom brand.',
                             'Observe the focus indicator.',
                           ],
-                          expected: 'The focus indicator surrounds the complete interactive brand target and remains distinguishable from the logo styling.',
+                          expected:
+                            'The focus indicator surrounds the complete interactive brand target and remains distinguishable from the logo styling.',
                         },
                         {
                           title: 'Preserve navigation semantics',
@@ -838,7 +855,8 @@ function ComponentsHeaderPage() {
                             'Open the mobile navigation at narrow width.',
                             'Inspect both accessibility trees.',
                           ],
-                          expected: 'The navigation remains a labelled landmark, its links retain meaningful names and destinations, and the custom logo does not create a duplicate navigation name.',
+                          expected:
+                            'The navigation remains a labelled landmark, its links retain meaningful names and destinations, and the custom logo does not create a duplicate navigation name.',
                         },
                       ],
                     },
@@ -912,18 +930,18 @@ function ComponentsHeaderPage() {
 </nav>`,
                 },
                 requirements: {
-                  userStory: 'As an application user, I want the Header to identify the destination I am currently viewing so that I can understand my location, distinguish it from other destinations, and see that state on desktop and mobile.',
+                  userStory:
+                    'As an application user, I want the Header to identify the destination I am currently viewing so that I can understand my location, distinguish it from other destinations, and see that state on desktop and mobile.',
                   acceptanceCriteria: [
                     {
                       given: 'the Header is rendered',
                       when: 'a user inspects the shell',
                       then: 'Application Delivery Kit appears as a linked brand to /',
-                      and: [
-                        'the brand link has the accessible name Application Delivery Kit',
-                      ],
+                      and: ['the brand link has the accessible name Application Delivery Kit'],
                     },
                     {
-                      given: 'the navigation contains Examples and Components and Components is supplied with current: true',
+                      given:
+                        'the navigation contains Examples and Components and Components is supplied with current: true',
                       when: 'the Header renders',
                       then: 'Components receives the current visual treatment and Examples remains inactive',
                       and: [
@@ -954,17 +972,13 @@ function ComponentsHeaderPage() {
                       given: 'a keyboard user focuses the current link',
                       when: 'focus is applied',
                       then: 'the focus indicator remains visible in addition to the current-state treatment',
-                      and: [
-                        'focus and current state are visually distinguishable',
-                      ],
+                      and: ['focus and current state are visually distinguishable'],
                     },
                     {
                       given: 'assistive technology reads the Header',
                       when: 'it reaches the navigation landmark and its links',
                       then: 'the landmark is named Global navigation and the current destination is announced as the current page',
-                      and: [
-                        'the current state is not conveyed only through color or background',
-                      ],
+                      and: ['the current state is not conveyed only through color or background'],
                     },
                     {
                       given: 'the viewport becomes narrow',
@@ -1007,7 +1021,8 @@ function ComponentsHeaderPage() {
                             'Inspect its visual styling.',
                             'Inspect aria-current and data-current.',
                           ],
-                          expected: 'Components has the current styling, aria-current="page", and data-current="true".',
+                          expected:
+                            'Components has the current styling, aria-current="page", and data-current="true".',
                         },
                         {
                           title: 'Inspect an inactive destination',
@@ -1015,7 +1030,8 @@ function ComponentsHeaderPage() {
                             'Inspect the Examples link.',
                             'Compare its attributes and styling with Components.',
                           ],
-                          expected: 'Examples remains a normal link without current-page semantics or current-state styling.',
+                          expected:
+                            'Examples remains a normal link without current-page semantics or current-state styling.',
                         },
                         {
                           title: 'Select a different destination',
@@ -1024,7 +1040,8 @@ function ComponentsHeaderPage() {
                             'Allow the application to update its route state.',
                             'Render the Header for the new route.',
                           ],
-                          expected: 'Examples becomes current, Components loses its current semantics and styling, and the selected destination is the page now represented as current.',
+                          expected:
+                            'Examples becomes current, Components loses its current semantics and styling, and the selected destination is the page now represented as current.',
                         },
                       ],
                     },
@@ -1038,7 +1055,8 @@ function ComponentsHeaderPage() {
                             'Read its accessible name.',
                             'Inspect the current link inside it.',
                           ],
-                          expected: 'The landmark is named Global navigation, and the current destination is exposed as the current page.',
+                          expected:
+                            'The landmark is named Global navigation, and the current destination is exposed as the current page.',
                         },
                         {
                           title: 'Distinguish focus from current state',
@@ -1046,7 +1064,8 @@ function ComponentsHeaderPage() {
                             'Use Tab to focus Components.',
                             'Observe the current styling and focus indicator together.',
                           ],
-                          expected: 'Both current state and focus are visible; the focus indicator is not removed or confused with the current styling.',
+                          expected:
+                            'Both current state and focus are visible; the focus indicator is not removed or confused with the current styling.',
                         },
                         {
                           title: 'Operate the current link with the keyboard',
@@ -1055,7 +1074,8 @@ function ComponentsHeaderPage() {
                             'Press Enter.',
                             'Observe the resulting navigation behavior.',
                           ],
-                          expected: 'The current item remains a normal link and can be activated with the keyboard.',
+                          expected:
+                            'The current item remains a normal link and can be activated with the keyboard.',
                         },
                       ],
                     },
@@ -1069,7 +1089,8 @@ function ComponentsHeaderPage() {
                             'Open the mobile navigation.',
                             'Inspect Components.',
                           ],
-                          expected: 'Components remains available in the mobile navigation with current state and accessible naming preserved.',
+                          expected:
+                            'Components remains available in the mobile navigation with current state and accessible naming preserved.',
                         },
                         {
                           title: 'Check current state at narrow width',
@@ -1077,7 +1098,8 @@ function ComponentsHeaderPage() {
                             'Resize to the narrowest supported width.',
                             'Inspect the current link and trigger.',
                           ],
-                          expected: 'The current link remains readable and reachable, and the state is not communicated by color alone.',
+                          expected:
+                            'The current link remains readable and reachable, and the state is not communicated by color alone.',
                         },
                       ],
                     },
@@ -1157,24 +1179,20 @@ function ComponentsHeaderPage() {
 </header>`,
                 },
                 requirements: {
-                  userStory: 'As an application user, I want related destinations grouped under a clear parent label so that I can open, navigate, and dismiss the group without losing the destination hierarchy on desktop or mobile.',
+                  userStory:
+                    'As an application user, I want related destinations grouped under a clear parent label so that I can open, navigate, and dismiss the group without losing the destination hierarchy on desktop or mobile.',
                   acceptanceCriteria: [
                     {
                       given: 'the Header is rendered',
                       when: 'a user inspects the shell',
                       then: 'Application Delivery Kit appears as a link to /',
-                      and: [
-                        'the brand has the accessible name Application Delivery Kit',
-                      ],
+                      and: ['the brand has the accessible name Application Delivery Kit'],
                     },
                     {
                       given: 'the top-level Examples item has no children',
                       when: 'the Header renders at desktop or mobile width',
                       then: 'Examples is an individual link to /examples/layouts',
-                      and: [
-                        'it has visible link text',
-                        'it is not rendered as a menu trigger',
-                      ],
+                      and: ['it has visible link text', 'it is not rendered as a menu trigger'],
                     },
                     {
                       given: 'the top-level Components item has children',
@@ -1264,7 +1282,8 @@ function ComponentsHeaderPage() {
                             'Inspect Examples.',
                             'Inspect Components.',
                           ],
-                          expected: 'Examples is an anchor link to /examples/layouts; Components is a button-style menu trigger and is not itself a destination link.',
+                          expected:
+                            'Examples is an anchor link to /examples/layouts; Components is a button-style menu trigger and is not itself a destination link.',
                         },
                         {
                           title: 'Open the menu with a pointer',
@@ -1272,7 +1291,8 @@ function ComponentsHeaderPage() {
                             'Activate Components with a pointer.',
                             'Inspect the trigger and menu.',
                           ],
-                          expected: 'The menu opens, child links become visible, and the trigger exposes its expanded state.',
+                          expected:
+                            'The menu opens, child links become visible, and the trigger exposes its expanded state.',
                         },
                         {
                           title: 'Open the menu with a keyboard',
@@ -1281,7 +1301,8 @@ function ComponentsHeaderPage() {
                             'Press Enter or Space.',
                             'Inspect the open menu.',
                           ],
-                          expected: 'The menu opens without pointer input, the trigger remains associated with it, and the first available child can be reached by keyboard.',
+                          expected:
+                            'The menu opens without pointer input, the trigger remains associated with it, and the first available child can be reached by keyboard.',
                         },
                         {
                           title: 'Check child order and names',
@@ -1289,7 +1310,8 @@ function ComponentsHeaderPage() {
                             'Move through Forms, User interface, and Interaction.',
                             'Record the order and visible names.',
                           ],
-                          expected: 'Each child is a link with its configured destination and the order matches the supplied children array.',
+                          expected:
+                            'Each child is a link with its configured destination and the order matches the supplied children array.',
                         },
                         {
                           title: 'Select a child destination',
@@ -1298,7 +1320,8 @@ function ComponentsHeaderPage() {
                             'Select User interface.',
                             'Observe the destination and menu state.',
                           ],
-                          expected: 'The application navigates to /components/user-interface and the desktop menu closes.',
+                          expected:
+                            'The application navigates to /components/user-interface and the desktop menu closes.',
                         },
                       ],
                     },
@@ -1307,12 +1330,9 @@ function ComponentsHeaderPage() {
                       cases: [
                         {
                           title: 'Dismiss with Escape',
-                          steps: [
-                            'Open the Components menu.',
-                            'Press Escape.',
-                            'Inspect focus.',
-                          ],
-                          expected: 'The menu closes, child links are no longer exposed as open menu content, and focus returns to or remains associated with Components.',
+                          steps: ['Open the Components menu.', 'Press Escape.', 'Inspect focus.'],
+                          expected:
+                            'The menu closes, child links are no longer exposed as open menu content, and focus returns to or remains associated with Components.',
                         },
                         {
                           title: 'Dismiss outside the menu',
@@ -1321,7 +1341,8 @@ function ComponentsHeaderPage() {
                             'Activate or click outside the menu.',
                             'Inspect the trigger state.',
                           ],
-                          expected: 'The menu closes and the trigger no longer reports expanded=true.',
+                          expected:
+                            'The menu closes and the trigger no longer reports expanded=true.',
                         },
                       ],
                     },
@@ -1335,7 +1356,8 @@ function ComponentsHeaderPage() {
                             'Open the mobile navigation.',
                             'Inspect Examples, Components, and the children.',
                           ],
-                          expected: 'Examples remains a direct link; Components becomes a visible group heading; Forms, User interface, and Interaction appear beneath it in the same order.',
+                          expected:
+                            'Examples remains a direct link; Components becomes a visible group heading; Forms, User interface, and Interaction appear beneath it in the same order.',
                         },
                         {
                           title: 'Inspect mobile landmark and group semantics',
@@ -1344,7 +1366,8 @@ function ComponentsHeaderPage() {
                             'Inspect the Components group heading.',
                             'Inspect the child links.',
                           ],
-                          expected: 'There is one clearly named mobile navigation landmark, Components is a heading rather than a second nav landmark, and each child remains a link.',
+                          expected:
+                            'There is one clearly named mobile navigation landmark, Components is a heading rather than a second nav landmark, and each child remains a link.',
                         },
                         {
                           title: 'Select a mobile child',
@@ -1353,7 +1376,8 @@ function ComponentsHeaderPage() {
                             'Select User interface.',
                             'Observe the resulting destination.',
                           ],
-                          expected: 'The application navigates to /components/user-interface; the child remains a link and has the same visible label and destination as its desktop counterpart.',
+                          expected:
+                            'The application navigates to /components/user-interface; the child remains a link and has the same visible label and destination as its desktop counterpart.',
                         },
                         {
                           title: 'Check mobile boundaries',
@@ -1362,7 +1386,8 @@ function ComponentsHeaderPage() {
                             'Scroll the mobile menu if necessary.',
                             'Inspect all child links.',
                           ],
-                          expected: 'All child links remain reachable and readable without clipping, overlap, or horizontal scrolling.',
+                          expected:
+                            'All child links remain reachable and readable without clipping, overlap, or horizontal scrolling.',
                         },
                       ],
                     },
@@ -1445,15 +1470,14 @@ function ComponentsHeaderPage() {
 </header>`,
                 },
                 requirements: {
-                  userStory: 'As an application user, I want familiar icons to reinforce visible navigation labels so that I can recognize destinations quickly without needing to interpret an icon by itself.',
+                  userStory:
+                    'As an application user, I want familiar icons to reinforce visible navigation labels so that I can recognize destinations quickly without needing to interpret an icon by itself.',
                   acceptanceCriteria: [
                     {
                       given: 'the Header is rendered with icons',
                       when: 'a user inspects the shell',
                       then: 'Application Delivery Kit appears as a linked brand to /',
-                      and: [
-                        'the brand has the accessible name Application Delivery Kit',
-                      ],
+                      and: ['the brand has the accessible name Application Delivery Kit'],
                     },
                     {
                       given: 'Examples has LayoutTemplate and Components has Blocks',
@@ -1514,9 +1538,7 @@ function ComponentsHeaderPage() {
                       given: 'a user selects an icon-supported dropdown child',
                       when: 'the child link is activated',
                       then: 'the application navigates to the child destination and the menu behavior remains the same as the non-icon dropdown',
-                      and: [
-                        'the icon treatment does not change the child label or destination',
-                      ],
+                      and: ['the icon treatment does not change the child label or destination'],
                     },
                     {
                       given: 'the viewport crosses the mobile breakpoint',
@@ -1549,7 +1571,8 @@ function ComponentsHeaderPage() {
                             'Render the Header with icons.',
                             'Inspect Examples and Components at desktop width.',
                           ],
-                          expected: 'LayoutTemplate appears with Examples and Blocks appears with Components; both labels remain visible and readable.',
+                          expected:
+                            'LayoutTemplate appears with Examples and Blocks appears with Components; both labels remain visible and readable.',
                         },
                         {
                           title: 'Keep visible labels as accessible names',
@@ -1557,15 +1580,14 @@ function ComponentsHeaderPage() {
                             'Inspect Examples and the Components trigger in the accessibility tree.',
                             'Inspect the icons separately.',
                           ],
-                          expected: 'The visible labels provide the link and trigger names, and the decorative icons are not announced as additional names.',
+                          expected:
+                            'The visible labels provide the link and trigger names, and the decorative icons are not announced as additional names.',
                         },
                         {
                           title: 'Select an icon-supported link',
-                          steps: [
-                            'Activate Examples.',
-                            'Observe the destination.',
-                          ],
-                          expected: 'The application navigates to /examples/layouts and the icon does not change the link meaning or destination.',
+                          steps: ['Activate Examples.', 'Observe the destination.'],
+                          expected:
+                            'The application navigates to /examples/layouts and the icon does not change the link meaning or destination.',
                         },
                         {
                           title: 'Open and select an icon-supported dropdown child',
@@ -1574,7 +1596,8 @@ function ComponentsHeaderPage() {
                             'Select User interface.',
                             'Observe the destination and menu state.',
                           ],
-                          expected: 'The menu opens and navigates exactly like the non-icon dropdown; the selected child destination loads and the menu closes.',
+                          expected:
+                            'The menu opens and navigates exactly like the non-icon dropdown; the selected child destination loads and the menu closes.',
                         },
                       ],
                     },
@@ -1587,7 +1610,8 @@ function ComponentsHeaderPage() {
                             'Compare the Examples and Components icons.',
                             'Inspect their size, alignment, spacing, and relationship to text.',
                           ],
-                          expected: 'The icons are consistently sized and aligned, support the labels, and do not make either label difficult to read.',
+                          expected:
+                            'The icons are consistently sized and aligned, support the labels, and do not make either label difficult to read.',
                         },
                         {
                           title: 'Focus complete interactive targets',
@@ -1595,7 +1619,8 @@ function ComponentsHeaderPage() {
                             'Use Tab through Examples and Components.',
                             'Observe each focus indicator.',
                           ],
-                          expected: 'The focus indicator covers the complete link or trigger, remains visible around the icon and label, and does not rely on the icon color.',
+                          expected:
+                            'The focus indicator covers the complete link or trigger, remains visible around the icon and label, and does not rely on the icon color.',
                         },
                       ],
                     },
@@ -1609,7 +1634,8 @@ function ComponentsHeaderPage() {
                             'Open the mobile navigation.',
                             'Inspect Examples, Components, and their children.',
                           ],
-                          expected: 'The labels remain visible and understandable, the icons remain decorative to assistive technology, and the shared navigation destinations remain available.',
+                          expected:
+                            'The labels remain visible and understandable, the icons remain decorative to assistive technology, and the shared navigation destinations remain available.',
                         },
                         {
                           title: 'Check narrow-width layout',
@@ -1618,7 +1644,8 @@ function ComponentsHeaderPage() {
                             'Inspect each icon-label pair and interactive target.',
                             'Attempt horizontal scrolling.',
                           ],
-                          expected: 'Icons do not crowd or clip labels, controls remain usable, and the Header does not introduce unintended horizontal overflow.',
+                          expected:
+                            'Icons do not crowd or clip labels, controls remain usable, and the Header does not introduce unintended horizontal overflow.',
                         },
                       ],
                     },
@@ -1642,9 +1669,6 @@ function ComponentsHeaderPage() {
                 ]}
               />
             </ExampleVariation>
-
-
-
           </div>
         </section>
       </div>

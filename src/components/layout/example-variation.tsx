@@ -306,10 +306,7 @@ function StandardizedExample({
         {tryIt}
       </div>
       <Tabs defaultSelectedKey={tabIds.guidance} className="min-w-0 gap-2">
-        <TabsList
-          aria-label={`${title} supplemental information`}
-          className="max-w-full flex-wrap"
-        >
+        <TabsList aria-label={`${title} supplemental information`} className="max-w-full flex-wrap">
           <TabsTrigger id={tabIds.guidance}>Guidance</TabsTrigger>
           <TabsTrigger id={tabIds.code}>Code</TabsTrigger>
           <TabsTrigger id={tabIds.requirements}>Criteria</TabsTrigger>
