@@ -198,6 +198,28 @@ const basicSupplemental = {
         then: 'Sidebar renders no rail',
         and: ['the page does not receive an empty navigation landmark'],
       },
+      {
+        given: 'an idle or hovered link is visible',
+        when: 'the link changes interaction state',
+        then: 'the link keeps its layout while hover changes only its visual surface',
+        and: [
+          'the idle class uses text-muted-foreground',
+          'hover:bg-muted and hover:text-foreground provide the hover treatment',
+          'the focus-visible ring remains independent from hover styling',
+        ],
+      },
+      {
+        given: 'the Sidebar is rendered alongside Header or TabNavigation',
+        when: 'assistive technology lists landmarks',
+        then: 'the Sidebar is identified by Section navigation without absorbing the other landmarks',
+        and: ['the nested nav is the only Sidebar navigation landmark'],
+      },
+      {
+        given: 'a person activates an idle destination',
+        when: 'the anchor is activated',
+        then: 'the browser follows the supplied href as normal navigation',
+        and: ['Sidebar does not convert the link into a button or client-only action'],
+      },
     ],
   },
   verification: {
@@ -224,6 +246,26 @@ const basicSupplemental = {
             ],
             expected:
               'Only Overview has data-active="true", active styling, and aria-current="page"; the other links remain ordinary links.',
+          },
+          {
+            title: 'Idle and hover treatment',
+            steps: [
+              'Inspect an inactive link class list.',
+              'Hover the link.',
+              'Move focus to the same link with the keyboard.',
+            ],
+            expected:
+              'The link keeps its dimensions while hover changes its surface and focus-visible adds a ring without relying on hover alone.',
+          },
+          {
+            title: 'Empty navigation edge case',
+            steps: [
+              'Render Sidebar with items={[]}.',
+              'Query navigation landmarks.',
+              'Inspect the surrounding page layout.',
+            ],
+            expected:
+              'No Sidebar rail or empty navigation landmark is rendered, and the surrounding layout remains usable.',
           },
         ],
       },
@@ -346,6 +388,30 @@ const groupedSupplemental = {
         when: 'the desktop Sidebar is hidden',
         then: 'the application can reuse the same group data without requiring Sidebar context',
       },
+      {
+        given: 'the second group follows the first group',
+        when: 'the Sidebar renders its visual hierarchy',
+        then: 'the second group receives the documented top spacing and divider treatment only in icon-only mode',
+        and: [
+          'the first group does not receive inter-group spacing',
+          'group separation does not change link order',
+        ],
+      },
+      {
+        given: 'a person activates a grouped destination',
+        when: 'they press Enter on the focused link',
+        then: 'the link follows its href without requiring a disclosure control',
+        and: [
+          'group headings are not focusable controls',
+          'the active destination remains a normal link outcome',
+        ],
+      },
+      {
+        given: 'a group label or link label is long',
+        when: 'the labeled Sidebar is viewed at a supported desktop width',
+        then: 'the label remains visible within the rail without relying on an icon-only interpretation',
+        and: ['the application must test wrapping or content decisions for its own labels'],
+      },
     ],
   },
   verification: {
@@ -371,6 +437,26 @@ const groupedSupplemental = {
               'Hide or ignore decorative SVG content.',
             ],
             expected: 'Icons are aria-hidden and each link name comes from its visible text label.',
+          },
+          {
+            title: 'Group spacing and visual hierarchy',
+            steps: [
+              'Inspect the first group wrapper.',
+              'Inspect the second group wrapper.',
+              'Compare headings, margin, and border classes.',
+            ],
+            expected:
+              'The first group has no inter-group margin; the second group is visually separated without creating another landmark.',
+          },
+          {
+            title: 'Grouped current destination',
+            steps: [
+              'Inspect Overview and the Settings link.',
+              'Compare current attributes and visual hooks.',
+              'Activate Overview with Enter.',
+            ],
+            expected:
+              'Only Overview is current, its group heading remains visible, and activation follows the link href.',
           },
         ],
       },
@@ -461,6 +547,27 @@ const activeSupplemental = {
         then: 'focus-visible and selection states remain distinguishable',
         and: ['Enter follows the link href', 'selection is not communicated by color alone'],
       },
+      {
+        given: 'activeHref exactly matches one item href',
+        when: 'a different pathname is supplied',
+        then: 'the selected state moves only to the new exact match',
+        and: [
+          'the previous link loses data-active and aria-current',
+          'prefixes or partial matches do not select a link',
+        ],
+      },
+      {
+        given: 'the current link is also focused',
+        when: 'the link receives keyboard focus',
+        then: 'focus-visible styling and current styling appear together without changing layout',
+        and: ['the link remains a single interactive target'],
+      },
+      {
+        given: 'the navigation has no exact activeHref match',
+        when: 'the Sidebar renders',
+        then: 'no link is marked aria-current="page"',
+        and: ['the navigation remains usable with ordinary link styling'],
+      },
     ],
   },
   verification: {
@@ -487,6 +594,26 @@ const activeSupplemental = {
             ],
             expected:
               'The current link has both a visible focus treatment and current semantics, and Enter performs normal link navigation.',
+          },
+          {
+            title: 'State transition and exact matching',
+            steps: [
+              'Render with activeHref="/components/sidebar".',
+              'Change activeHref to /components/header.',
+              'Try a prefix such as /components.',
+            ],
+            expected:
+              'The active state moves to the exact /components/header link, the previous link is cleared, and no prefix-only match is selected.',
+          },
+          {
+            title: 'No-match boundary',
+            steps: [
+              'Render with an activeHref that matches no item.',
+              'Inspect every link.',
+              'Query links with aria-current="page".',
+            ],
+            expected:
+              'All links remain usable and no link exposes aria-current="page" or active styling.',
           },
         ],
       },
@@ -594,6 +721,30 @@ const iconOnlySupplemental = {
         then: 'the application provides the navigation through its chosen mobile composition',
         and: ['Sidebar itself does not infer or synthesize that mobile composition'],
       },
+      {
+        given: 'an icon-only link is current and receives focus',
+        when: 'the browser applies state and focus styles',
+        then: 'the compact target retains current semantics and a visible focus ring',
+        and: [
+          'the target remains 40px square',
+          'active and focus styles do not remove the accessible label',
+        ],
+      },
+      {
+        given: 'an icon-only item has no icon component',
+        when: 'the item renders',
+        then: 'the first character fallback is decorative and the complete item label remains programmatic',
+        and: ['the fallback does not replace the link aria-label'],
+      },
+      {
+        given: 'a person uses keyboard focus without a pointer',
+        when: 'they focus an icon-only link',
+        then: 'the destination label remains discoverable through the component’s focusable tooltip behavior',
+        and: [
+          'the link itself remains the keyboard target',
+          'the tooltip is not the only accessible name',
+        ],
+      },
     ],
   },
   verification: {
@@ -635,6 +786,26 @@ const iconOnlySupplemental = {
             ],
             expected:
               'The current compact link retains active surface, current semantics, and a visible focus ring simultaneously.',
+          },
+          {
+            title: 'Missing-icon fallback',
+            steps: [
+              'Render one icon item and one item without an icon.',
+              'Inspect the visual fallback.',
+              'Inspect each link accessible name.',
+            ],
+            expected:
+              'The icon item renders its decorative SVG; the missing-icon item renders a decorative first letter while both links retain complete labels.',
+          },
+          {
+            title: 'Keyboard label discovery',
+            steps: [
+              'Focus an icon-only link with Tab.',
+              'Wait for the focusable tooltip behavior.',
+              'Inspect the link and tooltip names.',
+            ],
+            expected:
+              'The link remains the keyboard target, its aria-label is complete, and the visible label can be discovered without pointer-only interaction.',
           },
           {
             title: 'Narrow viewport',
