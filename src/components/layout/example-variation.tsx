@@ -49,6 +49,7 @@ type VerificationCase = {
   criterionRefs?: string[]
   role?: string
   title: string
+  description?: string
   steps: string[]
   expected: string
 }
@@ -327,44 +328,41 @@ function VerificationPanel({
           >
             {scenario.title}
           </h4>
-          <ol className="mt-5 list-decimal space-y-8 pl-5">
+          <div className="mt-5 space-y-8">
             {scenario.cases.map((testCase) => (
-              <li key={testCase.title} className="pl-2">
-                <article className="space-y-4">
-                  <h5 className="font-medium text-foreground">
-                    {testCase.id && (
-                      <code className="mr-2 text-sm font-medium text-foreground">
-                        {testCase.id}
-                      </code>
+              <article key={testCase.title} className="space-y-4">
+                <h5 className="font-medium text-foreground">
+                  {testCase.title}
+                  {testCase.id && (
+                    <code className="ml-2 text-sm font-medium text-foreground">{testCase.id}</code>
+                  )}
+                </h5>
+                {testCase.description && <p className="leading-6">{testCase.description}</p>}
+                {(scenario.role || testCase.role || testCase.criterionRefs?.length) && (
+                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+                    {(scenario.role || testCase.role) && (
+                      <span>Primary role: {testCase.role ?? scenario.role}</span>
                     )}
-                    {testCase.title}
-                  </h5>
-                  {(scenario.role || testCase.role) && (
-                    <p className="text-sm text-muted-foreground">
-                      Primary role: {testCase.role ?? scenario.role}
-                    </p>
-                  )}
-                  {testCase.criterionRefs && testCase.criterionRefs.length > 0 && (
-                    <p className="text-sm text-muted-foreground">
-                      Verifies: {testCase.criterionRefs.join(', ')}
-                    </p>
-                  )}
-                  <div>
-                    <h6 className="text-sm font-medium text-foreground">Steps</h6>
-                    <ol className="mt-2 list-decimal space-y-2 pl-5">
-                      {testCase.steps.map((step) => (
-                        <li key={step}>{step}</li>
-                      ))}
-                    </ol>
+                    {testCase.criterionRefs && testCase.criterionRefs.length > 0 && (
+                      <span>Verifies: {testCase.criterionRefs.join(', ')}</span>
+                    )}
                   </div>
-                  <p className="border-l-2 border-primary/40 pl-4 leading-7">
-                    <strong className="font-medium text-foreground">Expected result</strong>:
-                    {testCase.expected}
-                  </p>
-                </article>
-              </li>
+                )}
+                <div>
+                  <h6 className="text-sm font-medium text-foreground">Steps</h6>
+                  <ol className="mt-2 list-decimal space-y-2 pl-5">
+                    {testCase.steps.map((step) => (
+                      <li key={step}>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+                <p className="border-l-2 border-primary/40 pl-4 leading-7">
+                  <strong className="font-medium text-foreground">Expected result</strong>:
+                  {testCase.expected}
+                </p>
+              </article>
             ))}
-          </ol>
+          </div>
         </section>
       ))}
     </div>

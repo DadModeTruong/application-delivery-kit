@@ -299,6 +299,8 @@ const basicSupplemental = {
             id: 'VR-BASIC-01',
             criterionRefs: ['AC-BASIC-01'],
             title: 'Landmark and order',
+            description:
+              'Confirms the Sidebar exposes one labelled landmark and preserves the supplied destination order.',
             steps: [
               'Render the flat Sidebar at desktop width.',
               'Find the Section navigation landmark.',
@@ -311,6 +313,8 @@ const basicSupplemental = {
             id: 'VR-BASIC-02',
             criterionRefs: ['AC-BASIC-02'],
             title: 'Idle and hover treatment',
+            description:
+              'Confirms inactive links and hover feedback use the intended visual treatment.',
             steps: [
               'Inspect an inactive link class list.',
               'Hover it.',
@@ -323,6 +327,8 @@ const basicSupplemental = {
             id: 'VR-BASIC-03',
             criterionRefs: ['AC-BASIC-03'],
             title: 'Destination outcome',
+            description:
+              'Confirms activating a destination produces the supplied navigation outcome.',
             steps: ['Focus Tab navigation.', 'Press Enter.', 'Inspect the destination.'],
             expected: 'The focused link follows its supplied href as normal navigation.',
           },
@@ -336,6 +342,8 @@ const basicSupplemental = {
             id: 'VR-BASIC-04',
             criterionRefs: ['AC-BASIC-04'],
             title: 'Current destination',
+            description:
+              'Confirms the supplied current destination receives the expected state and semantics.',
             steps: [
               'Inspect Overview.',
               'Inspect its current styling and attributes.',
@@ -348,6 +356,8 @@ const basicSupplemental = {
             id: 'VR-BASIC-05',
             criterionRefs: ['AC-BASIC-05'],
             title: 'Landmark separation',
+            description:
+              'Confirms Sidebar and adjacent navigation landmarks remain independently identifiable.',
             steps: [
               'Render Sidebar beside Header and tabs.',
               'List landmarks with accessibility tools.',
@@ -365,6 +375,8 @@ const basicSupplemental = {
             id: 'VR-BASIC-06',
             criterionRefs: ['AC-BASIC-06'],
             title: 'Keyboard traversal',
+            description:
+              'Confirms keyboard users can reach and activate every destination in sequence.',
             steps: [
               'Tab through every visible link.',
               'Observe focus-visible styling.',
@@ -377,6 +389,8 @@ const basicSupplemental = {
             id: 'VR-BASIC-07',
             criterionRefs: ['AC-BASIC-07'],
             title: 'Empty state',
+            description:
+              'Confirms an empty navigation model renders without fabricated destinations or broken structure.',
             steps: [
               'Render with items={[]}.',
               'Query the page for Sidebar and navigation landmarks.',
@@ -387,6 +401,8 @@ const basicSupplemental = {
             id: 'VR-BASIC-08',
             criterionRefs: ['AC-BASIC-08', 'AC-BASIC-09'],
             title: 'Narrow viewport',
+            description:
+              'Confirms the application-owned responsive composition remains usable at narrow widths.',
             steps: [
               'Resize below the desktop breakpoint.',
               'Inspect the persistent rail.',
@@ -601,6 +617,8 @@ const groupedSupplemental = {
             id: 'VR-GROUPED-01',
             criterionRefs: ['AC-GROUPED-01'],
             title: 'Group structure',
+            description:
+              'Confirms grouped navigation preserves section hierarchy and destination order.',
             steps: [
               'Render the grouped Sidebar.',
               'Inspect the Documentation navigation landmark.',
@@ -613,6 +631,8 @@ const groupedSupplemental = {
             id: 'VR-GROUPED-02',
             criterionRefs: ['AC-GROUPED-02'],
             title: 'Group spacing',
+            description:
+              'Confirms group boundaries and spacing communicate the navigation hierarchy.',
             steps: [
               'Inspect the first and second group wrappers.',
               'Compare their margin, border, and heading classes.',
@@ -624,6 +644,8 @@ const groupedSupplemental = {
             id: 'VR-GROUPED-03',
             criterionRefs: ['AC-GROUPED-03'],
             title: 'Long-label resilience',
+            description:
+              'Confirms long group and destination labels remain readable without breaking the layout.',
             steps: [
               'Use a long group or link label in the example data.',
               'View the labeled rail at desktop width.',
@@ -641,6 +663,8 @@ const groupedSupplemental = {
             id: 'VR-GROUPED-04',
             criterionRefs: ['AC-GROUPED-04'],
             title: 'Decorative icons',
+            description:
+              'Confirms decorative icons do not replace or duplicate accessible link names.',
             steps: ['Inspect every rendered SVG.', 'Inspect each link accessible name.'],
             expected:
               'Icons are decorative and each accessible link name remains its visible text label.',
@@ -649,6 +673,8 @@ const groupedSupplemental = {
             id: 'VR-GROUPED-05',
             criterionRefs: ['AC-GROUPED-05'],
             title: 'Grouped current destination',
+            description:
+              'Confirms the current descendant remains identifiable within its navigation group.',
             steps: [
               'Inspect Overview and Settings.',
               'Compare current attributes and group context.',
@@ -660,6 +686,7 @@ const groupedSupplemental = {
             id: 'VR-GROUPED-06',
             criterionRefs: ['AC-GROUPED-06'],
             title: 'Normal link activation',
+            description: 'Confirms a grouped destination activates as a normal navigation link.',
             steps: ['Focus a grouped link.', 'Press Enter.'],
             expected: 'The link follows its href; group headings are not false controls.',
           },
@@ -673,6 +700,8 @@ const groupedSupplemental = {
             id: 'VR-GROUPED-07',
             criterionRefs: ['AC-GROUPED-07'],
             title: 'Sequential focus',
+            description:
+              'Confirms keyboard focus traverses grouped destinations in a predictable sequence.',
             steps: ['Tab from the first link through the final link.', 'Observe focus rings.'],
             expected:
               'Focus follows the grouped DOM order and each link has visible focus treatment.',
@@ -681,6 +710,8 @@ const groupedSupplemental = {
             id: 'VR-GROUPED-08',
             criterionRefs: ['AC-GROUPED-08'],
             title: 'Responsive data ownership',
+            description:
+              'Confirms responsive composition can change without changing the supplied hierarchy.',
             steps: [
               'Hide the desktop rail at a narrow width.',
               'Compose the application’s mobile navigation from the same group data.',
@@ -863,6 +894,8 @@ const activeSupplemental = {
             id: 'VR-ACTIVE-01',
             criterionRefs: ['AC-ACTIVE-01'],
             title: 'Exact match',
+            description:
+              'Confirms only the exact application-owned current destination is marked current.',
             steps: ['Render with activeHref="/components/sidebar".', 'Inspect every link.'],
             expected:
               'Only the exact matching link has active styling, data-active="true", and aria-current="page".',
@@ -871,6 +904,8 @@ const activeSupplemental = {
             id: 'VR-ACTIVE-02',
             criterionRefs: ['AC-ACTIVE-02'],
             title: 'State transition',
+            description:
+              'Confirms current-state changes are reflected when the application supplies new state.',
             steps: ['Change activeHref to /components/header.', 'Rerender and inspect both links.'],
             expected: 'The active state moves to Header and is removed from the previous link.',
           },
@@ -878,6 +913,8 @@ const activeSupplemental = {
             id: 'VR-ACTIVE-03',
             criterionRefs: ['AC-ACTIVE-03'],
             title: 'No-match boundary',
+            description:
+              'Confirms no destination is marked current when supplied state matches none.',
             steps: ['Render with an href that matches no item.', 'Query for aria-current="page".'],
             expected: 'All links remain usable and no link is presented as current.',
           },
@@ -891,6 +928,8 @@ const activeSupplemental = {
             id: 'VR-ACTIVE-04',
             criterionRefs: ['AC-ACTIVE-04'],
             title: 'Current plus focus',
+            description:
+              'Confirms current styling and keyboard focus remain distinguishable at the same time.',
             steps: ['Focus the current link with Tab.', 'Compare focus and current treatment.'],
             expected:
               'Both states remain visible without moving the link or removing its accessible name.',
@@ -899,6 +938,8 @@ const activeSupplemental = {
             id: 'VR-ACTIVE-05',
             criterionRefs: ['AC-ACTIVE-05'],
             title: 'Activation outcome',
+            description:
+              'Confirms activating the current-state example still follows the supplied destination behavior.',
             steps: [
               'Focus a non-current link.',
               'Press Enter.',
@@ -917,6 +958,8 @@ const activeSupplemental = {
             id: 'VR-ACTIVE-06',
             criterionRefs: ['AC-ACTIVE-06'],
             title: 'Narrow current state',
+            description:
+              'Confirms current-state semantics remain available in the narrow presentation.',
             steps: [
               'Resize below the persistent-rail breakpoint.',
               'Open the application mobile composition.',
@@ -928,6 +971,8 @@ const activeSupplemental = {
             id: 'VR-ACTIVE-07',
             criterionRefs: ['AC-ACTIVE-07'],
             title: 'Landmark association',
+            description:
+              'Confirms the active navigation remains associated with the correct labelled landmark.',
             steps: [
               'Render alongside Header and tabs.',
               'Inspect landmark names and current link.',
@@ -1146,6 +1191,8 @@ const iconOnlySupplemental = {
             id: 'VR-ICON-01',
             criterionRefs: ['AC-ICON-01'],
             title: 'Variant and target size',
+            description:
+              'Confirms the icon-only variant preserves usable target sizing and interaction.',
             steps: [
               'Render icon-only mode at desktop width.',
               'Inspect root data-variant, width, padding, and link dimensions.',
@@ -1157,6 +1204,8 @@ const iconOnlySupplemental = {
             id: 'VR-ICON-02',
             criterionRefs: ['AC-ICON-02'],
             title: 'Icon and fallback',
+            description:
+              'Confirms supplied icons are decorative and missing icons fall back without losing labels.',
             steps: [
               'Render one item with an icon and one without.',
               'Inspect the SVG and fallback letter.',
@@ -1168,6 +1217,8 @@ const iconOnlySupplemental = {
             id: 'VR-ICON-03',
             criterionRefs: ['AC-ICON-03'],
             title: 'Group boundaries',
+            description:
+              'Confirms the compact presentation preserves navigation group boundaries where supplied.',
             steps: [
               'Render compact mode with multiple groups.',
               'Inspect group separators and order.',
@@ -1185,6 +1236,7 @@ const iconOnlySupplemental = {
             id: 'VR-ICON-04',
             criterionRefs: ['AC-ICON-04'],
             title: 'Programmatic label',
+            description: 'Confirms icon-only destinations expose their labels programmatically.',
             steps: [
               'Focus an icon-only link with Tab.',
               'Inspect its accessible name and tooltip behavior.',
@@ -1196,6 +1248,8 @@ const iconOnlySupplemental = {
             id: 'VR-ICON-05',
             criterionRefs: ['AC-ICON-05'],
             title: 'Current plus focus',
+            description:
+              'Confirms current styling and keyboard focus remain distinguishable at the same time.',
             steps: [
               'Render the current compact link.',
               'Focus it.',
@@ -1208,6 +1262,7 @@ const iconOnlySupplemental = {
             id: 'VR-ICON-06',
             criterionRefs: ['AC-ICON-06'],
             title: 'Activation',
+            description: 'Confirms icon-only destinations remain activatable links.',
             steps: ['Press Enter on the focused compact link.', 'Observe the destination.'],
             expected: 'The compact link activates as normal navigation.',
           },
@@ -1221,6 +1276,8 @@ const iconOnlySupplemental = {
             id: 'VR-ICON-07',
             criterionRefs: ['AC-ICON-07'],
             title: 'Narrow transformation',
+            description:
+              'Confirms the icon-only presentation remains usable through the application-owned narrow transformation.',
             steps: [
               'Resize below the persistent-rail breakpoint.',
               'Inspect the persistent rail and application mobile path.',
@@ -1232,6 +1289,8 @@ const iconOnlySupplemental = {
             id: 'VR-ICON-08',
             criterionRefs: ['AC-ICON-08', 'AC-ICON-09'],
             title: 'Narrowest supported width',
+            description:
+              'Confirms the compact navigation remains usable at the narrowest supported width.',
             steps: [
               'Test the narrowest supported viewport.',
               'Inspect overflow, labels, and controls.',
