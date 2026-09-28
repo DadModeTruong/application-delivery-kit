@@ -1,8 +1,8 @@
 /**
- * Footer navigation guide.
+ * Footer guide.
  *
- * Teaches supporting destinations, landmarks, visible labels, icons, and
- * responsive footer layout using the production Footer composition.
+ * Teaches supporting destinations, landmarks, visible labels, external links,
+ * and responsive footer layout using the production Footer composition.
  */
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
@@ -10,6 +10,749 @@ import { ExampleVariation } from '@/components/layout/example-variation'
 import { Footer } from '@/components/layout/footer'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 import { footerLinks } from '@/config/site-navigation'
+
+const footerProps = [
+  {
+    name: 'copyright',
+    type: 'React.ReactNode',
+    example: 'copyright={<>© 2026 Example Co.</>}',
+    description: 'Caller-owned ownership or copyright content rendered before the link navigation.',
+  },
+  {
+    name: 'links',
+    type: 'NavLeaf[]',
+    example: 'links={footerLinks}',
+    description:
+      'Optional application-owned leaf links. Omit or pass an empty list for a copyright-only Footer.',
+  },
+  {
+    name: 'size',
+    type: '"contained" | "full"',
+    example: 'size="contained"',
+    description:
+      'Controls the outer Container alignment while preserving the Footer content order.',
+  },
+  {
+    name: 'bordered',
+    type: 'boolean',
+    example: 'bordered={false}',
+    description:
+      'Controls the optional top boundary without changing the semantic footer landmark.',
+  },
+]
+
+const footerAttributes = [
+  {
+    name: 'data-slot',
+    type: 'component hook',
+    example: 'data-slot="footer"',
+    description: 'Identifies the semantic Footer root for inspection and targeted styling.',
+  },
+  {
+    name: 'data-size',
+    type: 'layout state',
+    example: 'data-size="contained"',
+    description: 'Identifies the selected outer Container alignment behavior.',
+  },
+  {
+    name: 'aria-label',
+    type: 'accessible-name attribute',
+    example: 'aria-label="Footer"',
+    description: 'Names the nested Footer navigation landmark when links are present.',
+  },
+  {
+    name: 'target / rel',
+    type: 'external-link attributes',
+    example: 'target="_blank" rel="noopener noreferrer"',
+    description:
+      'Marks an intentional new-window destination and pairs with the visible screen-reader hint.',
+  },
+]
+
+const basicSupplemental = {
+  guidance: {
+    explanation:
+      'Use the basic Footer when a page needs a small, secondary set of same-site destinations and caller-owned copyright content at the end of the page.',
+    doItems: [
+      'Keep labels specific, ordered, and useful after the main page task is complete.',
+      'Pass real application destinations and place Footer after Main.',
+      'Use the named Footer navigation landmark when links are present.',
+    ],
+    dontItems: [
+      'Do not use placeholder anchors with no destination.',
+      'Do not make Footer the only way to reach an important task action.',
+      'Do not duplicate broad primary navigation in a small supporting link list.',
+    ],
+  },
+  code: {
+    language: 'tsx',
+    props: footerProps,
+    attributes: footerAttributes,
+    source: `<Footer
+  copyright={<>© 2026 Example Co.</>}
+  links={[
+    { href: '/privacy', label: 'Privacy' },
+    { href: '/accessibility', label: 'Accessibility' },
+  ]}
+/>`,
+    html: `<footer data-slot="footer" data-size="contained" class="w-full border-t border-border py-6">
+  <div data-slot="container" data-size="2xl" class="mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-screen-2xl flex flex-wrap items-center justify-between gap-4">
+    <div class="text-sm text-muted-foreground">© 2026 Example Co.</div>
+    <nav aria-label="Footer" class="flex flex-wrap items-center gap-1">
+      <a href="/privacy" class="inline-flex items-center gap-2 rounded-md px-3 py-2">Privacy</a>
+      <a href="/accessibility" class="inline-flex items-center gap-2 rounded-md px-3 py-2">Accessibility</a>
+    </nav>
+  </div>
+</footer>`,
+  },
+  requirements: {
+    userStory:
+      'As a person finishing a page, I want a small set of supporting destinations so that I can find legal, support, or ownership information without confusing it with primary navigation.',
+    groups: [
+      {
+        id: 'BR-BASIC',
+        title: 'Business requirements',
+        items: [
+          'People can identify Footer as supporting page-ending content rather than primary navigation.',
+          'People can find the caller-provided ownership or copyright information.',
+        ],
+      },
+      {
+        id: 'FR-BASIC',
+        title: 'Functional requirements',
+        items: [
+          'Footer renders each supplied destination as a normal link in supplied order.',
+          'Footer omits the nested navigation landmark when no links are supplied.',
+        ],
+      },
+      {
+        id: 'NFR-BASIC',
+        title: 'Non-functional requirements',
+        items: [
+          'The Footer remains visually secondary and aligned with the surrounding page content.',
+          'Copyright content and links wrap without creating unintended horizontal scrolling.',
+        ],
+      },
+      {
+        id: 'A11Y-BASIC',
+        title: 'Accessibility requirements',
+        items: [
+          'The semantic footer landmark remains after the page main content.',
+          'The link navigation has a distinct name, visible focus, and logical keyboard order.',
+        ],
+      },
+      {
+        id: 'TR-BASIC',
+        title: 'Technical requirements',
+        items: [
+          'The consuming application supplies copyright content and NavLeaf link data.',
+          'Footer does not infer routes or require router context to render.',
+        ],
+      },
+    ],
+    acceptanceCriteria: [
+      {
+        id: 'AC-BASIC-01',
+        requirementRefs: ['BR-BASIC-01', 'A11Y-BASIC-01'],
+        given: 'Footer is rendered after the page main content with two supporting links',
+        when: 'the page landmarks are inspected',
+        then: 'one semantic footer landmark appears after Main without presenting itself as primary navigation',
+        and: [
+          'the footer boundary is visually distinguishable',
+          'the Footer does not replace Header or Sidebar',
+        ],
+      },
+      {
+        id: 'AC-BASIC-02',
+        requirementRefs: ['BR-BASIC-02', 'TR-BASIC-01'],
+        given: 'the caller supplies copyright content',
+        when: 'Footer renders',
+        then: 'the supplied ownership content appears before the link navigation',
+        and: ['Footer does not replace or rewrite the caller-provided content'],
+      },
+      {
+        id: 'AC-BASIC-03',
+        requirementRefs: ['FR-BASIC-01', 'TR-BASIC-01'],
+        given: 'the caller supplies Privacy and Accessibility NavLeaf items',
+        when: 'Footer renders',
+        then: 'two real anchors appear in the supplied order with their configured hrefs',
+        and: ['each visible label identifies its destination'],
+      },
+      {
+        id: 'AC-BASIC-04',
+        requirementRefs: ['FR-BASIC-02', 'TR-BASIC-02'],
+        given: 'the caller supplies no links',
+        when: 'Footer renders',
+        then: 'the semantic footer remains but no empty Footer navigation landmark appears',
+      },
+      {
+        id: 'AC-BASIC-05',
+        requirementRefs: ['NFR-BASIC-01'],
+        given: 'Footer is viewed beside the page content at a supported width',
+        when: 'the layout is inspected',
+        then: 'the Footer uses the selected Container alignment and remains visually secondary',
+        and: ['the content is not presented as a second main region'],
+      },
+      {
+        id: 'AC-BASIC-06',
+        requirementRefs: ['NFR-BASIC-02'],
+        given: 'the available width becomes narrow or text is enlarged',
+        when: 'copyright and links reflow',
+        then: 'the content wraps within the Footer without page-level horizontal scrolling',
+        and: ['source order remains copyright followed by links'],
+      },
+      {
+        id: 'AC-BASIC-07',
+        requirementRefs: ['A11Y-BASIC-02'],
+        given: 'a keyboard user moves through the Footer links',
+        when: 'focus reaches each destination',
+        then: 'the links are reachable in source order with a visible focus indicator',
+        and: ['Enter follows the focused href'],
+      },
+      {
+        id: 'AC-BASIC-08',
+        requirementRefs: ['TR-BASIC-02'],
+        given: 'Footer is rendered outside router context',
+        when: 'the component receives explicit content and links',
+        then: 'it renders from the supplied data without fetching or inferring routes',
+      },
+    ],
+  },
+  verification: {
+    scenarios: [
+      {
+        id: 'VR-BASIC-01',
+        role: 'Functional QA',
+        title: 'Confirm the basic Footer landmark and placement',
+        description:
+          'Checks that the Footer is a page-ending region distinct from primary navigation.',
+        criterionRefs: ['AC-BASIC-01'],
+        cases: [
+          {
+            id: 'VC-BASIC-01',
+            role: 'Functional QA',
+            title: 'Inspect the page-ending landmark',
+            description:
+              'Confirms the rendered Footer appears after Main and has the expected semantic boundary.',
+            criterionRefs: ['AC-BASIC-01'],
+            steps: [
+              'Render the Basic example after a page Main region.',
+              'Inspect the landmark order and visible top boundary.',
+            ],
+            expected:
+              'One footer landmark appears after Main; Header and any Sidebar remain separate navigation regions.',
+          },
+        ],
+      },
+      {
+        id: 'VR-BASIC-02',
+        role: 'Functional QA',
+        title: 'Check caller content and destination order',
+        description:
+          'Checks that supplied copyright content and NavLeaf data are rendered without inference.',
+        criterionRefs: ['AC-BASIC-02', 'AC-BASIC-03', 'AC-BASIC-08'],
+        cases: [
+          {
+            id: 'VC-BASIC-02',
+            role: 'Functional QA',
+            title: 'Verify copyright and exact hrefs',
+            description:
+              'Confirms the caller-owned content and both configured links are preserved.',
+            criterionRefs: ['AC-BASIC-02', 'AC-BASIC-03', 'AC-BASIC-08'],
+            steps: [
+              'Render the example with the shown copyright node and Privacy/Accessibility items.',
+              'Inspect visible text, link order, and each anchor href.',
+            ],
+            expected:
+              'The copyright text appears first; Privacy then Accessibility render as real anchors with `/privacy` and `/accessibility` hrefs.',
+          },
+        ],
+      },
+      {
+        id: 'VR-BASIC-03',
+        role: 'Functional QA',
+        title: 'Check the no-links boundary',
+        description: 'Checks that an empty link list does not create an empty navigation landmark.',
+        criterionRefs: ['AC-BASIC-04'],
+        cases: [
+          {
+            id: 'VC-BASIC-03',
+            role: 'Functional QA',
+            title: 'Render Footer without links',
+            description: 'Confirms the copyright-only boundary explicitly.',
+            criterionRefs: ['AC-BASIC-04'],
+            steps: [
+              'Render Footer with the same copyright node and `links={[]}`.',
+              'Inspect the footer and navigation landmarks.',
+            ],
+            expected: 'The footer landmark remains, but no navigation named Footer is rendered.',
+          },
+        ],
+      },
+      {
+        id: 'VR-BASIC-04',
+        role: 'Responsive QA',
+        title: 'Check alignment and wrapping',
+        description: 'Checks the contained layout and narrow-width wrap behavior.',
+        criterionRefs: ['AC-BASIC-05', 'AC-BASIC-06'],
+        cases: [
+          {
+            id: 'VC-BASIC-04',
+            role: 'Responsive QA',
+            title: 'Measure the contained Footer at narrow width',
+            description:
+              'Confirms content wraps inside the Footer rather than forcing page overflow.',
+            criterionRefs: ['AC-BASIC-05', 'AC-BASIC-06'],
+            steps: [
+              'Render the Basic example at desktop width, then at the narrowest supported width and with enlarged text.',
+              'Inspect the Container alignment, wrap points, source order, and document scroll width.',
+            ],
+            expected:
+              'Content remains aligned, copyright precedes links, links wrap as needed, and the page does not gain unintended horizontal scrolling.',
+          },
+        ],
+      },
+      {
+        id: 'VR-BASIC-05',
+        role: 'Accessibility QA',
+        title: 'Check keyboard and landmark naming',
+        description: 'Checks the named Footer navigation and visible keyboard focus.',
+        criterionRefs: ['AC-BASIC-07'],
+        cases: [
+          {
+            id: 'VC-BASIC-05',
+            role: 'Accessibility QA',
+            title: 'Navigate the Footer with the keyboard',
+            description: 'Confirms keyboard order, focus visibility, and normal anchor activation.',
+            criterionRefs: ['AC-BASIC-07'],
+            steps: [
+              'Start before the Footer and press Tab until the Privacy and Accessibility links receive focus.',
+              'Inspect the accessible landmark name and focus indicator, then press Enter on one link.',
+            ],
+            expected:
+              'The Footer navigation is named Footer, links receive visible focus in order, and Enter follows the focused destination.',
+          },
+        ],
+      },
+    ],
+  },
+  tabLayout: 'requirements' as const,
+}
+
+const externalSupplemental = {
+  guidance: {
+    explanation:
+      'Use external links when a supporting destination intentionally leaves the application, and make the new-window behavior explicit without making the icon the only name.',
+    doItems: [
+      'Keep the visible label meaningful and include the external-link hint supplied by Footer.',
+      'Use the same application-owned NavLeaf data in the shell and guide example.',
+      'Confirm the destination and new-window choice are intentional product decisions.',
+    ],
+    dontItems: [
+      'Do not use an external link for an available same-site route.',
+      'Do not rely on an icon alone to name the destination.',
+      'Do not omit the target and rel protection when using external behavior.',
+    ],
+  },
+  code: {
+    language: 'tsx',
+    props: footerProps,
+    attributes: footerAttributes,
+    source: `<Footer
+  copyright={<>© 2026 Example Co.</>}
+  links={footerLinks}
+/>`,
+    html: `<nav aria-label="Footer" class="flex flex-wrap items-center gap-1">
+  <a href="https://github.com/RealityTommy/application-delivery-kit" target="_blank" rel="noopener noreferrer">
+    GitHub<span class="sr-only"> (opens in new window)</span>
+  </a>
+</nav>`,
+  },
+  requirements: {
+    userStory:
+      'As a person using a supporting destination outside the application, I want the Footer to explain the destination and new-window behavior so that I can choose the link with the right expectation.',
+    groups: [
+      {
+        id: 'BR-EXTERNAL',
+        title: 'Business requirements',
+        items: [
+          'People can identify an external supporting destination.',
+          'People understand that activating it opens a new window or tab.',
+        ],
+      },
+      {
+        id: 'FR-EXTERNAL',
+        title: 'Functional requirements',
+        items: [
+          'Footer renders external NavLeaf items as real anchors with their configured href.',
+          'Footer applies the external-link target and rel behavior only to external items.',
+        ],
+      },
+      {
+        id: 'NFR-EXTERNAL',
+        title: 'Non-functional requirements',
+        items: [
+          'External treatment remains visually consistent with other Footer links.',
+          'The link remains usable when the Footer wraps at narrow widths.',
+        ],
+      },
+      {
+        id: 'A11Y-EXTERNAL',
+        title: 'Accessibility requirements',
+        items: [
+          'The visible label remains the link’s meaningful accessible name.',
+          'Assistive technology receives a clear new-window hint.',
+        ],
+      },
+      {
+        id: 'TR-EXTERNAL',
+        title: 'Technical requirements',
+        items: [
+          'The consuming application marks external destinations explicitly in NavLeaf data.',
+          'Footer preserves safe target and rel attributes for external links.',
+        ],
+      },
+    ],
+    acceptanceCriteria: [
+      {
+        id: 'AC-EXTERNAL-01',
+        requirementRefs: ['BR-EXTERNAL-01', 'FR-EXTERNAL-01'],
+        given: 'the caller supplies a GitHub item with `external: true`',
+        when: 'Footer renders',
+        then: 'GitHub appears as a real Footer anchor with its configured external href',
+        and: ['the visible label remains GitHub'],
+      },
+      {
+        id: 'AC-EXTERNAL-02',
+        requirementRefs: ['BR-EXTERNAL-02', 'FR-EXTERNAL-02', 'TR-EXTERNAL-02'],
+        given: 'the GitHub link is external',
+        when: 'the anchor attributes are inspected',
+        then: 'the link uses `target="_blank"` and `rel="noopener noreferrer"`',
+        and: ['same-site links do not receive those attributes'],
+      },
+      {
+        id: 'AC-EXTERNAL-03',
+        requirementRefs: ['NFR-EXTERNAL-01'],
+        given: 'the external link is displayed beside ordinary Footer links',
+        when: 'the Footer is viewed',
+        then: 'the link uses the same spacing, focus, and text treatment as other Footer links',
+        and: ['external behavior does not depend on the icon'],
+      },
+      {
+        id: 'AC-EXTERNAL-04',
+        requirementRefs: ['NFR-EXTERNAL-02'],
+        given: 'the Footer width becomes constrained',
+        when: 'the link row wraps',
+        then: 'the GitHub link remains visible and reachable without horizontal scrolling',
+      },
+      {
+        id: 'AC-EXTERNAL-05',
+        requirementRefs: ['A11Y-EXTERNAL-01'],
+        given: 'a person inspects the external link name',
+        when: 'the link is announced',
+        then: 'GitHub remains the meaningful accessible name',
+        and: ['the decorative icon, when supplied, is hidden from assistive technology'],
+      },
+      {
+        id: 'AC-EXTERNAL-06',
+        requirementRefs: ['A11Y-EXTERNAL-02'],
+        given: 'a person uses assistive technology',
+        when: 'the external link is announced',
+        then: 'the announcement includes that it opens in a new window',
+      },
+      {
+        id: 'AC-EXTERNAL-07',
+        requirementRefs: ['TR-EXTERNAL-01', 'TR-EXTERNAL-02'],
+        given: 'the consuming application provides the external NavLeaf flag',
+        when: 'Footer renders',
+        then: 'Footer uses the supplied flag to determine external attributes without guessing from the URL',
+      },
+    ],
+  },
+  verification: {
+    scenarios: [
+      {
+        id: 'VR-EXTERNAL-01',
+        role: 'Functional QA',
+        title: 'Check external destination attributes',
+        description: 'Checks that explicit external data produces the expected anchor behavior.',
+        criterionRefs: ['AC-EXTERNAL-01', 'AC-EXTERNAL-02', 'AC-EXTERNAL-07'],
+        cases: [
+          {
+            id: 'VC-EXTERNAL-01',
+            role: 'Functional QA',
+            title: 'Inspect the GitHub anchor',
+            description: 'Confirms href, target, rel, and same-site separation.',
+            criterionRefs: ['AC-EXTERNAL-01', 'AC-EXTERNAL-02', 'AC-EXTERNAL-07'],
+            steps: [
+              'Render the External example with the shown GitHub NavLeaf.',
+              'Inspect the GitHub anchor href, target, rel, and the attributes of any ordinary same-site Footer link.',
+            ],
+            expected:
+              'GitHub preserves its external href and has target `_blank` plus rel `noopener noreferrer`; only the explicitly external item receives those attributes.',
+          },
+        ],
+      },
+      {
+        id: 'VR-EXTERNAL-02',
+        role: 'Responsive QA',
+        title: 'Check external-link wrapping',
+        description: 'Checks that external links remain reachable when the Footer wraps.',
+        criterionRefs: ['AC-EXTERNAL-03', 'AC-EXTERNAL-04'],
+        cases: [
+          {
+            id: 'VC-EXTERNAL-02',
+            role: 'Responsive QA',
+            title: 'Resize the external-link Footer',
+            description: 'Confirms consistent treatment and no page overflow.',
+            criterionRefs: ['AC-EXTERNAL-03', 'AC-EXTERNAL-04'],
+            steps: [
+              'Render the External example beside a same-site Footer link.',
+              'Resize to the narrowest supported width and inspect link visibility, focus treatment, and document scroll width.',
+            ],
+            expected:
+              'The external link keeps the same link treatment, remains reachable after wrapping, and does not create unintended horizontal scrolling.',
+          },
+        ],
+      },
+      {
+        id: 'VR-EXTERNAL-03',
+        role: 'Accessibility QA',
+        title: 'Check the new-window announcement',
+        description: 'Checks the accessible name and explicit new-window hint.',
+        criterionRefs: ['AC-EXTERNAL-05', 'AC-EXTERNAL-06'],
+        cases: [
+          {
+            id: 'VC-EXTERNAL-03',
+            role: 'Accessibility QA',
+            title: 'Inspect the announced link name',
+            description:
+              'Confirms the label and hidden hint are available without exposing decorative icon content.',
+            criterionRefs: ['AC-EXTERNAL-05', 'AC-EXTERNAL-06'],
+            steps: [
+              'Inspect the GitHub link’s accessible name with browser accessibility tooling or a screen reader.',
+              'Confirm the visible label is GitHub and the new-window hint is announced.',
+            ],
+            expected:
+              'The link is named GitHub and its announcement communicates that it opens in a new window; decorative icons are not announced separately.',
+          },
+        ],
+      },
+    ],
+  },
+  tabLayout: 'requirements' as const,
+}
+
+const fullSupplemental = {
+  guidance: {
+    explanation:
+      'Use the full-width Footer when the page shell needs the boundary to span the available viewport while its content still follows the shared alignment and wrapping rules.',
+    doItems: [
+      'Use `size="full"` when the footer boundary should span the available width.',
+      'Test long copyright and link labels at narrow widths and enlarged text.',
+      'Preserve source order and keep links reachable when the row stacks.',
+    ],
+    dontItems: [
+      'Do not use full width to hide a lack of content hierarchy.',
+      'Do not make the Footer sticky or fixed without a separate interaction and accessibility design.',
+      'Do not allow long labels to create page-level horizontal scrolling.',
+    ],
+  },
+  code: {
+    language: 'tsx',
+    props: footerProps,
+    attributes: footerAttributes,
+    source: `<Footer
+  size="full"
+  bordered
+  copyright={<>© 2026 Example Organization — Accessibility first</>}
+  links={[
+    { href: '/privacy', label: 'Privacy and data practices' },
+    { href: '/accessibility', label: 'Accessibility statement' },
+    { href: '/components/user-interface', label: 'Component documentation' },
+  ]}
+/>`,
+    html: `<footer data-slot="footer" data-size="full" class="w-full border-t border-border py-6">
+  <div data-slot="container" data-size="full" class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+    <div class="text-sm text-muted-foreground">© 2026 Example Organization — Accessibility first</div>
+    <nav aria-label="Footer" class="flex flex-wrap items-center gap-1">…</nav>
+  </div>
+</footer>`,
+  },
+  requirements: {
+    userStory:
+      'As a person using a page at different widths, I want the Footer boundary and supporting links to reflow predictably so that no content becomes clipped or unreachable.',
+    groups: [
+      {
+        id: 'BR-FULL',
+        title: 'Business requirements',
+        items: [
+          'People can recognize the page-ending boundary across the available width.',
+          'People can reach every supporting destination after the Footer wraps.',
+        ],
+      },
+      {
+        id: 'FR-FULL',
+        title: 'Functional requirements',
+        items: [
+          'Footer applies full-width Container alignment when size is full.',
+          'Footer preserves the supplied copyright and link order while wrapping.',
+        ],
+      },
+      {
+        id: 'NFR-FULL',
+        title: 'Non-functional requirements',
+        items: [
+          'The Footer remains content-driven rather than fixed or sticky.',
+          'Long realistic labels do not create unintended horizontal scrolling.',
+        ],
+      },
+      {
+        id: 'A11Y-FULL',
+        title: 'Accessibility requirements',
+        items: [
+          'Source order remains understandable when content stacks.',
+          'Focus remains visible and links remain operable after reflow.',
+        ],
+      },
+      {
+        id: 'TR-FULL',
+        title: 'Technical requirements',
+        items: [
+          'The consuming application chooses the full-width size and supplies realistic link data.',
+          'Footer uses flex wrapping rather than a breakpoint that hides required links.',
+        ],
+      },
+    ],
+    acceptanceCriteria: [
+      {
+        id: 'AC-FULL-01',
+        requirementRefs: ['BR-FULL-01', 'FR-FULL-01'],
+        given: 'Footer is rendered with `size="full"` and a border',
+        when: 'the page is viewed at a wide width',
+        then: 'the footer boundary spans the available width while its content uses the full Container alignment',
+        and: ['the footer remains after Main'],
+      },
+      {
+        id: 'AC-FULL-02',
+        requirementRefs: ['BR-FULL-02', 'FR-FULL-02'],
+        given: 'the caller supplies a long copyright node and ordered links',
+        when: 'Footer renders',
+        then: 'copyright and links preserve their supplied content and source order',
+      },
+      {
+        id: 'AC-FULL-03',
+        requirementRefs: ['NFR-FULL-01'],
+        given: 'the page is scrolled or resized',
+        when: 'Footer remains in the document flow',
+        then: 'Footer is content-driven and does not become sticky or fixed',
+      },
+      {
+        id: 'AC-FULL-04',
+        requirementRefs: ['NFR-FULL-02', 'TR-FULL-02'],
+        given: 'the viewport is narrowed and text is enlarged to 200%',
+        when: 'the long labels reflow',
+        then: 'the Footer wraps links and copyright without unintended horizontal scrolling',
+        and: ['no required link is hidden'],
+      },
+      {
+        id: 'AC-FULL-05',
+        requirementRefs: ['A11Y-FULL-01'],
+        given: 'copyright and links occupy multiple rows',
+        when: 'the reflowed Footer is read in source order',
+        then: 'the copyright remains understandable before the supporting links',
+      },
+      {
+        id: 'AC-FULL-06',
+        requirementRefs: ['A11Y-FULL-02'],
+        given: 'a keyboard user reaches the wrapped links',
+        when: 'focus moves through the navigation',
+        then: 'every link remains focusable with a visible focus indicator',
+      },
+      {
+        id: 'AC-FULL-07',
+        requirementRefs: ['TR-FULL-01'],
+        given: 'the consuming application supplies full-width configuration and realistic data',
+        when: 'Footer renders',
+        then: 'the component applies the requested size without modifying the supplied content',
+      },
+    ],
+  },
+  verification: {
+    scenarios: [
+      {
+        id: 'VR-FULL-01',
+        role: 'Design QA',
+        title: 'Check full-width boundary and alignment',
+        description: 'Checks the full-width Footer surface while preserving content alignment.',
+        criterionRefs: ['AC-FULL-01', 'AC-FULL-07'],
+        cases: [
+          {
+            id: 'VC-FULL-01',
+            role: 'Design QA',
+            title: 'Inspect full-width Footer at desktop width',
+            description:
+              'Confirms the boundary spans the viewport and the selected Container mode is applied.',
+            criterionRefs: ['AC-FULL-01', 'AC-FULL-07'],
+            steps: [
+              'Render the Full-width example at desktop width.',
+              'Inspect the footer boundary, data-size state, content alignment, and document position after Main.',
+            ],
+            expected:
+              'The border spans the available Footer width, content uses full Container alignment, and the Footer remains after Main in normal flow.',
+          },
+        ],
+      },
+      {
+        id: 'VR-FULL-02',
+        role: 'Responsive QA',
+        title: 'Check long-label reflow',
+        description: 'Checks the explicit narrow-width and enlarged-text boundary.',
+        criterionRefs: ['AC-FULL-02', 'AC-FULL-03', 'AC-FULL-04'],
+        cases: [
+          {
+            id: 'VC-FULL-02',
+            role: 'Responsive QA',
+            title: 'Resize and enlarge the Full-width example',
+            description: 'Confirms long labels wrap without clipping or page overflow.',
+            criterionRefs: ['AC-FULL-02', 'AC-FULL-03', 'AC-FULL-04'],
+            steps: [
+              'Render the example with its long copyright and link labels.',
+              'Resize to the narrowest supported width and set browser zoom/text enlargement to 200%.',
+              'Inspect source order, clipping, hidden links, and document scroll width.',
+            ],
+            expected:
+              'Content wraps in source order, all links remain visible and reachable, Footer stays in normal flow, and the page does not gain unintended horizontal scrolling.',
+          },
+        ],
+      },
+      {
+        id: 'VR-FULL-03',
+        role: 'Accessibility QA',
+        title: 'Check keyboard operation after reflow',
+        description: 'Checks focus visibility and operability when the Footer stacks.',
+        criterionRefs: ['AC-FULL-05', 'AC-FULL-06'],
+        cases: [
+          {
+            id: 'VC-FULL-03',
+            role: 'Accessibility QA',
+            title: 'Tab through the wrapped Footer',
+            description:
+              'Confirms every link remains in the keyboard sequence after layout reflow.',
+            criterionRefs: ['AC-FULL-05', 'AC-FULL-06'],
+            steps: [
+              'At the narrowed and enlarged-text state, start before the Footer and press Tab through every Footer link.',
+              'Inspect focus visibility and activate one focused link with Enter.',
+            ],
+            expected:
+              'The copyright remains first in source order, every link receives visible focus, and Enter activates the focused destination.',
+          },
+        ],
+      },
+    ],
+  },
+  tabLayout: 'requirements' as const,
+}
 
 function ComponentsFooterPage() {
   return (
@@ -41,11 +784,11 @@ function ComponentsFooterPage() {
             page&apos;s main content, not inside the main content area.
           </p>
           <p className="leading-7 text-muted-foreground">
-            The basic pattern is a quiet row with caller-owned copyright content and a small set of
-            specific links. When links are present, Footer adds a named navigation landmark and
-            keeps the links as normal keyboard-reachable anchors.
+            When links are present, Footer adds a named navigation landmark and keeps the links as
+            normal keyboard-reachable anchors. Its wrapping layout keeps supporting content
+            available when space is limited.
           </p>
-          <div className="overflow-hidden rounded-xl border">
+          <div className="overflow-hidden rounded-xl border [&_[data-slot=footer]]:!border-0">
             <Footer
               bordered={false}
               copyright={<>© 2026 Tommy Truong</>}
@@ -213,28 +956,18 @@ function ComponentsFooterPage() {
             Examples and variations
           </h2>
           <p className="text-sm leading-6 text-muted-foreground">
-            Compare the basic text-link pattern with the production shell configuration and a
-            full-width layout. Each preview uses the reusable Footer component; only its supported
-            data and layout options change.
-          </p>
-          <p className="text-sm leading-6 text-muted-foreground">
-            Try it: tab through every link, activate the external link, and resize until the content
-            wraps. Confirm that focus stays visible, link purpose remains clear, and no destination
-            becomes unreachable.
+            Compare the basic text-link pattern with an intentional external destination and a
+            full-width wrapping layout. Each preview uses the reusable Footer component; only its
+            supported data and layout options change.
           </p>
           <div className="space-y-8 [&_*:has(>footer)]:!p-0 [&_*:has(>footer)]:overflow-hidden">
             <ExampleVariation
               title="Basic"
-              description="Use a compact text-link Footer when a few supporting destinations are enough."
-              explanation="The caller provides copyright content and ordinary same-site link destinations. Replace these illustrative paths with destinations that exist in the consuming application."
-              doItems={[
-                'Keep link labels specific and useful.',
-                'Use a small set of destinations that support the page without duplicating primary navigation.',
-              ]}
-              dontItems={[
-                'Do not use placeholder anchors that have no destination.',
-                'Do not make Footer the only way to reach an important task action.',
-              ]}
+              summary="A compact text-link Footer for a few supporting destinations."
+              tryIt="Tab through Privacy and Accessibility, then render the empty-links boundary and resize the populated example."
+              articleClassName="rounded-none border-0 p-0 sm:p-0"
+              exampleClassName="p-0 sm:p-0"
+              supplemental={basicSupplemental}
             >
               <Footer
                 copyright={<>© 2026 Tommy Truong</>}
@@ -245,20 +978,36 @@ function ComponentsFooterPage() {
               />
             </ExampleVariation>
             <ExampleVariation
-              title="Production shell"
-              description="Use icon-and-text links when the production shell needs recognizable destinations and supporting visual cues."
-              explanation="This variation uses the same footerLinks data as the application shell, including links that pair a visible label with a supporting icon. The icon is decorative when the text already names the destination; external-link behavior remains part of the link contract."
-              doItems={[
-                'Centralize shared Footer link data so shell and guides do not drift.',
-                'Keep the visible label understandable without relying on the icon.',
-                'Use external-link behavior only when opening a new tab is an intentional product choice.',
-              ]}
-              dontItems={[
-                'Do not copy repository-specific links into another product without changing their destination and purpose.',
-                'Do not make an icon-only link the only name for an external destination.',
-              ]}
+              title="External link"
+              summary="An explicitly external supporting destination keeps its label and new-window announcement."
+              tryIt="Inspect the external attributes and accessible name, then resize until the link wraps."
+              articleClassName="rounded-none border-0 p-0 sm:p-0"
+              exampleClassName="p-0 sm:p-0"
+              supplemental={externalSupplemental}
             >
               <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+            </ExampleVariation>
+            <ExampleVariation
+              title="Full width and wrapping"
+              summary="A full-width boundary with realistic long content remains content-driven and wrap-safe."
+              tryIt="Resize to the narrowest supported width, enlarge text to 200%, and tab through every link."
+              articleClassName="rounded-none border-0 p-0 sm:p-0"
+              exampleClassName="p-0 sm:p-0"
+              supplemental={fullSupplemental}
+            >
+              <Footer
+                size="full"
+                copyright={
+                  <>
+                    © 2026 Tommy Truong — Application Delivery Kit accessibility and documentation
+                  </>
+                }
+                links={[
+                  { href: '/privacy', label: 'Privacy and data practices' },
+                  { href: '/accessibility', label: 'Accessibility statement' },
+                  { href: '/components/user-interface', label: 'Component documentation' },
+                ]}
+              />
             </ExampleVariation>
           </div>
         </section>

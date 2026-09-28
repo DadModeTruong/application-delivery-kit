@@ -102,7 +102,7 @@ function Footer({ copyright, links, size = 'contained', bordered = true }: Foote
         {/* Copyright — left. Muted text color to sit quietly. */}
         <div className="text-sm text-muted-foreground">{copyright}</div>
 
-        {/* Tab navigation — right. Only rendered if links exist.
+        {/* Footer navigation — right. Only rendered if links exist.
             `aria-label="Footer"` distinguishes this landmark from
             the Header's "Primary" nav for screen-reader users
             jumping between landmarks. */}
