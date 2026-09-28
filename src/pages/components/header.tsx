@@ -366,7 +366,7 @@ function ComponentsHeaderPage() {
   navigationLabel="Global navigation"
   nav={[
     { label: 'Examples', href: '/examples/layouts' },
-    { label: 'Components', href: '/components/user-interface' },
+    { label: 'Components', href: '/components/user-interface', current: true },
   ]}
 />`,
                   html: `<header data-slot="header" data-scrolled="false" data-size="contained"

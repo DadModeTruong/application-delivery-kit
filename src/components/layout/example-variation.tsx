@@ -147,12 +147,12 @@ function CodeBlock({ code, idPrefix }: { code: ExampleCode; idPrefix: string }) 
       </section>
       <section aria-labelledby={`${idPrefix}-rendered-html-heading`}>
         <h4 id={`${idPrefix}-rendered-html-heading`} className="font-semibold text-foreground">
-          Rendered HTML structure
+          Representative HTML structure
         </h4>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          This is the current browser structure produced by the reusable component, including the
-          styling classes and data attributes used by this example. Preserve the semantic elements,
-          responsive classes, focus classes, and state attributes when adapting the pattern.
+          This is an illustrative excerpt of the structure produced by the reusable component. Some
+          wrapper or library-generated details may be omitted; preserve the semantic elements,
+          responsive classes, focus classes, and state attributes shown when adapting the pattern.
         </p>
         <pre className="mt-4 overflow-x-auto rounded-lg bg-muted p-4 text-sm leading-6 text-foreground">
           <code>{code.html}</code>

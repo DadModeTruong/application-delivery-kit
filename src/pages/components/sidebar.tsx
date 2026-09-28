@@ -207,7 +207,7 @@ const basicSupplemental = {
     acceptanceCriteria: [
       {
         id: 'AC-BASIC-01',
-        requirementRefs: ['FR-BASIC-01'],
+        requirementRefs: ['BR-BASIC-01', 'FR-BASIC-01', 'NFR-BASIC-01', 'TR-BASIC-01'],
         given: 'the Sidebar receives three flat destinations',
         when: 'the rail renders at a supported desktop width',
         then: 'one labelled navigation landmark contains the destinations in the supplied order',
@@ -218,7 +218,7 @@ const basicSupplemental = {
       },
       {
         id: 'AC-BASIC-02',
-        requirementRefs: ['NFR-BASIC-01'],
+        requirementRefs: ['BR-BASIC-02', 'A11Y-BASIC-03'],
         given: 'Overview is the current destination',
         when: 'the Sidebar renders',
         then: 'Overview is clearly identified as the page being viewed',
@@ -230,7 +230,7 @@ const basicSupplemental = {
       },
       {
         id: 'AC-BASIC-03',
-        requirementRefs: ['A11Y-BASIC-01'],
+        requirementRefs: ['NFR-BASIC-01'],
         given: 'a person points to an inactive link',
         when: 'the hover state appears',
         then: 'the link gains a clear visual surface without changing size or order',
@@ -238,7 +238,7 @@ const basicSupplemental = {
       },
       {
         id: 'AC-BASIC-04',
-        requirementRefs: ['FR-BASIC-02'],
+        requirementRefs: ['FR-BASIC-02', 'A11Y-BASIC-02'],
         given: 'a person uses the keyboard',
         when: 'focus moves through the links',
         then: 'every link can be focused and activated in order',
@@ -246,7 +246,7 @@ const basicSupplemental = {
       },
       {
         id: 'AC-BASIC-05',
-        requirementRefs: ['NFR-BASIC-02'],
+        requirementRefs: ['BR-BASIC-03', 'NFR-BASIC-02', 'NFR-BASIC-03'],
         given: 'the viewport becomes narrow',
         when: 'the persistent rail is no longer appropriate',
         then: 'the rail is hidden and the application can provide the same destinations through its chosen mobile presentation',
@@ -254,14 +254,14 @@ const basicSupplemental = {
       },
       {
         id: 'AC-BASIC-06',
-        requirementRefs: ['A11Y-BASIC-02'],
+        requirementRefs: ['FR-BASIC-03'],
         given: 'items is empty or omitted',
         when: 'the component renders',
         then: 'no empty Sidebar rail or empty navigation landmark appears',
       },
       {
         id: 'AC-BASIC-07',
-        requirementRefs: ['FR-BASIC-03'],
+        requirementRefs: ['BR-BASIC-01', 'A11Y-BASIC-01'],
         given: 'the Sidebar appears beside Header or tabs',
         when: 'landmarks are announced',
         then: 'people can distinguish the Sidebar navigation from the other navigation layers',
@@ -272,7 +272,7 @@ const basicSupplemental = {
       },
       {
         id: 'AC-BASIC-08',
-        requirementRefs: ['A11Y-BASIC-03'],
+        requirementRefs: ['NFR-BASIC-01', 'TR-BASIC-03'],
         given: 'a person views the rail at desktop width',
         when: 'the page is laid out',
         then: 'the rail does not overlap or reorder the main content unexpectedly',
@@ -280,7 +280,7 @@ const basicSupplemental = {
       },
       {
         id: 'AC-BASIC-09',
-        requirementRefs: ['NFR-BASIC-03'],
+        requirementRefs: ['BR-BASIC-03', 'FR-BASIC-02', 'TR-BASIC-01', 'TR-BASIC-02'],
         given: 'the application supplies a destination href',
         when: 'the person activates its link',
         then: 'the browser follows that destination as normal navigation',
@@ -533,7 +533,7 @@ const groupedSupplemental = {
     acceptanceCriteria: [
       {
         id: 'AC-GROUPED-01',
-        requirementRefs: ['FR-GROUPED-01'],
+        requirementRefs: ['BR-GROUPED-01', 'FR-GROUPED-01', 'TR-GROUPED-01'],
         given: 'items contains Getting started and Workspace groups',
         when: 'the Sidebar renders',
         then: 'each group heading appears before its links in the supplied order',
@@ -544,7 +544,7 @@ const groupedSupplemental = {
       },
       {
         id: 'AC-GROUPED-02',
-        requirementRefs: ['A11Y-GROUPED-01'],
+        requirementRefs: ['BR-GROUPED-01', 'NFR-GROUPED-01', 'A11Y-GROUPED-01'],
         given: 'a group contains multiple links',
         when: 'the person scans it',
         then: 'the visible order and shared spacing communicate that the links belong together',
@@ -552,7 +552,7 @@ const groupedSupplemental = {
       },
       {
         id: 'AC-GROUPED-03',
-        requirementRefs: ['FR-GROUPED-02'],
+        requirementRefs: ['FR-GROUPED-03', 'A11Y-GROUPED-02'],
         given: 'a link has an icon and visible label',
         when: 'the link renders',
         then: 'the icon supports recognition while the visible label remains the destination name',
@@ -563,7 +563,7 @@ const groupedSupplemental = {
       },
       {
         id: 'AC-GROUPED-04',
-        requirementRefs: ['NFR-GROUPED-01'],
+        requirementRefs: ['BR-GROUPED-02', 'A11Y-GROUPED-01'],
         given: 'Overview is current inside Getting started',
         when: 'the Sidebar renders',
         then: 'the current link is identified without hiding its group context',
@@ -571,7 +571,7 @@ const groupedSupplemental = {
       },
       {
         id: 'AC-GROUPED-05',
-        requirementRefs: ['FR-GROUPED-03'],
+        requirementRefs: ['FR-GROUPED-02', 'NFR-GROUPED-01'],
         given: 'the second group follows the first',
         when: 'the visual layout renders',
         then: 'the groups are separated consistently',
@@ -582,7 +582,7 @@ const groupedSupplemental = {
       },
       {
         id: 'AC-GROUPED-06',
-        requirementRefs: ['A11Y-GROUPED-02', 'A11Y-GROUPED-03'],
+        requirementRefs: ['A11Y-GROUPED-03', 'TR-GROUPED-02'],
         given: 'a person uses the keyboard',
         when: 'focus moves through groups',
         then: 'links are reached in DOM and visual order',
@@ -590,7 +590,7 @@ const groupedSupplemental = {
       },
       {
         id: 'AC-GROUPED-07',
-        requirementRefs: ['NFR-GROUPED-02', 'NFR-GROUPED-03'],
+        requirementRefs: ['NFR-GROUPED-02'],
         given: 'a group label or link label is long',
         when: 'the labeled rail is viewed',
         then: 'the information remains understandable and the application can make an intentional wrapping decision',
@@ -598,7 +598,7 @@ const groupedSupplemental = {
       },
       {
         id: 'AC-GROUPED-08',
-        requirementRefs: ['TR-GROUPED-01', 'TR-GROUPED-02', 'TR-GROUPED-03'],
+        requirementRefs: ['BR-GROUPED-03', 'NFR-GROUPED-03', 'TR-GROUPED-03'],
         given: 'the desktop rail is hidden for a responsive presentation',
         when: 'the application rebuilds navigation',
         then: 'the same group data can be reused without Sidebar context',
@@ -817,7 +817,7 @@ const activeSupplemental = {
     acceptanceCriteria: [
       {
         id: 'AC-ACTIVE-01',
-        requirementRefs: ['FR-ACTIVE-01', 'TR-ACTIVE-01'],
+        requirementRefs: ['BR-ACTIVE-01', 'FR-ACTIVE-01', 'TR-ACTIVE-01'],
         given: 'activeHref exactly matches one destination',
         when: 'the Sidebar renders',
         then: 'only that destination is selected',
@@ -829,7 +829,7 @@ const activeSupplemental = {
       },
       {
         id: 'AC-ACTIVE-02',
-        requirementRefs: ['FR-ACTIVE-02', 'TR-ACTIVE-02'],
+        requirementRefs: ['BR-ACTIVE-02', 'FR-ACTIVE-02'],
         given: 'the application changes activeHref to another exact destination',
         when: 'the Sidebar rerenders',
         then: 'the selected state moves to the new destination',
@@ -840,7 +840,7 @@ const activeSupplemental = {
       },
       {
         id: 'AC-ACTIVE-03',
-        requirementRefs: ['FR-ACTIVE-03', 'TR-ACTIVE-03'],
+        requirementRefs: ['BR-ACTIVE-03', 'FR-ACTIVE-03'],
         given: 'activeHref matches no destination',
         when: 'the Sidebar renders',
         then: 'no destination is presented as current',
@@ -851,7 +851,7 @@ const activeSupplemental = {
       },
       {
         id: 'AC-ACTIVE-04',
-        requirementRefs: ['A11Y-ACTIVE-01'],
+        requirementRefs: ['NFR-ACTIVE-01', 'A11Y-ACTIVE-03', 'TR-ACTIVE-03'],
         given: 'the current link receives keyboard focus',
         when: 'the focus state appears',
         then: 'current and focus treatments remain visible together',
@@ -859,7 +859,7 @@ const activeSupplemental = {
       },
       {
         id: 'AC-ACTIVE-05',
-        requirementRefs: ['NFR-ACTIVE-01'],
+        requirementRefs: ['NFR-ACTIVE-03', 'TR-ACTIVE-02'],
         given: 'a person selects a non-current link',
         when: 'the browser follows the link',
         then: 'the application can update the supplied current state after navigation',
@@ -875,7 +875,7 @@ const activeSupplemental = {
       },
       {
         id: 'AC-ACTIVE-07',
-        requirementRefs: ['A11Y-ACTIVE-02', 'A11Y-ACTIVE-03'],
+        requirementRefs: ['A11Y-ACTIVE-01', 'A11Y-ACTIVE-02'],
         given: 'the Sidebar is viewed with Header and tabs',
         when: 'landmarks are announced',
         then: 'the selected Sidebar destination remains associated with the Sidebar landmark',
@@ -1099,7 +1099,7 @@ const iconOnlySupplemental = {
     acceptanceCriteria: [
       {
         id: 'AC-ICON-01',
-        requirementRefs: ['FR-ICON-01'],
+        requirementRefs: ['BR-ICON-01', 'FR-ICON-01', 'NFR-ICON-01', 'TR-ICON-01'],
         given: 'Sidebar uses the icon-only variant',
         when: 'the rail renders at desktop width',
         then: 'the rail becomes a compact navigation surface',
@@ -1110,7 +1110,7 @@ const iconOnlySupplemental = {
       },
       {
         id: 'AC-ICON-02',
-        requirementRefs: ['A11Y-ICON-01'],
+        requirementRefs: ['BR-ICON-02', 'FR-ICON-02', 'A11Y-ICON-01', 'TR-ICON-02'],
         given: 'a link label is hidden visually',
         when: 'the person inspects or focuses it',
         then: 'the complete destination name remains available',
@@ -1121,7 +1121,7 @@ const iconOnlySupplemental = {
       },
       {
         id: 'AC-ICON-03',
-        requirementRefs: ['A11Y-ICON-02'],
+        requirementRefs: ['FR-ICON-03'],
         given: 'an item has an icon',
         when: 'the compact link renders',
         then: 'the icon appears as a decorative visual cue',
@@ -1132,7 +1132,7 @@ const iconOnlySupplemental = {
       },
       {
         id: 'AC-ICON-04',
-        requirementRefs: ['A11Y-ICON-03'],
+        requirementRefs: ['NFR-ICON-01', 'A11Y-ICON-03'],
         given: 'an item has no icon',
         when: 'the compact link renders',
         then: 'a safe first-letter visual fallback appears',
@@ -1140,7 +1140,7 @@ const iconOnlySupplemental = {
       },
       {
         id: 'AC-ICON-05',
-        requirementRefs: ['NFR-ICON-01'],
+        requirementRefs: ['NFR-ICON-02', 'A11Y-ICON-01'],
         given: 'the current item receives focus',
         when: 'the compact link is active',
         then: 'current styling and focus styling remain visible together',
@@ -1148,7 +1148,7 @@ const iconOnlySupplemental = {
       },
       {
         id: 'AC-ICON-06',
-        requirementRefs: ['A11Y-ICON-02'],
+        requirementRefs: ['BR-ICON-03', 'NFR-ICON-03', 'TR-ICON-03'],
         given: 'a person uses the keyboard without a pointer',
         when: 'an icon-only link receives focus',
         then: 'the destination can still be identified and activated',
@@ -1156,7 +1156,7 @@ const iconOnlySupplemental = {
       },
       {
         id: 'AC-ICON-07',
-        requirementRefs: ['NFR-ICON-02', 'FR-ICON-02'],
+        requirementRefs: ['A11Y-ICON-01'],
         given: 'the viewport becomes narrow',
         when: 'the persistent rail is hidden',
         then: 'the application provides its chosen responsive navigation',
@@ -1164,7 +1164,7 @@ const iconOnlySupplemental = {
       },
       {
         id: 'AC-ICON-08',
-        requirementRefs: ['NFR-ICON-03', 'FR-ICON-03'],
+        requirementRefs: ['A11Y-ICON-02'],
         given: 'the compact rail contains multiple groups',
         when: 'the visual layout renders',
         then: 'group boundaries remain understandable through spacing or dividers',
@@ -1172,7 +1172,7 @@ const iconOnlySupplemental = {
       },
       {
         id: 'AC-ICON-09',
-        requirementRefs: ['NFR-ICON-03'],
+        requirementRefs: ['A11Y-ICON-03'],
         given: 'the compact rail is viewed at the narrowest supported width',
         when: 'the layout reflows',
         then: 'the rail does not create unintended horizontal scrolling',

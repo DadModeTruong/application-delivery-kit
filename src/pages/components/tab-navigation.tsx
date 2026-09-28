@@ -113,9 +113,9 @@ function ComponentsTabNavigationPage() {
           <div className="overflow-hidden rounded-xl border [&_[data-slot=tab-navigation]]:!mb-0">
             <TabNavigation
               items={[
-                { label: 'Overview', href: '#tab-navigation-overview' },
-                { label: 'Guidance', href: '#tab-navigation-guidance' },
-                { label: 'Resources', href: '#tab-navigation-resources' },
+                { label: 'Overview', href: '/components/tab-navigation' },
+                { label: 'Guidance', href: '/components/header' },
+                { label: 'Resources', href: '/components/sidebar' },
               ]}
               aria-label="Tab navigation example"
             />
@@ -326,7 +326,7 @@ function ComponentsTabNavigationPage() {
                   acceptanceCriteria: [
                     {
                       id: 'AC-BASIC-01',
-                      requirementRefs: ['BR-BASIC-01'],
+                      requirementRefs: ['BR-BASIC-01', 'FR-BASIC-01'],
                       given: 'The row is rendered with three supplied sibling destinations',
                       when: 'the navigation appears',
                       then: 'one named navigation landmark contains three real links in the supplied order',
@@ -345,7 +345,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-BASIC-03',
-                      requirementRefs: ['FR-BASIC-01'],
+                      requirementRefs: ['FR-BASIC-02'],
                       given: 'a person activates a destination',
                       when: 'the link is selected',
                       then: 'the browser follows that destination as normal anchor navigation',
@@ -356,7 +356,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-BASIC-04',
-                      requirementRefs: ['FR-BASIC-02'],
+                      requirementRefs: ['NFR-BASIC-01'],
                       given: 'the row is rendered at a supported desktop width',
                       when: 'the layout is measured',
                       then: 'the navigation aligns with the page content and remains easy to scan',
@@ -364,7 +364,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-BASIC-05',
-                      requirementRefs: ['NFR-BASIC-01'],
+                      requirementRefs: ['NFR-BASIC-02'],
                       given: 'the viewport becomes narrow',
                       when: 'the responsive breakpoint is reached',
                       then: 'the desktop row is hidden without inventing a second navigation model',
@@ -374,7 +374,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-BASIC-06',
-                      requirementRefs: ['NFR-BASIC-02'],
+                      requirementRefs: ['A11Y-BASIC-01'],
                       given: 'the page contains other navigation landmarks',
                       when: 'assistive technology lists landmarks',
                       then: 'the TabNavigation landmark has its configured distinct accessible name',
@@ -382,7 +382,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-BASIC-07',
-                      requirementRefs: ['A11Y-BASIC-01'],
+                      requirementRefs: ['A11Y-BASIC-02'],
                       given: 'keyboard focus moves through the row',
                       when: 'a person tabs across the links',
                       then: 'each link receives visible focus in the supplied order',
@@ -687,7 +687,7 @@ function ComponentsTabNavigationPage() {
                   acceptanceCriteria: [
                     {
                       id: 'AC-CURRENT-01',
-                      requirementRefs: ['BR-CURRENT-01'],
+                      requirementRefs: ['BR-CURRENT-01', 'FR-CURRENT-01'],
                       given:
                         'the row is rendered with three supplied sibling destinations and an activeHref',
                       when: 'the navigation appears',
@@ -704,7 +704,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-CURRENT-03',
-                      requirementRefs: ['FR-CURRENT-01'],
+                      requirementRefs: ['FR-CURRENT-02'],
                       given: 'a person activates an inactive destination',
                       when: 'the link is selected',
                       then: 'the browser follows that destination as normal anchor navigation',
@@ -712,7 +712,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-CURRENT-04',
-                      requirementRefs: ['FR-CURRENT-02'],
+                      requirementRefs: ['NFR-CURRENT-01'],
                       given: 'the activeHref matches exactly one link',
                       when: 'the component renders',
                       then: 'only the matching link exposes aria-current="page" and the active data state',
@@ -720,7 +720,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-CURRENT-05',
-                      requirementRefs: ['NFR-CURRENT-01'],
+                      requirementRefs: ['A11Y-CURRENT-02'],
                       given: 'the activeHref does not match any link',
                       when: 'the component renders',
                       then: 'no link is incorrectly presented as current',
@@ -736,7 +736,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-CURRENT-07',
-                      requirementRefs: ['A11Y-CURRENT-01'],
+                      requirementRefs: ['A11Y-CURRENT-02'],
                       given: 'keyboard focus moves through the row',
                       when: 'a person tabs across the links',
                       then: 'focus remains visible on both active and inactive links',
@@ -744,7 +744,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-CURRENT-08',
-                      requirementRefs: ['A11Y-CURRENT-02'],
+                      requirementRefs: ['A11Y-CURRENT-01'],
                       given: 'the page contains Header, Sidebar, and TabNavigation landmarks',
                       when: 'assistive technology lists landmarks',
                       then: 'the TabNavigation landmark is independently named and discoverable',
@@ -1041,7 +1041,7 @@ function ComponentsTabNavigationPage() {
                   acceptanceCriteria: [
                     {
                       id: 'AC-LONG-01',
-                      requirementRefs: ['BR-LONG-01'],
+                      requirementRefs: ['BR-LONG-01', 'FR-LONG-01'],
                       given: 'the row is rendered with meaningful longer labels',
                       when: 'the navigation appears',
                       then: 'the destinations remain understandable and are presented as real links',
@@ -1057,7 +1057,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-LONG-03',
-                      requirementRefs: ['FR-LONG-01'],
+                      requirementRefs: ['FR-LONG-02'],
                       given: 'a person activates a longer-label destination',
                       when: 'the link is selected',
                       then: 'the browser follows the configured href as normal link navigation',
@@ -1065,7 +1065,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-LONG-04',
-                      requirementRefs: ['FR-LONG-02'],
+                      requirementRefs: ['NFR-LONG-01'],
                       given: 'the row is rendered at a wide desktop width',
                       when: 'the layout is measured',
                       then: 'the compact tray aligns with the page content and preserves readable spacing',
@@ -1089,7 +1089,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-LONG-07',
-                      requirementRefs: ['A11Y-LONG-01'],
+                      requirementRefs: ['A11Y-LONG-02'],
                       given: 'keyboard focus moves through longer labels',
                       when: 'a person tabs across the links',
                       then: 'each link receives visible focus without relying on hover or color',
@@ -1097,7 +1097,7 @@ function ComponentsTabNavigationPage() {
                     },
                     {
                       id: 'AC-LONG-08',
-                      requirementRefs: ['A11Y-LONG-02'],
+                      requirementRefs: ['A11Y-LONG-01'],
                       given: 'the page contains other navigation landmarks',
                       when: 'assistive technology lists landmarks',
                       then: 'the longer-label navigation has a distinct accessible name',
