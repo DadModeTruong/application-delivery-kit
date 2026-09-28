@@ -1341,11 +1341,11 @@ function ComponentsSidebarPage() {
               activeHref="/components/sidebar"
             />
           </div>
-          <p className="text-sm leading-6 text-muted-foreground">
-            <strong className="mr-2 text-foreground">Try it:</strong> tab through the links, inspect
-            the current state, and resize the page to review the application-owned responsive
-            composition.
-          </p>
+          <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
+            <strong className="mr-2 text-foreground">Try it:</strong>
+            Tab through the links, inspect the current state, and resize the page to review the
+            application-owned responsive composition.
+          </div>
         </section>
 
         <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="sidebar-use-heading">
