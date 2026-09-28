@@ -8,6 +8,7 @@
 import { Blocks, LayoutTemplate } from 'lucide-react'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { ExampleVariation } from '@/components/layout/example-variation'
+import { TryIt } from '@/components/layout/try-it'
 import { Header } from '@/components/layout/header'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 
@@ -157,11 +158,10 @@ function ComponentsHeaderPage() {
             </div>
           </div>
 
-          <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
-            <strong className="mr-2 text-foreground">Try it:</strong>
+          <TryIt>
             Tab through the brand and navigation links, activate a destination, then resize to check
             that the same navigation remains usable in the mobile presentation.
-          </div>
+          </TryIt>
         </section>
         <section
           className="grid gap-10 lg:grid-cols-2"
