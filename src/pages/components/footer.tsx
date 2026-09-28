@@ -788,7 +788,7 @@ function ComponentsFooterPage() {
             normal keyboard-reachable anchors. Its wrapping layout keeps supporting content
             available when space is limited.
           </p>
-          <div className="overflow-hidden rounded-xl border [&_[data-slot=footer]]:!border-0">
+          <div className="overflow-hidden rounded-xl border [&_[data-slot=footer]]:!border-0 [&_[data-slot=footer]]:!py-2">
             <Footer
               bordered={false}
               copyright={<>© 2026 Tommy Truong</>}
@@ -960,7 +960,7 @@ function ComponentsFooterPage() {
             full-width wrapping layout. Each preview uses the reusable Footer component; only its
             supported data and layout options change.
           </p>
-          <div className="space-y-8 [&_*:has(>footer)]:!p-0 [&_*:has(>footer)]:overflow-hidden">
+          <div className="space-y-8 [&_*:has(>footer)]:!p-0 [&_*:has(>footer)]:overflow-hidden [&_[data-slot=footer]]:!py-2">
             <ExampleVariation
               title="Basic"
               summary="A compact text-link Footer for a few supporting destinations."
