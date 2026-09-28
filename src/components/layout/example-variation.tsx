@@ -91,6 +91,7 @@ type ExampleVariationBaseProps = {
   title: string
   children: ReactNode
   exampleClassName?: string
+  articleClassName?: string
 }
 
 type StandardizedExampleVariationProps = ExampleVariationBaseProps & {
@@ -391,6 +392,7 @@ function StandardizedExample({
   children,
   supplemental,
   exampleClassName,
+  articleClassName,
 }: StandardizedExampleVariationProps) {
   const idPrefix = React.useId().replaceAll(':', '')
   const tabIds = {
@@ -402,12 +404,12 @@ function StandardizedExample({
   }
 
   return (
-    <article className="space-y-6">
+    <article className={cn('space-y-6', articleClassName)}>
       <div className="space-y-2">
         <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
         <p className="text-muted-foreground">{summary}</p>
       </div>
-      <div className={cn('rounded-lg border p-5 sm:p-6', exampleClassName)}>{children}</div>
+      <div className={cn('overflow-hidden rounded-xl border', exampleClassName)}>{children}</div>
       <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
         <strong className="mr-2 text-foreground">Try it:</strong>
         {tryIt}
@@ -476,14 +478,15 @@ function LegacyExample({
   doItems,
   dontItems,
   exampleClassName,
+  articleClassName,
 }: LegacyExampleVariationProps) {
   return (
-    <article className="space-y-6 rounded-lg border p-6 sm:p-8">
+    <article className={cn('space-y-6 rounded-lg border p-6 sm:p-8', articleClassName)}>
       <div className="space-y-2">
         <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
         <p className="text-muted-foreground">{description}</p>
       </div>
-      <div className={cn('rounded-lg border p-5 sm:p-6', exampleClassName)}>{children}</div>
+      <div className={cn('overflow-hidden rounded-xl border', exampleClassName)}>{children}</div>
       <div className="text-muted-foreground">{explanation}</div>
       <div className="grid gap-8 sm:grid-cols-2">
         <div>

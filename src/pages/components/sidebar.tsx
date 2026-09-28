@@ -1400,6 +1400,8 @@ function ComponentsSidebarPage() {
               title="Basic"
               summary="A short, ungrouped list of section destinations."
               tryIt="Tab through the links and inspect the current destination."
+              articleClassName="rounded-none border-0 p-0 sm:p-0"
+              exampleClassName="p-0 sm:p-0"
               supplemental={basicSupplemental}
             >
               <Sidebar
@@ -1412,6 +1414,8 @@ function ComponentsSidebarPage() {
               title="Grouped"
               summary="Meaningful groups communicate information architecture."
               tryIt="Review the group headings and link order, then test keyboard navigation."
+              articleClassName="rounded-none border-0 p-0 sm:p-0"
+              exampleClassName="p-0 sm:p-0"
               supplemental={groupedSupplemental}
             >
               <Sidebar
@@ -1424,6 +1428,8 @@ function ComponentsSidebarPage() {
               title="With active item"
               summary="Explicit route state identifies where the person is."
               tryIt="Change the active route input and confirm only one item is current."
+              articleClassName="rounded-none border-0 p-0 sm:p-0"
+              exampleClassName="p-0 sm:p-0"
               supplemental={activeSupplemental}
             >
               <Sidebar
@@ -1436,6 +1442,8 @@ function ComponentsSidebarPage() {
               title="Icon-only"
               summary="A compact rail preserves navigation when width is limited."
               tryIt="Focus each icon with the keyboard and verify its accessible name."
+              articleClassName="rounded-none border-0 p-0 sm:p-0"
+              exampleClassName="p-0 sm:p-0"
               supplemental={iconOnlySupplemental}
             >
               <Sidebar
