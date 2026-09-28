@@ -186,8 +186,8 @@ PageShell.
 ### With secondary tabs above main
 
 TabNavigation sits between Header and Main (or Header and PageBody).
-Reads its items from LayoutProvider so the mobile drawer picks them up
-too:
+It can receive shared tab data from LayoutProvider when the application
+shell needs that configuration in more than one place:
 
 ```tsx
 <LayoutProvider tabNavigation={sectionTabs} tabNavigationLabel="Docs">
@@ -202,16 +202,14 @@ too:
 
 ### Full docs shell (TabNavigation + Sidebar)
 
-Combines everything. LayoutProvider sits outside PageShell so its
-context is available to Header (for the mobile drawer) as well as
-TabNavigation and Sidebar.
+Combines everything. LayoutProvider supplies shared tab configuration;
+Sidebar receives its navigation tree and current state explicitly so the
+reusable component remains independent from application context.
 
 ```tsx
 <LayoutProvider
   tabNavigation={sectionTabs}
   tabNavigationLabel="Documentation"
-  sidebarNav={sidebarEntries}
-  sidebarNavLabel="On this page"
   activeHref={pathname}
 >
   <PageShell>
@@ -219,7 +217,7 @@ TabNavigation and Sidebar.
     <Header />
     <TabNavigation aria-label="Documentation" />
     <PageBody>
-      <Sidebar aria-label="On this page" />
+      <Sidebar aria-label="On this page" items={sidebarEntries} activeHref={pathname} />
       <Main size="full">…</Main>
     </PageBody>
     <Footer />
@@ -251,26 +249,21 @@ PageShell has no `size`, no variants, no other props beyond `children`
 and `className`. If you need to customize width, that belongs on the
 inner components.
 
-## LayoutProvider — shared config for multi-slot components
+## LayoutProvider — shared tab configuration
 
-Some components (`TabNavigation`, `Sidebar`) need to appear in **two
-places at once**: their dedicated desktop slot, AND inside Header's
-mobile drawer. `LayoutProvider` centralizes their config so consumers
-don't pass items twice.
+`LayoutProvider` is optional context for layout components that need
+shared tab-navigation data. It does not own the reusable Header or
+Sidebar. Pass Header navigation, Sidebar items, and current state at
+the application-shell boundary so routing and information architecture
+remain application-owned.
 
 ```tsx
-<LayoutProvider
-  tabNavigation={sectionTabs}
-  tabNavigationLabel="Documentation"   // drawer heading, matches aria-label
-  sidebarNav={sidebarEntries}
-  sidebarNavLabel="On this page"      // drawer heading
-  activeHref={pathname}
->
+<LayoutProvider tabNavigation={sectionTabs} activeHref={pathname}>
   <PageShell>
-    <Header />
+    <Header logo={logo} nav={primaryNav} />
     <TabNavigation aria-label="Documentation" />
     <PageBody>
-      <Sidebar aria-label="On this page" />
+      <Sidebar aria-label="On this page" items={sidebarEntries} activeHref={pathname} />
       <Main size="full">…</Main>
     </PageBody>
     <Footer />
@@ -279,15 +272,10 @@ don't pass items twice.
 ```
 
 **Rules of thumb:**
-- Explicit props on `TabNavigation` / `Sidebar` override context.
-- Provider is optional — components work with just props too.
-- `tabNavigationLabel` / `sidebarNavLabel` control the drawer section
-  headings. Set them alongside items when using the provider.
-- `aria-label` on the components themselves is still required — it's
-  the landmark name for screen readers, independent of the drawer
-  heading (usually you'll set both to the same value).
-- Provider sits **outside** PageShell so Header (inside PageShell) can
-  still consume the context.
+- Pass `items` and `activeHref` explicitly to Sidebar.
+- Mark an individual navigation item with `current: true` when the application already has route state in its navigation model.
+- Use distinct labels for Header, tabs, and Sidebar landmarks.
+- Keep responsive replacement composition at the application boundary; Sidebar does not infer a router or read LayoutProvider.
 
 ## Navigation types (NavLeaf, NavParent, NavGroup)
 
@@ -430,6 +418,39 @@ Currently: `NavLeaf`, `NavParent`, `NavItem` (union), and `NavGroup`,
 plus the `isNavParent` and `isNavGroup` type guards. When a type graduates
 from one-consumer to two-consumers, move it and update the previous
 location to re-export from `types.ts` for backward compatibility.
+
+## Guide requirements and traceability
+
+Standardized component examples use five supplemental tabs in this order:
+
+1. **Guidance** — design intent, usage guidance, and ownership boundaries.
+2. **Requirements** — ordered Business, Functional, Non-functional, Accessibility, and Technical requirements.
+3. **Criteria** — observable Given/When/Then/And acceptance criteria.
+4. **Verification** — role-aware scenarios, steps, expected results, and evidence.
+5. **Code** — the implementation reference and rendered HTML contract.
+
+Requirements, criteria, and verification must be traceable rather than merely
+related by topic:
+
+- Requirement groups have stable IDs such as `FR-BASIC`.
+- Requirement items are addressable as `FR-BASIC-01`.
+- Acceptance criteria have stable IDs such as `AC-BASIC-01` and identify the requirement groups they satisfy.
+- Verification cases have stable IDs such as `VR-BASIC-01`, identify their primary review role, and identify the criteria they verify.
+- Every applicable requirement must have at least one acceptance criterion and at least one verification case.
+- Behaviors that are not owned by the component must be stated explicitly as application-owned or out of scope; they must not be left ambiguous.
+
+This creates a complete refinement chain:
+
+```text
+Business requirement
+  → Functional / quality / accessibility / technical requirement
+    → Acceptance criterion
+      → Verification case and evidence
+```
+
+A new component guide should use this structure from its first example. Legacy
+examples may retain the older tab layout while they are being migrated, but
+new standardized examples should not introduce untraceable requirements.
 
 ## A11y baseline
 

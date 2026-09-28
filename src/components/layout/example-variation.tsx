@@ -4,7 +4,7 @@
  *
  * The legacy shape remains available while guide pages migrate incrementally.
  * New examples should provide a summary, Try it instruction, and Guidance,
- * Code, Criteria, and Verification content.
+ * Requirements, Criteria, Verification, and Code content.
  */
 
 import * as React from 'react'
@@ -36,6 +36,8 @@ type ExampleCode = {
 }
 
 type AcceptanceCriterion = {
+  id?: string
+  requirementRefs?: string[]
   given: string
   when: string
   then: string
@@ -43,19 +45,34 @@ type AcceptanceCriterion = {
 }
 
 type VerificationCase = {
+  id?: string
+  criterionRefs?: string[]
+  role?: string
   title: string
+  description?: string
   steps: string[]
   expected: string
 }
 
 type VerificationScenario = {
+  id?: string
+  criterionRefs?: string[]
+  role?: string
   title: string
+  description?: string
   cases: VerificationCase[]
 }
 
+type ExampleRequirementGroup = {
+  id?: string
+  title: string
+  items: string[]
+}
+
 type ExampleRequirements = {
-  userStory: ReactNode
-  acceptanceCriteria: AcceptanceCriterion[]
+  userStory?: ReactNode
+  groups?: ExampleRequirementGroup[]
+  acceptanceCriteria?: AcceptanceCriterion[]
 }
 
 type ExampleVerification = {
@@ -67,6 +84,7 @@ type ExampleSupplemental = {
   code: ExampleCode
   requirements: ExampleRequirements
   verification: ExampleVerification
+  tabLayout?: 'default' | 'requirements'
 }
 
 type ExampleVariationBaseProps = {
@@ -199,18 +217,38 @@ function GuidancePanel({ guidance }: { guidance: ExampleGuidance }) {
   )
 }
 
-function RequirementsPanel({ requirements }: { requirements: ExampleRequirements }) {
+function AcceptanceCriteriaPanel({
+  requirements,
+  showUserStory = true,
+}: {
+  requirements: ExampleRequirements
+  showUserStory?: boolean
+}) {
+  const criteria = requirements.acceptanceCriteria ?? []
+
   return (
     <div className="space-y-6 text-muted-foreground">
-      <div>
-        <h4 className="font-semibold text-foreground">User story</h4>
-        <p className="mt-3 leading-7">{requirements.userStory}</p>
-      </div>
+      {showUserStory && requirements.userStory && (
+        <div>
+          <h4 className="font-semibold text-foreground">User story</h4>
+          <p className="mt-3 leading-7">{requirements.userStory}</p>
+        </div>
+      )}
       <div>
         <h4 className="font-semibold text-foreground">Acceptance criteria</h4>
         <ol className="mt-3 list-decimal space-y-5 pl-5 leading-7">
-          {requirements.acceptanceCriteria.map((criterion, index) => (
+          {criteria.map((criterion, index) => (
             <li key={`${criterion.given}-${index}`} className="pl-2">
+              {(criterion.id || criterion.requirementRefs?.length) && (
+                <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+                  {criterion.id && (
+                    <code className="text-sm font-medium text-foreground">{criterion.id}</code>
+                  )}
+                  {criterion.requirementRefs && criterion.requirementRefs.length > 0 && (
+                    <span>Satisfies: {criterion.requirementRefs.join(', ')}</span>
+                  )}
+                </div>
+              )}
               <strong className="text-foreground">Given</strong> {criterion.given}
               <ol type="a" className="mt-2 list-[lower-alpha] space-y-2 pl-6">
                 <li>
@@ -233,6 +271,45 @@ function RequirementsPanel({ requirements }: { requirements: ExampleRequirements
   )
 }
 
+function RequirementsPanel({ requirements }: { requirements: ExampleRequirements }) {
+  if (requirements.groups) {
+    return (
+      <div className="space-y-8 text-muted-foreground">
+        {requirements.userStory && (
+          <div>
+            <h4 className="font-semibold text-foreground">Purpose</h4>
+            <p className="mt-3 leading-7">{requirements.userStory}</p>
+          </div>
+        )}
+        {requirements.groups.map((group) => (
+          <section key={group.title}>
+            <h4 className="font-semibold text-foreground">
+              {group.title}
+              {group.id && (
+                <code className="ml-2 text-sm font-medium text-foreground">{group.id}</code>
+              )}
+            </h4>
+            <ol className="mt-3 list-decimal space-y-3 pl-5 leading-7">
+              {group.items.map((item, itemIndex) => (
+                <li key={item} className="pl-2">
+                  {group.id && (
+                    <code className="mr-2 text-sm font-medium text-foreground">
+                      {group.id}-{String(itemIndex + 1).padStart(2, '0')}
+                    </code>
+                  )}
+                  {item}
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
+    )
+  }
+
+  return <AcceptanceCriteriaPanel requirements={requirements} />
+}
+
 function VerificationPanel({
   verification,
   idPrefix,
@@ -252,11 +329,40 @@ function VerificationPanel({
             className="font-semibold text-foreground"
           >
             {scenario.title}
+            {scenario.id && (
+              <code className="ml-2 text-sm font-medium text-foreground">{scenario.id}</code>
+            )}
           </h4>
+          {(scenario.description || scenario.criterionRefs?.length) && (
+            <div className="mt-2 space-y-1 text-sm text-muted-foreground">
+              {scenario.description && <p className="leading-6">{scenario.description}</p>}
+              {scenario.criterionRefs && scenario.criterionRefs.length > 0 && (
+                <div className="flex flex-wrap gap-x-4 gap-y-1">
+                  <span>Verifies: {scenario.criterionRefs.join(', ')}</span>
+                </div>
+              )}
+            </div>
+          )}
           <div className="mt-5 space-y-8">
             {scenario.cases.map((testCase) => (
               <article key={testCase.title} className="space-y-4">
-                <h5 className="font-medium text-foreground">{testCase.title}</h5>
+                <h5 className="font-medium text-foreground">
+                  {testCase.title}
+                  {testCase.id && (
+                    <code className="ml-2 text-sm font-medium text-foreground">{testCase.id}</code>
+                  )}
+                </h5>
+                {testCase.description && <p className="leading-6">{testCase.description}</p>}
+                {(scenario.role || testCase.role || testCase.criterionRefs?.length) && (
+                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+                    {(scenario.role || testCase.role) && (
+                      <span>Primary role: {testCase.role ?? scenario.role}</span>
+                    )}
+                    {testCase.criterionRefs && testCase.criterionRefs.length > 0 && (
+                      <span>Verifies: {testCase.criterionRefs.join(', ')}</span>
+                    )}
+                  </div>
+                )}
                 <div>
                   <h6 className="text-sm font-medium text-foreground">Steps</h6>
                   <ol className="mt-2 list-decimal space-y-2 pl-5">
@@ -266,7 +372,7 @@ function VerificationPanel({
                   </ol>
                 </div>
                 <p className="border-l-2 border-primary/40 pl-4 leading-7">
-                  <strong className="font-medium text-foreground">Expected result: </strong>
+                  <strong className="font-medium text-foreground">Expected result</strong>:{' '}
                   {testCase.expected}
                 </p>
               </article>
@@ -291,6 +397,7 @@ function StandardizedExample({
     guidance: `${idPrefix}-guidance`,
     code: `${idPrefix}-code`,
     requirements: `${idPrefix}-requirements`,
+    acceptanceCriteria: `${idPrefix}-acceptance-criteria`,
     verification: `${idPrefix}-verification`,
   }
 
@@ -308,23 +415,53 @@ function StandardizedExample({
       <Tabs defaultSelectedKey={tabIds.guidance} className="min-w-0 gap-2">
         <TabsList aria-label={`${title} supplemental information`} className="max-w-full flex-wrap">
           <TabsTrigger id={tabIds.guidance}>Guidance</TabsTrigger>
-          <TabsTrigger id={tabIds.code}>Code</TabsTrigger>
-          <TabsTrigger id={tabIds.requirements}>Criteria</TabsTrigger>
-          <TabsTrigger id={tabIds.verification}>Verification</TabsTrigger>
+          {supplemental.tabLayout === 'requirements' ? (
+            <>
+              <TabsTrigger id={tabIds.requirements}>Requirements</TabsTrigger>
+              <TabsTrigger id={tabIds.acceptanceCriteria}>Criteria</TabsTrigger>
+              <TabsTrigger id={tabIds.verification}>Verification</TabsTrigger>
+              <TabsTrigger id={tabIds.code}>Code</TabsTrigger>
+            </>
+          ) : (
+            <>
+              <TabsTrigger id={tabIds.code}>Code</TabsTrigger>
+              <TabsTrigger id={tabIds.requirements}>Criteria</TabsTrigger>
+              <TabsTrigger id={tabIds.verification}>Verification</TabsTrigger>
+            </>
+          )}
         </TabsList>
         <div className="rounded-lg border bg-card p-4 sm:p-6">
           <TabsContent id={tabIds.guidance}>
             <GuidancePanel guidance={supplemental.guidance} />
           </TabsContent>
-          <TabsContent id={tabIds.code}>
-            <CodeBlock code={supplemental.code} idPrefix={idPrefix} />
-          </TabsContent>
-          <TabsContent id={tabIds.requirements}>
-            <RequirementsPanel requirements={supplemental.requirements} />
-          </TabsContent>
-          <TabsContent id={tabIds.verification}>
-            <VerificationPanel verification={supplemental.verification} idPrefix={idPrefix} />
-          </TabsContent>
+          {supplemental.tabLayout === 'requirements' ? (
+            <>
+              <TabsContent id={tabIds.requirements}>
+                <RequirementsPanel requirements={supplemental.requirements} />
+              </TabsContent>
+              <TabsContent id={tabIds.acceptanceCriteria}>
+                <AcceptanceCriteriaPanel requirements={supplemental.requirements} />
+              </TabsContent>
+              <TabsContent id={tabIds.verification}>
+                <VerificationPanel verification={supplemental.verification} idPrefix={idPrefix} />
+              </TabsContent>
+              <TabsContent id={tabIds.code}>
+                <CodeBlock code={supplemental.code} idPrefix={idPrefix} />
+              </TabsContent>
+            </>
+          ) : (
+            <>
+              <TabsContent id={tabIds.code}>
+                <CodeBlock code={supplemental.code} idPrefix={idPrefix} />
+              </TabsContent>
+              <TabsContent id={tabIds.requirements}>
+                <RequirementsPanel requirements={supplemental.requirements} />
+              </TabsContent>
+              <TabsContent id={tabIds.verification}>
+                <VerificationPanel verification={supplemental.verification} idPrefix={idPrefix} />
+              </TabsContent>
+            </>
+          )}
         </div>
       </Tabs>
     </article>

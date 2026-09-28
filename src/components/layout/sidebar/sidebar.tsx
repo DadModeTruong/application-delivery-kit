@@ -17,9 +17,9 @@
  *   surfacing the label (React Aria Tooltip). Group labels hidden;
  *   groups separated by a subtle divider.
  *
- * Reads items and activeHref from LayoutProvider when props are
- * omitted, so Header's mobile drawer picks up the same config.
- * Hidden on mobile (drawer handles it).
+ * Receives navigation data and current state from the consuming
+ * application. Hidden on mobile when the application provides a
+ * separate responsive navigation composition.
  *
  * Visual: shadcn Nova sidebar look — full-row rounded fills for
  * active/hover instead of a left-border accent. Muted background
@@ -33,7 +33,6 @@
  */
 
 import { cn } from 'cn'
-import { useLayout } from '@/components/layout/layout-provider'
 import { Tooltip, TooltipTrigger } from '@/components/ui/tooltip'
 import { isNavGroup, type NavLeaf, type NavGroup } from '../types'
 
@@ -51,9 +50,8 @@ type SidebarProps = {
    */
   'aria-label': string
   /**
-   * Nav entries — flat leaves or labeled groups. When omitted,
-   * reads from LayoutProvider's `sidebarNav`. Explicit prop
-   * overrides context.
+   * Nav entries — flat leaves or labeled groups. The consuming
+   * application owns the navigation data and route filtering.
    *
    * Typed as (NavLeaf | NavGroup)[] (not NavItem-based) — dropdowns
    * don't belong in a sidebar. Grouping is Sidebar's hierarchy
@@ -62,8 +60,8 @@ type SidebarProps = {
   items?: (NavLeaf | NavGroup)[]
   /**
    * Currently active URL. Exact match on `item.href === activeHref`
-   * applies `aria-current="page"` and active-state styling. When
-   * omitted, reads from LayoutProvider's `activeHref`.
+   * applies `aria-current="page"` and active-state styling. An
+   * item's explicit `current` value takes precedence when provided.
    */
   activeHref?: string
   /**
@@ -200,7 +198,7 @@ function SidebarGroup({
         <SidebarItem
           key={item.href}
           item={item}
-          active={item.href === activeHref}
+          active={item.current ?? item.href === activeHref}
           iconOnly={iconOnly}
         />
       ))}
@@ -213,21 +211,19 @@ function SidebarGroup({
 // ---------------------------------------------------------------
 
 /**
- * Left-rail navigation. Hidden on mobile — Header's drawer picks
- * up the same items via LayoutProvider context.
+ * Left-rail navigation. The consuming application supplies the
+ * navigation tree and decides how the same data is presented on
+ * smaller screens.
  *
  * @example
- * // With LayoutProvider (shared config with mobile drawer) —
  * // PageBody wraps Sidebar+Main so the pair caps to the same
  * // width as Header/Footer above. Main goes `size="full"` inside
  * // PageBody so it doesn't double-cap.
- * <LayoutProvider sidebarNav={docsSidebar} activeHref={pathname}>
- *   <Header logo={...} nav={primaryNav} />
- *   <PageBody>
- *     <Sidebar aria-label="Docs" />
- *     <Main size="full">...</Main>
- *   </PageBody>
- * </LayoutProvider>
+ * <Header logo={...} nav={primaryNav} />
+ * <PageBody>
+ *   <Sidebar aria-label="Docs" items={docsSidebar} activeHref={pathname} />
+ *   <Main size="full">...</Main>
+ * </PageBody>
  *
  * @example
  * // Grouped items with icons:
@@ -262,11 +258,8 @@ function Sidebar({
   activeHref: activeHrefProp,
   variant = 'labeled',
 }: SidebarProps) {
-  const ctx = useLayout()
-
-  // Explicit prop wins, then context, then empty array.
-  const items = itemsProp ?? ctx.sidebarNav ?? []
-  const activeHref = activeHrefProp ?? ctx.activeHref
+  const items = itemsProp ?? []
+  const activeHref = activeHrefProp
   const iconOnly = variant === 'icon-only'
 
   // No items resolved — render nothing. Safe no-op.
@@ -274,11 +267,10 @@ function Sidebar({
 
   return (
     <aside
-      aria-label={ariaLabel}
       data-slot="sidebar"
       data-variant={variant}
       className={cn(
-        // Hidden on mobile — Header's drawer handles these items.
+        // Hidden on mobile — the application-owned mobile navigation handles these items.
         'hidden md:block',
         // Fixed width per variant: 240px labeled, 56px icon-only.
         iconOnly ? 'w-14' : 'w-60',
@@ -305,7 +297,7 @@ function Sidebar({
             <SidebarItem
               key={entry.href}
               item={entry}
-              active={entry.href === activeHref}
+              active={entry.current ?? entry.href === activeHref}
               iconOnly={iconOnly}
             />
           ),

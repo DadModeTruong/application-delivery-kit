@@ -32,8 +32,6 @@ export function LayoutGuideShell({
     <LayoutProvider
       tabNavigation={layoutAreaLinks}
       tabNavigationLabel="Examples"
-      sidebarNav={sidebarNav}
-      sidebarNavLabel="Layouts"
       activeHref={activeHref}
     >
       <PageShell>
@@ -44,7 +42,7 @@ export function LayoutGuideShell({
         />
         <TabNavigation aria-label="Examples" activeHref="/examples/layouts" />
         <PageBody>
-          <Sidebar aria-label="Layouts" />
+          <Sidebar aria-label="Layouts" items={sidebarNav} activeHref={activeHref} />
           <Main size="full">{children}</Main>
         </PageBody>
         <Footer copyright={<>© 2026 Tommy Truong</>} links={shellFooterLinks} />

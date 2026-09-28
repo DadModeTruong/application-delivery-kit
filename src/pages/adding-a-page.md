@@ -52,7 +52,7 @@ Each standardized variation follows this order:
 2. Short summary of the distinct teaching purpose
 3. Live production-backed example
 4. Specific Try it instruction with an observable expected result
-5. Tabs for `Guidance`, `Code`, `Criteria`, and `Verification`
+5. Tabs for `Guidance`, `Requirements`, `Criteria`, `Verification`, and `Code`
 
 Keep the variation title, summary, live example, and Try it instruction in
 the page flow rather than wrapping the entire variation in a card. Place

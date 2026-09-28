@@ -332,10 +332,10 @@ function ComponentsHeaderPage() {
             Header component while isolating one implementation or behavior decision.
           </p>
           <p className="leading-7 text-muted-foreground">
-            Each variation includes a focused Try it instruction followed by Guidance, Code,
-            Criteria, and Verification tabs. Use the live preview to experience the behavior, Code
-            to adapt the implementation, Criteria to agree what must be true, and Verification to
-            prove it.
+            Each variation includes a focused Try it instruction followed by Guidance, Requirements,
+            Criteria, Verification, and Code tabs. Use the live preview to experience the behavior,
+            Code to adapt the implementation, Criteria to agree what must be true, and Verification
+            to prove it.
           </p>
           <div className="space-y-8 [&_[data-slot=header]]:!border-b-0 [&_*:has(>[data-slot=header])]:!p-0 [&_*:has(>[data-slot=header])]:overflow-hidden">
             <ExampleVariation
@@ -392,215 +392,278 @@ function ComponentsHeaderPage() {
                 },
                 requirements: {
                   userStory:
-                    'As an application user, I want a consistent Header with clearly named destinations so that I can identify the application, choose a destination, and continue using the application at different screen sizes.',
+                    'As an application user, I want a consistent and understandable Header so that I can identify the application, reach important destinations, and continue using it across screen sizes.',
+                  groups: [
+                    {
+                      id: 'BR-BASIC',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that the application name and both destinations are easy to find and understand.',
+                        'The Header must ensure that the person is taken to the application home page.',
+                      ],
+                    },
+                    {
+                      id: 'FR-BASIC',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that the navigation is announced as Global navigation.',
+                        'The Header must ensure that the links appear in a horizontal row beside the brand.',
+                      ],
+                    },
+                    {
+                      id: 'NFR-BASIC',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the link remains the same size and gains a clear hover or focus treatment.',
+                        'The Header must ensure that the application follows the selected destination.',
+                      ],
+                    },
+                    {
+                      id: 'A11Y-BASIC',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that the Header stays at the top while its visual surface can change to remain readable.',
+                        'The Header must ensure that the navigation remains available through the mobile presentation.',
+                      ],
+                    },
+                    {
+                      id: 'TR-BASIC',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that the order is understandable and every focused element has a visible focus treatment.',
+                        'The Header must ensure that the brand, trigger, and any visible controls remain usable.',
+                      ],
+                    },
+                  ],
                   acceptanceCriteria: [
                     {
-                      given: 'the Header is rendered',
-                      when: 'a user looks at the application shell',
-                      then: 'the application name is visible on the left side of the Header as a link to /',
+                      id: 'AC-BASIC-01',
+                      requirementRefs: ['BR-BASIC-01'],
+                      given:
+                        'the Header is rendered with the application name and two top-level links',
+                      when: 'a person views the application shell',
+                      then: 'the application name and both destinations are easy to find and understand',
                       and: [
-                        'the accessible name of the link is Application Delivery Kit',
-                        'the brand link is one complete interactive target',
+                        'the name appears before the navigation links',
+                        'each destination has visible text',
+                        'the two destinations remain separate links',
                       ],
                     },
                     {
-                      given: 'the Header contains the nav items Examples and Components',
-                      when: 'the Header is rendered at a desktop width',
-                      then: 'the navigation appears as one horizontal navigation landmark on the right side of the Header',
+                      id: 'AC-BASIC-02',
+                      requirementRefs: ['BR-BASIC-02'],
+                      given: 'the application name is selected',
+                      when: 'the person activates it',
+                      then: 'the person is taken to the application home page',
                       and: [
-                        'Examples is a link to /examples/layouts',
-                        'Components is a link to /components/user-interface',
-                        'both links have visible text that identifies their destinations',
+                        'the destination is /',
+                        'the brand behaves as a link rather than a button',
                       ],
                     },
                     {
-                      given: 'the navigation links are visible',
-                      when: 'a user selects Examples or Components',
-                      then: 'the application navigates to the href supplied for the selected link',
+                      id: 'AC-BASIC-03',
+                      requirementRefs: ['FR-BASIC-01'],
+                      given: 'the Header navigation is present',
+                      when: 'assistive technology lists page landmarks',
+                      then: 'the navigation is announced as Global navigation',
                       and: [
-                        'the selected destination loads',
-                        'the link remains a normal navigation link rather than behaving like an action button',
+                        'the navigation has one clear accessible name',
+                        'the brand link is not incorrectly presented as part of the navigation landmark',
                       ],
                     },
                     {
-                      given: 'the Header contains navigation',
-                      when: 'a screen reader or accessibility inspector reads the shell',
-                      then: 'the navigation is exposed as a landmark named Global navigation',
+                      id: 'AC-BASIC-04',
+                      requirementRefs: ['FR-BASIC-02'],
+                      given: 'the page is wide enough for the desktop Header',
+                      when: 'the person views the shell',
+                      then: 'the links appear in a horizontal row beside the brand',
                       and: [
-                        'the brand link is separate from the navigation landmark',
-                        'the Examples and Components links are discoverable within that landmark',
+                        'the Header remains at the top of the page',
+                        'the links retain their labels and order',
+                        'the rail does not replace or hide the main page content',
                       ],
                     },
                     {
-                      given: 'the page is at a desktop width',
-                      when: 'the Header is displayed',
-                      then: 'the Header remains at the top of the application shell while the brand and links are aligned in one row',
+                      id: 'AC-BASIC-05',
+                      requirementRefs: ['NFR-BASIC-01'],
+                      given: 'a person points to or focuses a navigation link',
+                      when: 'the interaction state changes',
+                      then: 'the link remains the same size and gains a clear hover or focus treatment',
                       and: [
-                        'the brand stays on the left',
-                        'the links stay on the right',
-                        'the links have consistent spacing and readable text',
+                        'focus is visible without relying on color alone',
+                        'the link does not move other Header content',
                       ],
                     },
                     {
-                      given: 'the page is scrolled below the top of the document',
+                      id: 'AC-BASIC-06',
+                      requirementRefs: ['NFR-BASIC-02'],
+                      given: 'a person selects Examples or Components',
+                      when: 'the link is activated',
+                      then: 'the application follows the selected destination',
+                      and: [
+                        'the selected href is used',
+                        'the destination behaves as normal navigation',
+                      ],
+                    },
+                    {
+                      id: 'AC-BASIC-07',
+                      requirementRefs: ['A11Y-BASIC-01'],
+                      given: 'the page is scrolled',
                       when: 'the Header remains visible',
-                      then: 'the Header stays available as a sticky shell element and exposes its scrolled presentation state',
+                      then: 'the Header stays at the top while its visual surface can change to remain readable',
                       and: [
-                        'the scrolled styling does not hide the brand or navigation',
-                        'the state change does not change the destination or accessible name of any link',
+                        'the Header does not cover the page content unexpectedly',
+                        'the brand and navigation remain available',
                       ],
                     },
                     {
-                      given: 'the viewport crosses the mobile breakpoint',
-                      when: 'the Header changes to its mobile presentation',
-                      then: 'the desktop navigation is replaced by the mobile navigation trigger',
+                      id: 'AC-BASIC-08',
+                      requirementRefs: ['A11Y-BASIC-02'],
+                      given: 'the viewport becomes narrow',
+                      when: 'the Header changes presentation',
+                      then: 'the navigation remains available through the mobile presentation',
                       and: [
-                        'the trigger has a clear accessible name',
-                        'the same Examples and Components destinations remain available after opening the mobile navigation',
+                        'the person can identify and operate the mobile menu trigger',
+                        'the same destinations remain available',
+                        'the desktop links do not create a second conflicting presentation',
                       ],
                     },
                     {
-                      given: 'the mobile navigation is open',
-                      when: 'a user selects Examples or Components',
-                      then: 'the application navigates to the selected destination',
-                      and: [
-                        'the selected item remains a link',
-                        'the mobile navigation does not change the destination represented by the href',
-                      ],
-                    },
-                    {
+                      id: 'AC-BASIC-09',
+                      requirementRefs: ['TR-BASIC-01'],
                       given: 'a keyboard user moves through the Header',
-                      when: 'focus reaches the brand, links, or mobile trigger',
-                      then: 'focus follows the visual order and remains visible',
+                      when: 'focus reaches each interactive element',
+                      then: 'the order is understandable and every focused element has a visible focus treatment',
                       and: [
-                        'the focus indicator is distinguishable from the surrounding Header',
-                        'keyboard users can reach every available interactive target',
+                        'the brand is reachable',
+                        'each navigation link is reachable',
+                        'the mobile trigger is reachable when shown',
                       ],
                     },
                     {
-                      given: 'the Header is rendered at the narrowest supported width',
-                      when: 'the layout reflows',
-                      then: 'the brand, mobile trigger, navigation labels, and interactive targets remain usable without clipping, overlap, or horizontal scrolling',
+                      id: 'AC-BASIC-10',
+                      requirementRefs: ['TR-BASIC-02'],
+                      given: 'the Header is viewed at the narrowest supported width',
+                      when: 'the content reflows',
+                      then: 'the brand, trigger, and any visible controls remain usable',
                       and: [
-                        'the application name remains understandable',
-                        'the mobile trigger remains reachable',
+                        'text is not clipped',
+                        'interactive targets remain usable',
+                        'the Header does not cause unintended horizontal scrolling',
                       ],
                     },
                   ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
-                      title: 'Brand link',
+                      id: 'VR-BASIC-01',
+                      criterionRefs: ['AC-BASIC-01'],
+                      role: 'Functional QA',
+                      description: 'Confirms structure and desktop navigation.',
+                      title: 'Structure and desktop navigation',
                       cases: [
                         {
-                          title: 'Identify and activate the application brand',
+                          id: 'VR-BASIC-02',
+                          criterionRefs: ['AC-BASIC-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms brand and links.',
+                          title: 'Brand and links',
                           steps: [
-                            'Render the Basic Header.',
-                            'Inspect the brand link in the accessibility tree.',
-                            'Inspect its href.',
-                            'Activate the brand link.',
+                            'Render the Header at a desktop-width viewport.',
+                            'Inspect the brand, navigation landmark, and two links.',
+                            'Compare the visible order with the example.',
                           ],
                           expected:
-                            'The link is named Application Delivery Kit, points to /, and navigates to the application home when activated.',
+                            'The brand appears before one Global navigation landmark; Examples and Components are visible links in the supplied order.',
                         },
                         {
-                          title: 'Check the brand target and focus',
-                          steps: [
-                            'Use Tab until focus reaches the brand link.',
-                            'Observe the complete brand target while focused.',
-                            'Activate it with Enter.',
-                          ],
-                          expected:
-                            'The complete brand target has a visible focus indicator, Enter activates the link, and the link does not require a pointer.',
-                        },
-                      ],
-                    },
-                    {
-                      title: 'Navigation links',
-                      cases: [
-                        {
-                          title: 'Inspect link names and destinations',
-                          steps: [
-                            'Inspect the Global navigation landmark.',
-                            'Inspect Examples and Components.',
-                            'Record each visible label and href.',
-                          ],
-                          expected:
-                            'One navigation landmark is named Global navigation; Examples points to /examples/layouts and Components points to /components/user-interface.',
-                        },
-                        {
-                          title: 'Select each destination',
+                          id: 'VR-BASIC-03',
+                          criterionRefs: ['AC-BASIC-03'],
+                          role: 'Functional QA',
+                          description: 'Confirms normal destination outcomes.',
+                          title: 'Normal destination outcomes',
                           steps: [
                             'Activate Examples.',
-                            'Confirm the Examples destination loads.',
-                            'Return to the Header.',
-                            'Activate Components.',
-                            'Confirm the Components destination loads.',
+                            'Return and activate Components.',
+                            'Inspect the resulting destination each time.',
                           ],
                           expected:
-                            'Each link navigates to its own configured destination and neither link behaves like a non-navigation action.',
+                            'Each activation follows its supplied href as normal navigation and does not behave like an unrelated action button.',
                         },
                       ],
                     },
                     {
-                      title: 'Sticky and responsive presentation',
+                      id: 'VR-BASIC-04',
+                      criterionRefs: ['AC-BASIC-04'],
+                      role: 'Responsive QA',
+                      description: 'Confirms scroll and responsive behavior.',
+                      title: 'Scroll and responsive behavior',
                       cases: [
                         {
-                          title: 'Check the scrolled Header',
+                          id: 'VR-BASIC-05',
+                          criterionRefs: ['AC-BASIC-05'],
+                          role: 'Visual QA',
+                          description: 'Confirms scrolled shell.',
+                          title: 'Scrolled shell',
                           steps: [
-                            'Render the Header at the top of the page.',
-                            'Scroll down.',
-                            'Inspect the Header while it remains visible.',
+                            'Scroll the page past the Header threshold.',
+                            'Inspect the Header position and surface.',
+                            'Confirm the brand and navigation remain available.',
                           ],
                           expected:
-                            'The Header remains available at the top of the viewport, its scrolled presentation is visible, and its brand and links remain readable and usable.',
+                            'The Header remains available at the top, gains only its intended readability treatment, and does not obscure the page content.',
                         },
                         {
-                          title: 'Compare desktop and mobile',
+                          id: 'VR-BASIC-06',
+                          criterionRefs: ['AC-BASIC-06'],
+                          role: 'Responsive QA',
+                          description: 'Confirms mobile transformation.',
+                          title: 'Mobile transformation',
                           steps: [
-                            'Render at a desktop width and record the visible links.',
                             'Resize below the mobile breakpoint.',
                             'Open the mobile navigation.',
+                            'Compare its destinations with the desktop list.',
                           ],
                           expected:
-                            'The desktop links are replaced by the mobile trigger, and opening the mobile navigation reveals the same Examples and Components destinations.',
-                        },
-                        {
-                          title: 'Check narrow-width boundaries',
-                          steps: [
-                            'Resize to the narrowest supported width.',
-                            'Inspect the brand, trigger, and mobile links.',
-                            'Attempt horizontal scrolling.',
-                          ],
-                          expected:
-                            'No brand, label, trigger, or link is clipped; the Header does not create unintended horizontal scrolling.',
+                            'The desktop presentation changes to the mobile presentation without losing either destination or creating a duplicate conflicting landmark.',
                         },
                       ],
                     },
                     {
+                      id: 'VR-BASIC-07',
+                      criterionRefs: ['AC-BASIC-07'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms keyboard and accessibility.',
                       title: 'Keyboard and accessibility',
                       cases: [
                         {
-                          title: 'Traverse the Header',
+                          id: 'VR-BASIC-08',
+                          criterionRefs: ['AC-BASIC-08'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms keyboard order.',
+                          title: 'Keyboard order',
                           steps: [
-                            'Place focus before the Header.',
-                            'Press Tab repeatedly through the Header.',
-                            'Record the order of focused elements.',
+                            'Use Tab from the start of the Header.',
+                            'Record the order of the brand, links, and mobile trigger when shown.',
+                            'Inspect each focus indicator.',
                           ],
                           expected:
-                            'Focus reaches the brand and each available Header control in a logical visual order, and every focused target has a visible indicator.',
+                            'Every interactive target is reachable in an understandable order and has a visible focus treatment.',
                         },
                         {
-                          title: 'Operate the mobile trigger',
+                          id: 'VR-BASIC-09',
+                          criterionRefs: ['AC-BASIC-09'],
+                          role: 'Responsive QA',
+                          description: 'Confirms narrow boundary.',
+                          title: 'Narrow boundary',
                           steps: [
-                            'Resize below the mobile breakpoint.',
-                            'Focus the mobile trigger.',
-                            'Press Enter or Space.',
-                            'Use the keyboard to reach a mobile link.',
+                            'Test the narrowest supported width.',
+                            'Inspect text, targets, and horizontal overflow.',
                           ],
                           expected:
-                            'The trigger opens the mobile navigation, the mobile links are reachable, and no destination requires pointer input.',
+                            'The Header remains usable, labels are not clipped, and no unintended horizontal scrolling is introduced.',
                         },
                       ],
                     },
@@ -682,179 +745,225 @@ function ComponentsHeaderPage() {
                 },
                 requirements: {
                   userStory:
-                    'As an application team, I want to replace the default text logo with custom brand content so that the Header can represent the product identity without losing clear naming, responsive behavior, or keyboard access.',
+                    'As an application user, I want a custom product brand to remain recognizable and operable so that branding can change without weakening navigation or accessibility.',
+                  groups: [
+                    {
+                      id: 'BR-BRAND',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that the supplied brand content appears as one recognizable brand area.',
+                        'The Header must ensure that the person reaches the link destination.',
+                      ],
+                    },
+                    {
+                      id: 'FR-BRAND',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that decorative artwork does not create a duplicate or confusing name.',
+                        'The Header must ensure that the complete brand target has a visible focus treatment.',
+                      ],
+                    },
+                    {
+                      id: 'NFR-BRAND',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the logo remains aligned with the Header navigation.',
+                        'The Header must ensure that the custom brand remains understandable while navigation changes presentation.',
+                      ],
+                    },
+                    {
+                      id: 'A11Y-BRAND',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that the brand and navigation remain distinct and understandable.',
+                      ],
+                    },
+                    {
+                      id: 'TR-BRAND',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that the complete brand target remains usable.',
+                      ],
+                    },
+                  ],
                   acceptanceCriteria: [
                     {
-                      given: 'the Header receives the custom logo slot',
-                      when: 'the example renders',
-                      then: 'the ADK mark and visible Application Delivery Kit text appear together in the brand position',
+                      id: 'AC-BRAND-01',
+                      requirementRefs: ['BR-BRAND-01'],
+                      given: 'the Header receives a custom logo slot',
+                      when: 'the shell renders',
+                      then: 'the supplied brand content appears as one recognizable brand area',
                       and: [
-                        'the brand content is one link to /',
-                        'the mark does not push the navigation outside the Header',
+                        'the custom content is not replaced by the default text logo',
+                        'the brand area remains before navigation',
                       ],
                     },
                     {
-                      given: 'the custom brand link is visible',
-                      when: 'a user selects it',
-                      then: 'the application navigates to the brand destination /',
+                      id: 'AC-BRAND-02',
+                      requirementRefs: ['BR-BRAND-02'],
+                      given: 'the custom brand includes a link',
+                      when: 'the person activates the brand',
+                      then: 'the person reaches the link destination',
                       and: [
-                        'the brand remains a navigation link',
-                        'the custom artwork does not alter the destination',
+                        'the complete brand area behaves as one link',
+                        'the link has a meaningful accessible name',
                       ],
                     },
                     {
-                      given: 'the custom logo contains the ADK mark and visible product text',
-                      when: 'assistive technology evaluates the link',
-                      then: 'the link has one clear accessible name, Application Delivery Kit',
+                      id: 'AC-BRAND-03',
+                      requirementRefs: ['FR-BRAND-01'],
+                      given: 'the custom logo contains artwork',
+                      when: 'assistive technology reads the brand',
+                      then: 'decorative artwork does not create a duplicate or confusing name',
                       and: [
-                        'the ADK mark is decorative and is not announced separately',
-                        'the visible product name is not redundantly announced',
+                        'the artwork is hidden from the accessibility tree when it is decorative',
+                        'visible product text or an accessible label identifies the link',
                       ],
                     },
                     {
-                      given: 'the custom brand link receives focus',
-                      when: 'a keyboard user focuses it',
-                      then: 'a visible focus indicator surrounds the complete brand link',
+                      id: 'AC-BRAND-04',
+                      requirementRefs: ['FR-BRAND-02'],
+                      given: 'the custom brand receives keyboard focus',
+                      when: 'the person navigates with the keyboard',
+                      then: 'the complete brand target has a visible focus treatment',
                       and: [
-                        'the indicator is visible around the mark and text',
-                        'the indicator remains distinguishable from the logo colors',
+                        'focus is not limited to an unexplained inner graphic',
+                        'the target remains usable without a pointer',
                       ],
                     },
                     {
+                      id: 'AC-BRAND-05',
+                      requirementRefs: ['NFR-BRAND-01'],
                       given: 'the viewport is wide',
-                      when: 'a user inspects the Header',
-                      then: 'the mark and product name are legible, aligned, and separated by intentional spacing',
+                      when: 'the custom brand is shown',
+                      then: 'the logo remains aligned with the Header navigation',
                       and: [
-                        'the logo does not crowd or overlap the navigation',
-                        'the mark retains its intended shape',
+                        'the brand does not overlap the navigation',
+                        'the brand preserves its intended size',
                       ],
                     },
                     {
+                      id: 'AC-BRAND-06',
+                      requirementRefs: ['NFR-BRAND-02'],
                       given: 'the viewport becomes narrow',
-                      when: 'the Header responds to the available width',
-                      then: 'the brand remains legible without distortion, cropping, or horizontal overflow',
+                      when: 'the Header changes presentation',
+                      then: 'the custom brand remains understandable while navigation changes presentation',
+                      and: ['the brand is not clipped', 'the mobile trigger remains available'],
+                    },
+                    {
+                      id: 'AC-BRAND-07',
+                      requirementRefs: ['A11Y-BRAND-01'],
+                      given: 'the custom brand Header contains navigation',
+                      when: 'landmarks are announced',
+                      then: 'the brand and navigation remain distinct and understandable',
                       and: [
-                        'the mark does not become unusably small',
-                        'the product name is not clipped or hidden by the Header boundary',
+                        'the navigation keeps its configured name',
+                        'the custom brand does not accidentally become the navigation landmark',
                       ],
                     },
                     {
-                      given: 'the custom logo Header contains navigation',
-                      when: 'a user or assistive technology inspects the shell',
-                      then: 'the Global navigation landmark and its destinations remain available and correctly named',
-                      and: ['customizing the logo does not remove or rename the navigation'],
-                    },
-                    {
-                      given: 'the viewport crosses the mobile breakpoint',
-                      when: 'the Header switches presentation',
-                      then: 'the custom brand remains available and the navigation moves to the mobile trigger and drawer',
-                      and: [
-                        'the mobile trigger remains reachable',
-                        'the custom brand does not overlap the trigger',
-                      ],
-                    },
-                    {
-                      given: 'the custom brand is used at supported widths',
+                      id: 'AC-BRAND-08',
+                      requirementRefs: ['TR-BRAND-02'],
+                      given: 'the brand is displayed at the narrowest supported width',
                       when: 'the layout reflows',
-                      then: 'the complete brand target remains usable without clipping, overlap, or loss of its accessible name',
+                      then: 'the complete brand target remains usable',
                       and: [
-                        'the logo does not rely on color alone to communicate identity',
-                        'the brand link remains keyboard-operable',
+                        'the accessible name remains available',
+                        'the artwork does not force horizontal scrolling',
                       ],
                     },
                   ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
-                      title: 'Custom brand structure and activation',
+                      id: 'VR-BRAND-01',
+                      criterionRefs: ['AC-BRAND-01'],
+                      role: 'Functional QA',
+                      description: 'Confirms custom brand structure.',
+                      title: 'Custom brand structure',
                       cases: [
                         {
-                          title: 'Inspect the custom brand link',
+                          id: 'VR-BRAND-02',
+                          criterionRefs: ['AC-BRAND-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms brand target.',
+                          title: 'Brand target',
                           steps: [
-                            'Render the Header with the ADK mark and Application Delivery Kit text.',
-                            'Inspect the visible brand target.',
-                            'Inspect its href and accessible name.',
+                            'Render the custom logo example.',
+                            'Inspect the complete brand area and its link name.',
+                            'Activate the brand.',
                           ],
                           expected:
-                            'The mark and text are inside one link, the link points to /, and its accessible name is Application Delivery Kit.',
+                            'The supplied custom brand appears as one recognizable, accessible link and reaches its configured destination.',
                         },
                         {
-                          title: 'Activate the custom brand',
+                          id: 'VR-BRAND-03',
+                          criterionRefs: ['AC-BRAND-03'],
+                          role: 'Functional QA',
+                          description: 'Confirms decorative artwork.',
+                          title: 'Decorative artwork',
                           steps: [
-                            'Focus the custom brand link.',
-                            'Press Enter.',
-                            'Observe the resulting destination.',
+                            'Inspect the logo artwork with accessibility tools.',
+                            'Read the brand link name.',
                           ],
                           expected:
-                            'The complete brand link has visible focus, Enter activates it, and the application navigates to /.',
-                        },
-                        {
-                          title: 'Check decorative artwork',
-                          steps: [
-                            'Inspect the ADK mark in the accessibility tree.',
-                            'Inspect the visible Application Delivery Kit text.',
-                          ],
-                          expected:
-                            'The mark is hidden as decorative artwork, and the product name supplies the meaningful accessible name without duplication.',
+                            'Decorative artwork is not announced separately and the complete brand still has a meaningful accessible name.',
                         },
                       ],
                     },
                     {
-                      title: 'Sizing and responsive behavior',
+                      id: 'VR-BRAND-04',
+                      criterionRefs: ['AC-BRAND-04'],
+                      role: 'Responsive QA',
+                      description: 'Confirms responsive custom brand.',
+                      title: 'Responsive custom brand',
                       cases: [
                         {
-                          title: 'Check wide-screen presentation',
-                          steps: [
-                            'Render at a wide viewport.',
-                            'Compare the mark, product name, navigation, and available clear space.',
-                          ],
-                          expected:
-                            'The mark and text are legible and aligned, clear space is preserved, and the brand does not crowd the navigation.',
+                          id: 'VR-BRAND-05',
+                          criterionRefs: ['AC-BRAND-05'],
+                          role: 'Functional QA',
+                          description: 'Confirms wide layout.',
+                          title: 'Wide layout',
+                          steps: ['Inspect the brand and navigation at a wide viewport.'],
+                          expected: 'The brand aligns with navigation without overlap.',
                         },
                         {
-                          title: 'Check small-screen presentation',
+                          id: 'VR-BRAND-06',
+                          criterionRefs: ['AC-BRAND-06'],
+                          role: 'Responsive QA',
+                          description: 'Confirms narrow layout.',
+                          title: 'Narrow layout',
                           steps: [
-                            'Resize below the mobile breakpoint.',
-                            'Open the mobile navigation.',
-                            'Inspect the custom brand and trigger.',
+                            'Resize through the mobile breakpoint.',
+                            'Inspect the brand, trigger, and label at the narrowest width.',
                           ],
                           expected:
-                            'The brand remains legible and unclipped, the trigger remains reachable, and the custom logo does not overlap the trigger or drawer content.',
-                        },
-                        {
-                          title: 'Check narrowest supported width',
-                          steps: [
-                            'Resize to the narrowest supported width.',
-                            'Inspect the brand boundary and attempt horizontal scrolling.',
-                          ],
-                          expected:
-                            'The mark and product name remain understandable, the brand target remains usable, and no unintended horizontal overflow is introduced.',
+                            'The brand remains recognizable and usable while the navigation changes presentation without clipping or horizontal scrolling.',
                         },
                       ],
                     },
                     {
-                      title: 'Keyboard and accessibility',
+                      id: 'VR-BRAND-07',
+                      criterionRefs: ['AC-BRAND-07'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms keyboard brand behavior.',
+                      title: 'Keyboard brand behavior',
                       cases: [
                         {
-                          title: 'Focus the complete brand target',
+                          id: 'VR-BRAND-08',
+                          criterionRefs: ['AC-BRAND-08'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms complete target focus.',
+                          title: 'Complete target focus',
                           steps: [
-                            'Place focus before the Header.',
                             'Tab to the custom brand.',
-                            'Observe the focus indicator.',
+                            'Inspect the focus indicator.',
+                            'Activate it with Enter.',
                           ],
                           expected:
-                            'The focus indicator surrounds the complete interactive brand target and remains distinguishable from the logo styling.',
-                        },
-                        {
-                          title: 'Preserve navigation semantics',
-                          steps: [
-                            'Inspect the Header navigation landmark at desktop width.',
-                            'Open the mobile navigation at narrow width.',
-                            'Inspect both accessibility trees.',
-                          ],
-                          expected:
-                            'The navigation remains a labelled landmark, its links retain meaningful names and destinations, and the custom logo does not create a duplicate navigation name.',
+                            'The complete brand target receives visible focus and keyboard activation follows the configured destination.',
                         },
                       ],
                     },
@@ -929,175 +1038,244 @@ function ComponentsHeaderPage() {
                 },
                 requirements: {
                   userStory:
-                    'As an application user, I want the Header to identify the destination I am currently viewing so that I can understand my location, distinguish it from other destinations, and see that state on desktop and mobile.',
+                    'As an application user, I want the Header to identify where I am without hiding other destinations so that I can navigate confidently.',
+                  groups: [
+                    {
+                      id: 'BR-CURRENT',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that Components is visibly identified as the current destination.',
+                        'The Header must ensure that the link is announced as representing the current page.',
+                      ],
+                    },
+                    {
+                      id: 'FR-CURRENT',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that the inactive link does not look selected.',
+                        'The Header must ensure that focus and current-location treatment are both understandable.',
+                      ],
+                    },
+                    {
+                      id: 'NFR-CURRENT',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the application can update the current state to Examples.',
+                        'The Header must ensure that the navigation has its configured accessible name.',
+                      ],
+                    },
+                    {
+                      id: 'A11Y-CURRENT',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that the current destination remains identifiable in the responsive presentation.',
+                        'The Header must ensure that the current state remains distinguishable from scroll and responsive styling.',
+                      ],
+                    },
+                    {
+                      id: 'TR-CURRENT',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that current and focus information remain available without clipping.',
+                      ],
+                    },
+                  ],
                   acceptanceCriteria: [
                     {
-                      given: 'the Header is rendered',
-                      when: 'a user inspects the shell',
-                      then: 'Application Delivery Kit appears as a linked brand to /',
-                      and: ['the brand link has the accessible name Application Delivery Kit'],
-                    },
-                    {
+                      id: 'AC-CURRENT-01',
+                      requirementRefs: ['BR-CURRENT-01'],
                       given:
-                        'the navigation contains Examples and Components and Components is supplied with current: true',
+                        'the navigation contains Examples and Components and Components is current',
                       when: 'the Header renders',
-                      then: 'Components receives the current visual treatment and Examples remains inactive',
+                      then: 'Components is visibly identified as the current destination',
                       and: [
-                        'Components exposes aria-current="page"',
-                        'Components exposes data-current="true"',
-                        'Examples does not expose aria-current="page" or data-current="true"',
+                        'only Components is current',
+                        'Examples remains an ordinary destination',
+                        'the visual treatment does not rely on color alone',
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-02',
+                      requirementRefs: ['BR-CURRENT-02'],
                       given: 'the current Components link is rendered',
-                      when: 'a user compares it with the Examples link',
-                      then: 'the current state is communicated by more than color alone',
+                      when: 'assistive technology reads it',
+                      then: 'the link is announced as representing the current page',
                       and: [
-                        'the current styling is visibly distinguishable',
-                        'the link text remains readable',
+                        'it exposes aria-current="page"',
+                        'its accessible name remains Components',
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-03',
+                      requirementRefs: ['FR-CURRENT-01'],
                       given: 'an inactive navigation link is available',
-                      when: 'a user selects the link and the application changes route',
-                      then: 'the selected destination becomes the current page',
+                      when: 'the person views it',
+                      then: 'the inactive link does not look selected',
                       and: [
-                        'the application supplies current: true to the newly current item',
-                        'the previously current item loses aria-current="page" and current styling',
+                        'it does not expose aria-current="page"',
+                        'it remains available as a normal link',
                       ],
                     },
                     {
-                      given: 'a keyboard user focuses the current link',
-                      when: 'focus is applied',
-                      then: 'the focus indicator remains visible in addition to the current-state treatment',
-                      and: ['focus and current state are visually distinguishable'],
+                      id: 'AC-CURRENT-04',
+                      requirementRefs: ['FR-CURRENT-02'],
+                      given: 'a person focuses the current link',
+                      when: 'the focus state appears',
+                      then: 'focus and current-location treatment are both understandable',
+                      and: [
+                        'the focus indicator remains visible',
+                        'the active treatment does not remove the focus indicator',
+                      ],
                     },
                     {
+                      id: 'AC-CURRENT-05',
+                      requirementRefs: ['NFR-CURRENT-01'],
+                      given: 'a person selects Examples',
+                      when: 'the destination changes',
+                      then: 'the application can update the current state to Examples',
+                      and: [
+                        'the selected link remains a normal navigation link',
+                        'the previous current state is no longer shown after the application updates it',
+                      ],
+                    },
+                    {
+                      id: 'AC-CURRENT-06',
+                      requirementRefs: ['NFR-CURRENT-02'],
                       given: 'assistive technology reads the Header',
-                      when: 'it reaches the navigation landmark and its links',
-                      then: 'the landmark is named Global navigation and the current destination is announced as the current page',
-                      and: ['the current state is not conveyed only through color or background'],
+                      when: 'the landmarks are announced',
+                      then: 'the navigation has its configured accessible name',
+                      and: [
+                        'the Header and navigation are not confused with one another',
+                        'current state is conveyed programmatically',
+                      ],
                     },
                     {
+                      id: 'AC-CURRENT-07',
+                      requirementRefs: ['A11Y-CURRENT-01'],
                       given: 'the viewport becomes narrow',
-                      when: 'the mobile navigation opens',
-                      then: 'Components remains available and retains its current state',
+                      when: 'the mobile presentation appears',
+                      then: 'the current destination remains identifiable in the responsive presentation',
                       and: [
-                        'the current destination remains identifiable in the mobile presentation',
-                        'the mobile link remains keyboard-operable',
+                        'the same current route is represented',
+                        'the current state is not conveyed by desktop styling alone',
                       ],
                     },
                     {
-                      given: 'the Header is scrolled or displayed at different widths',
-                      when: 'the layout changes presentation',
-                      then: 'the current state remains associated with the same destination',
+                      id: 'AC-CURRENT-08',
+                      requirementRefs: ['A11Y-CURRENT-02'],
+                      given: 'the Header is scrolled or shown at different widths',
+                      when: 'the visual shell changes',
+                      then: 'the current state remains distinguishable from scroll and responsive styling',
                       and: [
-                        'sticky/scrolled styling does not remove current semantics',
-                        'the brand and current link remain usable without clipping',
+                        'scroll treatment does not replace current treatment',
+                        'the current link remains usable',
                       ],
                     },
                     {
-                      given: 'the Header is rendered at the narrowest supported width',
+                      id: 'AC-CURRENT-09',
+                      requirementRefs: ['TR-CURRENT-01'],
+                      given: 'the Header is viewed at the narrowest supported width',
                       when: 'the layout reflows',
-                      then: 'the current label, link target, focus state, and mobile trigger remain visible and usable',
+                      then: 'current and focus information remain available without clipping',
                       and: [
-                        'the current state is not communicated by color alone',
-                        'no horizontal overflow hides the current destination',
+                        'the current link remains reachable',
+                        'the mobile control remains usable',
                       ],
                     },
                   ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
-                      title: 'Current-state rendering',
+                      id: 'VR-CURRENT-01',
+                      criterionRefs: ['AC-CURRENT-01'],
+                      role: 'Functional QA',
+                      description: 'Confirms current-location behavior.',
+                      title: 'Current-location behavior',
                       cases: [
                         {
-                          title: 'Inspect the current destination',
+                          id: 'VR-CURRENT-02',
+                          criterionRefs: ['AC-CURRENT-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms current link.',
+                          title: 'Current link',
                           steps: [
-                            'Render the Header with Components marked current: true.',
-                            'Inspect its visual styling.',
-                            'Inspect aria-current and data-current.',
+                            'Render the example with Components current.',
+                            'Inspect Components and Examples.',
+                            'Use an accessibility inspector on Components.',
                           ],
                           expected:
-                            'Components has the current styling, aria-current="page", and data-current="true".',
+                            'Only Components has the active visual treatment, data-current state, and aria-current="page"; Examples remains an ordinary link.',
                         },
                         {
-                          title: 'Inspect an inactive destination',
+                          id: 'VR-CURRENT-03',
+                          criterionRefs: ['AC-CURRENT-03'],
+                          role: 'Functional QA',
+                          description: 'Confirms state update.',
+                          title: 'State update',
                           steps: [
-                            'Inspect the Examples link.',
-                            'Compare its attributes and styling with Components.',
+                            'Change the application-provided current item to Examples.',
+                            'Rerender the Header.',
+                            'Inspect both links.',
                           ],
                           expected:
-                            'Examples remains a normal link without current-page semantics or current-state styling.',
-                        },
-                        {
-                          title: 'Select a different destination',
-                          steps: [
-                            'Activate Examples.',
-                            'Allow the application to update its route state.',
-                            'Render the Header for the new route.',
-                          ],
-                          expected:
-                            'Examples becomes current, Components loses its current semantics and styling, and the selected destination is the page now represented as current.',
+                            'Current state moves to Examples and is removed from Components.',
                         },
                       ],
                     },
                     {
-                      title: 'Accessibility and keyboard behavior',
+                      id: 'VR-CURRENT-04',
+                      criterionRefs: ['AC-CURRENT-04'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms focus versus selection.',
+                      title: 'Focus versus selection',
                       cases: [
                         {
-                          title: 'Identify the labelled landmark',
-                          steps: [
-                            'Inspect the navigation landmark.',
-                            'Read its accessible name.',
-                            'Inspect the current link inside it.',
-                          ],
+                          id: 'VR-CURRENT-05',
+                          criterionRefs: ['AC-CURRENT-05'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms current focused link.',
+                          title: 'Current focused link',
+                          steps: ['Tab to Components.', 'Compare focus and current styling.'],
                           expected:
-                            'The landmark is named Global navigation, and the current destination is exposed as the current page.',
+                            'The focus indicator and current treatment are both visible and distinguishable.',
                         },
                         {
-                          title: 'Distinguish focus from current state',
+                          id: 'VR-CURRENT-06',
+                          criterionRefs: ['AC-CURRENT-06'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms keyboard navigation.',
+                          title: 'Keyboard navigation',
                           steps: [
-                            'Use Tab to focus Components.',
-                            'Observe the current styling and focus indicator together.',
+                            'Activate the focused link with Enter.',
+                            'Observe the navigation outcome.',
                           ],
                           expected:
-                            'Both current state and focus are visible; the focus indicator is not removed or confused with the current styling.',
-                        },
-                        {
-                          title: 'Operate the current link with the keyboard',
-                          steps: [
-                            'Focus Components.',
-                            'Press Enter.',
-                            'Observe the resulting navigation behavior.',
-                          ],
-                          expected:
-                            'The current item remains a normal link and can be activated with the keyboard.',
+                            'Activation follows the link destination and does not depend on pointer interaction.',
                         },
                       ],
                     },
                     {
+                      id: 'VR-CURRENT-07',
+                      criterionRefs: ['AC-CURRENT-07'],
+                      role: 'Responsive QA',
+                      description: 'Confirms responsive current state.',
                       title: 'Responsive current state',
                       cases: [
                         {
-                          title: 'Preserve current state on mobile',
+                          id: 'VR-CURRENT-08',
+                          criterionRefs: ['AC-CURRENT-08'],
+                          role: 'Responsive QA',
+                          description: 'Confirms mobile current state.',
+                          title: 'Mobile current state',
                           steps: [
                             'Resize below the mobile breakpoint.',
                             'Open the mobile navigation.',
                             'Inspect Components.',
                           ],
                           expected:
-                            'Components remains available in the mobile navigation with current state and accessible naming preserved.',
-                        },
-                        {
-                          title: 'Check current state at narrow width',
-                          steps: [
-                            'Resize to the narrowest supported width.',
-                            'Inspect the current link and trigger.',
-                          ],
-                          expected:
-                            'The current link remains readable and reachable, and the state is not communicated by color alone.',
+                            'The current destination remains identifiable in the mobile presentation and remains usable at the narrowest tested width.',
                         },
                       ],
                     },
@@ -1178,214 +1356,291 @@ function ComponentsHeaderPage() {
                 },
                 requirements: {
                   userStory:
-                    'As an application user, I want related destinations grouped under a clear parent label so that I can open, navigate, and dismiss the group without losing the destination hierarchy on desktop or mobile.',
+                    'As an application user, I want grouped Header destinations to open predictably on desktop and remain understandable on mobile so that I can reach child pages without losing my place.',
+                  groups: [
+                    {
+                      id: 'BR-GROUPED',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that Examples is a direct link and Components is a menu trigger.',
+                        'The Header must ensure that the menu contents are not presented as an open menu.',
+                      ],
+                    },
+                    {
+                      id: 'FR-GROUPED',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that the child destinations are presented in the documented order.',
+                        'The Header must ensure that keyboard users receive the same child destinations as pointer users.',
+                      ],
+                    },
+                    {
+                      id: 'NFR-GROUPED',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the application follows that child destination.',
+                        'The Header must ensure that the menu closes and the trigger is usable again.',
+                      ],
+                    },
+                    {
+                      id: 'A11Y-GROUPED',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that the menu closes without selecting a child.',
+                        'The Header must ensure that the same hierarchy is available in the mobile navigation.',
+                      ],
+                    },
+                    {
+                      id: 'TR-GROUPED',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that the label remains understandable and usable.',
+                        'The Header must ensure that the order follows the visible menu hierarchy and every focused control is identifiable.',
+                      ],
+                    },
+                  ],
                   acceptanceCriteria: [
                     {
-                      given: 'the Header is rendered',
-                      when: 'a user inspects the shell',
-                      then: 'Application Delivery Kit appears as a link to /',
-                      and: ['the brand has the accessible name Application Delivery Kit'],
-                    },
-                    {
-                      given: 'the top-level Examples item has no children',
-                      when: 'the Header renders at desktop or mobile width',
-                      then: 'Examples is an individual link to /examples/layouts',
-                      and: ['it has visible link text', 'it is not rendered as a menu trigger'],
-                    },
-                    {
-                      given: 'the top-level Components item has children',
-                      when: 'the Header renders at desktop width',
-                      then: 'Components is a button that opens a menu instead of a destination link',
+                      id: 'AC-GROUPED-01',
+                      requirementRefs: ['BR-GROUPED-01'],
+                      given:
+                        'the Header contains Examples without children and Components with child links',
+                      when: 'the desktop Header renders',
+                      then: 'Examples is a direct link and Components is a menu trigger',
                       and: [
-                        'the button has visible Components text',
-                        'the button exposes menu behavior and expanded state',
-                        'the button is not presented as an anchor to a parent destination',
+                        'the leaf remains directly selectable',
+                        'the parent is not treated as a destination link in the desktop menu',
+                        'the child links appear only through the parent menu',
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-02',
+                      requirementRefs: ['BR-GROUPED-02'],
                       given: 'the Components menu is closed',
-                      when: 'a user activates its trigger',
-                      then: 'the menu opens and the trigger exposes expanded=true',
+                      when: 'the person views the Header',
+                      then: 'the menu contents are not presented as an open menu',
                       and: [
-                        'the child links Forms, User interface, and Interaction become available',
-                        'the menu is associated with the Components trigger',
+                        'the trigger communicates that it is closed',
+                        'the Header remains compact',
                       ],
                     },
                     {
-                      given: 'the Components menu is open',
-                      when: 'a user selects a child link',
-                      then: 'the application navigates to the selected child destination and the desktop menu closes',
+                      id: 'AC-GROUPED-03',
+                      requirementRefs: ['FR-GROUPED-01'],
+                      given: 'the person opens Components with a pointer',
+                      when: 'the menu opens',
+                      then: 'the child destinations are presented in the documented order',
                       and: [
-                        'the selected child retains its configured href',
-                        'the child can become current after the application supplies updated route state',
+                        'the trigger communicates that it is expanded',
+                        'the menu is associated with the trigger',
+                        'each child has visible text',
                       ],
                     },
                     {
-                      given: 'the Components menu is open',
-                      when: 'a keyboard user moves through the menu',
-                      then: 'each child destination is reachable in the defined order with visible focus',
+                      id: 'AC-GROUPED-04',
+                      requirementRefs: ['FR-GROUPED-02'],
+                      given: 'the person opens Components with the keyboard',
+                      when: 'the menu opens',
+                      then: 'keyboard users receive the same child destinations as pointer users',
                       and: [
-                        'Forms, User interface, and Interaction have specific visible names',
-                        'focus does not skip a child',
+                        'the trigger can be reached and operated with the keyboard',
+                        'focus moves or remains in a predictable place',
                       ],
                     },
                     {
-                      given: 'the Components menu is open',
-                      when: 'the user presses Escape or dismisses it outside the menu',
-                      then: 'the menu closes',
+                      id: 'AC-GROUPED-05',
+                      requirementRefs: ['NFR-GROUPED-01'],
+                      given: 'the menu is open',
+                      when: 'the person selects a child',
+                      then: 'the application follows that child destination',
                       and: [
-                        'focus returns to or remains appropriately associated with the Components trigger',
-                        'the child links are no longer exposed as open-menu content',
+                        'the child is a normal link',
+                        'the menu closes or is no longer presented after navigation',
                       ],
                     },
                     {
-                      given: 'the viewport crosses the mobile breakpoint',
-                      when: 'the Header renders the same nav data',
-                      then: 'the desktop dropdown becomes a visible Components group containing the same child links',
+                      id: 'AC-GROUPED-06',
+                      requirementRefs: ['NFR-GROUPED-02'],
+                      given: 'the menu is open',
+                      when: 'the person presses Escape',
+                      then: 'the menu closes and the trigger is usable again',
                       and: [
-                        'the child order is preserved',
-                        'the leaf Examples item remains an individual link',
-                        'the mobile navigation has one clear navigation landmark',
+                        'focus returns to or remains meaningfully associated with the trigger',
+                        'the child links are no longer presented as an open menu',
                       ],
                     },
                     {
-                      given: 'the mobile navigation is open and the Components group is visible',
-                      when: 'a user selects a child link',
-                      then: 'the application navigates to that child destination',
+                      id: 'AC-GROUPED-07',
+                      requirementRefs: ['A11Y-GROUPED-01'],
+                      given: 'the menu is open',
+                      when: 'the person clicks outside it',
+                      then: 'the menu closes without selecting a child',
                       and: [
-                        'the child remains a normal link',
-                        'the destination and visible label remain the same as the desktop child',
+                        'the Header remains usable',
+                        'the trigger communicates the closed state',
                       ],
                     },
                     {
-                      given: 'the Header is displayed at the narrowest supported width',
-                      when: 'the menu or mobile group is used',
-                      then: 'the trigger, group label, child links, and dismissal behavior remain usable without clipping or overlap',
+                      id: 'AC-GROUPED-08',
+                      requirementRefs: ['A11Y-GROUPED-02'],
+                      given: 'the viewport becomes narrow',
+                      when: 'the Header changes presentation',
+                      then: 'the same hierarchy is available in the mobile navigation',
                       and: [
-                        'no child destination is hidden by the viewport boundary',
-                        'horizontal scrolling is not required to reach a child',
+                        'Examples remains a direct link',
+                        'Components becomes a labelled group containing its children',
+                        'the mobile menu is one clearly named navigation landmark',
+                      ],
+                    },
+                    {
+                      id: 'AC-GROUPED-09',
+                      requirementRefs: ['TR-GROUPED-01'],
+                      given: 'a child has a long label or the viewport is narrow',
+                      when: 'the menu or mobile group is shown',
+                      then: 'the label remains understandable and usable',
+                      and: [
+                        'text is not silently clipped',
+                        'the layout does not create unintended horizontal scrolling',
+                      ],
+                    },
+                    {
+                      id: 'AC-GROUPED-10',
+                      requirementRefs: ['TR-GROUPED-02'],
+                      given: 'a keyboard user moves through the menu',
+                      when: 'focus changes',
+                      then: 'the order follows the visible menu hierarchy and every focused control is identifiable',
+                      and: [
+                        'Escape remains available',
+                        'the focus indicator is visible',
+                        'a menu item is not skipped',
                       ],
                     },
                   ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
-                      title: 'Desktop dropdown structure',
+                      id: 'VR-GROUPED-01',
+                      criterionRefs: ['AC-GROUPED-01'],
+                      role: 'Functional QA',
+                      description: 'Confirms desktop menu interaction.',
+                      title: 'Desktop menu interaction',
                       cases: [
                         {
-                          title: 'Inspect the leaf and parent items',
+                          id: 'VR-GROUPED-02',
+                          criterionRefs: ['AC-GROUPED-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms leaf and parent.',
+                          title: 'Leaf and parent',
                           steps: [
-                            'Render at a desktop width.',
-                            'Inspect Examples.',
-                            'Inspect Components.',
+                            'Render the Header at desktop width.',
+                            'Inspect Examples and Components.',
+                            'Confirm the menu is initially closed.',
                           ],
                           expected:
-                            'Examples is an anchor link to /examples/layouts; Components is a button-style menu trigger and is not itself a destination link.',
+                            'Examples is a direct link; Components is a closed menu trigger; child links are not presented until the menu opens.',
                         },
                         {
-                          title: 'Open the menu with a pointer',
+                          id: 'VR-GROUPED-03',
+                          criterionRefs: ['AC-GROUPED-03'],
+                          role: 'Functional QA',
+                          description: 'Confirms pointer open and select.',
+                          title: 'Pointer open and select',
                           steps: [
-                            'Activate Components with a pointer.',
-                            'Inspect the trigger and menu.',
+                            'Open Components with a pointer.',
+                            'Inspect trigger state, menu relationship, and child order.',
+                            'Select a child.',
                           ],
                           expected:
-                            'The menu opens, child links become visible, and the trigger exposes its expanded state.',
+                            'The trigger communicates expanded state, the children appear in order, and selecting one follows its href.',
                         },
                         {
-                          title: 'Open the menu with a keyboard',
+                          id: 'VR-GROUPED-04',
+                          criterionRefs: ['AC-GROUPED-04'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms keyboard open and navigate.',
+                          title: 'Keyboard open and navigate',
                           steps: [
-                            'Focus Components with Tab.',
-                            'Press Enter or Space.',
-                            'Inspect the open menu.',
+                            'Focus Components with the keyboard.',
+                            'Open it with the keyboard.',
+                            'Move through the child links and activate one.',
                           ],
                           expected:
-                            'The menu opens without pointer input, the trigger remains associated with it, and the first available child can be reached by keyboard.',
-                        },
-                        {
-                          title: 'Check child order and names',
-                          steps: [
-                            'Move through Forms, User interface, and Interaction.',
-                            'Record the order and visible names.',
-                          ],
-                          expected:
-                            'Each child is a link with its configured destination and the order matches the supplied children array.',
-                        },
-                        {
-                          title: 'Select a child destination',
-                          steps: [
-                            'Open Components.',
-                            'Select User interface.',
-                            'Observe the destination and menu state.',
-                          ],
-                          expected:
-                            'The application navigates to /components/user-interface and the desktop menu closes.',
+                            'Keyboard users can open, traverse, and activate the same child destinations as pointer users.',
                         },
                       ],
                     },
                     {
+                      id: 'VR-GROUPED-05',
+                      criterionRefs: ['AC-GROUPED-05'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms dismissal and focus.',
                       title: 'Dismissal and focus',
                       cases: [
                         {
-                          title: 'Dismiss with Escape',
-                          steps: ['Open the Components menu.', 'Press Escape.', 'Inspect focus.'],
+                          id: 'VR-GROUPED-06',
+                          criterionRefs: ['AC-GROUPED-06'],
+                          role: 'Functional QA',
+                          description: 'Confirms escape.',
+                          title: 'Escape',
+                          steps: [
+                            'Open the menu.',
+                            'Press Escape.',
+                            'Inspect the trigger and menu.',
+                          ],
                           expected:
-                            'The menu closes, child links are no longer exposed as open menu content, and focus returns to or remains associated with Components.',
+                            'The menu closes and focus remains associated with a usable trigger.',
                         },
                         {
-                          title: 'Dismiss outside the menu',
+                          id: 'VR-GROUPED-07',
+                          criterionRefs: ['AC-GROUPED-07'],
+                          role: 'Functional QA',
+                          description: 'Confirms outside click.',
+                          title: 'Outside click',
                           steps: [
-                            'Open the Components menu.',
-                            'Activate or click outside the menu.',
+                            'Open the menu.',
+                            'Click outside it.',
                             'Inspect the trigger state.',
                           ],
                           expected:
-                            'The menu closes and the trigger no longer reports expanded=true.',
+                            'The menu closes without activating a child and the trigger reports the closed state.',
                         },
                       ],
                     },
                     {
+                      id: 'VR-GROUPED-08',
+                      criterionRefs: ['AC-GROUPED-08'],
+                      role: 'Responsive QA',
+                      description: 'Confirms mobile hierarchy.',
                       title: 'Mobile hierarchy',
                       cases: [
                         {
-                          title: 'Preserve the shared navigation data',
+                          id: 'VR-GROUPED-09',
+                          criterionRefs: ['AC-GROUPED-09'],
+                          role: 'Functional QA',
+                          description: 'Confirms shared hierarchy.',
+                          title: 'Shared hierarchy',
                           steps: [
                             'Resize below the mobile breakpoint.',
-                            'Open the mobile navigation.',
-                            'Inspect Examples, Components, and the children.',
+                            'Open mobile navigation.',
+                            'Inspect Examples, Components, and child links.',
                           ],
                           expected:
-                            'Examples remains a direct link; Components becomes a visible group heading; Forms, User interface, and Interaction appear beneath it in the same order.',
+                            'Examples remains a direct link; Components becomes one labelled group containing its children; no extra nested navigation landmark is created.',
                         },
                         {
-                          title: 'Inspect mobile landmark and group semantics',
+                          id: 'VR-GROUPED-10',
+                          criterionRefs: ['AC-GROUPED-10'],
+                          role: 'Responsive QA',
+                          description: 'Confirms mobile selection and boundary.',
+                          title: 'Mobile selection and boundary',
                           steps: [
-                            'Inspect the mobile navigation accessibility tree.',
-                            'Inspect the Components group heading.',
-                            'Inspect the child links.',
+                            'Select a mobile child.',
+                            'Repeat at the narrowest supported width.',
                           ],
                           expected:
-                            'There is one clearly named mobile navigation landmark, Components is a heading rather than a second nav landmark, and each child remains a link.',
-                        },
-                        {
-                          title: 'Select a mobile child',
-                          steps: [
-                            'Open the mobile navigation.',
-                            'Select User interface.',
-                            'Observe the resulting destination.',
-                          ],
-                          expected:
-                            'The application navigates to /components/user-interface; the child remains a link and has the same visible label and destination as its desktop counterpart.',
-                        },
-                        {
-                          title: 'Check mobile boundaries',
-                          steps: [
-                            'Resize to the narrowest supported width.',
-                            'Scroll the mobile menu if necessary.',
-                            'Inspect all child links.',
-                          ],
-                          expected:
-                            'All child links remain reachable and readable without clipping, overlap, or horizontal scrolling.',
+                            'The child destination is reachable and labels remain usable without clipping or horizontal scrolling.',
                         },
                       ],
                     },
@@ -1469,181 +1724,233 @@ function ComponentsHeaderPage() {
                 },
                 requirements: {
                   userStory:
-                    'As an application user, I want familiar icons to reinforce visible navigation labels so that I can recognize destinations quickly without needing to interpret an icon by itself.',
-                  acceptanceCriteria: [
+                    'As an application user, I want icons to reinforce Header destinations without making navigation ambiguous so that the shell remains recognizable and accessible.',
+                  groups: [
                     {
-                      given: 'the Header is rendered with icons',
-                      when: 'a user inspects the shell',
-                      then: 'Application Delivery Kit appears as a linked brand to /',
-                      and: ['the brand has the accessible name Application Delivery Kit'],
-                    },
-                    {
-                      given: 'Examples has LayoutTemplate and Components has Blocks',
-                      when: 'the Header renders',
-                      then: 'each icon appears beside its corresponding visible navigation label',
-                      and: [
-                        'the Examples icon appears with Examples',
-                        'the Components icon appears with Components',
-                        'the icon does not replace the visible label',
+                      id: 'BR-ICON',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that each icon supports recognition without replacing the label.',
+                        'The Header must ensure that the icon is not announced as a second name.',
                       ],
                     },
                     {
-                      given: 'an icon-supported link is available',
-                      when: 'a user selects Examples',
-                      then: 'the application navigates to /examples/layouts',
-                      and: [
-                        'the icon does not alter the destination',
-                        'the visible Examples label remains the primary cue',
+                      id: 'FR-ICON',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that icons align consistently with their associated labels.',
+                        'The Header must ensure that the application follows its href.',
                       ],
                     },
                     {
-                      given: 'the Components parent has an icon and children',
-                      when: 'the Header renders at desktop width',
-                      then: 'the Components item remains a menu trigger with its icon, visible label, and dropdown indicator',
-                      and: [
-                        'the icon is decorative',
-                        'the trigger still exposes menu semantics and expanded state',
+                      id: 'NFR-ICON',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the child destination is reached.',
+                        'The Header must ensure that the focus treatment surrounds the usable target.',
                       ],
                     },
                     {
-                      given: 'assistive technology evaluates an icon-supported link or trigger',
-                      when: 'the accessible name is computed',
-                      then: 'the visible label supplies the name and the decorative icon is not announced separately',
-                      and: [
-                        'the icon does not create a duplicate name',
-                        'the label remains understandable without the icon',
+                      id: 'A11Y-ICON',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that icons and labels remain understandable in the responsive hierarchy.',
                       ],
                     },
                     {
-                      given: 'the icon-supported items are displayed',
-                      when: 'a user compares them visually',
-                      then: 'icons use consistent sizing, alignment, and spacing without reducing label legibility',
-                      and: [
-                        'icons support rather than compete with the labels',
-                        'the icon style is consistent between Examples and Components',
-                      ],
-                    },
-                    {
-                      given: 'a keyboard user focuses an icon-supported item',
-                      when: 'focus reaches the link or trigger',
-                      then: 'the complete interactive target has a visible focus indicator',
-                      and: [
-                        'the icon does not interrupt the focus order',
-                        'focus remains distinguishable from hover and current styling',
-                      ],
-                    },
-                    {
-                      given: 'a user selects an icon-supported dropdown child',
-                      when: 'the child link is activated',
-                      then: 'the application navigates to the child destination and the menu behavior remains the same as the non-icon dropdown',
-                      and: ['the icon treatment does not change the child label or destination'],
-                    },
-                    {
-                      given: 'the viewport crosses the mobile breakpoint',
-                      when: 'the Header switches to mobile presentation',
-                      then: 'the visible labels and their icons remain understandable in the mobile navigation',
-                      and: [
-                        'decorative icons remain hidden from assistive technology',
-                        'the same destinations and grouping remain available',
-                      ],
-                    },
-                    {
-                      given: 'the Header is rendered at the narrowest supported width',
-                      when: 'the layout reflows',
-                      then: 'icons, labels, trigger, child links, and spacing remain usable without clipping, overlap, or horizontal scrolling',
-                      and: [
-                        'labels do not wrap in a way that hides their meaning',
-                        'icons do not crowd the mobile targets',
+                      id: 'TR-ICON',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that icons do not force clipping or horizontal scrolling.',
                       ],
                     },
                   ],
+                  acceptanceCriteria: [
+                    {
+                      id: 'AC-ICON-01',
+                      requirementRefs: ['BR-ICON-01'],
+                      given: 'the Header provides icons with visible labels',
+                      when: 'the links or trigger render',
+                      then: 'each icon supports recognition without replacing the label',
+                      and: [
+                        'the visible text remains the destination name',
+                        'icons do not become the only way to understand the control',
+                      ],
+                    },
+                    {
+                      id: 'AC-ICON-02',
+                      requirementRefs: ['BR-ICON-02'],
+                      given: 'an icon is decorative',
+                      when: 'assistive technology reads the control',
+                      then: 'the icon is not announced as a second name',
+                      and: [
+                        'the icon is hidden from the accessibility tree',
+                        'the visible label remains the accessible name',
+                      ],
+                    },
+                    {
+                      id: 'AC-ICON-03',
+                      requirementRefs: ['FR-ICON-01'],
+                      given: 'Examples has an icon and Components has an icon with children',
+                      when: 'the desktop Header renders',
+                      then: 'icons align consistently with their associated labels',
+                      and: [
+                        'the icon does not change the link target',
+                        'the parent remains a menu trigger',
+                      ],
+                    },
+                    {
+                      id: 'AC-ICON-04',
+                      requirementRefs: ['FR-ICON-02'],
+                      given: 'a person selects an icon-supported direct link',
+                      when: 'the link is activated',
+                      then: 'the application follows its href',
+                      and: [
+                        'the complete icon-and-label area is one interactive target',
+                        'the action remains normal navigation',
+                      ],
+                    },
+                    {
+                      id: 'AC-ICON-05',
+                      requirementRefs: ['NFR-ICON-01'],
+                      given: 'a person opens and selects an icon-supported dropdown child',
+                      when: 'the menu interaction completes',
+                      then: 'the child destination is reached',
+                      and: [
+                        'the trigger and child retain understandable names',
+                        'the child remains selectable by keyboard and pointer',
+                      ],
+                    },
+                    {
+                      id: 'AC-ICON-06',
+                      requirementRefs: ['NFR-ICON-02'],
+                      given: 'a keyboard user focuses an icon-supported control',
+                      when: 'the control receives focus',
+                      then: 'the focus treatment surrounds the usable target',
+                      and: [
+                        'the icon does not capture focus separately',
+                        'the label and focus treatment remain visible',
+                      ],
+                    },
+                    {
+                      id: 'AC-ICON-07',
+                      requirementRefs: ['A11Y-ICON-01'],
+                      given: 'the viewport becomes narrow',
+                      when: 'the mobile presentation appears',
+                      then: 'icons and labels remain understandable in the responsive hierarchy',
+                      and: [
+                        'decorative icons remain decorative',
+                        'direct links remain direct links',
+                        'parent groups remain labelled',
+                      ],
+                    },
+                    {
+                      id: 'AC-ICON-08',
+                      requirementRefs: ['TR-ICON-02'],
+                      given: 'the Header is viewed at the narrowest supported width',
+                      when: 'the content reflows',
+                      then: 'icons do not force clipping or horizontal scrolling',
+                      and: ['labels remain available', 'the mobile trigger remains usable'],
+                    },
+                  ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
+                      id: 'VR-ICON-01',
+                      criterionRefs: ['AC-ICON-01'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms icon and label semantics.',
                       title: 'Icon and label semantics',
                       cases: [
                         {
-                          title: 'Inspect visible icon-label pairs',
-                          steps: [
-                            'Render the Header with icons.',
-                            'Inspect Examples and Components at desktop width.',
-                          ],
+                          id: 'VR-ICON-02',
+                          criterionRefs: ['AC-ICON-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms visible pairing.',
+                          title: 'Visible pairing',
+                          steps: ['Render the icon example.', 'Inspect each icon-label pair.'],
                           expected:
-                            'LayoutTemplate appears with Examples and Blocks appears with Components; both labels remain visible and readable.',
+                            'Each icon aligns with its label and the visible label remains the destination name.',
                         },
                         {
-                          title: 'Keep visible labels as accessible names',
-                          steps: [
-                            'Inspect Examples and the Components trigger in the accessibility tree.',
-                            'Inspect the icons separately.',
-                          ],
+                          id: 'VR-ICON-03',
+                          criterionRefs: ['AC-ICON-03'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms accessibility name.',
+                          title: 'Accessibility name',
+                          steps: ['Inspect the icon and link with accessibility tools.'],
                           expected:
-                            'The visible labels provide the link and trigger names, and the decorative icons are not announced as additional names.',
-                        },
-                        {
-                          title: 'Select an icon-supported link',
-                          steps: ['Activate Examples.', 'Observe the destination.'],
-                          expected:
-                            'The application navigates to /examples/layouts and the icon does not change the link meaning or destination.',
-                        },
-                        {
-                          title: 'Open and select an icon-supported dropdown child',
-                          steps: [
-                            'Open Components.',
-                            'Select User interface.',
-                            'Observe the destination and menu state.',
-                          ],
-                          expected:
-                            'The menu opens and navigates exactly like the non-icon dropdown; the selected child destination loads and the menu closes.',
+                            'Decorative icons are not announced separately; the link or trigger retains a useful accessible name.',
                         },
                       ],
                     },
                     {
-                      title: 'Visual consistency and focus',
+                      id: 'VR-ICON-04',
+                      criterionRefs: ['AC-ICON-04'],
+                      role: 'Functional QA',
+                      description: 'Confirms interaction outcomes.',
+                      title: 'Interaction outcomes',
                       cases: [
                         {
-                          title: 'Compare icon treatment',
+                          id: 'VR-ICON-05',
+                          criterionRefs: ['AC-ICON-05'],
+                          role: 'Functional QA',
+                          description: 'Confirms direct link.',
+                          title: 'Direct link',
                           steps: [
-                            'Compare the Examples and Components icons.',
-                            'Inspect their size, alignment, spacing, and relationship to text.',
+                            'Focus an icon-supported direct link.',
+                            'Activate it with Enter.',
                           ],
                           expected:
-                            'The icons are consistently sized and aligned, support the labels, and do not make either label difficult to read.',
+                            'The complete icon-and-label target receives focus and follows its href.',
                         },
                         {
-                          title: 'Focus complete interactive targets',
-                          steps: [
-                            'Use Tab through Examples and Components.',
-                            'Observe each focus indicator.',
-                          ],
+                          id: 'VR-ICON-06',
+                          criterionRefs: ['AC-ICON-06'],
+                          role: 'Functional QA',
+                          description: 'Confirms dropdown child.',
+                          title: 'Dropdown child',
+                          steps: ['Open the icon-supported parent.', 'Focus and activate a child.'],
                           expected:
-                            'The focus indicator covers the complete link or trigger, remains visible around the icon and label, and does not rely on the icon color.',
+                            'The parent and child remain understandable and the child destination is reached.',
                         },
                       ],
                     },
                     {
+                      id: 'VR-ICON-07',
+                      criterionRefs: ['AC-ICON-07'],
+                      role: 'Responsive QA',
+                      description: 'Confirms responsive icon behavior.',
                       title: 'Responsive icon behavior',
                       cases: [
                         {
-                          title: 'Preserve icons and labels on mobile',
+                          id: 'VR-ICON-08',
+                          criterionRefs: ['AC-ICON-08'],
+                          role: 'Responsive QA',
+                          description: 'Confirms mobile presentation.',
+                          title: 'Mobile presentation',
                           steps: [
                             'Resize below the mobile breakpoint.',
                             'Open the mobile navigation.',
-                            'Inspect Examples, Components, and their children.',
+                            'Inspect direct links and parent groups.',
                           ],
                           expected:
-                            'The labels remain visible and understandable, the icons remain decorative to assistive technology, and the shared navigation destinations remain available.',
+                            'Icons remain decorative, labels remain available, direct links stay direct, and grouped navigation retains its hierarchy.',
                         },
                         {
-                          title: 'Check narrow-width layout',
+                          id: 'VR-ICON-09',
+                          criterionRefs: ['AC-ICON-01'],
+                          role: 'Responsive QA',
+                          description: 'Confirms narrow boundary.',
+                          title: 'Narrow boundary',
                           steps: [
-                            'Resize to the narrowest supported width.',
-                            'Inspect each icon-label pair and interactive target.',
-                            'Attempt horizontal scrolling.',
+                            'Test the narrowest supported width.',
+                            'Inspect label clipping and horizontal overflow.',
                           ],
                           expected:
-                            'Icons do not crowd or clip labels, controls remain usable, and the Header does not introduce unintended horizontal overflow.',
+                            'The Header remains usable and icons do not force labels or controls out of view.',
                         },
                       ],
                     },

@@ -45,8 +45,6 @@ export function ComponentGuideShell({
     <LayoutProvider
       tabNavigation={componentAreaLinks}
       tabNavigationLabel="Component areas"
-      sidebarNav={sidebarNav}
-      sidebarNavLabel={sidebarNavLabel}
       activeHref={activeHref}
     >
       <PageShell>
@@ -57,7 +55,7 @@ export function ComponentGuideShell({
         />
         <TabNavigation aria-label="Component areas" activeHref={tabActiveHref} />
         <PageBody>
-          <Sidebar aria-label={sidebarAriaLabel} />
+          <Sidebar aria-label={sidebarAriaLabel} items={sidebarNav} activeHref={activeHref} />
           <Main size="full">{children}</Main>
         </PageBody>
         <Footer copyright={<>© 2026 Tommy Truong</>} links={shellFooterLinks} />

@@ -110,8 +110,6 @@ function LayoutExample({ variant }: LayoutExampleProps) {
     <LayoutProvider
       tabNavigation={hasTabs ? tabNavigation : undefined}
       tabNavigationLabel="Example sections"
-      sidebarNav={hasSidebar ? sidebarNav : undefined}
-      sidebarNavLabel="Example pages"
       activeHref={`/layouts/${variant}`}
     >
       <PageShell>
@@ -120,7 +118,11 @@ function LayoutExample({ variant }: LayoutExampleProps) {
         {hasTabs && <TabNavigation aria-label="Example sections" />}
         {hasSidebar ? (
           <PageBody>
-            <Sidebar aria-label="Example pages" />
+            <Sidebar
+              aria-label="Example pages"
+              items={sidebarNav}
+              activeHref={`/layouts/${variant}`}
+            />
             <ExampleMain variant={variant} />
           </PageBody>
         ) : (

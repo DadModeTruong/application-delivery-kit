@@ -68,7 +68,7 @@ type PageShellProps = React.ComponentProps<'div'>
  *   <SkipLink />
  *   <Header ... />
  *   <PageBody>
- *     <Sidebar ... />
+ *     <Sidebar aria-label="Docs" items={docsSidebar} activeHref={pathname} />
  *     <Main size="full">...</Main>
  *   </PageBody>
  *   <Footer ... />
@@ -81,7 +81,7 @@ type PageShellProps = React.ComponentProps<'div'>
  *   <Header ... />
  *   <TabNavigation ... />
  *   <PageBody>
- *     <Sidebar ... />
+ *     <Sidebar aria-label="Docs" items={docsSidebar} activeHref={pathname} />
  *     <Main size="full">...</Main>
  *   </PageBody>
  *   <Footer ... />
