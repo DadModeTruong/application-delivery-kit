@@ -92,7 +92,7 @@ function ComponentsTabNavigationPage() {
           </h1>
           <p className="text-xl leading-8 text-muted-foreground">
             Use TabNavigation for a short row of peer links inside the current section. On smaller
-            screens, LayoutProvider makes the same links available in the Header drawer.
+            screens, the application shell can reuse the same links in its mobile navigation.
           </p>
         </section>
         <section className="space-y-5" aria-labelledby="navigation-tab-what-heading">
@@ -159,7 +159,9 @@ function ComponentsTabNavigationPage() {
           <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
             <li>Keep labels short, parallel, and ordered in the same way as the page content.</li>
             <li>Keep the active state visually clear and tied to the destination URL.</li>
-            <li>Use the same links in the mobile drawer, not a second data set.</li>
+            <li>
+              Reuse the same links in the application mobile navigation, not a second data set.
+            </li>
             <li>Keep the number of destinations small enough to scan without wrapping.</li>
             <li>
               Use stable spacing and a clear boundary so the row reads as navigation, not a second
@@ -206,8 +208,8 @@ function ComponentsTabNavigationPage() {
           <p className="leading-7 text-muted-foreground">
             On wider screens, the short section-link row sits below the Header. On narrow screens,
             this row disappears rather than wrapping into a cramped strip; the same links move into
-            the Header’s mobile menu. The desktop preview disappearing at a breakpoint is therefore
-            an intentional responsive replacement, not missing content.
+            the application’s mobile navigation. The desktop preview disappearing at a breakpoint is
+            therefore an intentional responsive replacement, not missing content.
           </p>
           <p className="leading-7 text-muted-foreground">
             Keep one shared link list so the desktop and mobile paths stay in sync. Test the active
@@ -216,7 +218,7 @@ function ComponentsTabNavigationPage() {
           <p className="leading-7 text-muted-foreground">
             Also test zoom and long translated labels. The component may disappear at a breakpoint,
             but the destinations must not disappear from the user experience; they should remain
-            available through the Header’s mobile drawer with the same names, order, and
+            available through the application’s mobile navigation with the same names, order, and
             current-location cue.
           </p>
         </section>
@@ -426,9 +428,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that one named navigation landmark contains three real links in the supplied order.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example at a desktop viewport.',
+                            'Inspect the named navigation landmark and count its links.',
+                            'Compare the link labels and href order with the example data.',
                           ],
                           expected:
                             'One named navigation landmark contains three real links in the supplied order.',
@@ -440,9 +442,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the destinations are clearly related to the current section rather than the application-wide Header.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example beside the guide content and application Header.',
+                            'Identify the TabNavigation landmark and read its visible link labels.',
+                            'Confirm the links describe destinations within the current section rather than global application destinations.',
                           ],
                           expected:
                             'The destinations are clearly related to the current section rather than the application-wide header.',
@@ -460,9 +462,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the browser follows that destination as normal anchor navigation.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example and focus the Overview link.',
+                            'Activate the link with the keyboard or pointer.',
+                            'Inspect the resulting browser destination and confirm it matches the link href.',
                           ],
                           expected:
                             'The browser follows that destination as normal anchor navigation.',
@@ -474,9 +476,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the navigation aligns with the page content and remains easy to scan.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example at a viewport at or above the documented desktop breakpoint.',
+                            'Inspect the navigation row against the surrounding page content.',
+                            'Confirm the row remains aligned, compact, and readable without clipping.',
                           ],
                           expected:
                             'The navigation aligns with the page content and remains easy to scan.',
@@ -494,9 +496,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the desktop row is hidden without inventing a second navigation model.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example below the documented desktop breakpoint.',
+                            'Inspect the page accessibility tree and visible navigation controls.',
+                            'Confirm the desktop row is hidden and the application’s mobile navigation remains the intended replacement.',
                           ],
                           expected:
                             'The desktop row is hidden without inventing a second navigation model.',
@@ -508,9 +510,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the TabNavigation landmark has its configured distinct accessible name.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example and inspect the accessibility tree.',
+                            'Locate the navigation landmark by its configured aria-label.',
+                            'Confirm the landmark name is distinct from the Header and Sidebar landmarks.',
                           ],
                           expected:
                             'The tabnavigation landmark has its configured distinct accessible name.',
@@ -528,9 +530,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that each link receives visible focus in the supplied order.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example and place focus before the first navigation link.',
+                            'Press Tab through each link in sequence.',
+                            'Confirm every link receives a visible focus indicator in supplied order.',
                           ],
                           expected: 'Each link receives visible focus in the supplied order.',
                         },
@@ -540,9 +542,9 @@ function ComponentsTabNavigationPage() {
                           title: 'Current-state boundary',
                           description: 'Checks that no destination is marked as the current page.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example with the documented activeHref value for this variation.',
+                            'Inspect each link for aria-current, data-active, and active styling.',
+                            'Confirm the current-state result matches the variation’s expected active-link behavior.',
                           ],
                           expected: 'No destination is marked as the current page.',
                         },
@@ -559,9 +561,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the component uses the supplied NavLeaf labels and hrefs without fetching or inferring routes.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render TabNavigation with a replacement item containing a unique label and href.',
+                            'Inspect the rendered anchor label and href.',
+                            'Confirm the values match the supplied item exactly and no route lookup or router context is required.',
                           ],
                           expected:
                             'The component uses the supplied navleaf labels and hrefs without fetching or inferring routes.',
@@ -573,9 +575,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the component produces no empty navigation landmark.',
                           steps: [
-                            'Render the basic TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render TabNavigation with items set to an empty array.',
+                            'Inspect the accessibility tree and the space where the row would appear.',
+                            'Confirm no empty navigation landmark or unexplained blank row is rendered.',
                           ],
                           expected: 'The component produces no empty navigation landmark.',
                         },
@@ -780,9 +782,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that one named navigation landmark contains the links in the supplied order.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example at a desktop viewport.',
+                            'Inspect the named navigation landmark and count its links.',
+                            'Compare the link labels and href order with the example data.',
                           ],
                           expected:
                             'One named navigation landmark contains the links in the supplied order.',
@@ -794,9 +796,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the active destination is distinguishable from the inactive destinations without changing the link labels.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example beside the guide content and application Header.',
+                            'Identify the TabNavigation landmark and read its visible link labels.',
+                            'Confirm the links describe destinations within the current section rather than global application destinations.',
                           ],
                           expected:
                             'The active destination is distinguishable from the inactive destinations without changing the link labels.',
@@ -814,9 +816,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the browser follows that destination as normal anchor navigation.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example and focus the Overview link.',
+                            'Activate the link with the keyboard or pointer.',
+                            'Inspect the resulting browser destination and confirm it matches the link href.',
                           ],
                           expected:
                             'The browser follows that destination as normal anchor navigation.',
@@ -828,9 +830,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that only the matching link exposes aria-current="page" and the active data state.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example at a viewport at or above the documented desktop breakpoint.',
+                            'Inspect the navigation row against the surrounding page content.',
+                            'Confirm the row remains aligned, compact, and readable without clipping.',
                           ],
                           expected:
                             'Only the matching link exposes aria-current="page" and the active data state.',
@@ -847,9 +849,9 @@ function ComponentsTabNavigationPage() {
                           title: 'Responsive boundary',
                           description: 'Checks that no link is incorrectly presented as current.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example below the documented desktop breakpoint.',
+                            'Inspect the page accessibility tree and visible navigation controls.',
+                            'Confirm the desktop row is hidden and the application’s mobile navigation remains the intended replacement.',
                           ],
                           expected: 'No link is incorrectly presented as current.',
                         },
@@ -860,9 +862,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the desktop row is hidden while the application can expose the same active destination through its mobile presentation.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example and inspect the accessibility tree.',
+                            'Locate the navigation landmark by its configured aria-label.',
+                            'Confirm the landmark name is distinct from the Header and Sidebar landmarks.',
                           ],
                           expected:
                             'The desktop row is hidden while the application can expose the same active destination through its mobile presentation.',
@@ -880,9 +882,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that focus remains visible on both active and inactive links.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example and place focus before the first navigation link.',
+                            'Press Tab through each link in sequence.',
+                            'Confirm every link receives a visible focus indicator in supplied order.',
                           ],
                           expected: 'Focus remains visible on both active and inactive links.',
                         },
@@ -893,9 +895,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the TabNavigation landmark is independently named and discoverable.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example with the documented activeHref value for this variation.',
+                            'Inspect each link for aria-current, data-active, and active styling.',
+                            'Confirm the current-state result matches the variation’s expected active-link behavior.',
                           ],
                           expected:
                             'The tabnavigation landmark is independently named and discoverable.',
@@ -913,9 +915,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the component applies exact-match current state without reading router context directly.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render TabNavigation with a replacement item containing a unique label and href.',
+                            'Inspect the rendered anchor label and href.',
+                            'Confirm the values match the supplied item exactly and no route lookup or router context is required.',
                           ],
                           expected:
                             'The component applies exact-match current state without reading router context directly.',
@@ -927,9 +929,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the component produces no empty navigation landmark.',
                           steps: [
-                            'Render the current TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render TabNavigation with items set to an empty array.',
+                            'Inspect the accessibility tree and the space where the row would appear.',
+                            'Confirm no empty navigation landmark or unexplained blank row is rendered.',
                           ],
                           expected: 'The component produces no empty navigation landmark.',
                         },
@@ -1133,9 +1135,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the destinations remain understandable and are presented as real links.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example at a desktop viewport.',
+                            'Inspect the named navigation landmark and count its links.',
+                            'Compare the link labels and href order with the example data.',
                           ],
                           expected:
                             'The destinations remain understandable and are presented as real links.',
@@ -1147,9 +1149,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that each label provides enough context to distinguish the destination from its siblings.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example beside the guide content and application Header.',
+                            'Identify the TabNavigation landmark and read its visible link labels.',
+                            'Confirm the links describe destinations within the current section rather than global application destinations.',
                           ],
                           expected:
                             'Each label provides enough context to distinguish the destination from its siblings.',
@@ -1167,9 +1169,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the browser follows the configured href as normal link navigation.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example and focus the Overview link.',
+                            'Activate the link with the keyboard or pointer.',
+                            'Inspect the resulting browser destination and confirm it matches the link href.',
                           ],
                           expected:
                             'The browser follows the configured href as normal link navigation.',
@@ -1181,9 +1183,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the compact tray aligns with the page content and preserves readable spacing.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example at a viewport at or above the documented desktop breakpoint.',
+                            'Inspect the navigation row against the surrounding page content.',
+                            'Confirm the row remains aligned, compact, and readable without clipping.',
                           ],
                           expected:
                             'The compact tray aligns with the page content and preserves readable spacing.',
@@ -1201,9 +1203,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the example makes the constrained-width trade-off visible for review rather than silently claiming every label will fit.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example below the documented desktop breakpoint.',
+                            'Inspect the page accessibility tree and visible navigation controls.',
+                            'Confirm the desktop row is hidden and the application’s mobile navigation remains the intended replacement.',
                           ],
                           expected:
                             'The example makes the constrained-width trade-off visible for review rather than silently claiming every label will fit.',
@@ -1215,9 +1217,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the desktop row is hidden and the same destinations can move into the application mobile presentation.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example and inspect the accessibility tree.',
+                            'Locate the navigation landmark by its configured aria-label.',
+                            'Confirm the landmark name is distinct from the Header and Sidebar landmarks.',
                           ],
                           expected:
                             'The desktop row is hidden and the same destinations can move into the application mobile presentation.',
@@ -1235,9 +1237,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that each link receives visible focus without relying on hover or color.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example and place focus before the first navigation link.',
+                            'Press Tab through each link in sequence.',
+                            'Confirm every link receives a visible focus indicator in supplied order.',
                           ],
                           expected:
                             'Each link receives visible focus without relying on hover or color.',
@@ -1249,9 +1251,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the longer-label navigation has a distinct accessible name.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render the example with the documented activeHref value for this variation.',
+                            'Inspect each link for aria-current, data-active, and active styling.',
+                            'Confirm the current-state result matches the variation’s expected active-link behavior.',
                           ],
                           expected: 'The longer-label navigation has a distinct accessible name.',
                         },
@@ -1268,9 +1270,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the component preserves the supplied labels and hrefs without truncating their text.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render TabNavigation with a replacement item containing a unique label and href.',
+                            'Inspect the rendered anchor label and href.',
+                            'Confirm the values match the supplied item exactly and no route lookup or router context is required.',
                           ],
                           expected:
                             'The component preserves the supplied labels and hrefs without truncating their text.',
@@ -1282,9 +1284,9 @@ function ComponentsTabNavigationPage() {
                           description:
                             'Checks that the component produces no empty navigation landmark.',
                           steps: [
-                            'Render the long TabNavigation example.',
-                            'Inspect the relevant links, attributes, layout, and responsive state.',
-                            'Use keyboard or browser interaction when the criterion requires it.',
+                            'Render TabNavigation with items set to an empty array.',
+                            'Inspect the accessibility tree and the space where the row would appear.',
+                            'Confirm no empty navigation landmark or unexplained blank row is rendered.',
                           ],
                           expected: 'The component produces no empty navigation landmark.',
                         },

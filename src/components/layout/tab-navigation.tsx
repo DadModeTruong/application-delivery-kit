@@ -3,12 +3,12 @@
  *
  * Sits between Header and Main to provide section-level navigation
  * (e.g., Docs → Overview / Installation / Theming). Not sticky —
- * scrolls away with content. Hidden on mobile; Header's drawer
- * renders these items instead (via LayoutProvider context).
+ * scrolls away with content. Hidden on mobile; the consuming application
+ * composes the same items into its mobile navigation when needed.
  *
  * Reads `items` and `activeHref` from LayoutProvider when props
  * are omitted, so the same config can drive both the desktop nav
- * and the mobile drawer without duplication. Explicit props always
+ * and an application-owned mobile navigation without duplication. Explicit props always
  * override context.
  *
  * Renders semantic <nav aria-label="..."> — the aria-label prop
@@ -86,8 +86,8 @@ type TabNavigationProps = {
 /**
  * Horizontal sub-nav bar. Renders a pill-style row of links below
  * the Header. Active item gets a filled background pill with subtle
- * shadow. On mobile the component renders nothing — Header's drawer
- * picks up the same items via LayoutProvider context.
+ * shadow. On mobile the component renders nothing — the consuming
+ * application owns the replacement navigation and may reuse the same items.
  *
  * @example
  * <LayoutProvider tabNavigation={docsNav} activeHref={pathname}>
@@ -129,7 +129,7 @@ function TabNavigation({
       data-slot="tab-navigation"
       data-size={size}
       className={cn(
-        // Hidden on mobile — Header's drawer renders these items.
+        // Hidden on mobile — the consuming application owns the replacement navigation.
         // Shown from md+ where the row has room to breathe.
         'hidden md:block',
         // Full-width landmark with vertical padding for row

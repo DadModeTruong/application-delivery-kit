@@ -91,10 +91,10 @@ type ExampleVariationBaseProps = {
   title: string
   children: ReactNode
   exampleClassName?: string
-  articleClassName?: string
 }
 
 type StandardizedExampleVariationProps = ExampleVariationBaseProps & {
+  articleClassName?: string
   summary: string
   tryIt: ReactNode
   supplemental: ExampleSupplemental
@@ -478,15 +478,14 @@ function LegacyExample({
   doItems,
   dontItems,
   exampleClassName,
-  articleClassName,
 }: LegacyExampleVariationProps) {
   return (
-    <article className={cn('space-y-6 rounded-lg border p-6 sm:p-8', articleClassName)}>
+    <article className="space-y-6 rounded-lg border p-6 sm:p-8">
       <div className="space-y-2">
         <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
         <p className="text-muted-foreground">{description}</p>
       </div>
-      <div className={cn('overflow-hidden rounded-xl border', exampleClassName)}>{children}</div>
+      <div className={cn('rounded-lg border p-5 sm:p-6', exampleClassName)}>{children}</div>
       <div className="text-muted-foreground">{explanation}</div>
       <div className="grid gap-8 sm:grid-cols-2">
         <div>
