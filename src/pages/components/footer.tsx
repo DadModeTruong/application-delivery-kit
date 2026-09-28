@@ -543,17 +543,17 @@ const externalSupplemental = {
   tabLayout: 'requirements' as const,
 }
 
-const fullSupplemental = {
+const wrappingSupplemental = {
   guidance: {
     explanation:
-      'Use the full-width Footer when the page shell needs the boundary to span the available viewport while its content still follows the shared alignment and wrapping rules.',
+      'Use a contained Footer with realistic long labels when the guide or page Main area has limited width and the content must reflow without clipping.',
     doItems: [
-      'Use `size="full"` when the footer boundary should span the available width.',
+      'Keep the Footer contained when it sits inside a limited Main column, and use full width only when the page shell owns the wider boundary.',
       'Test long copyright and link labels at narrow widths and enlarged text.',
       'Preserve source order and keep links reachable when the row stacks.',
     ],
     dontItems: [
-      'Do not use full width to hide a lack of content hierarchy.',
+      'Do not use full width inside a constrained content example when it makes the Footer surface harder to scan.',
       'Do not make the Footer sticky or fixed without a separate interaction and accessibility design.',
       'Do not allow long labels to create page-level horizontal scrolling.',
     ],
@@ -563,7 +563,6 @@ const fullSupplemental = {
     props: footerProps,
     attributes: footerAttributes,
     source: `<Footer
-  size="full"
   bordered
   copyright={<>© 2026 Example Organization — Accessibility first</>}
   links={[
@@ -572,8 +571,8 @@ const fullSupplemental = {
     { href: '/components/user-interface', label: 'Component documentation' },
   ]}
 />`,
-    html: `<footer data-slot="footer" data-size="full" class="w-full border-t border-border py-6">
-  <div data-slot="container" data-size="full" class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+    html: `<footer data-slot="footer" data-size="contained" class="w-full border-t border-border py-6">
+  <div data-slot="container" data-size="contained" class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
     <div class="text-sm text-muted-foreground">© 2026 Example Organization — Accessibility first</div>
     <nav aria-label="Footer" class="flex flex-wrap items-center gap-1">…</nav>
   </div>
@@ -584,7 +583,7 @@ const fullSupplemental = {
       'As a person using a page at different widths, I want the Footer boundary and supporting links to reflow predictably so that no content becomes clipped or unreachable.',
     groups: [
       {
-        id: 'BR-FULL',
+        id: 'BR-WRAP',
         title: 'Business requirements',
         items: [
           'People can recognize the page-ending boundary across the available width.',
@@ -592,15 +591,15 @@ const fullSupplemental = {
         ],
       },
       {
-        id: 'FR-FULL',
+        id: 'FR-WRAP',
         title: 'Functional requirements',
         items: [
-          'Footer applies full-width Container alignment when size is full.',
+          'Footer preserves the selected Container alignment while the contained example keeps its surface appropriate for the page column.',
           'Footer preserves the supplied copyright and link order while wrapping.',
         ],
       },
       {
-        id: 'NFR-FULL',
+        id: 'NFR-WRAP',
         title: 'Non-functional requirements',
         items: [
           'The Footer remains content-driven rather than fixed or sticky.',
@@ -608,7 +607,7 @@ const fullSupplemental = {
         ],
       },
       {
-        id: 'A11Y-FULL',
+        id: 'A11Y-WRAP',
         title: 'Accessibility requirements',
         items: [
           'Source order remains understandable when content stacks.',
@@ -616,86 +615,87 @@ const fullSupplemental = {
         ],
       },
       {
-        id: 'TR-FULL',
+        id: 'TR-WRAP',
         title: 'Technical requirements',
         items: [
-          'The consuming application chooses the full-width size and supplies realistic link data.',
+          'The consuming application supplies realistic long labels and chooses full width only when the surrounding shell has room for it.',
           'Footer uses flex wrapping rather than a breakpoint that hides required links.',
         ],
       },
     ],
     acceptanceCriteria: [
       {
-        id: 'AC-FULL-01',
-        requirementRefs: ['BR-FULL-01', 'FR-FULL-01'],
-        given: 'Footer is rendered with `size="full"` and a border',
+        id: 'AC-WRAP-01',
+        requirementRefs: ['BR-WRAP-01', 'FR-WRAP-01'],
+        given: 'Footer is rendered with a border and realistic long copyright and link labels',
         when: 'the page is viewed at a wide width',
-        then: 'the footer boundary spans the available width while its content uses the full Container alignment',
+        then: 'the Footer remains visually appropriate inside the available content width while its content uses the contained Container alignment',
         and: ['the footer remains after Main'],
       },
       {
-        id: 'AC-FULL-02',
-        requirementRefs: ['BR-FULL-02', 'FR-FULL-02'],
+        id: 'AC-WRAP-02',
+        requirementRefs: ['BR-WRAP-02', 'FR-WRAP-02'],
         given: 'the caller supplies a long copyright node and ordered links',
         when: 'Footer renders',
         then: 'copyright and links preserve their supplied content and source order',
       },
       {
-        id: 'AC-FULL-03',
-        requirementRefs: ['NFR-FULL-01'],
+        id: 'AC-WRAP-03',
+        requirementRefs: ['NFR-WRAP-01'],
         given: 'the page is scrolled or resized',
         when: 'Footer remains in the document flow',
         then: 'Footer is content-driven and does not become sticky or fixed',
       },
       {
-        id: 'AC-FULL-04',
-        requirementRefs: ['NFR-FULL-02', 'TR-FULL-02'],
+        id: 'AC-WRAP-04',
+        requirementRefs: ['NFR-WRAP-02', 'TR-WRAP-02'],
         given: 'the viewport is narrowed and text is enlarged to 200%',
         when: 'the long labels reflow',
         then: 'the Footer wraps links and copyright without unintended horizontal scrolling',
         and: ['no required link is hidden'],
       },
       {
-        id: 'AC-FULL-05',
-        requirementRefs: ['A11Y-FULL-01'],
+        id: 'AC-WRAP-05',
+        requirementRefs: ['A11Y-WRAP-01'],
         given: 'copyright and links occupy multiple rows',
         when: 'the reflowed Footer is read in source order',
         then: 'the copyright remains understandable before the supporting links',
       },
       {
-        id: 'AC-FULL-06',
-        requirementRefs: ['A11Y-FULL-02'],
+        id: 'AC-WRAP-06',
+        requirementRefs: ['A11Y-WRAP-02'],
         given: 'a keyboard user reaches the wrapped links',
         when: 'focus moves through the navigation',
         then: 'every link remains focusable with a visible focus indicator',
       },
       {
-        id: 'AC-FULL-07',
-        requirementRefs: ['TR-FULL-01'],
-        given: 'the consuming application supplies full-width configuration and realistic data',
+        id: 'AC-WRAP-07',
+        requirementRefs: ['TR-WRAP-01'],
+        given: 'the consuming application supplies realistic long labels for a contained Footer',
         when: 'Footer renders',
-        then: 'the component applies the requested size without modifying the supplied content',
+        then: 'the component preserves the requested content and wrapping behavior without modifying the supplied data',
       },
     ],
   },
   verification: {
     scenarios: [
       {
-        id: 'VR-FULL-01',
+        id: 'VR-WRAP-01',
         role: 'Design QA',
-        title: 'Check full-width boundary and alignment',
-        description: 'Checks the full-width Footer surface while preserving content alignment.',
-        criterionRefs: ['AC-FULL-01', 'AC-FULL-07'],
+        title: 'Check contained long-label alignment',
+        description:
+          'Checks the contained Footer surface while preserving alignment and readable wrapping.',
+        criterionRefs: ['AC-WRAP-01', 'AC-WRAP-07'],
         cases: [
           {
-            id: 'VC-FULL-01',
+            id: 'VC-WRAP-01',
             role: 'Design QA',
-            title: 'Inspect full-width Footer at desktop width',
+            title: 'Inspect contained Footer at desktop width',
             description:
-              'Confirms the boundary spans the viewport and the selected Container mode is applied.',
-            criterionRefs: ['AC-FULL-01', 'AC-FULL-07'],
+              'Confirms the contained surface and selected Container mode are appropriate for the guide column.',
+            criterionRefs: ['AC-WRAP-01', 'AC-WRAP-07'],
             steps: [
-              'Render the Full-width example at desktop width.',
+              'Render the Long labels and wrapping example at desktop width.',
               'Inspect the footer boundary, data-size state, content alignment, and document position after Main.',
             ],
             expected:
@@ -704,18 +704,18 @@ const fullSupplemental = {
         ],
       },
       {
-        id: 'VR-FULL-02',
+        id: 'VR-WRAP-02',
         role: 'Responsive QA',
         title: 'Check long-label reflow',
         description: 'Checks the explicit narrow-width and enlarged-text boundary.',
-        criterionRefs: ['AC-FULL-02', 'AC-FULL-03', 'AC-FULL-04'],
+        criterionRefs: ['AC-WRAP-02', 'AC-WRAP-03', 'AC-WRAP-04'],
         cases: [
           {
-            id: 'VC-FULL-02',
+            id: 'VC-WRAP-02',
             role: 'Responsive QA',
-            title: 'Resize and enlarge the Full-width example',
+            title: 'Resize and enlarge the long-label example',
             description: 'Confirms long labels wrap without clipping or page overflow.',
-            criterionRefs: ['AC-FULL-02', 'AC-FULL-03', 'AC-FULL-04'],
+            criterionRefs: ['AC-WRAP-02', 'AC-WRAP-03', 'AC-WRAP-04'],
             steps: [
               'Render the example with its long copyright and link labels.',
               'Resize to the narrowest supported width and set browser zoom/text enlargement to 200%.',
@@ -727,19 +727,19 @@ const fullSupplemental = {
         ],
       },
       {
-        id: 'VR-FULL-03',
+        id: 'VR-WRAP-03',
         role: 'Accessibility QA',
         title: 'Check keyboard operation after reflow',
         description: 'Checks focus visibility and operability when the Footer stacks.',
-        criterionRefs: ['AC-FULL-05', 'AC-FULL-06'],
+        criterionRefs: ['AC-WRAP-05', 'AC-WRAP-06'],
         cases: [
           {
-            id: 'VC-FULL-03',
+            id: 'VC-WRAP-03',
             role: 'Accessibility QA',
             title: 'Tab through the wrapped Footer',
             description:
               'Confirms every link remains in the keyboard sequence after layout reflow.',
-            criterionRefs: ['AC-FULL-05', 'AC-FULL-06'],
+            criterionRefs: ['AC-WRAP-05', 'AC-WRAP-06'],
             steps: [
               'At the narrowed and enlarged-text state, start before the Footer and press Tab through every Footer link.',
               'Inspect focus visibility and activate one focused link with Enter.',
@@ -988,15 +988,14 @@ function ComponentsFooterPage() {
               <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
             </ExampleVariation>
             <ExampleVariation
-              title="Full width and wrapping"
-              summary="A full-width boundary with realistic long content remains content-driven and wrap-safe."
+              title="Long labels and wrapping"
+              summary="Realistic long labels remain content-driven and wrap safely inside the guide column."
               tryIt="Resize to the narrowest supported width, enlarge text to 200%, and tab through every link."
               articleClassName="rounded-none border-0 p-0 sm:p-0"
               exampleClassName="p-0 sm:p-0"
-              supplemental={fullSupplemental}
+              supplemental={wrappingSupplemental}
             >
               <Footer
-                size="full"
                 copyright={
                   <>
                     © 2026 Tommy Truong — Application Delivery Kit accessibility and documentation
