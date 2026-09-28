@@ -337,7 +337,7 @@ function ComponentsHeaderPage() {
             Code to adapt the implementation, Criteria to agree what must be true, and Verification
             to prove it.
           </p>
-          <div className="space-y-8 [&_[data-slot=header]]:!border-b-0 [&_*:has(>[data-slot=header])]:!p-0 [&_*:has(>[data-slot=header])]:overflow-hidden">
+          <div className="space-y-8 [&_[data-slot=header]]:!border-b-0">
             <ExampleVariation
               title="Basic"
               summary="A simple system header keeps the application name on the left and ordinary navigation links on the right."
@@ -366,7 +366,7 @@ function ComponentsHeaderPage() {
   navigationLabel="Global navigation"
   nav={[
     { label: 'Examples', href: '/examples/layouts' },
-    { label: 'Components', href: '/components/user-interface' },
+    { label: 'Components', href: '/components/user-interface', current: true },
   ]}
 />`,
                   html: `<header data-slot="header" data-scrolled="false" data-size="contained"

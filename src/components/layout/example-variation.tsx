@@ -94,6 +94,7 @@ type ExampleVariationBaseProps = {
 }
 
 type StandardizedExampleVariationProps = ExampleVariationBaseProps & {
+  articleClassName?: string
   summary: string
   tryIt: ReactNode
   supplemental: ExampleSupplemental
@@ -146,12 +147,12 @@ function CodeBlock({ code, idPrefix }: { code: ExampleCode; idPrefix: string }) 
       </section>
       <section aria-labelledby={`${idPrefix}-rendered-html-heading`}>
         <h4 id={`${idPrefix}-rendered-html-heading`} className="font-semibold text-foreground">
-          Rendered HTML structure
+          Representative HTML structure
         </h4>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          This is the current browser structure produced by the reusable component, including the
-          styling classes and data attributes used by this example. Preserve the semantic elements,
-          responsive classes, focus classes, and state attributes when adapting the pattern.
+          This is an illustrative excerpt of the structure produced by the reusable component. Some
+          wrapper or library-generated details may be omitted; preserve the semantic elements,
+          responsive classes, focus classes, and state attributes shown when adapting the pattern.
         </p>
         <pre className="mt-4 overflow-x-auto rounded-lg bg-muted p-4 text-sm leading-6 text-foreground">
           <code>{code.html}</code>
@@ -391,6 +392,7 @@ function StandardizedExample({
   children,
   supplemental,
   exampleClassName,
+  articleClassName,
 }: StandardizedExampleVariationProps) {
   const idPrefix = React.useId().replaceAll(':', '')
   const tabIds = {
@@ -402,12 +404,12 @@ function StandardizedExample({
   }
 
   return (
-    <article className="space-y-6">
+    <article className={cn('space-y-6', articleClassName)}>
       <div className="space-y-2">
         <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
         <p className="text-muted-foreground">{summary}</p>
       </div>
-      <div className={cn('rounded-lg border p-5 sm:p-6', exampleClassName)}>{children}</div>
+      <div className={cn('overflow-hidden rounded-xl border', exampleClassName)}>{children}</div>
       <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
         <strong className="mr-2 text-foreground">Try it:</strong>
         {tryIt}

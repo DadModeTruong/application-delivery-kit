@@ -139,7 +139,7 @@ function SidebarItem({
         </span>
       ) : null}
       {!iconOnly && item.label}
-      {item.external && !iconOnly && <span className="sr-only"> (opens in new window)</span>}
+      {item.external && <span className="sr-only"> (opens in new window)</span>}
     </a>
   )
 
@@ -182,6 +182,8 @@ function SidebarGroup({
 }) {
   return (
     <div
+      role="group"
+      aria-label={group.label}
       className={cn(
         'flex flex-col gap-0.5',
         // Space between groups (skip for the first group).
