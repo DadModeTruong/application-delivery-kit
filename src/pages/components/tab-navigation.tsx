@@ -110,7 +110,7 @@ function ComponentsTabNavigationPage() {
             leaving broad product movement to the Header and deeper information architecture to the
             Sidebar.
           </p>
-          <div className="overflow-hidden rounded-xl border">
+          <div className="overflow-hidden rounded-xl border [&_[data-slot=tab-navigation]]:!mb-0">
             <TabNavigation
               items={[
                 { label: 'Overview', href: '#tab-navigation-overview' },
