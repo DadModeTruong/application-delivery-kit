@@ -270,7 +270,7 @@ function Sidebar({
       data-slot="sidebar"
       data-variant={variant}
       className={cn(
-        // Hidden on mobile — Header's drawer handles these items.
+        // Hidden on mobile — the application-owned mobile navigation handles these items.
         'hidden md:block',
         // Fixed width per variant: 240px labeled, 56px icon-only.
         iconOnly ? 'w-14' : 'w-60',

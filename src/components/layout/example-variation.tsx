@@ -4,7 +4,7 @@
  *
  * The legacy shape remains available while guide pages migrate incrementally.
  * New examples should provide a summary, Try it instruction, and Guidance,
- * Code, Criteria, and Verification content.
+ * Requirements, Criteria, Verification, and Code content.
  */
 
 import * as React from 'react'
@@ -56,8 +56,10 @@ type VerificationCase = {
 
 type VerificationScenario = {
   id?: string
+  criterionRefs?: string[]
   role?: string
   title: string
+  description?: string
   cases: VerificationCase[]
 }
 
@@ -327,7 +329,20 @@ function VerificationPanel({
             className="font-semibold text-foreground"
           >
             {scenario.title}
+            {scenario.id && (
+              <code className="ml-2 text-sm font-medium text-foreground">{scenario.id}</code>
+            )}
           </h4>
+          {(scenario.description || scenario.criterionRefs?.length) && (
+            <div className="mt-2 space-y-1 text-sm text-muted-foreground">
+              {scenario.description && <p className="leading-6">{scenario.description}</p>}
+              {scenario.criterionRefs && scenario.criterionRefs.length > 0 && (
+                <div className="flex flex-wrap gap-x-4 gap-y-1">
+                  <span>Verifies: {scenario.criterionRefs.join(', ')}</span>
+                </div>
+              )}
+            </div>
+          )}
           <div className="mt-5 space-y-8">
             {scenario.cases.map((testCase) => (
               <article key={testCase.title} className="space-y-4">

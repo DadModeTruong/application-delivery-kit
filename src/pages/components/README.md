@@ -145,7 +145,7 @@ naming the observable condition.
 Before treating a guide as complete, read the page from top to bottom.
 Confirm that the introduction names every variation, each variation has
 one distinct teaching purpose, visible Try it text matches the actual
-props and state, and Guidance, Code, Criteria, and Verification agree
+props and state, and Guidance, Requirements, Criteria, Verification, and Code agree
 with the live preview and production implementation. Remove stale API
 names, old layout references, unexplained preview state, duplicated
 explanations, and inconsistent text treatment.

@@ -332,10 +332,10 @@ function ComponentsHeaderPage() {
             Header component while isolating one implementation or behavior decision.
           </p>
           <p className="leading-7 text-muted-foreground">
-            Each variation includes a focused Try it instruction followed by Guidance, Code,
-            Criteria, and Verification tabs. Use the live preview to experience the behavior, Code
-            to adapt the implementation, Criteria to agree what must be true, and Verification to
-            prove it.
+            Each variation includes a focused Try it instruction followed by Guidance, Requirements,
+            Criteria, Verification, and Code tabs. Use the live preview to experience the behavior,
+            Code to adapt the implementation, Criteria to agree what must be true, and Verification
+            to prove it.
           </p>
           <div className="space-y-8 [&_[data-slot=header]]:!border-b-0 [&_*:has(>[data-slot=header])]:!p-0 [&_*:has(>[data-slot=header])]:overflow-hidden">
             <ExampleVariation
@@ -393,8 +393,52 @@ function ComponentsHeaderPage() {
                 requirements: {
                   userStory:
                     'As an application user, I want a consistent and understandable Header so that I can identify the application, reach important destinations, and continue using it across screen sizes.',
+                  groups: [
+                    {
+                      id: 'BR-BASIC',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that the application name and both destinations are easy to find and understand.',
+                        'The Header must ensure that the person is taken to the application home page.',
+                      ],
+                    },
+                    {
+                      id: 'FR-BASIC',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that the navigation is announced as Global navigation.',
+                        'The Header must ensure that the links appear in a horizontal row beside the brand.',
+                      ],
+                    },
+                    {
+                      id: 'NFR-BASIC',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the link remains the same size and gains a clear hover or focus treatment.',
+                        'The Header must ensure that the application follows the selected destination.',
+                      ],
+                    },
+                    {
+                      id: 'A11Y-BASIC',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that the Header stays at the top while its visual surface can change to remain readable.',
+                        'The Header must ensure that the navigation remains available through the mobile presentation.',
+                      ],
+                    },
+                    {
+                      id: 'TR-BASIC',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that the order is understandable and every focused element has a visible focus treatment.',
+                        'The Header must ensure that the brand, trigger, and any visible controls remain usable.',
+                      ],
+                    },
+                  ],
                   acceptanceCriteria: [
                     {
+                      id: 'AC-BASIC-01',
+                      requirementRefs: ['BR-BASIC-01'],
                       given:
                         'the Header is rendered with the application name and two top-level links',
                       when: 'a person views the application shell',
@@ -406,6 +450,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BASIC-02',
+                      requirementRefs: ['BR-BASIC-02'],
                       given: 'the application name is selected',
                       when: 'the person activates it',
                       then: 'the person is taken to the application home page',
@@ -415,6 +461,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BASIC-03',
+                      requirementRefs: ['FR-BASIC-01'],
                       given: 'the Header navigation is present',
                       when: 'assistive technology lists page landmarks',
                       then: 'the navigation is announced as Global navigation',
@@ -424,6 +472,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BASIC-04',
+                      requirementRefs: ['FR-BASIC-02'],
                       given: 'the page is wide enough for the desktop Header',
                       when: 'the person views the shell',
                       then: 'the links appear in a horizontal row beside the brand',
@@ -434,6 +484,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BASIC-05',
+                      requirementRefs: ['NFR-BASIC-01'],
                       given: 'a person points to or focuses a navigation link',
                       when: 'the interaction state changes',
                       then: 'the link remains the same size and gains a clear hover or focus treatment',
@@ -443,6 +495,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BASIC-06',
+                      requirementRefs: ['NFR-BASIC-02'],
                       given: 'a person selects Examples or Components',
                       when: 'the link is activated',
                       then: 'the application follows the selected destination',
@@ -452,6 +506,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BASIC-07',
+                      requirementRefs: ['A11Y-BASIC-01'],
                       given: 'the page is scrolled',
                       when: 'the Header remains visible',
                       then: 'the Header stays at the top while its visual surface can change to remain readable',
@@ -461,6 +517,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BASIC-08',
+                      requirementRefs: ['A11Y-BASIC-02'],
                       given: 'the viewport becomes narrow',
                       when: 'the Header changes presentation',
                       then: 'the navigation remains available through the mobile presentation',
@@ -471,6 +529,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BASIC-09',
+                      requirementRefs: ['TR-BASIC-01'],
                       given: 'a keyboard user moves through the Header',
                       when: 'focus reaches each interactive element',
                       then: 'the order is understandable and every focused element has a visible focus treatment',
@@ -481,6 +541,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BASIC-10',
+                      requirementRefs: ['TR-BASIC-02'],
                       given: 'the Header is viewed at the narrowest supported width',
                       when: 'the content reflows',
                       then: 'the brand, trigger, and any visible controls remain usable',
@@ -492,12 +554,21 @@ function ComponentsHeaderPage() {
                     },
                   ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
+                      id: 'VR-BASIC-01',
+                      criterionRefs: ['AC-BASIC-01'],
+                      role: 'Functional QA',
+                      description: 'Confirms structure and desktop navigation.',
                       title: 'Structure and desktop navigation',
                       cases: [
                         {
+                          id: 'VR-BASIC-02',
+                          criterionRefs: ['AC-BASIC-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms brand and links.',
                           title: 'Brand and links',
                           steps: [
                             'Render the Header at a desktop-width viewport.',
@@ -508,6 +579,10 @@ function ComponentsHeaderPage() {
                             'The brand appears before one Global navigation landmark; Examples and Components are visible links in the supplied order.',
                         },
                         {
+                          id: 'VR-BASIC-03',
+                          criterionRefs: ['AC-BASIC-03'],
+                          role: 'Functional QA',
+                          description: 'Confirms normal destination outcomes.',
                           title: 'Normal destination outcomes',
                           steps: [
                             'Activate Examples.',
@@ -520,9 +595,17 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-BASIC-04',
+                      criterionRefs: ['AC-BASIC-04'],
+                      role: 'Responsive QA',
+                      description: 'Confirms scroll and responsive behavior.',
                       title: 'Scroll and responsive behavior',
                       cases: [
                         {
+                          id: 'VR-BASIC-05',
+                          criterionRefs: ['AC-BASIC-05'],
+                          role: 'Visual QA',
+                          description: 'Confirms scrolled shell.',
                           title: 'Scrolled shell',
                           steps: [
                             'Scroll the page past the Header threshold.',
@@ -533,6 +616,10 @@ function ComponentsHeaderPage() {
                             'The Header remains available at the top, gains only its intended readability treatment, and does not obscure the page content.',
                         },
                         {
+                          id: 'VR-BASIC-06',
+                          criterionRefs: ['AC-BASIC-06'],
+                          role: 'Responsive QA',
+                          description: 'Confirms mobile transformation.',
                           title: 'Mobile transformation',
                           steps: [
                             'Resize below the mobile breakpoint.',
@@ -545,9 +632,17 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-BASIC-07',
+                      criterionRefs: ['AC-BASIC-07'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms keyboard and accessibility.',
                       title: 'Keyboard and accessibility',
                       cases: [
                         {
+                          id: 'VR-BASIC-08',
+                          criterionRefs: ['AC-BASIC-08'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms keyboard order.',
                           title: 'Keyboard order',
                           steps: [
                             'Use Tab from the start of the Header.',
@@ -558,6 +653,10 @@ function ComponentsHeaderPage() {
                             'Every interactive target is reachable in an understandable order and has a visible focus treatment.',
                         },
                         {
+                          id: 'VR-BASIC-09',
+                          criterionRefs: ['AC-BASIC-09'],
+                          role: 'Responsive QA',
+                          description: 'Confirms narrow boundary.',
                           title: 'Narrow boundary',
                           steps: [
                             'Test the narrowest supported width.',
@@ -647,8 +746,50 @@ function ComponentsHeaderPage() {
                 requirements: {
                   userStory:
                     'As an application user, I want a custom product brand to remain recognizable and operable so that branding can change without weakening navigation or accessibility.',
+                  groups: [
+                    {
+                      id: 'BR-BRAND',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that the supplied brand content appears as one recognizable brand area.',
+                        'The Header must ensure that the person reaches the link destination.',
+                      ],
+                    },
+                    {
+                      id: 'FR-BRAND',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that decorative artwork does not create a duplicate or confusing name.',
+                        'The Header must ensure that the complete brand target has a visible focus treatment.',
+                      ],
+                    },
+                    {
+                      id: 'NFR-BRAND',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the logo remains aligned with the Header navigation.',
+                        'The Header must ensure that the custom brand remains understandable while navigation changes presentation.',
+                      ],
+                    },
+                    {
+                      id: 'A11Y-BRAND',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that the brand and navigation remain distinct and understandable.',
+                      ],
+                    },
+                    {
+                      id: 'TR-BRAND',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that the complete brand target remains usable.',
+                      ],
+                    },
+                  ],
                   acceptanceCriteria: [
                     {
+                      id: 'AC-BRAND-01',
+                      requirementRefs: ['BR-BRAND-01'],
                       given: 'the Header receives a custom logo slot',
                       when: 'the shell renders',
                       then: 'the supplied brand content appears as one recognizable brand area',
@@ -658,6 +799,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BRAND-02',
+                      requirementRefs: ['BR-BRAND-02'],
                       given: 'the custom brand includes a link',
                       when: 'the person activates the brand',
                       then: 'the person reaches the link destination',
@@ -667,6 +810,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BRAND-03',
+                      requirementRefs: ['FR-BRAND-01'],
                       given: 'the custom logo contains artwork',
                       when: 'assistive technology reads the brand',
                       then: 'decorative artwork does not create a duplicate or confusing name',
@@ -676,6 +821,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BRAND-04',
+                      requirementRefs: ['FR-BRAND-02'],
                       given: 'the custom brand receives keyboard focus',
                       when: 'the person navigates with the keyboard',
                       then: 'the complete brand target has a visible focus treatment',
@@ -685,6 +832,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BRAND-05',
+                      requirementRefs: ['NFR-BRAND-01'],
                       given: 'the viewport is wide',
                       when: 'the custom brand is shown',
                       then: 'the logo remains aligned with the Header navigation',
@@ -694,12 +843,16 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BRAND-06',
+                      requirementRefs: ['NFR-BRAND-02'],
                       given: 'the viewport becomes narrow',
                       when: 'the Header changes presentation',
                       then: 'the custom brand remains understandable while navigation changes presentation',
                       and: ['the brand is not clipped', 'the mobile trigger remains available'],
                     },
                     {
+                      id: 'AC-BRAND-07',
+                      requirementRefs: ['A11Y-BRAND-01'],
                       given: 'the custom brand Header contains navigation',
                       when: 'landmarks are announced',
                       then: 'the brand and navigation remain distinct and understandable',
@@ -709,6 +862,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-BRAND-08',
+                      requirementRefs: ['TR-BRAND-02'],
                       given: 'the brand is displayed at the narrowest supported width',
                       when: 'the layout reflows',
                       then: 'the complete brand target remains usable',
@@ -719,12 +874,21 @@ function ComponentsHeaderPage() {
                     },
                   ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
+                      id: 'VR-BRAND-01',
+                      criterionRefs: ['AC-BRAND-01'],
+                      role: 'Functional QA',
+                      description: 'Confirms custom brand structure.',
                       title: 'Custom brand structure',
                       cases: [
                         {
+                          id: 'VR-BRAND-02',
+                          criterionRefs: ['AC-BRAND-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms brand target.',
                           title: 'Brand target',
                           steps: [
                             'Render the custom logo example.',
@@ -735,6 +899,10 @@ function ComponentsHeaderPage() {
                             'The supplied custom brand appears as one recognizable, accessible link and reaches its configured destination.',
                         },
                         {
+                          id: 'VR-BRAND-03',
+                          criterionRefs: ['AC-BRAND-03'],
+                          role: 'Functional QA',
+                          description: 'Confirms decorative artwork.',
                           title: 'Decorative artwork',
                           steps: [
                             'Inspect the logo artwork with accessibility tools.',
@@ -746,14 +914,26 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-BRAND-04',
+                      criterionRefs: ['AC-BRAND-04'],
+                      role: 'Responsive QA',
+                      description: 'Confirms responsive custom brand.',
                       title: 'Responsive custom brand',
                       cases: [
                         {
+                          id: 'VR-BRAND-05',
+                          criterionRefs: ['AC-BRAND-05'],
+                          role: 'Functional QA',
+                          description: 'Confirms wide layout.',
                           title: 'Wide layout',
                           steps: ['Inspect the brand and navigation at a wide viewport.'],
                           expected: 'The brand aligns with navigation without overlap.',
                         },
                         {
+                          id: 'VR-BRAND-06',
+                          criterionRefs: ['AC-BRAND-06'],
+                          role: 'Responsive QA',
+                          description: 'Confirms narrow layout.',
                           title: 'Narrow layout',
                           steps: [
                             'Resize through the mobile breakpoint.',
@@ -765,9 +945,17 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-BRAND-07',
+                      criterionRefs: ['AC-BRAND-07'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms keyboard brand behavior.',
                       title: 'Keyboard brand behavior',
                       cases: [
                         {
+                          id: 'VR-BRAND-08',
+                          criterionRefs: ['AC-BRAND-08'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms complete target focus.',
                           title: 'Complete target focus',
                           steps: [
                             'Tab to the custom brand.',
@@ -851,8 +1039,51 @@ function ComponentsHeaderPage() {
                 requirements: {
                   userStory:
                     'As an application user, I want the Header to identify where I am without hiding other destinations so that I can navigate confidently.',
+                  groups: [
+                    {
+                      id: 'BR-CURRENT',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that Components is visibly identified as the current destination.',
+                        'The Header must ensure that the link is announced as representing the current page.',
+                      ],
+                    },
+                    {
+                      id: 'FR-CURRENT',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that the inactive link does not look selected.',
+                        'The Header must ensure that focus and current-location treatment are both understandable.',
+                      ],
+                    },
+                    {
+                      id: 'NFR-CURRENT',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the application can update the current state to Examples.',
+                        'The Header must ensure that the navigation has its configured accessible name.',
+                      ],
+                    },
+                    {
+                      id: 'A11Y-CURRENT',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that the current destination remains identifiable in the responsive presentation.',
+                        'The Header must ensure that the current state remains distinguishable from scroll and responsive styling.',
+                      ],
+                    },
+                    {
+                      id: 'TR-CURRENT',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that current and focus information remain available without clipping.',
+                      ],
+                    },
+                  ],
                   acceptanceCriteria: [
                     {
+                      id: 'AC-CURRENT-01',
+                      requirementRefs: ['BR-CURRENT-01'],
                       given:
                         'the navigation contains Examples and Components and Components is current',
                       when: 'the Header renders',
@@ -864,6 +1095,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-02',
+                      requirementRefs: ['BR-CURRENT-02'],
                       given: 'the current Components link is rendered',
                       when: 'assistive technology reads it',
                       then: 'the link is announced as representing the current page',
@@ -873,6 +1106,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-03',
+                      requirementRefs: ['FR-CURRENT-01'],
                       given: 'an inactive navigation link is available',
                       when: 'the person views it',
                       then: 'the inactive link does not look selected',
@@ -882,6 +1117,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-04',
+                      requirementRefs: ['FR-CURRENT-02'],
                       given: 'a person focuses the current link',
                       when: 'the focus state appears',
                       then: 'focus and current-location treatment are both understandable',
@@ -891,6 +1128,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-05',
+                      requirementRefs: ['NFR-CURRENT-01'],
                       given: 'a person selects Examples',
                       when: 'the destination changes',
                       then: 'the application can update the current state to Examples',
@@ -900,6 +1139,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-06',
+                      requirementRefs: ['NFR-CURRENT-02'],
                       given: 'assistive technology reads the Header',
                       when: 'the landmarks are announced',
                       then: 'the navigation has its configured accessible name',
@@ -909,6 +1150,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-07',
+                      requirementRefs: ['A11Y-CURRENT-01'],
                       given: 'the viewport becomes narrow',
                       when: 'the mobile presentation appears',
                       then: 'the current destination remains identifiable in the responsive presentation',
@@ -918,6 +1161,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-08',
+                      requirementRefs: ['A11Y-CURRENT-02'],
                       given: 'the Header is scrolled or shown at different widths',
                       when: 'the visual shell changes',
                       then: 'the current state remains distinguishable from scroll and responsive styling',
@@ -927,6 +1172,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-CURRENT-09',
+                      requirementRefs: ['TR-CURRENT-01'],
                       given: 'the Header is viewed at the narrowest supported width',
                       when: 'the layout reflows',
                       then: 'current and focus information remain available without clipping',
@@ -937,12 +1184,21 @@ function ComponentsHeaderPage() {
                     },
                   ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
+                      id: 'VR-CURRENT-01',
+                      criterionRefs: ['AC-CURRENT-01'],
+                      role: 'Functional QA',
+                      description: 'Confirms current-location behavior.',
                       title: 'Current-location behavior',
                       cases: [
                         {
+                          id: 'VR-CURRENT-02',
+                          criterionRefs: ['AC-CURRENT-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms current link.',
                           title: 'Current link',
                           steps: [
                             'Render the example with Components current.',
@@ -953,6 +1209,10 @@ function ComponentsHeaderPage() {
                             'Only Components has the active visual treatment, data-current state, and aria-current="page"; Examples remains an ordinary link.',
                         },
                         {
+                          id: 'VR-CURRENT-03',
+                          criterionRefs: ['AC-CURRENT-03'],
+                          role: 'Functional QA',
+                          description: 'Confirms state update.',
                           title: 'State update',
                           steps: [
                             'Change the application-provided current item to Examples.',
@@ -965,15 +1225,27 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-CURRENT-04',
+                      criterionRefs: ['AC-CURRENT-04'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms focus versus selection.',
                       title: 'Focus versus selection',
                       cases: [
                         {
+                          id: 'VR-CURRENT-05',
+                          criterionRefs: ['AC-CURRENT-05'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms current focused link.',
                           title: 'Current focused link',
                           steps: ['Tab to Components.', 'Compare focus and current styling.'],
                           expected:
                             'The focus indicator and current treatment are both visible and distinguishable.',
                         },
                         {
+                          id: 'VR-CURRENT-06',
+                          criterionRefs: ['AC-CURRENT-06'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms keyboard navigation.',
                           title: 'Keyboard navigation',
                           steps: [
                             'Activate the focused link with Enter.',
@@ -985,9 +1257,17 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-CURRENT-07',
+                      criterionRefs: ['AC-CURRENT-07'],
+                      role: 'Responsive QA',
+                      description: 'Confirms responsive current state.',
                       title: 'Responsive current state',
                       cases: [
                         {
+                          id: 'VR-CURRENT-08',
+                          criterionRefs: ['AC-CURRENT-08'],
+                          role: 'Responsive QA',
+                          description: 'Confirms mobile current state.',
                           title: 'Mobile current state',
                           steps: [
                             'Resize below the mobile breakpoint.',
@@ -1077,8 +1357,52 @@ function ComponentsHeaderPage() {
                 requirements: {
                   userStory:
                     'As an application user, I want grouped Header destinations to open predictably on desktop and remain understandable on mobile so that I can reach child pages without losing my place.',
+                  groups: [
+                    {
+                      id: 'BR-GROUPED',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that Examples is a direct link and Components is a menu trigger.',
+                        'The Header must ensure that the menu contents are not presented as an open menu.',
+                      ],
+                    },
+                    {
+                      id: 'FR-GROUPED',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that the child destinations are presented in the documented order.',
+                        'The Header must ensure that keyboard users receive the same child destinations as pointer users.',
+                      ],
+                    },
+                    {
+                      id: 'NFR-GROUPED',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the application follows that child destination.',
+                        'The Header must ensure that the menu closes and the trigger is usable again.',
+                      ],
+                    },
+                    {
+                      id: 'A11Y-GROUPED',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that the menu closes without selecting a child.',
+                        'The Header must ensure that the same hierarchy is available in the mobile navigation.',
+                      ],
+                    },
+                    {
+                      id: 'TR-GROUPED',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that the label remains understandable and usable.',
+                        'The Header must ensure that the order follows the visible menu hierarchy and every focused control is identifiable.',
+                      ],
+                    },
+                  ],
                   acceptanceCriteria: [
                     {
+                      id: 'AC-GROUPED-01',
+                      requirementRefs: ['BR-GROUPED-01'],
                       given:
                         'the Header contains Examples without children and Components with child links',
                       when: 'the desktop Header renders',
@@ -1090,6 +1414,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-02',
+                      requirementRefs: ['BR-GROUPED-02'],
                       given: 'the Components menu is closed',
                       when: 'the person views the Header',
                       then: 'the menu contents are not presented as an open menu',
@@ -1099,6 +1425,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-03',
+                      requirementRefs: ['FR-GROUPED-01'],
                       given: 'the person opens Components with a pointer',
                       when: 'the menu opens',
                       then: 'the child destinations are presented in the documented order',
@@ -1109,6 +1437,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-04',
+                      requirementRefs: ['FR-GROUPED-02'],
                       given: 'the person opens Components with the keyboard',
                       when: 'the menu opens',
                       then: 'keyboard users receive the same child destinations as pointer users',
@@ -1118,6 +1448,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-05',
+                      requirementRefs: ['NFR-GROUPED-01'],
                       given: 'the menu is open',
                       when: 'the person selects a child',
                       then: 'the application follows that child destination',
@@ -1127,6 +1459,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-06',
+                      requirementRefs: ['NFR-GROUPED-02'],
                       given: 'the menu is open',
                       when: 'the person presses Escape',
                       then: 'the menu closes and the trigger is usable again',
@@ -1136,6 +1470,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-07',
+                      requirementRefs: ['A11Y-GROUPED-01'],
                       given: 'the menu is open',
                       when: 'the person clicks outside it',
                       then: 'the menu closes without selecting a child',
@@ -1145,6 +1481,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-08',
+                      requirementRefs: ['A11Y-GROUPED-02'],
                       given: 'the viewport becomes narrow',
                       when: 'the Header changes presentation',
                       then: 'the same hierarchy is available in the mobile navigation',
@@ -1155,6 +1493,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-09',
+                      requirementRefs: ['TR-GROUPED-01'],
                       given: 'a child has a long label or the viewport is narrow',
                       when: 'the menu or mobile group is shown',
                       then: 'the label remains understandable and usable',
@@ -1164,6 +1504,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-GROUPED-10',
+                      requirementRefs: ['TR-GROUPED-02'],
                       given: 'a keyboard user moves through the menu',
                       when: 'focus changes',
                       then: 'the order follows the visible menu hierarchy and every focused control is identifiable',
@@ -1175,12 +1517,21 @@ function ComponentsHeaderPage() {
                     },
                   ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
+                      id: 'VR-GROUPED-01',
+                      criterionRefs: ['AC-GROUPED-01'],
+                      role: 'Functional QA',
+                      description: 'Confirms desktop menu interaction.',
                       title: 'Desktop menu interaction',
                       cases: [
                         {
+                          id: 'VR-GROUPED-02',
+                          criterionRefs: ['AC-GROUPED-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms leaf and parent.',
                           title: 'Leaf and parent',
                           steps: [
                             'Render the Header at desktop width.',
@@ -1191,6 +1542,10 @@ function ComponentsHeaderPage() {
                             'Examples is a direct link; Components is a closed menu trigger; child links are not presented until the menu opens.',
                         },
                         {
+                          id: 'VR-GROUPED-03',
+                          criterionRefs: ['AC-GROUPED-03'],
+                          role: 'Functional QA',
+                          description: 'Confirms pointer open and select.',
                           title: 'Pointer open and select',
                           steps: [
                             'Open Components with a pointer.',
@@ -1201,6 +1556,10 @@ function ComponentsHeaderPage() {
                             'The trigger communicates expanded state, the children appear in order, and selecting one follows its href.',
                         },
                         {
+                          id: 'VR-GROUPED-04',
+                          criterionRefs: ['AC-GROUPED-04'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms keyboard open and navigate.',
                           title: 'Keyboard open and navigate',
                           steps: [
                             'Focus Components with the keyboard.',
@@ -1213,9 +1572,17 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-GROUPED-05',
+                      criterionRefs: ['AC-GROUPED-05'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms dismissal and focus.',
                       title: 'Dismissal and focus',
                       cases: [
                         {
+                          id: 'VR-GROUPED-06',
+                          criterionRefs: ['AC-GROUPED-06'],
+                          role: 'Functional QA',
+                          description: 'Confirms escape.',
                           title: 'Escape',
                           steps: [
                             'Open the menu.',
@@ -1226,6 +1593,10 @@ function ComponentsHeaderPage() {
                             'The menu closes and focus remains associated with a usable trigger.',
                         },
                         {
+                          id: 'VR-GROUPED-07',
+                          criterionRefs: ['AC-GROUPED-07'],
+                          role: 'Functional QA',
+                          description: 'Confirms outside click.',
                           title: 'Outside click',
                           steps: [
                             'Open the menu.',
@@ -1238,9 +1609,17 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-GROUPED-08',
+                      criterionRefs: ['AC-GROUPED-08'],
+                      role: 'Responsive QA',
+                      description: 'Confirms mobile hierarchy.',
                       title: 'Mobile hierarchy',
                       cases: [
                         {
+                          id: 'VR-GROUPED-09',
+                          criterionRefs: ['AC-GROUPED-09'],
+                          role: 'Functional QA',
+                          description: 'Confirms shared hierarchy.',
                           title: 'Shared hierarchy',
                           steps: [
                             'Resize below the mobile breakpoint.',
@@ -1251,6 +1630,10 @@ function ComponentsHeaderPage() {
                             'Examples remains a direct link; Components becomes one labelled group containing its children; no extra nested navigation landmark is created.',
                         },
                         {
+                          id: 'VR-GROUPED-10',
+                          criterionRefs: ['AC-GROUPED-10'],
+                          role: 'Responsive QA',
+                          description: 'Confirms mobile selection and boundary.',
                           title: 'Mobile selection and boundary',
                           steps: [
                             'Select a mobile child.',
@@ -1342,8 +1725,50 @@ function ComponentsHeaderPage() {
                 requirements: {
                   userStory:
                     'As an application user, I want icons to reinforce Header destinations without making navigation ambiguous so that the shell remains recognizable and accessible.',
+                  groups: [
+                    {
+                      id: 'BR-ICON',
+                      title: 'Business requirements',
+                      items: [
+                        'The Header must ensure that each icon supports recognition without replacing the label.',
+                        'The Header must ensure that the icon is not announced as a second name.',
+                      ],
+                    },
+                    {
+                      id: 'FR-ICON',
+                      title: 'Functional requirements',
+                      items: [
+                        'The Header must ensure that icons align consistently with their associated labels.',
+                        'The Header must ensure that the application follows its href.',
+                      ],
+                    },
+                    {
+                      id: 'NFR-ICON',
+                      title: 'Non-functional requirements',
+                      items: [
+                        'The Header must ensure that the child destination is reached.',
+                        'The Header must ensure that the focus treatment surrounds the usable target.',
+                      ],
+                    },
+                    {
+                      id: 'A11Y-ICON',
+                      title: 'Accessibility requirements',
+                      items: [
+                        'The Header must ensure that icons and labels remain understandable in the responsive hierarchy.',
+                      ],
+                    },
+                    {
+                      id: 'TR-ICON',
+                      title: 'Technical requirements',
+                      items: [
+                        'The Header must ensure that icons do not force clipping or horizontal scrolling.',
+                      ],
+                    },
+                  ],
                   acceptanceCriteria: [
                     {
+                      id: 'AC-ICON-01',
+                      requirementRefs: ['BR-ICON-01'],
                       given: 'the Header provides icons with visible labels',
                       when: 'the links or trigger render',
                       then: 'each icon supports recognition without replacing the label',
@@ -1353,6 +1778,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-ICON-02',
+                      requirementRefs: ['BR-ICON-02'],
                       given: 'an icon is decorative',
                       when: 'assistive technology reads the control',
                       then: 'the icon is not announced as a second name',
@@ -1362,6 +1789,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-ICON-03',
+                      requirementRefs: ['FR-ICON-01'],
                       given: 'Examples has an icon and Components has an icon with children',
                       when: 'the desktop Header renders',
                       then: 'icons align consistently with their associated labels',
@@ -1371,6 +1800,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-ICON-04',
+                      requirementRefs: ['FR-ICON-02'],
                       given: 'a person selects an icon-supported direct link',
                       when: 'the link is activated',
                       then: 'the application follows its href',
@@ -1380,6 +1811,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-ICON-05',
+                      requirementRefs: ['NFR-ICON-01'],
                       given: 'a person opens and selects an icon-supported dropdown child',
                       when: 'the menu interaction completes',
                       then: 'the child destination is reached',
@@ -1389,6 +1822,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-ICON-06',
+                      requirementRefs: ['NFR-ICON-02'],
                       given: 'a keyboard user focuses an icon-supported control',
                       when: 'the control receives focus',
                       then: 'the focus treatment surrounds the usable target',
@@ -1398,6 +1833,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-ICON-07',
+                      requirementRefs: ['A11Y-ICON-01'],
                       given: 'the viewport becomes narrow',
                       when: 'the mobile presentation appears',
                       then: 'icons and labels remain understandable in the responsive hierarchy',
@@ -1408,6 +1845,8 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'AC-ICON-08',
+                      requirementRefs: ['TR-ICON-02'],
                       given: 'the Header is viewed at the narrowest supported width',
                       when: 'the content reflows',
                       then: 'icons do not force clipping or horizontal scrolling',
@@ -1415,18 +1854,31 @@ function ComponentsHeaderPage() {
                     },
                   ],
                 },
+                tabLayout: 'requirements' as const,
                 verification: {
                   scenarios: [
                     {
+                      id: 'VR-ICON-01',
+                      criterionRefs: ['AC-ICON-01'],
+                      role: 'Accessibility QA',
+                      description: 'Confirms icon and label semantics.',
                       title: 'Icon and label semantics',
                       cases: [
                         {
+                          id: 'VR-ICON-02',
+                          criterionRefs: ['AC-ICON-02'],
+                          role: 'Functional QA',
+                          description: 'Confirms visible pairing.',
                           title: 'Visible pairing',
                           steps: ['Render the icon example.', 'Inspect each icon-label pair.'],
                           expected:
                             'Each icon aligns with its label and the visible label remains the destination name.',
                         },
                         {
+                          id: 'VR-ICON-03',
+                          criterionRefs: ['AC-ICON-03'],
+                          role: 'Accessibility QA',
+                          description: 'Confirms accessibility name.',
                           title: 'Accessibility name',
                           steps: ['Inspect the icon and link with accessibility tools.'],
                           expected:
@@ -1435,9 +1887,17 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-ICON-04',
+                      criterionRefs: ['AC-ICON-04'],
+                      role: 'Functional QA',
+                      description: 'Confirms interaction outcomes.',
                       title: 'Interaction outcomes',
                       cases: [
                         {
+                          id: 'VR-ICON-05',
+                          criterionRefs: ['AC-ICON-05'],
+                          role: 'Functional QA',
+                          description: 'Confirms direct link.',
                           title: 'Direct link',
                           steps: [
                             'Focus an icon-supported direct link.',
@@ -1447,6 +1907,10 @@ function ComponentsHeaderPage() {
                             'The complete icon-and-label target receives focus and follows its href.',
                         },
                         {
+                          id: 'VR-ICON-06',
+                          criterionRefs: ['AC-ICON-06'],
+                          role: 'Functional QA',
+                          description: 'Confirms dropdown child.',
                           title: 'Dropdown child',
                           steps: ['Open the icon-supported parent.', 'Focus and activate a child.'],
                           expected:
@@ -1455,9 +1919,17 @@ function ComponentsHeaderPage() {
                       ],
                     },
                     {
+                      id: 'VR-ICON-07',
+                      criterionRefs: ['AC-ICON-07'],
+                      role: 'Responsive QA',
+                      description: 'Confirms responsive icon behavior.',
                       title: 'Responsive icon behavior',
                       cases: [
                         {
+                          id: 'VR-ICON-08',
+                          criterionRefs: ['AC-ICON-08'],
+                          role: 'Responsive QA',
+                          description: 'Confirms mobile presentation.',
                           title: 'Mobile presentation',
                           steps: [
                             'Resize below the mobile breakpoint.',
@@ -1468,6 +1940,10 @@ function ComponentsHeaderPage() {
                             'Icons remain decorative, labels remain available, direct links stay direct, and grouped navigation retains its hierarchy.',
                         },
                         {
+                          id: 'VR-ICON-09',
+                          criterionRefs: ['AC-ICON-01'],
+                          role: 'Responsive QA',
+                          description: 'Confirms narrow boundary.',
                           title: 'Narrow boundary',
                           steps: [
                             'Test the narrowest supported width.',
