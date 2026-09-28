@@ -123,6 +123,72 @@ const migratedHeaderFixture = {
   },
 }
 
+const migratedTabNavigationFixture = {
+  ...supplemental,
+  tabLayout: 'requirements' as const,
+  requirements: {
+    userStory:
+      'As a person moving through a product area, I want nearby destinations to be easy to scan and understand.',
+    groups: [
+      {
+        id: 'BR-BASIC',
+        title: 'Business requirements',
+        items: ['People can identify this row as navigation for the current section.'],
+      },
+      {
+        id: 'FR-BASIC',
+        title: 'Functional requirements',
+        items: ['TabNavigation renders supplied destinations as real anchors.'],
+      },
+      {
+        id: 'NFR-BASIC',
+        title: 'Non-functional requirements',
+        items: ['The row remains compact and aligned with the page.'],
+      },
+      {
+        id: 'A11Y-BASIC',
+        title: 'Accessibility requirements',
+        items: ['The navigation exposes a distinct accessible name.'],
+      },
+      {
+        id: 'TR-BASIC',
+        title: 'Technical requirements',
+        items: ['The consuming application supplies the navigation data.'],
+      },
+    ],
+    acceptanceCriteria: [
+      {
+        id: 'AC-BASIC-01',
+        requirementRefs: ['BR-BASIC-01'],
+        given: 'TabNavigation receives section links',
+        when: 'the row renders',
+        then: 'the links appear in the supplied order',
+      },
+    ],
+  },
+  verification: {
+    scenarios: [
+      {
+        id: 'VR-BASIC-01',
+        criterionRefs: ['AC-BASIC-01'],
+        title: 'Structure and link behavior',
+        description: 'Confirms the migrated TabNavigation fixture uses the layered contract.',
+        role: 'Functional QA',
+        cases: [
+          {
+            id: 'VR-BASIC-02',
+            criterionRefs: ['AC-BASIC-01'],
+            title: 'Landmark and order',
+            description: 'Confirms the navigation exposes the supplied destinations in order.',
+            steps: ['Render the TabNavigation fixture.', 'Inspect the landmark and links.'],
+            expected: 'A named navigation landmark contains the supplied links in order.',
+          },
+        ],
+      },
+    ],
+  },
+}
+
 describe('ExampleVariation supplemental content', () => {
   it('renders standardized tabs and switches supplemental content', () => {
     render(
@@ -281,6 +347,42 @@ describe('ExampleVariation supplemental content', () => {
     expect(screen.getAllByText('Verifies: AC-BASIC-01')).toHaveLength(2)
     expect(screen.getByText('VR-BASIC-02')).toBeTruthy()
     expect(screen.getByText('Primary role: Functional QA')).toBeTruthy()
+  })
+
+  it('supports a migrated TabNavigation fixture on the layered renderer path', () => {
+    render(
+      <ExampleVariation
+        title="TabNavigation"
+        summary="A short row of section links."
+        tryIt="Tab through the section links and inspect the landmark name."
+        supplemental={migratedTabNavigationFixture}
+      >
+        <nav aria-label="Section navigation" data-slot="tab-navigation">
+          <a href="/components/tab-navigation">Overview</a>
+        </nav>
+      </ExampleVariation>,
+    )
+
+    expect(screen.getAllByRole('tab').map((tab) => tab.textContent)).toEqual([
+      'Guidance',
+      'Requirements',
+      'Criteria',
+      'Verification',
+      'Code',
+    ])
+    fireEvent.click(screen.getByRole('tab', { name: 'Requirements' }))
+    expect(screen.getByText('BR-BASIC-01')).toBeTruthy()
+    expect(screen.getByText('A11Y-BASIC')).toBeTruthy()
+    fireEvent.click(screen.getByRole('tab', { name: 'Criteria' }))
+    expect(screen.getByText('AC-BASIC-01')).toBeTruthy()
+    expect(screen.getByText('Satisfies: BR-BASIC-01')).toBeTruthy()
+    fireEvent.click(screen.getByRole('tab', { name: 'Verification' }))
+    expect(screen.getByText('VR-BASIC-01')).toBeTruthy()
+    expect(
+      screen.getByText('Confirms the migrated TabNavigation fixture uses the layered contract.'),
+    ).toBeTruthy()
+    expect(screen.getAllByText('Verifies: AC-BASIC-01')).toHaveLength(2)
+    expect(screen.getByText('VR-BASIC-02')).toBeTruthy()
   })
 
   it('keeps tab and verification relationships unique across examples', () => {
