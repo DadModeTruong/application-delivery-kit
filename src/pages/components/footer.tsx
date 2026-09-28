@@ -798,10 +798,11 @@ function ComponentsFooterPage() {
               ]}
             />
           </div>
-          <p className="text-sm leading-6 text-muted-foreground">
-            Try it: tab through the links and resize the preview. The links should remain ordinary
-            anchors with visible focus, and the row should wrap rather than scroll horizontally.
-          </p>
+          <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
+            <strong className="mr-2 text-foreground">Try it:</strong>
+            Tab through the links and resize the preview. The links should remain ordinary anchors
+            with visible focus, and the row should wrap rather than scroll horizontally.
+          </div>
         </section>
 
         <section

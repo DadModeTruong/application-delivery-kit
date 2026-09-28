@@ -121,10 +121,11 @@ function ComponentsTabNavigationPage() {
             />
           </div>
 
-          <p className="text-sm leading-6 text-muted-foreground">
-            Try it: tab to each tab, activate one, and confirm the selected tab and page content
-            stay understandable without relying on color alone.
-          </p>
+          <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
+            <strong className="mr-2 text-foreground">Try it:</strong>
+            Tab to each tab, activate one, and confirm the selected tab and page content stay
+            understandable without relying on color alone.
+          </div>
         </section>
         <section
           className="grid gap-10 lg:grid-cols-2"
