@@ -234,7 +234,7 @@ function ComponentsTabNavigationPage() {
             at constrained widths. Every example uses the production TabNavigation component and the
             same five-tab documentation contract.
           </p>
-          <div className="space-y-8 [&_*:has(>[data-slot=tab-navigation])]:!p-0 [&_*:has(>[data-slot=tab-navigation])]:overflow-hidden">
+          <div className="space-y-8">
             <ExampleVariation
               title="Basic"
               summary="A short row of sibling links gives a section a clear, local navigation layer."
