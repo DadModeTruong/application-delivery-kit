@@ -54,9 +54,13 @@ type ButtonExampleConfig = {
 }
 
 function makeButtonSupplemental(config: ButtonExampleConfig) {
+  const businessId = `BR-${config.id}`
   const functionalId = `FR-${config.id}`
+  const nonFunctionalId = `NFR-${config.id}`
   const accessibilityId = `A11Y-${config.id}`
-  const criterionId = `AC-${config.id}-01`
+  const technicalId = `TR-${config.id}`
+  const functionalCriterionId = `AC-${config.id}-01`
+  const accessibilityCriterionId = `AC-${config.id}-02`
 
   return {
     tabLayout: 'requirements' as const,
@@ -75,29 +79,29 @@ function makeButtonSupplemental(config: ButtonExampleConfig) {
       html: config.html,
       props: [
         {
-          name: 'variant / size',
-          type: 'ButtonVariant / ButtonSize',
+          name: 'Button / LinkButton',
+          type: 'React component',
           description:
-            'Choose the visual hierarchy and density that fit the action and surrounding layout.',
+            'Provides the production action or navigation semantics used by this example.',
         },
         {
-          name: 'type',
-          type: 'button | submit | reset',
+          name: 'variant / size / type',
+          type: 'Button props',
           description:
-            'Declare the button behavior explicitly, especially when the control is inside a form.',
+            'Choose the visual hierarchy, density, and native behavior that fit the demonstrated action.',
         },
       ],
       attributes: [
         {
-          name: 'data-variant / data-size',
-          type: 'state hooks',
-          description: 'Expose the selected Button variant and size for styling and inspection.',
+          name: 'data-slot / data-variant / data-size',
+          type: 'component hooks',
+          description:
+            'Expose the production Button structure and selected visual options for styling and inspection.',
         },
         {
           name: 'aria-label / aria-busy / aria-haspopup',
           type: 'state and naming attributes',
-          description:
-            'Use the relevant attribute when the example needs an explicit name or state.',
+          description: 'Use the relevant naming or state attribute when the example requires it.',
         },
       ],
       notes:
@@ -108,47 +112,98 @@ function makeButtonSupplemental(config: ButtonExampleConfig) {
         'As a product team member, I want this Button pattern to communicate its action, state, and priority so that people can operate it confidently.',
       groups: [
         {
+          id: businessId,
+          title: 'Business requirements',
+          items: [
+            `The ${config.id.toLowerCase()} Button example must make the intended action or choice understandable before activation.`,
+            'The example must support the surrounding task without making unrelated controls appear equally important.',
+          ],
+        },
+        {
           id: functionalId,
           title: 'Functional requirements',
           items: config.requirements,
         },
         {
+          id: nonFunctionalId,
+          title: 'Non-functional requirements',
+          items: [
+            'The example must remain readable when labels wrap at narrow widths or increased text size.',
+            'The visual treatment must preserve action hierarchy without relying on color alone.',
+          ],
+        },
+        {
           id: accessibilityId,
           title: 'Accessibility requirements',
           items: [
-            'The control must have an accessible name and remain keyboard operable.',
-            'The control must expose the relevant state without relying on color alone.',
+            'The demonstrated controls must have accessible names and remain keyboard operable.',
+            'The demonstrated state or relationship must be exposed without relying on color alone.',
+          ],
+        },
+        {
+          id: technicalId,
+          title: 'Technical requirements',
+          items: [
+            'The example must use the production Button, LinkButton, or related interaction primitives shown in its Code panel.',
+            'The rendered structure must preserve native action or navigation semantics and the relevant state attributes.',
           ],
         },
       ],
       acceptanceCriteria: [
         {
-          id: criterionId,
-          requirementRefs: [`${functionalId}-01`, `${accessibilityId}-01`],
+          id: functionalCriterionId,
+          requirementRefs: [`${businessId}-01`, `${functionalId}-01`, `${technicalId}-01`],
           given: 'the Button example is rendered',
-          when: 'a person inspects and operates the demonstrated control',
+          when: 'a person inspects and operates the demonstrated action or actions',
           then: config.expected,
-          and: ['focus remains visible and the control’s accessible name describes its action'],
+          and: ['the visible result matches the documented purpose of the example'],
+        },
+        {
+          id: accessibilityCriterionId,
+          requirementRefs: [`${accessibilityId}-01`, `${nonFunctionalId}-01`],
+          given: 'a person uses the Button example with the keyboard or assistive technology',
+          when: 'focus moves to the demonstrated controls and the relevant action is inspected',
+          then: 'the controls remain named, keyboard operable, and visibly focused',
+          and: ['the documented state or relationship is exposed without relying on color alone'],
         },
       ],
     },
     verification: {
       scenarios: [
         {
-          id: `VR-${config.id}`,
-          criterionRefs: [criterionId],
-          role: 'Functional and accessibility QA',
+          id: `VR-${config.id}-01`,
+          criterionRefs: [functionalCriterionId],
+          role: 'Functional QA',
           title: 'Inspect and operate the Button example',
           cases: [
             {
-              id: `VR-${config.id}-01`,
-              criterionRefs: [criterionId],
+              id: `VR-${config.id}-01A`,
+              criterionRefs: [functionalCriterionId],
               title: 'Use the demonstrated Button pattern',
               steps: [
-                'Tab to the example control or controls and inspect the visible focus indicator.',
-                'Activate the control with the keyboard and inspect its demonstrated state or result.',
+                'Inspect the labels, variants, states, or relationships shown in the live example.',
+                'Activate the relevant control with a pointer and inspect its demonstrated result.',
               ],
               expected: config.expected,
+            },
+          ],
+        },
+        {
+          id: `VR-${config.id}-02`,
+          criterionRefs: [accessibilityCriterionId],
+          role: 'Accessibility QA',
+          title: 'Navigate the Button example with the keyboard',
+          cases: [
+            {
+              id: `VR-${config.id}-02A`,
+              criterionRefs: [accessibilityCriterionId],
+              title: 'Inspect focus and accessible names',
+              steps: [
+                'Tab to every demonstrated control and inspect the visible focus indicator.',
+                'Activate the relevant control with the keyboard and inspect the exposed state or result.',
+              ],
+              expected:
+                'Focus follows the visual order, every control has a useful accessible name, and the documented state or relationship remains exposed.',
             },
           ],
         },
