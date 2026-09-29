@@ -19,7 +19,7 @@ function TryIt({ children, className }: TryItProps) {
     <Alert className={cn('text-muted-foreground', className)}>
       <MousePointerClick aria-hidden="true" />
       <AlertTitle className="text-foreground">Try it</AlertTitle>
-      <AlertDescription>{children}</AlertDescription>
+      <AlertDescription className="w-full">{children}</AlertDescription>
     </Alert>
   )
 }
