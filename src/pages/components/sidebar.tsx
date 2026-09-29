@@ -1339,7 +1339,7 @@ function ComponentsSidebarPage() {
             Tab through the links, inspect the current state, and resize the page to review the
             application-owned responsive composition.
           </TryIt>
-          <div className="overflow-hidden rounded-xl border">
+          <div className="-mt-2 overflow-hidden rounded-xl border">
             <Sidebar
               aria-label="Sidebar recognition example"
               items={basicSidebarLinks}

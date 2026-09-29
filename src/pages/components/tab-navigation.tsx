@@ -116,7 +116,7 @@ function ComponentsTabNavigationPage() {
             understandable without relying on color alone.
           </TryIt>
 
-          <div className="overflow-hidden rounded-xl border [&_[data-slot=tab-navigation]]:!mb-0">
+          <div className="-mt-2 overflow-hidden rounded-xl border [&_[data-slot=tab-navigation]]:!mb-0">
             <TabNavigation
               items={[
                 { label: 'Overview', href: '/components/tab-navigation' },

@@ -150,7 +150,7 @@ function ComponentsHeaderPage() {
             that the same navigation remains usable in the mobile presentation.
           </TryIt>
 
-          <div className="space-y-4">
+          <div className="-mt-2 space-y-4">
             <div className="overflow-hidden rounded-xl border">
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}

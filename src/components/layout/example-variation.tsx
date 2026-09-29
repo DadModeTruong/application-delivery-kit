@@ -411,7 +411,9 @@ function StandardizedExample({
         <p className="text-muted-foreground">{summary}</p>
       </div>
       <TryIt>{tryIt}</TryIt>
-      <div className={cn('overflow-hidden rounded-xl border', exampleClassName)}>{children}</div>
+      <div className={cn('-mt-2 overflow-hidden rounded-xl border', exampleClassName)}>
+        {children}
+      </div>
       <Tabs defaultSelectedKey={tabIds.guidance} className="min-w-0 gap-2">
         <TabsList aria-label={`${title} supplemental information`} className="max-w-full flex-wrap">
           <TabsTrigger id={tabIds.guidance}>Guidance</TabsTrigger>

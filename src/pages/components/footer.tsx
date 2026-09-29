@@ -793,7 +793,7 @@ function ComponentsFooterPage() {
             Tab through the links and resize the preview. The links should remain ordinary anchors
             with visible focus, and the row should wrap rather than scroll horizontally.
           </TryIt>
-          <div className="overflow-hidden rounded-xl border [&_[data-slot=footer]]:!border-0 [&_[data-slot=footer]]:!py-2">
+          <div className="-mt-2 overflow-hidden rounded-xl border [&_[data-slot=footer]]:!border-0 [&_[data-slot=footer]]:!py-2">
             <Footer
               bordered={false}
               copyright={<>© 2026 Tommy Truong</>}
