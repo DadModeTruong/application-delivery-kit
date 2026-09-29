@@ -183,7 +183,7 @@ function ComponentsTabsPage() {
             title="Basic tabs"
             summary="Use a small set of related tabs to show one focused panel at a time while keeping the surrounding context in place."
             tryIt="Move through Tab 1, Tab 2, Tab 3, and Tab 4 with the keyboard. Activate each tab and confirm that its selected state matches the visible panel."
-            exampleClassName="border-0 bg-transparent p-0"
+            exampleClassName="overflow-visible rounded-none border-0 bg-transparent p-0"
             supplemental={{
               tabLayout: 'requirements',
               guidance: {
@@ -370,18 +370,6 @@ function ComponentsTabsPage() {
               </div>
             </Tabs>
           </ExampleVariation>
-        </section>
-
-        <section className="space-y-5" aria-labelledby="tabs-questions-heading">
-          <h2 id="tabs-questions-heading" className="text-2xl font-semibold tracking-tight">
-            Questions to ask
-          </h2>
-          <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-            <li>Are these views truly siblings, or would separate navigation be clearer?</li>
-            <li>Can each tab label predict the content that appears in its panel?</li>
-            <li>Can keyboard users identify, move between, and activate every tab?</li>
-            <li>What happens to the selected view when the surrounding context changes?</li>
-          </ul>
         </section>
       </div>
     </ComponentGuideShell>
