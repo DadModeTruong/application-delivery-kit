@@ -161,48 +161,46 @@ function ComponentsTabsPage() {
               tabLayout: 'requirements',
               guidance: {
                 explanation:
-                  'Documentation tabs separate why, what, how, and how to prove an example without displaying every layer at once.',
+                  'This basic example uses four sibling views to show how Tabs keep related content in the same context while displaying one panel at a time.',
                 considerations: [
-                  'Keep the tab labels consistent across standardized examples so readers build a reliable mental model.',
-                  'Use the live preview and Try it instruction to demonstrate the component; keep delivery detail in the supplemental panels.',
+                  'Keep the tab labels short, parallel, and consistent with the content in each panel.',
+                  'Use the live preview and Try it instruction to demonstrate the component; keep implementation detail in the supplemental panels.',
                 ],
                 doItems: [
                   'Use concise labels that match the content in each panel.',
                   'Keep the active panel associated with the selected tab and readable after keyboard navigation.',
-                  'Write Criteria and Verification as related but distinct delivery artifacts.',
+                  'Keep the four example panels focused on related content in the same context.',
                 ],
                 dontItems: [
-                  'Do not repeat the same paragraph in Guidance, Criteria, and Verification.',
                   'Do not use tabs to hide unrelated product destinations.',
-                  'Do not rely on color alone to show which documentation tab is selected.',
+                  'Do not make the tab labels vague or inconsistent with their panels.',
+                  'Do not rely on color alone to show which tab is selected.',
                 ],
               },
               code: {
                 language: 'tsx',
-                source: `<Tabs defaultSelectedKey="guidance">
-  <TabsList aria-label="Example documentation">
-    <TabsTrigger id="guidance-tab">Guidance</TabsTrigger>
-    <TabsTrigger id="requirements-tab">Requirements</TabsTrigger>
-    <TabsTrigger id="criteria-tab">Criteria</TabsTrigger>
-    <TabsTrigger id="verification-tab">Verification</TabsTrigger>
-    <TabsTrigger id="code-tab">Code</TabsTrigger>
+                source: `<Tabs defaultSelectedKey="tab-1">
+  <TabsList aria-label="Example tabs">
+    <TabsTrigger id="tab-1">Tab 1</TabsTrigger>
+    <TabsTrigger id="tab-2">Tab 2</TabsTrigger>
+    <TabsTrigger id="tab-3">Tab 3</TabsTrigger>
+    <TabsTrigger id="tab-4">Tab 4</TabsTrigger>
   </TabsList>
-  <TabsContent id="guidance-tab">...</TabsContent>
-  <TabsContent id="requirements-tab">...</TabsContent>
-  <TabsContent id="criteria-tab">...</TabsContent>
-  <TabsContent id="verification-tab">...</TabsContent>
-  <TabsContent id="code-tab">...</TabsContent>
+  <TabsContent id="tab-1">Tab 1 content.</TabsContent>
+  <TabsContent id="tab-2">Tab 2 content.</TabsContent>
+  <TabsContent id="tab-3">Tab 3 content.</TabsContent>
+  <TabsContent id="tab-4">Tab 4 content.</TabsContent>
 </Tabs>`,
-                html: `<div role="tablist" aria-label="Example documentation">
-  <button role="tab" aria-selected="true" aria-controls="guidance-panel">Guidance</button>
+                html: `<div role="tablist" aria-label="Example tabs">
+  <button role="tab" aria-selected="true" aria-controls="tab-1-panel">Tab 1</button>
   ...
 </div>
-<div role="tabpanel" aria-labelledby="guidance-tab">...</div>`,
+<div role="tabpanel" aria-labelledby="tab-1">Tab 1 content.</div>`,
                 props: [
                   {
                     name: 'aria-label',
                     type: 'string',
-                    example: 'Example documentation',
+                    example: 'Example tabs',
                     description:
                       'Names the tab list so its purpose is clear to assistive technology.',
                   },
@@ -230,13 +228,13 @@ function ComponentsTabsPage() {
               },
               requirements: {
                 userStory:
-                  'As a delivery team member, I want consistent documentation tabs so I can find guidance, requirements, criteria, verification, and code without losing the example context.',
+                  'As a delivery team member, I want four clearly labeled Tabs so people can switch between related panels without losing the example context.',
                 groups: [
                   {
                     id: 'FR-DOCS',
                     title: 'Functional requirements',
                     items: [
-                      'The tab list must expose Guidance, Requirements, Criteria, Verification, and Code.',
+                      'The tab list must expose Tab 1, Tab 2, Tab 3, and Tab 4.',
                       'Selecting a tab must show its associated panel and hide the other panels.',
                     ],
                   },
@@ -251,18 +249,18 @@ function ComponentsTabsPage() {
                 ],
                 acceptanceCriteria: [
                   {
-                    id: 'AC-DOCS-01',
+                    id: 'AC-TABS-01',
                     requirementRefs: ['FR-DOCS-01'],
-                    given: 'the documentation tab list is rendered',
-                    when: 'a person selects a tab',
+                    given: 'the example tab list is rendered',
+                    when: 'a person selects Tab 1, Tab 2, Tab 3, or Tab 4',
                     then: 'the selected tab becomes active and its associated panel is shown',
                     and: ['the previously selected panel is hidden'],
                   },
                   {
-                    id: 'AC-DOCS-02',
+                    id: 'AC-TABS-02',
                     requirementRefs: ['A11Y-DOCS-01', 'A11Y-DOCS-02'],
-                    given: 'a person navigates with the keyboard',
-                    when: 'focus moves through the tab list',
+                    given: 'a person navigates the example with the keyboard',
+                    when: 'focus moves through Tab 1, Tab 2, Tab 3, and Tab 4',
                     then: 'the tabs support the production keyboard behavior and show visible focus',
                     and: ['the active tab and panel relationship remains exposed'],
                   },
@@ -271,17 +269,17 @@ function ComponentsTabsPage() {
               verification: {
                 scenarios: [
                   {
-                    id: 'VR-DOCS-01',
-                    criterionRefs: ['AC-DOCS-01'],
+                    id: 'VR-TABS-01',
+                    criterionRefs: ['AC-TABS-01'],
                     role: 'Functional QA',
-                    title: 'Switch documentation panels',
+                    title: 'Switch example panels',
                     cases: [
                       {
-                        id: 'VR-DOCS-01A',
+                        id: 'VR-TABS-01A',
                         criterionRefs: ['AC-DOCS-01'],
-                        title: 'Select each documentation tab',
+                        title: 'Select each example tab',
                         steps: [
-                          'Activate Guidance, Requirements, Criteria, Verification, and Code with a pointer.',
+                          'Activate Tab 1, Tab 2, Tab 3, and Tab 4 with a pointer.',
                           'Inspect the visible panel after each selection.',
                         ],
                         expected:
@@ -290,17 +288,17 @@ function ComponentsTabsPage() {
                     ],
                   },
                   {
-                    id: 'VR-DOCS-02',
-                    criterionRefs: ['AC-DOCS-02'],
+                    id: 'VR-TABS-02',
+                    criterionRefs: ['AC-TABS-02'],
                     role: 'Accessibility QA',
                     title: 'Navigate and inspect tab relationships',
                     cases: [
                       {
-                        id: 'VR-DOCS-02A',
+                        id: 'VR-TABS-02A',
                         criterionRefs: ['AC-DOCS-02'],
                         title: 'Use keyboard navigation',
                         steps: [
-                          'Tab to the tab list, use the arrow keys to move, and activate a different tab.',
+                          'Tab to the example tab list, use the arrow keys to move, and activate a different tab.',
                           'Inspect the focused tab, selected state, and active panel relationship.',
                         ],
                         expected:
