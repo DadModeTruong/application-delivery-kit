@@ -183,6 +183,7 @@ function ComponentsTabsPage() {
             title="Basic tabs"
             summary="Use a small set of related tabs to show one focused panel at a time while keeping the surrounding context in place."
             tryIt="Move through Tab 1, Tab 2, Tab 3, and Tab 4 with the keyboard. Activate each tab and confirm that its selected state matches the visible panel."
+            exampleClassName="bg-card p-5 sm:p-6"
             supplemental={{
               tabLayout: 'requirements',
               guidance: {
