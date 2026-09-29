@@ -6,6 +6,8 @@
  * documentation shell, when adapting an example to an application.
  */
 
+import { useState } from 'react'
+
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { ExampleVariation } from '@/components/layout/example-variation'
 import { TryIt } from '@/components/layout/try-it'
@@ -20,6 +22,8 @@ import { Card, CardAction, CardContent, CardDescription, CardHeader } from '@/co
  * choose between static information, one destination, and explicit actions.
  */
 function ComponentsCardsPage() {
+  const [notificationsRead, setNotificationsRead] = useState(false)
+
   return (
     <ComponentGuideShell
       activeHref="/components/card"
@@ -672,7 +676,7 @@ function ComponentsCardsPage() {
             <ExampleVariation
               title="Card with an action"
               summary="Use a button when the Card action changes state or performs work in place."
-              tryIt="Tab to Mark all read, activate it, and confirm that the action is announced without navigating away or making the whole Card interactive."
+              tryIt="Tab to Mark all read, activate it, and confirm that the notification message changes to show that all notifications are read without navigating away or making the whole Card interactive."
               exampleClassName="p-0"
               supplemental={{
                 tabLayout: 'requirements',
@@ -681,7 +685,7 @@ function ComponentsCardsPage() {
                     'Use a button inside the Card when the action changes state or performs work in place. The Card remains a container while the native button owns the interaction and its accessible name.',
                   considerations: [
                     'CardAction places the button beside the header content without changing the Card’s semantic role.',
-                    'The example demonstrates a named action; a real application should connect it to state and announce any resulting update.',
+                    'The example connects the named action to demo-owned state and announces the resulting update; a real application should connect the same pattern to its notification state.',
                     'Do not make both the Card surface and its button competing interactive targets.',
                   ],
                   doItems: [
@@ -697,26 +701,30 @@ function ComponentsCardsPage() {
                 },
                 code: {
                   language: 'tsx',
-                  source: `<Card>
+                  source: `import { useState } from 'react'
+
+const [notificationsRead, setNotificationsRead] = useState(false)
+
+<Card>
   <CardHeader>
     <h3 className="text-base leading-snug font-medium">Notifications</h3>
-    <CardDescription>You have 3 unread notifications.</CardDescription>
+    <CardDescription aria-live="polite">{notificationsRead ? 'You have no unread notifications.' : 'You have 3 unread notifications.'}</CardDescription>
     <CardAction>
-      <Button type="button" variant="outline" size="sm">
+      <Button type="button" variant="outline" size="sm" onPress={() => setNotificationsRead(true)}>
         Mark all read
       </Button>
     </CardAction>
   </CardHeader>
   <CardContent>
     <p className="text-muted-foreground">
-      Marking them read updates the notification state without navigating away.
+      Marking them read changes the notification message without navigating away.
     </p>
   </CardContent>
 </Card>`,
                   html: `<div data-slot="card" data-size="default" class="...">
   <div data-slot="card-header">
     <h3>Notifications</h3>
-    <div data-slot="card-description">You have 3 unread notifications.</div>
+    <div data-slot="card-description" aria-live="polite">You have 3 unread notifications.</div>
     <div data-slot="card-action"><button type="button">Mark all read</button></div>
   </div>
   <div data-slot="card-content">...</div>
@@ -763,7 +771,7 @@ function ComponentsCardsPage() {
                     },
                   ],
                   notes:
-                    'The example shows the composition boundary. The consuming application owns the state update and should provide an appropriate status announcement when the action changes content.',
+                    'The example owns a small demo state update and exposes it through a polite live region; the consuming application should connect the same pattern to its notification state.',
                 },
                 requirements: {
                   userStory:
@@ -806,7 +814,7 @@ function ComponentsCardsPage() {
                       title: 'Technical requirements',
                       items: [
                         'The example must use CardAction and the production Button component.',
-                        'The consuming application must own the notification state change and any resulting status announcement.',
+                        'The consuming application must own the notification state change and expose the resulting status announcement through an appropriate live region.',
                       ],
                     },
                   ],
@@ -834,9 +842,9 @@ function ComponentsCardsPage() {
                       requirementRefs: ['BR-ACTION-02', 'TR-ACTION-02'],
                       given: 'the person activates Mark all read',
                       when: 'the consuming application handles the action',
-                      then: 'the notification state updates without navigation',
+                      then: 'the notification message changes to show that all notifications are read without navigation',
                       and: [
-                        'the consuming application communicates the resulting update appropriately',
+                        'the updated notification message is exposed through the polite live region',
                       ],
                     },
                     {
@@ -891,7 +899,7 @@ function ComponentsCardsPage() {
                             'Activate Mark all read with the keyboard or pointer and observe the application response.',
                           ],
                           expected:
-                            'The consuming application updates notification state without navigating away and provides an appropriate update announcement.',
+                            'The notification message changes to show that all notifications are read without navigating away, and the polite live region exposes the update.',
                         },
                       ],
                     },
@@ -920,16 +928,25 @@ function ComponentsCardsPage() {
               <Card>
                 <CardHeader>
                   <h3 className="text-base leading-snug font-medium">Notifications</h3>
-                  <CardDescription>You have 3 unread notifications.</CardDescription>
+                  <CardDescription aria-live="polite">
+                    {notificationsRead
+                      ? 'You have no unread notifications.'
+                      : 'You have 3 unread notifications.'}
+                  </CardDescription>
                   <CardAction>
-                    <Button type="button" variant="outline" size="sm">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onPress={() => setNotificationsRead(true)}
+                    >
                       Mark all read
                     </Button>
                   </CardAction>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Marking them read updates the notification state without navigating away.
+                    Marking them read changes the notification message without navigating away.
                   </p>
                 </CardContent>
               </Card>
