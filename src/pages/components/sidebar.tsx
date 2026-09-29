@@ -455,26 +455,16 @@ const groupedSupplemental = {
   ]}
   activeHref={pathname}
 />`,
-    html: `<aside data-slot="sidebar" data-variant="labeled"
-  class="hidden md:block w-60 shrink-0 border-r border-border p-3">
+    html: `<aside data-slot="sidebar" data-variant="labeled" class="hidden md:block w-60 shrink-0 border-r border-border p-3">
   <nav aria-label="Documentation navigation" class="flex flex-col gap-0.5">
     <div class="flex flex-col gap-0.5">
       <div class="px-3 pb-1 text-xs font-medium text-muted-foreground/70">Getting started</div>
-      <a href="/components/sidebar" aria-current="page" data-active="true"
-        class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium
-          text-muted-foreground transition-colors hover:bg-muted hover:text-foreground
-          data-[active=true]:bg-muted data-[active=true]:text-foreground
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-        <svg aria-hidden="true" class="size-4 shrink-0">…</svg> Overview
-      </a>
-      <a href="/components/header" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium
-        text-muted-foreground hover:bg-muted focus-visible:ring-2">
-        <svg aria-hidden="true" class="size-4 shrink-0">…</svg> Header
-      </a>
+      <a href="/components/sidebar" aria-current="page" data-active="true" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground data-[active=true]:bg-muted data-[active=true]:text-foreground focus-visible:ring-2">Overview</a>
+      <a href="/components/header" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground focus-visible:ring-2">Header</a>
     </div>
     <div class="mt-4 flex flex-col gap-0.5">
       <div class="px-3 pb-1 text-xs font-medium text-muted-foreground/70">Workspace</div>
-      <a href="/components/user-interface" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium">…</a>
+      <a href="/components/user-interface" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground">Settings</a>
     </div>
   </nav>
 </aside>`,
@@ -1013,24 +1003,10 @@ const iconOnlySupplemental = {
   activeHref={pathname}
   variant="icon-only"
 />`,
-    html: `<aside data-slot="sidebar" data-variant="icon-only"
-  class="hidden md:block w-14 shrink-0 border-r border-border px-2 py-4">
+    html: `<aside data-slot="sidebar" data-variant="icon-only" class="hidden md:block w-14 shrink-0 border-r border-border px-2 py-4">
   <nav aria-label="Compact workspace navigation" class="flex flex-col gap-0.5">
-    <a href="/components/sidebar" aria-label="Overview"
-      aria-current="page" data-active="true"
-      class="flex h-10 w-10 items-center justify-center rounded-md
-        text-muted-foreground transition-colors hover:bg-muted hover:text-foreground
-        data-[active=true]:bg-muted data-[active=true]:text-foreground
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-      <svg aria-hidden="true" class="size-5 shrink-0">…</svg>
-    </a>
-    <a href="/components/header" aria-label="Header"
-      class="flex h-10 w-10 items-center justify-center rounded-md
-        text-muted-foreground transition-colors hover:bg-muted hover:text-foreground
-        data-[active=true]:bg-muted data-[active=true]:text-foreground
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-      <span aria-hidden="true" class="flex size-5 items-center justify-center text-xs font-semibold">H</span>
-    </a>
+    <a href="/components/sidebar" aria-label="Overview" aria-current="page" data-active="true" class="flex h-10 w-10 items-center justify-center rounded-md focus-visible:ring-2"><svg aria-hidden="true" class="size-5 shrink-0"></svg></a>
+    <a href="/components/header" aria-label="Header" class="flex h-10 w-10 items-center justify-center rounded-md focus-visible:ring-2"><span aria-hidden="true" class="flex size-5 items-center justify-center text-xs font-semibold">H</span></a>
   </nav>
 </aside>`,
     props: [

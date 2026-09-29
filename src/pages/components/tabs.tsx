@@ -192,10 +192,15 @@ function ComponentsTabsPage() {
   <TabsContent id="tab-4">Tab 4 content.</TabsContent>
 </Tabs>`,
                 html: `<div role="tablist" aria-label="Example tabs">
-  <button role="tab" aria-selected="true" aria-controls="tab-1-panel">Tab 1</button>
-  ...
+  <button role="tab" id="tab-1" aria-selected="true" aria-controls="tab-1-panel">Tab 1</button>
+  <button role="tab" id="tab-2" aria-selected="false" aria-controls="tab-2-panel">Tab 2</button>
+  <button role="tab" id="tab-3" aria-selected="false" aria-controls="tab-3-panel">Tab 3</button>
+  <button role="tab" id="tab-4" aria-selected="false" aria-controls="tab-4-panel">Tab 4</button>
 </div>
-<div role="tabpanel" aria-labelledby="tab-1">Tab 1 content.</div>`,
+<div role="tabpanel" id="tab-1-panel" aria-labelledby="tab-1">Tab 1 content.</div>
+<div role="tabpanel" id="tab-2-panel" aria-labelledby="tab-2" hidden>Tab 2 content.</div>
+<div role="tabpanel" id="tab-3-panel" aria-labelledby="tab-3" hidden>Tab 3 content.</div>
+<div role="tabpanel" id="tab-4-panel" aria-labelledby="tab-4" hidden>Tab 4 content.</div>`,
                 props: [
                   {
                     name: 'aria-label',

@@ -232,13 +232,13 @@ function ComponentsCardsPage() {
     </p>
   </CardContent>
 </Card>`,
-                  html: `<div data-slot="card" data-size="default" class="...">
-  <div data-slot="card-header">
+                  html: `<div data-slot="card" data-size="default" class="group/card flex flex-col gap-4 overflow-hidden rounded-xl bg-card py-4 text-sm text-card-foreground ring-1 ring-foreground/10">
+  <div data-slot="card-header" class="grid gap-1 rounded-t-xl px-4">
     <h3>Application status</h3>
     <div data-slot="card-description">Your application is being reviewed.</div>
   </div>
-  <div data-slot="card-content">
-    <p>No action is required right now...</p>
+  <div data-slot="card-content" class="px-4">
+    <p>No action is required right now. We will contact you when the review is complete.</p>
   </div>
 </div>`,
                   props: [
@@ -464,10 +464,15 @@ function ComponentsCardsPage() {
     </CardContent>
   </Card>
 </a>`,
-                  html: `<a href="/components/header" class="block ... focus-visible:ring-2">
-  <div data-slot="card" class="... hover:bg-muted">
-    <div data-slot="card-header"><h3>Header navigation</h3>...</div>
-    <div data-slot="card-content">...</div>
+                  html: `<a href="/components/header" class="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+  <div data-slot="card" class="group/card flex flex-col gap-4 overflow-hidden rounded-xl bg-card py-4 text-sm text-card-foreground ring-1 ring-foreground/10 hover:bg-muted">
+    <div data-slot="card-header" class="grid gap-1 rounded-t-xl px-4">
+      <h3>Header navigation</h3>
+      <div data-slot="card-description">Review the application header pattern.</div>
+    </div>
+    <div data-slot="card-content" class="px-4">
+      <p>Open the Header guide to see the production navigation composition.</p>
+    </div>
   </div>
 </a>`,
                   props: [
@@ -721,13 +726,15 @@ const [notificationsRead, setNotificationsRead] = useState(false)
     </p>
   </CardContent>
 </Card>`,
-                  html: `<div data-slot="card" data-size="default" class="...">
-  <div data-slot="card-header">
+                  html: `<div data-slot="card" data-size="default" class="group/card flex flex-col gap-4 overflow-hidden rounded-xl bg-card py-4 text-sm text-card-foreground ring-1 ring-foreground/10">
+  <div data-slot="card-header" class="grid gap-1 rounded-t-xl px-4">
     <h3>Notifications</h3>
     <div data-slot="card-description" aria-live="polite">You have 3 unread notifications.</div>
     <div data-slot="card-action"><button type="button">Mark all read</button></div>
   </div>
-  <div data-slot="card-content">...</div>
+  <div data-slot="card-content" class="px-4">
+    <p>Marking them read changes the notification message without navigating away.</p>
+  </div>
 </div>`,
                   props: [
                     {

@@ -148,7 +148,7 @@ function CodeBlock({ code, idPrefix }: { code: ExampleCode; idPrefix: string }) 
       </section>
       <section aria-labelledby={`${idPrefix}-rendered-html-heading`}>
         <h4 id={`${idPrefix}-rendered-html-heading`} className="font-semibold text-foreground">
-          Representative HTML structure
+          Complete rendered HTML structure
         </h4>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
           This is an illustrative excerpt of the structure produced by the reusable component. Some
