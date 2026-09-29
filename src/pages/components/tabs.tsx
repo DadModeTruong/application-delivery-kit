@@ -183,7 +183,7 @@ function ComponentsTabsPage() {
             title="Basic tabs"
             summary="Use a small set of related tabs to show one focused panel at a time while keeping the surrounding context in place."
             tryIt="Move through Tab 1, Tab 2, Tab 3, and Tab 4 with the keyboard. Activate each tab and confirm that its selected state matches the visible panel."
-            exampleClassName="bg-card p-5 sm:p-6"
+            exampleClassName="border-0 bg-transparent p-0"
             supplemental={{
               tabLayout: 'requirements',
               guidance: {
@@ -354,18 +354,20 @@ function ComponentsTabsPage() {
                   Tab 4
                 </TabsTrigger>
               </TabsList>
-              <TabsContent id="example-tab-1" key="tab-1" className="text-muted-foreground">
-                Tab 1 content.
-              </TabsContent>
-              <TabsContent id="example-tab-2" key="tab-2" className="text-muted-foreground">
-                Tab 2 content.
-              </TabsContent>
-              <TabsContent id="example-tab-3" key="tab-3" className="text-muted-foreground">
-                Tab 3 content.
-              </TabsContent>
-              <TabsContent id="example-tab-4" key="tab-4" className="text-muted-foreground">
-                Tab 4 content.
-              </TabsContent>
+              <div className="rounded-lg border bg-card p-4 sm:p-6">
+                <TabsContent id="example-tab-1" key="tab-1" className="text-muted-foreground">
+                  Tab 1 content.
+                </TabsContent>
+                <TabsContent id="example-tab-2" key="tab-2" className="text-muted-foreground">
+                  Tab 2 content.
+                </TabsContent>
+                <TabsContent id="example-tab-3" key="tab-3" className="text-muted-foreground">
+                  Tab 3 content.
+                </TabsContent>
+                <TabsContent id="example-tab-4" key="tab-4" className="text-muted-foreground">
+                  Tab 4 content.
+                </TabsContent>
+              </div>
             </Tabs>
           </ExampleVariation>
         </section>
