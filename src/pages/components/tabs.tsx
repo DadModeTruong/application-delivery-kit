@@ -1,8 +1,8 @@
 /**
  * ComponentsTabsPage — guide to the Tabs interaction primitive.
  *
- * Shows the basic Tabs pattern, the role-oriented documentation pattern used by
- * component examples, and a vertical product-view variation.
+ * Shows the basic Tabs pattern and the role-oriented documentation pattern used
+ * by component examples.
  */
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
@@ -137,8 +137,7 @@ function ComponentsTabsPage() {
           <p className="leading-7 text-muted-foreground">
             Let tab labels wrap or use a deliberate overflow treatment rather than clipping them.
             Test the narrowest supported width and high zoom so focus and selected-state indicators
-            remain visible. Vertical tabs should stack into a readable order when the available
-            width is too narrow for a side-by-side layout.
+            remain visible when the tab list becomes crowded.
           </p>
         </section>
 
