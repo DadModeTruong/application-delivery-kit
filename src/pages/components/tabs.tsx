@@ -174,15 +174,15 @@ function ComponentsTabsPage() {
               Examples and variations
             </h2>
             <p className="leading-7 text-muted-foreground">
-              These examples teach two different choices: using Tabs as a documentation switcher and
-              changing the orientation when product views need a persistent vertical list.
+              This example shows the basic Tabs pattern while the supplemental panels explain how to
+              document and verify it.
             </p>
           </div>
 
           <ExampleVariation
-            title="Documentation tabs"
-            summary="Use a consistent set of role-oriented tabs to keep implementation and delivery guidance together without repeating it in the page flow."
-            tryIt="Move through Guidance, Requirements, Criteria, Verification, and Code with the keyboard. Activate each tab and confirm that its label matches the visible panel."
+            title="Basic tabs"
+            summary="Use a small set of related tabs to show one focused panel at a time while keeping the surrounding context in place."
+            tryIt="Move through Tab 1, Tab 2, Tab 3, and Tab 4 with the keyboard. Activate each tab and confirm that its selected state matches the visible panel."
             supplemental={{
               tabLayout: 'requirements',
               guidance: {
@@ -338,217 +338,62 @@ function ComponentsTabsPage() {
               },
             }}
           >
-            <Tabs defaultSelectedKey="guidance" className="w-full">
-              <TabsList aria-label="Example documentation" className="max-w-full flex-wrap">
-                <TabsTrigger id="docs-guidance-tab" key="guidance">
-                  Guidance
+            <Tabs defaultSelectedKey="tab-1" className="min-w-0 gap-2">
+              <TabsList aria-label="Example tabs" className="max-w-full flex-wrap">
+                <TabsTrigger id="example-tab-1" key="tab-1">
+                  Tab 1
                 </TabsTrigger>
-                <TabsTrigger id="docs-requirements-tab" key="requirements">
-                  Requirements
+                <TabsTrigger id="example-tab-2" key="tab-2">
+                  Tab 2
                 </TabsTrigger>
-                <TabsTrigger id="docs-criteria-tab" key="criteria">
-                  Criteria
+                <TabsTrigger id="example-tab-3" key="tab-3">
+                  Tab 3
                 </TabsTrigger>
-                <TabsTrigger id="docs-verification-tab" key="verification">
-                  Verification
-                </TabsTrigger>
-                <TabsTrigger id="docs-code-tab" key="code">
-                  Code
+                <TabsTrigger id="example-tab-4" key="tab-4">
+                  Tab 4
                 </TabsTrigger>
               </TabsList>
-              <TabsContent id="docs-guidance-tab" key="guidance" className="pt-4 leading-7">
-                Explain when the example fits, what it teaches, and what to avoid.
+              <TabsContent
+                id="example-tab-1"
+                key="tab-1"
+                className="space-y-6 text-muted-foreground"
+              >
+                <p>
+                  Use the tabs to keep related guidance together while showing one focused panel at
+                  a time.
+                </p>
+                <div>
+                  <h3 className="font-semibold text-foreground">Considerations</h3>
+                  <ul className="mt-3 list-disc space-y-3 pl-5">
+                    <li>Keep the labels short and make each panel’s purpose predictable.</li>
+                    <li>Keep the selected tab and its associated panel visibly connected.</li>
+                  </ul>
+                </div>
+                <div className="grid gap-8 sm:grid-cols-2">
+                  <div>
+                    <h3 className="font-semibold text-foreground">Do</h3>
+                    <ul className="mt-3 list-disc space-y-3 pl-5">
+                      <li>Use tabs for related views that share the same context.</li>
+                      <li>Choose a useful default panel.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground">Don&apos;t</h3>
+                    <ul className="mt-3 list-disc space-y-3 pl-5">
+                      <li>Do not use tabs for unrelated destinations.</li>
+                      <li>Do not hide essential information only in a non-default panel.</li>
+                    </ul>
+                  </div>
+                </div>
               </TabsContent>
-              <TabsContent id="docs-requirements-tab" key="requirements" className="pt-4 leading-7">
+              <TabsContent id="example-tab-2" key="tab-2" className="text-muted-foreground">
                 Capture the user and delivery needs before implementation.
               </TabsContent>
-              <TabsContent id="docs-criteria-tab" key="criteria" className="pt-4 leading-7">
+              <TabsContent id="example-tab-3" key="tab-3" className="text-muted-foreground">
                 Express observable behavior using Given, When, Then, and And.
               </TabsContent>
-              <TabsContent id="docs-verification-tab" key="verification" className="pt-4 leading-7">
+              <TabsContent id="example-tab-4" key="tab-4" className="text-muted-foreground">
                 Name the checks and expected results that prove the criteria.
-              </TabsContent>
-              <TabsContent id="docs-code-tab" key="code" className="pt-4 leading-7">
-                Show the smallest copyable implementation and its important props.
-              </TabsContent>
-            </Tabs>
-          </ExampleVariation>
-
-          <ExampleVariation
-            title="Vertical tabs"
-            summary="Use vertical Tabs when a stable set of longer labels benefits from a persistent list beside the active product view."
-            tryIt="Move through Summary, Permissions, and Activity with the keyboard, then resize the page. Confirm that the selected view, focus indicator, and panel relationship remain clear."
-            supplemental={{
-              guidance: {
-                explanation:
-                  'Vertical Tabs can give longer labels more room while keeping the current product context visible. Use this layout only when the side-by-side relationship helps people scan the available views.',
-                considerations: [
-                  'The consuming application owns the view data and selected key; Tabs owns the interaction and selected-state semantics.',
-                  'At narrow widths, the layout should stack without changing the order of the tab list and active panel.',
-                ],
-                doItems: [
-                  'Use vertical orientation for a stable, related set of views with labels that benefit from more width.',
-                  'Keep the selected state visible in the line-style tab list.',
-                  'Test the stacked layout and keyboard order at narrow widths.',
-                ],
-                dontItems: [
-                  'Do not use vertical Tabs as a replacement for a page sidebar or route navigation.',
-                  'Do not hide unrelated workflows in one tab list.',
-                  'Do not let long labels clip or force horizontal scrolling.',
-                ],
-              },
-              code: {
-                language: 'tsx',
-                source: `<Tabs orientation="vertical" defaultSelectedKey="summary">
-  <TabsList aria-label="Application record" variant="line">
-    <TabsTrigger id="summary-tab">Summary</TabsTrigger>
-    <TabsTrigger id="permissions-tab">Permissions</TabsTrigger>
-    <TabsTrigger id="activity-tab">Activity</TabsTrigger>
-  </TabsList>
-  <TabsContent id="summary-tab">...</TabsContent>
-  <TabsContent id="permissions-tab">...</TabsContent>
-  <TabsContent id="activity-tab">...</TabsContent>
-</Tabs>`,
-                html: `<div data-orientation="vertical">
-  <div role="tablist" aria-label="Application record">...</div>
-  <div role="tabpanel" aria-labelledby="summary-tab">...</div>
-</div>`,
-                props: [
-                  {
-                    name: 'orientation',
-                    type: 'horizontal | vertical',
-                    example: 'vertical',
-                    description: 'Chooses the tab list and keyboard orientation.',
-                  },
-                  {
-                    name: 'variant',
-                    type: 'default | line',
-                    example: 'line',
-                    description: 'Chooses the visual treatment for the tab list.',
-                  },
-                ],
-                attributes: [
-                  {
-                    name: 'data-orientation',
-                    type: 'state hook',
-                    example: 'vertical',
-                    description:
-                      'Communicates orientation to the component styling and inspection tools.',
-                  },
-                  {
-                    name: 'role="tabpanel"',
-                    type: 'semantic role',
-                    description: 'Identifies the active content associated with the selected tab.',
-                  },
-                ],
-              },
-              requirements: {
-                userStory:
-                  'As a product team member, I want a vertical set of related views so people can scan longer labels while staying in the same record context.',
-                groups: [
-                  {
-                    id: 'FR-VERTICAL',
-                    title: 'Functional requirements',
-                    items: [
-                      'The vertical tab list must expose Summary, Permissions, and Activity as sibling views.',
-                      'Selecting a tab must show its corresponding product view without changing the page destination.',
-                    ],
-                  },
-                  {
-                    id: 'RESP-VERTICAL',
-                    title: 'Responsive requirements',
-                    items: [
-                      'The tab list and active panel must stack in a readable order when the viewport is narrow.',
-                      'Labels and focus indicators must remain visible without horizontal scrolling.',
-                    ],
-                  },
-                ],
-                acceptanceCriteria: [
-                  {
-                    id: 'AC-VERTICAL-01',
-                    requirementRefs: ['FR-VERTICAL-01'],
-                    given: 'the vertical tab example is rendered',
-                    when: 'a person selects Permissions or Activity',
-                    then: 'the selected view appears beside the vertical tab list',
-                    and: ['the page context and destination remain unchanged'],
-                  },
-                  {
-                    id: 'AC-VERTICAL-02',
-                    requirementRefs: ['RESP-VERTICAL-01', 'RESP-VERTICAL-02'],
-                    given: 'the viewport becomes narrow',
-                    when: 'the vertical layout reflows',
-                    then: 'the tab list and active panel stack in reading order',
-                    and: ['labels and focus remain visible without horizontal scrolling'],
-                  },
-                ],
-              },
-              verification: {
-                scenarios: [
-                  {
-                    id: 'VR-VERTICAL-01',
-                    criterionRefs: ['AC-VERTICAL-01'],
-                    role: 'Functional QA',
-                    title: 'Switch vertical product views',
-                    cases: [
-                      {
-                        id: 'VR-VERTICAL-01A',
-                        criterionRefs: ['AC-VERTICAL-01'],
-                        title: 'Select each view',
-                        steps: [
-                          'Activate Permissions and Activity with a pointer and with the keyboard.',
-                          'Inspect the active panel and the selected tab after each activation.',
-                        ],
-                        expected:
-                          'The matching product panel appears, the selected state is clear, and the page does not navigate away.',
-                      },
-                    ],
-                  },
-                  {
-                    id: 'VR-VERTICAL-02',
-                    criterionRefs: ['AC-VERTICAL-02'],
-                    role: 'Responsive QA',
-                    title: 'Check vertical layout reflow',
-                    cases: [
-                      {
-                        id: 'VR-VERTICAL-02A',
-                        criterionRefs: ['AC-VERTICAL-02'],
-                        title: 'Resize to a narrow viewport',
-                        steps: [
-                          'Resize the page until the vertical layout stacks, then tab through the controls and panel.',
-                        ],
-                        expected:
-                          'The tab list remains before the active panel, labels wrap without clipping, and focus remains visible.',
-                      },
-                    ],
-                  },
-                ],
-              },
-            }}
-          >
-            <Tabs
-              orientation="vertical"
-              defaultSelectedKey="summary"
-              className="grid gap-4 sm:grid-cols-[12rem_minmax(0,1fr)]"
-            >
-              <TabsList aria-label="Application record" variant="line" className="max-w-full">
-                <TabsTrigger id="vertical-summary-tab" key="summary">
-                  Summary
-                </TabsTrigger>
-                <TabsTrigger id="vertical-permissions-tab" key="permissions">
-                  Permissions
-                </TabsTrigger>
-                <TabsTrigger id="vertical-activity-tab" key="activity">
-                  Activity
-                </TabsTrigger>
-              </TabsList>
-              <TabsContent id="vertical-summary-tab" key="summary" className="leading-7">
-                The summary gives the reader the most important current information first.
-              </TabsContent>
-              <TabsContent id="vertical-permissions-tab" key="permissions" className="leading-7">
-                Permissions explain who can view or change this record.
-              </TabsContent>
-              <TabsContent id="vertical-activity-tab" key="activity" className="leading-7">
-                Activity shows changes without taking the reader to another page.
               </TabsContent>
             </Tabs>
           </ExampleVariation>
