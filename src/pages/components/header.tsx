@@ -8,6 +8,7 @@
 import { Blocks, LayoutTemplate } from 'lucide-react'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { ExampleVariation } from '@/components/layout/example-variation'
+import { TryIt } from '@/components/layout/try-it'
 import { Header } from '@/components/layout/header'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 
@@ -144,7 +145,12 @@ function ComponentsHeaderPage() {
             decide whether its links are global, primary, or section-level. The preview marks
             Components as current to show how an application supplies that state.
           </p>
-          <div className="space-y-4">
+          <TryIt>
+            Tab through the brand and navigation links, activate a destination, then resize to check
+            that the same navigation remains usable in the mobile presentation.
+          </TryIt>
+
+          <div className="-mt-2 space-y-4">
             <div className="overflow-hidden rounded-xl border">
               <Header
                 logo={{ href: '/', label: 'Application Delivery Kit' }}
@@ -155,12 +161,6 @@ function ComponentsHeaderPage() {
                 ]}
               />
             </div>
-          </div>
-
-          <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
-            <strong className="mr-2 text-foreground">Try it:</strong>
-            Tab through the brand and navigation links, activate a destination, then resize to check
-            that the same navigation remains usable in the mobile presentation.
           </div>
         </section>
         <section

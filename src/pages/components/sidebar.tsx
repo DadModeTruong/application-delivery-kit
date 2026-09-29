@@ -7,6 +7,7 @@
 
 import { BookOpen, LayoutDashboard, Settings } from 'lucide-react'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { TryIt } from '@/components/layout/try-it'
 import { ExampleVariation } from '@/components/layout/example-variation'
 import { Sidebar } from '@/components/layout/sidebar'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
@@ -1334,17 +1335,16 @@ function ComponentsSidebarPage() {
             inspect a router, infer permissions, or decide whether it is the application’s primary
             navigation.
           </p>
-          <div className="overflow-hidden rounded-xl border">
+          <TryIt>
+            Tab through the links, inspect the current state, and resize the page to review the
+            application-owned responsive composition.
+          </TryIt>
+          <div className="-mt-2 overflow-hidden rounded-xl border">
             <Sidebar
               aria-label="Sidebar recognition example"
               items={basicSidebarLinks}
               activeHref="/components/sidebar"
             />
-          </div>
-          <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
-            <strong className="mr-2 text-foreground">Try it:</strong>
-            Tab through the links, inspect the current state, and resize the page to review the
-            application-owned responsive composition.
           </div>
         </section>
 

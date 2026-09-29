@@ -206,7 +206,15 @@ describe('ExampleVariation supplemental content', () => {
     expect(screen.getByRole('tab', { name: 'Code' })).toBeTruthy()
     expect(screen.getByRole('tab', { name: 'Criteria' })).toBeTruthy()
     expect(screen.getByRole('tab', { name: 'Verification' })).toBeTruthy()
+    const tryIt = screen.getByRole('alert')
+    const liveExample = screen.getByText('Live example')
+    expect(tryIt).toBeTruthy()
+    expect(screen.getByText('Try it')).toBeTruthy()
+    expect(screen.getByText('Interact with the example.')).toBeTruthy()
     expect(screen.getByText('Use this example to demonstrate the shared pattern.')).toBeTruthy()
+    expect(
+      Boolean(tryIt.compareDocumentPosition(liveExample) & Node.DOCUMENT_POSITION_FOLLOWING),
+    ).toBe(true)
 
     fireEvent.click(screen.getByRole('tab', { name: 'Code' }))
 

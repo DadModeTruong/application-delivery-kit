@@ -6,6 +6,7 @@
  */
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { TryIt } from '@/components/layout/try-it'
 import { ExampleVariation } from '@/components/layout/example-variation'
 import { TabNavigation } from '@/components/layout/tab-navigation'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
@@ -110,7 +111,12 @@ function ComponentsTabNavigationPage() {
             leaving broad product movement to the Header and deeper information architecture to the
             Sidebar.
           </p>
-          <div className="overflow-hidden rounded-xl border [&_[data-slot=tab-navigation]]:!mb-0">
+          <TryIt>
+            Tab to each tab, activate one, and confirm the selected tab and page content stay
+            understandable without relying on color alone.
+          </TryIt>
+
+          <div className="-mt-2 overflow-hidden rounded-xl border [&_[data-slot=tab-navigation]]:!mb-0">
             <TabNavigation
               items={[
                 { label: 'Overview', href: '/components/tab-navigation' },
@@ -119,12 +125,6 @@ function ComponentsTabNavigationPage() {
               ]}
               aria-label="Tab navigation example"
             />
-          </div>
-
-          <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
-            <strong className="mr-2 text-foreground">Try it:</strong>
-            Tab to each tab, activate one, and confirm the selected tab and page content stay
-            understandable without relying on color alone.
           </div>
         </section>
         <section
