@@ -1,11 +1,13 @@
 /**
  * ComponentsTabsPage — guide to the Tabs interaction primitive.
  *
- * Shows how Tabs organizes related views without changing the page location,
- * including the supplemental documentation pattern used by component examples.
+ * Shows the basic Tabs pattern, the role-oriented documentation pattern used by
+ * component examples, and a vertical product-view variation.
  */
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { ExampleVariation } from '@/components/layout/example-variation'
+import { TryIt } from '@/components/layout/try-it'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { interactionSidebarLinks } from '@/config/component-navigation'
 
@@ -37,62 +39,59 @@ function ComponentsTabsPage() {
             The selected tab communicates which view is active, while the panel provides the
             corresponding content.
           </p>
-          <div className="space-y-4">
-            <div className="rounded-xl border bg-card p-5">
-              <Tabs defaultSelectedKey="overview" className="w-full">
-                <TabsList aria-label="Project information">
-                  <TabsTrigger id="intro-overview-tab" key="overview">
-                    Overview
-                  </TabsTrigger>
-                  <TabsTrigger id="intro-activity-tab" key="activity">
-                    Activity
-                  </TabsTrigger>
-                  <TabsTrigger id="intro-members-tab" key="members">
-                    Members
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent id="intro-overview-tab" key="overview" className="pt-4 leading-7">
-                  A concise summary helps people decide what to do next.
-                </TabsContent>
-                <TabsContent id="intro-activity-tab" key="activity" className="pt-4 leading-7">
-                  Recent changes and events give the project useful context.
-                </TabsContent>
-                <TabsContent id="intro-members-tab" key="members" className="pt-4 leading-7">
-                  The people responsible for the project are listed here.
-                </TabsContent>
-              </Tabs>
-            </div>
-            <div className="rounded-lg border bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-              <strong className="font-semibold text-foreground">Try it</strong>
-              <p>
-                Tab to a tab, use Arrow Right and Arrow Left to move between tabs, then press Enter
-                or Space to show the associated panel. Confirm that the selected state and panel
-                content stay together.
-              </p>
-            </div>
+          <TryIt>
+            Tab to a view, use the arrow keys to move between tabs, and activate a tab. Confirm that
+            its selected state and associated panel stay together.
+          </TryIt>
+          <div className="overflow-hidden rounded-lg border p-5 sm:p-6">
+            <Tabs defaultSelectedKey="overview" className="w-full">
+              <TabsList aria-label="Project information">
+                <TabsTrigger id="basic-overview-tab" key="overview">
+                  Overview
+                </TabsTrigger>
+                <TabsTrigger id="basic-activity-tab" key="activity">
+                  Activity
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent id="basic-overview-tab" key="overview" className="pt-4 leading-7">
+                A concise summary helps people decide what to do next.
+              </TabsContent>
+              <TabsContent id="basic-activity-tab" key="activity" className="pt-4 leading-7">
+                Recent changes and events give the project useful context.
+              </TabsContent>
+            </Tabs>
           </div>
         </section>
 
-        <section className="space-y-5" aria-labelledby="tabs-use-heading">
-          <h2 id="tabs-use-heading" className="text-2xl font-semibold tracking-tight">
-            When to use it
-          </h2>
-          <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-            <li>Use Tabs for a small set of related views that share the same context.</li>
-            <li>Keep labels short and parallel so people can predict what each panel contains.</li>
-            <li>Prefer visible sections when people need to compare multiple panels at once.</li>
-          </ul>
-        </section>
-
-        <section className="space-y-5" aria-labelledby="tabs-not-heading">
-          <h2 id="tabs-not-heading" className="text-2xl font-semibold tracking-tight">
-            When not to use it
-          </h2>
-          <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-            <li>Do not hide unrelated destinations behind tabs; use links for navigation.</li>
-            <li>Do not use Tabs for a long workflow that needs a clear next step.</li>
-            <li>Do not make a tab panel the only place to find essential information.</li>
-          </ul>
+        <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="tabs-use-heading">
+          <div className="space-y-5">
+            <h2 id="tabs-use-heading" className="text-2xl font-semibold tracking-tight">
+              When to use it
+            </h2>
+            <p className="leading-7 text-muted-foreground">
+              Use Tabs for a small set of related views that share the same context and do not need
+              to be compared side by side.
+            </p>
+            <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+              <li>Keep labels short and parallel so people can predict each panel.</li>
+              <li>Choose a default tab that gives useful context first.</li>
+              <li>Keep the tab list close to its associated panel.</li>
+            </ul>
+          </div>
+          <div className="space-y-5" aria-labelledby="tabs-not-heading">
+            <h2 id="tabs-not-heading" className="text-2xl font-semibold tracking-tight">
+              When not to use it
+            </h2>
+            <p className="leading-7 text-muted-foreground">
+              Use visible sections or links when the information is unrelated, must be compared at
+              once, or represents a different destination.
+            </p>
+            <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+              <li>Do not hide unrelated destinations behind tabs; use links for navigation.</li>
+              <li>Do not use Tabs for a long workflow that needs a clear next step.</li>
+              <li>Do not make essential information available only in a non-default panel.</li>
+            </ul>
+          </div>
         </section>
 
         <section className="space-y-5" aria-labelledby="tabs-design-heading">
@@ -100,12 +99,10 @@ function ComponentsTabsPage() {
             Design considerations
           </h2>
           <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-            <li>
-              Choose a default tab that gives useful context without requiring extra interaction.
-            </li>
-            <li>Keep the tab list close to its panel and make the selected state visible.</li>
-            <li>Do not communicate selection with color alone; use the component state styling.</li>
-            <li>Keep tab labels readable at narrow widths and high zoom.</li>
+            <li>Make the selected state visible without relying on color alone.</li>
+            <li>Keep the tab list readable at narrow widths and high zoom.</li>
+            <li>Use parallel labels and predictable panel content.</li>
+            <li>Prefer one consistent tab treatment within a product area.</li>
           </ul>
         </section>
 
@@ -115,12 +112,8 @@ function ComponentsTabsPage() {
           </h2>
           <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
             <li>Give each tab list a meaningful accessible label that describes its views.</li>
-            <li>
-              Use the production Tabs primitive so tab and panel relationships are generated safely.
-            </li>
-            <li>
-              Verify keyboard focus, arrow-key movement, activation, and visible selected state.
-            </li>
+            <li>Use the production Tabs primitive for tab and panel relationships.</li>
+            <li>Verify keyboard focus, arrow-key movement, activation, and selected state.</li>
             <li>Keep the active panel in a logical reading order after the tab list.</li>
           </ul>
         </section>
@@ -130,9 +123,10 @@ function ComponentsTabsPage() {
             Responsive behavior
           </h2>
           <p className="leading-7 text-muted-foreground">
-            Tabs should remain understandable when space is limited. Let the tab list wrap or use a
-            deliberate overflow treatment rather than clipping labels. Test the narrowest supported
-            width and high zoom so focus and selected-state indicators remain visible.
+            Let tab labels wrap or use a deliberate overflow treatment rather than clipping them.
+            Test the narrowest supported width and high zoom so focus and selected-state indicators
+            remain visible. Vertical tabs should stack into a readable order when the available
+            width is too narrow for a side-by-side layout.
           </p>
         </section>
 
@@ -142,118 +136,384 @@ function ComponentsTabsPage() {
               Examples and variations
             </h2>
             <p className="leading-7 text-muted-foreground">
-              The examples below show the same Tabs primitive in two different content roles: a
-              compact documentation switcher and a product-content switcher.
+              These examples teach two different choices: using Tabs as a documentation switcher and
+              changing the orientation when product views need a persistent vertical list.
             </p>
           </div>
 
-          <article className="space-y-5" aria-labelledby="tabs-docs-example-heading">
-            <div className="space-y-2">
-              <h3 id="tabs-docs-example-heading" className="text-xl font-semibold tracking-tight">
-                Documentation tabs
-              </h3>
-              <p className="leading-7 text-muted-foreground">
-                Use a consistent set of role-oriented tabs to keep implementation and delivery
-                guidance together without repeating it in the page flow.
-              </p>
-            </div>
-            <div className="rounded-xl border bg-card p-5">
-              <Tabs defaultSelectedKey="guidance" className="w-full">
-                <TabsList aria-label="Example documentation">
-                  <TabsTrigger id="docs-guidance-tab" key="guidance">
-                    Guidance
-                  </TabsTrigger>
-                  <TabsTrigger id="docs-requirements-tab" key="requirements">
-                    Requirements
-                  </TabsTrigger>
-                  <TabsTrigger id="docs-criteria-tab" key="criteria">
-                    Criteria
-                  </TabsTrigger>
-                  <TabsTrigger id="docs-verification-tab" key="verification">
-                    Verification
-                  </TabsTrigger>
-                  <TabsTrigger id="docs-code-tab" key="code">
-                    Code
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent id="docs-guidance-tab" key="guidance" className="pt-4 leading-7">
-                  Explain when the example fits, what it teaches, and what to avoid.
-                </TabsContent>
-                <TabsContent
-                  id="docs-requirements-panel"
-                  key="requirements"
-                  className="pt-4 leading-7"
-                >
-                  Capture the user and delivery needs before implementation.
-                </TabsContent>
-                <TabsContent id="docs-criteria-tab" key="criteria" className="pt-4 leading-7">
-                  Express observable behavior using Given, When, Then, and And.
-                </TabsContent>
-                <TabsContent
-                  id="docs-verification-panel"
-                  key="verification"
-                  className="pt-4 leading-7"
-                >
-                  Name the checks and expected results that prove the criteria.
-                </TabsContent>
-                <TabsContent id="docs-code-tab" key="code" className="pt-4 leading-7">
-                  Show the smallest copyable implementation and its important props.
-                </TabsContent>
-              </Tabs>
-            </div>
-            <div className="rounded-lg border bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-              <strong className="font-semibold text-foreground">Try it</strong>
-              <p>
-                Move through the documentation tabs with the keyboard and activate each one. Confirm
-                that only the selected panel is exposed and that every label describes its content.
-              </p>
-            </div>
-          </article>
+          <ExampleVariation
+            title="Documentation tabs"
+            summary="Use a consistent set of role-oriented tabs to keep implementation and delivery guidance together without repeating it in the page flow."
+            tryIt="Move through Guidance, Requirements, Criteria, Verification, and Code with the keyboard. Activate each tab and confirm that its label matches the visible panel."
+            supplemental={{
+              tabLayout: 'requirements',
+              guidance: {
+                explanation:
+                  'Documentation tabs separate why, what, how, and how to prove an example without displaying every layer at once.',
+                considerations: [
+                  'Keep the tab labels consistent across standardized examples so readers build a reliable mental model.',
+                  'Use the live preview and Try it instruction to demonstrate the component; keep delivery detail in the supplemental panels.',
+                ],
+                doItems: [
+                  'Use concise labels that match the content in each panel.',
+                  'Keep the active panel associated with the selected tab and readable after keyboard navigation.',
+                  'Write Criteria and Verification as related but distinct delivery artifacts.',
+                ],
+                dontItems: [
+                  'Do not repeat the same paragraph in Guidance, Criteria, and Verification.',
+                  'Do not use tabs to hide unrelated product destinations.',
+                  'Do not rely on color alone to show which documentation tab is selected.',
+                ],
+              },
+              code: {
+                language: 'tsx',
+                source: `<Tabs defaultSelectedKey="guidance">
+  <TabsList aria-label="Example documentation">
+    <TabsTrigger id="guidance-tab">Guidance</TabsTrigger>
+    <TabsTrigger id="requirements-tab">Requirements</TabsTrigger>
+    <TabsTrigger id="criteria-tab">Criteria</TabsTrigger>
+    <TabsTrigger id="verification-tab">Verification</TabsTrigger>
+    <TabsTrigger id="code-tab">Code</TabsTrigger>
+  </TabsList>
+  <TabsContent id="guidance-tab">...</TabsContent>
+  <TabsContent id="requirements-tab">...</TabsContent>
+  <TabsContent id="criteria-tab">...</TabsContent>
+  <TabsContent id="verification-tab">...</TabsContent>
+  <TabsContent id="code-tab">...</TabsContent>
+</Tabs>`,
+                html: `<div role="tablist" aria-label="Example documentation">
+  <button role="tab" aria-selected="true" aria-controls="guidance-panel">Guidance</button>
+  ...
+</div>
+<div role="tabpanel" aria-labelledby="guidance-tab">...</div>`,
+                props: [
+                  {
+                    name: 'aria-label',
+                    type: 'string',
+                    example: 'Example documentation',
+                    description:
+                      'Names the tab list so its purpose is clear to assistive technology.',
+                  },
+                  {
+                    name: 'id',
+                    type: 'string',
+                    example: 'guidance-tab',
+                    description:
+                      'Pairs each tab with its associated panel; use instance-safe values.',
+                  },
+                ],
+                attributes: [
+                  {
+                    name: 'aria-selected',
+                    type: 'state',
+                    example: 'true',
+                    description: 'Identifies the currently selected tab.',
+                  },
+                  {
+                    name: 'aria-controls / aria-labelledby',
+                    type: 'relationship',
+                    description: 'Connects each tab to its panel in both directions.',
+                  },
+                ],
+              },
+              requirements: {
+                userStory:
+                  'As a delivery team member, I want consistent documentation tabs so I can find guidance, requirements, criteria, verification, and code without losing the example context.',
+                groups: [
+                  {
+                    id: 'FR-DOCS',
+                    title: 'Functional requirements',
+                    items: [
+                      'The tab list must expose Guidance, Requirements, Criteria, Verification, and Code.',
+                      'Selecting a tab must show its associated panel and hide the other panels.',
+                    ],
+                  },
+                  {
+                    id: 'A11Y-DOCS',
+                    title: 'Accessibility requirements',
+                    items: [
+                      'The tab list must have a meaningful accessible name and keyboard interaction.',
+                      'Each tab and panel must expose its selected state and relationship.',
+                    ],
+                  },
+                ],
+                acceptanceCriteria: [
+                  {
+                    id: 'AC-DOCS-01',
+                    requirementRefs: ['FR-DOCS-01'],
+                    given: 'the documentation tab list is rendered',
+                    when: 'a person selects a tab',
+                    then: 'the selected tab becomes active and its associated panel is shown',
+                    and: ['the previously selected panel is hidden'],
+                  },
+                  {
+                    id: 'AC-DOCS-02',
+                    requirementRefs: ['A11Y-DOCS-01', 'A11Y-DOCS-02'],
+                    given: 'a person navigates with the keyboard',
+                    when: 'focus moves through the tab list',
+                    then: 'the tabs support the production keyboard behavior and show visible focus',
+                    and: ['the active tab and panel relationship remains exposed'],
+                  },
+                ],
+              },
+              verification: {
+                scenarios: [
+                  {
+                    id: 'VR-DOCS-01',
+                    criterionRefs: ['AC-DOCS-01'],
+                    role: 'Functional QA',
+                    title: 'Switch documentation panels',
+                    cases: [
+                      {
+                        id: 'VR-DOCS-01A',
+                        criterionRefs: ['AC-DOCS-01'],
+                        title: 'Select each documentation tab',
+                        steps: [
+                          'Activate Guidance, Requirements, Criteria, Verification, and Code with a pointer.',
+                          'Inspect the visible panel after each selection.',
+                        ],
+                        expected:
+                          'Only the selected tab’s panel is visible and its content matches the label.',
+                      },
+                    ],
+                  },
+                  {
+                    id: 'VR-DOCS-02',
+                    criterionRefs: ['AC-DOCS-02'],
+                    role: 'Accessibility QA',
+                    title: 'Navigate and inspect tab relationships',
+                    cases: [
+                      {
+                        id: 'VR-DOCS-02A',
+                        criterionRefs: ['AC-DOCS-02'],
+                        title: 'Use keyboard navigation',
+                        steps: [
+                          'Tab to the tab list, use the arrow keys to move, and activate a different tab.',
+                          'Inspect the focused tab, selected state, and active panel relationship.',
+                        ],
+                        expected:
+                          'Focus is visible, keyboard movement follows the Tabs pattern, and the selected tab controls the visible panel.',
+                      },
+                    ],
+                  },
+                ],
+              },
+            }}
+          >
+            <Tabs defaultSelectedKey="guidance" className="w-full">
+              <TabsList aria-label="Example documentation" className="max-w-full flex-wrap">
+                <TabsTrigger id="docs-guidance-tab" key="guidance">
+                  Guidance
+                </TabsTrigger>
+                <TabsTrigger id="docs-requirements-tab" key="requirements">
+                  Requirements
+                </TabsTrigger>
+                <TabsTrigger id="docs-criteria-tab" key="criteria">
+                  Criteria
+                </TabsTrigger>
+                <TabsTrigger id="docs-verification-tab" key="verification">
+                  Verification
+                </TabsTrigger>
+                <TabsTrigger id="docs-code-tab" key="code">
+                  Code
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent id="docs-guidance-tab" key="guidance" className="pt-4 leading-7">
+                Explain when the example fits, what it teaches, and what to avoid.
+              </TabsContent>
+              <TabsContent id="docs-requirements-tab" key="requirements" className="pt-4 leading-7">
+                Capture the user and delivery needs before implementation.
+              </TabsContent>
+              <TabsContent id="docs-criteria-tab" key="criteria" className="pt-4 leading-7">
+                Express observable behavior using Given, When, Then, and And.
+              </TabsContent>
+              <TabsContent id="docs-verification-tab" key="verification" className="pt-4 leading-7">
+                Name the checks and expected results that prove the criteria.
+              </TabsContent>
+              <TabsContent id="docs-code-tab" key="code" className="pt-4 leading-7">
+                Show the smallest copyable implementation and its important props.
+              </TabsContent>
+            </Tabs>
+          </ExampleVariation>
 
-          <article className="space-y-5" aria-labelledby="tabs-product-example-heading">
-            <div className="space-y-2">
-              <h3
-                id="tabs-product-example-heading"
-                className="text-xl font-semibold tracking-tight"
-              >
-                Product content tabs
-              </h3>
-              <p className="leading-7 text-muted-foreground">
-                Use tabs for sibling product views when the surrounding context remains stable.
-              </p>
-            </div>
-            <div className="rounded-xl border bg-card p-5">
-              <Tabs defaultSelectedKey="summary" className="w-full">
-                <TabsList aria-label="Application record">
-                  <TabsTrigger id="product-summary-tab" key="summary">
-                    Summary
-                  </TabsTrigger>
-                  <TabsTrigger id="product-details-tab" key="details">
-                    Details
-                  </TabsTrigger>
-                  <TabsTrigger id="product-history-tab" key="history">
-                    History
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent id="product-summary-tab" key="summary" className="pt-4 leading-7">
-                  The summary gives the reader the most important current information first.
-                </TabsContent>
-                <TabsContent id="product-details-tab" key="details" className="pt-4 leading-7">
-                  Details provide the supporting information for the current record.
-                </TabsContent>
-                <TabsContent id="product-history-tab" key="history" className="pt-4 leading-7">
-                  History shows changes without taking the reader to another page.
-                </TabsContent>
-              </Tabs>
-            </div>
-            <div className="rounded-lg border bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-              <strong className="font-semibold text-foreground">Try it</strong>
-              <p>
-                Select each product view with a pointer and keyboard. Confirm that the panel
-                changes, the selected tab is visibly distinct, and focus remains understandable.
-              </p>
-            </div>
-          </article>
+          <ExampleVariation
+            title="Vertical tabs"
+            summary="Use vertical Tabs when a stable set of longer labels benefits from a persistent list beside the active product view."
+            tryIt="Move through Summary, Permissions, and Activity with the keyboard, then resize the page. Confirm that the selected view, focus indicator, and panel relationship remain clear."
+            supplemental={{
+              guidance: {
+                explanation:
+                  'Vertical Tabs can give longer labels more room while keeping the current product context visible. Use this layout only when the side-by-side relationship helps people scan the available views.',
+                considerations: [
+                  'The consuming application owns the view data and selected key; Tabs owns the interaction and selected-state semantics.',
+                  'At narrow widths, the layout should stack without changing the order of the tab list and active panel.',
+                ],
+                doItems: [
+                  'Use vertical orientation for a stable, related set of views with labels that benefit from more width.',
+                  'Keep the selected state visible in the line-style tab list.',
+                  'Test the stacked layout and keyboard order at narrow widths.',
+                ],
+                dontItems: [
+                  'Do not use vertical Tabs as a replacement for a page sidebar or route navigation.',
+                  'Do not hide unrelated workflows in one tab list.',
+                  'Do not let long labels clip or force horizontal scrolling.',
+                ],
+              },
+              code: {
+                language: 'tsx',
+                source: `<Tabs orientation="vertical" defaultSelectedKey="summary">
+  <TabsList aria-label="Application record" variant="line">
+    <TabsTrigger id="summary-tab">Summary</TabsTrigger>
+    <TabsTrigger id="permissions-tab">Permissions</TabsTrigger>
+    <TabsTrigger id="activity-tab">Activity</TabsTrigger>
+  </TabsList>
+  <TabsContent id="summary-tab">...</TabsContent>
+  <TabsContent id="permissions-tab">...</TabsContent>
+  <TabsContent id="activity-tab">...</TabsContent>
+</Tabs>`,
+                html: `<div data-orientation="vertical">
+  <div role="tablist" aria-label="Application record">...</div>
+  <div role="tabpanel" aria-labelledby="summary-tab">...</div>
+</div>`,
+                props: [
+                  {
+                    name: 'orientation',
+                    type: 'horizontal | vertical',
+                    example: 'vertical',
+                    description: 'Chooses the tab list and keyboard orientation.',
+                  },
+                  {
+                    name: 'variant',
+                    type: 'default | line',
+                    example: 'line',
+                    description: 'Chooses the visual treatment for the tab list.',
+                  },
+                ],
+                attributes: [
+                  {
+                    name: 'data-orientation',
+                    type: 'state hook',
+                    example: 'vertical',
+                    description:
+                      'Communicates orientation to the component styling and inspection tools.',
+                  },
+                  {
+                    name: 'role="tabpanel"',
+                    type: 'semantic role',
+                    description: 'Identifies the active content associated with the selected tab.',
+                  },
+                ],
+              },
+              requirements: {
+                userStory:
+                  'As a product team member, I want a vertical set of related views so people can scan longer labels while staying in the same record context.',
+                groups: [
+                  {
+                    id: 'FR-VERTICAL',
+                    title: 'Functional requirements',
+                    items: [
+                      'The vertical tab list must expose Summary, Permissions, and Activity as sibling views.',
+                      'Selecting a tab must show its corresponding product view without changing the page destination.',
+                    ],
+                  },
+                  {
+                    id: 'RESP-VERTICAL',
+                    title: 'Responsive requirements',
+                    items: [
+                      'The tab list and active panel must stack in a readable order when the viewport is narrow.',
+                      'Labels and focus indicators must remain visible without horizontal scrolling.',
+                    ],
+                  },
+                ],
+                acceptanceCriteria: [
+                  {
+                    id: 'AC-VERTICAL-01',
+                    requirementRefs: ['FR-VERTICAL-01'],
+                    given: 'the vertical tab example is rendered',
+                    when: 'a person selects Permissions or Activity',
+                    then: 'the selected view appears beside the vertical tab list',
+                    and: ['the page context and destination remain unchanged'],
+                  },
+                  {
+                    id: 'AC-VERTICAL-02',
+                    requirementRefs: ['RESP-VERTICAL-01', 'RESP-VERTICAL-02'],
+                    given: 'the viewport becomes narrow',
+                    when: 'the vertical layout reflows',
+                    then: 'the tab list and active panel stack in reading order',
+                    and: ['labels and focus remain visible without horizontal scrolling'],
+                  },
+                ],
+              },
+              verification: {
+                scenarios: [
+                  {
+                    id: 'VR-VERTICAL-01',
+                    criterionRefs: ['AC-VERTICAL-01'],
+                    role: 'Functional QA',
+                    title: 'Switch vertical product views',
+                    cases: [
+                      {
+                        id: 'VR-VERTICAL-01A',
+                        criterionRefs: ['AC-VERTICAL-01'],
+                        title: 'Select each view',
+                        steps: [
+                          'Activate Permissions and Activity with a pointer and with the keyboard.',
+                          'Inspect the active panel and the selected tab after each activation.',
+                        ],
+                        expected:
+                          'The matching product panel appears, the selected state is clear, and the page does not navigate away.',
+                      },
+                    ],
+                  },
+                  {
+                    id: 'VR-VERTICAL-02',
+                    criterionRefs: ['AC-VERTICAL-02'],
+                    role: 'Responsive QA',
+                    title: 'Check vertical layout reflow',
+                    cases: [
+                      {
+                        id: 'VR-VERTICAL-02A',
+                        criterionRefs: ['AC-VERTICAL-02'],
+                        title: 'Resize to a narrow viewport',
+                        steps: [
+                          'Resize the page until the vertical layout stacks, then tab through the controls and panel.',
+                        ],
+                        expected:
+                          'The tab list remains before the active panel, labels wrap without clipping, and focus remains visible.',
+                      },
+                    ],
+                  },
+                ],
+              },
+            }}
+          >
+            <Tabs
+              orientation="vertical"
+              defaultSelectedKey="summary"
+              className="grid gap-4 sm:grid-cols-[12rem_minmax(0,1fr)]"
+            >
+              <TabsList aria-label="Application record" variant="line" className="max-w-full">
+                <TabsTrigger id="vertical-summary-tab" key="summary">
+                  Summary
+                </TabsTrigger>
+                <TabsTrigger id="vertical-permissions-tab" key="permissions">
+                  Permissions
+                </TabsTrigger>
+                <TabsTrigger id="vertical-activity-tab" key="activity">
+                  Activity
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent id="vertical-summary-tab" key="summary" className="leading-7">
+                The summary gives the reader the most important current information first.
+              </TabsContent>
+              <TabsContent id="vertical-permissions-tab" key="permissions" className="leading-7">
+                Permissions explain who can view or change this record.
+              </TabsContent>
+              <TabsContent id="vertical-activity-tab" key="activity" className="leading-7">
+                Activity shows changes without taking the reader to another page.
+              </TabsContent>
+            </Tabs>
+          </ExampleVariation>
         </section>
 
         <section className="space-y-5" aria-labelledby="tabs-questions-heading">
