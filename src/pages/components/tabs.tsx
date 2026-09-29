@@ -59,43 +59,17 @@ function ComponentsTabsPage() {
               </TabsTrigger>
             </TabsList>
             <div className="rounded-lg border bg-card p-4 sm:p-6">
-              <TabsContent id="basic-tab-1" key="tab-1" className="space-y-6 text-muted-foreground">
-                <p className="text-muted-foreground">
-                  Use the tabs to keep related guidance together while showing one focused panel at
-                  a time.
-                </p>
-                <div>
-                  <h3 className="font-semibold text-foreground">Considerations</h3>
-                  <ul className="mt-3 list-disc space-y-3 pl-5">
-                    <li>Keep the labels short and make each panel’s purpose predictable.</li>
-                    <li>Keep the selected tab and its associated panel visibly connected.</li>
-                  </ul>
-                </div>
-                <div className="grid gap-8 sm:grid-cols-2">
-                  <div>
-                    <h3 className="font-semibold text-foreground">Do</h3>
-                    <ul className="mt-3 list-disc space-y-3 pl-5">
-                      <li>Use tabs for related views that share the same context.</li>
-                      <li>Choose a useful default panel.</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">Don&apos;t</h3>
-                    <ul className="mt-3 list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                      <li>Do not use tabs for unrelated destinations.</li>
-                      <li>Do not hide essential information only in a non-default panel.</li>
-                    </ul>
-                  </div>
-                </div>
+              <TabsContent id="basic-tab-1" key="tab-1" className="text-muted-foreground">
+                Tab 1 content.
               </TabsContent>
               <TabsContent id="basic-tab-2" key="tab-2" className="text-muted-foreground">
-                Capture the user and delivery needs before implementation.
+                Tab 2 content.
               </TabsContent>
               <TabsContent id="basic-tab-3" key="tab-3" className="text-muted-foreground">
-                Express observable behavior using Given, When, Then, and And.
+                Tab 3 content.
               </TabsContent>
               <TabsContent id="basic-tab-4" key="tab-4" className="text-muted-foreground">
-                Name the checks and expected results that prove the criteria.
+                Tab 4 content.
               </TabsContent>
             </div>
           </Tabs>
