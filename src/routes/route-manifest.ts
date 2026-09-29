@@ -26,6 +26,7 @@ import { ComponentsFooterPage } from '@/pages/components/footer'
 import { ComponentsCardsPage } from '@/pages/components/cards'
 import { ComponentsSplitViewPage } from '@/pages/components/split-view'
 import { ComponentsButtonsPage } from '@/pages/components/buttons'
+import { ComponentsTabsPage } from '@/pages/components/tabs'
 import { ComponentsUserInterfacePage } from '@/pages/components/user-interface'
 import { ComponentsInteractionPage } from '@/pages/components/interaction'
 import { ComponentsFormsPage } from '@/pages/components/forms'
@@ -125,6 +126,11 @@ export const routes: Route[] = [
     path: '/components/user-interface',
     component: ComponentsUserInterfacePage,
     title: 'Application Delivery Kit | Components | User Interface',
+  },
+  {
+    path: '/components/tabs',
+    component: ComponentsTabsPage,
+    title: 'Application Delivery Kit | Components | Interaction | Tabs',
   },
   {
     path: '/components/interaction',

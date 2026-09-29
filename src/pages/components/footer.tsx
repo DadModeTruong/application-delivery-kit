@@ -575,7 +575,10 @@ const wrappingSupplemental = {
     html: `<footer data-slot="footer" data-size="contained" class="w-full border-t border-border py-6">
   <div data-slot="container" data-size="contained" class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
     <div class="text-sm text-muted-foreground">© 2026 Example Organization — Accessibility first</div>
-    <nav aria-label="Footer" class="flex flex-wrap items-center gap-1">…</nav>
+    <nav aria-label="Footer" class="flex flex-wrap items-center gap-1">
+      <a href="/privacy">Privacy</a>
+      <a href="/accessibility">Accessibility</a>
+    </nav>
   </div>
 </footer>`,
   },

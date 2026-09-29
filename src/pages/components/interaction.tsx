@@ -71,6 +71,15 @@ function ComponentsInteractionPage() {
                 Actions that change something or trigger a process.
               </p>
             </a>
+            <a
+              href="/components/tabs"
+              className="rounded-xl border bg-card p-5 shadow-xs transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <h3 className="font-semibold text-foreground">Tabs</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                Sibling views that share the same context.
+              </p>
+            </a>
           </div>
         </section>
 

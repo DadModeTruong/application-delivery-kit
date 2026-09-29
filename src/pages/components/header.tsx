@@ -369,23 +369,12 @@ function ComponentsHeaderPage() {
     { label: 'Components', href: '/components/user-interface', current: true },
   ]}
 />`,
-                  html: `<header data-slot="header" data-scrolled="false" data-size="contained"
-  class="sticky top-0 z-40 w-full h-14 md:h-16 bg-background/0 transition-[background-color,border-color,backdrop-filter] duration-150">
-  <div data-slot="container" data-size="2xl"
-    class="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8 flex h-full items-center justify-between gap-4">
-    <a href="/"
-      class="rounded-sm font-heading text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-      Application Delivery Kit
-    </a>
+                  html: `<header data-slot="header" data-scrolled="false" data-size="contained" class="sticky top-0 z-40 w-full h-14 md:h-16 bg-background/0 transition-[background-color,border-color,backdrop-filter] duration-150">
+  <div data-slot="container" data-size="2xl" class="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8 flex h-full items-center justify-between gap-4">
+    <a href="/" class="rounded-sm font-heading text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">Application Delivery Kit</a>
     <nav aria-label="Global navigation" class="flex items-center gap-1">
-      <a href="/examples/layouts"
-        class="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-        Examples
-      </a>
-      <a href="/components/user-interface" aria-current="page" data-current="true"
-        class="inline-flex ... data-[current=true]:bg-muted data-[current=true]:text-foreground">
-        Components
-      </a>
+      <a href="/examples/layouts" class="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Examples</a>
+      <a href="/components/user-interface" aria-current="page" data-current="true" class="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-foreground bg-muted">Components</a>
     </nav>
   </div>
 </header>`,
@@ -724,21 +713,12 @@ function ComponentsHeaderPage() {
     { label: 'Components', href: '/components/user-interface' },
   ]}
 />`,
-                  html: `<header data-slot="header" data-size="contained"
-  class="sticky top-0 z-40 w-full h-14 md:h-16 ...">
-  <div data-slot="container" data-size="2xl"
-    class="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8 flex h-full items-center justify-between gap-4">
-    <a href="/" aria-label="Application Delivery Kit"
-      class="inline-flex items-center gap-2 rounded-sm font-heading text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-      <span aria-hidden="true"
-        class="grid size-10 place-items-center rounded-md bg-primary text-sm font-bold text-primary-foreground">
-        ADK
-      </span>
-      <span>Application Delivery Kit</span>
-    </a>
+                  html: `<header data-slot="header" data-size="contained" class="sticky top-0 z-40 w-full h-14 md:h-16 bg-background/0 transition-[background-color,border-color,backdrop-filter] duration-150">
+  <div data-slot="container" data-size="2xl" class="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8 flex h-full items-center justify-between gap-4">
+    <a href="/" aria-label="Application Delivery Kit" class="inline-flex items-center gap-2 rounded-sm font-heading text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Application Delivery Kit</a>
     <nav aria-label="Global navigation" class="hidden items-center gap-1 md:flex">
-      <a href="/examples/layouts" class="inline-flex ...">Examples</a>
-      <a href="/components/user-interface" class="inline-flex ...">Components</a>
+      <a href="/examples/layouts" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium">Examples</a>
+      <a href="/components/user-interface" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium">Components</a>
     </nav>
   </div>
 </header>`,
@@ -1026,14 +1006,8 @@ function ComponentsHeaderPage() {
   ]}
 />`,
                   html: `<nav aria-label="Global navigation" class="flex items-center gap-1">
-  <a href="/examples/layouts" class="inline-flex ... text-muted-foreground">
-    Examples
-  </a>
-  <a href="/components/user-interface"
-    aria-current="page" data-current="true"
-    class="inline-flex ... data-[current=true]:bg-muted data-[current=true]:text-foreground">
-    Components
-  </a>
+  <a href="/examples/layouts" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground">Examples</a>
+  <a href="/components/user-interface" aria-current="page" data-current="true" class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-foreground bg-muted">Components</a>
 </nav>`,
                 },
                 requirements: {
@@ -1332,25 +1306,17 @@ function ComponentsHeaderPage() {
     },
   ]}
 />`,
-                  html: `<header data-slot="header" data-size="contained"
-  class="sticky top-0 z-40 w-full h-14 md:h-16 bg-background/0 transition-[background-color,border-color,backdrop-filter] duration-150">
-  <div data-slot="container" data-size="2xl"
-    class="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8 flex h-full items-center justify-between gap-4">
-    <a href="/" class="rounded-sm font-heading text-base font-semibold text-foreground ...">
-      Application Delivery Kit
-    </a>
+                  html: `<header data-slot="header" data-size="contained" class="sticky top-0 z-40 w-full h-14 md:h-16 bg-background/0 transition-[background-color,border-color,backdrop-filter] duration-150">
+  <div data-slot="container" data-size="2xl" class="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8 flex h-full items-center justify-between gap-4">
+    <a href="/" class="rounded-sm font-heading text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">Application Delivery Kit</a>
     <nav aria-label="Global navigation" class="flex items-center gap-1">
-      <a href="/examples/layouts" class="...">Examples</a>
-      <button type="button" aria-haspopup="menu" aria-expanded="false"
-        class="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-        Components
-        <svg aria-hidden="true" class="size-4 shrink-0">...</svg>
-      </button>
+      <a href="/examples/layouts" class="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground">Examples</a>
+      <button type="button" aria-haspopup="menu" aria-expanded="false" class="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground">Components<svg aria-hidden="true" class="size-4 shrink-0"></svg></button>
     </nav>
   </div>
-  <div role="menu" hidden class="...">
-    <a role="menuitem" href="/components/forms" class="w-full items-center gap-2 ...">Forms</a>
-    <a role="menuitem" href="/components/user-interface" class="w-full items-center gap-2 ...">User interface</a>
+  <div role="menu" hidden class="absolute rounded-md border bg-card p-2 shadow-md">
+    <a role="menuitem" href="/components/forms" class="block w-full rounded-md px-3 py-2">Forms</a>
+    <a role="menuitem" href="/components/user-interface" class="block w-full rounded-md px-3 py-2">User interface</a>
   </div>
 </header>`,
                 },
@@ -1702,22 +1668,12 @@ function ComponentsHeaderPage() {
     },
   ]}
 />`,
-                  html: `<header data-slot="header" data-size="contained"
-  class="sticky top-0 z-40 w-full h-14 md:h-16 bg-background/0 transition-[background-color,border-color,backdrop-filter] duration-150">
-  <div data-slot="container" data-size="2xl"
-    class="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8 flex h-full items-center justify-between gap-4">
-    <a href="/" class="rounded-sm font-heading text-base font-semibold text-foreground ...">
-      Application Delivery Kit
-    </a>
+                  html: `<header data-slot="header" data-size="contained" class="sticky top-0 z-40 w-full h-14 md:h-16 bg-background/0 transition-[background-color,border-color,backdrop-filter] duration-150">
+  <div data-slot="container" data-size="2xl" class="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8 flex h-full items-center justify-between gap-4">
+    <a href="/" class="rounded-sm font-heading text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">Application Delivery Kit</a>
     <nav aria-label="Global navigation" class="flex items-center gap-1">
-      <a href="/examples/layouts" class="inline-flex items-center gap-2 ...">
-        <svg aria-hidden="true" class="size-4 shrink-0">...</svg>
-        <span>Examples</span>
-      </a>
-      <button type="button" aria-haspopup="menu" aria-expanded="false" class="...">
-        <svg aria-hidden="true" class="size-4 shrink-0">...</svg>
-        <span>Components</span>
-      </button>
+      <a href="/examples/layouts" class="inline-flex items-center gap-2 rounded-md px-3 py-2"><svg aria-hidden="true" class="size-4 shrink-0"></svg><span>Examples</span></a>
+      <button type="button" aria-haspopup="menu" aria-expanded="false" class="inline-flex items-center gap-2 rounded-md px-3 py-2"><svg aria-hidden="true" class="size-4 shrink-0"></svg><span>Components</span></button>
     </nav>
   </div>
 </header>`,
