@@ -187,11 +187,6 @@ function ComponentsCardsPage() {
               Compare the semantic choices below. Each preview uses the production Card parts; the
               surrounding anchor or button changes only when the card&apos;s job changes.
             </p>
-            <TryIt>
-              Tab through the previews and activate each control. Confirm that static information is
-              not focusable, the linked Card has one clear destination, and the action Card exposes
-              one clearly named button.
-            </TryIt>
           </div>
           <div className="space-y-8">
             <ExampleVariation
