@@ -6,6 +6,7 @@
  */
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { TryIt } from '@/components/layout/try-it'
 import { ExampleVariation } from '@/components/layout/example-variation'
 import { Footer } from '@/components/layout/footer'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
@@ -788,6 +789,10 @@ function ComponentsFooterPage() {
             normal keyboard-reachable anchors. Its wrapping layout keeps supporting content
             available when space is limited.
           </p>
+          <TryIt>
+            Tab through the links and resize the preview. The links should remain ordinary anchors
+            with visible focus, and the row should wrap rather than scroll horizontally.
+          </TryIt>
           <div className="overflow-hidden rounded-xl border [&_[data-slot=footer]]:!border-0 [&_[data-slot=footer]]:!py-2">
             <Footer
               bordered={false}
@@ -797,11 +802,6 @@ function ComponentsFooterPage() {
                 { href: '/accessibility', label: 'Accessibility' },
               ]}
             />
-          </div>
-          <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
-            <strong className="mr-2 text-foreground">Try it:</strong>
-            Tab through the links and resize the preview. The links should remain ordinary anchors
-            with visible focus, and the row should wrap rather than scroll horizontally.
           </div>
         </section>
 
