@@ -193,7 +193,7 @@ function ComponentsCardsPage() {
               title="Static information"
               summary="Group related content without making the Card itself interactive."
               tryIt="Identify the heading, then tab through the page. Confirm that the static Card is understandable without receiving focus or implying that its surface is clickable."
-              exampleClassName="border-0 rounded-none p-0"
+              exampleClassName="p-0"
               supplemental={{
                 tabLayout: 'requirements',
                 guidance: {
@@ -420,7 +420,7 @@ function ComponentsCardsPage() {
               title="Linked Card"
               summary="Use one real link when the whole item represents one destination."
               tryIt="Tab to the linked Card, confirm its visible focus indicator, activate it, and verify that the consuming application reaches the Header guide without nested interactive controls."
-              exampleClassName="border-0 rounded-none p-0"
+              exampleClassName="p-0"
               supplemental={{
                 tabLayout: 'requirements',
                 guidance: {
@@ -673,7 +673,7 @@ function ComponentsCardsPage() {
               title="Card with an action"
               summary="Use a button when the Card action changes state or performs work in place."
               tryIt="Tab to Mark all read, activate it, and confirm that the action is announced without navigating away or making the whole Card interactive."
-              exampleClassName="border-0 rounded-none p-0"
+              exampleClassName="p-0"
               supplemental={{
                 tabLayout: 'requirements',
                 guidance: {
