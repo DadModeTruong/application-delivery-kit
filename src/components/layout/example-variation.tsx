@@ -151,9 +151,9 @@ function CodeBlock({ code, idPrefix }: { code: ExampleCode; idPrefix: string }) 
           Complete rendered HTML structure
         </h4>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          This is an illustrative excerpt of the structure produced by the reusable component. Some
-          wrapper or library-generated details may be omitted; preserve the semantic elements,
-          responsive classes, focus classes, and state attributes shown when adapting the pattern.
+          This shows the complete semantic structure produced by the reusable component for this
+          example, including its rendered elements, relationships, state attributes, and relevant
+          styling hooks.
         </p>
         <pre className="mt-4 overflow-x-auto rounded-lg bg-muted p-4 text-sm leading-6 text-foreground">
           <code>{code.html}</code>
