@@ -410,8 +410,8 @@ function StandardizedExample({
         <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
         <p className="text-muted-foreground">{summary}</p>
       </div>
-      <div className={cn('overflow-hidden rounded-xl border', exampleClassName)}>{children}</div>
       <TryIt>{tryIt}</TryIt>
+      <div className={cn('overflow-hidden rounded-xl border', exampleClassName)}>{children}</div>
       <Tabs defaultSelectedKey={tabIds.guidance} className="min-w-0 gap-2">
         <TabsList aria-label={`${title} supplemental information`} className="max-w-full flex-wrap">
           <TabsTrigger id={tabIds.guidance}>Guidance</TabsTrigger>

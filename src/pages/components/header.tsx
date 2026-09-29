@@ -145,6 +145,11 @@ function ComponentsHeaderPage() {
             decide whether its links are global, primary, or section-level. The preview marks
             Components as current to show how an application supplies that state.
           </p>
+          <TryIt>
+            Tab through the brand and navigation links, activate a destination, then resize to check
+            that the same navigation remains usable in the mobile presentation.
+          </TryIt>
+
           <div className="space-y-4">
             <div className="overflow-hidden rounded-xl border">
               <Header
@@ -157,11 +162,6 @@ function ComponentsHeaderPage() {
               />
             </div>
           </div>
-
-          <TryIt>
-            Tab through the brand and navigation links, activate a destination, then resize to check
-            that the same navigation remains usable in the mobile presentation.
-          </TryIt>
         </section>
         <section
           className="grid gap-10 lg:grid-cols-2"
