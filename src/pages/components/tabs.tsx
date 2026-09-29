@@ -43,72 +43,36 @@ function ComponentsTabsPage() {
             Tab to a view, use the arrow keys to move between tabs, and activate a tab. Confirm that
             its selected state and associated panel stay together.
           </TryIt>
-          <div className="overflow-hidden rounded-lg border p-5 sm:p-6">
-            <Tabs defaultSelectedKey="guidance" className="w-full">
-              <TabsList aria-label="Example documentation" className="max-w-full flex-wrap">
-                <TabsTrigger id="basic-guidance-tab" key="guidance">
-                  Guidance
-                </TabsTrigger>
-                <TabsTrigger id="basic-requirements-tab" key="requirements">
-                  Requirements
-                </TabsTrigger>
-                <TabsTrigger id="basic-criteria-tab" key="criteria">
-                  Criteria
-                </TabsTrigger>
-                <TabsTrigger id="basic-verification-tab" key="verification">
-                  Verification
-                </TabsTrigger>
-                <TabsTrigger id="basic-code-tab" key="code">
-                  Code
-                </TabsTrigger>
-              </TabsList>
-              <div className="mt-2 rounded-lg border bg-card p-4 sm:p-6">
-                <TabsContent id="basic-guidance-tab" key="guidance" className="space-y-6">
-                  <p className="leading-7 text-muted-foreground">
-                    Use the tabs to keep related guidance together while showing one focused panel
-                    at a time.
-                  </p>
-                  <div>
-                    <h3 className="font-semibold text-foreground">Considerations</h3>
-                    <ul className="mt-3 list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                      <li>Keep the labels short and make each panel’s purpose predictable.</li>
-                      <li>Keep the selected tab and its associated panel visibly connected.</li>
-                    </ul>
-                  </div>
-                  <div className="grid gap-8 sm:grid-cols-2">
-                    <div>
-                      <h3 className="font-semibold text-foreground">Do</h3>
-                      <ul className="mt-3 list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                        <li>Use tabs for related views that share the same context.</li>
-                        <li>Choose a useful default panel.</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground">Don&apos;t</h3>
-                      <ul className="mt-3 list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                        <li>Do not use tabs for unrelated destinations.</li>
-                        <li>Do not hide essential information only in a non-default panel.</li>
-                      </ul>
-                    </div>
-                  </div>
-                </TabsContent>
-                <TabsContent id="basic-requirements-tab" key="requirements" className="leading-7">
-                  Keep each tab label and panel focused on one related view.
-                </TabsContent>
-                <TabsContent id="basic-criteria-tab" key="criteria" className="leading-7">
-                  The selected tab and visible panel must always describe the same view.
-                </TabsContent>
-                <TabsContent id="basic-verification-tab" key="verification" className="leading-7">
-                  Activate each tab with a pointer and keyboard, then inspect its selected state and
-                  panel.
-                </TabsContent>
-                <TabsContent id="basic-code-tab" key="code" className="leading-7">
-                  Use the production Tabs, TabsList, TabsTrigger, and TabsContent primitives
-                  together.
-                </TabsContent>
-              </div>
-            </Tabs>
-          </div>
+          <Tabs defaultSelectedKey="tab-1" className="w-full">
+            <TabsList aria-label="Example tabs" className="max-w-full flex-wrap">
+              <TabsTrigger id="basic-tab-1" key="tab-1">
+                Tab 1
+              </TabsTrigger>
+              <TabsTrigger id="basic-tab-2" key="tab-2">
+                Tab 2
+              </TabsTrigger>
+              <TabsTrigger id="basic-tab-3" key="tab-3">
+                Tab 3
+              </TabsTrigger>
+              <TabsTrigger id="basic-tab-4" key="tab-4">
+                Tab 4
+              </TabsTrigger>
+            </TabsList>
+            <div className="mt-2 rounded-lg border bg-card p-4 sm:p-6">
+              <TabsContent id="basic-tab-1" key="tab-1" className="leading-7">
+                Content for Tab 1.
+              </TabsContent>
+              <TabsContent id="basic-tab-2" key="tab-2" className="leading-7">
+                Content for Tab 2.
+              </TabsContent>
+              <TabsContent id="basic-tab-3" key="tab-3" className="leading-7">
+                Content for Tab 3.
+              </TabsContent>
+              <TabsContent id="basic-tab-4" key="tab-4" className="leading-7">
+                Content for Tab 4.
+              </TabsContent>
+            </div>
+          </Tabs>
         </section>
 
         <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="tabs-use-heading">
