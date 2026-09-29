@@ -10,7 +10,7 @@ describe('TryIt', () => {
 
     const alert = screen.getByRole('alert')
     expect(alert).toBeTruthy()
-    expect(screen.getByText('Try it:')).toBeTruthy()
+    expect(screen.getByText('Try it')).toBeTruthy()
     expect(screen.getByText('Tab through the navigation links and resize the page.')).toBeTruthy()
     expect(alert.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true')
   })

@@ -206,6 +206,9 @@ describe('ExampleVariation supplemental content', () => {
     expect(screen.getByRole('tab', { name: 'Code' })).toBeTruthy()
     expect(screen.getByRole('tab', { name: 'Criteria' })).toBeTruthy()
     expect(screen.getByRole('tab', { name: 'Verification' })).toBeTruthy()
+    expect(screen.getByRole('alert')).toBeTruthy()
+    expect(screen.getByText('Try it')).toBeTruthy()
+    expect(screen.getByText('Interact with the example.')).toBeTruthy()
     expect(screen.getByText('Use this example to demonstrate the shared pattern.')).toBeTruthy()
 
     fireEvent.click(screen.getByRole('tab', { name: 'Code' }))

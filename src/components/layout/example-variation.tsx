@@ -11,6 +11,7 @@ import * as React from 'react'
 import type { ReactNode } from 'react'
 import { cn } from 'cn'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { TryIt } from '@/components/layout/try-it'
 
 type ExampleGuidance = {
   explanation: ReactNode
@@ -410,10 +411,7 @@ function StandardizedExample({
         <p className="text-muted-foreground">{summary}</p>
       </div>
       <div className={cn('overflow-hidden rounded-xl border', exampleClassName)}>{children}</div>
-      <div className="rounded-md bg-muted/50 p-4 text-sm leading-6 text-muted-foreground">
-        <strong className="mr-2 text-foreground">Try it:</strong>
-        {tryIt}
-      </div>
+      <TryIt>{tryIt}</TryIt>
       <Tabs defaultSelectedKey={tabIds.guidance} className="min-w-0 gap-2">
         <TabsList aria-label={`${title} supplemental information`} className="max-w-full flex-wrap">
           <TabsTrigger id={tabIds.guidance}>Guidance</TabsTrigger>
