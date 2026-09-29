@@ -196,6 +196,7 @@ function ComponentsSplitViewPage() {
               title="Main two-thirds, Secondary one-third"
               summary="Give Main more room when Secondary provides context, a preview, or supporting details."
               tryIt="Activate View details, close the details area from either control, then resize through narrow and wide widths. Confirm that focus returns to the opening control, Main remains first, and neither pane becomes unusably narrow."
+              exampleClassName="border-0 rounded-none"
               supplemental={{
                 tabLayout: 'requirements',
                 guidance: {
@@ -448,6 +449,7 @@ function ComponentsSplitViewPage() {
               title="Main half, Secondary half"
               summary="Give both areas equal room when people need to compare or move between related views."
               tryIt="Activate View details, close the details area from either control, then resize through narrow and wide widths. Confirm that both panes remain readable, Main stays first in the stacked layout, and focus returns to the opening control."
+              exampleClassName="border-0 rounded-none"
               supplemental={{
                 tabLayout: 'requirements',
                 guidance: {
