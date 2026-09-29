@@ -7,6 +7,7 @@
 
 import { SecondaryPane, SplitPane } from '@/components/layout/split-pane'
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
+import { TryIt } from '@/components/layout/try-it'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
 import { SplitPaneExample } from '../examples/shared/split-pane-example'
 
@@ -41,7 +42,11 @@ function ComponentsSplitViewPage() {
             controls their proportion, stacking, and visibility; the consuming page still owns the
             content, selection, and show/hide interaction.
           </p>
-          <div className="overflow-hidden rounded-xl border">
+          <TryIt>
+            Resize the preview. Main should remain first when the areas stack, and both areas should
+            remain readable without horizontal scrolling.
+          </TryIt>
+          <div className="-mt-2 overflow-hidden rounded-xl border">
             <SplitPane secondarySize="third">
               <section className="space-y-2 p-6" aria-labelledby="split-basic-main-heading">
                 <h3 id="split-basic-main-heading" className="text-lg font-semibold">
@@ -64,10 +69,6 @@ function ComponentsSplitViewPage() {
               </SecondaryPane>
             </SplitPane>
           </div>
-          <p className="text-sm leading-6 text-muted-foreground">
-            Try it: resize the preview. Main should remain first when the areas stack, and both
-            areas should remain readable without horizontal scrolling.
-          </p>
         </section>
 
         <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="split-view-use-heading">
@@ -189,11 +190,6 @@ function ComponentsSplitViewPage() {
             and the open/closed secondary-area behavior rather than treating the content cards as a
             required pattern.
           </p>
-          <p className="text-sm leading-6 text-muted-foreground">
-            Try it: activate View details, close the details area from either control, then resize
-            through narrow and wide widths. Confirm that focus returns to the opening control, Main
-            remains first, and neither pane becomes unusably narrow.
-          </p>
           <div className="space-y-10">
             <article className="space-y-6 rounded-lg border p-6 sm:p-8">
               <div className="space-y-2">
@@ -205,19 +201,26 @@ function ComponentsSplitViewPage() {
                   details.
                 </p>
               </div>
-              <SplitPaneExample
-                secondarySize="third"
-                mainColumns={{
-                  visible: { base: 1, sm: 2, md: 2, lg: 3 },
-                  hidden: { base: 1, sm: 2, md: 3, lg: 4 },
-                }}
-                mainCardCount={8}
-                secondaryColumns={{
-                  third: { base: 1, sm: 1, md: 1, lg: 2 },
-                  half: { base: 1, sm: 1, md: 2, lg: 2 },
-                }}
-                secondaryCardCount={4}
-              />
+              <TryIt>
+                Activate View details, close the details area from either control, then resize
+                through narrow and wide widths. Confirm that focus returns to the opening control,
+                Main remains first, and neither pane becomes unusably narrow.
+              </TryIt>
+              <div className="-mt-2">
+                <SplitPaneExample
+                  secondarySize="third"
+                  mainColumns={{
+                    visible: { base: 1, sm: 2, md: 2, lg: 3 },
+                    hidden: { base: 1, sm: 2, md: 3, lg: 4 },
+                  }}
+                  mainCardCount={8}
+                  secondaryColumns={{
+                    third: { base: 1, sm: 1, md: 1, lg: 2 },
+                    half: { base: 1, sm: 1, md: 2, lg: 2 },
+                  }}
+                  secondaryCardCount={4}
+                />
+              </div>
               <p className="text-muted-foreground">
                 This proportion keeps the primary task visually dominant while preserving a useful
                 supporting area.
@@ -254,19 +257,26 @@ function ComponentsSplitViewPage() {
                   views.
                 </p>
               </div>
-              <SplitPaneExample
-                secondarySize="half"
-                mainColumns={{
-                  visible: { base: 1, sm: 2, md: 2, lg: 3 },
-                  hidden: { base: 1, sm: 2, md: 3, lg: 4 },
-                }}
-                mainCardCount={8}
-                secondaryColumns={{
-                  third: { base: 1, sm: 1, md: 1, lg: 2 },
-                  half: { base: 1, sm: 1, md: 2, lg: 2 },
-                }}
-                secondaryCardCount={4}
-              />
+              <TryIt>
+                Activate View details, close the details area from either control, then resize
+                through narrow and wide widths. Confirm that both panes remain readable, Main stays
+                first in the stacked layout, and focus returns to the opening control.
+              </TryIt>
+              <div className="-mt-2">
+                <SplitPaneExample
+                  secondarySize="half"
+                  mainColumns={{
+                    visible: { base: 1, sm: 2, md: 2, lg: 3 },
+                    hidden: { base: 1, sm: 2, md: 3, lg: 4 },
+                  }}
+                  mainCardCount={8}
+                  secondaryColumns={{
+                    third: { base: 1, sm: 1, md: 1, lg: 2 },
+                    half: { base: 1, sm: 1, md: 2, lg: 2 },
+                  }}
+                  secondaryCardCount={4}
+                />
+              </div>
               <p className="text-muted-foreground">
                 An equal split is useful when neither area should be treated as a narrow detail
                 column. Keep the primary relationship clear through headings and content.
