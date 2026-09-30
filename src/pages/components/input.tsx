@@ -890,29 +890,6 @@ function ComponentsInputPage() {
             {renderExample(examples[5], <FileExample />)}
           </div>
         </section>
-        <section className="space-y-5" aria-labelledby="input-questions-heading">
-          <h2 id="input-questions-heading" className="text-2xl font-semibold tracking-tight">
-            Questions to ask
-          </h2>
-          <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-            <li>Is this value short and structured enough for one line?</li>
-            <li>
-              What label, type, autocomplete, helper, error, or format guidance does the person
-              need?
-            </li>
-            <li>
-              What happens when the value is missing, invalid, unavailable, or successfully
-              submitted?
-            </li>
-            <li>
-              Can the field, label, supporting text, and state be understood with a keyboard and
-              screen reader?
-            </li>
-            <li>
-              Does the field remain readable and operable at narrow widths and increased text size?
-            </li>
-          </ul>
-        </section>
       </div>
     </ComponentGuideShell>
   )
