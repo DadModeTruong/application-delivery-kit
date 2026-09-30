@@ -458,8 +458,7 @@ function sheetSupplemental(example: SheetSupplementalInput) {
       notes:
         'This is the complete open-state structure for the live variation, including triggers, overlay, dialog, heading, description, body content, links, and close behavior. React Aria IDs are shown as descriptive placeholders.',
     },
-    requirements,
-    acceptanceCriteria: criteria,
+    requirements: { ...requirements, acceptanceCriteria: criteria },
     verification: { scenarios: verification },
   }
 }
