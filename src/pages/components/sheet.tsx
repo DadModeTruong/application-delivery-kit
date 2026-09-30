@@ -684,7 +684,7 @@ function ComponentsSheetPage() {
               kind: 'basic',
               explanation:
                 'The basic Sheet establishes the default modal relationship: a named trigger opens focused content, and the production primitive supplies a visible close button and dismissal behavior.',
-              source: `<SheetTrigger>\n  <Button>Open account details</Button>\n  <Sheet>\n    <SheetHeader>\n      <SheetTitle>Account details</SheetTitle>\n      <SheetDescription>Review account information.</SheetDescription>\n    </SheetHeader>\n  </Sheet>\n</SheetTrigger>`,
+              source: `<SheetTrigger>\n  <Button>Open account details</Button>\n  <Sheet>\n    <SheetHeader>\n      <SheetTitle>Account details</SheetTitle>\n      <SheetDescription>Review the account information without leaving this page.</SheetDescription>\n    </SheetHeader>\n  </Sheet>\n</SheetTrigger>`,
               html: `<button type="button">Open account details</button>
 <div data-slot="sheet-overlay" data-state="open">
   <div data-slot="sheet-content" data-side="right" role="dialog" aria-modal="true" aria-labelledby="sheet-title" data-state="open">
