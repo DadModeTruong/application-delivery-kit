@@ -19,29 +19,405 @@ import {
 import { Button } from '@/components/ui/button'
 import { interactionSidebarLinks } from '@/config/component-navigation'
 
-function sheetSupplemental(example: {
+type SheetGuideKind = 'basic' | 'sides' | 'no-close'
+
+type SheetSupplementalInput = {
+  kind: SheetGuideKind
   explanation: string
   source: string
   html: string
-  expected: string
-}) {
+}
+
+function sheetSupplemental(example: SheetSupplementalInput) {
+  const basic = example.kind === 'basic'
+  const sides = example.kind === 'sides'
+
+  const functional = basic
+    ? [
+        'Activating Open account details opens one right-side modal sheet with the heading Account details and the description Review the account information without leaving this page.',
+        'The open sheet shows Your account is connected and ready to use. and a visible Close button.',
+        'Activating Close closes the sheet and returns focus to Open account details without navigating away.',
+      ]
+    : sides
+      ? [
+          'Activating top opens a sheet attached to the top edge with data-side="top", heading top sheet, and description This panel enters from the top edge.',
+          'Activating right opens a sheet attached to the right edge with data-side="right", heading right sheet, and description This panel enters from the right edge.',
+          'Activating bottom opens a sheet attached to the bottom edge with data-side="bottom", heading bottom sheet, and description This panel enters from the bottom edge.',
+          'Activating left opens a sheet attached to the left edge with data-side="left", heading left sheet, and description This panel enters from the left edge.',
+          'Each open side sheet shows Choose the side that matches the task, content shape, and responsive behavior. and can be dismissed before another side is tested.',
+        ]
+      : [
+          'Activating Open mobile menu opens one right-side modal sheet with data-side="right", heading Site navigation, and description Move between the main sections of this site.',
+          'The open sheet does not render the built-in Sheet close button because showCloseButton is false.',
+          'The open sheet exposes a navigation landmark named Mobile site navigation with links to /components/interaction, /components/user-interface, and /components/forms labelled Interaction, User Interface, and Forms.',
+          'Activating a menu link navigates to its exact configured destination and closes the modal sheet.',
+          'The open sheet shows Use Escape or the overlay to close this menu.',
+        ]
+
+  const criteria = basic
+    ? [
+        {
+          id: 'AC-SHEET-BASIC-01',
+          requirementRefs: ['FR-SHEET-BASIC'],
+          given: 'Open account details is visible',
+          when: 'a person activates it',
+          then: 'a modal opens from the right edge with data-side="right" and shows Account details, its description, and its body text',
+          and: [
+            'role="dialog" and aria-modal="true" are present',
+            'the page behind the sheet cannot be activated',
+          ],
+        },
+        {
+          id: 'AC-SHEET-BASIC-02',
+          requirementRefs: ['A11Y-SHEET-BASIC'],
+          given: 'the Account details sheet is open',
+          when: 'a person presses Tab repeatedly',
+          then: 'focus remains in the sheet and reaches the visible Close button with a visible focus indicator',
+          and: ['the dialog is named by Account details'],
+        },
+        {
+          id: 'AC-SHEET-BASIC-03',
+          requirementRefs: ['FR-SHEET-BASIC', 'A11Y-SHEET-BASIC'],
+          given: 'the Account details sheet is open',
+          when: 'a person presses Escape or activates Close',
+          then: 'the sheet closes and focus returns to Open account details',
+          and: ['the browser remains on the same page'],
+        },
+        {
+          id: 'AC-SHEET-BASIC-04',
+          requirementRefs: ['RESP-SHEET-BASIC'],
+          given: 'the viewport is at the narrowest supported width',
+          when: 'a person opens Account details',
+          then: 'the heading, description, body text, and Close remain readable and reachable without horizontal clipping',
+        },
+      ]
+    : sides
+      ? [
+          {
+            id: 'AC-SHEET-SIDES-01',
+            requirementRefs: ['FR-SHEET-SIDES'],
+            given: 'top, right, bottom, and left are visible',
+            when: 'a person activates each button one at a time',
+            then: 'top opens at the top edge, right at the right edge, bottom at the bottom edge, and left at the left edge',
+            and: [
+              'each open sheet exposes the matching data-side value',
+              'each heading is the button label followed by sheet',
+              'each description names the matching edge',
+            ],
+          },
+          {
+            id: 'AC-SHEET-SIDES-02',
+            requirementRefs: ['FR-SHEET-SIDES', 'A11Y-SHEET-SIDES'],
+            given: 'any side sheet is open',
+            when: 'a person reads the panel and presses Escape',
+            then: 'the panel shows the exact body text, closes, and returns focus to the button that opened it',
+          },
+          {
+            id: 'AC-SHEET-SIDES-03',
+            requirementRefs: ['A11Y-SHEET-SIDES'],
+            given: 'any side sheet is open',
+            when: 'a person uses keyboard navigation or assistive technology',
+            then: 'the panel has role="dialog", aria-modal="true", one accessible name from its heading, and visible focus',
+          },
+          {
+            id: 'AC-SHEET-SIDES-04',
+            requirementRefs: ['RESP-SHEET-SIDES'],
+            given: 'the viewport is narrow',
+            when: 'each side sheet is opened',
+            then: 'the panel stays inside the viewport and its heading, description, and body text are not clipped',
+          },
+        ]
+      : [
+          {
+            id: 'AC-SHEET-NOCLOSE-01',
+            requirementRefs: ['FR-SHEET-NOCLOSE'],
+            given: 'Open mobile menu is visible',
+            when: 'a person activates it',
+            then: 'a right-side modal opens with data-side="right", shows Site navigation and its description, and does not render a built-in close button',
+            and: ['the navigation landmark is named Mobile site navigation'],
+          },
+          {
+            id: 'AC-SHEET-NOCLOSE-02',
+            requirementRefs: ['FR-SHEET-NOCLOSE'],
+            given: 'the mobile menu is open',
+            when: 'a person activates Interaction, User Interface, or Forms',
+            then: 'the consuming application navigates to /components/interaction, /components/user-interface, or /components/forms respectively and the sheet closes',
+          },
+          {
+            id: 'AC-SHEET-NOCLOSE-03',
+            requirementRefs: ['A11Y-SHEET-NOCLOSE'],
+            given: 'the mobile menu is open',
+            when: 'a person tabs through the links and presses Escape',
+            then: 'all links receive visible focus, Escape closes the sheet, and focus returns to Open mobile menu',
+            and: ['Use Escape or the overlay to close this menu. is visible'],
+          },
+          {
+            id: 'AC-SHEET-NOCLOSE-04',
+            requirementRefs: ['RESP-SHEET-NOCLOSE'],
+            given: 'the viewport is narrow',
+            when: 'the mobile menu is opened',
+            then: 'all three links remain readable and reachable without horizontal clipping or overlap',
+          },
+        ]
+
+  const verification = basic
+    ? [
+        {
+          id: 'VR-SHEET-BASIC-01',
+          role: 'Functional QA',
+          title: 'Verify the right-side Account details panel',
+          cases: [
+            {
+              id: 'VR-SHEET-BASIC-01A',
+              title: 'Open and inspect the panel',
+              steps: [
+                'Open /components/sheet.',
+                'Activate Open account details.',
+                'Confirm data-side="right", role="dialog", Account details, the description, the body text, and Close.',
+                'Press Escape and confirm the sheet closes.',
+              ],
+              expected:
+                'The right-side modal contains the exact documented content and Escape closes it.',
+            },
+          ],
+        },
+        {
+          id: 'VR-SHEET-BASIC-02',
+          role: 'Accessibility QA',
+          title: 'Verify basic focus restoration',
+          cases: [
+            {
+              id: 'VR-SHEET-BASIC-02A',
+              title: 'Test keyboard operation',
+              steps: [
+                'Tab to Open account details and inspect visible focus.',
+                'Open the sheet and Tab to Close.',
+                'Press Escape and inspect the active element.',
+                'Open again, activate Close, and inspect the active element.',
+              ],
+              expected:
+                'The dialog is named Account details, focus is visible, both dismissal paths work, and focus returns to Open account details.',
+            },
+          ],
+        },
+        {
+          id: 'VR-SHEET-BASIC-03',
+          role: 'Responsive QA',
+          title: 'Verify the narrowest basic layout',
+          cases: [
+            {
+              id: 'VR-SHEET-BASIC-03A',
+              title: 'Check content access',
+              steps: [
+                'Set the narrowest supported viewport.',
+                'Open Account details.',
+                'Review the heading, description, body text, and Close.',
+              ],
+              expected:
+                'All content is readable and Close is reachable without horizontal clipping.',
+            },
+          ],
+        },
+      ]
+    : sides
+      ? [
+          {
+            id: 'VR-SHEET-SIDES-01',
+            role: 'Functional QA',
+            title: 'Verify every side placement',
+            cases: (['top', 'right', 'bottom', 'left'] as const).map((side) => ({
+              id: `VR-SHEET-SIDES-01-${side}`,
+              title: `Verify ${side} placement`,
+              steps: [
+                `Activate ${side}.`,
+                `Confirm the panel is attached to the ${side} edge and has data-side="${side}".`,
+                `Confirm the heading is ${side} sheet and the description is This panel enters from the ${side} edge.`,
+                'Press Escape.',
+              ],
+              expected: `The ${side} sheet opens at the ${side} edge, shows the exact heading and description, and Escape closes it.`,
+            })),
+          },
+          {
+            id: 'VR-SHEET-SIDES-02',
+            role: 'Accessibility QA',
+            title: 'Verify side-sheet focus restoration',
+            cases: [
+              {
+                id: 'VR-SHEET-SIDES-02A',
+                title: 'Test every side with the keyboard',
+                steps: [
+                  'Activate each of top, right, bottom, and left.',
+                  'Tab inside each open panel.',
+                  'Press Escape and inspect the active element after each test.',
+                ],
+                expected:
+                  'Each named dialog has visible focus and returns focus to its own opening button.',
+              },
+            ],
+          },
+        ]
+      : [
+          {
+            id: 'VR-SHEET-NOCLOSE-01',
+            role: 'Functional QA',
+            title: 'Verify mobile-menu destinations',
+            cases: [
+              {
+                id: 'VR-SHEET-NOCLOSE-01A',
+                title: 'Test all three links',
+                steps: [
+                  'Activate Open mobile menu.',
+                  'Confirm no built-in Close button is rendered.',
+                  'Activate Interaction and confirm /components/interaction.',
+                  'Return and repeat with User Interface, confirming /components/user-interface.',
+                  'Return and repeat with Forms, confirming /components/forms.',
+                ],
+                expected: 'Each link navigates to its exact destination and closes the menu.',
+              },
+            ],
+          },
+          {
+            id: 'VR-SHEET-NOCLOSE-02',
+            role: 'Accessibility QA',
+            title: 'Verify dismissal without a close button',
+            cases: [
+              {
+                id: 'VR-SHEET-NOCLOSE-02A',
+                title: 'Test Escape and overlay dismissal',
+                steps: [
+                  'Tab to Open mobile menu and inspect visible focus.',
+                  'Open the menu and Tab to all three links.',
+                  'Press Escape and inspect the active element.',
+                  'Open again and activate the overlay outside the panel.',
+                ],
+                expected:
+                  'All links receive visible focus, both dismissal paths close the menu, the dialog is named Site navigation, and focus returns to Open mobile menu.',
+              },
+            ],
+          },
+          {
+            id: 'VR-SHEET-NOCLOSE-03',
+            role: 'Responsive QA',
+            title: 'Verify the narrow mobile menu',
+            cases: [
+              {
+                id: 'VR-SHEET-NOCLOSE-03A',
+                title: 'Check link access',
+                steps: [
+                  'Set the narrowest supported viewport.',
+                  'Open the mobile menu.',
+                  'Review all links and the dismissal instruction.',
+                ],
+                expected:
+                  'All content remains readable, vertically ordered, and reachable without horizontal scrolling or overlap.',
+              },
+            ],
+          },
+        ]
+
+  const requirements = basic
+    ? {
+        userStory:
+          'As a product team member, I want Account details in a focused modal panel so that people can review it without leaving the current page.',
+        groups: [
+          {
+            id: 'BR-SHEET-BASIC',
+            title: 'Business requirements',
+            items: [
+              'The panel lets a person review account information without changing the current page.',
+            ],
+          },
+          { id: 'FR-SHEET-BASIC', title: 'Functional requirements', items: functional },
+          {
+            id: 'A11Y-SHEET-BASIC',
+            title: 'Accessibility requirements',
+            items: [
+              'The modal is named Account details.',
+              'Keyboard users can reach Close, dismiss with Escape, and regain focus on Open account details.',
+            ],
+          },
+          {
+            id: 'RESP-SHEET-BASIC',
+            title: 'Responsive requirements',
+            items: [
+              'At the narrowest supported viewport, all Account details content and Close remain readable and reachable without horizontal clipping.',
+            ],
+          },
+        ],
+      }
+    : sides
+      ? {
+          userStory:
+            'As a product team member, I want to choose a Sheet edge deliberately so that the panel supports the content shape and reading order.',
+          groups: [
+            {
+              id: 'BR-SHEET-SIDES',
+              title: 'Business requirements',
+              items: ['The guide makes the result of each side choice observable.'],
+            },
+            { id: 'FR-SHEET-SIDES', title: 'Functional requirements', items: functional },
+            {
+              id: 'A11Y-SHEET-SIDES',
+              title: 'Accessibility requirements',
+              items: [
+                'Each side sheet is a named modal, is keyboard operable, and restores focus to its own trigger after Escape.',
+              ],
+            },
+            {
+              id: 'RESP-SHEET-SIDES',
+              title: 'Responsive requirements',
+              items: [
+                'Each side sheet stays inside the viewport and preserves readable content at the narrowest supported width.',
+              ],
+            },
+          ],
+        }
+      : {
+          userStory:
+            'As a product team member, I want the mobile menu to omit the built-in close button while retaining clear dismissal and navigation behavior.',
+          groups: [
+            {
+              id: 'BR-SHEET-NOCLOSE',
+              title: 'Business requirements',
+              items: [
+                'The menu provides the three named component destinations without requiring a visible close control.',
+              ],
+            },
+            { id: 'FR-SHEET-NOCLOSE', title: 'Functional requirements', items: functional },
+            {
+              id: 'A11Y-SHEET-NOCLOSE',
+              title: 'Accessibility requirements',
+              items: [
+                'The menu is named Site navigation, exposes a named navigation landmark, keeps links keyboard operable, and restores focus to Open mobile menu after dismissal.',
+              ],
+            },
+            {
+              id: 'RESP-SHEET-NOCLOSE',
+              title: 'Responsive requirements',
+              items: [
+                'At the narrowest supported width, all links and the dismissal instruction remain readable and reachable without clipping or overlap.',
+              ],
+            },
+          ],
+        }
+
   return {
     tabLayout: 'requirements' as const,
     guidance: {
       explanation: example.explanation,
       considerations: [
         'Use the production Sheet primitive so dismissal, focus management, overlay behavior, and responsive placement remain consistent.',
-        'Give every sheet a meaningful title. Add a description when the panel needs more context than its title provides.',
+        'Give every sheet a meaningful title and use a description when more context is needed.',
       ],
       doItems: [
-        'Open the sheet from a clearly named button that describes the content or task inside it.',
+        'Open the sheet from a clearly named button.',
         'Keep the panel focused on one short task or related group of content.',
-        'Test Escape, overlay dismissal, keyboard focus, and narrow-width layout.',
+        'Test every named side, exact destination, dismissal path, keyboard state, and narrow-width behavior demonstrated here.',
       ],
       dontItems: [
-        'Do not use a Sheet when a visible page section or ordinary navigation link would be clearer.',
-        'Do not remove every visible dismissal path without documenting how people close the panel.',
-        'Do not place essential content only inside a sheet when it should be visible in the page flow.',
+        'Do not use a Sheet when visible content or a normal link is clearer.',
+        'Do not remove dismissal paths without testing the exact remaining paths.',
+        'Do not leave exact sides, destinations, or expected outcomes for the tester to infer.',
       ],
     },
     code: {
@@ -52,163 +428,39 @@ function sheetSupplemental(example: {
         {
           name: 'SheetTrigger',
           type: 'React Aria dialog trigger',
-          description: 'Owns the relationship between the opening button and the sheet content.',
+          description: 'Connects each opening button to its sheet.',
         },
         {
           name: 'side',
           type: "'top' | 'right' | 'bottom' | 'left'",
-          description: 'Controls which edge of the viewport the sheet enters from.',
+          description: 'Sets the exact viewport edge.',
         },
         {
           name: 'showCloseButton',
           type: 'boolean',
           description:
-            'Controls the built-in close button. Keep another documented dismissal path when it is false.',
+            'Controls the built-in close button; false is used by the mobile-menu variation.',
         },
       ],
       attributes: [
         {
-          name: 'role="dialog" / aria-labelledby',
+          name: 'role="dialog" / aria-modal="true" / aria-labelledby',
           type: 'semantic relationship',
-          description:
-            'Names the modal sheet from its SheetTitle so assistive technology can identify it.',
+          description: 'Identifies the open modal and connects it to SheetTitle.',
         },
         {
           name: 'data-side / data-slot',
           type: 'styling and inspection hooks',
           description:
-            'Expose the selected placement and production component boundaries; preserve semantic attributes separately from these styling hooks.',
+            'Expose exact placement and production boundaries; data-side is the placement hook.',
         },
       ],
       notes:
-        'The rendered HTML is representative of the production structure. React Aria-generated IDs can differ between renders.',
+        'This is the complete open-state structure for the live variation, including triggers, overlay, dialog, heading, description, body content, links, and close behavior. React Aria IDs are shown as descriptive placeholders.',
     },
-    requirements: {
-      userStory:
-        'As a product team member, I want a Sheet to present focused content in an accessible overlay so that people can complete a short task without losing page context.',
-      groups: [
-        {
-          id: 'BR-SHEET',
-          title: 'Business requirements',
-          items: [
-            'The sheet must communicate what content or task it contains before activation.',
-            'The selected side must support the intended content and responsive context.',
-          ],
-        },
-        {
-          id: 'FR-SHEET',
-          title: 'Functional requirements',
-          items: [
-            'The trigger must open the associated sheet and expose its content.',
-            'The sheet must close through the documented dismissal behavior and return focus to the trigger.',
-            example.expected,
-          ],
-        },
-        {
-          id: 'A11Y-SHEET',
-          title: 'Accessibility requirements',
-          items: [
-            'The sheet must have a meaningful accessible name from SheetTitle.',
-            'Keyboard users must be able to reach the sheet, dismiss it, and see a visible focus indicator.',
-            'The overlay must prevent interaction with the background while the modal sheet is open.',
-          ],
-        },
-        {
-          id: 'RESP-SHEET',
-          title: 'Responsive requirements',
-          items: [
-            'The sheet must remain readable and usable at narrow widths without clipping its content or controls.',
-            'Content must preserve a logical reading order as the sheet changes size or side.',
-          ],
-        },
-      ],
-      acceptanceCriteria: [
-        {
-          id: 'AC-SHEET-01',
-          requirementRefs: ['BR-SHEET', 'FR-SHEET'],
-          given: 'the Sheet example is rendered',
-          when: 'a person activates the named trigger',
-          then: 'the associated sheet opens from the documented side and shows its title and content',
-          and: [
-            example.expected,
-            'the page behind the sheet cannot be operated while the modal is open',
-          ],
-        },
-        {
-          id: 'AC-SHEET-02',
-          requirementRefs: ['A11Y-SHEET'],
-          given: 'the sheet is open',
-          when: 'a person navigates with the keyboard or presses Escape',
-          then: 'focus remains within the modal interaction, Escape dismisses the sheet, and focus returns to the trigger',
-          and: ['the sheet has one clear accessible name and visible focus remains available'],
-        },
-        {
-          id: 'AC-SHEET-03',
-          requirementRefs: ['RESP-SHEET'],
-          given: 'the viewport is narrow or the content is longer than the available height',
-          when: 'the sheet is opened and reviewed',
-          then: 'the content remains readable, controls remain reachable, and no meaningful content is clipped',
-        },
-      ],
-    },
-    verification: {
-      scenarios: [
-        {
-          id: 'VR-SHEET-01',
-          role: 'Functional QA',
-          title: 'Open and dismiss the Sheet',
-          cases: [
-            {
-              id: 'VR-SHEET-01A',
-              title: 'Use the trigger and dismissal paths',
-              steps: [
-                'Activate the named trigger with a pointer.',
-                'Confirm the sheet opens from the documented side and exposes its title and content.',
-                'Press Escape, then activate the trigger again and dismiss the sheet by clicking the overlay when that path is supported.',
-              ],
-              expected:
-                'The sheet opens and closes reliably, the background is unavailable while open, and focus returns to the trigger after dismissal.',
-            },
-          ],
-        },
-        {
-          id: 'VR-SHEET-02',
-          role: 'Accessibility QA',
-          title: 'Navigate the Sheet with the keyboard',
-          cases: [
-            {
-              id: 'VR-SHEET-02A',
-              title: 'Inspect focus, name, and Escape behavior',
-              steps: [
-                'Tab to the trigger and inspect its accessible name and visible focus indicator.',
-                'Open the sheet, tab through its controls, and inspect the dialog name.',
-                'Press Escape and inspect the restored focus.',
-              ],
-              expected:
-                'The trigger and sheet controls are keyboard operable, the sheet has one useful accessible name, focus is visible, and focus returns to the trigger.',
-            },
-          ],
-        },
-        {
-          id: 'VR-SHEET-03',
-          role: 'Responsive QA',
-          title: 'Review the Sheet at narrow widths',
-          cases: [
-            {
-              id: 'VR-SHEET-03A',
-              title: 'Check sizing and content access',
-              steps: [
-                'Open the Sheet at the narrowest supported viewport.',
-                'Review the title, body copy, controls, spacing, and dismissal path.',
-                'Scroll within the sheet if its content exceeds the available height.',
-              ],
-              expected:
-                'The panel fits the viewport, content remains readable, controls do not overlap or clip, and the dismissal path remains available.',
-            },
-          ],
-        },
-      ],
-    },
+    requirements,
+    acceptanceCriteria: criteria,
+    verification: { scenarios: verification },
   }
 }
 
@@ -430,12 +682,26 @@ function ComponentsSheetPage() {
             tryIt="Open Account details, inspect the title and description, press Escape, and confirm focus returns to Open account details."
             exampleClassName="overflow-visible rounded-none border-0 bg-transparent p-0"
             supplemental={sheetSupplemental({
+              kind: 'basic',
               explanation:
                 'The basic Sheet establishes the default modal relationship: a named trigger opens focused content, and the production primitive supplies a visible close button and dismissal behavior.',
               source: `<SheetTrigger>\n  <Button>Open account details</Button>\n  <Sheet>\n    <SheetHeader>\n      <SheetTitle>Account details</SheetTitle>\n      <SheetDescription>Review account information.</SheetDescription>\n    </SheetHeader>\n  </Sheet>\n</SheetTrigger>`,
-              html: `<div role="dialog" aria-modal="true" aria-labelledby="sheet-title">\n  <h2 id="sheet-title">Account details</h2>\n  <div>Review the account information without leaving this page.</div>\n  <button aria-label="Close">…</button>\n</div>`,
-              expected:
-                'the panel presents account details without navigating away from the current page',
+              html: `<button type="button">Open account details</button>
+<div data-slot="sheet-overlay" data-state="open">
+  <div data-slot="sheet-content" data-side="right" role="dialog" aria-modal="true" aria-labelledby="sheet-title" data-state="open">
+    <div data-slot="sheet" tabindex="-1">
+      <div data-slot="sheet-header">
+        <h2 data-slot="sheet-title" id="sheet-title">Account details</h2>
+        <div data-slot="sheet-description">Review the account information without leaving this page.</div>
+      </div>
+      <div>Your account is connected and ready to use.</div>
+      <button data-slot="sheet-close" type="button" aria-label="Close">
+        <svg aria-hidden="true"></svg>
+        <span class="sr-only">Close</span>
+      </button>
+    </div>
+  </div>
+</div>`,
             })}
           >
             <BasicSheetExample />
@@ -447,11 +713,80 @@ function ComponentsSheetPage() {
             tryIt="Open each side variation and confirm the panel enters from the labelled edge, remains usable, and can be dismissed with Escape."
             exampleClassName="overflow-visible rounded-none border-0 bg-transparent p-0"
             supplemental={sheetSupplemental({
+              kind: 'sides',
               explanation:
                 'Side placement is a consumer decision. Keep the content and reading order in mind: a right-side panel often suits details or navigation, while top and bottom panels can suit compact actions or notices.',
-              source: `const sides = ['top', 'right', 'bottom', 'left'] as const\n\n{sides.map((side) => (\n  <SheetTrigger key={side}>\n    <Button variant="outline">{side}</Button>\n    <Sheet side={side}>…</Sheet>\n  </SheetTrigger>\n))}`,
-              html: `<div role="dialog" data-side="right" aria-modal="true">…</div>`,
-              expected: 'each labelled trigger opens a sheet from the matching viewport edge',
+              source: `const sides = ['top', 'right', 'bottom', 'left'] as const
+
+{sides.map((side) => (
+  <SheetTrigger key={side}>
+    <Button variant="outline">{side}</Button>
+    <Sheet side={side}>
+      <SheetHeader>
+        <SheetTitle>{side} sheet</SheetTitle>
+        <SheetDescription>This panel enters from the {side} edge.</SheetDescription>
+      </SheetHeader>
+      <div>Choose the side that matches the task, content shape, and responsive behavior.</div>
+    </Sheet>
+  </SheetTrigger>
+))}`,
+              html: `<div class="flex flex-wrap gap-3">
+  <button type="button">top</button>
+  <button type="button">right</button>
+  <button type="button">bottom</button>
+  <button type="button">left</button>
+</div>
+<div data-slot="sheet-overlay" data-state="open">
+  <div data-slot="sheet-content" data-side="right" role="dialog" aria-modal="true" aria-labelledby="right-sheet-title" data-state="open">
+    <div data-slot="sheet" tabindex="-1">
+      <div data-slot="sheet-header">
+        <h2 data-slot="sheet-title" id="right-sheet-title">right sheet</h2>
+        <div data-slot="sheet-description">This panel enters from the right edge.</div>
+      </div>
+      <div>Choose the side that matches the task, content shape, and responsive behavior.</div>
+      <button data-slot="sheet-close" type="button" aria-label="Close">
+        <svg aria-hidden="true"></svg>
+        <span class="sr-only">Close</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div data-slot="sheet-overlay" data-state="open">
+  <div data-slot="sheet-content" data-side="top" role="dialog" aria-modal="true" aria-labelledby="top-sheet-title" data-state="open">
+    <div data-slot="sheet" tabindex="-1">
+      <div data-slot="sheet-header">
+        <h2 data-slot="sheet-title" id="top-sheet-title">top sheet</h2>
+        <div data-slot="sheet-description">This panel enters from the top edge.</div>
+      </div>
+      <div>Choose the side that matches the task, content shape, and responsive behavior.</div>
+      <button data-slot="sheet-close" type="button" aria-label="Close"><svg aria-hidden="true"></svg><span class="sr-only">Close</span></button>
+    </div>
+  </div>
+</div>
+<div data-slot="sheet-overlay" data-state="open">
+  <div data-slot="sheet-content" data-side="bottom" role="dialog" aria-modal="true" aria-labelledby="bottom-sheet-title" data-state="open">
+    <div data-slot="sheet" tabindex="-1">
+      <div data-slot="sheet-header">
+        <h2 data-slot="sheet-title" id="bottom-sheet-title">bottom sheet</h2>
+        <div data-slot="sheet-description">This panel enters from the bottom edge.</div>
+      </div>
+      <div>Choose the side that matches the task, content shape, and responsive behavior.</div>
+      <button data-slot="sheet-close" type="button" aria-label="Close"><svg aria-hidden="true"></svg><span class="sr-only">Close</span></button>
+    </div>
+  </div>
+</div>
+<div data-slot="sheet-overlay" data-state="open">
+  <div data-slot="sheet-content" data-side="left" role="dialog" aria-modal="true" aria-labelledby="left-sheet-title" data-state="open">
+    <div data-slot="sheet" tabindex="-1">
+      <div data-slot="sheet-header">
+        <h2 data-slot="sheet-title" id="left-sheet-title">left sheet</h2>
+        <div data-slot="sheet-description">This panel enters from the left edge.</div>
+      </div>
+      <div>Choose the side that matches the task, content shape, and responsive behavior.</div>
+      <button data-slot="sheet-close" type="button" aria-label="Close"><svg aria-hidden="true"></svg><span class="sr-only">Close</span></button>
+    </div>
+  </div>
+</div>`,
             })}
           >
             <SheetSideExample />
@@ -463,12 +798,42 @@ function ComponentsSheetPage() {
             tryIt="Open the mobile menu, tab through its links, then press Escape or activate the overlay. Confirm the menu closes and focus returns to Open mobile menu."
             exampleClassName="overflow-visible rounded-none border-0 bg-transparent p-0"
             supplemental={sheetSupplemental({
+              kind: 'no-close',
               explanation:
                 'A mobile menu may omit the built-in close button when its dismissal behavior is obvious and tested. This is a deliberate exception, not a reason to remove dismissal affordances from other sheets.',
-              source: `<Sheet side="right" showCloseButton={false}>\n  <SheetHeader>\n    <SheetTitle>Site navigation</SheetTitle>\n  </SheetHeader>\n  <nav aria-label="Mobile site navigation">…</nav>\n</Sheet>`,
-              html: `<div role="dialog" aria-modal="true" aria-labelledby="menu-title">\n  <h2 id="menu-title">Site navigation</h2>\n  <nav aria-label="Mobile site navigation">…</nav>\n</div>`,
-              expected:
-                'the mobile menu provides usable navigation and remains dismissible through Escape and the overlay even without a close button',
+              source: `<Sheet side="right" showCloseButton={false}>
+  <SheetHeader>
+    <SheetTitle>Site navigation</SheetTitle>
+    <SheetDescription>Move between the main sections of this site.</SheetDescription>
+  </SheetHeader>
+  <nav aria-label="Mobile site navigation">
+    <a href="/components/interaction">Interaction</a>
+    <a href="/components/user-interface">User Interface</a>
+    <a href="/components/forms">Forms</a>
+  </nav>
+  <SheetFooter>
+    <p>Use Escape or the overlay to close this menu.</p>
+  </SheetFooter>
+</Sheet>`,
+              html: `<button type="button">Open mobile menu</button>
+<div data-slot="sheet-overlay" data-state="open">
+  <div data-slot="sheet-content" data-side="right" role="dialog" aria-modal="true" aria-labelledby="menu-title" data-state="open">
+    <div data-slot="sheet" tabindex="-1">
+      <div data-slot="sheet-header">
+        <h2 data-slot="sheet-title" id="menu-title">Site navigation</h2>
+        <div data-slot="sheet-description">Move between the main sections of this site.</div>
+      </div>
+      <nav aria-label="Mobile site navigation">
+        <a href="/components/interaction">Interaction</a>
+        <a href="/components/user-interface">User Interface</a>
+        <a href="/components/forms">Forms</a>
+      </nav>
+      <div data-slot="sheet-footer">
+        <p>Use Escape or the overlay to close this menu.</p>
+      </div>
+    </div>
+  </div>
+</div>`,
             })}
           >
             <SheetWithoutCloseButtonExample />
