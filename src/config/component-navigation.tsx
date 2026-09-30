@@ -62,6 +62,10 @@ export const interactionSidebarLinks: (NavLeaf | NavGroup)[] = [
     label: 'Content organization',
     items: [{ href: '/components/tabs', label: 'Tabs', icon: PanelsTopLeft }],
   },
+  {
+    label: 'Overlays',
+    items: [{ href: '/components/sheet', label: 'Sheet', icon: PanelRight }],
+  },
 ]
 
 export const formSidebarLinks: (NavLeaf | NavGroup)[] = [

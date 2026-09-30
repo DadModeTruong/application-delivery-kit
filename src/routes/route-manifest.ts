@@ -32,6 +32,7 @@ import { ComponentsInteractionPage } from '@/pages/components/interaction'
 import { ComponentsFormsPage } from '@/pages/components/forms'
 import { ComponentsInputPage } from '@/pages/components/input'
 import { ComponentsSelectPage } from '@/pages/components/select'
+import { ComponentsSheetPage } from '@/pages/components/sheet'
 import { ComponentsTextareaPage } from '@/pages/components/textarea'
 import { ComponentsCheckboxPage } from '@/pages/components/checkbox'
 import { ComponentsCheckboxGroupPage } from '@/pages/components/checkbox-group'
@@ -131,6 +132,11 @@ export const routes: Route[] = [
     path: '/components/tabs',
     component: ComponentsTabsPage,
     title: 'Application Delivery Kit | Components | Interaction | Tabs',
+  },
+  {
+    path: '/components/sheet',
+    component: ComponentsSheetPage,
+    title: 'Application Delivery Kit | Components | Interaction | Sheet',
   },
   {
     path: '/components/interaction',
