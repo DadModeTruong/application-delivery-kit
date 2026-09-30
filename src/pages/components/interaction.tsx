@@ -80,6 +80,15 @@ function ComponentsInteractionPage() {
                 Sibling views that share the same context.
               </p>
             </a>
+            <a
+              href="/components/sheet"
+              className="rounded-xl border bg-card p-5 shadow-xs transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <h3 className="font-semibold text-foreground">Sheet</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                Focused modal panels that enter from an edge of the viewport.
+              </p>
+            </a>
           </div>
         </section>
 
