@@ -199,7 +199,7 @@ type GroupConfig = {
   requirementItems: string[]
   criteria: Array<{
     id: string
-    refs: string[]
+    requirementRefs: string[]
     given: string
     when: string
     then: string
@@ -209,7 +209,7 @@ type GroupConfig = {
     id: string
     role: string
     title: string
-    refs: string[]
+    criterionRefs: string[]
     steps: string[]
     expected: string
   }>
@@ -307,7 +307,7 @@ function supplemental(config: GroupConfig) {
       ],
       acceptanceCriteria: config.criteria.map((criterion) => ({
         ...criterion,
-        requirementRefs: criterion.refs.map((ref) =>
+        requirementRefs: criterion.requirementRefs.map((ref) =>
           ref === 'business'
             ? `${business}-01`
             : ref === 'requirementItems'
@@ -321,12 +321,12 @@ function supplemental(config: GroupConfig) {
         id: scenario.id,
         role: scenario.role,
         title: scenario.title,
-        criterionRefs: scenario.refs,
+        criterionRefs: scenario.criterionRefs,
         cases: [
           {
             id: `${scenario.id}-A`,
             title: scenario.title,
-            criterionRefs: scenario.refs,
+            criterionRefs: scenario.criterionRefs,
             steps: scenario.steps,
             expected: scenario.expected,
           },
@@ -361,7 +361,7 @@ const configs: GroupConfig[] = [
     criteria: [
       {
         id: 'AC-BASIC-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'the Checkbox Group is rendered',
         when: 'a person selects Product news and Accessibility improvements, then clears Product news',
         then: 'each option changes independently under the shared legend',
@@ -369,7 +369,7 @@ const configs: GroupConfig[] = [
       },
       {
         id: 'AC-BASIC-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'a person navigates the group with a keyboard',
         when: 'focus moves through the options',
         then: 'each Checkbox has a visible label and can be toggled with Space',
@@ -381,7 +381,7 @@ const configs: GroupConfig[] = [
         id: 'VR-BASIC-01',
         role: 'Functional QA',
         title: 'Select multiple independent options',
-        refs: ['AC-BASIC-01'],
+        criterionRefs: ['AC-BASIC-01'],
         steps: [
           'Select Product news.',
           'Select Accessibility improvements.',
@@ -393,7 +393,7 @@ const configs: GroupConfig[] = [
         id: 'VR-BASIC-02',
         role: 'Accessibility QA',
         title: 'Navigate group semantics',
-        refs: ['AC-BASIC-02'],
+        criterionRefs: ['AC-BASIC-02'],
         steps: [
           'Use Tab to reach each Checkbox.',
           'Press Space on an option and inspect its label and checked state.',
@@ -428,7 +428,7 @@ const configs: GroupConfig[] = [
     criteria: [
       {
         id: 'AC-HELPER-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'the helper-text group is rendered',
         when: 'a person reads the helper text, selects Product news and Accessibility improvements, and changes those choices',
         then: 'the helper text explains the rule and remains visible',
@@ -436,7 +436,7 @@ const configs: GroupConfig[] = [
       },
       {
         id: 'AC-HELPER-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'a person focuses an option in the group',
         when: 'the accessible description is computed',
         then: 'the fieldset references the helper text',
@@ -448,7 +448,7 @@ const configs: GroupConfig[] = [
         id: 'VR-HELPER-01',
         role: 'Functional QA',
         title: 'Review helper guidance',
-        refs: ['AC-HELPER-01'],
+        criterionRefs: ['AC-HELPER-01'],
         steps: ['Read the helper message.', 'Select two update types.'],
         expected: 'The selection rule remains visible and both choices can be selected.',
       },
@@ -456,7 +456,7 @@ const configs: GroupConfig[] = [
         id: 'VR-HELPER-02',
         role: 'Accessibility QA',
         title: 'Inspect helper relationship',
-        refs: ['AC-HELPER-02'],
+        criterionRefs: ['AC-HELPER-02'],
         steps: [
           'Inspect fieldset aria-describedby.',
           'Confirm the referenced paragraph id exists.',
@@ -491,7 +491,7 @@ const configs: GroupConfig[] = [
     criteria: [
       {
         id: 'AC-DISABLED-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'the disabled group is rendered',
         when: 'a person attempts to toggle Product news or Accessibility improvements',
         then: 'the option cannot change and the availability explanation remains visible',
@@ -499,7 +499,7 @@ const configs: GroupConfig[] = [
       },
       {
         id: 'AC-DISABLED-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'a person inspects the group',
         when: 'the options are disabled',
         then: 'the unavailable state is exposed semantically',
@@ -511,7 +511,7 @@ const configs: GroupConfig[] = [
         id: 'VR-DISABLED-01',
         role: 'Functional QA',
         title: 'Inspect unavailable options',
-        refs: ['AC-DISABLED-01'],
+        criterionRefs: ['AC-DISABLED-01'],
         steps: ['Attempt to focus and toggle each option.', 'Read the plan explanation.'],
         expected: 'No option can be toggled and the explanation remains visible.',
       },
@@ -519,7 +519,7 @@ const configs: GroupConfig[] = [
         id: 'VR-DISABLED-02',
         role: 'Accessibility QA',
         title: 'Inspect disabled semantics',
-        refs: ['AC-DISABLED-02'],
+        criterionRefs: ['AC-DISABLED-02'],
         steps: ['Inspect disabled on every input.', 'Confirm labels and legend remain readable.'],
         expected: 'Every option is semantically disabled without removing the group’s context.',
       },
@@ -551,7 +551,7 @@ const configs: GroupConfig[] = [
     criteria: [
       {
         id: 'AC-INVALID-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'the invalid group is rendered',
         when: 'a person reviews Product news, Accessibility improvements, and Events and webinars',
         then: 'the unchecked options and correction message are visible',
@@ -559,7 +559,7 @@ const configs: GroupConfig[] = [
       },
       {
         id: 'AC-INVALID-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'a person focuses an invalid option',
         when: 'the group description is computed',
         then: 'the error is associated with the fieldset and invalid state is exposed',
@@ -571,7 +571,7 @@ const configs: GroupConfig[] = [
         id: 'VR-INVALID-01',
         role: 'Functional QA',
         title: 'Correct the group selection',
-        refs: ['AC-INVALID-01'],
+        criterionRefs: ['AC-INVALID-01'],
         steps: ['Read the error.', 'Select Product news.'],
         expected: 'The group remains selectable and the error states the required correction.',
       },
@@ -579,7 +579,7 @@ const configs: GroupConfig[] = [
         id: 'VR-INVALID-02',
         role: 'Accessibility QA',
         title: 'Inspect error relationship',
-        refs: ['AC-INVALID-02'],
+        criterionRefs: ['AC-INVALID-02'],
         steps: ['Inspect fieldset aria-describedby.', 'Inspect the invalid state and alert text.'],
         expected:
           'The error is programmatically available and the correction is described in text.',
@@ -612,7 +612,7 @@ const configs: GroupConfig[] = [
     criteria: [
       {
         id: 'AC-REQUIRED-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'no update type is selected',
         when: 'a person activates Continue',
         then: 'submission is blocked and the group error asks for at least one choice',
@@ -620,7 +620,7 @@ const configs: GroupConfig[] = [
       },
       {
         id: 'AC-REQUIRED-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'one or more update types are selected',
         when: 'the person submits the group',
         then: 'a polite status reports the saved selection count',
@@ -632,7 +632,7 @@ const configs: GroupConfig[] = [
         id: 'VR-REQUIRED-01',
         role: 'Functional QA',
         title: 'Submit group choices',
-        refs: ['AC-REQUIRED-01', 'AC-REQUIRED-02'],
+        criterionRefs: ['AC-REQUIRED-01', 'AC-REQUIRED-02'],
         steps: [
           'Activate Continue with no choices selected.',
           'Select Product news and activate Continue again.',
@@ -644,7 +644,7 @@ const configs: GroupConfig[] = [
         id: 'VR-REQUIRED-02',
         role: 'Accessibility QA',
         title: 'Inspect group feedback',
-        refs: ['AC-REQUIRED-02'],
+        criterionRefs: ['AC-REQUIRED-02'],
         steps: [
           'Inspect fieldset and legend.',
           'Inspect the error and success status roles and relationships.',

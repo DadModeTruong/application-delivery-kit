@@ -192,7 +192,7 @@ type RadioConfig = {
   requirementItems: string[]
   criteria: Array<{
     id: string
-    refs: string[]
+    requirementRefs: string[]
     given: string
     when: string
     then: string
@@ -202,7 +202,7 @@ type RadioConfig = {
     id: string
     role: string
     title: string
-    refs: string[]
+    criterionRefs: string[]
     steps: string[]
     expected: string
   }>
@@ -292,7 +292,7 @@ function supplemental(config: RadioConfig) {
       ],
       acceptanceCriteria: config.criteria.map((criterion) => ({
         ...criterion,
-        requirementRefs: criterion.refs.map((ref) =>
+        requirementRefs: criterion.requirementRefs.map((ref) =>
           ref === 'business'
             ? `${business}-01`
             : ref === 'requirementItems'
@@ -306,12 +306,12 @@ function supplemental(config: RadioConfig) {
         id: scenario.id,
         role: scenario.role,
         title: scenario.title,
-        criterionRefs: scenario.refs,
+        criterionRefs: scenario.criterionRefs,
         cases: [
           {
             id: `${scenario.id}-A`,
             title: scenario.title,
-            criterionRefs: scenario.refs,
+            criterionRefs: scenario.criterionRefs,
             steps: scenario.steps,
             expected: scenario.expected,
           },
@@ -348,7 +348,7 @@ const configs: RadioConfig[] = [
     criteria: [
       {
         id: 'AC-BASIC-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'the Radio group is rendered',
         when: 'a person selects Email and then selects Text message',
         then: 'exactly one option remains selected',
@@ -356,7 +356,7 @@ const configs: RadioConfig[] = [
       },
       {
         id: 'AC-BASIC-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'a person navigates the group with a keyboard',
         when: 'Arrow keys move through the options',
         then: 'focus and selection move within the named group',
@@ -368,7 +368,7 @@ const configs: RadioConfig[] = [
         id: 'VR-BASIC-01',
         role: 'Functional QA',
         title: 'Choose one contact method',
-        refs: ['AC-BASIC-01'],
+        criterionRefs: ['AC-BASIC-01'],
         steps: ['Select Email.', 'Select Text message.', 'Inspect both checked states.'],
         expected: 'Text message is selected and Email is cleared.',
       },
@@ -376,7 +376,7 @@ const configs: RadioConfig[] = [
         id: 'VR-BASIC-02',
         role: 'Accessibility QA',
         title: 'Navigate radio semantics',
-        refs: ['AC-BASIC-02'],
+        criterionRefs: ['AC-BASIC-02'],
         steps: [
           'Focus a radio with Tab.',
           'Use Arrow keys and inspect focus, selection, and visible focus.',
@@ -412,7 +412,7 @@ const configs: RadioConfig[] = [
     criteria: [
       {
         id: 'AC-HELPER-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'the helper-text Radio group is rendered',
         when: 'a person reads the helper text, selects Email, and then selects Text message',
         then: 'the helper message remains visible and the choice remains mutually exclusive',
@@ -420,7 +420,7 @@ const configs: RadioConfig[] = [
       },
       {
         id: 'AC-HELPER-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'a person focuses an option',
         when: 'the accessible description is computed',
         then: 'the fieldset references the helper text',
@@ -432,7 +432,7 @@ const configs: RadioConfig[] = [
         id: 'VR-HELPER-01',
         role: 'Functional QA',
         title: 'Review helper guidance',
-        refs: ['AC-HELPER-01'],
+        criterionRefs: ['AC-HELPER-01'],
         steps: ['Read the helper message.', 'Select Email and then Text message.'],
         expected: 'The guidance remains visible and only the latest option is selected.',
       },
@@ -440,7 +440,7 @@ const configs: RadioConfig[] = [
         id: 'VR-HELPER-02',
         role: 'Accessibility QA',
         title: 'Inspect helper relationship',
-        refs: ['AC-HELPER-02'],
+        criterionRefs: ['AC-HELPER-02'],
         steps: ['Inspect fieldset aria-describedby.', 'Confirm the helper paragraph id exists.'],
         expected: 'The group description is programmatically associated with the fieldset.',
       },
@@ -472,7 +472,7 @@ const configs: RadioConfig[] = [
     criteria: [
       {
         id: 'AC-DISABLED-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'the disabled Radio group is rendered',
         when: 'a person attempts to select Email, Text message, or No notifications',
         then: 'the option cannot be selected and the explanation remains visible',
@@ -480,7 +480,7 @@ const configs: RadioConfig[] = [
       },
       {
         id: 'AC-DISABLED-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'a person inspects the unavailable group',
         when: 'the radios are disabled',
         then: 'the unavailable state is exposed semantically',
@@ -492,7 +492,7 @@ const configs: RadioConfig[] = [
         id: 'VR-DISABLED-01',
         role: 'Functional QA',
         title: 'Inspect unavailable choices',
-        refs: ['AC-DISABLED-01'],
+        criterionRefs: ['AC-DISABLED-01'],
         steps: ['Attempt to focus and select each option.', 'Read the availability explanation.'],
         expected: 'No option can be selected and the explanation remains visible.',
       },
@@ -500,7 +500,7 @@ const configs: RadioConfig[] = [
         id: 'VR-DISABLED-02',
         role: 'Accessibility QA',
         title: 'Inspect disabled semantics',
-        refs: ['AC-DISABLED-02'],
+        criterionRefs: ['AC-DISABLED-02'],
         steps: ['Inspect disabled on every radio.', 'Confirm labels and legend remain readable.'],
         expected:
           'Every option is semantically disabled while the group context remains available.',
@@ -533,7 +533,7 @@ const configs: RadioConfig[] = [
     criteria: [
       {
         id: 'AC-INVALID-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'the invalid Radio group is rendered',
         when: 'a person reviews Email, Text message, and No notifications',
         then: 'the correction message and selectable options are visible',
@@ -541,7 +541,7 @@ const configs: RadioConfig[] = [
       },
       {
         id: 'AC-INVALID-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'a person focuses an invalid option',
         when: 'the group description is computed',
         then: 'the error is associated with the fieldset',
@@ -553,7 +553,7 @@ const configs: RadioConfig[] = [
         id: 'VR-INVALID-01',
         role: 'Functional QA',
         title: 'Correct the radio selection',
-        refs: ['AC-INVALID-01'],
+        criterionRefs: ['AC-INVALID-01'],
         steps: ['Read the error.', 'Select Email.'],
         expected: 'The group remains selectable and the error explains the correction.',
       },
@@ -561,7 +561,7 @@ const configs: RadioConfig[] = [
         id: 'VR-INVALID-02',
         role: 'Accessibility QA',
         title: 'Inspect invalid relationship',
-        refs: ['AC-INVALID-02'],
+        criterionRefs: ['AC-INVALID-02'],
         steps: [
           'Inspect fieldset aria-invalid and aria-describedby.',
           'Confirm the alert text exists.',
@@ -596,7 +596,7 @@ const configs: RadioConfig[] = [
     criteria: [
       {
         id: 'AC-REQUIRED-01',
-        refs: ['business', 'requirementItems'],
+        requirementRefs: ['business', 'requirementItems'],
         given: 'Email, Text message, and No notifications are all unselected',
         when: 'a person activates Continue',
         then: 'submission is blocked and the group error asks for one choice',
@@ -604,7 +604,7 @@ const configs: RadioConfig[] = [
       },
       {
         id: 'AC-REQUIRED-02',
-        refs: ['accessibility'],
+        requirementRefs: ['accessibility'],
         given: 'Email, Text message, and No notifications are all unselected',
         when: 'the person submits the form',
         then: 'a polite status confirms the saved contact preference',
@@ -616,7 +616,7 @@ const configs: RadioConfig[] = [
         id: 'VR-REQUIRED-01',
         role: 'Functional QA',
         title: 'Submit one contact method',
-        refs: ['AC-REQUIRED-01', 'AC-REQUIRED-02'],
+        criterionRefs: ['AC-REQUIRED-01', 'AC-REQUIRED-02'],
         steps: ['Activate Continue without a choice.', 'Select Email and activate Continue again.'],
         expected:
           'The empty submission shows an error; the valid submission shows the saved preference status.',
@@ -625,7 +625,7 @@ const configs: RadioConfig[] = [
         id: 'VR-REQUIRED-02',
         role: 'Accessibility QA',
         title: 'Inspect required feedback',
-        refs: ['AC-REQUIRED-02'],
+        criterionRefs: ['AC-REQUIRED-02'],
         steps: [
           'Inspect the group legend and required inputs.',
           'Inspect the error and status roles.',
