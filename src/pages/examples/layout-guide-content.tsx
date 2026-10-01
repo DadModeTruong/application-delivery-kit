@@ -126,7 +126,7 @@ const guides: Record<string, LayoutGuide> = {
       'Ensure the section row does not replace the page’s h1 or landmark structure.',
     ],
     responsive:
-      'The section links move into the mobile menu on narrow screens. Main becomes one vertical flow, while the desktop row remains above Main only when there is enough width. Decide whether the mobile menu needs a distinct section heading so the links remain understandable.',
+      'The current demo hides the desktop section row at narrow widths but does not provide a mobile replacement. Treat mobile section navigation as an application-owned requirement and do not claim this fixture proves it.',
     exampleHref: '/layouts/secondary',
   },
   sidebar: {
@@ -183,7 +183,7 @@ const guides: Record<string, LayoutGuide> = {
       'Verify keyboard navigation, focus visibility, and the relationship between the sidebar and current page.',
     ],
     responsive:
-      'Sidebar moves into the mobile menu at narrow widths. Main stays first in the reading order; on wider screens the Sidebar shares the capped PageBody width with Main. Verify that opening the mobile navigation does not create duplicate or conflicting navigation landmarks.',
+      'The current demo hides the desktop Sidebar at narrow widths but does not provide a mobile replacement. Treat mobile Sidebar navigation as an application-owned requirement and do not claim this fixture proves it.',
     exampleHref: '/layouts/sidebar',
   },
   full: {
@@ -241,7 +241,7 @@ const guides: Record<string, LayoutGuide> = {
       'Check that the combined landmarks remain useful to screen-reader users, not merely technically valid.',
     ],
     responsive:
-      'Both contextual navigation regions move into the mobile menu on narrow screens. On wide screens they occupy their separate positions while Main uses the remaining width. Test the mobile menu as a complete information architecture, not just as a collapsed desktop layout.',
+      'Both contextual navigation regions are hidden at narrow widths in the current demo; no mobile replacement is composed. Treat mobile navigation as an application-owned requirement and do not claim this fixture proves destination preservation or focus movement.',
     exampleHref: '/layouts/full',
   },
 }
