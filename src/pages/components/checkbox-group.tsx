@@ -189,14 +189,14 @@ function RequiredExample() {
 type GroupConfig = {
   id: string
   title: string
-  summary: string
+  purpose: string
   tryIt: string
   explanation: string
-  dos: string[]
-  donts: string[]
+  doItems: string[]
+  dontItems: string[]
   source: string
   html: string
-  functional: string[]
+  requirementItems: string[]
   criteria: Array<{
     id: string
     refs: string[]
@@ -217,7 +217,7 @@ type GroupConfig = {
 
 function supplemental(config: GroupConfig) {
   const business = `BR-${config.id}`
-  const functional = `FR-${config.id}`
+  const requirementItems = `FR-${config.id}`
   const accessibility = `A11Y-${config.id}`
   const technical = `TR-${config.id}`
   return {
@@ -228,8 +228,8 @@ function supplemental(config: GroupConfig) {
         'Use a native fieldset and legend so the shared question is announced with every related option.',
         'Use the production Checkbox primitive for each option; the consuming form owns selection state and validation rules.',
       ],
-      doItems: config.dos,
-      dontItems: config.donts,
+      doItems: config.doItems,
+      dontItems: config.dontItems,
     },
     code: {
       language: 'tsx',
@@ -283,11 +283,11 @@ function supplemental(config: GroupConfig) {
           id: business,
           title: 'Business requirements',
           items: [
-            config.summary,
+            config.purpose,
             'The legend must state the shared question and each option must describe one independent choice.',
           ],
         },
-        { id: functional, title: 'Functional requirements', items: config.functional },
+        { id: requirementItems, title: 'Functional requirements', items: config.requirementItems },
         {
           id: accessibility,
           title: 'Accessibility requirements',
@@ -310,8 +310,8 @@ function supplemental(config: GroupConfig) {
         requirementRefs: criterion.refs.map((ref) =>
           ref === 'business'
             ? `${business}-01`
-            : ref === 'functional'
-              ? `${functional}-01`
+            : ref === 'requirementItems'
+              ? `${requirementItems}-01`
               : `${accessibility}-01`,
         ),
       })),
@@ -340,28 +340,28 @@ const configs: GroupConfig[] = [
   {
     id: 'BASIC',
     title: 'Basic',
-    summary: 'The basic group must present related independent options under one shared question.',
+    purpose: 'The basic group must present related independent options under one shared question.',
     tryIt:
       'Use Tab and Space to select two different update types, then confirm each option changes independently under the same legend.',
     explanation: 'Use a basic group when people may select zero, one, or several related options.',
-    dos: [
+    doItems: [
       'Use a concise legend that describes the shared decision.',
       'Write every option so it makes sense without relying on its position.',
     ],
-    donts: [
+    dontItems: [
       'Do not use a group when exactly one choice is allowed; use Radio group.',
       'Do not use vague option labels that hide the actual outcome.',
     ],
     source: `import { Checkbox } from '@/components/ui/checkbox'\n\n<fieldset>\n  <legend>Which updates would you like to receive?</legend>\n  {['Product news', 'Accessibility improvements', 'Events and webinars'].map((option) => (\n    <label key={option} htmlFor={option}>\n      <Checkbox id={option} />\n      {option}\n    </label>\n  ))}\n</fieldset>`,
     html: `<fieldset>\n  <legend>Which updates would you like to receive?</legend>\n  <label for="Product news"><input data-slot="checkbox" id="Product news" type="checkbox">Product news</label>\n  <label for="Accessibility improvements"><input data-slot="checkbox" id="Accessibility improvements" type="checkbox">Accessibility improvements</label>\n  <label for="Events and webinars"><input data-slot="checkbox" id="Events and webinars" type="checkbox">Events and webinars</label>\n</fieldset>`,
-    functional: [
+    requirementItems: [
       'Each option must be independently checkable and clearable.',
       'Selecting one option must not clear another selected option.',
     ],
     criteria: [
       {
         id: 'AC-BASIC-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'the Checkbox Group is rendered',
         when: 'a person selects Product news and Accessibility improvements, then clears Product news',
         then: 'each option changes independently under the shared legend',
@@ -406,29 +406,29 @@ const configs: GroupConfig[] = [
   {
     id: 'HELPER',
     title: 'With helper text',
-    summary: 'The helper-text group must explain the selection rule or consequence persistently.',
+    purpose: 'The helper-text group must explain the selection rule or consequence persistently.',
     tryIt:
       'Read the helper message, select two update types, and confirm the instructions remain available while choices change.',
     explanation:
       'Use group helper text when people need context such as selection limits, notification scope, or how choices are used.',
-    dos: [
+    doItems: [
       'Associate the group description with the fieldset using aria-describedby.',
       'State selection rules before the person makes a choice.',
     ],
-    donts: [
+    dontItems: [
       'Do not repeat the legend in helper text.',
       'Do not hide an essential selection rule in optional help.',
     ],
     source: `import { Checkbox } from '@/components/ui/checkbox'\n\n<fieldset aria-describedby="updates-hint">\n  <legend>Which updates would you like to receive?</legend>\n  <p id="updates-hint">Select all that apply.</p>\n  {/* Render one labelled Checkbox for each option. */}\n</fieldset>`,
     html: `<fieldset aria-describedby="updates-hint">\n  <legend>Which updates would you like to receive?</legend>\n  <p id="updates-hint">Select all that apply. We will use these choices to tailor your notifications.</p>\n  <input data-slot="checkbox" id="helper-product" type="checkbox"><label for="helper-product">Product news</label>\n  <input data-slot="checkbox" id="helper-accessibility" type="checkbox"><label for="helper-accessibility">Accessibility improvements</label>\n</fieldset>`,
-    functional: [
+    requirementItems: [
       'The helper text must explain the selection rule or consequence.',
       'The group must remain independently selectable while the helper text stays visible.',
     ],
     criteria: [
       {
         id: 'AC-HELPER-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'the helper-text group is rendered',
         when: 'a person reads the helper text, selects Product news and Accessibility improvements, and changes those choices',
         then: 'the helper text explains the rule and remains visible',
@@ -468,30 +468,30 @@ const configs: GroupConfig[] = [
   {
     id: 'DISABLED',
     title: 'Disabled',
-    summary:
+    purpose:
       'The disabled group must communicate that none of its related choices are currently available.',
     tryIt:
       'Attempt to focus or toggle the disabled choices and confirm the legend and availability explanation remain readable.',
     explanation:
       'Disable the whole group only when the current context prevents changing any option.',
-    dos: [
+    doItems: [
       'Explain what controls availability.',
       'Keep the legend and option labels readable in the disabled state.',
     ],
-    donts: [
+    dontItems: [
       'Do not disable a group merely to prevent mistakes.',
       'Do not hide important information only in disabled controls.',
     ],
     source: `import { Checkbox } from '@/components/ui/checkbox'\n\n<fieldset aria-describedby="plan-hint">\n  <legend>Which updates would you like to receive?</legend>\n  <p id="plan-hint">Available after you choose a notification plan.</p>\n  <Checkbox disabled aria-label="Product news" />\n  {/* Disable every option when the group is unavailable. */}\n</fieldset>`,
     html: `<fieldset aria-describedby="plan-hint">\n  <legend>Which updates would you like to receive?</legend>\n  <p id="plan-hint">Available after you choose a notification plan.</p>\n  <input data-slot="checkbox" id="disabled-product" type="checkbox" disabled><label for="disabled-product">Product news</label>\n  <input data-slot="checkbox" id="disabled-accessibility" type="checkbox" disabled><label for="disabled-accessibility">Accessibility improvements</label>\n</fieldset>`,
-    functional: [
+    requirementItems: [
       'Every option must prevent changes while the group is unavailable.',
       'The availability explanation must remain visible.',
     ],
     criteria: [
       {
         id: 'AC-DISABLED-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'the disabled group is rendered',
         when: 'a person attempts to toggle Product news or Accessibility improvements',
         then: 'the option cannot change and the availability explanation remains visible',
@@ -528,30 +528,30 @@ const configs: GroupConfig[] = [
   {
     id: 'INVALID',
     title: 'Invalid',
-    summary:
+    purpose:
       'The invalid group must explain the actionable rule that the current selection violates.',
     tryIt:
       'Read the group error, select at least one update type, and confirm the options remain available to correct the group.',
     explanation:
       'Use an invalid group when the selection violates an actionable rule such as requiring at least one option.',
-    dos: [
+    doItems: [
       'State the rule and correction in the error.',
       'Associate the error with the fieldset and expose invalid state on the group.',
     ],
-    donts: [
+    dontItems: [
       'Do not rely on color or an icon alone.',
       'Do not write “Invalid selection” without the corrective action.',
     ],
     source: `import { Checkbox } from '@/components/ui/checkbox'\n\n<fieldset aria-describedby="updates-error">\n  <legend>Which updates would you like to receive?</legend>\n  <Checkbox aria-invalid="true" aria-label="Product news" />\n  <p id="updates-error" role="alert">Choose at least one update type.</p>\n</fieldset>`,
     html: `<fieldset aria-describedby="updates-error">\n  <legend>Which updates would you like to receive?</legend>\n  <input data-slot="checkbox" id="invalid-product" type="checkbox" aria-invalid="true"><label for="invalid-product">Product news</label>\n  <p id="updates-error" role="alert">Choose at least one update type.</p>\n</fieldset>`,
-    functional: [
+    requirementItems: [
       'The group must remain available for correction.',
       'The error must explain that at least one update type must be selected.',
     ],
     criteria: [
       {
         id: 'AC-INVALID-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'the invalid group is rendered',
         when: 'a person reviews Product news, Accessibility improvements, and Events and webinars',
         then: 'the unchecked options and correction message are visible',
@@ -589,30 +589,30 @@ const configs: GroupConfig[] = [
   {
     id: 'REQUIRED',
     title: 'Required',
-    summary:
+    purpose:
       'The required group must block submission until at least one independent option is actively selected.',
     tryIt:
       'Submit with no options selected, then select one or more update types and submit again to confirm the error and success status change.',
     explanation:
       'Use a required group when the task needs one or more selections but still permits multiple independent choices.',
-    dos: [
+    doItems: [
       'State whether at least one or a maximum number of options is required.',
       'Make the error and success outcomes observable.',
     ],
-    donts: [
+    dontItems: [
       'Do not preselect a required acknowledgment without a clear reason.',
       'Do not use an error that only says “Required.”',
     ],
     source: `import { useState } from 'react'\nimport { Checkbox } from '@/components/ui/checkbox'\n\nfunction RequiredGroup() {\n  const [selected, setSelected] = useState<string[]>([])\n  const [submitted, setSubmitted] = useState(false)\n  // Update selected on each Checkbox and announce the valid result.\n  return <fieldset aria-describedby="required-hint">{/* labelled options and submit button */}</fieldset>\n}`,
     html: `<form>\n  <fieldset aria-describedby="group-required-hint">\n    <legend>Which updates would you like to receive?</legend>\n    <p id="group-required-hint">Required. Submit with no choices selected to see the error.</p>\n    <input data-slot="checkbox" id="required-product" type="checkbox"><label for="required-product">Product news</label>\n    <button type="submit">Continue</button>\n  </fieldset>\n  <p role="status" aria-live="polite">Preferences saved with 1 update type selected.</p>\n</form>`,
-    functional: [
+    requirementItems: [
       'Submitting with zero selected options must expose the corrective error.',
       'Submitting with one or more options must expose a polite success status.',
     ],
     criteria: [
       {
         id: 'AC-REQUIRED-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'no update type is selected',
         when: 'a person activates Continue',
         then: 'submission is blocked and the group error asks for at least one choice',
@@ -660,7 +660,7 @@ function renderExample(config: GroupConfig, children: ReactNode) {
   return (
     <ExampleVariation
       title={config.title}
-      summary={config.summary}
+      summary={config.purpose}
       tryIt={config.tryIt}
       exampleClassName="p-5 sm:p-6"
       supplemental={supplemental(config)}

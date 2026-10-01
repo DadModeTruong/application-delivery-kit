@@ -182,14 +182,14 @@ function RequiredExample() {
 type RadioConfig = {
   id: string
   title: string
-  summary: string
+  purpose: string
   tryIt: string
   explanation: string
-  dos: string[]
-  donts: string[]
+  doItems: string[]
+  dontItems: string[]
   source: string
   html: string
-  functional: string[]
+  requirementItems: string[]
   criteria: Array<{
     id: string
     refs: string[]
@@ -210,7 +210,7 @@ type RadioConfig = {
 
 function supplemental(config: RadioConfig) {
   const business = `BR-${config.id}`
-  const functional = `FR-${config.id}`
+  const requirementItems = `FR-${config.id}`
   const accessibility = `A11Y-${config.id}`
   const technical = `TR-${config.id}`
   return {
@@ -221,8 +221,8 @@ function supplemental(config: RadioConfig) {
         'Use a native radio input with one shared name per decision so the browser enforces mutual exclusion.',
         'Keep the fieldset legend, visible labels, state, and feedback aligned with the demonstrated Radio props.',
       ],
-      doItems: config.dos,
-      dontItems: config.donts,
+      doItems: config.doItems,
+      dontItems: config.dontItems,
     },
     code: {
       language: 'tsx',
@@ -268,11 +268,11 @@ function supplemental(config: RadioConfig) {
           id: business,
           title: 'Business requirements',
           items: [
-            config.summary,
+            config.purpose,
             'The legend must state the shared decision and every option must be distinct.',
           ],
         },
-        { id: functional, title: 'Functional requirements', items: config.functional },
+        { id: requirementItems, title: 'Functional requirements', items: config.requirementItems },
         {
           id: accessibility,
           title: 'Accessibility requirements',
@@ -295,8 +295,8 @@ function supplemental(config: RadioConfig) {
         requirementRefs: criterion.refs.map((ref) =>
           ref === 'business'
             ? `${business}-01`
-            : ref === 'functional'
-              ? `${functional}-01`
+            : ref === 'requirementItems'
+              ? `${requirementItems}-01`
               : `${accessibility}-01`,
         ),
       })),
@@ -325,30 +325,30 @@ const configs: RadioConfig[] = [
   {
     id: 'BASIC',
     title: 'Basic',
-    summary:
+    purpose:
       'The basic Radio group must present mutually exclusive contact choices under one shared question.',
     tryIt:
       'Use Arrow keys or click a contact method and confirm selecting one option clears the previously selected option.',
     explanation:
       'Use a basic Radio group when exactly one option must be selected from a small set.',
-    dos: [
+    doItems: [
       'Write a concise legend that states the shared question.',
       'Make every option complete and distinct so choices can be compared.',
     ],
-    donts: [
+    dontItems: [
       'Do not use Radio when several choices may be selected; use Checkbox group.',
       'Do not use vague options without a clear legend.',
     ],
     source: `import { Radio } from '@/components/ui/radio'\n\n<fieldset>\n  <legend>How should we contact you?</legend>\n  <Radio name="contact" value="email" />\n  <label htmlFor="email">Email</label>\n</fieldset>`,
     html: `<fieldset>\n  <legend>How should we contact you?</legend>\n  <input data-slot="radio" id="email" name="contact" type="radio" value="Email">\n  <label for="email">Email</label>\n  <input data-slot="radio" id="text" name="contact" type="radio" value="Text message">\n  <label for="text">Text message</label>\n</fieldset>`,
-    functional: [
+    requirementItems: [
       'Selecting one option must clear the other options in the same named group.',
       'The group must always expose the selected option to the form.',
     ],
     criteria: [
       {
         id: 'AC-BASIC-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'the Radio group is rendered',
         when: 'a person selects Email and then selects Text message',
         then: 'exactly one option remains selected',
@@ -389,30 +389,30 @@ const configs: RadioConfig[] = [
   {
     id: 'HELPER',
     title: 'With helper text',
-    summary:
+    purpose:
       'The helper-text Radio group must provide persistent context for comparing mutually exclusive options.',
     tryIt:
       'Read the helper message, select a contact method, and confirm the guidance remains available while the selection changes.',
     explanation:
       'Use helper text when timing, eligibility, privacy, or consequences help people compare the options.',
-    dos: [
+    doItems: [
       'Associate the description with the fieldset using aria-describedby.',
       'Keep the decision context visible before and after selection.',
     ],
-    donts: [
+    dontItems: [
       'Do not repeat the legend in helper text.',
       'Do not hide essential eligibility rules in optional help.',
     ],
     source: `import { Radio } from '@/components/ui/radio'\n\n<fieldset aria-describedby="contact-hint">\n  <legend>How should we contact you?</legend>\n  <p id="contact-hint">Choose the method you check most often.</p>\n  {/* Render radios with one shared name. */}\n</fieldset>`,
     html: `<fieldset aria-describedby="contact-hint">\n  <legend>How should we contact you?</legend>\n  <p id="contact-hint">Choose the method you check most often. You can change this preference later.</p>\n  <input data-slot="radio" id="helper-email" name="helper-contact" type="radio"><label for="helper-email">Email</label>\n  <input data-slot="radio" id="helper-text" name="helper-contact" type="radio"><label for="helper-text">Text message</label>\n</fieldset>`,
-    functional: [
+    requirementItems: [
       'The helper message must explain the decision context.',
       'The group must remain mutually exclusive while the helper remains visible.',
     ],
     criteria: [
       {
         id: 'AC-HELPER-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'the helper-text Radio group is rendered',
         when: 'a person reads the helper text, selects Email, and then selects Text message',
         then: 'the helper message remains visible and the choice remains mutually exclusive',
@@ -449,30 +449,30 @@ const configs: RadioConfig[] = [
   {
     id: 'DISABLED',
     title: 'Disabled',
-    summary:
+    purpose:
       'The disabled Radio group must communicate that the mutually exclusive decision is unavailable.',
     tryIt:
       'Attempt to focus or select the disabled contact methods and confirm the availability explanation remains readable.',
     explanation:
       'Disable a Radio group only when the decision cannot be changed in the current context.',
-    dos: [
+    doItems: [
       'Explain what controls availability.',
       'Keep the legend and option labels understandable.',
     ],
-    donts: [
+    dontItems: [
       'Do not disable a group merely to prevent mistakes.',
       'Do not hide important information only in disabled controls.',
     ],
     source: `import { Radio } from '@/components/ui/radio'\n\n<fieldset aria-describedby="contact-hint">\n  <legend>How should we contact you?</legend>\n  <p id="contact-hint">Available after you add a verified contact method.</p>\n  <Radio name="contact" value="email" disabled />\n</fieldset>`,
     html: `<fieldset aria-describedby="contact-hint">\n  <legend>How should we contact you?</legend>\n  <p id="contact-hint">Available after you add a verified contact method.</p>\n  <input data-slot="radio" id="disabled-email" name="disabled-contact" type="radio" disabled><label for="disabled-email">Email</label>\n  <input data-slot="radio" id="disabled-text" name="disabled-contact" type="radio" disabled><label for="disabled-text">Text message</label>\n</fieldset>`,
-    functional: [
+    requirementItems: [
       'Every option must prevent selection while the group is unavailable.',
       'The availability explanation must remain visible.',
     ],
     criteria: [
       {
         id: 'AC-DISABLED-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'the disabled Radio group is rendered',
         when: 'a person attempts to select Email, Text message, or No notifications',
         then: 'the option cannot be selected and the explanation remains visible',
@@ -510,30 +510,30 @@ const configs: RadioConfig[] = [
   {
     id: 'INVALID',
     title: 'Invalid',
-    summary:
+    purpose:
       'The invalid Radio group must explain the actionable rule that the current selection violates.',
     tryIt:
       'Read the error, select one contact method, and confirm the group remains available to correct.',
     explanation:
       'Use an invalid state when the group violates an actionable rule such as requiring one choice.',
-    dos: [
+    doItems: [
       'State what must be selected or changed and why.',
       'Associate the error with the fieldset and expose invalid state semantically.',
     ],
-    donts: [
+    dontItems: [
       'Do not rely on red borders or color alone.',
       'Do not write “Invalid selection” without a correction path.',
     ],
     source: `import { Radio } from '@/components/ui/radio'\n\n<fieldset aria-invalid="true" aria-describedby="contact-error">\n  <legend>How should we contact you?</legend>\n  <Radio name="contact" value="email" />\n  <p id="contact-error" role="alert">Select one contact method to continue.</p>\n</fieldset>`,
     html: `<fieldset aria-invalid="true" aria-describedby="contact-error">\n  <legend>How should we contact you?</legend>\n  <input data-slot="radio" id="invalid-email" name="invalid-contact" type="radio"><label for="invalid-email">Email</label>\n  <p id="contact-error" role="alert">Select one contact method to continue.</p>\n</fieldset>`,
-    functional: [
+    requirementItems: [
       'The group must remain available for correction.',
       'The error must state that one contact method must be selected.',
     ],
     criteria: [
       {
         id: 'AC-INVALID-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'the invalid Radio group is rendered',
         when: 'a person reviews Email, Text message, and No notifications',
         then: 'the correction message and selectable options are visible',
@@ -573,30 +573,30 @@ const configs: RadioConfig[] = [
   {
     id: 'REQUIRED',
     title: 'Required',
-    summary:
+    purpose:
       'The required Radio group must block submission until exactly one option is actively selected.',
     tryIt:
       'Submit without a choice, then select one contact method and submit again to confirm the success status appears.',
     explanation:
       'Use a required Radio group when the task needs exactly one choice and there is no safe meaningful default.',
-    dos: [
+    doItems: [
       'State that one option is required.',
       'Make the error and success outcomes observable and understandable.',
     ],
-    donts: [
+    dontItems: [
       'Do not preselect a required decision without a clear reason.',
       'Do not use an error that only says “Required.”',
     ],
     source: `import { useState } from 'react'\nimport { Radio } from '@/components/ui/radio'\n\nfunction RequiredRadioGroup() {\n  const [selected, setSelected] = useState('')\n  const [submitted, setSubmitted] = useState(false)\n  function handleChange(value: string) { setSelected(value); setSubmitted(false) }\n  return <fieldset><legend>How should we contact you?</legend>{/* Render one named Radio per option. */}</fieldset>\n}`,
     html: `<form>\n  <fieldset aria-describedby="required-hint">\n    <legend>How should we contact you?</legend>\n    <p id="required-hint">Required. Select one option before continuing.</p>\n    <input data-slot="radio" id="required-email" name="required-contact" type="radio" required><label for="required-email">Email</label>\n    <button type="submit">Continue</button>\n  </fieldset>\n  <p role="status" aria-live="polite">Contact preference saved: Email.</p>\n</form>`,
-    functional: [
+    requirementItems: [
       'Submitting with no selected option must expose the correction error.',
       'Submitting with one selected option must expose a polite success status.',
     ],
     criteria: [
       {
         id: 'AC-REQUIRED-01',
-        refs: ['business', 'functional'],
+        refs: ['business', 'requirementItems'],
         given: 'Email, Text message, and No notifications are all unselected',
         when: 'a person activates Continue',
         then: 'submission is blocked and the group error asks for one choice',
@@ -641,7 +641,7 @@ function renderExample(config: RadioConfig, children: ReactNode) {
   return (
     <ExampleVariation
       title={config.title}
-      summary={config.summary}
+      summary={config.purpose}
       tryIt={config.tryIt}
       exampleClassName="p-5 sm:p-6"
       supplemental={supplemental(config)}
