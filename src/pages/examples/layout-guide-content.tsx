@@ -1,8 +1,7 @@
 /** Shared content renderer for a single Layouts example detail page. */
 import { ExternalLink } from 'lucide-react'
 import { LayoutGuideShell } from '@/components/layout/layout-guide-shell'
-import { PageContractPanel, type PageContract } from '@/components/layout/page-contract'
-
+import type { PageContract } from '@/components/layout/page-contract'
 type LayoutGuide = {
   name: string
   summary: string
@@ -246,7 +245,7 @@ const guides: Record<string, LayoutGuide> = {
   },
 }
 
-function layoutGuideContract(slug: keyof typeof guides, guide: LayoutGuide): PageContract {
+export function layoutGuideContract(slug: keyof typeof guides, guide: LayoutGuide): PageContract {
   return {
     userStory: `As a product team deciding whether to adopt the ${guide.name} layout, I want clear contractual requirements and repeatable tests so that the decision is based on observable user, content, accessibility, responsive, and maintenance outcomes.`,
     requirements: [
@@ -452,7 +451,6 @@ function LayoutDetailPage({ slug }: { slug: keyof typeof guides }) {
           </h2>
           <p className="leading-7 text-muted-foreground">{guide.responsive}</p>
         </section>
-        <PageContractPanel contract={layoutGuideContract(slug, guide)} />
       </div>
     </LayoutGuideShell>
   )

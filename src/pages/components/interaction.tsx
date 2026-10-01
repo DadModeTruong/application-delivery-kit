@@ -7,8 +7,6 @@
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { interactionSidebarLinks } from '@/config/component-navigation'
-import { PageContractPanel } from '@/components/layout/page-contract'
-import { interactionContract } from '@/components/layout/area-contracts'
 
 /**
  * Interaction area introduction. Mounted by the example router at
@@ -163,7 +161,6 @@ function ComponentsInteractionPage() {
             </li>
           </ul>
         </section>
-        <PageContractPanel contract={interactionContract} />
       </div>
     </ComponentGuideShell>
   )
