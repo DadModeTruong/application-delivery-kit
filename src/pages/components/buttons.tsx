@@ -166,6 +166,29 @@ function makeButtonSupplemental(config: ButtonExampleConfig) {
           then: 'the controls remain named, keyboard operable, and visibly focused',
           and: ['the documented state or relationship is exposed without relying on color alone'],
         },
+        {
+          id: `AC-${config.id}-03`,
+          requirementRefs: [`${functionalId}-02`, `${technicalId}-02`],
+          given: 'the demonstrated Button is disabled, loading, a menu trigger, or part of a form',
+          when: 'the person attempts the supported and unsupported activation paths',
+          then: 'the control exposes the documented state and only performs the documented action',
+          and: [
+            'a disabled control does not activate',
+            'a loading control does not invite duplicate submission',
+            'a menu trigger exposes its expanded relationship when applicable',
+          ],
+        },
+        {
+          id: `AC-${config.id}-04`,
+          requirementRefs: [`${nonFunctionalId}-01`, `${accessibilityId}-02`],
+          given: 'the Button label, icon, or surrounding content is long',
+          when: 'the person views the example at narrow width or increased text size',
+          then: 'the label and focus treatment remain readable without clipping or overlap',
+          and: [
+            'an icon-only control has an accessible name',
+            'visual hierarchy does not depend on color alone',
+          ],
+        },
       ],
     },
     verification: {
@@ -204,6 +227,46 @@ function makeButtonSupplemental(config: ButtonExampleConfig) {
               ],
               expected:
                 'Focus follows the visual order, every control has a useful accessible name, and the documented state or relationship remains exposed.',
+            },
+          ],
+        },
+        {
+          id: `VR-${config.id}-03`,
+          criterionRefs: [`AC-${config.id}-03`],
+          role: 'Functional QA',
+          title: 'Check disabled, loading, trigger, or form boundaries',
+          cases: [
+            {
+              id: `VR-${config.id}-03A`,
+              criterionRefs: [`AC-${config.id}-03`],
+              title: 'Attempt the documented negative path',
+              steps: [
+                'Identify the disabled, loading, menu-trigger, or form behavior shown by this example.',
+                'Attempt the action that should be blocked or should produce the documented relationship.',
+                'Inspect the visible state, status message, menu state, or form result.',
+              ],
+              expected:
+                'The control only performs the documented action, exposes its state, and does not cause duplicate submission or an undisclosed navigation.',
+            },
+          ],
+        },
+        {
+          id: `VR-${config.id}-04`,
+          criterionRefs: [`AC-${config.id}-04`],
+          role: 'Responsive QA',
+          title: 'Check labels and focus at boundaries',
+          cases: [
+            {
+              id: `VR-${config.id}-04A`,
+              criterionRefs: [`AC-${config.id}-04`],
+              title: 'Inspect narrow and enlarged presentation',
+              steps: [
+                'Set a narrow viewport and increase text size or browser zoom.',
+                'Tab to every control and inspect the complete label, icon, and focus indicator.',
+                'Check for clipping, overlap, or unexpected horizontal scrolling.',
+              ],
+              expected:
+                'The action remains understandable, operable, and visibly focused; icon-only controls remain named and no content is clipped.',
             },
           ],
         },
