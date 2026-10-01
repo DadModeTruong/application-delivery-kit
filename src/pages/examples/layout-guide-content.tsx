@@ -1,7 +1,7 @@
 /** Shared content renderer for a single Layouts example detail page. */
 import { ExternalLink } from 'lucide-react'
 import { LayoutGuideShell } from '@/components/layout/layout-guide-shell'
-import type { PageContract } from '@/components/layout/page-contract'
+
 type LayoutGuide = {
   name: string
   summary: string
@@ -243,128 +243,6 @@ const guides: Record<string, LayoutGuide> = {
       'Both contextual navigation regions are hidden at narrow widths in the current demo; no mobile replacement is composed. Treat mobile navigation as an application-owned requirement and do not claim this fixture proves destination preservation or focus movement.',
     exampleHref: '/layouts/full',
   },
-}
-
-export function layoutGuideContract(slug: keyof typeof guides, guide: LayoutGuide): PageContract {
-  return {
-    userStory: `As a product team deciding whether to adopt the ${guide.name} layout, I want clear contractual requirements and repeatable tests so that the decision is based on observable user, content, accessibility, responsive, and maintenance outcomes.`,
-    requirements: [
-      `The ${guide.name} decision guide shall explain what the pattern is, when to use it, when not to use it, and what trade-offs it creates.`,
-      'The guide shall identify decision signals, design and architecture considerations, role-specific questions, change cost, future-proofing, accessibility, and responsive behavior.',
-      'The guide shall link to the matching interactive example in a new tab with a visible label and a screen-reader indication that a new window opens.',
-      'The guide shall keep the decision guidance separate from the interactive demo so that the two routes have distinct purposes and do not silently drift.',
-      'The guide shall use concrete, product-neutral language that a cross-functional team can review before approving the pattern.',
-    ],
-    criteria: [
-      {
-        id: `GUIDE-${slug.toUpperCase()}-01`,
-        given: `a person opens the ${guide.name} decision guide`,
-        when: 'the page finishes rendering',
-        then: 'the page has one clear heading, a plain-language summary, and an explanation of the pattern',
-        and: [
-          'the visible heading matches the route and navigation label',
-          'the guide does not require opening the demo to understand the decision',
-        ],
-      },
-      {
-        id: `GUIDE-${slug.toUpperCase()}-02`,
-        given: 'the person is deciding whether the pattern fits a product',
-        when: 'they read the guide from top to bottom',
-        then: 'they can find both positive and negative decision guidance',
-        and: [
-          'decision signals are observable',
-          'trade-offs and likely change costs are stated',
-          'team questions identify relevant ownership',
-        ],
-      },
-      {
-        id: `GUIDE-${slug.toUpperCase()}-03`,
-        given: 'the person needs to inspect the live implementation',
-        when: 'they select the interactive example link',
-        then: 'the matching demo opens in a new browser tab',
-        and: [
-          'the link destination matches the guide pattern',
-          'the link remains understandable without relying on the external-link icon',
-          'the screen-reader-only new-window message is present',
-        ],
-      },
-      {
-        id: `A11Y-GUIDE-${slug.toUpperCase()}-01`,
-        given: 'the person uses a keyboard or assistive technology',
-        when: 'they move through the guide headings, lists, and example link',
-        then: 'the content has logical reading order and visible focus',
-        and: [
-          'the example link has an accessible name',
-          'the page does not communicate a required decision only through color or position',
-        ],
-      },
-      {
-        id: `RESP-GUIDE-${slug.toUpperCase()}-01`,
-        given: 'the person reads the guide at narrow width or increased zoom',
-        when: 'they scan the complete page and activate the example link',
-        then: 'text, lists, headings, and the link remain readable and reachable',
-        and: [
-          'no content is clipped or overlapped',
-          'the page does not require unintended horizontal scrolling',
-        ],
-      },
-    ],
-    verification: [
-      {
-        id: `GUIDE-${slug}-CONTENT`,
-        title: 'Guide content and decision completeness',
-        cases: [
-          {
-            id: `GUIDE-${slug}-CONTENT-01`,
-            title: 'Read the guide as a decision-maker',
-            steps: [
-              'Open the guide route in a fresh browser tab.',
-              'Read the heading and summary.',
-              'Find the sections for use, non-use, decision signals, trade-offs, team questions, change cost, future-proofing, accessibility, and responsive behavior.',
-              'Confirm that each section contains concrete statements rather than only a heading.',
-            ],
-            expected: `The ${guide.name} guide gives a complete, understandable decision record and does not require the reader to infer why the pattern fits or fails.`,
-          },
-        ],
-      },
-      {
-        id: `GUIDE-${slug}-LINK`,
-        title: 'Interactive example handoff',
-        cases: [
-          {
-            id: `GUIDE-${slug}-LINK-01`,
-            title: 'Open the live example',
-            steps: [
-              'Move focus to the example link.',
-              'Read its accessible name.',
-              'Activate it with Enter.',
-              'Observe the browser tabs.',
-            ],
-            expected:
-              'The matching interactive example opens in a new tab, the original guide remains available, and the link name communicates both the pattern and the new-window behavior.',
-          },
-        ],
-      },
-      {
-        id: `GUIDE-${slug}-A11Y`,
-        title: 'Keyboard, zoom, and narrow-width review',
-        cases: [
-          {
-            id: `GUIDE-${slug}-A11Y-01`,
-            title: 'Scan the whole guide',
-            steps: [
-              'Use Tab from the top of the page.',
-              'Increase browser zoom and repeat the scan.',
-              'Set the viewport to the narrowest supported width.',
-              'Scroll through every section and activate the example link.',
-            ],
-            expected:
-              'Headings and lists remain in logical order, focus is visible, all content is readable, the link remains reachable, and no clipping, overlap, or unintended horizontal scrolling occurs.',
-          },
-        ],
-      },
-    ],
-  }
 }
 
 function LayoutDetailPage({ slug }: { slug: keyof typeof guides }) {
