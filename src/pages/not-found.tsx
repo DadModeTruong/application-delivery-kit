@@ -1,4 +1,7 @@
 /** Explicit fallback for unknown paths; broken links should not silently render Home. */
+import { PageContractPanel } from '@/components/layout/page-contract'
+import { notFoundContract } from '@/components/layout/area-contracts'
+
 export function NotFoundPage({ path }: { path: string }) {
   return (
     <main
@@ -18,6 +21,7 @@ export function NotFoundPage({ path }: { path: string }) {
       >
         Return home
       </a>
+      <PageContractPanel contract={notFoundContract} />
     </main>
   )
 }

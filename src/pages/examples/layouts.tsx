@@ -1,5 +1,7 @@
 /** Overview and decision framework for the complete page-shell examples. */
 import { LayoutGuideShell } from '@/components/layout/layout-guide-shell'
+import { PageContractPanel } from '@/components/layout/page-contract'
+import { layoutsContract } from '@/components/layout/area-contracts'
 
 const layoutLinks = [
   [
@@ -201,6 +203,7 @@ function LayoutsExamplesPage() {
             </li>
           </ul>
         </section>
+        <PageContractPanel contract={layoutsContract} />
       </div>
     </LayoutGuideShell>
   )

@@ -7,6 +7,8 @@
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { userInterfaceSidebarLinks } from '@/config/component-navigation'
+import { PageContractPanel } from '@/components/layout/page-contract'
+import { userInterfaceContract } from '@/components/layout/area-contracts'
 
 /**
  * User Interface area introduction. Mounted by the example router at
@@ -167,6 +169,7 @@ function ComponentsUserInterfacePage() {
             <li>Would a plain section, heading, or list communicate this more clearly?</li>
           </ul>
         </section>
+        <PageContractPanel contract={userInterfaceContract} />
       </div>
     </ComponentGuideShell>
   )

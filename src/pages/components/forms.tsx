@@ -7,6 +7,8 @@
 
 import { ComponentGuideShell } from '@/components/layout/component-guide-shell'
 import { formSidebarLinks } from '@/config/component-navigation'
+import { PageContractPanel } from '@/components/layout/page-contract'
+import { formsContract } from '@/components/layout/area-contracts'
 
 function ComponentsFormsPage() {
   return (
@@ -132,6 +134,7 @@ function ComponentsFormsPage() {
             </li>
           </ul>
         </section>
+        <PageContractPanel contract={formsContract} />
       </div>
     </ComponentGuideShell>
   )

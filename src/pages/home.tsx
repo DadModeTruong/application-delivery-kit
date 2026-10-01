@@ -12,6 +12,8 @@ import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { Columns } from '@/components/layout/columns'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { PageContractPanel } from '@/components/layout/page-contract'
+import { homeContract } from '@/components/layout/area-contracts'
 
 // ---------------------------------------------------------------
 // Page
@@ -377,6 +379,7 @@ function HomePage() {
               </a>
             </Columns>
           </section>
+          <PageContractPanel contract={homeContract} />
         </div>
       </Main>
       <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
