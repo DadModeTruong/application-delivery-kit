@@ -143,7 +143,7 @@ function RequiredExample() {
         </p>
         <div className="space-y-3">
           {options.map((option) => {
-            const id = `group-required-${option}`
+            const id = optionId('group-required', option)
             return (
               <label key={option} className="flex items-start gap-3 text-sm" htmlFor={id}>
                 <Checkbox
