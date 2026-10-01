@@ -411,7 +411,7 @@ function StandardizedExample({
         <p className="text-muted-foreground">{summary}</p>
       </div>
       <TryIt>{tryIt}</TryIt>
-      <div className={cn('-mt-2 overflow-hidden rounded-xl border', exampleClassName)}>
+      <div className={cn('-mt-2 overflow-visible rounded-xl border', exampleClassName)}>
         {children}
       </div>
       <Tabs defaultSelectedKey={tabIds.guidance} className="min-w-0 gap-2">
