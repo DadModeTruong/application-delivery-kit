@@ -1,6 +1,6 @@
 export { Header } from './header'
 export type { HeaderProps } from './header'
 export { MobileNavigation } from './mobile-navigation'
-export type { MobileNavigationProps } from './mobile-navigation'
+export type { MobileNavigationProps, MobileNavigationSection } from './mobile-navigation'
 export { SkipLink } from './skip-link'
 export type { NavItem } from '../types'

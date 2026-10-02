@@ -11,7 +11,7 @@ import * as React from 'react'
 import { cn } from 'cn'
 import { Container } from '@/components/layout/container'
 import { DesktopNavigation } from './desktop-navigation'
-import { MobileNavigation } from './mobile-navigation'
+import { MobileNavigation, type MobileNavigationSection } from './mobile-navigation'
 import type { NavItem } from '../types'
 
 type HeaderLogoConfig = {
@@ -26,6 +26,10 @@ type HeaderProps = {
   nav?: NavItem[]
   /** Accessible label for the Header navigation landmark. */
   navigationLabel?: string
+  /** Contextual mobile navigation rendered below global navigation. */
+  mobileNavigationSections?: MobileNavigationSection[]
+  /** Current route used for desktop and mobile active state. */
+  activeHref?: string
   /** Right-side application-level actions. */
   actions?: React.ReactNode
   /** Viewport width at which inline navigation appears. */
@@ -73,6 +77,8 @@ function Header({
   logo,
   nav = [],
   navigationLabel = 'Global navigation',
+  mobileNavigationSections = [],
+  activeHref,
   actions,
   mobileBreakpoint = 'md',
   size = 'contained',
@@ -112,7 +118,12 @@ function Header({
             {actions}
             {hasMobileNavigation && (
               <div className={mobileVisibility}>
-                <MobileNavigation items={nav} navigationLabel={navigationLabel} />
+                <MobileNavigation
+                  items={nav}
+                  sections={mobileNavigationSections}
+                  activeHref={activeHref}
+                  navigationLabel={navigationLabel}
+                />
               </div>
             )}
           </div>

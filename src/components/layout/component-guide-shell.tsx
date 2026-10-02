@@ -17,7 +17,7 @@ import { PageShell } from '@/components/layout/page-shell'
 import { Sidebar } from '@/components/layout/sidebar'
 import { TabNavigation } from '@/components/layout/tab-navigation'
 import type { NavGroup, NavItem, NavLeaf } from '@/components/layout/types'
-import { componentAreaLinks } from '@/config/component-navigation'
+import { componentAreaLinks, componentMobileNavigation } from '@/config/component-navigation'
 import { footerLinks, primaryNav } from '@/config/site-navigation'
 
 type ComponentGuideShellProps = {
@@ -41,6 +41,13 @@ export function ComponentGuideShell({
   sidebarNavLabel,
   sidebarAriaLabel = sidebarNavLabel,
 }: ComponentGuideShellProps) {
+  const mobileNavigation =
+    tabActiveHref === '/components/user-interface'
+      ? componentMobileNavigation.userInterface
+      : tabActiveHref === '/components/interaction'
+        ? componentMobileNavigation.interaction
+        : componentMobileNavigation.forms
+
   return (
     <LayoutProvider
       tabNavigation={componentAreaLinks}
@@ -52,6 +59,8 @@ export function ComponentGuideShell({
         <ApplicationHeader
           logo={{ href: '/', label: 'Application Delivery Kit' }}
           nav={shellPrimaryNav}
+          mobileNavigationSections={[mobileNavigation]}
+          activeHref={activeHref}
         />
         <TabNavigation aria-label="Component areas" activeHref={tabActiveHref} />
         <PageBody>

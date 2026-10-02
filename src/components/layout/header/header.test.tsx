@@ -24,6 +24,40 @@ describe('Header', () => {
     )
   })
 
+  it('renders contextual sections, removes duplicate global links, and marks the active route', () => {
+    render(
+      <MobileNavigation
+        items={[
+          {
+            label: 'Components',
+            children: [
+              { href: '/components/forms', label: 'Forms' },
+              { href: '/components/interaction', label: 'Interaction' },
+            ],
+          },
+          { href: '/examples/layouts', label: 'Examples' },
+        ]}
+        activeHref="/components/forms/input"
+        sections={[
+          {
+            label: 'Component navigation — Forms',
+            items: [
+              { href: '/components/forms', label: 'Forms' },
+              { href: '/components/forms/input', label: 'Input' },
+            ],
+          },
+        ]}
+      />,
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: 'Open navigation menu' }))
+
+    expect(screen.getByRole('navigation', { name: 'Component navigation — Forms' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Input' }).getAttribute('aria-current')).toBe('page')
+    expect(screen.queryAllByRole('link', { name: 'Forms' })).toHaveLength(1)
+    expect(screen.getByRole('link', { name: 'Interaction' })).toBeTruthy()
+  })
+
   it('keeps leaf items as links and renders dropdown parents as mobile sections', () => {
     render(
       <MobileNavigation

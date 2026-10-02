@@ -11,7 +11,11 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { TabNavigation } from '@/components/layout/tab-navigation'
 import type { NavGroup, NavItem, NavLeaf } from '@/components/layout/types'
 import { footerLinks, primaryNav } from '@/config/site-navigation'
-import { layoutAreaLinks, layoutSidebarLinks } from '@/config/layout-navigation'
+import {
+  layoutAreaLinks,
+  layoutMobileNavigation,
+  layoutSidebarLinks,
+} from '@/config/layout-navigation'
 
 type LayoutGuideShellProps = {
   children: ReactNode
@@ -39,6 +43,8 @@ export function LayoutGuideShell({
         <ApplicationHeader
           logo={{ href: '/', label: 'Application Delivery Kit' }}
           nav={shellPrimaryNav}
+          mobileNavigationSections={[layoutMobileNavigation]}
+          activeHref={activeHref}
         />
         <TabNavigation aria-label="Examples" activeHref="/examples/layouts" />
         <PageBody>
