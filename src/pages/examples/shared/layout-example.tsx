@@ -13,6 +13,7 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { Columns } from '@/components/layout/columns'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { ExampleCard } from '@/pages/examples/shared/example-card'
+import { LayoutExampleContract } from '@/pages/examples/shared/layout-example-contract'
 
 type LayoutExampleProps = { variant: 'header-only' | 'secondary' | 'sidebar' | 'full' }
 
@@ -192,6 +193,7 @@ function ExampleMain({ variant }: LayoutExampleProps) {
             ))}
           </Columns>
         </section>
+        <LayoutExampleContract variant={variant} />
       </div>
     </Main>
   )
