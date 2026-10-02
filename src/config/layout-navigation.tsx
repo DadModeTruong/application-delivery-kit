@@ -16,3 +16,28 @@ export const layoutSidebarLinks: (NavLeaf | NavGroup)[] = [
     ],
   },
 ]
+
+export const layoutMobileNavigation = {
+  label: 'Example navigation — Layouts',
+  groups: [
+    {
+      label: 'Decision guides',
+      items: [
+        { href: '/examples/layouts', label: 'Layouts overview' },
+        { href: '/examples/layouts/header-only', label: 'Header Only decision guide' },
+        { href: '/examples/layouts/secondary', label: 'Secondary decision guide' },
+        { href: '/examples/layouts/sidebar', label: 'Sidebar decision guide' },
+        { href: '/examples/layouts/full', label: 'Full decision guide' },
+      ],
+    },
+    {
+      label: 'Interactive examples',
+      items: [
+        { href: '/layouts/header-only', label: 'Header Only interactive example' },
+        { href: '/layouts/secondary', label: 'Secondary interactive example' },
+        { href: '/layouts/sidebar', label: 'Sidebar interactive example' },
+        { href: '/layouts/full', label: 'Full interactive example' },
+      ],
+    },
+  ],
+}

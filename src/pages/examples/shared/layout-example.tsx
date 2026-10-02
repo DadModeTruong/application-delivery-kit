@@ -1,5 +1,6 @@
 /** Focused interactive previews for the four Layouts example pages. */
 import { Home, Palette, Puzzle, Rocket } from 'lucide-react'
+import { layoutMobileNavigation } from '@/config/layout-navigation'
 import { primaryNav, footerLinks } from '@/config/site-navigation'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
@@ -114,7 +115,12 @@ function LayoutExample({ variant }: LayoutExampleProps) {
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+        <Header
+          logo={{ href: '/', label: 'Application Delivery Kit' }}
+          nav={primaryNav}
+          mobileNavigationSections={[layoutMobileNavigation]}
+          activeHref={`/layouts/${variant}`}
+        />
         {hasTabs && <TabNavigation aria-label="Example sections" />}
         {hasSidebar ? (
           <PageBody>

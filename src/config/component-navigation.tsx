@@ -84,3 +84,41 @@ export const formSidebarLinks: (NavLeaf | NavGroup)[] = [
     ],
   },
 ]
+
+export const componentMobileNavigation = {
+  userInterface: {
+    label: 'Component navigation — User Interface',
+    items: [
+      { href: '/components/user-interface', label: 'User Interface' },
+      { href: '/components/header', label: 'Header' },
+      { href: '/components/tab-navigation', label: 'Tab Navigation' },
+      { href: '/components/sidebar', label: 'Sidebar' },
+      { href: '/components/footer', label: 'Footer' },
+      { href: '/components/split-view', label: 'Split View' },
+      { href: '/components/card', label: 'Card' },
+    ],
+  },
+  interaction: {
+    label: 'Component navigation — Interaction',
+    items: [
+      { href: '/components/interaction', label: 'Interaction' },
+      { href: '/components/button', label: 'Button' },
+      { href: '/components/tabs', label: 'Tabs' },
+      { href: '/components/sheet', label: 'Sheet' },
+    ],
+  },
+  forms: {
+    label: 'Component navigation — Forms',
+    items: [
+      { href: '/components/forms', label: 'Forms' },
+      { href: '/components/input', label: 'Input' },
+      { href: '/components/select', label: 'Select' },
+      { href: '/components/textarea', label: 'Text area' },
+      { href: '/components/checkbox', label: 'Checkbox' },
+      { href: '/components/checkbox-group', label: 'Checkbox group' },
+      { href: '/components/radio', label: 'Radio button' },
+      { href: '/components/combobox', label: 'Combobox' },
+      { href: '/components/datepicker', label: 'Datepicker' },
+    ],
+  },
+}

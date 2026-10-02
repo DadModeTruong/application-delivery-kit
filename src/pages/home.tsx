@@ -137,7 +137,7 @@ function HomePage() {
             </div>
             <div className="grid gap-6 lg:grid-cols-3">
               <a
-                href="/layouts/header-only"
+                href="/examples/layouts"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="text-xl font-semibold">Layout guides</h3>
@@ -228,7 +228,7 @@ function HomePage() {
                 <span className="text-sm font-medium text-muted-foreground">01</span>
                 <h3 className="mt-2 font-semibold">
                   <a
-                    href="/layouts/header-only"
+                    href="/examples/layouts"
                     className="underline decoration-muted-foreground/50 underline-offset-4 hover:decoration-foreground"
                   >
                     Header-only layout
