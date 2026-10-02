@@ -63,6 +63,123 @@ const sharedGuidance = (
   considerations,
 })
 
+const headerHtml = `<header data-slot="header" data-scrolled="false" data-size="contained">
+  <div data-slot="container" data-size="2xl">
+    <a href="/">Application Delivery Kit</a>
+    <nav aria-label="Global navigation">
+      <button type="button" aria-haspopup="true" aria-expanded="false">Components</button>
+      <button type="button" aria-haspopup="true" aria-expanded="false">Examples</button>
+    </nav>
+    <button type="button" aria-label="Open navigation menu" aria-expanded="false">Open navigation menu</button>
+  </div>
+</header>`
+
+const footerHtml = `<footer data-slot="footer" data-size="contained">
+  <div data-slot="container" data-size="2xl">
+    <div>© 2026 Tommy Truong</div>
+    <nav aria-label="Footer">
+      <a href="https://github.com/RealityTommy/application-delivery-kit" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in new window)</span></a>
+    </nav>
+  </div>
+</footer>`
+
+const cardHtml = Array.from(
+  { length: 6 },
+  (_, index) => `<div data-slot="card" data-size="default">
+  <div data-slot="card-header">
+    <div data-slot="card-title">Content ${index + 1}</div>
+  </div>
+  <div data-slot="card-content">
+    <p>Placeholder content demonstrating the card body area.</p>
+  </div>
+</div>`,
+).join('\n')
+
+function pageMainHtml(title: string, purpose: string): string {
+  return `<main id="main-content" tabindex="-1" data-slot="main" data-size="contained">
+  <div data-slot="container" data-size="2xl">
+    <div>
+      <section aria-labelledby="${title.toLowerCase().replaceAll(' ', '-')}-example-heading">
+        <p>Interactive example</p>
+        <h1 id="${title.toLowerCase().replaceAll(' ', '-')}-example-heading">${title}</h1>
+        <p>${purpose}</p>
+      </section>
+      <section aria-labelledby="${title.toLowerCase().replaceAll(' ', '-')}-inspect-heading">
+        <h2 id="${title.toLowerCase().replaceAll(' ', '-')}-inspect-heading">What to look for</h2>
+        <ul>
+          <li>Can a person understand the page purpose as soon as it opens?</li>
+          <li>Does the navigation structure remain understandable as content grows?</li>
+          <li>Can a person use the layout at a narrow viewport?</li>
+        </ul>
+        <p><strong>Watch for:</strong> Replace this sample content with representative production content before approving the layout.</p>
+        <p>For the full decision guidance, open the <a href="/examples/layouts/${title.toLowerCase().replaceAll(' ', '-')}">detail guide</a>.</p>
+      </section>
+      <section aria-labelledby="${title.toLowerCase().replaceAll(' ', '-')}-example-content-heading">
+        <h2 id="${title.toLowerCase().replaceAll(' ', '-')}-example-content-heading">Example content</h2>
+        <p>This content is intentionally simple. Replace it with representative production content when evaluating width, hierarchy, navigation density, reading order, and responsive behavior.</p>
+        <div data-slot="columns" data-responsive="viewport" data-cols-base="1" data-cols-sm="2" data-cols-lg="3">
+          ${cardHtml}
+        </div>
+      </section>
+    </div>
+  </div>
+</main>`
+}
+
+const headerOnlyHtml = `${headerHtml}
+${pageMainHtml('Header Only', 'Inspect the smallest complete shell and confirm that Main can provide enough orientation without contextual navigation.')}
+${footerHtml}`
+
+const secondaryHtml = `${headerHtml}
+<nav aria-label="Example sections">
+  <a href="/layouts/secondary" aria-current="page">Overview</a>
+  <a href="/layouts/secondary#example-content-heading">Example content</a>
+  <a href="/examples/layouts/secondary">Decision guide</a>
+</nav>
+${pageMainHtml('Secondary', 'Inspect a short set of peer destinations and verify that the row remains understandable, usable, and distinguishable from primary navigation.')}
+${footerHtml}`
+
+const sidebarHtml = `${headerHtml}
+<aside data-slot="sidebar" data-size="default">
+  <nav aria-label="Example pages">
+    <a href="/layouts/sidebar" aria-current="page">Overview</a>
+    <div data-slot="nav-group">
+      <h2>Explore this example</h2>
+      <a href="/layouts/sidebar#sidebar-inspect-heading">What to look for</a>
+      <a href="/layouts/sidebar#example-content-heading">Example content</a>
+    </div>
+    <div data-slot="nav-group">
+      <h2>Continue</h2>
+      <a href="/examples/layouts/sidebar">Decision guide</a>
+    </div>
+  </nav>
+</aside>
+${pageMainHtml('Sidebar', 'Inspect a grouped section map beside Main and test whether the navigation helps orientation without stealing too much content width.')}
+${footerHtml}`
+
+const fullHtml = `${headerHtml}
+<nav aria-label="Example sections">
+  <a href="/layouts/full" aria-current="page">Overview</a>
+  <a href="/layouts/full#example-content-heading">Example content</a>
+  <a href="/examples/layouts/full">Decision guide</a>
+</nav>
+<aside data-slot="sidebar" data-size="default">
+  <nav aria-label="Example pages">
+    <a href="/layouts/full" aria-current="page">Overview</a>
+    <div data-slot="nav-group">
+      <h2>Explore this example</h2>
+      <a href="/layouts/full#full-inspect-heading">What to look for</a>
+      <a href="/layouts/full#example-content-heading">Example content</a>
+    </div>
+    <div data-slot="nav-group">
+      <h2>Continue</h2>
+      <a href="/examples/layouts/full">Decision guide</a>
+    </div>
+  </nav>
+</aside>
+${pageMainHtml('Full', 'Inspect the combined shell and verify that the section row and Sidebar have genuinely different jobs.')}
+${footerHtml}`
+
 const contracts: Record<LayoutVariant, Contract> = {
   'header-only': {
     userStory:
@@ -203,12 +320,7 @@ const contracts: Record<LayoutVariant, Contract> = {
   </Main>
   <Footer links={footerLinks} />
 </PageShell>`,
-    html: `<header>…global navigation…</header>
-<main id="main-content">
-  <h1>Page title</h1>
-  …page content…
-</main>
-<footer>…supporting links…</footer>`,
+    html: headerOnlyHtml,
   },
   secondary: {
     userStory:
@@ -352,11 +464,7 @@ const contracts: Record<LayoutVariant, Contract> = {
     <h1>Section page</h1>
   </Main>
 </LayoutProvider>`,
-    html: `<nav aria-label="Example sections">
-  <a href="/section/overview" aria-current="page">Overview</a>
-  <a href="/section/details">Details</a>
-</nav>
-<main id="main-content">…</main>`,
+    html: secondaryHtml,
   },
   sidebar: {
     userStory:
@@ -498,10 +606,7 @@ const contracts: Record<LayoutVariant, Contract> = {
     <h1>Section page</h1>
   </Main>
 </PageBody>`,
-    html: `<div data-slot="page-body">
-  <nav aria-label="Example pages">…grouped links…</nav>
-  <main id="main-content">…</main>
-</div>`,
+    html: sidebarHtml,
   },
   full: {
     userStory:
@@ -644,11 +749,7 @@ const contracts: Record<LayoutVariant, Contract> = {
     </Main>
   </PageBody>
 </LayoutProvider>`,
-    html: `<nav aria-label="Example sections">…peer links…</nav>
-<div data-slot="page-body">
-  <nav aria-label="Example pages">…grouped links…</nav>
-  <main id="main-content">…</main>
-</div>`,
+    html: fullHtml,
   },
 }
 
@@ -802,7 +903,7 @@ function CodePanel({ contract }: { contract: Contract }) {
         </pre>
       </section>
       <section>
-        <h4 className="font-semibold text-foreground">Representative rendered HTML</h4>
+        <h4 className="font-semibold text-foreground">Complete rendered HTML structure</h4>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
           This shows the meaningful landmark and relationship structure to preserve when adapting
           the composition.

@@ -38,7 +38,9 @@ describe('LayoutExampleContract', () => {
 
       fireEvent.click(screen.getByRole('tab', { name: 'Code' }))
       expect(screen.getByText('Application Delivery Kit composition')).toBeTruthy()
-      expect(screen.getByText('Representative rendered HTML')).toBeTruthy()
+      expect(screen.getByText('Complete rendered HTML structure')).toBeTruthy()
+      expect(screen.getByText(/<header data-slot="header"/)).toBeTruthy()
+      expect(screen.queryByText(/…|\.\.\./)).toBeNull()
     },
   )
 
